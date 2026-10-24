@@ -104,3 +104,6 @@ body:has(.star-poster-hero) .site-header .menu-toggle[aria-expanded="true"]{font
 body:has(.star-poster-hero) .site-header .menu-toggle[aria-expanded="true"]::before,body:has(.star-poster-hero) .site-header .menu-toggle[aria-expanded="true"]::after{display:none}
 body:has(.star-poster-hero) .site-header .navlinks{position:absolute;top:68px!important;left:14px;right:14px;z-index:150;box-shadow:0 16px 45px #0009;border:1px solid #ffffff44;border-radius:8px;max-height:calc(100svh - 85px);overflow-y:auto}
 }
+
+/* Official STAR branding in footer */
+.footer-logo-link{display:inline-block;background:white;padding:12px 18px;border-radius:3px;margin-bottom:15px;max-width:310px}.footer-official-logo{display:block;width:min(270px,65vw);height:auto;object-fit:contain}.footer-logo-link:hover{box-shadow:0 0 0 2px #f5c64d66}
