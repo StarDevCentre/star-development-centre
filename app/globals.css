@@ -233,3 +233,16 @@ body:has(.hp-poster-hero) .site-header{position:absolute!important;top:0;left:0;
 body:has(.hp-poster-hero) .site-header .menu-toggle{background:#061329bd!important;color:#fff!important;border:1px solid #ffffffa3!important}
 @media(max-width:850px){body:has(.hp-poster-hero) .site-header .navwrap{height:0!important;padding:0!important;position:relative!important}body:has(.hp-poster-hero) .site-header .menu-toggle{position:absolute;top:12px;right:14px;left:auto;z-index:120;width:48px;height:48px;min-width:48px;display:flex;align-items:center;justify-content:center;padding:0!important;border-radius:7px;box-shadow:0 4px 18px #0008}body:has(.hp-poster-hero) .site-header .navlinks{top:70px!important;right:14px;left:14px;position:absolute!important;background:#061329f7!important;z-index:125;max-height:calc(100dvh - 85px);overflow:auto}.hp-poster-image{max-width:none}.hp-poster-actions{padding:18px 14px 26px;gap:10px}.hp-poster-actions .button{flex:1;min-width:0;font-size:11px;padding:14px 10px}}
 @media(max-width:380px){.hp-poster-actions{flex-direction:column}.hp-poster-actions .button{width:100%}}
+
+/* Keep the entire campaign artwork unobstructed: mobile navigation occupies its own bar. */
+@media(max-width:850px){
+ body:has(.hp-poster-hero) .site-header{position:relative!important;inset:auto!important;background:#061329!important;z-index:110}
+ body:has(.hp-poster-hero) .site-header .navwrap{position:relative!important;display:flex!important;align-items:center!important;justify-content:flex-end!important;height:64px!important;padding:8px 16px!important;background:#061329!important}
+ body:has(.hp-poster-hero) .site-header .menu-toggle{position:relative!important;inset:auto!important;top:auto!important;right:auto!important;left:auto!important;width:auto!important;min-width:118px!important;height:44px!important;padding:8px 14px!important;border-radius:5px!important;font-size:20px!important;box-shadow:none!important}
+ body:has(.hp-poster-hero) .site-header .menu-toggle span{display:inline!important;font-size:11px!important;margin-left:7px}
+ body:has(.hp-poster-hero) .site-header .navlinks{position:absolute!important;top:64px!important;left:12px!important;right:12px!important;z-index:160!important}
+}
+@media(min-width:851px){
+ body:has(.hp-poster-hero) .site-header{position:relative!important;inset:auto!important;background:#061329!important}
+ body:has(.hp-poster-hero) .site-header .navwrap{background:#061329!important}
+}
