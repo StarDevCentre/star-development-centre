@@ -22,7 +22,7 @@ export function ParentPortal(){
  return <div className="star-portal">
  <div className="star-portal-main">
  {error&&<p className="star-portal-error" role="alert">{error}</p>}{notice&&<p className="star-portal-notice" role="status">{notice}</p>}
- {!user?<><h2>{mode==="signup"?"Create parent account":mode==="reset"?"Reset your password":mode==="update"?"Choose a new password":"Parent sign in"}</h2><p>For parents and guardians aged 18 or over. Please use your own email address.</p><form onSubmit={submit} className="star-portal-form">
+ {(!user||mode==="update")?<><h2>{mode==="signup"?"Create parent account":mode==="reset"?"Reset your password":mode==="update"?"Choose a new password":"Parent sign in"}</h2><p>For parents and guardians aged 18 or over. Please use your own email address.</p><form onSubmit={submit} className="star-portal-form">
  {mode!=="update"&&<label>Email address<input type="email" required autoComplete="email" value={email} onChange={e=>setEmail(e.target.value)} maxLength={200}/></label>}
  {mode!=="reset"&&<label>Password<input type="password" required autoComplete={mode==="signup"||mode==="update"?"new-password":"current-password"} minLength={mode==="signup"||mode==="update"?12:1} value={password} onChange={e=>setPassword(e.target.value)}/></label>}
  {mode==="signup"&&<label>Parent / guardian name<input required autoComplete="name" minLength={2} maxLength={100} value={name} onChange={e=>setName(e.target.value)}/></label>}
