@@ -14,3 +14,8 @@ Before inviting families:
 - Keep STAR_ENQUIRY_ENABLED=false until enquiry delivery is tested.
 
 The dashboard currently allows parent profile creation and read-only access to any existing registrations; it does not accept children's details.
+
+## Player registration staging (October 2026)
+The player draft form exists in code but is hidden by default. It requires NEXT_PUBLIC_STAR_PLAYER_DRAFTS_ENABLED=true at build time. **Do not enable yet.** Database INSERT and UPDATE grants for authenticated users are explicitly revoked, even if someone bypasses the frontend.
+
+Before opening drafts: finalise child privacy notice, lawful basis, retention/deletion schedule, controller contact, safeguarding review, guardian authority checks, user access testing, and a reliable SMTP provider. After sign-off, explicitly grant INSERT and UPDATE on public.player_registrations to authenticated (RLS draft-only policies already apply), configure the flag, and test two families with separate accounts. No medical, emergency or safeguarding information belongs in the draft table.
