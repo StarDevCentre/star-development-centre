@@ -385,3 +385,5 @@ body:has(.hp-poster-hero) .site-header .menu-toggle{background:#061329bd!importa
   background:#df1f38!important;color:#fff!important;
  }
 }
+
+.star-staff-admin{margin-top:32px;border-top:2px solid #dfe4ed;padding-top:28px}.star-staff-admin h3{font-size:36px}.star-staff-admin h4{font-size:24px;margin:26px 0 12px}.star-staff-admin-list{display:grid;gap:12px}.star-staff-admin-item{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:15px;background:#f4f6fa;border:1px solid #e0e6ef;border-radius:8px}.star-staff-admin-item>div{flex:1;min-width:150px;overflow-wrap:anywhere}.star-staff-admin-item small{display:block;color:#59657a;margin-top:5px}.star-staff-admin-item label{font-size:12px;font-weight:700;display:flex;align-items:center;gap:8px}.star-staff-admin-item select{padding:9px;border:1px solid #a9b6c8;border-radius:5px;background:#fff;color:#102540}.star-staff-admin-note{font-size:13px;color:#59657a;margin-top:20px}
