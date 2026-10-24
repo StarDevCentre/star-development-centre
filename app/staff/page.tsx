@@ -1,0 +1,3 @@
+import {StaffDashboard} from "../../components/StaffDashboard";
+export const metadata={title:"STAR Staff Dashboard",description:"Private staff administration for STAR Development Centre."};
+export default function Page(){return <><div className="inner-hero star-enquiry-hero"><div className="container"><div className="kicker light">STAR DEVELOPMENT CENTRE / STAFF</div><h1>STAFF<br/><em>PORTAL.</em></h1><p>Secure access for STAR coaches, management and safeguarding leads.</p></div></div><section className="star-enquiry-section"><div className="container"><StaffDashboard/></div></section></>}
