@@ -76,3 +76,17 @@
 .star-poster-scroll{color:#fff;letter-spacing:.28em;font-size:10px;margin-top:26px;text-shadow:0 2px 8px #000}
 @media(min-width:1000px){.star-poster-hero{min-height:950px;height:100svh;max-height:1500px}.star-poster-image{background-size:contain;background-position:center center;background-color:#061329}.star-poster-actions{margin-bottom:10px}}
 @media(max-width:600px){.star-poster-hero{min-height:100svh;padding:85px 15px 25px}.star-poster-image{background-size:cover;background-position:center center}.star-poster-actions{gap:9px}.star-poster-actions .button{font-size:11px;padding:15px 9px;min-height:48px}.star-poster-scroll{font-size:9px;margin-top:18px}}
+
+
+/* Poster-first layout: preserve the entire approved artwork on every screen */
+body:has(.star-poster-hero) .site-header{position:absolute;top:0;left:0;right:0;background:transparent;z-index:110}
+body:has(.star-poster-hero) .site-header .navwrap{background:transparent;border:0;justify-content:flex-end;height:76px}
+body:has(.star-poster-hero) .site-header .logo{display:none}
+.star-poster-hero{min-height:0!important;height:auto!important;max-height:none!important;display:flex;flex-direction:column;justify-content:flex-start;align-items:stretch;padding:0!important;background:#061329;overflow:visible}
+.star-poster-image{position:relative!important;inset:auto!important;z-index:0!important;display:block;width:100%;height:auto;aspect-ratio:1024/1536;background-image:url('/images/a_dynamic_high_quality_cinematic_sports_promotio.png')!important;background-size:100% 100%!important;background-position:center!important;background-repeat:no-repeat!important}
+.star-poster-actions{position:relative;z-index:2;max-width:none;width:100%;padding:22px clamp(20px,6vw,100px) 0;gap:12px;background:#061329}
+.star-poster-actions .button{flex:1;max-width:340px;min-width:0}
+.star-poster-scroll{position:relative;padding:20px 0 27px;margin:0!important;background:#061329;text-align:center}
+@media(min-width:1000px){.star-poster-image{max-width:1000px;margin:0 auto;aspect-ratio:1024/1536}.star-poster-hero{background:radial-gradient(ellipse at 50% 40%,#163c75,#061329 65%)}.star-poster-actions,.star-poster-scroll{background:transparent}}
+@media(max-width:850px){body:has(.star-poster-hero) .site-header .navwrap{height:65px;padding:8px 16px}body:has(.star-poster-hero) .site-header .menu-toggle{background:#061329d9;color:#fff;border:1px solid #ffffff8a;box-shadow:0 4px 16px #0008;backdrop-filter:blur(8px);font-size:18px;padding:8px 12px}body:has(.star-poster-hero) .site-header .navlinks{top:65px;background:#061329f5}}
+@media(max-width:600px){.star-poster-image{aspect-ratio:1024/1536!important;background-size:100% 100%!important}.star-poster-actions{padding:14px 14px 0;gap:8px}.star-poster-actions .button{font-size:10px;letter-spacing:.03em;min-height:49px;padding:12px 10px;gap:6px}.star-poster-scroll{padding:18px 0 25px}}
