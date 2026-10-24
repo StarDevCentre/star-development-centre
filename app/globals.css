@@ -107,3 +107,10 @@ body:has(.star-poster-hero) .site-header .navlinks{position:absolute;top:68px!im
 
 /* Official STAR branding in footer */
 .footer-logo-link{display:inline-block;background:white;padding:12px 18px;border-radius:3px;margin-bottom:15px;max-width:310px}.footer-official-logo{display:block;width:min(270px,65vw);height:auto;object-fit:contain}.footer-logo-link:hover{box-shadow:0 0 0 2px #f5c64d66}
+
+
+/* Footer logo repair: crop oversized white margins from source image */
+.site-footer .footer-logo-link{display:block!important;position:relative;width:min(290px,78vw)!important;max-width:290px!important;height:116px!important;overflow:hidden!important;background:#fff!important;padding:0!important;border-radius:2px;margin:0 0 23px!important;box-shadow:none}
+.site-footer .footer-official-logo{display:block!important;position:absolute!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%) scale(1.8)!important;width:100%!important;max-width:none!important;height:100%!important;object-fit:contain!important}
+.site-footer .footer-logo-link:hover{box-shadow:0 0 0 1px #f5c64d!important}
+@media(max-width:600px){.site-footer .footer-logo-link{width:260px!important;height:104px!important}.site-footer .footer-official-logo{transform:translate(-50%,-50%) scale(1.8)!important}}
