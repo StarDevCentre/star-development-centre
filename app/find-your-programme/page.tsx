@@ -4,6 +4,7 @@ import {useMemo,useState} from "react";
 import {programmes} from "../../lib/siteData";
 import "./finder.css";
 
+// STAR Phase 1 preview: interactive programme guidance, pending owner approval.
 const ageOptions=[5,6,7,8,9,10,11,12,13,14,15,16,17,18];
 const goals=[
 {value:"start",label:"Build confidence and enjoy football"},
