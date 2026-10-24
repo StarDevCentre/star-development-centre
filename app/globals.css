@@ -304,3 +304,42 @@ body:has(.hp-poster-hero) .site-header .menu-toggle{background:#061329bd!importa
 .star-staff-auth-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}.star-staff-auth-links button{background:transparent;color:#153b80;border:1px solid #c9d2e3;padding:10px 14px}.star-staff-auth-links button:hover{background:#eef3fb}
 
 .portal-header-actions,.portal-header-links{display:flex;align-items:center;gap:16px}.portal-header-link{color:#fff!important;border:1px solid #73809a;padding:7px 10px;border-radius:4px;font-size:10px;letter-spacing:.07em}.portal-header-link:hover,.portal-header-link.active{border-color:var(--gold);color:var(--gold)!important}.portal-mobile-links{display:none}@media(max-width:1000px){.portal-header-links{display:none}.portal-mobile-links{display:flex;flex-direction:column;gap:0;width:100%;border-top:1px solid #e3e8ef;padding-top:10px}.portal-mobile-links a{display:block;padding:12px 0;font-weight:800;color:var(--blue)}}@media(min-width:1001px){.portal-mobile-links{display:none}}@media(max-width:650px){.topline{font-size:9px;letter-spacing:.04em}.portal-header-actions{gap:6px}}
+
+/* Responsive navigation and compact account access */
+.site-header .topline{position:relative;z-index:150;overflow:visible}
+.site-header .portal-header-actions{display:flex;align-items:center;gap:18px;flex-shrink:0}
+.site-header .account-dropdown{position:relative;flex-shrink:0}
+.site-header .account-dropdown summary{display:flex;align-items:center;gap:9px;list-style:none;cursor:pointer;border:1px solid #7e8ca7;border-radius:5px;padding:8px 13px;color:#fff;font-size:11px;font-weight:900;white-space:nowrap}
+.site-header .account-dropdown summary::-webkit-details-marker{display:none}
+.site-header .account-dropdown[open] summary,.site-header .account-dropdown summary:hover{border-color:var(--gold);color:var(--gold)}
+.site-header .account-dropdown-menu{position:absolute;top:calc(100% + 7px);right:0;min-width:190px;background:#fff;color:var(--navy);border:1px solid #dce2ec;box-shadow:0 12px 32px #06142e3b;border-radius:7px;padding:7px;display:grid;z-index:300}
+.site-header .account-dropdown-menu a{display:block;padding:12px 14px;font-size:12px;font-weight:800;letter-spacing:0;text-transform:none;white-space:nowrap;border-radius:4px}
+.site-header .account-dropdown-menu a:hover,.site-header .account-dropdown-menu a:focus-visible{background:#edf2fa;color:var(--blue)}
+.site-header .navwrap{min-width:0}
+.site-header .navlinks{min-width:0}
+.site-header .navlinks>a{white-space:nowrap}
+.site-header .portal-mobile-links{display:none}
+@media(max-width:1350px){
+ .site-header .navwrap{padding:0 3%;gap:14px}
+ .site-header .menu-toggle{display:flex;align-items:center;gap:6px}
+ .site-header .navlinks{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;padding:18px 4% 24px;box-shadow:0 16px 32px #06142e30;flex-direction:column;align-items:stretch;gap:0;z-index:200;max-height:calc(100dvh - 80px);overflow-y:auto}
+ .site-header .navlinks.is-open{display:flex}
+ .site-header .navlinks>a{display:block;padding:13px 8px;border-bottom:1px solid #e9edf4;font-size:13px}
+ .site-header .navlinks .nav-book{display:flex;justify-content:space-between;margin-top:12px;padding:15px}
+ .site-header .portal-mobile-links{display:flex;flex-direction:column;border-top:1px solid #dce3ee;margin-top:10px;padding-top:12px}
+ .site-header .portal-mobile-links strong{font-size:11px;letter-spacing:.13em;color:var(--muted);padding:8px}
+ .site-header .portal-mobile-links a{font-size:13px;color:var(--blue);font-weight:800;padding:12px 8px}
+}
+@media(max-width:850px){
+ .site-header .topline{padding:8px 16px}
+ .site-header .navwrap{height:65px}
+ .site-header .navlinks{top:100%}
+ body:has(.hp-poster-hero) .site-header .navlinks{top:70px!important}
+ body:has(.hp-poster-hero) .site-header .navlinks>a,body:has(.hp-poster-hero) .site-header .portal-mobile-links a{color:#fff!important;border-color:#ffffff24}
+ body:has(.hp-poster-hero) .site-header .portal-mobile-links strong{color:var(--gold)}
+}
+@media(max-width:560px){
+ .site-header .topline>span{display:none}
+ .site-header .topline{justify-content:flex-end}
+ .site-header .portal-header-actions{gap:14px}
+}
