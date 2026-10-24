@@ -246,3 +246,30 @@ body:has(.hp-poster-hero) .site-header .menu-toggle{background:#061329bd!importa
  body:has(.hp-poster-hero) .site-header{position:relative!important;inset:auto!important;background:#061329!important}
  body:has(.hp-poster-hero) .site-header .navwrap{background:#061329!important}
 }
+
+/* Programme experience and mobile-first readability */
+.star-programme-hero{padding-bottom:75px}.star-programme-hero .button{margin-top:20px}
+.star-programme-intro{background:#fff}.star-programme-intro .container>p{max-width:750px;color:#56647a;font-size:17px}
+.star-programme-jump{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:35px}
+.star-programme-jump a{background:#edf0f5;border:1px solid #d7dce6;padding:20px;font-weight:800;font-size:14px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.star-programme-jump a:hover,.star-programme-jump a:focus-visible{background:#dce5f4;border-color:#153b80}
+.star-programme-details{background:#f2f2ef}.star-programme-panel{scroll-margin-top:30px;background:white;border-top:5px solid #df1f38;padding:clamp(24px,4.5vw,60px);margin-bottom:30px;box-shadow:0 12px 40px #06142e0b}
+.star-programme-heading{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:50px;align-items:start}
+.star-programme-heading h2{margin:17px 0 20px;font-size:clamp(55px,6vw,92px)}.star-programme-lead{max-width:760px;font-size:17px;color:#526077;line-height:1.75}
+.star-programme-price{background:#071b39;color:white;padding:28px;display:flex;flex-direction:column}
+.star-programme-price>span{color:#f5c64d;font-size:10px;letter-spacing:.13em;font-weight:900}
+.star-programme-price strong{font:900 75px 'Barlow Condensed',Impact,sans-serif;line-height:1.1;margin-top:12px}
+.star-programme-price small{font-size:11px;letter-spacing:.07em}.star-programme-price p{border-top:1px solid #ffffff40;padding-top:15px;margin:20px 0 0;font-size:12px;color:#e0e7f1;line-height:1.6}
+.star-programme-columns{display:grid;grid-template-columns:1fr 1fr;gap:35px;margin:30px 0}
+.star-programme-columns>div{border-top:1px solid #cfd7e2;padding-top:22px}.star-programme-columns h3{font-size:28px;margin-bottom:17px}
+.star-programme-columns ul{padding-left:20px;margin:0}.star-programme-columns li{line-height:1.65;margin-bottom:10px;color:#526077}
+.star-programme-columns li::marker{color:#df1f38}
+.star-programme-bottom{border-top:1px solid #d6dce4;padding-top:25px;display:flex;align-items:center;justify-content:space-between;gap:25px}
+.star-programme-bottom>div{max-width:660px}.star-programme-bottom strong{font-size:11px;letter-spacing:.14em;color:#b51a33}.star-programme-bottom p{font-size:15px;margin:8px 0}.star-programme-bottom small{color:#58677c;line-height:1.6}
+.star-programme-bottom .button{flex-shrink:0}
+.star-programme-help{background:#071b39;color:white;padding:95px 0}.star-programme-help h2{margin:0 0 20px}.star-programme-help h2 em{color:#f5c64d}.star-programme-help p{max-width:650px;color:#dce5f0}.star-programme-disclaimer{font-size:12px;margin-top:35px}
+:focus-visible{outline:3px solid #f5c64d;outline-offset:3px}
+@media(max-width:900px){.star-programme-jump{grid-template-columns:repeat(2,minmax(0,1fr))}.star-programme-heading{grid-template-columns:1fr 210px;gap:20px}.star-programme-bottom{align-items:flex-start;flex-direction:column}}
+@media(max-width:650px){.container{width:calc(100% - 36px)}.section-pad{padding:70px 0}.star-programme-hero{padding-bottom:55px}.star-programme-jump{grid-template-columns:1fr}.star-programme-jump a{padding:15px}.star-programme-panel{padding:24px 18px;margin-bottom:20px}.star-programme-heading,.star-programme-columns{grid-template-columns:1fr}.star-programme-heading h2{font-size:clamp(53px,12vw,72px)}.star-programme-price{padding:23px}.star-programme-price strong{font-size:64px}.star-programme-columns{gap:15px}.star-programme-bottom .button{width:100%;justify-content:center;text-align:center;font-size:10px;white-space:normal}.star-programme-help{padding:70px 0}.star-programme-help .button-row{display:grid;grid-template-columns:1fr}.star-programme-help .button-row .button{justify-content:center}.hp-poster-actions{padding:18px 18px 25px}.hp-poster-actions .button{min-height:50px}}
+@media(max-width:850px){.site-header .navlinks.is-open{overscroll-behavior:contain}.site-header .menu-toggle{touch-action:manipulation}.site-header .navlinks>a{min-height:44px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
