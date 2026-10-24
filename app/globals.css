@@ -65,3 +65,14 @@
  .hero-signature span{font-size:10px}
  .hero-bottom{bottom:0}
 }
+
+
+/* Official STAR cinematic campaign hero */
+.star-poster-hero{position:relative;min-height:100svh;background:#061329;isolation:isolate;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;padding:110px 20px 44px;overflow:hidden}
+.star-poster-image{position:absolute;inset:0;z-index:-1;background-image:linear-gradient(0deg,#061329ee 0%,#06132900 26%),url('/images/a_dynamic_high_quality_cinematic_sports_promotio.png');background-size:cover;background-position:center 32%;background-repeat:no-repeat}
+.star-poster-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;width:100%;max-width:690px}
+.star-poster-actions .button{min-height:55px;flex:1;text-align:center;justify-content:center;backdrop-filter:blur(8px)}
+.star-poster-actions .button.ghost{background:#061329b8;border-color:#fff9;color:#fff}
+.star-poster-scroll{color:#fff;letter-spacing:.28em;font-size:10px;margin-top:26px;text-shadow:0 2px 8px #000}
+@media(min-width:1000px){.star-poster-hero{min-height:950px;height:100svh;max-height:1500px}.star-poster-image{background-size:contain;background-position:center center;background-color:#061329}.star-poster-actions{margin-bottom:10px}}
+@media(max-width:600px){.star-poster-hero{min-height:100svh;padding:85px 15px 25px}.star-poster-image{background-size:cover;background-position:center center}.star-poster-actions{gap:9px}.star-poster-actions .button{font-size:11px;padding:15px 9px;min-height:48px}.star-poster-scroll{font-size:9px;margin-top:18px}}
