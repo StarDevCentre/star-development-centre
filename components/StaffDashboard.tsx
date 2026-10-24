@@ -4,6 +4,7 @@ import {createClient,type User} from "@supabase/supabase-js";
 import Link from "next/link";
 import {StaffAdmin} from "./StaffAdmin";
 import {TrainingPlanner} from "./TrainingPlanner";
+import {PlayerManagement} from "./PlayerManagement";
 type Staff={user_id:string;role:"owner"|"manager"|"coach"|"assistant_coach";active:boolean;welfare_officer:boolean};
 const roles:Record<Staff["role"],string>={owner:"Owner",manager:"Manager",coach:"Coach",assistant_coach:"Assistant Coach"};
 export function StaffDashboard(){
@@ -32,7 +33,7 @@ export function StaffDashboard(){
  <article><span className="kicker">PLAYERS & SESSIONS</span><h3>Training planner</h3><p>View training sessions below. Player profiles, attendance and coaching records will follow once safeguarding and privacy controls are ready.</p></article>
  <article><span className="kicker">SAFEGUARDING</span><h3>{staff.welfare_officer||staff.role==="owner"?"Lead access planned":"Report a concern"}</h3><p>Confidential safeguarding case records are not yet enabled. For an urgent concern, follow STAR's safeguarding procedure rather than entering sensitive details here.</p></article>
  <article><span className="kicker">ADMINISTRATION</span><h3>Controlled rollout</h3><p>Registration review, staff invitations and programme management will be introduced in stages.</p></article>
- </div><TrainingPlanner userId={user.id} canManage={staff.role==="owner"||staff.role==="manager"}/>{staff.role==="owner"&&<StaffAdmin ownerId={user.id}/>}
+ </div><TrainingPlanner userId={user.id} canManage={staff.role==="owner"||staff.role==="manager"}/><PlayerManagement userId={user.id} canManage={staff.role==="owner"||staff.role==="manager"}/>{staff.role==="owner"&&<StaffAdmin ownerId={user.id}/>}
  </>}
  {error&&<p role="alert" className="star-portal-error">{error}</p>}{notice&&<p role="status">{notice}</p>}
  </div><aside className="star-staff-side"><h3>Security first</h3><p>Staff access requires owner approval. Register and recover your login here; parent portal registration is not required.</p><p>Safeguarding files, medical information and player records remain inaccessible from this dashboard until dedicated permissions and audit controls are complete.</p><Link href="/privacy">Privacy and safeguarding information</Link></aside></div>;
