@@ -90,3 +90,17 @@ body:has(.star-poster-hero) .site-header .logo{display:none}
 @media(min-width:1000px){.star-poster-image{max-width:1000px;margin:0 auto;aspect-ratio:1024/1536}.star-poster-hero{background:radial-gradient(ellipse at 50% 40%,#163c75,#061329 65%)}.star-poster-actions,.star-poster-scroll{background:transparent}}
 @media(max-width:850px){body:has(.star-poster-hero) .site-header .navwrap{height:65px;padding:8px 16px}body:has(.star-poster-hero) .site-header .menu-toggle{background:#061329d9;color:#fff;border:1px solid #ffffff8a;box-shadow:0 4px 16px #0008;backdrop-filter:blur(8px);font-size:18px;padding:8px 12px}body:has(.star-poster-hero) .site-header .navlinks{top:65px;background:#061329f5}}
 @media(max-width:600px){.star-poster-image{aspect-ratio:1024/1536!important;background-size:100% 100%!important}.star-poster-actions{padding:14px 14px 0;gap:8px}.star-poster-actions .button{font-size:10px;letter-spacing:.03em;min-height:49px;padding:12px 10px;gap:6px}.star-poster-scroll{padding:18px 0 25px}}
+
+
+/* Cinematic mobile navigation: small unobtrusive top-left control, clear of poster logo */
+@media(max-width:850px){
+body:has(.star-poster-hero) .site-header .navwrap{height:0!important;padding:0!important;display:block!important;position:relative}
+body:has(.star-poster-hero) .site-header .menu-toggle{position:absolute;top:12px;left:14px;right:auto;display:flex;align-items:center;justify-content:center;width:46px;height:46px;min-width:46px;padding:0!important;border-radius:50%;background:#061329bb!important;border:1px solid #ffffff80!important;box-shadow:0 5px 18px #0005;font-size:0!important;line-height:1}
+body:has(.star-poster-hero) .site-header .menu-toggle::first-letter{font-size:0}
+body:has(.star-poster-hero) .site-header .menu-toggle span{display:none!important}
+body:has(.star-poster-hero) .site-header .menu-toggle::before{content:"";position:absolute;width:19px;height:14px;border-top:2px solid white;border-bottom:2px solid white;left:12px;top:14px}
+body:has(.star-poster-hero) .site-header .menu-toggle::after{content:"";position:absolute;width:19px;height:2px;background:white;left:12px;top:21px}
+body:has(.star-poster-hero) .site-header .menu-toggle[aria-expanded="true"]{font-size:23px!important}
+body:has(.star-poster-hero) .site-header .menu-toggle[aria-expanded="true"]::before,body:has(.star-poster-hero) .site-header .menu-toggle[aria-expanded="true"]::after{display:none}
+body:has(.star-poster-hero) .site-header .navlinks{position:absolute;top:68px!important;left:14px;right:14px;z-index:150;box-shadow:0 16px 45px #0009;border:1px solid #ffffff44;border-radius:8px;max-height:calc(100svh - 85px);overflow-y:auto}
+}
