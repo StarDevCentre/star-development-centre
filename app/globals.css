@@ -114,3 +114,9 @@ body:has(.star-poster-hero) .site-header .navlinks{position:absolute;top:68px!im
 .site-footer .footer-official-logo{display:block!important;position:absolute!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%) scale(1.8)!important;width:100%!important;max-width:none!important;height:100%!important;object-fit:contain!important}
 .site-footer .footer-logo-link:hover{box-shadow:0 0 0 1px #f5c64d!important}
 @media(max-width:600px){.site-footer .footer-logo-link{width:260px!important;height:104px!important}.site-footer .footer-official-logo{transform:translate(-50%,-50%) scale(1.8)!important}}
+
+/* Transparent monochrome STAR footer logo — no white card, cropping or scaling */
+.site-footer .footer-logo-link{display:inline-flex!important;align-items:center!important;justify-content:flex-start!important;position:static!important;width:auto!important;max-width:min(340px,85vw)!important;height:auto!important;min-height:0!important;overflow:visible!important;background:transparent!important;padding:0!important;margin:0 0 24px!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+.site-footer .footer-official-logo{display:block!important;position:static!important;left:auto!important;top:auto!important;transform:none!important;width:min(340px,85vw)!important;max-width:100%!important;height:auto!important;object-fit:contain!important}
+.site-footer .footer-logo-link:hover{box-shadow:none!important;opacity:.9}
+@media(max-width:600px){.site-footer .footer-logo-link{width:auto!important;height:auto!important}.site-footer .footer-official-logo{width:min(300px,82vw)!important;transform:none!important}}
