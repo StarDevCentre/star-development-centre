@@ -343,3 +343,13 @@ body:has(.hp-poster-hero) .site-header .menu-toggle{background:#061329bd!importa
  .site-header .topline{justify-content:flex-end}
  .site-header .portal-header-actions{gap:14px}
 }
+
+/* Contrast correction: collapsed navigation must never use white text on white */
+@media(max-width:1350px){
+ .site-header .navlinks.is-open{background:#fff!important;color:#102540!important}
+ .site-header .navlinks.is-open>a:not(.nav-book){color:#102540!important;text-shadow:none!important;border-bottom:1px solid #e2e8f0!important}
+ .site-header .navlinks.is-open>a:not(.nav-book):hover,.site-header .navlinks.is-open>a:not(.nav-book).active{color:#a71932!important;background:#f4f6fa!important}
+ .site-header .navlinks.is-open .portal-mobile-links a{color:#153b80!important;text-shadow:none!important;border-color:#e2e8f0!important}
+ .site-header .navlinks.is-open .portal-mobile-links strong{color:#59657a!important}
+ .site-header .navlinks.is-open .nav-book{color:#fff!important;background:#df1f38!important}
+}
