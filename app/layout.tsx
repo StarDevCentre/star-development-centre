@@ -1,4 +1,1 @@
-import type { Metadata } from "next";
-import "./globals.css";
-export const metadata: Metadata = { title: "STAR Development Centre | Girls' Football Development", description: "Independent girls' football development in Somerset. Discover STAR programmes, pathways and coaching." };
-export default function RootLayout({children}:{children:React.ReactNode}) {return <html lang="en"><body>{children}</body></html>}
+import type {Metadata} from "next";import "./globals.css";import {SiteHeader,SiteFooter} from "../components/Site";export const metadata:Metadata={title:{default:"STAR Development Centre | Develop. Believe. Achieve.",template:"%s | STAR Development Centre"},description:"Personalised girls' football coaching in Somerset. Group development, one-to-one coaching and player pathways for ages 5–18."};export default function RootLayout({children}:{children:React.ReactNode}){return <html lang="en"><body><SiteHeader/><main>{children}</main><SiteFooter/></body></html>}
