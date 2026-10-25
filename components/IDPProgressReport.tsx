@@ -3,15 +3,18 @@ type Player={first_name:string;last_name:string;programme:string};
 type Assessment={id:string;assessed_on:string;category:string;rating:number;strength:string;development_area:string;action_plan:string};
 type Goal={id:string;goal:string;status:string};
 type Review={id:string;review_month:string;strengths:string;development_areas:string;next_steps:string};
+type Observation={id:string;stage:string;category:string;observation:string;next_action:string|null;recorded_at:string};
 const categories=["Technical","Tactical","Physical","Psychological","Social"];
 const palette=["#2459a6","#c46d12","#13836c","#8b4eb5","#ba345f"];
 const dateLabel=(value:string)=>new Date(value+"T12:00:00").toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"});
-export function IDPProgressReport({player,assessments,goals,reviews}:{player:Player;assessments:Assessment[];goals:Goal[];reviews:Review[]}){
+export function IDPProgressReport({player,assessments,goals,reviews,observations=[]}:{player:Player;assessments:Assessment[];goals:Goal[];reviews:Review[];observations?:Observation[]}){
  const dates=Array.from(new Set(assessments.map(a=>a.assessed_on))).sort().slice(-12);
  const width=640,height=245,left=46,right=18,top=16,bottom=44,plotW=width-left-right,plotH=height-top-bottom;
  const x=(i:number)=>left+(dates.length===1?plotW/2:i*plotW/(dates.length-1));
  const y=(v:number)=>top+(5-v)*plotH/4;
  const latest=categories.map(c=>({category:c,assessment:assessments.filter(a=>a.category===c).sort((a,b)=>b.assessed_on.localeCompare(a.assessed_on))[0]}));
+ const comparisons=categories.map(category=>{const entries=assessments.filter(a=>a.category===category).sort((a,b)=>a.assessed_on.localeCompare(b.assessed_on)||a.id.localeCompare(b.id));const first=entries[0],last=entries[entries.length-1];return {category,first,last,change:first&&last&&first.id!==last.id?last.rating-first.rating:null,count:entries.length}});
+ const evidence=[...observations].sort((a,b)=>b.recorded_at.localeCompare(a.recorded_at)).slice(0,6);
  const latestReview=[...reviews].sort((a,b)=>b.review_month.localeCompare(a.review_month))[0];
  const reportDate=new Date().toLocaleDateString("en-GB",{dateStyle:"long"});
  return <div className="star-idp-report-wrap">
@@ -24,6 +27,10 @@ export function IDPProgressReport({player,assessments,goals,reviews}:{player:Pla
  {categories.map((cat,ci)=>{const pts=dates.map((d,i)=>{const records=assessments.filter(a=>a.category===cat&&a.assessed_on===d);const a=records[records.length-1];return a?{x:x(i),y:y(a.rating),rating:a.rating,date:d}:null}).filter((v):v is {x:number;y:number;rating:number;date:string}=>v!==null);return <g key={cat}>{pts.length>1&&<polyline points={pts.map(p=>`${p.x},${p.y}`).join(" ")} fill="none" stroke={palette[ci]} strokeWidth="2.5"/>}{pts.map(p=><circle key={p.date} cx={p.x} cy={p.y} r="4.5" fill={palette[ci]} stroke="#fff" strokeWidth="1.5"><title>{cat}: {p.rating}/5 on {dateLabel(p.date)}</title></circle>)}</g>})}
  </svg></div>:<p>No assessments recorded yet. Add assessments to see progress over time.</p>}
  <div className="star-idp-legend">{categories.map((cat,i)=><span key={cat}><i style={{backgroundColor:palette[i]}}/>{cat}</span>)}</div>
+ <h5>Development since first assessment</h5><p>Comparisons use the earliest and latest recorded coach ratings in each area. A change is shown only when at least two assessments exist; ratings reflect coaching judgement, not a standardised test.</p>
+ <div className="star-idp-report-grid">{comparisons.map(c=><div key={c.category} className="star-idp-report-card"><strong>{c.category}</strong>{c.change===null?<p>{c.count===0?"Not assessed":"Only one assessment — reassess to compare"}</p>:<><p><b>{c.first.rating}/5 → {c.last.rating}/5</b></p><p><strong>Change:</strong> {c.change>0?"+":""}{c.change} point{Math.abs(c.change)===1?"":"s"} {c.change>0?"(improved)":c.change<0?"(lower rating)":"(unchanged)"}</p><small>{dateLabel(c.first.assessed_on)} to {dateLabel(c.last.assessed_on)}</small></>}</div>)}</div>
+ <h5>Recent coaching evidence</h5><p>Selected recorded observations to give context to the assessment ratings. These are internal coaching notes; review their suitability before sharing this report.</p>
+ {evidence.length?evidence.map(o=><div key={o.id} className="star-record-item"><p><strong>{o.category} · {new Date(o.recorded_at).toLocaleDateString("en-GB")}</strong> · {o.stage}</p><p>{o.observation}</p>{o.next_action&&<p><strong>Next action:</strong> {o.next_action}</p>}</div>):<p>No coaching observations recorded yet.</p>}
  <h5>Latest assessment by area</h5><div className="star-idp-report-grid">{latest.map(({category,assessment})=><div key={category} className="star-idp-report-card"><strong>{category}</strong>{assessment?<><p><b>{assessment.rating}/5</b> · {dateLabel(assessment.assessed_on)}</p><p><b>Strength:</b> {assessment.strength}</p><p><b>Focus:</b> {assessment.development_area}</p><p><b>Action:</b> {assessment.action_plan}</p></>:<p>Not assessed</p>}</div>)}</div>
  <h5>Development goals</h5>{goals.length?goals.map(g=><p key={g.id}><strong>{g.status==="achieved"?"Achieved":"Working on"}:</strong> {g.goal}</p>):<p>No goals recorded.</p>}
  <h5>Latest monthly coaching review</h5>{latestReview?<div><p><strong>{new Date(latestReview.review_month+"T12:00:00").toLocaleDateString("en-GB",{month:"long",year:"numeric"})}</strong></p><p><strong>Strengths:</strong> {latestReview.strengths}</p><p><strong>Areas to develop:</strong> {latestReview.development_areas}</p><p><strong>Next steps:</strong> {latestReview.next_steps}</p></div>:<p>No monthly review recorded.</p>}
