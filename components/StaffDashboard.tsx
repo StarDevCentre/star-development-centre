@@ -8,6 +8,7 @@ import {PlayerManagement} from "./PlayerManagement";
 import {SessionAttendance} from "./SessionAttendance";
 import {CoachingRecords} from "./CoachingRecords";
 import {PlayerIDP} from "./PlayerIDP";
+import {StaffCommandCentre} from "./StaffCommandCentre";
 type Staff={user_id:string;role:"owner"|"manager"|"coach"|"assistant_coach";active:boolean;welfare_officer:boolean};
 type StaffSection="overview"|"sessions"|"players"|"attendance"|"records"|"idps"|"administration";
 const roles:Record<Staff["role"],string>={owner:"Owner",manager:"Manager",coach:"Coach",assistant_coach:"Assistant Coach"};
@@ -38,12 +39,12 @@ export function StaffDashboard(){
  <nav className="star-staff-nav" aria-label="Staff dashboard sections">
  {([{id:"overview",label:"Overview"},{id:"sessions",label:"Training sessions"},{id:"players",label:"Players"},{id:"attendance",label:"Attendance"},{id:"records",label:"Coaching records"},{id:"idps",label:"Development plans"},...(staff.role==="owner"?[{id:"administration",label:"Staff administration"}]:[])] as {id:StaffSection;label:string}[]).map(item=><button key={item.id} type="button" aria-current={section===item.id?"page":undefined} className={section===item.id?"active":""} onClick={()=>{if(item.id==="records")setCoachingTarget(null);setSection(item.id)}}>{item.label}</button>)}
  </nav>
- {section==="overview"&&<div className="star-staff-overview"><h3>Welcome to STAR coaching operations</h3><p>Choose a section above to manage your coaching work. Only the selected section loads, keeping the dashboard quicker and easier to navigate on mobile.</p><div className="star-staff-shortcuts">{([{id:"sessions",label:"Training planner",detail:"Schedule and edit sessions"},{id:"attendance",label:"Record attendance",detail:"Mark players present or absent"},{id:"players",label:"Player management",detail:"Manage the coaching roster and goals"},{id:"records",label:"Coaching notes",detail:"Log observations and reviews"},{id:"idps",label:"Development plans",detail:"Assess progress and print reports"},...(staff.role==="owner"?[{id:"administration",label:"Staff administration",detail:"Review and manage staff access"}]:[])] as {id:StaffSection;label:string;detail:string}[]).map(item=><button type="button" key={item.id} onClick={()=>setSection(item.id)}><strong>{item.label}</strong><span>{item.detail}</span></button>)}</div><p className="star-staff-safety"><strong>Safeguarding:</strong> Do not enter safeguarding concerns or medical information in coaching notes. Follow STAR's safeguarding procedure for confidential concerns.</p></div>}
+ {section==="overview"&&<StaffCommandCentre canManage={staff.role==="owner"||staff.role==="manager"} isOwner={staff.role==="owner"} onNavigate={(area,playerId)=>{if(playerId)setHubPlayerId(playerId);if(area==="records")setCoachingTarget(null);setSection(area)}}/>}
  {section==="sessions"&&<TrainingPlanner userId={user.id} canManage={staff.role==="owner"||staff.role==="manager"}/>}
  {section==="players"&&<PlayerManagement userId={user.id} canManage={staff.role==="owner"||staff.role==="manager"}/>}
  {section==="attendance"&&<SessionAttendance userId={user.id} onCoachPlayer={(playerId,sessionId)=>{setCoachingTarget({playerId,sessionId});setSection("records");}}/>}
  {section==="records"&&<CoachingRecords key={coachingTarget?coachingTarget.playerId+":"+coachingTarget.sessionId:"general"} userId={user.id} initialPlayerId={coachingTarget?.playerId} initialSessionId={coachingTarget?.sessionId}/>}
- {section==="idps"&&<PlayerIDP userId={user.id} initialPlayerId={hubPlayerId} onAddNote={playerId=>{setCoachingTarget({playerId,sessionId:""});setSection("records")}} onManageGoals={()=>setSection("players")}/>}
+ {section==="idps"&&<PlayerIDP key={hubPlayerId||"all"} userId={user.id} initialPlayerId={hubPlayerId} onAddNote={playerId=>{setCoachingTarget({playerId,sessionId:""});setSection("records")}} onManageGoals={()=>setSection("players")}/>}
  {section==="administration"&&staff.role==="owner"&&<StaffAdmin ownerId={user.id}/>}
 
  </>}
