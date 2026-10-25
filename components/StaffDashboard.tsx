@@ -16,6 +16,7 @@ export function StaffDashboard(){
  const [user,setUser]=useState<User|null>(null),[staff,setStaff]=useState<Staff|null>(null),[ready,setReady]=useState(false),[busy,setBusy]=useState(false);
  const [requested,setRequested]=useState(false);
  const [section,setSection]=useState<StaffSection>("overview");
+ const [hubPlayerId,setHubPlayerId]=useState("");
  const [coachingTarget,setCoachingTarget]=useState<{playerId:string;sessionId:string}|null>(null);
  const [email,setEmail]=useState(""),[password,setPassword]=useState(""),[error,setError]=useState(""),[notice,setNotice]=useState(""),[mode,setMode]=useState<"login"|"register"|"reset"|"new_password">("login");
  useEffect(()=>{if(!client){setReady(true);return;}let alive=true;client.auth.getUser().then(({data})=>{if(alive){setUser(data.user);setReady(true);}}).catch(()=>{if(alive)setReady(true)});const {data:{subscription}}=client.auth.onAuthStateChange((event,session)=>{if(alive){setUser(session?.user||null);if(event==="PASSWORD_RECOVERY")setMode("new_password");}});return()=>{alive=false;subscription.unsubscribe()}},[client]);
@@ -42,7 +43,7 @@ export function StaffDashboard(){
  {section==="players"&&<PlayerManagement userId={user.id} canManage={staff.role==="owner"||staff.role==="manager"}/>}
  {section==="attendance"&&<SessionAttendance userId={user.id} onCoachPlayer={(playerId,sessionId)=>{setCoachingTarget({playerId,sessionId});setSection("records");}}/>}
  {section==="records"&&<CoachingRecords key={coachingTarget?coachingTarget.playerId+":"+coachingTarget.sessionId:"general"} userId={user.id} initialPlayerId={coachingTarget?.playerId} initialSessionId={coachingTarget?.sessionId}/>}
- {section==="idps"&&<PlayerIDP userId={user.id}/>}
+ {section==="idps"&&<PlayerIDP userId={user.id} initialPlayerId={hubPlayerId} onAddNote={playerId=>{setCoachingTarget({playerId,sessionId:""});setSection("records")}} onManageGoals={()=>setSection("players")}/>}
  {section==="administration"&&staff.role==="owner"&&<StaffAdmin ownerId={user.id}/>}
 
  </>}
