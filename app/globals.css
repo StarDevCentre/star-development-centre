@@ -512,3 +512,6 @@ body:has(.star-staff-shell) .star-staff-panel{width:100%!important;max-width:100
 .star-family-message p{white-space:pre-wrap;overflow-wrap:anywhere;margin:.55rem 0 0}
 .star-family-message-form{display:grid;gap:.8rem}
 .star-family-message-form button{justify-self:start}
+
+/* Accessible unread message indicators */
+.star-unread-badge{display:inline-block;margin-left:.45rem;padding:.12rem .45rem;border:2px solid currentColor;border-radius:999px;font-size:.75rem;font-weight:800;white-space:nowrap;line-height:1.3}
