@@ -436,3 +436,18 @@ body:has(.hp-poster-hero) .site-header .menu-toggle{background:#061329bd!importa
 /* Full-width staff workspace without redundant sidebar */
 body:has(.star-staff-shell) .star-staff-shell{display:block!important;width:100%;max-width:1280px;margin-inline:auto;min-width:0}
 body:has(.star-staff-shell) .star-staff-panel{width:100%!important;max-width:100%!important;min-width:0;box-sizing:border-box}
+
+/* Phase 2 family portal: narrow-screen layout and readable progress cards */
+.star-portal,.star-portal-main,.star-portal-aside{min-width:0;max-width:100%}
+.star-portal-main,.star-portal-aside{overflow-wrap:anywhere}
+.star-portal-head{align-items:flex-start;flex-wrap:wrap}
+.star-portal-head h2{min-width:0;overflow-wrap:normal;font-size:clamp(1.7rem,6vw,3rem);line-height:1.08}
+.star-portal-head button{flex-shrink:0;white-space:nowrap;min-height:44px}
+.star-family-progress{margin:.8rem 0 1rem;max-width:520px}
+.star-family-progress>div:first-child{display:flex;justify-content:space-between;gap:1rem}
+.star-family-progress-track{height:10px;border-radius:20px;background:#e0e8f1;overflow:hidden;margin:.35rem 0}
+.star-family-progress-track>div{height:100%;background:#174e85;border-radius:20px}
+.star-family-progress small{color:#48617b}
+.star-family-confirm{display:flex!important;align-items:flex-start;gap:.7rem;font-weight:500!important}
+.star-family-confirm input{width:20px;min-width:20px;height:20px;margin-top:.2rem}
+@media(max-width:760px){.star-portal{display:grid;grid-template-columns:minmax(0,1fr)!important;gap:1rem;width:100%}.star-portal-main,.star-portal-aside{width:100%;padding:1.15rem}.star-portal-head{gap:.5rem}.star-portal-head h2{font-size:clamp(1.6rem,7vw,2.4rem)}.star-portal-form{max-width:100%}.star-portal-form input,.star-portal-form select{min-width:0;max-width:100%}}
