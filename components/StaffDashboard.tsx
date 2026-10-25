@@ -1,7 +1,6 @@
 "use client";
 import {useEffect,useMemo,useState} from "react";
 import {createClient,type User} from "@supabase/supabase-js";
-import Link from "next/link";
 import {StaffAdmin} from "./StaffAdmin";
 import {TrainingPlanner} from "./TrainingPlanner";
 import {PlayerManagement} from "./PlayerManagement";
@@ -49,5 +48,5 @@ export function StaffDashboard(){
 
  </>}
  {error&&<p role="alert" className="star-portal-error">{error}</p>}{notice&&<p role="status">{notice}</p>}
- </div><aside className="star-staff-side"><h3>Security first</h3><p>Staff access requires owner approval. Use the navigation to open only the coaching tool you need.</p><p>Safeguarding case files and medical information are not stored in these coaching tools. Player records are restricted by staff permissions.</p><Link href="/privacy">Privacy and safeguarding information</Link></aside></div>;
+ </div></div>;
 }
