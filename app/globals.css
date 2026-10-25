@@ -488,3 +488,15 @@ body:has(.star-staff-shell) .star-staff-panel{width:100%!important;max-width:100
 .star-analytics-coverage{margin:.8rem 0}
 .star-analytics-coverage>div:first-child{display:flex;justify-content:space-between;gap:1rem;font-size:.88rem}
 @media(max-width:780px){.star-analytics-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.star-analytics-grid{grid-template-columns:minmax(0,1fr)}}
+
+/* Private player pathway planning */
+.star-pathways{display:grid;gap:1rem;min-width:0}
+.star-pathway-picker,.star-pathway-form label{display:grid;gap:.4rem;font-weight:600}
+.star-pathway-picker select,.star-pathway-form input,.star-pathway-form select,.star-pathway-form textarea,.star-pathway-milestone select{width:100%;max-width:100%;padding:.65rem;border:1px solid #aabbd0;border-radius:8px;background:white;color:#182d44;font:inherit}
+.star-pathway-form{display:grid;gap:.85rem;min-width:0}
+.star-pathway-form button,.star-pathway-milestone button{justify-self:start}
+.star-pathway-milestone{display:grid;grid-template-columns:minmax(0,1fr) minmax(135px,180px) auto;gap:.8rem;align-items:center;padding:1rem 0;border-bottom:1px solid #dce5ee}
+.star-pathway-milestone>div{display:grid;gap:.3rem;min-width:0}
+.star-pathway-milestone small{color:#506780}
+.star-pathway-milestone label{display:grid;gap:.3rem}
+@media(max-width:650px){.star-pathway-milestone{grid-template-columns:minmax(0,1fr)}.star-pathway-milestone label{max-width:100%}}
