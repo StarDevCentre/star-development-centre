@@ -451,3 +451,13 @@ body:has(.star-staff-shell) .star-staff-panel{width:100%!important;max-width:100
 .star-family-confirm{display:flex!important;align-items:flex-start;gap:.7rem;font-weight:500!important}
 .star-family-confirm input{width:20px;min-width:20px;height:20px;margin-top:.2rem}
 @media(max-width:760px){.star-portal{display:grid;grid-template-columns:minmax(0,1fr)!important;gap:1rem;width:100%}.star-portal-main,.star-portal-aside{width:100%;padding:1.15rem}.star-portal-head{gap:.5rem}.star-portal-head h2{font-size:clamp(1.6rem,7vw,2.4rem)}.star-portal-form{max-width:100%}.star-portal-form input,.star-portal-form select{min-width:0;max-width:100%}}
+
+/* Family development reporting */
+.star-family-chart{max-width:520px;width:100%;overflow-x:auto;margin:1rem 0}
+.star-family-chart svg{display:block;width:100%;min-width:300px;height:auto;fill:#33465d}
+.star-family-legend{display:flex;flex-wrap:wrap;gap:.5rem 1rem;font-size:.75rem}
+.star-family-legend span{display:inline-flex;align-items:center;gap:.3rem}
+.star-family-legend i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.star-family-detail{padding:.8rem 1rem;margin:.6rem 0;background:#f3f7fb;border:1px solid #d9e5f0;border-radius:8px;overflow-wrap:anywhere}
+.star-family-detail h6{font-size:1rem;margin:.2rem 0 .7rem}
+.star-family-detail p{margin:.4rem 0}

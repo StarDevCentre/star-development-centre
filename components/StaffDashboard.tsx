@@ -1,6 +1,7 @@
 "use client";
 import {useEffect,useMemo,useState} from "react";
 import {createClient,type User} from "@supabase/supabase-js";
+import {FamilyPublishing} from "./FamilyPublishing";
 import {FamilyAccessAdmin} from "./FamilyAccessAdmin";
 import {StaffAdmin} from "./StaffAdmin";
 import {TrainingPlanner} from "./TrainingPlanner";
@@ -10,7 +11,7 @@ import {CoachingRecords} from "./CoachingRecords";
 import {PlayerIDP} from "./PlayerIDP";
 import {StaffCommandCentre} from "./StaffCommandCentre";
 type Staff={user_id:string;role:"owner"|"manager"|"coach"|"assistant_coach";active:boolean;welfare_officer:boolean};
-type StaffSection="workspace"|"overview"|"sessions"|"players"|"attendance"|"records"|"idps"|"administration"|"families";
+type StaffSection="workspace"|"overview"|"sessions"|"players"|"attendance"|"records"|"idps"|"administration"|"families"|"familyPublishing";
 const roles:Record<Staff["role"],string>={owner:"Owner",manager:"Manager",coach:"Coach",assistant_coach:"Assistant Coach"};
 export function StaffDashboard(){
  const client=useMemo(()=>{const url=process.env.NEXT_PUBLIC_SUPABASE_URL,key=process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;return url&&key?createClient(url,key):null},[]);
@@ -42,7 +43,7 @@ export function StaffDashboard(){
  !staff?.active?<><h2>Staff access required</h2><p>You are signed in, but the STAR owner must approve your staff access.</p><p>Account: {user.email}</p><button type="button" disabled={busy||requested||!user.email} onClick={async()=>{setBusy(true);setError("");const {error}=await client.from("staff_access_requests").insert({user_id:user.id,contact_email:user.email});if(error&&error.code!=="23505")setError("Request could not be submitted: "+error.message);else{setRequested(true);setNotice("Your request has been submitted for owner approval.");}setBusy(false);}}>{requested?"Request submitted":"Request staff access"}</button><button type="button" onClick={()=>client.auth.signOut()}>Sign out</button></>:
  <><div className="star-staff-header"><div><span className="kicker">STAR / PRIVATE STAFF AREA</span><h2>Staff dashboard</h2><p>{roles[staff.role]}{staff.welfare_officer?" · Designated Safeguarding Lead / Welfare Officer":""}</p></div><button type="button" onClick={()=>client.auth.signOut()}>Sign out</button></div>
  <nav className="star-staff-nav" aria-label="Staff dashboard sections">
- {([{id:"workspace",label:"Session workspace"},{id:"overview",label:"Overview"},{id:"sessions",label:"Training sessions"},{id:"players",label:"Players"},{id:"attendance",label:"Attendance"},{id:"records",label:"Coaching records"},{id:"idps",label:"Development plans"},...((staff.role==="owner"||staff.role==="manager")?[{id:"families",label:"Family access"}]:[]),...(staff.role==="owner"?[{id:"administration",label:"Staff administration"}]:[])] as {id:StaffSection;label:string}[]).map(item=><button key={item.id} type="button" aria-current={section===item.id?"page":undefined} className={section===item.id?"active":""} onClick={()=>{if(item.id==="records")setCoachingTarget(null);setSection(item.id)}}>{item.label}</button>)}
+ {([{id:"workspace",label:"Session workspace"},{id:"overview",label:"Overview"},{id:"sessions",label:"Training sessions"},{id:"players",label:"Players"},{id:"attendance",label:"Attendance"},{id:"records",label:"Coaching records"},{id:"idps",label:"Development plans"},...((staff.role==="owner"||staff.role==="manager")?[{id:"families",label:"Family access"},{id:"familyPublishing",label:"Family publishing"}]:[]),...(staff.role==="owner"?[{id:"administration",label:"Staff administration"}]:[])] as {id:StaffSection;label:string}[]).map(item=><button key={item.id} type="button" aria-current={section===item.id?"page":undefined} className={section===item.id?"active":""} onClick={()=>{if(item.id==="records")setCoachingTarget(null);setSection(item.id)}}>{item.label}</button>)}
  </nav>
  {section==="workspace"&&<><div className="star-command-intro"><div><span className="kicker">STAR / SESSION COMMAND CENTRE</span><h3>One session. Every player. One workflow.</h3><p>Mark attendance, record coaching observations and open individual development plans from the session roster. Return here to continue with the same session.</p></div></div><SessionAttendance userId={user.id} initialSessionId={workspaceSessionId} onSessionChange={setWorkspaceSessionId} onCoachPlayer={(playerId,sessionId)=>{setWorkspaceSessionId(sessionId);setCoachingTarget({playerId,sessionId});setSection("records")}} onPlayerDevelopment={playerId=>{setHubPlayerId(playerId);setSection("idps")}}/></>}
  {section==="overview"&&<StaffCommandCentre canManage={staff.role==="owner"||staff.role==="manager"} isOwner={staff.role==="owner"} onNavigate={(area,playerId)=>{if(playerId)setHubPlayerId(playerId);if(area==="records")setCoachingTarget(null);setSection(area)}}/>}
@@ -51,6 +52,7 @@ export function StaffDashboard(){
  {section==="attendance"&&<SessionAttendance userId={user.id} onCoachPlayer={(playerId,sessionId)=>{setCoachingTarget({playerId,sessionId});setSection("records");}}/>}
  {section==="records"&&<CoachingRecords key={coachingTarget?coachingTarget.playerId+":"+coachingTarget.sessionId:"general"} userId={user.id} initialPlayerId={coachingTarget?.playerId} initialSessionId={coachingTarget?.sessionId}/>}
  {section==="idps"&&<PlayerIDP key={hubPlayerId||"all"} userId={user.id} initialPlayerId={hubPlayerId} onAddNote={playerId=>{setCoachingTarget({playerId,sessionId:""});setSection("records")}} onManageGoals={()=>setSection("players")}/>}
+ {section==="familyPublishing"&&(staff.role==="owner"||staff.role==="manager")&&<FamilyPublishing userId={user.id}/>}
  {section==="families"&&(staff.role==="owner"||staff.role==="manager")&&<FamilyAccessAdmin userId={user.id}/>}
  {section==="administration"&&staff.role==="owner"&&<StaffAdmin ownerId={user.id}/>}
 
