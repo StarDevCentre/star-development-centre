@@ -538,3 +538,15 @@ body:has(.star-staff-shell) .star-staff-panel{width:100%!important;max-width:100
 .star-session-request-list article{padding:1rem;border:1px solid #cbd9e6;border-radius:10px;overflow-wrap:anywhere}
 .star-session-decision{display:grid;gap:.6rem;border-top:1px solid #cbd9e6;padding-top:.7rem}
 .star-session-decision>div{display:flex;flex-wrap:wrap;gap:.5rem}
+
+/* Player training hub */
+.star-training-hub{display:grid;gap:1rem;min-width:0;margin:1.5rem 0}
+.star-training-hub label,.star-training-hub form{display:grid;gap:.4rem}
+.star-training-hub input,.star-training-hub textarea,.star-training-hub select{width:100%;min-width:0;padding:.65rem;border:1px solid #9fb2c4;border-radius:8px;background:#fff;color:#18334d;font:inherit}
+.star-training-hub form{gap:.7rem}
+.star-training-forms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.star-training-forms form,.star-training-list article{padding:1rem;border:1px solid #c6d5e3;border-radius:10px;min-width:0}
+.star-training-list{display:grid;gap:1rem}
+.star-training-entry{padding:.75rem;border-top:1px solid #d0deea}
+.star-training-pre{white-space:pre-wrap;overflow-wrap:anywhere}
+@media(max-width:720px){.star-training-forms{grid-template-columns:1fr}}
