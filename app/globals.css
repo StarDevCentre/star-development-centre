@@ -528,3 +528,13 @@ body:has(.star-staff-shell) .star-staff-panel{width:100%!important;max-width:100
 .star-admissions-enrol{display:grid;gap:.75rem;border-top:2px solid #aabbd0;padding-top:1rem}
 .star-admissions-enrol label{display:flex;align-items:flex-start;gap:.6rem}
 @media(max-width:700px){.star-admissions-grid{grid-template-columns:1fr}.star-admissions-list{max-height:270px}}
+
+/* Family session request workflow */
+.star-session-requests{display:grid;gap:1rem;margin:1.5rem 0;min-width:0}
+.star-session-requests label{display:grid;gap:.35rem;font-weight:600}
+.star-session-requests select,.star-session-requests textarea,.star-session-requests input[type=date]{width:100%;padding:.7rem;border:1px solid #a4b6c8;border-radius:8px;background:white;color:#19364e;font:inherit}
+.star-session-request-form{display:grid;gap:.8rem}
+.star-session-request-list{display:grid;gap:.8rem}
+.star-session-request-list article{padding:1rem;border:1px solid #cbd9e6;border-radius:10px;overflow-wrap:anywhere}
+.star-session-decision{display:grid;gap:.6rem;border-top:1px solid #cbd9e6;padding-top:.7rem}
+.star-session-decision>div{display:flex;flex-wrap:wrap;gap:.5rem}
