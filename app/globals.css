@@ -436,6 +436,3 @@ body:has(.hp-poster-hero) .site-header .menu-toggle{background:#061329bd!importa
 /* Full-width staff workspace without redundant sidebar */
 body:has(.star-staff-shell) .star-staff-shell{display:block!important;width:100%;max-width:1280px;margin-inline:auto;min-width:0}
 body:has(.star-staff-shell) .star-staff-panel{width:100%!important;max-width:100%!important;min-width:0;box-sizing:border-box}
-
-/* Workflow audit: tappable attendance tasks and refresh controls */
-.star-command-task-button{width:100%;background:transparent;border-left:0;border-right:0;border-bottom:0;text-align:left;color:inherit;cursor:pointer}.star-command-task-button:hover{background:#f1f6fc}.star-command-task-button:focus-visible,.star-workflow-toolbar button:focus-visible{outline:3px solid #1e69b2;outline-offset:2px}.star-workflow-toolbar{display:flex;justify-content:flex-end;margin:8px 0}.star-workflow-toolbar button{padding:9px 13px;border-radius:8px;background:#e9f2fc;color:#164b83;font-weight:700;border:1px solid #bfd1e5}
