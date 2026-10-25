@@ -7,13 +7,13 @@ export function PlayerRegistrationDraft({onSave,busy}:Props){
  const [error,setError]=useState("");
  async function submit(e:React.FormEvent){e.preventDefault();setError("");const birth=new Date(dob+"T12:00:00Z");const age=(Date.now()-birth.getTime())/31557600000;if(!Number.isFinite(age)||age<5||age>=19){setError("Player must be aged 5–18.");return;}if(!programmes.some(p=>p[0]===programme)){setError("Select a programme.");return;}if(first.trim().length<1||last.trim().length<1){setError("Enter the player's name.");return;}await onSave({player_first_name:first.trim(),player_last_name:last.trim(),date_of_birth:dob,programme});}
  return <form className="star-portal-form" onSubmit={submit}>
- <h3>Start a player registration</h3><p>Only a parent or legal guardian may complete this form. This saves a private draft; it does not confirm a place or submit consent.</p>
+ <h3>Apply for a STAR place</h3><p>Only a parent or legal guardian may complete this form. Submitting sends the application to STAR for review. It does not confirm a place or provide enrolment consent.</p>
  {error&&<p role="alert" className="star-portal-error">{error}</p>}
  <label>Player's first name<input required maxLength={100} autoComplete="off" value={first} onChange={e=>setFirst(e.target.value)}/></label>
  <label>Player's last name<input required maxLength={100} autoComplete="off" value={last} onChange={e=>setLast(e.target.value)}/></label>
  <label>Date of birth<input type="date" required value={dob} onChange={e=>setDob(e.target.value)}/></label>
  <label>Interested programme<select required value={programme} onChange={e=>setProgramme(e.target.value)}><option value="">Select a programme</option>{programmes.map(([value,label])=><option key={value} value={value}>{label}</option>)}</select></label>
  <p>Do not enter medical, disability, safeguarding or emergency contact information here.</p>
- <button type="submit" disabled={busy}>{busy?"Saving…":"Save private draft"}</button>
+ <button type="submit" disabled={busy}>{busy?"Submitting…":"Submit application"}</button>
  </form>;
 }
