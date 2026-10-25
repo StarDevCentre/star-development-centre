@@ -17,10 +17,11 @@ export function StaffDashboard(){
  const [requested,setRequested]=useState(false);
  const [section,setSection]=useState<StaffSection>("overview");
  const [hubPlayerId,setHubPlayerId]=useState("");
+ const [attendanceSessionId,setAttendanceSessionId]=useState("");
  const [coachingTarget,setCoachingTarget]=useState<{playerId:string;sessionId:string}|null>(null);
  const [email,setEmail]=useState(""),[password,setPassword]=useState(""),[error,setError]=useState(""),[notice,setNotice]=useState(""),[mode,setMode]=useState<"login"|"register"|"reset"|"new_password">("login");
  useEffect(()=>{if(!client){setReady(true);return;}let alive=true;client.auth.getUser().then(({data})=>{if(alive){setUser(data.user);setReady(true);}}).catch(()=>{if(alive)setReady(true)});const {data:{subscription}}=client.auth.onAuthStateChange((event,session)=>{if(alive){setUser(session?.user||null);if(event==="PASSWORD_RECOVERY")setMode("new_password");}});return()=>{alive=false;subscription.unsubscribe()}},[client]);
- useEffect(()=>{if(!client||!user){setStaff(null);return;}let alive=true;client.from("staff_members").select("user_id,role,active,welfare_officer").eq("user_id",user.id).maybeSingle().then(({data,error})=>{if(!alive)return;if(error){setError("Staff access could not be checked. Please try again.");setStaff(null);}else setStaff(data as Staff|null)});return()=>{alive=false}},[client,user]);
+ useEffect(()=>{if(!client||!user){setStaff(null);return;}let alive=true;setStaff(null);client.from("staff_members").select("user_id,role,active,welfare_officer").eq("user_id",user.id).maybeSingle().then(({data,error})=>{if(!alive)return;if(error){setError("Staff access could not be checked. Please try again.");setStaff(null);}else setStaff(data as Staff|null)});return()=>{alive=false}},[client,user]);
  async function submit(e:React.FormEvent){e.preventDefault();if(!client)return;setBusy(true);setError("");setNotice("");
  try{
  if(mode==="login"){const {error}=await client.auth.signInWithPassword({email,password});if(error)throw error;}
@@ -38,10 +39,10 @@ export function StaffDashboard(){
  <nav className="star-staff-nav" aria-label="Staff dashboard sections">
  {([{id:"overview",label:"Overview"},{id:"sessions",label:"Training sessions"},{id:"players",label:"Players"},{id:"attendance",label:"Attendance"},{id:"records",label:"Coaching records"},{id:"idps",label:"Development plans"},...(staff.role==="owner"?[{id:"administration",label:"Staff administration"}]:[])] as {id:StaffSection;label:string}[]).map(item=><button key={item.id} type="button" aria-current={section===item.id?"page":undefined} className={section===item.id?"active":""} onClick={()=>{if(item.id==="records")setCoachingTarget(null);setSection(item.id)}}>{item.label}</button>)}
  </nav>
- {section==="overview"&&<StaffCommandCentre canManage={staff.role==="owner"||staff.role==="manager"} isOwner={staff.role==="owner"} onNavigate={(area,playerId)=>{if(playerId)setHubPlayerId(playerId);if(area==="records")setCoachingTarget(null);setSection(area)}}/>}
+ {section==="overview"&&<StaffCommandCentre canManage={staff.role==="owner"||staff.role==="manager"} isOwner={staff.role==="owner"} onNavigate={(area,playerId,sessionId)=>{if(playerId)setHubPlayerId(playerId);if(sessionId)setAttendanceSessionId(sessionId);if(area==="records")setCoachingTarget(null);setSection(area)}}/>}
  {section==="sessions"&&<TrainingPlanner userId={user.id} canManage={staff.role==="owner"||staff.role==="manager"}/>}
  {section==="players"&&<PlayerManagement userId={user.id} canManage={staff.role==="owner"||staff.role==="manager"}/>}
- {section==="attendance"&&<SessionAttendance userId={user.id} onCoachPlayer={(playerId,sessionId)=>{setCoachingTarget({playerId,sessionId});setSection("records");}}/>}
+ {section==="attendance"&&<SessionAttendance key={attendanceSessionId||"attendance"} userId={user.id} initialSessionId={attendanceSessionId} onCoachPlayer={(playerId,sessionId)=>{setCoachingTarget({playerId,sessionId});setSection("records");}}/>}
  {section==="records"&&<CoachingRecords key={coachingTarget?coachingTarget.playerId+":"+coachingTarget.sessionId:"general"} userId={user.id} initialPlayerId={coachingTarget?.playerId} initialSessionId={coachingTarget?.sessionId}/>}
  {section==="idps"&&<PlayerIDP key={hubPlayerId||"all"} userId={user.id} initialPlayerId={hubPlayerId} onAddNote={playerId=>{setCoachingTarget({playerId,sessionId:""});setSection("records")}} onManageGoals={()=>setSection("players")}/>}
  {section==="administration"&&staff.role==="owner"&&<StaffAdmin ownerId={user.id}/>}
