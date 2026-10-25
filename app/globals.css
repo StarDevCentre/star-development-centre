@@ -461,3 +461,11 @@ body:has(.star-staff-shell) .star-staff-panel{width:100%!important;max-width:100
 .star-family-detail{padding:.8rem 1rem;margin:.6rem 0;background:#f3f7fb;border:1px solid #d9e5f0;border-radius:8px;overflow-wrap:anywhere}
 .star-family-detail h6{font-size:1rem;margin:.2rem 0 .7rem}
 .star-family-detail p{margin:.4rem 0}
+
+/* Staff-only development intelligence */
+.star-intelligence{display:grid;gap:1rem;min-width:0}
+.star-intelligence .star-hub-panel{min-width:0}
+.star-intelligence-line{display:grid;grid-template-columns:minmax(100px,1fr) auto auto;gap:.35rem 1rem;align-items:center;border-bottom:1px solid #e1e9f2;padding:.65rem 0}
+.star-intelligence-line small{grid-column:1/-1;color:#526b85}
+.star-intelligence-line span{font-size:.85rem}
+@media(max-width:650px){.star-intelligence-line{grid-template-columns:1fr auto}.star-intelligence-line span:nth-of-type(2){grid-column:1/-1}}
