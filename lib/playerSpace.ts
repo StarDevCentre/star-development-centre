@@ -1,5 +1,6 @@
 import { emptyPortalFeatures, type PortalFeatures } from "./playerPortalFeatures";
 import type { PlayerAchievement } from "./achievementBadges";
+import {defaultHero,type HeroAppearance} from "./heroCharacter";
 export type SpacePlayer = { id: string; first_name: string; last_name: string; programme: string };
 export type SpaceAssignment = { id: string; player_id: string; goal_id: string | null; title: string; instructions: string; target: string | null; due_date: string | null; created_at: string; week_start: string | null; practice_day: number | null; suggested_minutes: number | null; equipment: string | null; is_optional: boolean; coaching_points: string | null };
 export type SpaceDiary = { id: string; assignment_id: string; practice_date: string; minutes: number; reflection: string; created_at: string; confidence: number | null; enjoyment: number | null };
@@ -12,9 +13,9 @@ export type SpaceData = PortalFeatures & { players: SpacePlayer[]; awards: Playe
 export const emptySpaceData: SpaceData = { ...emptyPortalFeatures, players: [], awards: [], assignments: [], diary: [], feedback: [], goals: [], sessions: [], assessments: [], reports: [], profiles: [], personalGoals: [], celebrated: [], unlocks: [], goalEvents: [] };
 export type PracticeInput = { assignment_id: string; practice_date: string; minutes: number; reflection: string; confidence?: number | null; enjoyment?: number | null };
 
-export type ProfileFields = { accent: 'navy' | 'red' | 'gold'; icon: AvatarKey; motto: string; shirt_name: string; shirt_number: number | null; ambition: string; cabinet_lights: boolean; theme: 'midnight' | 'stadium' | 'scrapbook'; decoration: 'none' | 'lightning' | 'laurel' | 'starburst'; experience:'junior'|'senior'; preferred_positions:string[]; stronger_foot:''|'Left'|'Right'|'Both'; favourite_footballer:string; favourite_team:string; playing_teams:string; school:string };
+export type ProfileFields = HeroAppearance & { accent: 'navy' | 'red' | 'gold'; icon: AvatarKey; motto: string; shirt_name: string; shirt_number: number | null; ambition: string; cabinet_lights: boolean; theme: 'midnight' | 'stadium' | 'scrapbook'; decoration: 'none' | 'lightning' | 'laurel' | 'starburst'; experience:'junior'|'senior'; preferred_positions:string[]; stronger_foot:''|'Left'|'Right'|'Both'; favourite_footballer:string; favourite_team:string; playing_teams:string; school:string };
 export type SpaceProfile = ProfileFields & { player_id: string; photo_path: string | null; photo_url?: string };
-export const defaultProfile: ProfileFields = { accent: 'navy', icon: 'train', motto: 'Your game. Your journey.', shirt_name: '', shirt_number: null, ambition: '', cabinet_lights: true, theme: 'midnight', decoration: 'none', experience:'junior',preferred_positions:[],stronger_foot:'',favourite_footballer:'',favourite_team:'',playing_teams:'',school:'' };
+export const defaultProfile: ProfileFields = { ...defaultHero, accent: 'navy', icon: 'train', motto: 'Your game. Your journey.', shirt_name: '', shirt_number: null, ambition: '', cabinet_lights: true, theme: 'midnight', decoration: 'none', experience:'junior',preferred_positions:[],stronger_foot:'',favourite_footballer:'',favourite_team:'',playing_teams:'',school:'' };
 export type PersonalGoal = { id: string; player_id: string; goal: string; target_date: string | null; status: 'active' | 'achieved' | 'archived' };
 export type GoalInput = Pick<PersonalGoal, 'goal' | 'target_date' | 'status'>;
 export type SpaceActions = {

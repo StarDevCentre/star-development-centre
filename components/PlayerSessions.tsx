@@ -1,11 +1,12 @@
 "use client";
-import Image from 'next/image';
+import {PlayerHeroCharacter} from './PlayerHeroCharacter';
+import type {HeroAppearance} from '../lib/heroCharacter';
 import {useEffect,useState} from 'react';
 import {sessionTime,type PortalFeatureActions,type SessionPreparation} from '../lib/playerPortalFeatures';
 import type {SpaceSession} from '../lib/playerSpace';
 import {SpaceIcon} from './PlayerSpaceIcons';
-export function NextSessionHero({session,onOpen}:{session?:SpaceSession;onOpen:()=>void}){
- return <section className="ps-next-session-hero ps-paper"><div><span className="ps-tape">YOUR NEXT SESSION</span><h1>{session?.title||'YOUR NEXT MOVE STARTS HERE.'}</h1>{session?<><p className="ps-session-when"><SpaceIcon name="calendar"/>{sessionTime(session)}</p><p className="ps-session-venue">{session.venue}</p><div className="ps-session-focus"><strong>COACH’S FOCUS</strong><p>{session.coach_focus||'Your coach will add the session focus here.'}</p></div></>:<p>Your coach will publish the time, venue and focus here when your next session is ready.</p>}<button className="ps-action" onClick={onOpen}>{session?'GET SESSION READY':'MY SESSION AREA'} <SpaceIcon name="arrow"/></button></div><Image className="ps-session-hero-player" src="/player-space/hero-player-star-kit.webp" alt="" width={600} height={900} priority/><div className="ps-session-ticket" aria-hidden="true"><SpaceIcon name="ball"/><span>DEVELOP.<br/>BELIEVE.<br/>ACHIEVE.</span></div></section>;
+export function NextSessionHero({session,onOpen,appearance}:{session?:SpaceSession;onOpen:()=>void;appearance?:Partial<HeroAppearance>}){
+ return <section className="ps-next-session-hero ps-paper"><div><span className="ps-tape">YOUR NEXT SESSION</span><h1>{session?.title||'YOUR NEXT MOVE STARTS HERE.'}</h1>{session?<><p className="ps-session-when"><SpaceIcon name="calendar"/>{sessionTime(session)}</p><p className="ps-session-venue">{session.venue}</p><div className="ps-session-focus"><strong>COACH’S FOCUS</strong><p>{session.coach_focus||'Your coach will add the session focus here.'}</p></div></>:<p>Your coach will publish the time, venue and focus here when your next session is ready.</p>}<button className="ps-action" onClick={onOpen}>{session?'GET SESSION READY':'MY SESSION AREA'} <SpaceIcon name="arrow"/></button></div><PlayerHeroCharacter className="ps-session-hero-player" appearance={appearance} decorative priority/><div className="ps-session-ticket" aria-hidden="true"><SpaceIcon name="ball"/><span>DEVELOP.<br/>BELIEVE.<br/>ACHIEVE.</span></div></section>;
 }
 function Preparation({session,saved,onSave}:{session:SpaceSession;saved?:SessionPreparation;onSave:PortalFeatureActions['onSavePreparation']}){
  const[help,setHelp]=useState(''),[checked,setChecked]=useState<string[]>([]),[busy,setBusy]=useState(false),[notice,setNotice]=useState(''),[error,setError]=useState(''),[dirty,setDirty]=useState(false);
