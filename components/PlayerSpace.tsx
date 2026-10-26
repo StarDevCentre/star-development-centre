@@ -33,7 +33,7 @@ export function PlayerSpaceHeader({ tab, onNavigate, onAccount, onUpdates, unrea
 }
 
 export function PlayerSpaceHero({ name = "PLAYER", compact = false }: { name?: string; compact?: boolean }) {
-  return <section className={"ps-hero ps-paper" + (compact ? " ps-hero-compact" : "")}><div className="ps-hero-copy"><span className="ps-tape">THIS SPACE IS YOURS <span aria-hidden="true">☆</span></span><p className="ps-hello">HEY, {name}!</p><h1><span>BIG DREAMS.</span><br/><em>SMALL STEPS.</em></h1><p className="ps-hero-sub">Make your next move.</p><span className="ps-hero-arrow" aria-hidden="true">↗</span></div><Image className="ps-hero-player" src="/player-space/hero-player.webp" alt="Illustrated STAR footballer looking confidently ahead" width={900} height={1350} sizes="(max-width: 600px) 55vw, 500px" priority/><span className="ps-hero-scribble" aria-hidden="true">SAME GIRL.<br/>BIGGER GOALS.</span></section>;
+  return <section className={"ps-hero ps-paper" + (compact ? " ps-hero-compact" : "")}><div className="ps-hero-copy"><span className="ps-tape">THIS SPACE IS YOURS <span aria-hidden="true">☆</span></span><p className="ps-hello">HEY, {name}!</p><h1><span>BIG DREAMS.</span><br/><em>SMALL STEPS.</em></h1><p className="ps-hero-sub">Make your next move.</p><span className="ps-hero-arrow" aria-hidden="true">↗</span></div><Image className="ps-hero-player" src="/player-space/hero-player-star-kit.webp" alt="Illustrated STAR footballer looking confidently ahead" width={900} height={1350} sizes="(max-width: 600px) 55vw, 500px" priority/><span className="ps-hero-scribble" aria-hidden="true">SAME GIRL.<br/>BIGGER GOALS.</span></section>;
 }
 
 function AwardDetails({ award, onClose }: { award: PlayerAchievement | undefined; onClose: () => void }) {
