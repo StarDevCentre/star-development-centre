@@ -1,7 +1,10 @@
-export type SpaceIconName = "home" | "train" | "journey" | "trophy" | "star" | "arrow" | "ball" | "clock" | "check" | "settings" | "refresh" | "exit" | "calendar";
+export type SpaceIconName = "home" | "train" | "journey" | "trophy" | "star" | "arrow" | "ball" | "clock" | "check" | "settings" | "refresh" | "exit" | "calendar" | "captain" | "comet" | "shield";
 
 export function SpaceIcon({ name, className = "" }: { name: SpaceIconName; className?: string }) {
   const paths: Record<SpaceIconName, React.ReactNode> = {
+    captain: <><path d="m6 8-2-5 5 3 3-4 3 4 5-3-2 5z"/><circle cx="12" cy="12" r="5"/><path d="M3 22c0-7 18-7 18 0M10 12h.01M14 12h.01m-4 3q2 2 4 0"/></>,
+    comet: <><path d="m3 3 7 2m-8 4 6 1m-5 5 4-1"/><circle cx="15" cy="15" r="7"/><path d="m15 11 3 3-1 4h-4l-1-4zM20 10l2-7-7 3"/></>,
+    shield: <><path d="m12 2 9 4v7c0 5-9 9-9 9s-9-4-9-9V6z"/><path d="m12 6 1.5 3 3.5.5-2.5 2.5.5 3.5-3-1.5-3 1.5.5-3.5L7 9.5l3.5-.5z"/></>,
     home: <><path d="m3 10 9-7 9 7v11h-6v-7H9v7H3z"/></>,
     train: <><path d="m4 5 6 2 3 6 7 3c2 1 2 5-1 5H4c-3 0-3-3-2-5l2-4z"/><path d="m9 9 4-2m-2 6 4-2M3 18h17"/></>,
     journey: <><path d="m2 21 7-13 4 7 3-11 6 17z"/><path d="m7 12 2 2 2-2m3-3 2 2 2-1"/></>,
@@ -21,4 +24,9 @@ export function SpaceIcon({ name, className = "" }: { name: SpaceIconName; class
 
 export function BootSticker() {
   return <svg viewBox="0 0 300 170" aria-hidden="true" className="ps-boot-art"><path d="m38 43 70 8 26 39 97 28c28 8 30 28 2 33H37c-25 0-32-12-20-34l13-28z" fill="#f7f5ed" stroke="#06142e" strokeWidth="6"/><path d="m38 44 48 13 26 46 112 31-148 6-51-13 13-35z" fill="#f5c64d"/><path d="m110 81 25 28 68 16-87-1-48-63z" fill="#153b80"/><path d="m125 110 82 18-43 8-72-19z" fill="#df1f38"/><path d="m31 142 202 0-4 15H35z" fill="#06142e"/><path d="m48 157 4 9m46-9 4 9m48-9 4 9m46-9 4 9" stroke="#06142e" strokeWidth="8"/><path d="m91 71 21-7m-14 20 23-7m-15 20 24-7m-16 20 22-7" stroke="#06142e" strokeWidth="5"/><path d="m48 37-5-21m175 77 20-13m-4 54 25 5" stroke="#06142e" strokeWidth="4"/><path d="m248 42 5 12 13 2-10 9 3 13-12-7-12 6 3-13-9-10 13-1z" fill="#f5c64d" stroke="#06142e" strokeWidth="3"/></svg>;
+}
+
+export function PlayerDecoration({kind}:{kind:string}) {
+ if(kind==='none')return null;
+ return <svg className="ps-card-decoration" viewBox="0 0 300 180" aria-hidden="true" fill="none" stroke="#f5c64d" strokeWidth="5" strokeLinecap="round">{kind==='lightning'?<><path d="m45 15-22 52h25l-12 53 49-70H58l13-35z" fill="#f5c64d"/><path d="m250 50-20 45h25l-15 60 48-80h-25l12-25z" fill="#df1f38"/></>:kind==='laurel'?<><path d="M95 165Q8 90 55 20m150 145Q292 90 245 20"/>{[40,65,90,115,140].map((y,i)=><g key={y}><ellipse cx={36+i*4} cy={y} rx="16" ry="7" transform={`rotate(35 ${36+i*4} ${y})`} fill="#f5c64d"/><ellipse cx={264-i*4} cy={y} rx="16" ry="7" transform={`rotate(-35 ${264-i*4} ${y})`} fill="#f5c64d"/></g>)}</>:<>{[[35,40],[265,55],[55,145],[245,145]].map(([x,y])=><path key={x} d={`M${x} ${y-16}v32m-16-16h32m-27-11 22 22m0-22-22 22`}/>)}</>}</svg>;
 }

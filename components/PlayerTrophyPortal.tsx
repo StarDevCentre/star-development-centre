@@ -4,9 +4,20 @@ import { useEffect, useRef, useState } from "react";
 import type { User } from "@supabase/supabase-js";
 import Link from "next/link";
 import { supabaseBrowser as db } from "../lib/supabaseBrowser";
-import { assignmentFields, defaultProfile, emptySpaceData, type PracticeInput, type SpaceActions, type SpaceData, type SpaceProfile } from "../lib/playerSpace";
+import { assignmentFields, diaryFields, defaultProfile, emptySpaceData, type PracticeInput, type SpaceActions, type SpaceData, type SpaceProfile } from "../lib/playerSpace";
 import { PlayerSpace, PlayerSpaceHeader, PlayerSpaceHero } from "./PlayerSpace";
 import { SpaceIcon } from "./PlayerSpaceIcons";
+
+// History can outgrow the Data API's default row limit.
+async function readHistoryPages<T extends {id:string}>(request:(from:number,to:number)=>PromiseLike<{data:T[]|null;error:unknown}>) {
+  const rows=new Map<string,T>();
+  for(let from=0;;from+=500){
+    const result=await request(from,from+499);
+    if(result.error)throw result.error;
+    for(const row of result.data||[])rows.set(row.id,row);
+    if((result.data||[]).length<500)return {data:[...rows.values()],error:null};
+  }
+}
 
 export function PlayerTrophyPortal() {
   const [user, setUser] = useState<User | null>(null);
@@ -55,11 +66,13 @@ export function PlayerTrophyPortal() {
           db.from("family_monthly_reports").select("id,player_id,review_month,strengths,development_areas,next_steps").in("player_id", ids).order("review_month", { ascending: false }),
           db.from("player_space_profiles").select("*").in("player_id", ids),
           db.from("player_personal_goals").select("id,player_id,goal,target_date,status").in("player_id", ids).order("created_at", { ascending: false }),
-          db.from("player_award_receipts").select("achievement_id").eq("guardian_id", currentUserId)
+          db.from("player_award_receipts").select("achievement_id").eq("guardian_id", currentUserId),
+          db.from("player_cosmetic_unlocks").select("player_id,cosmetic,unlocked_at").in("player_id",ids),
+          readHistoryPages((from,to)=>db!.from("player_goal_events").select("id,player_id,source_id,source,kind,goal,occurred_at").in("player_id",ids).order("occurred_at",{ascending:false}).order("id").range(from,to))
         ]);
         if (results.some(result => result.error)) throw new Error("Unable to load player data");
         const assignmentIds = (results[2].data || []).map(value => value.id);
-        const diaryResult = assignmentIds.length ? await db.from("player_training_diary").select("id,assignment_id,practice_date,minutes,reflection,created_at").in("assignment_id", assignmentIds).order("created_at", { ascending: false }) : { data: [], error: null };
+        const diaryResult = assignmentIds.length ? await readHistoryPages((from,to)=>db!.from("player_training_diary").select(diaryFields).in("assignment_id", assignmentIds).order("created_at", { ascending: false }).order("id").range(from,to)) : { data: [], error: null };
         if (diaryResult.error) throw diaryResult.error;
         const diaryIds = (diaryResult.data || []).map(value => value.id);
         const feedbackResult = diaryIds.length ? await db.from("player_training_feedback").select("diary_id,feedback,reviewed_at").in("diary_id", diaryIds).order("reviewed_at", { ascending: false }) : { data: [], error: null };
@@ -71,7 +84,7 @@ export function PlayerTrophyPortal() {
           return { ...profile, photo_url: photo.data?.signedUrl };
         }));
         if (active) {
-          setData({ players: results[0].data || [], awards: results[1].data || [], assignments: results[2].data || [], goals: results[3].data || [], sessions: results[4].data || [], assessments: results[5].data || [], reports: results[6].data || [], profiles, personalGoals: results[8].data || [], celebrated: (results[9].data || []).map(value => value.achievement_id), diary: diaryResult.data || [], feedback: feedbackResult.data || [] } as SpaceData);
+          setData({ players: results[0].data || [], awards: results[1].data || [], assignments: results[2].data || [], goals: results[3].data || [], sessions: results[4].data || [], assessments: results[5].data || [], reports: results[6].data || [], profiles, personalGoals: results[8].data || [], celebrated: (results[9].data || []).map(value => value.achievement_id), unlocks:results[10].data || [], goalEvents:results[11].data || [], diary: diaryResult.data || [], feedback: feedbackResult.data || [] } as SpaceData);
           setLoadedUserId(currentUserId);
         }
       } catch { if (active) { setError("We couldn’t load your player space. Please try again."); setFailed(true); setLoadedUserId(currentUserId); } }
@@ -98,12 +111,22 @@ export function PlayerTrophyPortal() {
     catch { setError("Sign-in is temporarily unavailable. Please try again."); }
     finally { setPassword(""); setBusy(false); }
   }
+  async function refreshProgress(playerId:string) {
+    if(!db)return;
+    const [unlocks,events]=await Promise.all([
+      db.from("player_cosmetic_unlocks").select("player_id,cosmetic,unlocked_at").eq("player_id",playerId),
+      readHistoryPages((from,to)=>db!.from("player_goal_events").select("id,player_id,source_id,source,kind,goal,occurred_at").eq("player_id",playerId).order("occurred_at",{ascending:false}).order("id").range(from,to))
+    ]);
+    if(!unlocks.error&&!events.error) setData(current=>({...current,unlocks:[...current.unlocks.filter(u=>u.player_id!==playerId),...unlocks.data],goalEvents:[...current.goalEvents.filter(e=>e.player_id!==playerId),...events.data]}));
+  }
   async function savePractice(value: PracticeInput) {
     if (!db || !user || loadedUserId !== user.id || !data.assignments.some(item => item.id === value.assignment_id)) throw new Error("Please sign in again to record practice.");
+    if ([value.confidence,value.enjoyment].some(r=>r!=null&&(!Number.isInteger(r)||r<1||r>5))) throw new Error("Choose a rating from 1 to 5, or leave it blank.");
     if (!Number.isInteger(value.minutes) || value.minutes < 0 || value.minutes > 360 || !value.reflection.trim()) throw new Error("Check your practice details and try again.");
-    const result = await db.from("player_training_diary").insert({ ...value, guardian_id: user.id }).select("id,assignment_id,practice_date,minutes,reflection,created_at").single();
+    const result = await db.from("player_training_diary").insert({ ...value, guardian_id: user.id }).select(diaryFields).single();
     if (result.error || !result.data) throw new Error("Your practice couldn’t be saved. Check your connection and try again.");
     setData(current => ({ ...current, diary: [result.data, ...current.diary] }));
+    await refreshProgress(data.assignments.find(a=>a.id===value.assignment_id)!.player_id).catch(()=>{});
   }
   const updateProfile: SpaceActions['onUpdateProfile'] = async (playerId, patch, photo) => {
     if (!db || !user || loadedUserId !== user.id || !data.players.some(p=>p.id===playerId)) throw new Error("Please sign in again to save your card.");
@@ -146,6 +169,7 @@ export function PlayerTrophyPortal() {
     const result=goalId ? await db.from("player_personal_goals").update({...fields,updated_at:new Date().toISOString()}).eq("id",goalId).eq("player_id",playerId).select("id,player_id,goal,target_date,status").single() : await db.from("player_personal_goals").insert({...fields,player_id:playerId,created_by:user.id}).select("id,player_id,goal,target_date,status").single();
     if(result.error||!result.data) throw new Error("Your goal couldn’t be saved. Please try again.");
     setData(current=>({...current,personalGoals:[result.data,...current.personalGoals.filter(g=>g.id!==result.data.id)]}));
+    await refreshProgress(playerId).catch(()=>{});
   };
   const celebrate: SpaceActions['onCelebrate'] = async awardIds => {
     if(!db||!user||loadedUserId!==user.id||awardIds.some(id=>!data.awards.some(a=>a.id===id))) throw new Error("Please refresh your player space.");

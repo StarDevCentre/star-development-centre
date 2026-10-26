@@ -1,0 +1,28 @@
+"use client";
+import { useState } from 'react';
+import { achievementDate, todayInLondon, type PlayerAchievement } from '../lib/achievementBadges';
+import { addDays, weekOf, type GoalEvent, type SpaceAssignment, type SpaceDiary } from '../lib/playerSpace';
+import { PracticeRatingSummary } from './PlayerPracticeRatings';
+import { SpaceIcon } from './PlayerSpaceIcons';
+
+export function PracticeHistory({ diary, assignments }: { diary: SpaceDiary[]; assignments: SpaceAssignment[] }) {
+ const [period,setPeriod]=useState('4'),[limit,setLimit]=useState(6);
+ const today=todayInLondon();
+ const cutoff=period==='all'?'0000-01-01':addDays(weekOf(today),-(Number(period)-1)*7);
+ const entries=diary.filter(d=>d.practice_date>=cutoff&&d.practice_date<=today).sort((a,b)=>b.practice_date.localeCompare(a.practice_date)||b.created_at.localeCompare(a.created_at));
+ const confidence=entries.filter(d=>d.confidence!==null),enjoyment=entries.filter(d=>d.enjoyment!==null);
+ const mean=(items:SpaceDiary[],key:'confidence'|'enjoyment')=>items.length?(items.reduce((sum,d)=>sum+(d[key]||0),0)/items.length).toFixed(1)+'/5':'No ratings yet';
+ const weeks=Array.from({length:period==='12'?12:4},(_,i)=>addDays(weekOf(today),-(period==='12'?11-i:3-i)*7));
+ const counts=weeks.map(w=>entries.filter(d=>d.practice_date>=w&&d.practice_date<=addDays(w,6)).length);
+ const highest=Math.max(...counts,1);
+ return <section className="ps-practice-history ps-paper"><div className="ps-section-top"><h2>MY PRACTICE STORY.</h2><label>Show practice history<select value={period} onChange={e=>{setPeriod(e.target.value);setLimit(6);}}><option value="4">Last 4 weeks</option><option value="12">Last 12 weeks</option><option value="all">All my practice</option></select></label></div><p>Every entry is a practice you logged. Your ratings describe how it felt to you.</p><div className="ps-history-stats"><div><strong>{entries.length}</strong><span>Practices logged</span></div><div><strong>{entries.reduce((sum,d)=>sum+d.minutes,0)}</strong><span>Minutes practised</span></div><div><strong>{mean(confidence,'confidence')}</strong><span>Average confidence · {confidence.length} ratings</span></div><div><strong>{mean(enjoyment,'enjoyment')}</strong><span>Average enjoyment · {enjoyment.length} ratings</span></div></div>
+ <figure className="ps-history-plot"><figcaption>Practices by week · {weeks.length} most recent weeks</figcaption><div className="ps-history-weeks">{weeks.map((w,i)=><div key={w} className="ps-history-week"><strong>{counts[i]}</strong><div className="ps-history-bar" aria-hidden="true"><i style={{height:`${counts[i]/highest*100}%`}}/></div><span>Week of {new Date(w+'T12:00:00Z').toLocaleDateString('en-GB',{day:'numeric',month:'short',timeZone:'UTC'})}</span></div>)}</div></figure>
+ {entries.length?<div className="ps-history-entries">{entries.slice(0,limit).map(d=><details key={d.id}><summary><span>{achievementDate(d.practice_date)} · {d.minutes} min</span><strong>{assignments.find(a=>a.id===d.assignment_id)?.title||'Football practice'}</strong></summary><PracticeRatingSummary confidence={d.confidence} enjoyment={d.enjoyment}/>{d.confidence===null&&d.enjoyment===null&&<p className="ps-fineprint">No ratings recorded for this practice.</p>}<p className="ps-preserve-lines">{d.reflection}</p></details>)}{entries.length>limit&&<button className="ps-text-link" onClick={()=>setLimit(n=>n+10)}>Show more practices ↓</button>}</div>:<p>Your first practice entry will start your story here.</p>}</section>;
+}
+
+export function PlayerJourneyTimeline({ events, awards, onAward }: { events: GoalEvent[]; awards: PlayerAchievement[]; onAward: (id:string)=>void }) {
+ const [filter,setFilter]=useState('all'),[limit,setLimit]=useState(10);
+ const goalLabels={set:'Goal set',achieved:'Goal achieved',reopened:'Goal reopened',archived:'Goal archived',updated:'Goal updated'};
+ const items=[...events.map(e=>({id:'goal-'+e.id,date:e.occurred_at,title:e.goal,label:(e.source==='coach'?'Coach · ':'My goal · ')+goalLabels[e.kind],icon:e.kind==='achieved'?'check':'journey',awardId:undefined as string|undefined})),...awards.map(a=>({id:'award-'+a.id,date:a.awarded_on+'T12:00:00Z',title:a.title,label:a.badge_id?'Badge awarded':'Coach recognition',icon:'trophy',awardId:a.id}))].filter(e=>filter==='all'||(filter==='goals'?!e.awardId:!!e.awardId)).sort((a,b)=>b.date.localeCompare(a.date)||a.id.localeCompare(b.id));
+ return <section className="ps-timeline ps-paper"><span className="ps-tape">YOUR STORY KEEPS GROWING</span><div className="ps-section-top"><h2>MY JOURNEY TIMELINE.</h2><label>Show timeline<select value={filter} onChange={e=>{setFilter(e.target.value);setLimit(10);}}><option value="all">Goals + achievements</option><option value="goals">Goals</option><option value="awards">Achievements</option></select></label></div><p>Goals you set, progress you make and moments your coach celebrates.</p>{items.length?<ol>{items.slice(0,limit).map(item=><li key={item.id}><span className="ps-timeline-marker"><SpaceIcon name={item.icon as 'check'|'journey'|'trophy'}/></span><div><time dateTime={item.date}>{new Date(item.date).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric',timeZone:'Europe/London'})}</time><p className="ps-eyebrow">{item.label}</p><h3>{item.title}</h3>{item.awardId&&<button className="ps-text-link" onClick={()=>onAward(item.awardId!)}>Open achievement →</button>}</div></li>)}</ol>:<p>Your first goal or achievement will appear here.</p>}{items.length>limit&&<button className="ps-text-link" onClick={()=>setLimit(n=>n+15)}>More of my story ↓</button>}</section>;
+}
