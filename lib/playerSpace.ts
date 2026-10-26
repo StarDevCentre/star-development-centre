@@ -1,0 +1,12 @@
+import type { PlayerAchievement } from "./achievementBadges";
+export type SpacePlayer = { id: string; first_name: string; last_name: string; programme: string };
+export type SpaceAssignment = { id: string; player_id: string; goal_id: string | null; title: string; instructions: string; target: string | null; due_date: string | null; created_at: string };
+export type SpaceDiary = { id: string; assignment_id: string; practice_date: string; minutes: number; reflection: string; created_at: string };
+export type SpaceFeedback = { diary_id: string; feedback: string; reviewed_at: string };
+export type SpaceGoal = { id: string; player_id: string; goal: string; status: string };
+export type SpaceSession = { id: string; player_id: string; title: string; starts_at: string; ends_at: string; venue: string };
+export type SpaceAssessment = { id: string; player_id: string; category: string; rating: number; assessed_on: string };
+export type SpaceReport = { id: string; player_id: string; review_month: string; strengths: string; development_areas: string; next_steps: string };
+export type SpaceData = { players: SpacePlayer[]; awards: PlayerAchievement[]; assignments: SpaceAssignment[]; diary: SpaceDiary[]; feedback: SpaceFeedback[]; goals: SpaceGoal[]; sessions: SpaceSession[]; assessments: SpaceAssessment[]; reports: SpaceReport[] };
+export const emptySpaceData: SpaceData = { players: [], awards: [], assignments: [], diary: [], feedback: [], goals: [], sessions: [], assessments: [], reports: [] };
+export type PracticeInput = { assignment_id: string; practice_date: string; minutes: number; reflection: string };

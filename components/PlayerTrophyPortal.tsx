@@ -1,39 +1,42 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { User } from "@supabase/supabase-js";
 import Link from "next/link";
 import { supabaseBrowser as db } from "../lib/supabaseBrowser";
-import type { PlayerAchievement } from "../lib/achievementBadges";
-import { TrophyCabinet } from "./TrophyCabinet";
-
-type Player = { id: string; first_name: string; last_name: string; programme: string };
+import { emptySpaceData, type PracticeInput, type SpaceData } from "../lib/playerSpace";
+import { PlayerSpace, PlayerSpaceHeader, PlayerSpaceHero } from "./PlayerSpace";
+import { SpaceIcon } from "./PlayerSpaceIcons";
 
 export function PlayerTrophyPortal() {
   const [user, setUser] = useState<User | null>(null);
   const [ready, setReady] = useState(false);
-  const [players, setPlayers] = useState<Player[]>([]);
-  const [awards, setAwards] = useState<PlayerAchievement[]>([]);
-  const [playerId, setPlayerId] = useState("");
+  const [data, setData] = useState<SpaceData>(emptySpaceData);
   const [loadedUserId, setLoadedUserId] = useState<string | null>(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
-  const [loadFailed, setLoadFailed] = useState(false);
   const [revision, setRevision] = useState(0);
+  const [failed, setFailed] = useState(false);
+  const authRevision = useRef(0);
 
   useEffect(() => {
     if (!db) { setReady(true); return; }
     let active = true;
-    void db.auth.getUser().then(({ data, error }) => { if (active) { setUser(error ? null : data.user); setReady(true); } }).catch(() => { if (active) { setReady(true); setError("Could not check your sign-in. Please try again."); } });
-    const { data: { subscription } } = db.auth.onAuthStateChange((_event, session) => { if (active) { setUser(session?.user || null); setReady(true); } });
+    const initialRevision = authRevision.current;
+    void db.auth.getUser().then(({ data: result, error }) => {
+      if (active && authRevision.current === initialRevision) { setUser(error ? null : result.user); setReady(true); }
+    }).catch(() => { if (active) { setReady(true); setError("Could not check your sign-in. Please try again."); } });
+    const { data: { subscription } } = db.auth.onAuthStateChange((_event, session) => {
+      if (active) { authRevision.current++; setUser(session?.user || null); setReady(true); }
+    });
     return () => { active = false; subscription.unsubscribe(); };
   }, []);
 
   useEffect(() => {
     let active = true;
-    setLoadedUserId(null); setPlayers([]); setAwards([]); setPlayerId(""); setLoadFailed(false); setError("");
+    setLoadedUserId(null); setData(emptySpaceData); setFailed(false); setError("");
     if (!db || !user) return;
     const currentUserId = user.id;
     void (async () => {
@@ -42,13 +45,27 @@ export function PlayerTrophyPortal() {
         if (links.error) throw links.error;
         const ids = (links.data || []).map(link => link.player_id);
         if (!ids.length) { if (active) setLoadedUserId(currentUserId); return; }
-        const [playerResult, awardResult] = await Promise.all([
+        const results = await Promise.all([
           db.from("coaching_players").select("id,first_name,last_name,programme").in("id", ids).order("first_name"),
-          db.from("player_achievements").select("id,player_id,title,description,awarded_on,badge_id").in("player_id", ids).order("awarded_on", { ascending: false }).order("created_at", { ascending: false })
+          db.from("player_achievements").select("id,player_id,title,description,awarded_on,badge_id").in("player_id", ids).order("awarded_on", { ascending: false }).order("created_at", { ascending: false }),
+          db.from("player_training_assignments").select("id,player_id,goal_id,title,instructions,target,due_date,created_at").in("player_id", ids).order("created_at", { ascending: false }),
+          db.from("coaching_development_goals").select("id,player_id,goal,status").in("player_id", ids),
+          db.from("family_session_schedule").select("id,player_id,title,starts_at,ends_at,venue").in("player_id", ids).gte("ends_at", new Date().toISOString()).order("starts_at"),
+          db.from("coaching_idp_assessments").select("id,player_id,category,rating,assessed_on").in("player_id", ids).order("assessed_on", { ascending: false }),
+          db.from("family_monthly_reports").select("id,player_id,review_month,strengths,development_areas,next_steps").in("player_id", ids).order("review_month", { ascending: false })
         ]);
-        if (playerResult.error || awardResult.error) throw playerResult.error || awardResult.error;
-        if (active) { setPlayers(playerResult.data || []); setAwards(awardResult.data || []); setPlayerId(playerResult.data?.[0]?.id || ""); setLoadedUserId(currentUserId); }
-      } catch { if (active) { setError("We couldn’t load your trophy cabinet. Please try refreshing."); setLoadFailed(true); setLoadedUserId(currentUserId); } }
+        if (results.some(result => result.error)) throw new Error("Unable to load player data");
+        const assignmentIds = (results[2].data || []).map(value => value.id);
+        const diaryResult = assignmentIds.length ? await db.from("player_training_diary").select("id,assignment_id,practice_date,minutes,reflection,created_at").in("assignment_id", assignmentIds).order("created_at", { ascending: false }) : { data: [], error: null };
+        if (diaryResult.error) throw diaryResult.error;
+        const diaryIds = (diaryResult.data || []).map(value => value.id);
+        const feedbackResult = diaryIds.length ? await db.from("player_training_feedback").select("diary_id,feedback,reviewed_at").in("diary_id", diaryIds).order("reviewed_at", { ascending: false }) : { data: [], error: null };
+        if (feedbackResult.error) throw feedbackResult.error;
+        if (active) {
+          setData({ players: results[0].data || [], awards: results[1].data || [], assignments: results[2].data || [], goals: results[3].data || [], sessions: results[4].data || [], assessments: results[5].data || [], reports: results[6].data || [], diary: diaryResult.data || [], feedback: feedbackResult.data || [] } as SpaceData);
+          setLoadedUserId(currentUserId);
+        }
+      } catch { if (active) { setError("We couldn’t load your player space. Please try again."); setFailed(true); setLoadedUserId(currentUserId); } }
     })();
     return () => { active = false; };
   }, [user?.id, revision]);
@@ -60,21 +77,24 @@ export function PlayerTrophyPortal() {
     catch { setError("Sign-in is temporarily unavailable. Please try again."); }
     finally { setPassword(""); setBusy(false); }
   }
+  async function savePractice(value: PracticeInput) {
+    if (!db || !user || loadedUserId !== user.id || !data.assignments.some(item => item.id === value.assignment_id)) throw new Error("Please sign in again to record practice.");
+    if (!Number.isInteger(value.minutes) || value.minutes < 0 || value.minutes > 360 || !value.reflection.trim()) throw new Error("Check your practice details and try again.");
+    const result = await db.from("player_training_diary").insert({ ...value, guardian_id: user.id }).select("id,assignment_id,practice_date,minutes,reflection,created_at").single();
+    if (result.error || !result.data) throw new Error("Your practice couldn’t be saved. Check your connection and try again.");
+    setData(current => ({ ...current, diary: [result.data, ...current.diary] }));
+  }
+  async function signOut() {
+    if (!db) return;
+    const result = await db.auth.signOut();
+    if (result.error) throw result.error;
+    setData(emptySpaceData); setUser(null); setError("");
+  }
 
-  if (!ready) return <p role="status">Checking your account…</p>;
-  if (!db) return <p>The Player Portal is temporarily unavailable. Please <Link href="/contact">contact STAR</Link>.</p>;
-  const player = players.find(value => value.id === playerId);
-  return <div className="star-player-portal">
-    {error && <p className="star-portal-error" role="alert">{error}</p>}
-    {!user ? <div className="star-portal-main"><span className="kicker">YOUR STAR JOURNEY</span><h2>Open your trophy cabinet</h2><p>Players can explore their achievements with a parent or guardian. Sign in using the parent account already approved by STAR.</p>
-      <form className="star-portal-form" onSubmit={signIn}><label>Parent / guardian email<input type="email" required autoComplete="email" maxLength={200} value={email} onChange={event => setEmail(event.target.value)}/></label><label>Password<input type="password" required autoComplete="current-password" value={password} onChange={event => setPassword(event.target.value)}/></label><button disabled={busy} type="submit">{busy ? "Signing in…" : "Open trophy cabinet"}</button></form>
-      <p><Link href="/parent-portal">Create a parent account or reset your password →</Link></p>
-    </div> : <>
-      <div className="star-player-toolbar"><div><span className="kicker">STAR / PLAYER SPACE</span><h2>Your development. Your achievements.</h2><p>Viewing through your approved family account.</p></div><div><Link href="/parent-portal">Parent dashboard</Link><button type="button" onClick={() => { setError(""); setRevision(value => value + 1); }}>Refresh</button><button type="button" onClick={async () => { if (!db) return; const { error } = await db.auth.signOut(); if (error) setError("Could not sign out. Please try again."); else { setPlayers([]); setAwards([]); setUser(null); setError(""); } }}>Sign out</button></div></div>
-      {loadedUserId !== user.id ? <p role="status">Loading your trophy cabinet…</p> : loadFailed ? <p>Use Refresh above to try loading your achievements again.</p> : !players.length ? <div className="star-portal-main"><h3>Your player link is being prepared</h3><p>STAR needs to approve the link between your parent account and player profile before achievements can be shown.</p><Link href="/parent-portal">Go to the Parent Portal →</Link></div> : <>
-        <label className="star-player-select">Player<select value={playerId} onChange={event => setPlayerId(event.target.value)}>{players.map(value => <option key={value.id} value={value.id}>{value.first_name} {value.last_name}</option>)}</select></label>
-        {player && <TrophyCabinet key={player.id} awards={awards.filter(award => award.player_id === player.id)} playerName={player.first_name}/>}
-      </>}
-    </>}
-  </div>;
+  if (ready && user && loadedUserId === user.id && !failed && data.players.length) return <PlayerSpace key={user.id} userKey={user.id} data={data} onSavePractice={savePractice} onRefresh={() => setRevision(value => value + 1)} onSignOut={signOut}/>;
+
+  return <div className="player-space-shell"><div className="ps-shell-inner"><PlayerSpaceHeader/><div className="ps-welcome-grid"><PlayerSpaceHero compact/><section className="ps-welcome-panel ps-paper">
+    {!ready ? <p role="status">Checking your account…</p> : !db ? <><h2>Your space is taking a breather.</h2><p>Please try again soon or <Link href="/contact">contact STAR</Link>.</p><Link className="ps-action" href="/player-portal/preview">EXPLORE A SAMPLE <SpaceIcon name="arrow"/></Link></> : !user ? <><span className="ps-tape">READY WHEN YOU ARE.</span><h2>MAKE YOURSELF<br/><em>AT HOME.</em></h2><p>Training, goals and your very own trophy cabinet. Open your player space together with a parent or guardian.</p><form className="ps-login-form" onSubmit={signIn}><label>Parent / guardian email<input type="email" required autoComplete="email" maxLength={200} value={email} onChange={event => setEmail(event.target.value)}/></label><label>Password<input type="password" required autoComplete="current-password" value={password} onChange={event => setPassword(event.target.value)}/></label><button className="ps-action" disabled={busy} type="submit">{busy ? "OPENING YOUR SPACE…" : "LET’S GO"}<SpaceIcon name="arrow"/></button></form><Link className="ps-auth-help" href="/parent-portal">Create a parent account / forgot password?</Link><Link className="ps-sample-link" href="/player-portal/preview">Take a look around a sample space <SpaceIcon name="arrow"/></Link></> : loadedUserId !== user.id ? <p role="status">Getting your player space ready…</p> : failed ? <><h2>Let’s try that again.</h2><p>Your player space couldn’t be loaded.</p><button className="ps-action" onClick={() => setRevision(value => value + 1)}>TRY AGAIN <SpaceIcon name="refresh"/></button></> : <><span className="ps-tape">YOU’RE IN THE RIGHT PLACE.</span><h2>Your space<br/>is on its way.</h2><p>STAR needs to approve the link between your parent account and player profile. Your training and badges will appear here once it’s ready.</p><Link className="ps-action" href="/parent-portal">PARENT DASHBOARD <SpaceIcon name="arrow"/></Link><Link className="ps-sample-link" href="/player-portal/preview">Explore a sample space →</Link></>}
+    {error && <p className="ps-error" role="alert">{error}</p>}{user && <button className="ps-auth-help" onClick={() => void signOut().catch(() => setError("Could not sign out. Please try again."))}>Sign out</button>}
+  </section></div><footer className="ps-footer"><span>DEVELOP. BELIEVE. ACHIEVE.</span><Link href="/privacy">Privacy & support ↗</Link></footer></div></div>;
 }
