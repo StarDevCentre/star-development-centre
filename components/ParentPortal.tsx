@@ -2,6 +2,7 @@
 import {useEffect,useMemo,useState} from "react";
 import {createClient, type User} from "@supabase/supabase-js";
 import Link from "next/link";
+import {PlayerAccountSetup} from "./PlayerAccountSetup";
 import {FamilyUnreadBadge} from "./FamilyUnreadBadge";
 import {PlayerTrainingHub} from "./PlayerTrainingHub";
 import {SessionChangeRequests} from "./SessionChangeRequests";
@@ -49,7 +50,7 @@ export function ParentPortal(){
  <h5>Approved monthly reports</h5>{familyReports.filter(r=>r.player_id===p.id).length?familyReports.filter(r=>r.player_id===p.id).map(r=><section className="star-family-detail" key={r.id}><h6>{new Date(r.review_month+"T12:00:00").toLocaleDateString("en-GB",{month:"long",year:"numeric"})}</h6><p><strong>Strengths:</strong> {r.strengths}</p><p><strong>Areas to develop:</strong> {r.development_areas}</p><p><strong>Next steps:</strong> {r.next_steps}</p></section>):<p>No monthly reports have been approved for sharing yet.</p>}
  <h5>Upcoming training sessions</h5>{familySessions.filter(s=>s.player_id===p.id).length?familySessions.filter(s=>s.player_id===p.id).map(s=><div className="star-family-detail" key={s.id}><strong>{s.title}</strong><p>{new Date(s.starts_at).toLocaleString("en-GB",{dateStyle:"medium",timeStyle:"short"})} – {new Date(s.ends_at).toLocaleTimeString("en-GB",{timeStyle:"short"})}</p><p>{s.venue}</p></div>):<p>No upcoming sessions have been shared yet.</p>}
  </article>):<p>No approved player development profiles are linked to your account yet. STAR must verify and approve each parent-child link before any coaching information is shared.</p>}
- <PlayerTrainingHub userId={user.id} role="guardian"/>
+ <PlayerTrainingHub userId={user.id} role="guardian"/><PlayerAccountSetup players={linkedPlayers} userId={user.id}/><p><Link href="/player-portal">Open family Player Space: progress, messages and player controls →</Link></p>
  <SessionChangeRequests userId={user.id} role="guardian"/>
  <FamilyCommunications key={user.id} userId={user.id} role="guardian"/>
  <h3>Admissions & applications</h3>{registrations.length?<ul>{registrations.map(r=><li key={r.id}>{r.player_first_name} · {r.programme} · <strong>{r.status.replaceAll("_"," ")}</strong>{r.recommended_programme&&<> · STAR recommends {r.recommended_programme}</>}{r.status==="draft"&&<button type="button" disabled={busy} onClick={async()=>{if(!supabase||!user||!window.confirm("Submit this application to STAR for review? This does not confirm a place or provide medical or safeguarding consent."))return;setBusy(true);setError("");const {error:e}=await supabase.from("player_registrations").update({status:"submitted",submitted_at:new Date().toISOString(),updated_at:new Date().toISOString()}).eq("id",r.id).eq("guardian_id",user.id).eq("status","draft");if(e)setError("Could not submit application: "+e.message);else{setRegistrations(v=>v.map(a=>a.id===r.id?{...a,status:"submitted"}:a));setNotice("Application submitted to STAR. A place is not confirmed.")}setBusy(false)}}>Submit application</button>}</li>)}</ul>:<p>No registrations yet.</p>}

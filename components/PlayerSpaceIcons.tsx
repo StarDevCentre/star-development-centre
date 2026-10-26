@@ -1,7 +1,11 @@
-export type SpaceIconName = "home" | "train" | "journey" | "trophy" | "star" | "arrow" | "ball" | "clock" | "check" | "settings" | "refresh" | "exit" | "calendar" | "captain" | "comet" | "shield";
+export type SpaceIconName = "home" | "train" | "journey" | "trophy" | "star" | "arrow" | "ball" | "clock" | "check" | "settings" | "refresh" | "exit" | "calendar" | "captain" | "comet" | "shield" | "book" | "chat" | "bell" | "more";
 
 export function SpaceIcon({ name, className = "" }: { name: SpaceIconName; className?: string }) {
   const paths: Record<SpaceIconName, React.ReactNode> = {
+    book:<><path d="M3 4h7q2 0 2 2 0-2 2-2h7v16h-7q-2 0-2 2 0-2-2-2H3zM12 6v16M6 8h3m6 0h3M6 12h3m6 0h3"/></>,
+    chat:<><path d="M3 3h18v14H9l-6 5zM7 8h10M7 12h7"/></>,
+    bell:<><path d="M5 17h14l-2-4V8a5 5 0 0 0-10 0v5zM10 21h4M12 1v2"/></>,
+    more:<><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></>,
     captain: <><path d="m6 8-2-5 5 3 3-4 3 4 5-3-2 5z"/><circle cx="12" cy="12" r="5"/><path d="M3 22c0-7 18-7 18 0M10 12h.01M14 12h.01m-4 3q2 2 4 0"/></>,
     comet: <><path d="m3 3 7 2m-8 4 6 1m-5 5 4-1"/><circle cx="15" cy="15" r="7"/><path d="m15 11 3 3-1 4h-4l-1-4zM20 10l2-7-7 3"/></>,
     shield: <><path d="m12 2 9 4v7c0 5-9 9-9 9s-9-4-9-9V6z"/><path d="m12 6 1.5 3 3.5.5-2.5 2.5.5 3.5-3-1.5-3 1.5.5-3.5L7 9.5l3.5-.5z"/></>,

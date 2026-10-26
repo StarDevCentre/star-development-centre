@@ -1,0 +1,5 @@
+alter table public.player_session_preparation add constraint player_checked_kit_size check(length(array_to_string(checked_kit,''))<=600);
+drop policy session_preparation_insert on public.player_session_preparation;
+create policy session_preparation_insert on public.player_session_preparation for insert to authenticated with check(star_private.can_use_player(player_id) and updated_by=(select auth.uid()) and exists(select 1 from public.family_session_schedule s where s.id=session_id and s.player_id=player_session_preparation.player_id and checked_kit<@s.kit_list));
+drop policy session_preparation_update on public.player_session_preparation;
+create policy session_preparation_update on public.player_session_preparation for update to authenticated using(star_private.can_use_player(player_id)) with check(star_private.can_use_player(player_id) and updated_by=(select auth.uid()) and exists(select 1 from public.family_session_schedule s where s.id=session_id and s.player_id=player_session_preparation.player_id and checked_kit<@s.kit_list));
