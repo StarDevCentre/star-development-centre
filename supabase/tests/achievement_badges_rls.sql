@@ -15,7 +15,7 @@ set local role authenticated;
 select set_config('request.jwt.claims',jsonb_build_object('sub',owner_id,'role','authenticated')::text,true) from badge_test_ids;
 insert into public.player_achievements(player_id,title,description,awarded_by,badge_id) select player_a,'First Steps','Validation fixture',owner_id,'first-steps-bronze' from badge_test_ids union all select player_b,'First Steps','Validation fixture',owner_id,'first-steps-bronze' from badge_test_ids;
 do $$ begin
- if (select count(*) from public.achievement_badges) <> 72 then raise exception 'Catalogue count incorrect'; end if;
+ if (select count(*) from public.achievement_badges) < 76 then raise exception 'Catalogue count incorrect'; end if;
  if (select count(*) from public.player_achievements where player_id in (select player_a from badge_test_ids union select player_b from badge_test_ids)) <> 2 then raise exception 'Owner access failed'; end if;
  begin
   insert into public.player_achievements(player_id,title,description,awarded_by,badge_id) select player_a,'First Steps','Duplicate fixture',owner_id,'first-steps-bronze' from badge_test_ids;

@@ -434,6 +434,7 @@ export const achievementBadges: AchievementBadge[] = [
     "collection": "Silver",
     "image": "/badges/welcome-to-star-silver.png"
   }
+,{"id":"fuel-right","title":"Fuel Right","collection":"Special awards","image":"/badges/fuel-right.png"},{"id":"ultimate-player","title":"Ultimate Player","collection":"Special awards","image":"/badges/ultimate-player.png"},{"id":"character-builder","title":"Character Builder","collection":"Special awards","image":"/badges/character-builder.png"},{"id":"hydration-hero","title":"Hydration Hero","collection":"Special awards","image":"/badges/hydration-hero.png"}
 ];
 
 export const badgeById = new Map(achievementBadges.map(badge => [badge.id, badge]));
