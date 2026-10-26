@@ -3,13 +3,14 @@ import { useEffect, useRef, useState } from "react";
 import { PlayerSpace } from "./PlayerSpace";
 import { todayInLondon } from "../lib/achievementBadges";
 import {emptyPortalFeatures,type PortalFeatureActions} from "../lib/playerPortalFeatures";
-import { addDays, defaultProfile, weekOf, type GoalEvent, type SpaceData } from "../lib/playerSpace";
+import { addDays, cosmetics, defaultProfile, weekOf, type GoalEvent, type SpaceData } from "../lib/playerSpace";
 
 function sampleData(): SpaceData {
   const today = todayInLondon();
   const week = weekOf(today);
   return {
     ...emptyPortalFeatures,
+    ballProgress:[],
     players: [{ id: "sample-player", first_name: "Alex", last_name: "", programme: "Development" }],
     awards: [
       { id: "sample-award-1", player_id: "sample-player", badge_id: "first-steps-bronze", title: "First Steps", description: "You kept trying a new first-touch technique, even when it felt tricky. That determination deserves celebrating.", awarded_on: addDays(today,-7) },
@@ -37,7 +38,7 @@ function sampleData(): SpaceData {
     sharingGroups:[{id:'sample-group',name:'Sample STAR teammates',player_ids:['sample-player']}],
     sharingFeed:{'sample-player':[{achievement_id:'sample-teammate-award',alias:'Sam on the ball',title:'Character Builder',badge_id:'character-builder',awarded_on:today}]},
     assessments: ["Technical", "Tactical", "Physical", "Psychological", "Social"].map((category, index) => ({ id: "sample-assessment-" + index, player_id: "sample-player", category, rating: [3, 3, 4, 4, 4][index], assessed_on: today })),
-    unlocks: ['avatar-captain','decoration-laurel'].map(cosmetic=>({player_id:'sample-player',cosmetic,unlocked_at:today+'T12:00:00Z'})),
+    unlocks: cosmetics.map(c=>c.key).map(cosmetic=>({player_id:'sample-player',cosmetic,unlocked_at:today+'T12:00:00Z'})),
     goalEvents: [
       {id:'sample-history-1',player_id:'sample-player',source_id:'sample-personal-goal',source:'personal',kind:'set',goal:'Try my weaker foot in every practice',occurred_at:addDays(today,-10)+'T12:00:00Z'},
       {id:'sample-history-2',player_id:'sample-player',source_id:'sample-goal-1',source:'coach',kind:'set',goal:'Try using both feet in practice',occurred_at:addDays(today,-14)+'T12:00:00Z'},

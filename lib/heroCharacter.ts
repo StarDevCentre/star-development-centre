@@ -1,3 +1,4 @@
+import {playerBalls,type BallKey} from './playerBalls';
 export const heroSkinTones = [
   { key: 'fair', label: 'Fair', colour: '#edc4a8', shadow: [112,67,52], mid: [230,177,145], light: [255,239,218] },
   { key: 'light', label: 'Light', colour: '#e9a070', shadow: [125,63,37], mid: [235,151,96], light: [255,234,187] },
@@ -19,13 +20,15 @@ export const heroHairTypes = [
   { key: 'braids', label: 'Braided ponytail', asset: '/player-space/hero-braids.webp' },
 ] as const;
 export type HeroAppearance = {
+  hero_ball: BallKey;
   hero_skin: typeof heroSkinTones[number]['key'];
   hero_hair_colour: typeof heroHairColours[number]['key'];
   hero_hair_type: typeof heroHairTypes[number]['key'];
 };
-export const defaultHero: HeroAppearance = {hero_skin:'light',hero_hair_colour:'blonde',hero_hair_type:'ponytail'};
+export const defaultHero: HeroAppearance = {hero_ball:'classic',hero_skin:'light',hero_hair_colour:'blonde',hero_hair_type:'ponytail'};
 export function heroAppearance(value?: Partial<HeroAppearance>):HeroAppearance {
   return {
+    hero_ball:playerBalls.some(b=>b.key===value?.hero_ball)?value!.hero_ball!:defaultHero.hero_ball,
     hero_skin:heroSkinTones.some(t=>t.key===value?.hero_skin)?value!.hero_skin!:defaultHero.hero_skin,
     hero_hair_colour:heroHairColours.some(t=>t.key===value?.hero_hair_colour)?value!.hero_hair_colour!:defaultHero.hero_hair_colour,
     hero_hair_type:heroHairTypes.some(t=>t.key===value?.hero_hair_type)?value!.hero_hair_type!:defaultHero.hero_hair_type,

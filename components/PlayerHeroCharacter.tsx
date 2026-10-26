@@ -2,9 +2,10 @@
 import Image from 'next/image';
 import {useEffect,useRef,useState} from 'react';
 import {heroAppearance,heroHairColours,heroHairTypes,heroSkinTones,type HeroAppearance} from '../lib/heroCharacter';
+import {playerBall} from '../lib/playerBalls';
 
-// Colour only the character's skin and hair. The kit, crest, ball, eyes,
-// lips, dark outlines and yellow stickers retain their original artwork.
+// Recolour the skin and hair without changing the official kit or stickers.
+// Composite a selected football afterwards, behind the original hand.
 const skinPaths = [
   [[546,192],[591,181],[626,190],[653,214],[667,243],[681,257],[681,269],[699,274],[709,285],[705,297],[694,303],[699,313],[707,323],[707,342],[702,353],[706,373],[698,392],[682,402],[650,412],[618,419],[608,429],[603,455],[606,489],[617,522],[640,550],[613,582],[572,615],[531,591],[499,566],[467,546],[448,526],[460,502],[468,469],[473,431],[473,399],[466,373],[445,359],[432,339],[440,321],[461,311],[480,306],[503,294],[515,267],[529,230]],
   [[111,772],[158,786],[222,830],[197,858],[133,881],[113,905],[129,962],[147,1007],[203,1046],[252,1046],[287,1055],[326,1074],[336,1084],[320,1099],[303,1094],[288,1090],[287,1114],[304,1127],[338,1131],[347,1143],[329,1156],[317,1164],[287,1179],[255,1193],[223,1195],[192,1178],[170,1168],[147,1150],[119,1121],[88,1098],[63,1068],[31,1033],[9,992],[0,953],[12,917],[40,879],[73,837]],
@@ -19,15 +20,17 @@ function tint(data:Uint8ClampedArray,index:number,luma:number,palette:Palette){
   for(let c=0;c<3;c++)data[index+c]=Math.round(a[c]+(b[c]-a[c])*f);
 }
 export function PlayerHeroCharacter({appearance,className='',decorative=false,priority=false}:{appearance?:Partial<HeroAppearance>;className?:string;decorative?:boolean;priority?:boolean}){
-  const look=heroAppearance(appearance),type=heroHairTypes.find(t=>t.key===look.hero_hair_type)!;
+  const look=heroAppearance(appearance),type=heroHairTypes.find(t=>t.key===look.hero_hair_type)!,ball=playerBall(look.hero_ball);
   const canvas=useRef<HTMLCanvasElement>(null),[ready,setReady]=useState(false),[failed,setFailed]=useState(false);
-  const custom=look.hero_skin!=='light'||look.hero_hair_colour!=='blonde';
+  const custom=look.hero_skin!=='light'||look.hero_hair_colour!=='blonde'||look.hero_ball!=='classic';
   useEffect(()=>{
     setFailed(false);if(!custom){setReady(false);return;}
     let active=true;const image=new window.Image();
-    image.onload=()=>{
+    image.onload=async()=>{
       if(!active||!canvas.current)return;
       try{
+        const ballImage=ball.asset?await new Promise<HTMLImageElement>((resolve,reject)=>{const texture=new window.Image();texture.onload=()=>resolve(texture);texture.onerror=reject;texture.src=ball.asset!;}):null;
+        if(!active||!canvas.current)return;
         const node=canvas.current,ctx=node.getContext('2d',{willReadFrequently:true});if(!ctx)throw new Error('Canvas unavailable');
         ctx.clearRect(0,0,600,900);ctx.drawImage(image,0,0,600,900);
         const pixels=ctx.getImageData(0,0,600,900),data=pixels.data;
@@ -47,13 +50,25 @@ export function PlayerHeroCharacter({appearance,className='',decorative=false,pr
             if(hairPixel&&!yellowSticker&&(g-b)/(r-b)>.12)tint(data,i,luma,hair);
           }
         }
-        ctx.putImageData(pixels,0,0);if(active)setReady(true);
+        ctx.putImageData(pixels,0,0);
+        if(ballImage){
+          // Place the chosen ball behind the existing forearm and fingers.
+          ctx.save();ctx.beginPath();ctx.ellipse(255/1.5,1025/1.5,151/1.5,171/1.5,0,0,Math.PI*2);ctx.clip();
+          ctx.fillStyle=ball.colour;ctx.fillRect(104/1.5,854/1.5,302/1.5,342/1.5);ctx.drawImage(ballImage,104/1.5,854/1.5,302/1.5,342/1.5);ctx.restore();
+          const composed=ctx.getImageData(0,0,600,900),output=composed.data;
+          for(let y=569;y<800;y++)for(let x=69;x<273;x++){
+            const i=(y*600+x)*4;
+            if(data[i+3]>0&&inside(x*1.5,y*1.5,skinPaths[1]))for(let c=0;c<4;c++)output[i+c]=data[i+c];
+          }
+          ctx.putImageData(composed,0,0);
+        }
+        if(active)setReady(true);
       }catch{if(active){setFailed(true);setReady(false);}}
     };
     image.onerror=()=>{if(active){setFailed(true);setReady(false);}};image.src=type.asset;
     return()=>{active=false;image.onload=null;image.onerror=null;};
-  },[look.hero_skin,look.hero_hair_colour,look.hero_hair_type,custom,type.asset]);
-  const description=`STAR footballer: ${heroSkinTones.find(t=>t.key===look.hero_skin)!.label.toLowerCase()} skin, ${heroHairColours.find(t=>t.key===look.hero_hair_colour)!.label.toLowerCase()} hair, ${type.label.toLowerCase()}, wearing the official STAR top`;
+  },[look.hero_skin,look.hero_hair_colour,look.hero_hair_type,look.hero_ball,custom,type.asset,ball.asset,ball.colour]);
+  const description=`STAR footballer: ${heroSkinTones.find(t=>t.key===look.hero_skin)!.label.toLowerCase()} skin, ${heroHairColours.find(t=>t.key===look.hero_hair_colour)!.label.toLowerCase()} hair, ${type.label.toLowerCase()}, wearing the official STAR top, holding the ${ball.label} ball`;
   return <div className={`ps-hero-character ${className}`} role={decorative?undefined:'img'} aria-label={decorative?undefined:description} aria-hidden={decorative||undefined}>
     <Image src={type.asset} alt="" width={600} height={900} priority={priority} className={ready?'ps-character-base ps-character-hidden':'ps-character-base'}/>
     <canvas ref={canvas} width={600} height={900} className={ready?'ps-character-canvas':'ps-character-canvas ps-character-hidden'} aria-hidden="true"/>

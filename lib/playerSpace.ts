@@ -9,8 +9,8 @@ export type SpaceGoal = { id: string; player_id: string; goal: string; status: s
 export type SpaceSession = { id: string; player_id: string; title: string; starts_at: string; ends_at: string; venue: string; coach_focus: string | null; kit_list: string[] };
 export type SpaceAssessment = { id: string; player_id: string; category: string; rating: number; assessed_on: string };
 export type SpaceReport = { id: string; player_id: string; review_month: string; strengths: string; development_areas: string; next_steps: string };
-export type SpaceData = PortalFeatures & { players: SpacePlayer[]; awards: PlayerAchievement[]; assignments: SpaceAssignment[]; diary: SpaceDiary[]; feedback: SpaceFeedback[]; goals: SpaceGoal[]; sessions: SpaceSession[]; assessments: SpaceAssessment[]; reports: SpaceReport[]; profiles: SpaceProfile[]; personalGoals: PersonalGoal[]; celebrated: string[]; unlocks: SpaceUnlock[]; goalEvents: GoalEvent[] };
-export const emptySpaceData: SpaceData = { ...emptyPortalFeatures, players: [], awards: [], assignments: [], diary: [], feedback: [], goals: [], sessions: [], assessments: [], reports: [], profiles: [], personalGoals: [], celebrated: [], unlocks: [], goalEvents: [] };
+export type SpaceData = PortalFeatures & { ballProgress:{player_id:string;attended_sessions:number}[]; players: SpacePlayer[]; awards: PlayerAchievement[]; assignments: SpaceAssignment[]; diary: SpaceDiary[]; feedback: SpaceFeedback[]; goals: SpaceGoal[]; sessions: SpaceSession[]; assessments: SpaceAssessment[]; reports: SpaceReport[]; profiles: SpaceProfile[]; personalGoals: PersonalGoal[]; celebrated: string[]; unlocks: SpaceUnlock[]; goalEvents: GoalEvent[] };
+export const emptySpaceData: SpaceData = { ...emptyPortalFeatures, ballProgress:[], players: [], awards: [], assignments: [], diary: [], feedback: [], goals: [], sessions: [], assessments: [], reports: [], profiles: [], personalGoals: [], celebrated: [], unlocks: [], goalEvents: [] };
 export type PracticeInput = { assignment_id: string; practice_date: string; minutes: number; reflection: string; confidence?: number | null; enjoyment?: number | null };
 
 export type ProfileFields = HeroAppearance & { accent: 'navy' | 'red' | 'gold'; icon: AvatarKey; motto: string; shirt_name: string; shirt_number: number | null; ambition: string; cabinet_lights: boolean; theme: 'midnight' | 'stadium' | 'scrapbook'; decoration: 'none' | 'lightning' | 'laurel' | 'starburst'; experience:'junior'|'senior'; preferred_positions:string[]; stronger_foot:''|'Left'|'Right'|'Both'; favourite_footballer:string; favourite_team:string; playing_teams:string; school:string };
@@ -43,5 +43,7 @@ export const cosmetics = [
  { key: 'avatar-shield', title: 'Guardian', requirement: 'Achieve a personal goal', icon: 'shield' },
  { key: 'decoration-lightning', title: 'Lightning', requirement: 'Log practice on 3 different days', icon: 'comet' },
  { key: 'decoration-laurel', title: 'Victory leaves', requirement: 'Earn 3 badges', icon: 'trophy' },
- { key: 'decoration-starburst', title: 'Starburst', requirement: 'Achieve a personal goal', icon: 'star' }
+ { key: 'decoration-starburst', title: 'Starburst', requirement: 'Achieve a personal goal', icon: 'star' },
+ { key: 'ball-nike-10', title: 'Nike yellow & orange', requirement: 'Attend 10 coaching sessions', icon: 'ball' },
+ { key: 'ball-gold-50', title: 'Gold 90', requirement: 'Attend 50 coaching sessions', icon: 'ball' }
 ] as const;

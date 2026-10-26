@@ -72,6 +72,7 @@ export function PlayerTrophyPortal() {
         if(active)setActorRole(accounts.data?.length?'player':'guardian');
         if(!ids.length){if(active){setData(emptySpaceData);setLoadedUserId(currentUserId);}return;}
         await Promise.all(ids.map(id=>db!.rpc('refresh_session_reminders',{target_player:id})));
+        const ballProgress=await Promise.all(ids.map(async player_id=>{const r=await db!.rpc('player_ball_progress',{target_player:player_id});if(r.error||!Number.isSafeInteger(r.data))throw new Error('Could not load ball rewards');return{player_id,attended_sessions:r.data as number};}));
         const results = await Promise.all([
           Promise.resolve(allowed),
           db.from("player_achievements").select("id,player_id,title,description,awarded_on,badge_id").in("player_id", ids).order("awarded_on", { ascending: false }).order("created_at", { ascending: false }),
@@ -105,7 +106,7 @@ export function PlayerTrophyPortal() {
           return { ...profile, photo_url: photo.data?.signedUrl };
         }));
         if (active) {
-          setData({ ...results[12].data, players: results[0].data || [], awards: results[1].data || [], assignments: results[2].data || [], goals: results[3].data || [], sessions: results[4].data || [], assessments: results[5].data || [], reports: results[6].data || [], profiles, personalGoals: results[8].data || [], celebrated: (results[9].data || []).map(value => value.achievement_id), unlocks:results[10].data || [], goalEvents:results[11].data || [], diary: diaryRows, feedback: feedbackRows } as SpaceData);
+          setData({ ...results[12].data, ballProgress, players: results[0].data || [], awards: results[1].data || [], assignments: results[2].data || [], goals: results[3].data || [], sessions: results[4].data || [], assessments: results[5].data || [], reports: results[6].data || [], profiles, personalGoals: results[8].data || [], celebrated: (results[9].data || []).map(value => value.achievement_id), unlocks:results[10].data || [], goalEvents:results[11].data || [], diary: diaryRows, feedback: feedbackRows } as SpaceData);
           setLoadedUserId(currentUserId);
         }
       } catch { if (active) { setError("We couldn’t load your player space. Please try again."); setFailed(!data.players.length); setLoadedUserId(currentUserId); } }
