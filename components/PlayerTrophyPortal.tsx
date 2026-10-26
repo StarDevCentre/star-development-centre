@@ -10,6 +10,7 @@ import { PlayerAccess } from "./PlayerAccountSetup";
 import { loadPortalFeatures, sessionFields } from "../lib/playerPortalData";
 import type { PortalFeatureActions, MatchJournal } from "../lib/playerPortalFeatures";
 import { SpaceIcon } from "./PlayerSpaceIcons";
+import {removeDevicePush} from "../lib/playerPush";
 
 // History can outgrow the Data API's default row limit.
 async function readHistoryPages<T extends {id:string}>(request:(from:number,to:number)=>PromiseLike<{data:T[]|null;error:unknown}>) {
@@ -215,6 +216,7 @@ export function PlayerTrophyPortal() {
 
   async function signOut() {
     if (!db) return;
+    if(user)await removeDevicePush(user.id);
     const result = await db.auth.signOut();
     if (result.error) throw result.error;
     setData(emptySpaceData); setUser(null); setError("");

@@ -5,18 +5,20 @@
   "scripts": {
     "dev": "node scripts/dev.mjs",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test:push": "node scripts/test-player-push.cjs"
   },
   "dependencies": {
+    "@supabase/supabase-js": "2.76.1",
     "next": "^15.3.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "@supabase/supabase-js": "2.76.1"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "typescript": "^5.8.2",
+    "@types/node": "^20.17.6",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "@types/node": "^20.17.6"
+    "typescript": "^5.8.2",
+    "web-push": "3.6.7"
   }
 }

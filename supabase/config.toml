@@ -1,0 +1,5 @@
+[functions.player-push-worker]
+# This scheduler-only endpoint authenticates x-star-worker-secret against Vault.
+# It does not accept browser JWTs as authority to send notifications.
+verify_jwt = false
+entrypoint = "./functions/player-push-worker/index.ts"
