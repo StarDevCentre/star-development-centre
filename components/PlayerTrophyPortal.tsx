@@ -19,6 +19,12 @@ async function readHistoryPages<T extends {id:string}>(request:(from:number,to:n
   }
 }
 
+function historyBatches<T>(values:T[]) {
+  const batches:T[][]=[];
+  for(let i=0;i<values.length;i+=100)batches.push(values.slice(i,i+100));
+  return batches;
+}
+
 export function PlayerTrophyPortal() {
   const [user, setUser] = useState<User | null>(null);
   const [ready, setReady] = useState(false);
@@ -72,11 +78,15 @@ export function PlayerTrophyPortal() {
         ]);
         if (results.some(result => result.error)) throw new Error("Unable to load player data");
         const assignmentIds = (results[2].data || []).map(value => value.id);
-        const diaryResult = assignmentIds.length ? await readHistoryPages((from,to)=>db!.from("player_training_diary").select(diaryFields).in("assignment_id", assignmentIds).order("created_at", { ascending: false }).order("id").range(from,to)) : { data: [], error: null };
-        if (diaryResult.error) throw diaryResult.error;
-        const diaryIds = (diaryResult.data || []).map(value => value.id);
-        const feedbackResult = diaryIds.length ? await db.from("player_training_feedback").select("diary_id,feedback,reviewed_at").in("diary_id", diaryIds).order("reviewed_at", { ascending: false }) : { data: [], error: null };
-        if (feedbackResult.error) throw feedbackResult.error;
+        const diaryPages=await Promise.all(historyBatches(assignmentIds).map(batch=>readHistoryPages((from,to)=>db!.from("player_training_diary").select(diaryFields).in("assignment_id",batch).order("created_at",{ascending:false}).order("id").range(from,to))));
+        const diaryRows=diaryPages.flatMap(page=>page.data).sort((a,b)=>b.created_at.localeCompare(a.created_at)||a.id.localeCompare(b.id));
+        const diaryIds=diaryRows.map(value=>value.id);
+        const feedbackPages=await Promise.all(historyBatches(diaryIds).map(async batch=>{
+          const result=await db!.from("player_training_feedback").select("diary_id,feedback,reviewed_at").in("diary_id",batch);
+          if(result.error)throw result.error;
+          return result.data||[];
+        }));
+        const feedbackRows=feedbackPages.flat().sort((a,b)=>b.reviewed_at.localeCompare(a.reviewed_at));
         const profiles = await Promise.all((results[7].data || []).map(async value => {
           const profile = value as unknown as SpaceProfile;
           if (!profile.photo_path) return profile;
@@ -84,7 +94,7 @@ export function PlayerTrophyPortal() {
           return { ...profile, photo_url: photo.data?.signedUrl };
         }));
         if (active) {
-          setData({ players: results[0].data || [], awards: results[1].data || [], assignments: results[2].data || [], goals: results[3].data || [], sessions: results[4].data || [], assessments: results[5].data || [], reports: results[6].data || [], profiles, personalGoals: results[8].data || [], celebrated: (results[9].data || []).map(value => value.achievement_id), unlocks:results[10].data || [], goalEvents:results[11].data || [], diary: diaryResult.data || [], feedback: feedbackResult.data || [] } as SpaceData);
+          setData({ players: results[0].data || [], awards: results[1].data || [], assignments: results[2].data || [], goals: results[3].data || [], sessions: results[4].data || [], assessments: results[5].data || [], reports: results[6].data || [], profiles, personalGoals: results[8].data || [], celebrated: (results[9].data || []).map(value => value.achievement_id), unlocks:results[10].data || [], goalEvents:results[11].data || [], diary: diaryRows, feedback: feedbackRows } as SpaceData);
           setLoadedUserId(currentUserId);
         }
       } catch { if (active) { setError("We couldn’t load your player space. Please try again."); setFailed(true); setLoadedUserId(currentUserId); } }
