@@ -22,18 +22,18 @@ import {PlayerIDP} from "./PlayerIDP";
 import {PlayerPathways} from "./PlayerPathways";
 import {SessionAnalytics} from "./SessionAnalytics";
 export function StaffWorkspace({userId,role,onSignOut}:{userId:string;role:StaffRole;onSignOut:()=>void}){
- const{section,visited,goTo}=useStaffNavigation(role);const[menuOpen,setMenuOpen]=useState(false),[hubPlayerId,setHubPlayerId]=useState(""),[badgePlayerId,setBadgePlayerId]=useState(""),[rosterPlayerId,setRosterPlayerId]=useState(""),[sessionId,setSessionId]=useState(""),[coachingTarget,setCoachingTarget]=useState<{playerId:string;sessionId:string}|null>(null);
+ const{section,visited,goTo}=useStaffNavigation(role);const[menuOpen,setMenuOpen]=useState(false),[hubPlayerId,setHubPlayerId]=useState(""),[badgePlayerId,setBadgePlayerId]=useState(""),[rosterPlayerId,setRosterPlayerId]=useState(""),[sessionId,setSessionId]=useState(""),[rosterRequest,setRosterRequest]=useState(0),[hubRequest,setHubRequest]=useState(0),[badgeRequest,setBadgeRequest]=useState(0),[coachingTarget,setCoachingTarget]=useState<{playerId:string;sessionId:string;revision:number}|null>(null);
  const canManage=staffCanManage(role),allowed=staffSections(role);
- function navigate(area:StaffSection,playerId?:string,targetSessionId?:string){if(!allowed.some(i=>i.id===area))return;if(playerId){if(area==="records")setCoachingTarget({playerId,sessionId:targetSessionId||""});if(area==="idps")setHubPlayerId(playerId);if(area==="badges")setBadgePlayerId(playerId);if(area==="players")setRosterPlayerId(playerId)}if(area==="workspace"&&targetSessionId)setSessionId(targetSessionId);goTo(area);}
+ function navigate(area:StaffSection,playerId?:string,targetSessionId?:string){if(!allowed.some(i=>i.id===area))return;if(playerId){if(area==="records")setCoachingTarget(previous=>({playerId,sessionId:targetSessionId||"",revision:(previous?.revision||0)+1}));if(area==="idps"){setHubPlayerId(playerId);setHubRequest(n=>n+1)}if(area==="badges"){setBadgePlayerId(playerId);setBadgeRequest(n=>n+1)}if(area==="players"){setRosterPlayerId(playerId);setRosterRequest(n=>n+1)}}if(area==="workspace"&&targetSessionId)setSessionId(targetSessionId);goTo(area);}
  function panel(id:StaffSection){switch(id){
   case "overview":return <StaffHome active={section==="overview"&&!menuOpen} canManage={canManage} onNavigate={navigate}/>;
   case "workspace":return <SessionAttendance userId={userId} initialSessionId={sessionId} onSessionChange={setSessionId} onCoachPlayer={(player,session)=>navigate("records",player,session)} onPlayerDevelopment={player=>navigate("idps",player)}/>;
-  case "players":return <StaffPlayers userId={userId} canManage={canManage} initialPlayerId={rosterPlayerId} onNote={id=>navigate("records",id)} onDevelopment={id=>navigate("idps",id)} onBadge={id=>navigate("badges",id)}/>;
+  case "players":return <StaffPlayers userId={userId} canManage={canManage} initialPlayerId={rosterPlayerId} selectionRequest={rosterRequest} onNote={id=>navigate("records",id)} onDevelopment={id=>navigate("idps",id)} onBadge={id=>navigate("badges",id)}/>;
   case "sessions":return <TrainingPlanner userId={userId} canManage={canManage}/>;
   case "attendance":return <SessionAttendance userId={userId} onCoachPlayer={(player,session)=>navigate("records",player,session)}/>;
-  case "records":return <CoachingRecords key={coachingTarget?coachingTarget.playerId+":"+coachingTarget.sessionId:"general"} userId={userId} initialPlayerId={coachingTarget?.playerId} initialSessionId={coachingTarget?.sessionId}/>;
-  case "idps":return <PlayerIDP key={hubPlayerId||"all"} userId={userId} initialPlayerId={hubPlayerId} onAddNote={id=>navigate("records",id)} onManageGoals={id=>navigate("players",id)}/>;
-  case "badges":return <BadgeAwards key={badgePlayerId||"all"} userId={userId} initialPlayerId={badgePlayerId}/>;
+  case "records":return <CoachingRecords key={coachingTarget?coachingTarget.playerId+":"+coachingTarget.sessionId+":"+coachingTarget.revision:"general"} userId={userId} initialPlayerId={coachingTarget?.playerId} initialSessionId={coachingTarget?.sessionId}/>;
+  case "idps":return <PlayerIDP key={(hubPlayerId||"all")+":"+hubRequest} userId={userId} initialPlayerId={hubPlayerId} onAddNote={id=>navigate("records",id)} onManageGoals={id=>navigate("players",id)}/>;
+  case "badges":return <BadgeAwards key={(badgePlayerId||"all")+":"+badgeRequest} userId={userId} initialPlayerId={badgePlayerId}/>;
   case "trainingHub":return <PlayerTrainingHub userId={userId} role="staff"/>;
   case "playerSpace":return <StaffPlayerSpaceHub userId={userId} canManage={canManage}/>;
   case "communications":return canManage?<FamilyCommunications userId={userId} role="staff" active={section==="communications"&&!menuOpen}/>:null;

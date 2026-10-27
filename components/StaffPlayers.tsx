@@ -8,12 +8,12 @@ type Member={user_id:string;role:string;active:boolean};
 const programmes=["Sparks","Development","Flyers","Prestige","1-to-1","Other"];
 const staffNames:Record<string,string>={"f877ee5c-68cf-403a-b334-53f1805a2963":"Dean","39e31152-8e06-40ac-a723-284f6bde5f09":"Becky"};
 const memberLabel=(m:Member)=>staffNames[m.user_id]||m.role.replaceAll("_"," ")+" · "+m.user_id.slice(0,6);
-type Props={userId:string;canManage:boolean;initialPlayerId?:string;onNote?:(id:string)=>void;onDevelopment?:(id:string)=>void;onBadge?:(id:string)=>void;client?:SupabaseClient|null};
-export function StaffPlayers({userId,canManage,initialPlayerId="",onNote,onDevelopment,onBadge,client=supabaseBrowser}:Props){
+type Props={userId:string;canManage:boolean;initialPlayerId?:string;selectionRequest?:number;onNote?:(id:string)=>void;onDevelopment?:(id:string)=>void;onBadge?:(id:string)=>void;client?:SupabaseClient|null};
+export function StaffPlayers({userId,canManage,initialPlayerId="",selectionRequest=0,onNote,onDevelopment,onBadge,client=supabaseBrowser}:Props){
  const [players,setPlayers]=useState<StaffPlayer[]>([]),[goals,setGoals]=useState<StaffGoal[]>([]),[assignments,setAssignments]=useState<Assignment[]>([]),[members,setMembers]=useState<Member[]>([]);
  const [selected,setSelected]=useState(initialPlayerId),[search,setSearch]=useState(""),[filter,setFilter]=useState(""),[loading,setLoading]=useState(true),[attempt,setAttempt]=useState(0),[busy,setBusy]=useState(false),[error,setError]=useState(""),[notice,setNotice]=useState("");
  const [adding,setAdding]=useState(false),[first,setFirst]=useState(""),[last,setLast]=useState(""),[programme,setProgramme]=useState("Development"),[consent,setConsent]=useState(false),[drafts,setDrafts]=useState<Record<string,string>>({});const saving=useRef(false);
- useEffect(()=>{if(initialPlayerId)setSelected(initialPlayerId)},[initialPlayerId]);
+ useEffect(()=>{if(initialPlayerId)setSelected(initialPlayerId)},[initialPlayerId,selectionRequest]);
  useEffect(()=>{if(!client){setLoading(false);setError("Player management is temporarily unavailable.");return}let alive=true;setLoading(true);setError("");void(async()=>{try{
   const [p,g,a,m]=await Promise.all([client.from("coaching_players").select("id,first_name,last_name,programme").order("first_name"),client.from("coaching_development_goals").select("id,player_id,goal,status").order("created_at",{ascending:false}),canManage?client.from("coaching_assignments").select("player_id,staff_user_id"):Promise.resolve({data:[],error:null}),canManage?client.from("staff_members").select("user_id,role,active"):Promise.resolve({data:[],error:null})]);
   if(p.error||g.error||a.error||m.error)throw Error();if(alive){setPlayers(p.data||[]);setGoals(g.data||[]);setAssignments(a.data||[]);setMembers(m.data||[])}
