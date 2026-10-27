@@ -1,1 +1,12 @@
-import {ParentPortal} from "../../components/ParentPortal";export const metadata={title:"Parent Portal",description:"Secure parent and guardian sign in for STAR Development Centre."};export default function Page(){return <><div className="inner-hero star-enquiry-hero"><div className="container"><div className="kicker light">STAR DEVELOPMENT CENTRE / FAMILIES</div><h1>PARENT<br/><em>PORTAL.</em></h1><p>Register your player, view programme prices and keep up with her development in your private STAR account.</p></div></div><section className="star-enquiry-section"><div className="container"><ParentPortal/></div></section></>}
+import {ParentPortal} from "../../components/ParentPortal";
+import {programmes} from "../../lib/siteData";
+import "../home.css";
+import "./parent.css";
+export const metadata={title:"Parent Account & Player Registration",description:"Create your STAR parent account, register your player and follow her football development.",robots:{index:false,follow:true}};
+export default async function Page({searchParams}:{searchParams:Promise<{mode?:string;programme?:string}>}){
+ const params=await searchParams;
+ const initialMode=params.mode==="signup"?"signup":params.mode==="reset"?"reset":"login";
+ const initialProgramme=programmes.some(p=>p.slug===params.programme)?params.programme||"":"";
+ return <div className="parent-page"><section className="parent-intro home-width"><div><p className="parent-eyebrow">STAR / FOR PARENTS & GUARDIANS</p><h1>Her football.<br/><span>Your connection.</span></h1><p>One place to begin her STAR journey and stay involved as she develops.</p></div><LinkBack/></section><section className="parent-content home-width"><ParentPortal initialMode={initialMode} initialProgramme={initialProgramme}/></section></div>;
+}
+function LinkBack(){return <a className="parent-back-link" href="/programmes">← Explore our programmes</a>}
