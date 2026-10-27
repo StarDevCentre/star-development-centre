@@ -1,27 +1,26 @@
 "use client";
-import {useCallback,useEffect,useMemo,useState} from "react";
-import {createClient} from "@supabase/supabase-js";
+import {useCallback,useEffect,useState} from "react";
+import {supabaseBrowser as db} from "../lib/supabaseBrowser";
 type Link={guardian_id:string;player_id:string};
 type Player={id:string;first_name:string;last_name:string};
 type Guardian={user_id:string;display_name:string};
 type Message={id:string;guardian_id:string;player_id:string;sender_id:string;sender_role:string;kind:string;body:string;created_at:string;read_at:string|null};
 const kinds=[["message","General message"],["review_request","Development review request"],["session_reminder","Session reminder"]];
-export function FamilyCommunications({userId,role}:{userId:string;role:"staff"|"guardian"}){
- const db=useMemo(()=>{const u=process.env.NEXT_PUBLIC_SUPABASE_URL,k=process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;return u&&k?createClient(u,k):null},[]);
+export function FamilyCommunications({userId,role,active=true}:{userId:string;role:"staff"|"guardian";active?:boolean}){
  const [links,setLinks]=useState<Link[]>([]),[players,setPlayers]=useState<Player[]>([]),[guardians,setGuardians]=useState<Guardian[]>([]),[messages,setMessages]=useState<Message[]>([]);
  const [thread,setThread]=useState(""),[body,setBody]=useState(""),[kind,setKind]=useState("message"),[busy,setBusy]=useState(false),[loading,setLoading]=useState(true),[error,setError]=useState(""),[notice,setNotice]=useState("");
  const refresh=useCallback(async()=>{if(!db)return;setLoading(true);const linkQuery=db.from("guardian_player_links").select("guardian_id,player_id");if(role==="guardian")linkQuery.eq("guardian_id",userId);const l=await linkQuery;if(l.error){setError("Unable to load approved family conversations.");setLoading(false);return;}const allowed=(l.data||[]) as Link[];const playerIds=[...new Set(allowed.map(x=>x.player_id))],guardianIds=[...new Set(allowed.map(x=>x.guardian_id))];if(!allowed.length){setLinks([]);setPlayers([]);setGuardians([]);setMessages([]);setLoading(false);return;}
  const queries=[db.from("coaching_players").select("id,first_name,last_name").in("id",playerIds),db.from("family_messages").select("id,guardian_id,player_id,sender_id,sender_role,kind,body,created_at,read_at").in("player_id",playerIds).order("created_at",{ascending:true}).limit(500)];
  const [p,m]=await Promise.all(queries);const g=role==="staff"?await db.from("guardian_profiles").select("user_id,display_name").in("user_id",guardianIds):null;
  if(p.error||m.error||g?.error)setError("Unable to load family communication records.");else{setLinks(allowed);setPlayers((p.data||[]) as Player[]);setMessages((m.data||[]) as Message[]);setGuardians((g?.data||[]) as Guardian[])}setLoading(false)},[db,role,userId]);
- useEffect(()=>{void refresh()},[refresh]);
- useEffect(()=>{const timer=window.setInterval(()=>{void refresh()},60000);return()=>window.clearInterval(timer)},[refresh]);
+ useEffect(()=>{if(active)void refresh()},[refresh,active]);
+ useEffect(()=>{if(!active)return;const timer=window.setInterval(()=>{void refresh()},60000);return()=>window.clearInterval(timer)},[refresh,active]);
  const selected=links.find(l=>l.guardian_id+":"+l.player_id===thread);
  const available=new Set(links.map(l=>l.guardian_id+":"+l.player_id));
  const unread=messages.filter(m=>m.read_at===null&&m.sender_role!==role);
  const current=selected?messages.filter(m=>m.guardian_id===selected.guardian_id&&m.player_id===selected.player_id):[];
- useEffect(()=>{if(!db||!selected)return;const unreadIds=current.filter(m=>m.read_at===null&&m.sender_role!==role).map(m=>m.id);if(!unreadIds.length)return;let cancelled=false;(async()=>{const {error}=await db.from("family_messages").update({read_at:new Date().toISOString()}).in("id",unreadIds);if(!cancelled){if(error)setError("Could not mark messages as read.");else setMessages(prev=>prev.map(m=>unreadIds.includes(m.id)?{...m,read_at:new Date().toISOString()}:m))}})();return()=>{cancelled=true}},[db,thread,role,messages,selected]);
- async function send(e:React.FormEvent){e.preventDefault();if(!db||!selected||!available.has(thread)||!body.trim())return;setBusy(true);setError("");setNotice("");const {error:saveError}=await db.from("family_messages").insert({guardian_id:selected.guardian_id,player_id:selected.player_id,sender_id:userId,sender_role:role,kind,body:body.trim()});if(saveError)setError("Message could not be sent: "+saveError.message);else{setBody("");setNotice("Message saved in the family communication record.");await refresh()}setBusy(false)}
+ useEffect(()=>{if(!db||!selected||!active)return;const unreadIds=current.filter(m=>m.read_at===null&&m.sender_role!==role).map(m=>m.id);if(!unreadIds.length)return;let cancelled=false;(async()=>{const {error}=await db.from("family_messages").update({read_at:new Date().toISOString()}).in("id",unreadIds);if(!cancelled){if(error)setError("Could not mark messages as read.");else{setMessages(prev=>prev.map(m=>unreadIds.includes(m.id)?{...m,read_at:new Date().toISOString()}:m));window.dispatchEvent(new Event("star:family-messages-updated"))}}})();return()=>{cancelled=true}},[db,thread,role,messages,selected,active]);
+ async function send(e:React.FormEvent){e.preventDefault();if(!db||!selected||!available.has(thread)||!body.trim())return;setBusy(true);setError("");setNotice("");const {error:saveError}=await db.from("family_messages").insert({guardian_id:selected.guardian_id,player_id:selected.player_id,sender_id:userId,sender_role:role,kind,body:body.trim()});if(saveError)setError("Message could not be sent: "+saveError.message);else{setBody("");setNotice("Message saved in the family communication record.");await refresh();window.dispatchEvent(new Event("star:family-messages-updated"))}setBusy(false)}
  return <section id="star-family-messages" className="star-family-comms"><h3>{role==="staff"?"Family communication centre":"Messages with STAR"}</h3><p>Secure messages between verified guardians and authorised STAR managers. Conversations are stored in the family record. New messages appear as unread here and on your dashboard. The portal checks for new messages approximately once a minute while open; email, SMS and push alerts are not enabled.</p>
  {error&&<p role="alert" className="star-portal-error">{error}</p>}{notice&&<p role="status">{notice}</p>}
  <p role="status"><strong>{unread.length?unread.length+" unread message"+(unread.length===1?"":"s"):"No unread messages"}</strong> <button type="button" onClick={()=>void refresh()}>Check now</button></p>

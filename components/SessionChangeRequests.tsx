@@ -1,12 +1,11 @@
 "use client";
-import {useCallback,useEffect,useMemo,useState} from "react";
-import {createClient} from "@supabase/supabase-js";
+import {useCallback,useEffect,useState} from "react";
+import {supabaseBrowser as db} from "../lib/supabaseBrowser";
 type Session={id:string;player_id:string;title:string;starts_at:string;venue:string};
 type Request={id:string;guardian_id:string;player_id:string;published_session_id:string;request_type:string;reason:string;requested_date:string|null;status:string;staff_response:string|null;created_at:string};
 type Player={id:string;first_name:string;last_name:string};
 const kinds=[["absence","Report absence"],["cancellation","Request cancellation"],["reschedule","Request another date"]];
 export function SessionChangeRequests({userId,role}:{userId:string;role:"guardian"|"staff"}){
- const db=useMemo(()=>{const u=process.env.NEXT_PUBLIC_SUPABASE_URL,k=process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;return u&&k?createClient(u,k):null},[]);
  const [sessions,setSessions]=useState<Session[]>([]),[requests,setRequests]=useState<Request[]>([]),[players,setPlayers]=useState<Player[]>([]),[selected,setSelected]=useState(""),[kind,setKind]=useState("absence"),[reason,setReason]=useState(""),[date,setDate]=useState(""),[busy,setBusy]=useState(false),[error,setError]=useState(""),[notice,setNotice]=useState(""),[filter,setFilter]=useState("pending");
  const load=useCallback(async()=>{if(!db)return;const q=db.from("family_session_requests").select("id,guardian_id,player_id,published_session_id,request_type,reason,requested_date,status,staff_response,created_at").order("created_at",{ascending:false}).limit(500);if(role==="guardian")q.eq("guardian_id",userId);const [r,s,p]=await Promise.all([q,db.from("family_session_schedule").select("id,player_id,title,starts_at,venue").gte("starts_at",new Date().toISOString()).order("starts_at",{ascending:true}).limit(500),role==="staff"?db.from("coaching_players").select("id,first_name,last_name").limit(1000):Promise.resolve({data:[],error:null})]);if(r.error||s.error||p.error)setError("Unable to load session requests.");else{setRequests((r.data||[]) as Request[]);setSessions((s.data||[]) as Session[]);setPlayers((p.data||[]) as Player[])}},[db,role,userId]);
  useEffect(()=>{void load()},[load]);

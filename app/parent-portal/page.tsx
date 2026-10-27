@@ -2,7 +2,7 @@ import {ParentPortal} from "../../components/ParentPortal";
 import {programmes} from "../../lib/siteData";
 import "../home.css";
 import "./parent.css";
-export const metadata={title:"Parent Account & Player Registration",description:"Create your STAR parent account, register your player and follow her football development.",robots:{index:false,follow:true}};
+export const metadata={title:"Parent Portal & Player Registration",description:"Register your player, view shared sessions and coaching progress, and stay in touch with STAR from your parent account.",robots:{index:false,follow:true}};
 export default async function Page({searchParams}:{searchParams:Promise<{mode?:string;programme?:string}>}){
  const params=await searchParams;
  const initialMode=params.mode==="signup"?"signup":params.mode==="reset"?"reset":"login";

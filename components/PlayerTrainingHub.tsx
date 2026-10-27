@@ -1,9 +1,9 @@
 "use client";
-import {useCallback,useEffect,useMemo,useState} from "react";
+import {useCallback,useEffect,useState} from "react";
 import Image from "next/image";
 import {badgeById} from "../lib/achievementBadges";
 import {assignmentFields, weekOf, type PersonalGoal, type SpaceAssignment} from "../lib/playerSpace";
-import {createClient} from "@supabase/supabase-js";
+import {supabaseBrowser as db} from "../lib/supabaseBrowser";
 type Player={id:string;first_name:string;last_name:string};
 type Goal={id:string;player_id:string;goal:string};
 type Assignment=SpaceAssignment;
@@ -11,7 +11,6 @@ type Diary={id:string;assignment_id:string;guardian_id:string;practice_date:stri
 type Feedback={diary_id:string;feedback:string;reviewed_at:string};
 type Award={id:string;player_id:string;title:string;description:string;awarded_on:string;badge_id:string|null};
 export function PlayerTrainingHub({userId,role}:{userId:string;role:"staff"|"guardian"}){
- const db=useMemo(()=>{const url=process.env.NEXT_PUBLIC_SUPABASE_URL,key=process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;return url&&key?createClient(url,key):null},[]);
  const [players,setPlayers]=useState<Player[]>([]),[goals,setGoals]=useState<Goal[]>([]),[assignments,setAssignments]=useState<Assignment[]>([]),[diary,setDiary]=useState<Diary[]>([]),[feedback,setFeedback]=useState<Feedback[]>([]),[awards,setAwards]=useState<Award[]>([]);
  const [player,setPlayer]=useState(""),[title,setTitle]=useState(""),[instructions,setInstructions]=useState(""),[target,setTarget]=useState(""),[due,setDue]=useState(""),[goal,setGoal]=useState("");
  const [coachingPoints,setCoachingPoints]=useState("");

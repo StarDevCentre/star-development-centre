@@ -7,7 +7,7 @@ const ts=require('typescript');
 const root=path.join(__dirname,'..');
 const events=[];
 const fakeUser={id:'qa-guardian',email:'parent@example.invalid',user_metadata:{guardian_name:'QA Parent'}};
-let listener,profile=null,registrations=[],failSave=false;
+let listener,profile=null,registrations=[],failSave=false,familyScenario="empty";
 const client={auth:{
  getUser:async()=>({data:{user:null}}),
  onAuthStateChange:fn=>{listener=fn;return {data:{subscription:{unsubscribe(){}}}}},
@@ -29,18 +29,24 @@ const client={auth:{
    }
    return {data:registrations.slice(),error:null};
   }
+  if(table==='guardian_player_links')return familyScenario==='failure'?{data:null,error:Error('offline')}:{data:familyScenario==='linked'?[{player_id:'qa-player'}]:[],error:null};
+  if(familyScenario==='linked'){
+   if(table==='coaching_players')return {data:[{id:'qa-player',first_name:'QA',last_name:'Player',programme:'prestige'}],error:null};
+   if(table==='family_session_schedule')return {data:[{id:'qa-session',player_id:'qa-player',title:'QA session',starts_at:'2030-06-05T17:00:00Z',ends_at:'2030-06-05T18:00:00Z',venue:'QA venue'}],error:null};
+  }
   return {data:[],error:null};
  };
- const q={select(){return q},eq(k,v){filters.push([k,v]);return q},order(){return Promise.resolve(result())},maybeSingle(){return Promise.resolve(result())},single(){return Promise.resolve(result())},upsert(p){operation='upsert';payload=p;return Promise.resolve(result())},insert(p){operation='insert';payload=p;return q}};
+ const q={select(){return q},eq(k,v){filters.push([k,v]);return q},in(){return q},gte(){return q},order(){return q},then(resolve,reject){return Promise.resolve(result()).then(resolve,reject)},maybeSingle(){return Promise.resolve(result())},single(){return Promise.resolve(result())},upsert(p){operation='upsert';payload=p;return Promise.resolve(result())},insert(p){operation='insert';payload=p;return q}};
  return q;
 }};
 function compile(relative,requireFn){const exports={};const code=ts.transpileModule(fs.readFileSync(path.join(root,relative),'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,jsx:ts.JsxEmit.ReactJSX,target:ts.ScriptTarget.ES2022}}).outputText;vm.runInNewContext(code,{exports,require:requireFn,window:{location:{origin:'https://star.example',search:''},sessionStorage:{getItem(){return null},setItem(){}},setTimeout(){return 1},clearTimeout(){}},document:{getElementById(){return {scrollIntoView(){}}}},Date,Error,URLSearchParams});return exports;}
 const data=compile('lib/siteData.ts',require);
 const pricesStub=()=>null;
+const dashboardStub=()=>null;
 function harness(file,props={}){
  const states=[],effects=[],pending=[];let stateCursor=0,effectCursor=0,tree;
  const hooks={...React,useState(initial){const i=stateCursor++;if(!(i in states))states[i]=typeof initial==='function'?initial():initial;return [states[i],value=>{states[i]=typeof value==='function'?value(states[i]):value}]},useEffect(fn,deps){const i=effectCursor++;const previous=effects[i];if(!previous||!deps||deps.some((d,j)=>!Object.is(d,previous.deps[j]))){pending.push(()=>{previous?.cleanup?.();effects[i]={deps,cleanup:fn()}})}}};
- const mod=compile(file,name=>name==='react'?hooks:name==='react/jsx-runtime'?require('react/jsx-runtime'):name==='../lib/supabaseBrowser'?{supabaseBrowser:client}:name==='../lib/siteData'?data:name==='./ParentProgrammePrices'?{ParentProgrammePrices:pricesStub}:name==='next/link'?{__esModule:true,default:'a'}:new Proxy({},{get:()=>()=>null}));
+ const mod=compile(file,name=>name==='react'?hooks:name==='react/jsx-runtime'?require('react/jsx-runtime'):name==='../lib/supabaseBrowser'?{supabaseBrowser:client}:name==='../lib/siteData'?data:name==='./ParentProgrammePrices'?{ParentProgrammePrices:pricesStub}:name==='./ParentDashboard'?{ParentDashboard:dashboardStub}:name==='next/link'?{__esModule:true,default:'a'}:new Proxy({},{get:()=>()=>null}));
  const Component=Object.values(mod)[0];
  function render(){stateCursor=0;effectCursor=0;tree=Component(props);return tree}
  async function flush(){for(let i=0;i<4;i++){render();while(pending.length)pending.shift()();await new Promise(r=>setImmediate(r))}render()}
@@ -81,5 +87,18 @@ const event={preventDefault(){}};
  find(p,n=>n.type==='button'&&text(n)==='← Edit details').props.onClick();p.render();
  assert.equal(find(p,n=>n.type==='input'&&n.props.value==='QA').props.value,'QA');
  field(p,'Date of birth','2020-10-27');assert.equal(find(p,n=>n.type==='select').props.value,'');
+ familyScenario='linked';
+ const linked=harness('components/ParentPortal.tsx');await linked.flush();listener('SIGNED_IN',{user:fakeUser});await linked.flush();
+ const dashboard=find(linked,n=>n.type===dashboardStub);
+ assert.equal(dashboard.props.players[0].id,'qa-player');assert.equal(dashboard.props.sessions[0].player_id,'qa-player');
+ familyScenario='failure';dashboard.props.onRefresh();await linked.flush();
+ assert(text(linked.tree).includes('We couldn’t load her shared information.'));
+ assert(!nodes(linked.tree).some(n=>n.type===dashboardStub),'Failed family loads must not look like an empty dashboard');
+ familyScenario='linked';find(linked,n=>n.type==='button'&&text(n)==='Reload family information').props.onClick();await linked.flush();
+ assert(nodes(linked.tree).some(n=>n.type===dashboardStub));
+ listener('SIGNED_IN',{user:{...fakeUser,id:'another-guardian'}});linked.render();
+ assert(!nodes(linked.tree).some(n=>n.type===dashboardStub),'Previous guardian records must disappear immediately on account change');
+ listener('SIGNED_OUT',null);linked.render();assert(!nodes(linked.tree).some(n=>n.type===dashboardStub));
+ console.log('Passed: dashboard loads only approved linked players, family-load failure/retry, immediate account-change isolation and sign-out.');
  console.log('Passed: signup → email checkpoint → sign-in → parent profile → registration failure/retry → receipt/pricing; review-before-submit, retained details and age-based programme clearing. Auth and UI exercised with test doubles; email delivery requires a live-account test.');
 })().catch(e=>{console.error(e);process.exitCode=1});
