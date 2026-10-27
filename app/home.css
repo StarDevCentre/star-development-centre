@@ -29,12 +29,6 @@
 @media(max-width:700px){.home-header .home-nav{min-height:68px;height:68px}.home-header .home-logo{width:122px;height:62px}.home-menu{width:42px;height:42px;border:0;background:none;font-size:25px}.home-header .home-mobile-logins{display:flex;min-height:42px;padding:0 16px;background:#071326;border-top:1px solid #ffffff10;gap:0;align-items:center}.home-header .home-mobile-logins a{padding:10px 8px;min-height:40px;flex-direction:row;gap:7px;font-size:11px;line-height:1;min-width:0;border:0;border-radius:0}.home-header .home-mobile-logins a+ a{border-left:1px solid #c7b17640}.home-header .home-mobile-logins small{font-size:8px;letter-spacing:.08em}.home-expanded-menu{top:68px;z-index:200}.home-hero{padding:0;background:#071326;position:relative;overflow:hidden}.home-hero-inner{display:block;position:relative;width:100%;height:calc(100svh - 110px);min-height:540px;max-height:820px;isolation:isolate}.home-hero-photo{position:absolute;inset:0;z-index:0;margin:0;width:100%;height:100%;max-height:none;aspect-ratio:auto;border:0;border-radius:0;box-shadow:none;overflow:hidden}.home-hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 25%}.home-hero-photo:after{border:0;border-radius:0;background:linear-gradient(180deg,#07132650 0%,transparent 22%,transparent 40%,#06122680 62%,#061226f5 100%)}.home-hero-copy{position:absolute;inset:0;z-index:2;padding:0;background:none}.home-hero .home-eyebrow{position:absolute;top:20px;left:22px;right:22px;font-size:9px;letter-spacing:.08em;max-width:240px;text-shadow:0 2px 12px #000;color:#f3dfac;margin:0}.home-hero h1{position:absolute;left:22px;right:22px;bottom:158px;margin:0;font-size:clamp(52px,14vw,84px);line-height:.92;transform:none;text-shadow:0 3px 25px #0006;white-space:normal}.home-hero h1>.home-desktop-title{display:none}.home-hero h1>.home-mobile-title{display:block;color:white;background:none;-webkit-text-fill-color:initial}.home-hero h1>.home-mobile-title>span{display:inline;background:linear-gradient(170deg,#fff1ba,#e6bb58 65%,#f1d48b);background-clip:text;-webkit-background-clip:text;color:transparent}.home-hero .home-lead,.home-hero .home-helper{display:none}.home-hero .home-actions{position:absolute;bottom:22px;left:22px;right:22px;display:flex;flex-direction:column;gap:4px;max-width:none;margin:0}.home-hero .home-button{flex:none;width:100%;font-size:13px;min-height:48px;padding:13px 16px}.home-hero .home-button-outline{min-height:38px;padding:8px 12px;background:none;border:0;color:#eee4cb;box-shadow:none}.home-hero:after{display:none}.home-mobile-intro{display:block;width:calc(100% - 44px);margin:0 auto;padding:28px 0;color:#b8c6d9;font-size:14px;line-height:1.7!important}}
 .home-header .home-logo{margin-right:auto}
 
-/* Full-colour transparent logo, gently lit against the navy header. */
-.home-header .home-logo{background:radial-gradient(ellipse at center,#c9d9f024,transparent 72%)}.home-header .home-logo img{filter:drop-shadow(0 0 .7px #f5ecd4) drop-shadow(0 0 .7px #f5ecd4) drop-shadow(0 0 8px #dbe7ff35)}.home-header .home-logins a{font-size:13px;letter-spacing:.015em}@media(max-width:700px){.home-header .home-mobile-logins a{font-size:12px;min-height:40px}}
-
-/* Preserve the colour symbol; render its exact small lettering in white for navy. */
-.home-header .home-logo{position:relative;background:none;width:180px;height:84px}.home-header .home-logo>img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:none;filter:drop-shadow(0 0 .6px #f4ead1) drop-shadow(0 0 .6px #f4ead1)}.home-header .home-logo>img.home-logo-wording{clip-path:inset(68% 0 0);filter:brightness(0) invert(1)}@media(max-width:700px){.home-header .home-logo{width:138px;height:66px}}
-
 /* A single editorial introduction, with no fact tiles or floating panel. */
 .home-purpose{position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 12% 50%,#15305290,transparent 65%),#071326;padding:72px 0 64px;border-bottom:1px solid #d5bd7f24}
 .home-purpose:before{content:'';position:absolute;z-index:-1;width:440px;height:440px;right:-270px;top:50%;transform:translateY(-50%);border:1px solid #dbc58e1a;border-radius:50%;box-shadow:0 0 0 95px #dbc58e05}
@@ -59,3 +53,21 @@
 @media(max-width:1100px) and (min-width:701px){.home-header .home-nav{gap:16px}.home-header-badge{width:52px;height:52px}}
 @media(max-width:700px){.home-header .home-nav{gap:10px}.home-header .home-logo{margin-right:auto;width:124px}.home-header-badges{gap:6px}.home-header-badge{width:46px;height:46px;border-radius:5px}.home-header .home-menu{width:36px;flex-shrink:0}.home-header-badge-caa img{padding:2px}}
 @media(max-width:360px){.home-header .home-nav{gap:8px}.home-header .home-logo{width:108px}.home-header-badge{width:42px;height:42px}.home-header-badges{gap:5px}}
+
+/* Original STAR artwork on a white header; clip only its surrounding margins. */
+.home-header{background:#fff;color:#06142e;border-bottom:1px solid #dce2eb}
+.home-header .home-utility{background:#fff;color:#34425a;border-bottom:1px solid #e8ecf2}
+.home-header .home-nav{background:#fff}
+.home-header .home-logo{position:relative;overflow:hidden;background:#fff;box-shadow:none;border-radius:0;width:180px;height:84px}
+.home-header .home-logo>img{position:absolute;inset:auto;left:50%;top:49%;width:auto;height:240%;max-width:none;object-fit:contain;transform:translate(-50%,-49%);filter:none}
+.home-header .home-desktop-nav a{color:#06142e}
+.home-header .home-desktop-nav a:hover{color:#bf1732}
+.home-header .home-menu{color:#06142e;background:#fff;border-color:#d5dce6}
+.home-header .home-logins a{color:#06142e;font-size:13px;letter-spacing:.015em}
+.home-header .home-logins a+a{border-left-color:#dce2eb}
+.home-header .home-logins a:hover{color:#bf1732;background:#f2f5f9}
+.home-header .home-expanded-menu{background:#fff;color:#06142e;border-color:#dce2eb;box-shadow:0 18px 30px #06142e22}
+.home-header .home-expanded-menu a:hover{background:#f2f5f9;color:#bf1732}
+.home-header .home-header-badge{background:#fff;box-shadow:none;border-radius:3px}
+@media(max-width:700px){.home-header .home-logo{width:124px;height:62px}.home-header .home-mobile-logins{background:#fff;border-top:1px solid #e8ecf2}.home-header .home-mobile-logins a{color:#06142e;font-size:12px;min-height:40px}.home-header .home-mobile-logins a+a{border-left-color:#dce2eb}}
+@media(max-width:360px){.home-header .home-logo{width:108px;height:62px}}
