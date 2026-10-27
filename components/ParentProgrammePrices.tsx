@@ -1,10 +1,13 @@
 "use client";
 import {useEffect,useState} from "react";
 import type {SupabaseClient} from "@supabase/supabase-js";
+import type {LinkedPlayer} from "../lib/parentDashboard";
+import {programmeAssignments,programmeRequestState,registeredPlayers,type ParentRegistration} from "../lib/parentProgrammes";
 import "./parent-prices.css";
-type Price={slug:string;title:string;price:string;unit:string;options:string[]};
-export function ParentProgrammePrices({supabase,userId,eligible,preferred}:{supabase:SupabaseClient;userId:string;eligible:boolean;preferred:string[]}){
- const [prices,setPrices]=useState<Price[]>([]),[error,setError]=useState(""),[loading,setLoading]=useState(false),[attempt,setAttempt]=useState(0);
+export type ProgrammePrice={slug:string;title:string;price:string;unit:string;options:string[]};
+type Actions={registrations:ParentRegistration[];players:LinkedPlayer[];onRequest:(sourceId:string,programme:string)=>Promise<void>;onRegisterNew:(programme:string)=>void};
+export function ParentProgrammePrices({supabase,userId,eligible,...actions}:{supabase:SupabaseClient;userId:string;eligible:boolean}&Actions){
+ const [prices,setPrices]=useState<ProgrammePrice[]>([]),[error,setError]=useState(""),[loading,setLoading]=useState(false),[attempt,setAttempt]=useState(0);
  useEffect(()=>{
   setPrices([]);setError("");if(!eligible)return;
   const controller=new AbortController();setLoading(true);
@@ -18,11 +21,13 @@ export function ParentProgrammePrices({supabase,userId,eligible,preferred}:{supa
   finally{if(!controller.signal.aborted)setLoading(false);}}
   void load();return()=>controller.abort();
  },[supabase,userId,eligible,attempt]);
- return <section className="parent-prices" id="programme-prices" aria-labelledby="parent-prices-title"><h3 id="parent-prices-title">Programme prices & payment options</h3>
- {!eligible?<p>Complete your parent profile and submit your player’s registration above to see prices and payment options here.</p>:<>
- <p>Compare payment options before agreeing a place with STAR. Your selected or recommended programmes are marked below.</p>
- {loading&&<p role="status">Loading programme prices…</p>}{error&&<div role="alert"><p>{error}</p><button type="button" onClick={()=>setAttempt(n=>n+1)}>Try again</button></div>}
- <div className="parent-prices-grid">{prices.map(p=><article key={p.slug} className={preferred.includes(p.slug)?"parent-price selected":"parent-price"}>{preferred.includes(p.slug)&&<span className="parent-price-label">Your programme interest</span>}<h4>{p.title}</h4><p className="parent-price-amount"><strong>{p.price}</strong><span>{p.unit}</span></p><ul>{p.options.map(x=><li key={x}>{x}</li>)}</ul></article>)}</div>
- <p className="parent-price-note">Registration does not confirm a place or commit you to payment. Availability, session arrangements and payment schedules are agreed directly with STAR.</p></>}
+ return <section className="parent-programmes" id="programme-prices" aria-labelledby="parent-prices-title"><h3 id="parent-prices-title">Programmes & prices</h3>
+ {!eligible?<p>Submit your player registration to view prices and sign up to programmes.</p>:<><p className="parent-programmes-intro">Tap a programme for payment options or to sign up a player.</p>{loading&&<p role="status">Loading programmes…</p>}{error&&<div role="alert"><p>{error}</p><button type="button" onClick={()=>setAttempt(n=>n+1)}>Try again</button></div>}<ParentProgrammeList prices={prices} {...actions}/><p className="parent-programmes-note">New sign-ups are reviewed by STAR. Places and payment arrangements are confirmed separately.</p></>}
  </section>;
+}
+export function ParentProgrammeList({prices,registrations,players,onRequest,onRegisterNew}:Actions&{prices:ProgrammePrice[]}){
+ const [signup,setSignup]=useState(""),[source,setSource]=useState(""),[busy,setBusy]=useState(false),[error,setError]=useState(""),[notice,setNotice]=useState("");
+ const candidates=registeredPlayers(registrations);
+ async function submit(e:React.FormEvent,slug:string){e.preventDefault();if(busy)return;setError("");setNotice("");if(source==="new"){setSignup("");onRegisterNew(slug);return}const player=candidates.find(r=>r.id===source);if(!player){setError("Choose a player.");return}const state=programmeRequestState(player,slug,registrations,players);if(state){setError(state==="Outside age range"?"This programme is not available for her age.":"She already has an enrolment or request for this programme.");return}setBusy(true);try{await onRequest(source,slug);setSignup("");setNotice("Sign-up sent for "+player.player_first_name+". Awaiting STAR review.")}catch(e){setError(e instanceof Error?e.message:"We couldn’t send this sign-up. Please try again.")}finally{setBusy(false)}}
+ return <div className="parent-programme-list">{notice&&<p className="parent-programme-success" role="status">{notice}</p>}{prices.map(p=>{const assigned=programmeAssignments(p.slug,registrations,players);return <details className="parent-programme-row" key={p.slug}><summary><span className="parent-programme-heading"><strong>{p.title}</strong><span className="parent-programme-cost">{p.price}<small>{p.unit}</small></span>{assigned.length>0&&<span className="parent-programme-assigned">{assigned.map(a=><span key={a.name+a.status}>{a.name} <b>{a.status}</b></span>)}</span>}</span><span className="parent-programme-chevron" aria-hidden="true">⌄</span></summary><div className="parent-programme-expanded"><ul>{p.options.map(option=><li key={option}>{option}</li>)}</ul>{signup===p.slug?<form className="parent-programme-signup" onSubmit={e=>void submit(e,p.slug)}><label>Player<select required disabled={busy} value={source} onChange={e=>{setSource(e.target.value);setError("")}}><option value="">Choose a player</option>{candidates.map(r=>{const state=programmeRequestState(r,p.slug,registrations,players);return <option key={r.id} value={r.id} disabled={!!state}>{r.player_first_name} {r.player_last_name}{state?" · "+state:""}</option>})}<option value="new">+ Register a new player</option></select></label>{error&&<p className="parent-details-error" role="alert">{error}</p>}<div className="parent-details-actions"><button type="submit" disabled={busy||!source}>{busy?"Sending…":source==="new"?"Continue to player details":"Submit programme sign-up"}</button><button type="button" disabled={busy} onClick={()=>{setSignup("");setError("")}}>Cancel</button></div></form>:<button type="button" className="parent-programme-join" disabled={busy} onClick={()=>{setSignup(p.slug);setSource("");setError("");setNotice("")}}>Sign up a player <span aria-hidden="true">→</span></button>}</div></details>})}</div>;
 }
