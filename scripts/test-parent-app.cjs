@@ -26,8 +26,8 @@ assert(pushes.every(hash=>/^#(messages|development)$/.test(hash)));assert(focusC
 effects.forEach(e=>e.cleanup?.());assert.equal(Object.keys(listeners).length,0);
 
 (async()=>{
- const handlers={},cached=[],deleted=[],responded=[];let fail=false;
- const sw={location:{origin:'https://star.example'},addEventListener:(name,fn)=>handlers[name]=fn,skipWaiting:async()=>{},clients:{claim:async()=>{}}};
+ const handlers={},cached=[],deleted=[],responded=[],shown=[],opened=[];let fail=false;
+ const sw={location:{origin:'https://star.example'},addEventListener:(name,fn)=>handlers[name]=fn,skipWaiting:async()=>{},registration:{showNotification:async(...args)=>shown.push(args)},clients:{claim:async()=>{},matchAll:async()=>[],openWindow:async url=>opened.push(url)}};
  const cacheApi={open:async()=>({addAll:async urls=>cached.push(...urls)}),keys:async()=>['star-parent-shell-old','star-player-shell-v1'],delete:async key=>deleted.push(key),match:async url=>'cached:'+url};
  vm.runInNewContext(fs.readFileSync(path.join(root,'public/parent-portal-sw.js'),'utf8'),{self:sw,caches:cacheApi,URL,fetch:async request=>{if(fail)throw Error('offline');return 'live:'+request.url}});
  let work;handlers.install({waitUntil:p=>work=p});await work;
@@ -41,6 +41,8 @@ effects.forEach(e=>e.cleanup?.());assert.equal(Object.keys(listeners).length,0);
  assert.equal(request('https://star.example/parent-portal-other'),undefined);
  assert.equal(await request('https://star.example/parent-portal#messages'),'live:https://star.example/parent-portal#messages');
  fail=true;assert.equal(await request('https://star.example/parent-portal'),'cached:/parent-app/offline.html');
+ handlers.push({data:{json:()=>({body:'Private forged content',url:'https://evil.example',tag:'synthetic'})},waitUntil:p=>work=p});await work;assert.equal(shown[0][0],'STAR Parent Portal');assert.equal(shown[0][1].body,'There’s an update in your parent portal.');
+ handlers.notificationclick({notification:{close(){}},waitUntil:p=>work=p});await work;assert.equal(opened[0],'https://star.example/parent-portal#updates');
  const manifest=JSON.parse(fs.readFileSync(path.join(root,'public/parent-app/manifest.webmanifest'),'utf8'));
  assert.equal(manifest.start_url,'/parent-portal');assert.equal(manifest.scope,'/parent-portal');assert.equal(manifest.display,'standalone');
  assert(manifest.icons.every(icon=>icon.src.startsWith('/parent-app/icons/')));

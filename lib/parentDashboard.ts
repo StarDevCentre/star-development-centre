@@ -3,10 +3,10 @@ export type PlayerGoal = {id:string;player_id:string;goal:string;status:string};
 export type FamilyReport = {id:string;player_id:string;review_month:string;strengths:string;development_areas:string;next_steps:string};
 export type FamilySession = {id:string;player_id:string;title:string;starts_at:string;ends_at:string;venue:string};
 export type PlayerAssessment = {id:string;player_id:string;category:string;rating:number;assessed_on:string};
-export type ParentSection = "overview"|"sessions"|"development"|"practice"|"messages"|"account";
+export type ParentSection = "overview"|"sessions"|"development"|"practice"|"messages"|"account"|"updates";
 export function parentSectionFromHash(hash:string):ParentSection|null {
  const value=hash.replace(/^#/,"");
- return ["overview","sessions","development","practice","messages","account"].includes(value)?value as ParentSection:null;
+ return ["overview","sessions","development","practice","messages","account","updates"].includes(value)?value as ParentSection:null;
 }
 
 // Display helpers receive only the records already approved for the signed-in guardian.

@@ -1,0 +1,75 @@
+-- Synthetic family only. No scheduler call or real push delivery; everything rolls back.
+begin;
+create temp table parent_alert_qa as select gen_random_uuid() a,gen_random_uuid() b,gen_random_uuid() c,gen_random_uuid() owner_id,gen_random_uuid() player_id,gen_random_uuid() report_id,gen_random_uuid() session_id,gen_random_uuid() request_id,gen_random_uuid() application_id;
+grant select on parent_alert_qa to authenticated,service_role;
+insert into auth.users(id,aud,role) select id,'authenticated','authenticated' from parent_alert_qa cross join lateral unnest(array[a,b,c,owner_id]) id;
+insert into public.staff_members(user_id,role,active) select owner_id,'owner',true from parent_alert_qa;
+insert into public.guardian_profiles(user_id,display_name) select id,'Notification QA parent' from parent_alert_qa cross join lateral unnest(array[a,b,c]) id;
+insert into public.coaching_players(id,first_name,last_name,programme,consent_confirmed,consent_recorded_by,created_by) select player_id,'Notification QA','Player','1-to-1',true,owner_id,owner_id from parent_alert_qa;
+insert into public.guardian_player_links(guardian_id,player_id,approved_by) select id,player_id,owner_id from parent_alert_qa cross join lateral unnest(array[a,b]) id;
+insert into public.parent_push_preferences(user_id,enabled,categories,quiet_hours,consented_at) select a,true,array['message','report','session','programme'],false,now() from parent_alert_qa;
+set local role authenticated;
+select set_config('request.jwt.claims',jsonb_build_object('sub',a,'role','authenticated')::text,true) from parent_alert_qa;
+select public.register_parent_push_subscription(jsonb_build_object('account_id',a,'endpoint','https://fcm.googleapis.com/fcm/send/parent-qa-'||a,'keys',jsonb_build_object('p256dh',repeat('A',87),'auth',repeat('B',22)))) from parent_alert_qa;
+do $$begin
+ begin perform public.register_parent_push_subscription(jsonb_build_object('account_id',(select a from parent_alert_qa),'endpoint','https://localhost/private','keys',jsonb_build_object('p256dh','bad','auth','bad')));raise exception 'TEST: unsafe endpoint accepted';exception when invalid_parameter_value then null;end;
+ begin perform public.claim_parent_push_deliveries(1);raise exception 'TEST: parent claimed queue';exception when insufficient_privilege then null;end;
+ begin perform public.player_push_worker_config();raise exception 'TEST: parent read worker secrets';exception when insufficient_privilege then null;end;
+end $$;
+reset role;
+select set_config('request.jwt.claims',jsonb_build_object('sub',owner_id,'role','authenticated')::text,true) from parent_alert_qa;
+insert into public.family_messages(player_id,guardian_id,sender_id,sender_role,kind,body) select player_id,a,owner_id,'staff','message','Synthetic private message' from parent_alert_qa;
+insert into public.family_messages(player_id,guardian_id,sender_id,sender_role,kind,body) select player_id,a,a,'guardian','message','Synthetic parent reply' from parent_alert_qa;
+insert into public.family_monthly_reports(id,player_id,review_month,strengths,development_areas,next_steps,published_by) select report_id,player_id,current_date,'Synthetic strengths','Synthetic development','Synthetic next step',owner_id from parent_alert_qa;
+insert into public.family_session_schedule(id,player_id,title,starts_at,ends_at,venue,published_by) select session_id,player_id,'Synthetic shared session',now()+interval '2 days',now()+interval '2 days 1 hour','Synthetic venue',owner_id from parent_alert_qa;
+update public.family_session_schedule set venue='Synthetic changed venue' where id=(select session_id from parent_alert_qa);
+update public.family_session_schedule set venue=venue where id=(select session_id from parent_alert_qa);
+insert into public.family_session_requests(id,guardian_id,player_id,published_session_id,request_type,reason) select request_id,a,player_id,session_id,'absence','Synthetic reason' from parent_alert_qa;
+update public.family_session_requests set status='approved',staff_response='Synthetic reply',decided_by=(select owner_id from parent_alert_qa),decided_at=now() where id=(select request_id from parent_alert_qa);
+insert into public.player_registrations(id,guardian_id,player_first_name,player_last_name,date_of_birth,programme,status,submitted_at) select application_id,c,'Synthetic','Player',current_date-interval '13 years','prestige','submitted',now() from parent_alert_qa;
+update public.player_registrations set status='accepted',recommended_programme='prestige' where id=(select application_id from parent_alert_qa);
+-- No user content is copied into notification titles.
+do $$begin
+ if (select count(*) from public.parent_notifications where user_id=(select a from parent_alert_qa))<>5 then raise exception 'TEST: incorrect A event count';end if;
+ if (select count(*) from public.parent_notifications where user_id=(select b from parent_alert_qa))<>3 then raise exception 'TEST: messages leaked to second guardian or duplicate schedule event';end if;
+ if (select count(*) from public.parent_notifications where user_id=(select c from parent_alert_qa))<>1 then raise exception 'TEST: unlinked application decision missing';end if;
+ if exists(select 1 from public.parent_notifications where user_id in(select a from parent_alert_qa union select b from parent_alert_qa union select c from parent_alert_qa) and title ilike '%Synthetic%') then raise exception 'TEST: private content copied into alert';end if;
+ if (select count(*) from star_private.parent_push_deliveries q join public.parent_notifications n on n.id=q.notification_id where n.user_id=(select a from parent_alert_qa))<>5 then raise exception 'TEST: opted-in device queue missing';end if;
+end $$;
+set local role authenticated;
+select set_config('request.jwt.claims',jsonb_build_object('sub',b,'role','authenticated')::text,true) from parent_alert_qa;
+do $$begin
+ if (select count(*) from public.parent_notifications)<>3 then raise exception 'TEST: cross-parent notifications visible';end if;
+ if exists(select 1 from public.parent_push_preferences) or exists(select 1 from public.parent_push_subscriptions) then raise exception 'TEST: cross-parent device settings visible';end if;
+ begin insert into public.parent_notifications(user_id,category,source_kind,source_id,title) select b,'programme','programme',application_id,'Forged' from parent_alert_qa;raise exception 'TEST: parent forged update';exception when insufficient_privilege then null;end;
+ begin update public.parent_notifications set title='Forged';raise exception 'TEST: parent edited title';exception when insufficient_privilege then null;end;
+ update public.parent_notifications set read_at=now() where user_id=(select a from parent_alert_qa);
+end $$;
+select set_config('request.jwt.claims',jsonb_build_object('sub',a,'role','authenticated')::text,true) from parent_alert_qa;
+update public.parent_notifications set read_at=now() where category='message';
+reset role;
+do $$declare nid uuid; sid uuid;begin
+ select n.id,s.id into nid,sid from public.parent_notifications n join public.parent_push_subscriptions s on s.user_id=n.user_id where n.user_id=(select a from parent_alert_qa) and n.category='message';
+ if star_private.parent_push_delivery_allowed(nid,sid) then raise exception 'TEST: read update still deliverable';end if;
+ update public.parent_push_preferences set categories=array['message'] where user_id=(select a from parent_alert_qa);
+ select id into nid from public.parent_notifications where user_id=(select a from parent_alert_qa) and category='report';
+ if star_private.parent_push_delivery_allowed(nid,sid) then raise exception 'TEST: disabled category still deliverable';end if;
+ update public.parent_push_preferences set categories=array['message','report','session','programme'] where user_id=(select a from parent_alert_qa);
+ if not star_private.parent_push_delivery_allowed(nid,sid) then raise exception 'TEST: eligible update rejected';end if;
+ update public.parent_push_preferences set enabled=false where user_id=(select a from parent_alert_qa);
+ if star_private.parent_push_delivery_allowed(nid,sid) then raise exception 'TEST: opted-out account still deliverable';end if;
+ update public.parent_push_preferences set enabled=true where user_id=(select a from parent_alert_qa);
+ delete from public.family_monthly_reports where id=(select report_id from parent_alert_qa);
+ if star_private.parent_push_delivery_allowed(nid,sid) then raise exception 'TEST: withdrawn report still deliverable';end if;
+ delete from public.guardian_player_links where guardian_id=(select a from parent_alert_qa);
+ select id into nid from public.parent_notifications where user_id=(select a from parent_alert_qa) and category='session' limit 1;
+ if star_private.parent_push_delivery_allowed(nid,sid) then raise exception 'TEST: revoked family still deliverable';end if;
+end $$;
+set local role authenticated;
+select set_config('request.jwt.claims',jsonb_build_object('sub',a,'role','authenticated')::text,true) from parent_alert_qa;
+do $$begin if exists(select 1 from public.parent_notifications) then raise exception 'TEST: revoked parent retained update access';end if;end $$;
+select set_config('request.jwt.claims',jsonb_build_object('sub',c,'role','authenticated')::text,true) from parent_alert_qa;
+do $$begin if (select count(*) from public.parent_notifications)<>1 then raise exception 'TEST: application owner access failed without player link';end if;end $$;
+reset role;
+rollback;
+select 'PASS: correct event recipients, no duplicate schedule alerts, unlinked application decisions, read receipts, forged-write/worker guards, category opt-out and family/report revocation. All fixtures rolled back; no notifications sent.' result;
