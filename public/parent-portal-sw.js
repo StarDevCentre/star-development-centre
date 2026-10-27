@@ -1,8 +1,8 @@
 /* Generic offline screen and public icons only. Parent pages, messages,
    authentication and all family records remain network-only. */
-const CACHE='star-parent-shell-v1';
+const CACHE='star-parent-shell-v2';
 const OFFLINE='/parent-app/offline.html';
-const PUBLIC=[OFFLINE,'/player-space/icons/icon-192.png','/player-space/icons/icon-512.png'];
+const PUBLIC=[OFFLINE,'/parent-app/icons/icon-192.png','/parent-app/icons/icon-512.png'];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(PUBLIC)).then(()=>self.skipWaiting()));});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('star-parent-shell-')&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim()));});
 self.addEventListener('fetch',event=>{

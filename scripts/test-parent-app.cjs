@@ -31,7 +31,7 @@ effects.forEach(e=>e.cleanup?.());assert.equal(Object.keys(listeners).length,0);
  const cacheApi={open:async()=>({addAll:async urls=>cached.push(...urls)}),keys:async()=>['star-parent-shell-old','star-player-shell-v1'],delete:async key=>deleted.push(key),match:async url=>'cached:'+url};
  vm.runInNewContext(fs.readFileSync(path.join(root,'public/parent-portal-sw.js'),'utf8'),{self:sw,caches:cacheApi,URL,fetch:async request=>{if(fail)throw Error('offline');return 'live:'+request.url}});
  let work;handlers.install({waitUntil:p=>work=p});await work;
- assert(cached.every(url=>url==='/parent-app/offline.html'||url.startsWith('/player-space/icons/')));
+ assert(cached.every(url=>url==='/parent-app/offline.html'||url.startsWith('/parent-app/icons/')));
  assert(!cached.includes('/parent-portal'));
  handlers.activate({waitUntil:p=>work=p});await work;assert.deepEqual(deleted,['star-parent-shell-old']);
  function request(url,mode='navigate',method='GET'){let response;handlers.fetch({request:{url,mode,method},respondWith:p=>response=p});return response}
@@ -43,5 +43,6 @@ effects.forEach(e=>e.cleanup?.());assert.equal(Object.keys(listeners).length,0);
  fail=true;assert.equal(await request('https://star.example/parent-portal'),'cached:/parent-app/offline.html');
  const manifest=JSON.parse(fs.readFileSync(path.join(root,'public/parent-app/manifest.webmanifest'),'utf8'));
  assert.equal(manifest.start_url,'/parent-portal');assert.equal(manifest.scope,'/parent-portal');assert.equal(manifest.display,'standalone');
+ assert(manifest.icons.every(icon=>icon.src.startsWith('/parent-app/icons/')));
  console.log('Passed: mobile section/back navigation, independent scroll restoration, in-page anchors, focus and listener cleanup; parent PWA network-only private data and generic offline fallback.');
 })().catch(error=>{console.error(error);process.exitCode=1});
