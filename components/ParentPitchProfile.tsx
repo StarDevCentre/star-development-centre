@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useState, type CSSProperties } from "react";
+import { useEffect, useId, useRef, useState, type CSSProperties } from "react";
 import { previewDevelopmentPlans } from "../lib/parentExperiencePreview";
 import { pitchFormations, positionStatus, projectPitchPoint, roleGuides, roleMovement, samplePitchProfiles, selectFormationSlot, type Formation, type GameFormat, type PitchPhase, type PitchSlot } from "../lib/parentPitchPreview";
 
@@ -33,6 +33,7 @@ export function ParentPitchProfile({ playerId, name, motion }: { playerId: strin
  const slot = formation.slots.find(s => s.id === slotId) || selectFormationSlot(formation, undefined, profile);
  const [stadium, setStadium] = useState(false), [phase, setPhase] = useState<PitchPhase>("attack"), [step, setStep] = useState(0), [playing, setPlaying] = useState(false), [reduceMotion, setReduceMotion] = useState(false);
  const movement = roleMovement(slot, phase, format), canAnimate = motion && !reduceMotion;
+ const surfaceRef = useRef<HTMLDivElement>(null);
  const markerId = `pitch-arrow-${useId().replace(/:/g, "")}`;
  const status = positionStatus(slot, profile);
  useEffect(() => { const query = window.matchMedia("(prefers-reduced-motion: reduce)"); const update = () => setReduceMotion(query.matches); update(); query.addEventListener("change", update); return () => query.removeEventListener("change", update); }, []);
@@ -42,6 +43,7 @@ export function ParentPitchProfile({ playerId, name, motion }: { playerId: strin
   return () => { clearTimeout(first); clearTimeout(second); clearTimeout(finish); };
  }, [playing, canAnimate]);
  useEffect(() => { if (!canAnimate) setPlaying(false); }, [canAnimate]);
+ function showPitch() { if (window.matchMedia("(max-width: 850px)").matches) surfaceRef.current?.scrollIntoView({behavior:"instant",block:"start"}); }
  function reset() { setPlaying(false); setStep(0); }
  function chooseFormation(next: Formation) { reset(); setFormat(next.format); setFormationId(next.id); setSlotId(selectFormationSlot(next, slot, profile).id); }
  function chooseSlot(next: PitchSlot) { reset(); setSlotId(next.id); }
@@ -50,15 +52,15 @@ export function ParentPitchProfile({ playerId, name, motion }: { playerId: strin
  const movementControls = <>
    <div className="ppx-pitch-segment" role="group" aria-label="Movement phase"><button aria-pressed={phase === "attack"} onClick={() => { reset(); setPhase("attack"); }}>When attacking</button><button aria-pressed={phase === "defend"} onClick={() => { reset(); setPhase("defend"); }}>When defending</button></div>
 <div className="ppx-pitch-step-status" aria-live="polite"><span>0{step + 1}</span><strong>{movement.labels[step]}</strong></div>
-   <div className="ppx-pitch-playback"><button className="ppx-gold-btn" onClick={() => { if (playing) setPlaying(false); else if (!canAnimate) setStep(2); else { setStep(0); setPlaying(true); } }}>{playing ? "Ⅱ Pause" : canAnimate ? "▶ Play movement" : "Show final position"}</button><button className="ppx-outline-btn" onClick={reset}>Reset</button></div>
-   <div className="ppx-pitch-steps" role="group" aria-label="Movement steps">{movement.labels.map((label, i) => <button key={i} aria-pressed={step === i} onClick={() => { setPlaying(false); setStep(i); }}><b>0{i + 1}</b><span>{label}</span></button>)}</div>
+   <div className="ppx-pitch-playback"><button className="ppx-gold-btn" onClick={() => { if (playing) setPlaying(false); else if (!canAnimate) setStep(2); else { setStep(0); setPlaying(true); } showPitch(); }}>{playing ? "Ⅱ Pause" : canAnimate ? "▶ Play movement" : "Show final position"}</button><button className="ppx-outline-btn" onClick={() => { reset(); showPitch(); }}>Reset</button></div>
+   <div className="ppx-pitch-steps" role="group" aria-label="Movement steps">{movement.labels.map((label, i) => <button key={i} aria-pressed={step === i} onClick={() => { setPlaying(false); setStep(i); showPitch(); }}><b>0{i + 1}</b><span>{label}</span></button>)}</div>
    {!canAnimate && <p className="ppx-caption">Motion is off. Use the three steps to explore the positions.</p>}
  </>;
  return <article className={`ppx-card ppx-pitch-profile ${stadium ? "ppx-pitch-stadium" : ""} ${canAnimate && playing ? "ppx-pitch-motion" : ""}`} aria-labelledby="ppx-pitch-title">
   <div className="ppx-pitch-heading"><div><span className="ppx-eyebrow">HER POSITION. MORE POSSIBILITIES.</span><h2 id="ppx-pitch-title" tabIndex={-1}>{name}’s pitch profile.</h2><p>Tap a position. See the role. Explore the movement.</p></div><span className="ppx-example-chip">FICTIONAL COACH PROFILE</span></div>
   <div className="ppx-pitch-assignments"><div><span>★ MAIN POSITION</span><strong>{profile.mainLabel}</strong></div><div><span>◎ SECONDARY POSITION</span><strong>{profile.secondaryLabel}</strong></div><small>Set by her coach</small></div>
   <div className="ppx-pitch-toolbar"><div className="ppx-pitch-segment" role="group" aria-label="Pitch game format">{([9, 11] as const).map(value => <button key={value} aria-pressed={format === value} onClick={() => { if (value !== format) chooseFormation(pitchFormations.find(f => f.format === value)!); }}>{value}-a-side</button>)}</div><label className="ppx-pitch-formation">Formation<select aria-label="Pitch formation" value={formationId} onChange={e => chooseFormation(pitchFormations.find(f => f.format === format && f.id === e.target.value)!)}>{pitchFormations.filter(f => f.format === format).map(f => <option key={f.id}>{f.id}</option>)}</select></label><div className="ppx-pitch-segment ppx-pitch-view" role="group" aria-label="Pitch view"><button aria-pressed={!stadium} onClick={() => setStadium(false)}>Tactical</button><button aria-pressed={stadium} onClick={() => setStadium(true)}>Stadium</button></div></div>
-  <div className="ppx-pitch-layout"><div className="ppx-pitch-left"><div className="ppx-pitch-surface" role="group" aria-label={`${format}-a-side ${formationId} pitch. Choose a position.`}>
+  <div className="ppx-pitch-layout"><div className="ppx-pitch-left"><div ref={surfaceRef} className="ppx-pitch-surface" role="group" aria-label={`${format}-a-side ${formationId} pitch. Choose a position.`}>
    <div className="ppx-pitch-floodlights" aria-hidden="true"/><div className="ppx-pitch-direction" aria-hidden="true">ATTACKING ↑</div>
    <svg className="ppx-pitch-drawing" viewBox="0 0 600 720" aria-hidden="true"><defs><marker id={markerId} viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="var(--ppx-accent)"/></marker></defs><PitchLines stadium={stadium}/><path className="ppx-pitch-movement-path" d={movementPath} fill="none" stroke="var(--ppx-accent)" strokeWidth="3" strokeDasharray="7 6" markerEnd={`url(#${markerId})`}/>{movementPoints.map((p, i) => <circle key={i} cx={p.x} cy={p.y} r="4" fill="var(--ppx-accent)" opacity={i === step ? 1 : .5}/>)}</svg>
    {formation.slots.map(s => {
