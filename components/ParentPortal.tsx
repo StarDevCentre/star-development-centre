@@ -133,7 +133,7 @@ export function ParentPortal({initialMode="login",initialProgramme:requestedProg
  <ParentProgrammePrices key={user.id} supabase={supabase} userId={user.id} eligible={!!profile&&hasRegistration} preferred={registrations.flatMap(r=>[r.programme,...(r.recommended_programme?[r.recommended_programme]:[])])}/>
  {registrations.some(r=>["submitted","under_review","waitlisted","accepted"].includes(r.status))&&<section className="parent-next-steps"><h3>What happens next?</h3><ol><li><strong>STAR reviews her registration.</strong> We check the programme choice and availability.</li><li><strong>We agree her starting point.</strong> Discuss the venue, session arrangements and any support she needs directly with STAR.</li><li><strong>Confirm her place together.</strong> Enrolment consent and payment arrangements are completed separately.</li></ol><a href="https://wa.me/447902594064" className="parent-inline-link">Ask STAR on WhatsApp ↗</a></section>}
 </>:null;
- return <div className={usingDashboard?"star-portal parent-member":"star-portal"} id="parent-account">
+ return <div className={usingDashboard?"star-portal parent-member":!user?"star-portal parent-auth-"+mode:"star-portal"} id="parent-account">
  <div className="star-portal-main" id="parent-form-start">
  {error&&<p className="star-portal-error" role="alert">{error}</p>}{notice&&<p className="star-portal-notice" role="status">{notice}</p>}
  {(!user||mode==="update")?<>

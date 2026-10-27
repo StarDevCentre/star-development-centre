@@ -43,6 +43,7 @@
  .parent-page .parent-content.home-width{width:100%;max-width:none;padding:22px 18px 0;margin:0}
  .parent-page:has(.parent-member) .parent-content.home-width{padding:0}
  .parent-page .star-portal{gap:18px}
+ .parent-page :is(.parent-auth-login,.parent-auth-reset,.parent-auth-update)>.parent-journey{display:none}
  .parent-page .parent-member>.star-portal-main{padding:0!important;background:transparent;border:0;border-radius:0;box-shadow:none}
  .parent-member>.star-portal-main>.star-portal-head,.parent-member>.star-portal-main>.parent-signed-in{display:none}
  .parent-member>.star-portal-main>:is(.star-portal-error,.star-portal-notice){margin:16px}
