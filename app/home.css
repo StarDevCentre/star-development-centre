@@ -71,3 +71,11 @@
 .home-header .home-header-badge{background:#fff;box-shadow:none;border-radius:3px}
 @media(max-width:700px){.home-header .home-logo{width:124px;height:62px}.home-header .home-mobile-logins{background:#fff;border-top:1px solid #e8ecf2}.home-header .home-mobile-logins a{color:#06142e;font-size:12px;min-height:40px}.home-header .home-mobile-logins a+a{border-left-color:#dce2eb}}
 @media(max-width:360px){.home-header .home-logo{width:108px;height:62px}}
+
+/* Larger supporting logos within the existing 96px / 68px navigation row. */
+.home-header .home-header-badge{width:72px;height:72px;background:transparent;overflow:visible}
+.home-header .home-header-badge-caa img{padding:0}
+.home-header .home-header-badge-autism img{position:static;inset:auto;width:100%;height:100%;max-width:100%;object-fit:contain}
+@media(max-width:1100px) and (min-width:701px){.home-header .home-header-badge{width:62px;height:62px}}
+@media(max-width:700px){.home-header .home-header-badge{width:54px;height:54px}}
+@media(max-width:360px){.home-header .home-header-badge{width:48px;height:48px}}
