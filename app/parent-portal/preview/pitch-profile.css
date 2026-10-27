@@ -48,3 +48,6 @@
 @media(max-width:480px){.ppx .ppx-pitch-stadium .ppx-pitch-player{width:36px;height:40px}.ppx-pitch-kit{width:41px;height:45px}.ppx .ppx-pitch-stadium .ppx-pitch-player small{right:-1px;top:1px}.ppx-pitch-stadium .ppx-pitch-direction{font-size:5px}.ppx-pitch-stadium .ppx-pitch-home-goal{font-size:5px;bottom:4px}}
 @media(max-width:360px){.ppx .ppx-pitch-stadium .ppx-pitch-player{width:31px;height:35px}.ppx-pitch-kit{width:36px;height:39px}.ppx .ppx-pitch-stadium .ppx-pitch-player small{right:-3px;top:0}}
 
+
+@media(max-width:480px){.ppx .ppx-pitch-stadium .ppx-pitch-surface{aspect-ratio:600/900}}
+@media(max-width:360px){.ppx .ppx-pitch-stadium .ppx-pitch-player{width:28px;height:31px}}
