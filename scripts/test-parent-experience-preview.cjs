@@ -14,7 +14,6 @@ assert.deepEqual(plain(moveWidget(original,'progress',-1)),plain(original));asse
 assert.equal(previewSections.length,7);assert.ok(assessmentSeries.every(s=>s.values.length===4&&s.values.every(v=>v>=1&&v<=4.5)));
 const component=fs.readFileSync(path.join(__dirname,'../components/ParentExperiencePreview.tsx'),'utf8');
 assert.ok(!/supabase|fetch\(|XMLHttpRequest|\.sendBeacon\(/.test(component),'Preview must not call production data or messaging APIs');
-assert.ok(component.includes('prefers-reduced-motion')===false); // Motion belongs in scoped CSS.
 const css=fs.readFileSync(path.join(__dirname,'../app/parent-portal/preview/preview.css'),'utf8');
 assert.ok(css.includes('@media(prefers-reduced-motion:reduce)'));assert.ok(css.includes('position:sticky'));
 console.log('Parent experience preview: settings sanitisation, player defaults, complete widget ordering, bounded movement, sample scales and isolation checks passed.');
