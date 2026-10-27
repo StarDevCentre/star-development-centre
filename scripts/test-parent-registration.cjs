@@ -49,7 +49,7 @@ function harness(file,props={}){
 function nodes(node){if(!node||typeof node!=='object')return [];if(Array.isArray(node))return node.flatMap(nodes);return [node,...nodes(node.props?.children)]}
 function text(node){if(node==null||typeof node==='boolean')return '';if(typeof node==='string'||typeof node==='number')return String(node);if(Array.isArray(node))return node.map(text).join(' ');return text(node.props?.children)}
 function find(h,predicate){const n=nodes(h.tree).find(predicate);assert(n,'Expected UI element missing');return n}
-function field(h,label,value){const l=find(h,n=>n.type==='label'&&text(n).trim().startsWith(label));const n=nodes(l).find(n=>n.type==='input'||n.type==='select');n.props.onChange({target:{value,checked:value}});h.render()}
+function field(h,label,value){const l=find(h,n=>n.type==='label'&&text(n).trim().startsWith(label));const n=nodes(l).find(n=>n.type==='input'||n.type==='select')||find(h,n=>n.props?.id===l.props.htmlFor);n.props.onChange({target:{value,checked:value}});h.render()}
 function form(h){return find(h,n=>n.type==='form')}
 const event={preventDefault(){}};
 (async()=>{
