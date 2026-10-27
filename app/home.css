@@ -166,3 +166,38 @@
 .star-home details>summary:focus-visible{outline:3px solid #e1b94f;outline-offset:4px}
 @media(max-width:1000px){.home-pack-inner{gap:34px}.home-pack-copy .home-pack-lead{font-size:16px}.home-belonging-inner{gap:30px}.home-belonging-support{padding-left:24px}.home-belonging-mark{gap:14px}.home-belonging-mark img{width:78px;height:72px}.home-belonging-mark strong{font-size:23px}}
 @media(max-width:700px){.home-pack-inner{grid-template-columns:1fr;gap:35px}.home-pack-visual{transform:rotate(-1.5deg);margin-inline:4px}.home-pack h2{font-size:46px}.home-pack .home-eyebrow{font-size:10px}.home-pack-contents{font-size:13px;margin-block:20px}.home-pack-copy .home-pack-lead{font-size:16px}.home-pack-timing{padding-left:16px}.home-pack-timing dl{font-size:12px}.home-pack-image-link{padding:14px 18px;font-size:11px}.home-belonging-inner{grid-template-columns:1fr;gap:28px}.home-belonging h2{font-size:43px}.home-belonging p{font-size:14px}.home-belonging-support{padding:25px 0 0;border-left:0;border-top:1px solid #bca36670}.home-belonging-mark img{width:88px;height:80px}.home-belonging-mark strong{font-size:25px}.home-parent-guides{grid-template-columns:1fr;gap:26px}.home-guide-body{padding:24px 20px}.home-parent-guide h3{font-size:31px}.home-guide-stack .home-parent-guide{padding:24px 0}.home-guide-stack .home-parent-guide:first-child{border-top:0;padding-top:0}.home-guide-tips ul{font-size:13px}.home-guides-more{display:block}.home-guides-more .home-link{margin-top:9px}.home-guide-label{font-size:9px}}
+
+/* Final homepage reading rhythm and mobile actions. */
+.star-home .home-purpose{padding-block:60px}
+.star-home .home-programmes{padding-block:82px}
+.star-home .home-pack{padding-block:72px}
+.star-home .home-start{padding-block:64px}
+.star-home .home-parent-editorial{padding-top:48px;margin-top:48px;border-top:1px solid #c6aa6633}
+.home-parent-faq p a{color:#ead09a;text-decoration:underline;text-underline-offset:3px}
+.home-header .home-expanded-menu{top:100%}
+.home-phone-placeholder{height:100%;display:flex;flex-direction:column;justify-content:center;padding:30px;background:radial-gradient(at top right,#284267,transparent),#071326;color:#edcd80}
+.home-phone-placeholder span{font-size:10px;letter-spacing:.12em;margin-bottom:20px}
+.home-phone-placeholder strong{font:800 42px/1.05 'Barlow Condensed',Impact,sans-serif;color:#f7ecd7}
+.home-mobile-actions{display:none}
+.home-mobile-actions[hidden]{display:none!important}
+.star-home .home-tour-note{color:#adbed4}
+.star-home .home-eyebrow,.star-home .home-guide-label{color:#e3c783}
+.star-home .home-coach .home-eyebrow,.star-home .home-belonging .home-eyebrow{color:#8d2433}
+@media(max-width:1100px){.home-header .home-expanded-menu{max-height:calc(100dvh - 142px)}}
+@media(max-width:700px){
+ .star-home .home-purpose{padding-block:38px}
+ .star-home .home-programmes{padding-block:58px}
+ .star-home .home-pack{padding-block:52px}
+ .star-home .home-start{padding-block:44px}
+ .star-home .home-family{padding-block:50px}
+ .star-home .home-parent-editorial{padding-top:32px;margin-top:32px}
+ .home-header .home-expanded-menu{max-height:calc(100dvh - 111px);padding-bottom:24px}
+ .home-mobile-actions{position:fixed;display:grid;grid-template-columns:1.45fr 1fr;gap:8px;inset:auto 12px calc(12px + env(safe-area-inset-bottom,0px));padding:8px;background:#fff;border:1px solid #dce2eb;border-radius:12px;box-shadow:0 5px 30px #0006;z-index:90}
+ .home-mobile-actions a{min-width:0;min-height:46px;display:flex;align-items:center;justify-content:center;gap:9px;font-size:12px;font-weight:800;padding:10px 6px;border-radius:6px;color:#132841;background:#edf1f6}
+ .home-mobile-actions a.home-quick-register{background:#d71434;color:#fff}
+ .home-mobile-actions a:focus-visible{outline:3px solid #9a6c08;outline-offset:2px}
+ html:has(.star-home){scroll-padding-bottom:100px}
+ .star-home :is(h2,h3){text-wrap:balance}
+}
+.site-footer.home-footer .footer-logo-link{position:relative!important;display:block!important;overflow:hidden!important;background:#fff!important;width:220px!important;height:108px!important;border-radius:3px!important}
+.site-footer.home-footer .footer-official-logo{position:absolute!important;width:auto!important;height:240%!important;max-width:none!important;left:50%!important;top:49%!important;transform:translate(-50%,-49%)!important}
