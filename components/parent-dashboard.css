@@ -131,3 +131,4 @@
 .parent-page:has(.parent-member) .parent-intro{display:none}
 .parent-page:has(.parent-member) .parent-content{padding-top:28px}
 @media(max-width:760px){.parent-page:has(.parent-member) .parent-content{padding-top:20px}}
+@media(max-width:380px){.parent-dashboard-nav{gap:3px;padding:5px}.parent-dashboard-nav>button{font-size:9px;padding:9px 2px}.parent-dashboard-nav>button>span:first-of-type{white-space:nowrap}.parent-session-card{flex-direction:column;gap:17px}.parent-session-date{display:flex;gap:9px;width:auto;min-height:0;padding:9px 12px}.parent-session-date strong{font-size:27px;margin:0}.parent-session-date span{font-size:10px}.parent-assessment-grid{grid-template-columns:1fr}}
