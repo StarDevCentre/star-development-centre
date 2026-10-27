@@ -41,7 +41,7 @@ export function selectFormationSlot(next: Formation, previous: PitchSlot | undef
  return next.slots.find(s => s.id === previous?.id) || next.slots.find(s => s.group === previous?.group) || next.slots.find(s => s.group === profile.main) || next.slots.find(s => s.group === profile.secondary) || next.slots[0];
 }
 export function projectPitchPoint(point: Point, stadium = false): Point {
- return stadium ? { x: 300 + (point.x - 50) / 100 * (420 + point.y * 1.2), y: 76 + point.y * 5.7 } : { x: 40 + point.x * 5.2, y: 40 + point.y * 6.4 };
+ return stadium ? { x: 300 + (point.x - 50) / 100 * (370 + point.y * 1.5), y: 190 + point.y * 4.6 } : { x: 40 + point.x * 5.2, y: 40 + point.y * 6.4 };
 }
 export const roleGuides: Record<RoleGroup, { summary: string; attack: string; defend: string }> = {
  keeper: { summary: "Protect the goal and help the team start again with the ball.", attack: "Move to offer a safe passing option behind the defenders. Look up before choosing a pass.", defend: "Move across with the ball and stay ready to protect the goal. Talk to the defenders in front of you." },
@@ -78,3 +78,4 @@ export function roleMovement(slot: PitchSlot, phase: PitchPhase, format: GameFor
  }
  return { points: [{ x: slot.x, y: slot.y }, middle, end].map(p => ({ x: clamp(p.x), y: clamp(p.y, 7, 93) })), labels, explanation: roleGuides[slot.group][phase] };
 }
+

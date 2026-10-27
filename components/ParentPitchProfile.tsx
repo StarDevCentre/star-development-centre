@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState, type CSSProperties } from "react";
+import { ParentPitchStadium, PitchPlayerShirt } from "./ParentPitchStadium";
 import { previewDevelopmentPlans } from "../lib/parentExperiencePreview";
 import { pitchFormations, positionStatus, projectPitchPoint, roleGuides, roleMovement, samplePitchProfiles, selectFormationSlot, type Formation, type GameFormat, type PitchPhase, type PitchSlot } from "../lib/parentPitchPreview";
 
@@ -9,8 +10,8 @@ function PitchLines({ stadium = false }: { stadium?: boolean }) {
  const rectangle = (x: number, y: number, width: number, height: number) => path([{ x, y }, { x: x + width, y }, { x: x + width, y: y + height }, { x, y: y + height }, { x, y }]);
  const circle = (x: number, y: number, rx: number, ry: number) => path(Array.from({ length: 49 }, (_, i) => ({ x: x + Math.cos(i * Math.PI / 24) * rx, y: y + Math.sin(i * Math.PI / 24) * ry })));
  return <g className="ppx-pitch-lines" fill="none" stroke="currentColor" strokeWidth="1.4">
-  <path d={rectangle(0, 0, 100, 100)} fill="var(--pitch-grass)"/>
-  {Array.from({ length: 10 }, (_, i) => i % 2 === 0 && <path key={i} d={rectangle(0, i * 10, 100, 10)} fill="#ffffff04" stroke="none"/>)}
+  <path d={rectangle(0, 0, 100, 100)} fill={stadium ? "none" : "var(--pitch-grass)"}/>
+  {!stadium && Array.from({ length: 10 }, (_, i) => i % 2 === 0 && <path key={i} d={rectangle(0, i * 10, 100, 10)} fill="#ffffff04" stroke="none"/>)}
   <path d={path([{ x: 0, y: 50 }, { x: 100, y: 50 }])}/><path d={circle(50, 50, 13, 10)}/>
   <path d={rectangle(21, 0, 58, 17)}/><path d={rectangle(37, 0, 26, 6)}/><path d={rectangle(21, 83, 58, 17)}/><path d={rectangle(37, 94, 26, 6)}/>
   <path d={rectangle(43, -2, 14, 2)}/><path d={rectangle(43, 100, 14, 2)}/>
@@ -62,10 +63,10 @@ export function ParentPitchProfile({ playerId, name, motion }: { playerId: strin
   <div className="ppx-pitch-toolbar"><div className="ppx-pitch-segment" role="group" aria-label="Pitch game format">{([9, 11] as const).map(value => <button key={value} aria-pressed={format === value} onClick={() => { if (value !== format) chooseFormation(pitchFormations.find(f => f.format === value)!); }}>{value}-a-side</button>)}</div><label className="ppx-pitch-formation">Formation<select aria-label="Pitch formation" value={formationId} onChange={e => chooseFormation(pitchFormations.find(f => f.format === format && f.id === e.target.value)!)}>{pitchFormations.filter(f => f.format === format).map(f => <option key={f.id}>{f.id}</option>)}</select></label><div className="ppx-pitch-segment ppx-pitch-view" role="group" aria-label="Pitch view"><button aria-pressed={!stadium} onClick={() => setStadium(false)}>Tactical</button><button aria-pressed={stadium} onClick={() => setStadium(true)}>Stadium</button></div></div>
   <div className="ppx-pitch-layout"><div className="ppx-pitch-left"><div ref={surfaceRef} className="ppx-pitch-surface" role="group" aria-label={`${format}-a-side ${formationId} pitch. Choose a position.`}>
    <div className="ppx-pitch-floodlights" aria-hidden="true"/><div className="ppx-pitch-direction" aria-hidden="true">ATTACKING ↑</div>
-   <svg className="ppx-pitch-drawing" viewBox="0 0 600 720" aria-hidden="true"><defs><marker id={markerId} viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="var(--ppx-accent)"/></marker></defs><PitchLines stadium={stadium}/><path className="ppx-pitch-movement-path" d={movementPath} fill="none" stroke="var(--ppx-accent)" strokeWidth="3" strokeDasharray="7 6" markerEnd={`url(#${markerId})`}/>{movementPoints.map((p, i) => <circle key={i} cx={p.x} cy={p.y} r="4" fill="var(--ppx-accent)" opacity={i === step ? 1 : .5}/>)}</svg>
+   <svg className="ppx-pitch-drawing" viewBox="0 0 600 720" aria-hidden="true"><defs><marker id={markerId} viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="var(--ppx-accent)"/></marker></defs><>{stadium && <ParentPitchStadium name={name} formation={formationId} format={format}/>}<PitchLines stadium={stadium}/></><path className="ppx-pitch-movement-path" d={movementPath} fill="none" stroke="var(--ppx-accent)" strokeWidth="3" strokeDasharray="7 6" markerEnd={`url(#${markerId})`}/>{movementPoints.map((p, i) => <circle key={i} cx={p.x} cy={p.y} r="4" fill="var(--ppx-accent)" opacity={i === step ? 1 : .5}/>)}</svg>
    {formation.slots.map(s => {
-    const selected = s.id === slot.id, kind = positionStatus(s, profile), p = projectPitchPoint(selected ? movement.points[step] : s, stadium);
-    return <button key={s.id} className={`ppx-pitch-player ppx-pitch-player-${kind} ${selected ? "ppx-pitch-player-selected" : ""}`} style={{ left: `${p.x / 6}%`, top: `${p.y / 7.2}%` } as CSSProperties} onClick={() => chooseSlot(s)} aria-pressed={selected} aria-label={`${s.label}${kind === "main" ? `, ${name}’s main position` : kind === "secondary" ? `, ${name}’s secondary position` : ""}`}><span>{s.short}</span>{kind !== "explore" && <small aria-hidden="true">{kind === "main" ? "★" : "◎"}</small>}</button>;
+    const selected = s.id === slot.id, kind = positionStatus(s, profile), ground = selected ? movement.points[step] : s, p = projectPitchPoint(ground, stadium);
+    return <button key={s.id} className={`ppx-pitch-player ppx-pitch-player-${kind} ${selected ? "ppx-pitch-player-selected" : ""}`} style={{ left: `${p.x / 6}%`, top: `${p.y / 7.2}%`, "--pitch-player-depth": .82 + ground.y * .002 } as CSSProperties} onClick={() => chooseSlot(s)} aria-pressed={selected} aria-label={`${s.label}${kind === "main" ? `, ${name}’s main position` : kind === "secondary" ? `, ${name}’s secondary position` : ""}`}>{stadium ? <PitchPlayerShirt label={s.short} keeper={s.group === "keeper"}/> : <span>{s.short}</span>}{kind !== "explore" && <small aria-hidden="true">{kind === "main" ? "★" : "◎"}</small>}</button>;
    })}
    <span className="ppx-pitch-home-goal" aria-hidden="true">HER TEAM’S GOAL</span>
   </div><div className="ppx-pitch-mobile-controls"><strong className="ppx-pitch-mobile-role">{slot.label}</strong>{movementControls}</div><div className="ppx-pitch-legend"><span>★ Main</span><span>◎ Secondary</span><span>○ Other roles</span></div><p className="ppx-caption">Browse formations freely. Her coach-set positions stay the same.</p></div>
@@ -76,3 +77,4 @@ export function ParentPitchProfile({ playerId, name, motion }: { playerId: strin
   </div></div>
  </article>;
 }
+

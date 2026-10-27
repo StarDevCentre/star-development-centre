@@ -18,3 +18,33 @@
 @media(max-width:850px){.ppx-pitch-mobile-controls{display:block;margin-top:14px}.ppx-pitch-mobile-controls .ppx-pitch-segment{width:100%}.ppx-pitch-mobile-controls .ppx-pitch-segment>button{flex:1}.ppx-pitch-desktop-controls{display:none}.ppx-pitch-mobile-controls .ppx-pitch-step-status{min-height:48px;margin:12px 0}.ppx-pitch-mobile-controls .ppx-pitch-steps>button{min-height:65px}}
 
 @media(max-width:850px){.ppx-pitch-surface{scroll-margin-top:90px}}
+
+/* Matchnight stadium: scenery and live players share a single ground plane. */
+.ppx .ppx-pitch-stadium .ppx-pitch-surface{background:#050e1c;box-shadow:0 18px 45px #0006,inset 0 0 0 1px #c1d8e922;border-color:#abcce044;border-radius:10px}
+.ppx-pitch-stadium .ppx-pitch-drawing{color:#d8f5e8b8}
+.ppx-pitch-stadium .ppx-pitch-floodlights{display:none}
+.ppx-pitch-stadium .ppx-pitch-direction{top:23.5%;left:auto;right:5%;transform:none;font-size:7px;letter-spacing:.1em;color:#d8f0e9}
+.ppx-pitch-stadium .ppx-pitch-home-goal{bottom:7px;font-size:6px;color:#bad1e4}
+.ppx .ppx-pitch-stadium .ppx-pitch-player{width:44px;height:48px;transform:translate(-50%,-100%);background:transparent!important;border:0!important;border-radius:7px!important;box-shadow:none!important;overflow:visible}
+.ppx .ppx-pitch-stadium .ppx-pitch-player-selected{outline:none}
+.ppx .ppx-pitch-stadium .ppx-pitch-player:focus-visible{outline:2px solid #fff!important;outline-offset:3px}
+.ppx-pitch-kit{display:block;width:52px;height:57px;overflow:visible;pointer-events:none;transform:scale(var(--pitch-player-depth,1));transform-origin:50% 95%;filter:drop-shadow(1px 6px 3px #0009)}
+.ppx-pitch-kit-fabric{fill:#f5f8fc;stroke:#9daec2;stroke-width:1}
+.ppx-pitch-kit-purple{fill:#6628a5}
+.ppx-pitch-kit-label{fill:#142245;font:bold 10px Arial,sans-serif;letter-spacing:-.5px}
+.ppx-pitch-kit-ground{fill:#0008;stroke:transparent;stroke-width:2}
+.ppx-pitch-kit-outline{fill:none;stroke:var(--ppx-accent);stroke-width:3.5;opacity:0}
+.ppx-pitch-player-main .ppx-pitch-kit-outline{opacity:1}
+.ppx-pitch-player-secondary .ppx-pitch-kit-outline{opacity:.7;stroke-dasharray:3 2;stroke-width:2.5}
+.ppx-pitch-player-selected .ppx-pitch-kit-outline{opacity:1;stroke:#fff;stroke-dasharray:none;stroke-width:3.5}
+.ppx-pitch-player-selected .ppx-pitch-kit-ground{fill:rgb(var(--ppx-glow)/.2);stroke:var(--ppx-accent);filter:drop-shadow(0 0 5px var(--ppx-accent))}
+.ppx-pitch-keeper-kit .ppx-pitch-kit-fabric{fill:#173c56;stroke:#91b1c6}
+.ppx-pitch-keeper-kit .ppx-pitch-kit-purple{fill:#caa663}
+.ppx-pitch-keeper-kit .ppx-pitch-kit-label{fill:#fff}
+.ppx .ppx-pitch-stadium .ppx-pitch-player small{right:-5px;top:0;z-index:2;box-shadow:0 2px 6px #0007}
+.ppx-pitch-stadium .ppx-pitch-movement-path{stroke-width:3;stroke-dasharray:6 5;filter:drop-shadow(0 2px 1px #062118)}
+@media(max-width:1100px){.ppx .ppx-pitch-stadium .ppx-pitch-player{width:38px;height:42px}.ppx-pitch-kit{width:45px;height:49px}}
+@media(max-width:850px){.ppx .ppx-pitch-stadium .ppx-pitch-player{width:44px;height:48px}.ppx-pitch-kit{width:52px;height:57px}}
+@media(max-width:480px){.ppx .ppx-pitch-stadium .ppx-pitch-player{width:36px;height:40px}.ppx-pitch-kit{width:41px;height:45px}.ppx .ppx-pitch-stadium .ppx-pitch-player small{right:-1px;top:1px}.ppx-pitch-stadium .ppx-pitch-direction{font-size:5px}.ppx-pitch-stadium .ppx-pitch-home-goal{font-size:5px;bottom:4px}}
+@media(max-width:360px){.ppx .ppx-pitch-stadium .ppx-pitch-player{width:31px;height:35px}.ppx-pitch-kit{width:36px;height:39px}.ppx .ppx-pitch-stadium .ppx-pitch-player small{right:-3px;top:0}}
+
