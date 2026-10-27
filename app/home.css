@@ -48,3 +48,14 @@
 .home-purpose-copy .home-link{color:#e6c77f;font-size:13px;display:inline-flex;align-items:center;gap:20px;line-height:1.5}
 .home-purpose+.home-start{padding-top:64px}
 @media(max-width:700px){.home-purpose{padding:40px 0 38px}.home-purpose-inner{grid-template-columns:1fr;gap:28px}.home-purpose .home-eyebrow{font-size:8px;margin-bottom:20px;letter-spacing:.12em}.home-purpose h2{font-size:clamp(39px,10.7vw,62px)}.home-purpose h2 span{margin-top:9px}.home-purpose-copy{padding-left:18px;max-width:none}.home-purpose-copy .home-purpose-detail{font-size:18px}.home-purpose-copy p{font-size:13px;margin-bottom:18px}.home-purpose-copy .home-link{font-size:12px}.home-purpose+.home-start{padding-top:40px}}
+
+/* Supporting membership marks stay beside STAR without enlarging the header. */
+.home-header-badges{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.home-header-badge{display:block;position:relative;overflow:hidden;width:62px;height:62px;flex-shrink:0;border-radius:7px;background:#f5f4f0;box-shadow:0 0 0 1px #d9cba550}
+.home-header-badge img{display:block;width:100%;height:100%;object-fit:contain;filter:none;transform:none}
+.home-header-badge-caa img{padding:3px}
+.home-header-badge-autism img{position:absolute;width:100%;height:150%;max-width:none;top:-24%;left:0;object-fit:fill}
+.home-header .home-nav{gap:22px}
+@media(max-width:1100px) and (min-width:701px){.home-header .home-nav{gap:16px}.home-header-badge{width:52px;height:52px}}
+@media(max-width:700px){.home-header .home-nav{gap:10px}.home-header .home-logo{margin-right:auto;width:124px}.home-header-badges{gap:6px}.home-header-badge{width:46px;height:46px;border-radius:5px}.home-header .home-menu{width:36px;flex-shrink:0}.home-header-badge-caa img{padding:2px}}
+@media(max-width:360px){.home-header .home-nav{gap:8px}.home-header .home-logo{width:108px}.home-header-badge{width:42px;height:42px}.home-header-badges{gap:5px}}
