@@ -1,17 +1,19 @@
 "use client";
-import {useCallback,useEffect,useMemo,useState} from "react";
-import {createClient} from "@supabase/supabase-js";
+import {useCallback,useEffect,useState} from "react";
+import type {SupabaseClient} from "@supabase/supabase-js";
+import {supabaseBrowser} from "../lib/supabaseBrowser";
 type Player={id:string;first_name:string;last_name:string;programme:string};
 type Session={id:string;title:string;starts_at:string;programme:string};
 type Attendance={session_id:string;player_id:string;status:string};
 const statuses=["present","absent","late","excused"] as const;
 type Status=typeof statuses[number];
 const labels:Record<Status,string>={present:"Present",absent:"Absent",late:"Late",excused:"Excused"};
-export function SessionAttendance({userId,onCoachPlayer,onPlayerDevelopment,onSessionChange,initialSessionId=""}:{userId:string;onCoachPlayer?:(playerId:string,sessionId:string)=>void;onPlayerDevelopment?:(playerId:string)=>void;onSessionChange?:(sessionId:string)=>void;initialSessionId?:string}){
- const db=useMemo(()=>{const u=process.env.NEXT_PUBLIC_SUPABASE_URL,k=process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;return u&&k?createClient(u,k):null},[]);
+export function SessionAttendance({userId,onCoachPlayer,onPlayerDevelopment,onSessionChange,initialSessionId="",client=supabaseBrowser}:{client?:SupabaseClient|null;userId:string;onCoachPlayer?:(playerId:string,sessionId:string)=>void;onPlayerDevelopment?:(playerId:string)=>void;onSessionChange?:(sessionId:string)=>void;initialSessionId?:string}){
+ const db=client;
  const [sessions,setSessions]=useState<Session[]>([]),[players,setPlayers]=useState<Player[]>([]),[records,setRecords]=useState<Attendance[]>([]),[sessionId,setSessionId]=useState(initialSessionId),[message,setMessage]=useState(""),[busyId,setBusyId]=useState(""),[loading,setLoading]=useState(true),[search,setSearch]=useState("");
  const refresh=useCallback(async()=>{if(!db)return;setLoading(true);const [a,b,c]=await Promise.all([db.from("training_sessions").select("id,title,starts_at,programme").order("starts_at",{ascending:false}).limit(100),db.from("coaching_players").select("id,first_name,last_name,programme").order("first_name"),db.from("training_attendance").select("session_id,player_id,status")]);if(a.error||b.error||c.error)setMessage("Unable to load attendance records. Check staff access.");else{setSessions((a.data||[]) as Session[]);setPlayers((b.data||[]) as Player[]);setRecords((c.data||[]) as Attendance[])}setLoading(false)},[db]);
  useEffect(()=>{void refresh()},[refresh]);
+ useEffect(()=>{if(initialSessionId)setSessionId(initialSessionId)},[initialSessionId]);
  async function record(playerId:string,status:Status){if(!db||!sessionId||busyId)return;setBusyId(playerId);setMessage("");const previous=records.find(r=>r.session_id===sessionId&&r.player_id===playerId);setRecords(old=>[...old.filter(r=>!(r.session_id===sessionId&&r.player_id===playerId)),{session_id:sessionId,player_id:playerId,status}]);const {error}=await db.from("training_attendance").upsert({session_id:sessionId,player_id:playerId,status,recorded_by:userId,recorded_at:new Date().toISOString()},{onConflict:"session_id,player_id"});if(error){setRecords(old=>[...old.filter(r=>!(r.session_id===sessionId&&r.player_id===playerId)),...(previous?[previous]:[])]);setMessage("Attendance not saved: "+error.message)}setBusyId("")}
  const selected=sessions.find(s=>s.id===sessionId);const roster=players.filter(p=>p.programme===selected?.programme);const visible=roster.filter(p=>(p.first_name+" "+p.last_name).toLowerCase().includes(search.toLowerCase()));const sessionRecords=records.filter(r=>r.session_id===sessionId);const counts={present:0,absent:0,late:0,excused:0,unmarked:0};for(const p of roster){const r=sessionRecords.find(x=>x.player_id===p.id);if(r&&statuses.includes(r.status as Status))counts[r.status as Status]++;else counts.unmarked++}
  return <section className="star-training star-attendance-workflow"><span className="kicker">SESSION WORKSPACE</span><h3>Attendance & quick coaching</h3><p>Choose a session, tap once to mark attendance, then open coaching notes for an individual player. Changes save immediately. Only authorised staff can view or update records.</p>{message&&<p role="alert">{message}</p>}
