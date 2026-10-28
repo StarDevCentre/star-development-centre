@@ -66,6 +66,9 @@ These are business requirements provided in earlier planning; check with the own
 - Never fabricate a successful test, migration or deployment.
 
 ## Usage-efficient AI development workflow
+- Read `STAR_DEVELOPMENT.md` before making changes and follow its development guidelines.
+- Keep repository exploration to the smallest relevant set of files. Streamline operations to minimise ChatGPT usage allowance without compromising quality or reliability.
+- Do not run usability tests. The owner will report usability problems when fixes are needed. Retain focused code/build checks and relevant security/data validation.
 1. Prefer **Terra / Medium** for routine UI work and straightforward features. Escalate to **Sol / High** only for genuinely complex architecture, permissions, difficult debugging or high-risk changes. These are working preferences, not guarantees of specific usage savings.
 2. Start with a short implementation plan and identify the smallest set of relevant files. Do not repeatedly scan the entire repository unless necessary.
 3. Batch closely related requested changes into one coherent task; avoid scope creep and speculative redesigns.
@@ -90,3 +93,4 @@ These are business requirements provided in earlier planning; check with the own
 - Targeted checks and appropriate build passed (or failures transparently documented).
 - Production deployment completed and verified where safe and configured; otherwise state exactly why not.
 - Concise change summary and next actions.
+
