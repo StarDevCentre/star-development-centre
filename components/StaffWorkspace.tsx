@@ -4,6 +4,7 @@ import {StaffAppShell} from "./StaffAppShell";
 import {useStaffNavigation} from "./useStaffNavigation";
 import {staffCanManage,staffSections,type StaffRole,type StaffSection} from "../lib/staffApp";
 import {StaffHome} from "./StaffHome";
+import {StaffMediaGallery} from "./StaffMediaGallery";
 import {StaffCoachingProfile} from "./StaffCoachingProfile";
 import {StaffPlayers} from "./StaffPlayers";
 import {FamilyUnreadBadge} from "./FamilyUnreadBadge";
@@ -30,6 +31,7 @@ export function StaffWorkspace({userId,role,onSignOut}:{userId:string;role:Staff
  function panel(id:StaffSection){switch(id){
   case "overview":return <StaffHome active={section==="overview"&&!menuOpen} canManage={canManage} onNavigate={navigate}/>;
   case "workspace":return <SessionAttendance userId={userId} initialSessionId={sessionId} onSessionChange={setSessionId} onCoachPlayer={(player,session)=>navigate("records",player,session)} onPlayerDevelopment={player=>navigate("idps",player)}/>;
+  case "gallery":return <StaffMediaGallery userId={userId} canManage={canManage}/>;
   case "coachingProfiles":return <StaffCoachingProfile key={userId} userId={userId} canManage={canManage} initialPlayerId={profilePlayerId} selectionRequest={profileRequest} onNavigate={navigate}/>;
   case "players":return <StaffPlayers userId={userId} canManage={canManage} initialPlayerId={rosterPlayerId} selectionRequest={rosterRequest} onNote={id=>navigate("records",id)} onDevelopment={id=>navigate("idps",id)} onBadge={id=>navigate("badges",id)} onPositions={id=>navigate("coachingProfiles",id)}/>;
   case "sessions":return <TrainingPlanner userId={userId} canManage={canManage}/>;
