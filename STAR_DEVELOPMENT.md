@@ -37,7 +37,7 @@ These are business requirements provided in earlier planning; check with the own
 - Parent account first. Parents complete and submit onboarding from their own login; creating, activating or linking a separate player login is optional and can happen later.
 - Parent or player completes a saveable full player profile: football experience, goals, support needs, relevant health/emergency information and separate media consent choices.
 - Kit sizing means **training-top size and boot size only**.
-- A head-to-toe photograph is for identification and the private player profile; public promotional use requires separate choices.
+- A head-to-toe onboarding photograph is for private identification and must not populate the Player Space card. Players choose their card photo or avatar separately; public promotional use requires separate choices.
 - Keep the family journey simple: complete the form, review it, then use one prominent **Submit & request FREE assessment** action. Show a clear completion screen with a link back to the Parent Portal and explain that the parent can leave.
 - Keep player login setup and secure email-specific account linking under an optional section after submission; do not make parents wait for player activation or linking.
 - Submission validates and saves the completed form, records the parent’s participation/media confirmation and requests the **FREE 30-minute assessment and introduction** together. STAR confirms time and venue separately.

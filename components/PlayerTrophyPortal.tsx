@@ -38,6 +38,7 @@ export function PlayerTrophyPortal() {
   const [revision, setRevision] = useState(0);
   const [failed, setFailed] = useState(false);
   const authRevision = useRef(0);
+  const profileWrites = useRef(0);
   const identity = useRef<string|null>(null);
   const [actorRole,setActorRole] = useState<"player"|"guardian">("guardian");
   const [recovering,setRecovering] = useState(false);
@@ -62,6 +63,7 @@ export function PlayerTrophyPortal() {
     identity.current=user?.id||null; setFailed(false); setError("");
     if (!db || !user) return;
     const currentUserId = user.id;
+    const profileVersion = profileWrites.current;
     void (async () => {
       try {
         const [links,accounts]=await Promise.all([db.from("guardian_player_links").select("player_id").eq("guardian_id",currentUserId),db.from("player_account_links").select("player_id").eq("user_id",currentUserId)]);
@@ -87,8 +89,7 @@ export function PlayerTrophyPortal() {
           db.from("player_award_receipts").select("achievement_id").eq("guardian_id", currentUserId),
           db.from("player_cosmetic_unlocks").select("player_id,cosmetic,unlocked_at").in("player_id",ids),
           readHistoryPages((from,to)=>db!.from("player_goal_events").select("id,player_id,source_id,source,kind,goal,occurred_at").in("player_id",ids).order("occurred_at",{ascending:false}).order("id").range(from,to)),
-          loadPortalFeatures(ids,currentUserId).then(data=>({data,error:null})),
-          db.from("player_intakes").select("portal_player_id,photo_path").in("portal_player_id",ids)
+          loadPortalFeatures(ids,currentUserId).then(data=>({data,error:null}))
         ]);
         if (results.some(result => result.error)) throw new Error("Unable to load player data");
         const assignmentIds = (results[2].data || []).map(value => value.id);
@@ -103,14 +104,12 @@ export function PlayerTrophyPortal() {
         const feedbackRows=feedbackPages.flat().sort((a,b)=>b.reviewed_at.localeCompare(a.reviewed_at));
         const profiles = await Promise.all((results[7].data || []).map(async value => {
           const profile = value as unknown as SpaceProfile;
-          const intakePhoto=results[13].data?.find(i=>i.portal_player_id===profile.player_id)?.photo_path;
-          const path=profile.photo_path||intakePhoto;
-          if (!path) return profile;
-          const photo = await db!.storage.from(profile.photo_path?"player-card-photos":"player-intake-photos").createSignedUrl(path, 3600);
+          if (!profile.photo_path) return profile;
+          const photo = await db!.storage.from("player-card-photos").createSignedUrl(profile.photo_path, 3600);
           return { ...profile, photo_url: photo.data?.signedUrl };
         }));
         if (active) {
-          setData({ ...results[12].data, ballProgress, players: results[0].data || [], awards: results[1].data || [], assignments: results[2].data || [], goals: results[3].data || [], sessions: results[4].data || [], assessments: results[5].data || [], reports: results[6].data || [], profiles, personalGoals: results[8].data || [], celebrated: (results[9].data || []).map(value => value.achievement_id), unlocks:results[10].data || [], goalEvents:results[11].data || [], diary: diaryRows, feedback: feedbackRows } as SpaceData);
+          setData(current => ({ ...results[12].data, ballProgress, players: results[0].data || [], awards: results[1].data || [], assignments: results[2].data || [], goals: results[3].data || [], sessions: results[4].data || [], assessments: results[5].data || [], reports: results[6].data || [], profiles:profileVersion===profileWrites.current?profiles:current.profiles, personalGoals: results[8].data || [], celebrated: (results[9].data || []).map(value => value.achievement_id), unlocks:results[10].data || [], goalEvents:results[11].data || [], diary: diaryRows, feedback: feedbackRows } as SpaceData));
           setLoadedUserId(currentUserId);
         }
       } catch { if (active) { setError("We couldn’t load your player space. Please try again."); setFailed(!data.players.length); setLoadedUserId(currentUserId); } }
@@ -131,7 +130,7 @@ export function PlayerTrophyPortal() {
     const timer = window.setInterval(() => {
       void Promise.all(data.profiles.filter(p=>p.photo_path).map(async profile => {
         const result = await db!.storage.from("player-card-photos").createSignedUrl(profile.photo_path!, 3600);
-        if(active && result.data) setData(current=>({...current,profiles:current.profiles.map(p=>p.player_id===profile.player_id?{...p,photo_url:result.data.signedUrl}:p)}));
+        if(active && result.data) setData(current=>({...current,profiles:current.profiles.map(p=>p.player_id===profile.player_id&&p.photo_path===profile.photo_path?{...p,photo_url:result.data.signedUrl}:p)}));
       })).catch(()=>{});
     }, 30 * 60 * 1000);
     return () => { active=false; window.clearInterval(timer); };
@@ -180,6 +179,7 @@ export function PlayerTrophyPortal() {
       // Another family device may have created the first preferences row meanwhile.
       if (!old && result.error?.code==="23505") result = await db.from("player_space_profiles").update(change).eq("player_id",playerId).select().single();
       if(result.error || !result.data) throw new Error("Your card couldn’t be saved. Please try again.");
+      profileWrites.current++;
       const saved = { ...result.data, photo_url: photo===null ? undefined : photoUrl } as SpaceProfile;
       setData(current=>({...current,profiles:[...current.profiles.filter(p=>p.player_id!==playerId),saved]}));
     } catch(value) {
