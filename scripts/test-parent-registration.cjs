@@ -46,7 +46,7 @@ const dashboardStub=()=>null;
 function harness(file,props={}){
  const states=[],effects=[],pending=[];let stateCursor=0,effectCursor=0,tree;
  const hooks={...React,useRef(initial){const i=stateCursor++;if(!(i in states))states[i]={current:initial};return states[i]},useState(initial){const i=stateCursor++;if(!(i in states))states[i]=typeof initial==='function'?initial():initial;return [states[i],value=>{states[i]=typeof value==='function'?value(states[i]):value}]},useEffect(fn,deps){const i=effectCursor++;const previous=effects[i];if(!previous||!deps||deps.some((d,j)=>!Object.is(d,previous.deps[j]))){pending.push(()=>{previous?.cleanup?.();effects[i]={deps,cleanup:fn()}})}}};
- const mod=compile(file,name=>name==='react'?hooks:name==='react/jsx-runtime'?require('react/jsx-runtime'):name==='../lib/supabaseBrowser'?{supabaseBrowser:client}:name==='../lib/siteData'?data:name==='./ParentProgrammePrices'?{ParentProgrammePrices:pricesStub}:name==='./ParentDashboard'?{ParentDashboard:dashboardStub}:name==='./useParentUpdates'?{useParentUpdates:()=>({items:[],unread:0,loading:false,error:'',refresh:async()=>{},markRead:async()=>{}})}:name==='next/link'?{__esModule:true,default:'a'}:new Proxy({},{get:()=>()=>null}));
+ const mod=compile(file,name=>name==='react'?hooks:name==='react/jsx-runtime'?require('react/jsx-runtime'):name==='../lib/supabaseBrowser'?{supabaseBrowser:client}:name==='../lib/siteData'?data:name==='./ParentProgrammePrices'?{ParentProgrammePrices:pricesStub}:name==='./ParentExperience'?{ParentExperience:dashboardStub}:name==='./useParentUpdates'?{useParentUpdates:()=>({items:[],unread:0,loading:false,error:'',refresh:async()=>{},markRead:async()=>{}})}:name==='next/link'?{__esModule:true,default:'a'}:new Proxy({},{get:()=>()=>null}));
  const Component=Object.values(mod)[0];
  function render(){stateCursor=0;effectCursor=0;tree=Component(props);return tree}
  async function flush(){for(let i=0;i<4;i++){render();while(pending.length)pending.shift()();await new Promise(r=>setImmediate(r))}render()}
@@ -90,7 +90,7 @@ const event={preventDefault(){}};
  familyScenario='linked';
  const linked=harness('components/ParentPortal.tsx');await linked.flush();listener('SIGNED_IN',{user:fakeUser});await linked.flush();
  const dashboard=find(linked,n=>n.type===dashboardStub);
- assert.equal(dashboard.props.players[0].id,'qa-player');assert.equal(dashboard.props.sessions[0].player_id,'qa-player');
+ assert.equal(dashboard.props.ownerKey,fakeUser.id);assert.equal(dashboard.props.players[0].id,'qa-player');assert.equal(dashboard.props.sessions[0].player_id,'qa-player');
  familyScenario='failure';dashboard.props.onRefresh();await linked.flush();
  assert(text(linked.tree).includes('We couldn’t load her shared information.'));
  assert(!nodes(linked.tree).some(n=>n.type===dashboardStub),'Failed family loads must not look like an empty dashboard');
@@ -102,3 +102,4 @@ const event={preventDefault(){}};
  console.log('Passed: dashboard loads only approved linked players, family-load failure/retry, immediate account-change isolation and sign-out.');
  console.log('Passed: signup → email checkpoint → sign-in → parent profile → registration failure/retry → receipt/pricing; review-before-submit, retained details and age-based programme clearing. Auth and UI exercised with test doubles; email delivery requires a live-account test.');
 })().catch(e=>{console.error(e);process.exitCode=1});
+

@@ -29,15 +29,16 @@ export const pitchFormations: Formation[] = [
  formation(11, "4-5-1", [[76, ["LB", "LCB", "RCB", "RB"]], [47, ["LM", "LCM", "CM", "RCM", "RM"]], [20, ["ST"]]]),
  formation(11, "3-1-4-2", [[76, ["LCB", "CB", "RCB"]], [59, ["DM"]], [42, ["LM", "LCM", "RCM", "RM"]], [20, ["LST", "RST"]]])
 ];
+export type PitchCoachProfile={format:GameFormat;formation:string;main:RoleGroup|null;secondary:RoleGroup|null;mainLabel:string;secondaryLabel:string};
 // These are fictional coach selections, independent of families exploring formations.
 export const samplePitchProfiles: Record<string, { format: GameFormat; formation: string; main: RoleGroup; secondary: RoleGroup; mainLabel: string; secondaryLabel: string }> = {
  alex: { format: 9, formation: "2-4-2", main: "rightWide", secondary: "forward", mainLabel: "Right wing / wide midfield", secondaryLabel: "Striker" },
  sam: { format: 11, formation: "4-3-3", main: "centralMidfield", secondary: "leftWide", mainLabel: "Central midfield", secondaryLabel: "Left wing / wide midfield" }
 };
-export function positionStatus(slot: PitchSlot, profile: typeof samplePitchProfiles[string]) {
+export function positionStatus(slot: PitchSlot, profile: PitchCoachProfile) {
  return slot.group === profile.main ? "main" : slot.group === profile.secondary ? "secondary" : "explore";
 }
-export function selectFormationSlot(next: Formation, previous: PitchSlot | undefined, profile: typeof samplePitchProfiles[string]) {
+export function selectFormationSlot(next: Formation, previous: PitchSlot | undefined, profile: PitchCoachProfile) {
  return next.slots.find(s => s.id === previous?.id) || next.slots.find(s => s.group === previous?.group) || next.slots.find(s => s.group === profile.main) || next.slots.find(s => s.group === profile.secondary) || next.slots[0];
 }
 export function projectPitchPoint(point: Point, stadium = false): Point {
@@ -78,4 +79,5 @@ export function roleMovement(slot: PitchSlot, phase: PitchPhase, format: GameFor
  }
  return { points: [{ x: slot.x, y: slot.y }, middle, end].map(p => ({ x: clamp(p.x), y: clamp(p.y, 7, 93) })), labels, explanation: roleGuides[slot.group][phase] };
 }
+
 

@@ -3,7 +3,7 @@
 import type {ReactNode} from "react";
 import {activeSpaceLook,applySpaceLook,spaceAccents,spaceLooks,spaceScenes,type SpaceSettings} from "../lib/parentExperiencePreview";
 
-export function ParentSpaceDesignStudio({settings,onChange,onPreview,kit,defaultNumber}:{defaultNumber:string;settings:SpaceSettings;onChange:(patch:Partial<SpaceSettings>)=>void;onPreview:()=>void;kit:ReactNode}){
+export function ParentSpaceDesignStudio({settings,onChange,onPreview,kit,defaultNumber,live=false}:{live?:boolean;defaultNumber:string;settings:SpaceSettings;onChange:(patch:Partial<SpaceSettings>)=>void;onPreview:()=>void;kit:ReactNode}){
  const active=activeSpaceLook(settings),lookName=spaceLooks.find(l=>l.id===active)?.name||"Your custom mix";
  return <div className="ppx-design-studio">
   <div className="ppx-studio-heading"><div><span className="ppx-eyebrow">DESIGN YOUR SPACE / 01</span><h2>Same player. A whole new world.</h2><p>One tap changes the whole space.</p></div><span className="ppx-studio-current"><i/>{lookName}</span></div>
@@ -12,7 +12,7 @@ export function ParentSpaceDesignStudio({settings,onChange,onPreview,kit,default
     <span className={`ppx-look-art ppx-look-art-${look.id}`} aria-hidden="true"><span className="ppx-look-ribbon"/><span className="ppx-look-type">HER GAME.<br/>HER SPACE.</span><span className="ppx-look-shirt">7</span><span className="ppx-look-panels"><i/><i/><i/></span></span>
     <span className="ppx-look-title">{look.name}<span>{active===look.id?"✓":"↗"}</span></span><small>{look.description}</small>
    </button>)}</div>
-   <div className="ppx-studio-live"><div className="ppx-studio-preview"><span className="ppx-eyebrow">YOUR LIVE PREVIEW</span><div className="ppx-studio-preview-copy">HER GAME.<br/><span>HER SPACE.</span></div><div className={`ppx-studio-kit ${settings.hero==="photo"?"ppx-studio-photo":""}`}>{settings.hero==="photo"?<img src="/images/star-player-grass.webp" alt="Example STAR coaching photo"/>:kit}</div><div className="ppx-studio-player">{settings.name||"YOUR STAR"}<span>#{settings.number||"7"}</span></div><div className="ppx-studio-sample-panels"><span>PROGRESS<i/></span><span>HER NEXT STEP<i/></span></div></div><button className="ppx-gold-btn" onClick={onPreview}>See the full home screen <span aria-hidden="true">→</span></button><p className="ppx-caption">Changes apply as you choose. Each sample player keeps her own look on this browser.</p></div>
+   <div className="ppx-studio-live"><div className="ppx-studio-preview"><span className="ppx-eyebrow">YOUR LIVE PREVIEW</span><div className="ppx-studio-preview-copy">HER GAME.<br/><span>HER SPACE.</span></div><div className={`ppx-studio-kit ${settings.hero==="photo"?"ppx-studio-photo":""}`}>{settings.hero==="photo"?<img src="/images/star-player-grass.webp" alt="Example STAR coaching photo"/>:kit}</div><div className="ppx-studio-player">{settings.name||"YOUR STAR"}<span>#{settings.number||"7"}</span></div><div className="ppx-studio-sample-panels"><span>PROGRESS<i/></span><span>HER NEXT STEP<i/></span></div></div><button className="ppx-gold-btn" onClick={onPreview}>See the full home screen <span aria-hidden="true">→</span></button><p className="ppx-caption">Changes apply as you choose. {live?"Each player":"Each sample player"} keeps her own look on this browser.</p></div>
   </div>
   <div className="ppx-studio-heading ppx-studio-mix-heading"><div><span className="ppx-eyebrow">MAKE IT YOURS / 02</span><h2>Mix it up.</h2><p>The backdrop, the lights, the layout. You choose.</p></div></div>
   <div className="ppx-studio-controls">
@@ -26,3 +26,4 @@ export function ParentSpaceDesignStudio({settings,onChange,onPreview,kit,default
   <div className="ppx-card ppx-studio-comfort"><div><span className="ppx-eyebrow">MAKE IT COMFORTABLE / 03</span><h2>Your space. Your pace.</h2><p className="ppx-muted">Keep the energy you enjoy and dial back the rest.</p></div><div><label className="ppx-toggle-row"><span><strong>Motion & depth</strong><small>Moving light, floating shirt and gentle transitions</small></span><input type="checkbox" checked={settings.motion} onChange={e=>onChange({motion:e.target.checked})}/></label><label className="ppx-toggle-row"><span><strong>Compact cards</strong><small>Fit a little more into your home screen</small></span><input type="checkbox" checked={settings.compact} onChange={e=>onChange({compact:e.target.checked})}/></label><p className="ppx-caption">Your device’s reduced-motion setting is always respected.</p></div></div>
  </div>;
 }
+

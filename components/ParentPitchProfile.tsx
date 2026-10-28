@@ -3,7 +3,7 @@
 import { useEffect, useId, useRef, useState, type CSSProperties } from "react";
 import { ParentPitchStadium, PitchPlayerShirt } from "./ParentPitchStadium";
 import { previewDevelopmentPlans } from "../lib/parentExperiencePreview";
-import { pitchFormations, positionStatus, projectPitchPoint, roleGuides, roleMovement, samplePitchProfiles, selectFormationSlot, type Formation, type GameFormat, type PitchPhase, type PitchSlot } from "../lib/parentPitchPreview";
+import { pitchFormations, positionStatus, projectPitchPoint, roleGuides, roleMovement, samplePitchProfiles, selectFormationSlot, type Formation, type GameFormat, type PitchPhase, type PitchSlot, type PitchCoachProfile } from "../lib/parentPitchPreview";
 
 function PitchLines({ stadium = false }: { stadium?: boolean }) {
  const path = (points: { x: number; y: number }[]) => points.map((p, i) => { const c = projectPitchPoint(p, stadium); return `${i ? "L" : "M"}${c.x},${c.y}`; }).join(" ");
@@ -25,8 +25,9 @@ export function PitchProfilePreviewCard({ playerId, name, onOpen }: { playerId: 
  return <><div className="ppx-card-top"><span className="ppx-eyebrow">HER PLACE ON THE PITCH</span><span className="ppx-example-chip">SAMPLE</span></div><div className="ppx-pitch-preview-layout"><div><h2>Explore her game.</h2><p>See {name}’s positions and discover what each role involves.</p><div className="ppx-pitch-preview-role"><span>★ MAIN</span><strong>{profile.mainLabel}</strong><span>◎ SECONDARY</span><strong>{profile.secondaryLabel}</strong></div></div><svg className="ppx-pitch-mini" viewBox="0 0 600 720" aria-hidden="true"><PitchLines/>{formation.slots.map(s => { const p = projectPitchPoint(s), status = positionStatus(s, profile); return <g key={s.id}><circle cx={p.x} cy={p.y} r={status === "explore" ? 13 : 19} fill={status === "main" ? "var(--ppx-accent)" : "#142c44"} stroke={status === "explore" ? "#819bb0" : "var(--ppx-accent)"} strokeWidth={status === "secondary" ? 5 : 2}/>{status === "main" && <text x={p.x} y={p.y + 7} textAnchor="middle" fill="#071120" fontSize="23">★</text>}</g>; })}</svg></div><button className="ppx-text-btn" onClick={onOpen}>Open her pitch profile <span aria-hidden="true">↗</span></button></>;
 }
 
-export function ParentPitchProfile({ playerId, name, motion }: { playerId: string; name: string; motion: boolean }) {
- const profile = samplePitchProfiles[playerId], plan = previewDevelopmentPlans[playerId];
+export function ParentPitchProfile({ playerId, name, motion, coachProfile, developmentPlan, live=false }: { playerId: string; name: string; motion: boolean; coachProfile?:PitchCoachProfile|null; developmentPlan?:{strengths:string[];targets:string[];label:string}; live?:boolean }) {
+ const profile:PitchCoachProfile = live ? coachProfile||{format:11,formation:"4-3-3",main:null,secondary:null,mainLabel:"Not yet shared",secondaryLabel:"Not yet shared"} : samplePitchProfiles[playerId];
+ const plan = live ? developmentPlan||{strengths:[],targets:[],label:"No development plan shared yet"} : {...previewDevelopmentPlans[playerId],label:"Sample coach-recorded plan · October"};
  const [format, setFormat] = useState<GameFormat>(profile.format);
  const [formationId, setFormationId] = useState(profile.formation);
  const formation = pitchFormations.find(f => f.format === format && f.id === formationId)!;
@@ -58,8 +59,8 @@ export function ParentPitchProfile({ playerId, name, motion }: { playerId: strin
    {!canAnimate && <p className="ppx-caption">Motion is off. Use the three steps to explore the positions.</p>}
  </>;
  return <article className={`ppx-card ppx-pitch-profile ${stadium ? "ppx-pitch-stadium" : ""} ${canAnimate && playing ? "ppx-pitch-motion" : ""}`} aria-labelledby="ppx-pitch-title">
-  <div className="ppx-pitch-heading"><div><span className="ppx-eyebrow">HER POSITION. MORE POSSIBILITIES.</span><h2 id="ppx-pitch-title" tabIndex={-1}>{name}’s pitch profile.</h2><p>Tap a position. See the role. Explore the movement.</p></div><span className="ppx-example-chip">FICTIONAL COACH PROFILE</span></div>
-  <div className="ppx-pitch-assignments"><div><span>★ MAIN POSITION</span><strong>{profile.mainLabel}</strong></div><div><span>◎ SECONDARY POSITION</span><strong>{profile.secondaryLabel}</strong></div><small>Set by her coach</small></div>
+  <div className="ppx-pitch-heading"><div><span className="ppx-eyebrow">HER POSITION. MORE POSSIBILITIES.</span><h2 id="ppx-pitch-title" tabIndex={-1}>{name}’s pitch profile.</h2><p>Tap a position. See the role. Explore the movement.</p></div><span className="ppx-example-chip">{live ? "POSITION EXPLORER" : "FICTIONAL COACH PROFILE"}</span></div>
+  <div className="ppx-pitch-assignments"><div><span>★ MAIN POSITION</span><strong>{profile.mainLabel}</strong></div><div><span>◎ SECONDARY POSITION</span><strong>{profile.secondaryLabel}</strong></div><small>{live&&!coachProfile ? "Explore the roles with her coach" : "Set by her coach"}</small></div>
   <div className="ppx-pitch-toolbar"><div className="ppx-pitch-segment" role="group" aria-label="Pitch game format">{([9, 11] as const).map(value => <button key={value} aria-pressed={format === value} onClick={() => { if (value !== format) chooseFormation(pitchFormations.find(f => f.format === value)!); }}>{value}-a-side</button>)}</div><label className="ppx-pitch-formation">Formation<select aria-label="Pitch formation" value={formationId} onChange={e => chooseFormation(pitchFormations.find(f => f.format === format && f.id === e.target.value)!)}>{pitchFormations.filter(f => f.format === format).map(f => <option key={f.id}>{f.id}</option>)}</select></label><div className="ppx-pitch-segment ppx-pitch-view" role="group" aria-label="Pitch view"><button aria-pressed={!stadium} onClick={() => setStadium(false)}>Tactical</button><button aria-pressed={stadium} onClick={() => setStadium(true)}>Stadium</button></div></div>
   <div className="ppx-pitch-layout"><div className="ppx-pitch-left"><div ref={surfaceRef} className="ppx-pitch-surface" role="group" aria-label={`${format}-a-side ${formationId} pitch. Choose a position.`}>
    <div className="ppx-pitch-floodlights" aria-hidden="true"/><div className="ppx-pitch-direction" aria-hidden="true">ATTACKING ↑</div>
@@ -69,12 +70,13 @@ export function ParentPitchProfile({ playerId, name, motion }: { playerId: strin
     return <button key={s.id} className={`ppx-pitch-player ppx-pitch-player-${kind} ${selected ? "ppx-pitch-player-selected" : ""}`} style={{ left: `${p.x / 6}%`, top: `${p.y / 7.2}%`, "--pitch-player-depth": .82 + ground.y * .002 } as CSSProperties} onClick={() => chooseSlot(s)} aria-pressed={selected} aria-label={`${s.label}${kind === "main" ? `, ${name}’s main position` : kind === "secondary" ? `, ${name}’s secondary position` : ""}`}>{stadium ? <PitchPlayerShirt label={s.short} keeper={s.group === "keeper"}/> : <span>{s.short}</span>}{kind !== "explore" && <small aria-hidden="true">{kind === "main" ? "★" : "◎"}</small>}</button>;
    })}
    <span className="ppx-pitch-home-goal" aria-hidden="true">HER TEAM’S GOAL</span>
-  </div><div className="ppx-pitch-mobile-controls"><strong className="ppx-pitch-mobile-role">{slot.label}</strong>{movementControls}</div><div className="ppx-pitch-legend"><span>★ Main</span><span>◎ Secondary</span><span>○ Other roles</span></div><p className="ppx-caption">Browse formations freely. Her coach-set positions stay the same.</p></div>
+  </div><div className="ppx-pitch-mobile-controls"><strong className="ppx-pitch-mobile-role">{slot.label}</strong>{movementControls}</div><div className="ppx-pitch-legend"><span>★ Main</span><span>◎ Secondary</span><span>○ Other roles</span></div><p className="ppx-caption">{live&&!coachProfile ? "Explore any formation. This does not assign her a position." : "Browse formations freely. Her coach-set positions stay the same."}</p></div>
   <div className="ppx-pitch-detail"><div className="ppx-pitch-role-title"><span className="ppx-eyebrow">{status === "main" ? `★ ${name.toUpperCase()}’S MAIN POSITION` : status === "secondary" ? `◎ ${name.toUpperCase()}’S SECONDARY POSITION` : "EXPLORING A DIFFERENT ROLE"}</span><h3>{slot.label}</h3><p>{roleGuides[slot.group].summary}</p></div>
    <p className="ppx-pitch-explanation">{movement.explanation}</p><div className="ppx-pitch-desktop-controls">{movementControls}</div>
    <p className="ppx-caption">One example movement. Match decisions depend on the ball, teammates and opponents. Follow her club coach’s team instructions.</p>
-   <div className="ppx-pitch-plan"><span className="ppx-eyebrow">FROM {name.toUpperCase()}’S CURRENT DEVELOPMENT PLAN</span><h4>Her strengths</h4><ul>{plan.strengths.map(s => <li key={s}>{s}</li>)}</ul><h4>Her development targets</h4><ul>{plan.targets.map(s => <li key={s}>{s}</li>)}</ul><small>Sample coach-recorded plan · October</small></div>
+   <div className="ppx-pitch-plan"><span className="ppx-eyebrow">FROM {name.toUpperCase()}’S CURRENT DEVELOPMENT PLAN</span><h4>Her strengths</h4>{plan.strengths.length?<ul>{plan.strengths.map(s => <li key={s}>{s}</li>)}</ul>:<p className="ppx-caption">No strengths summary shared yet.</p>}<h4>Her development targets</h4>{plan.targets.length?<ul>{plan.targets.map(s => <li key={s}>{s}</li>)}</ul>:<p className="ppx-caption">No development targets shared yet.</p>}<small>{plan.label}</small></div>
   </div></div>
  </article>;
 }
+
 

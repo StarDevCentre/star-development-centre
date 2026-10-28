@@ -35,8 +35,8 @@ export const spaceLooks:SpaceLook[]=[
 export function applySpaceLook(settings:SpaceSettings,id:string):SpaceSettings{const look=spaceLooks.find(l=>l.id===id);return look?{...settings,...look.settings}:settings;}
 export function activeSpaceLook(settings:SpaceSettings){return spaceLooks.find(l=>(Object.keys(l.settings) as (keyof SpaceLook["settings"])[]).every(k=>settings[k]===l.settings[k]))?.id||"custom";}
 export const samplePlayers=[{id:"alex",name:"Alex",number:"7",programme:"Flyers",position:"Finding her confidence",coach:"Dean",focus:"Look up before receiving the ball",session:"Individual development",time:"17:30–18:30",venue:"STAR training ground · Sample venue"},{id:"sam",name:"Sam",number:"11",programme:"Prestige",position:"Making the game her own",coach:"Becky",focus:"Turn into space with her first touch",session:"Technical development",time:"18:30–19:30",venue:"STAR training ground · Sample venue"}];
-export function defaultSpace(player=samplePlayers[0]):SpaceSettings{return {...spaceLooks[0].settings,motion:true,compact:false,order:[...homeWidgets],hidden:[],wide:["progress"],name:player.name.toUpperCase(),number:player.number,hero:"shirt"};}
-export function safeSpace(value:unknown,player=samplePlayers[0]):SpaceSettings{
+export function defaultSpace(player:{name:string;number:string}=samplePlayers[0]):SpaceSettings{return {...spaceLooks[0].settings,motion:true,compact:false,order:[...homeWidgets],hidden:[],wide:["progress"],name:player.name.toUpperCase(),number:player.number,hero:"shirt"};}
+export function safeSpace(value:unknown,player:{name:string;number:string}=samplePlayers[0]):SpaceSettings{
  const d=defaultSpace(player);if(!value||typeof value!=="object")return d;const v=value as Partial<SpaceSettings>;
  const widgets=(a:unknown)=>Array.isArray(a)?a.filter((x):x is Widget=>homeWidgets.includes(x)).filter((x,i,a)=>a.indexOf(x)===i):[];
  const order=widgets(v.order);
@@ -64,3 +64,4 @@ export const previewDevelopmentPlans: Record<string, { strengths: string[]; targ
  alex: { strengths: ["Taking her first touch into space more often.", "Willing to try a new idea, even when it feels unfamiliar."], targets: [samplePlayers[0].focus, "Notice the defender before the ball arrives."] },
  sam: { strengths: ["Finding space to receive a pass.", "Exploring a turn she feels comfortable using."], targets: [samplePlayers[1].focus, "Look for a teammate after turning."] }
 };
+
