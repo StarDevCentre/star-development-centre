@@ -1,0 +1,15 @@
+"use client";
+import {useEffect,useState} from 'react';
+import Link from 'next/link';
+import {supabaseBrowser as db} from '../lib/supabaseBrowser';
+import './parent-assessment-status.css';
+type Assessment={id:string;first_name:string;portal_player_id:string|null;assessment_status:string;assessment_requested_at:string|null;assessment_starts_at:string|null;assessment_venue:string|null;assessment_message:string|null};
+export function ParentAssessmentStatus({guardianId,playerId}:{guardianId:string;playerId?:string}){
+ const[rows,setRows]=useState<Assessment[]>([]),[loading,setLoading]=useState(true),[error,setError]=useState(false),[revision,setRevision]=useState(0);
+ useEffect(()=>{if(!db)return;let active=true;setLoading(true);setError(false);let query=db.from('player_intakes').select('id,first_name,portal_player_id,assessment_status,assessment_requested_at,assessment_starts_at,assessment_venue,assessment_message').eq('guardian_id',guardianId).not('assessment_requested_at','is',null).order('assessment_requested_at',{ascending:false});if(playerId)query=query.eq('portal_player_id',playerId);void Promise.resolve(query).then(r=>{if(!active)return;if(r.error)setError(true);else setRows(r.data||[]);setLoading(false);}).catch(()=>{if(active){setError(true);setLoading(false);}});return()=>{active=false;};},[guardianId,playerId,revision]);
+ useEffect(()=>{const refresh=()=>setRevision(v=>v+1);window.addEventListener('focus',refresh);return()=>window.removeEventListener('focus',refresh);},[]);
+ if(loading)return null;
+ if(error)return <section className="parent-assessment-card"><p>We couldn’t load your assessment details.</p><button type="button" onClick={()=>setRevision(v=>v+1)}>Try again</button></section>;
+ if(!rows.length)return null;
+ return <div className="parent-assessment-list">{rows.map(a=><section className="parent-assessment-card" key={a.id}><span className="parent-assessment-kicker">FREE 30-MINUTE INTRODUCTION</span><h2>{a.first_name}’s assessment</h2>{a.assessment_status==='confirmed'&&a.assessment_starts_at?<><p className="parent-assessment-badge">✓ Confirmed</p><p><strong>{new Date(a.assessment_starts_at).toLocaleString('en-GB',{timeZone:'Europe/London',weekday:'long',day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'})}</strong> <span>UK time</span></p><p><strong>Venue:</strong> {a.assessment_venue}</p></>:a.assessment_status==='completed'?<><p className="parent-assessment-badge">✓ Completed</p><p>Thank you for coming to meet STAR.</p></>:a.assessment_status==='cancelled'?<><p className="parent-assessment-badge">Assessment cancelled</p><p>Contact STAR if you would like to discuss another time.</p></>:<><p className="parent-assessment-badge">Request received</p><p>STAR will be in touch to agree a date, time and venue with you.</p></>}{a.assessment_message&&<p className="parent-assessment-message">{a.assessment_message}</p>}<div className="parent-assessment-links"><Link href="/onboarding">View player form →</Link><a href="https://wa.me/447902594064">Contact STAR ↗</a></div></section>)}</div>;
+}

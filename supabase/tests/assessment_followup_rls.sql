@@ -1,0 +1,32 @@
+-- Synthetic accounts only; all data is rolled back.
+begin;
+create temp table followup_test(key text primary key,value text);
+grant select,insert on followup_test to authenticated;
+do $$declare g uuid:=gen_random_uuid();o uuid:=gen_random_uuid();m uuid:=gen_random_uuid();begin
+ insert into auth.users(id,email,aud,role,email_confirmed_at,created_at,updated_at) values(g,'followup-parent-'||g||'@example.invalid','authenticated','authenticated',now(),now(),now()),(o,'followup-other-'||o||'@example.invalid','authenticated','authenticated',now(),now(),now()),(m,'followup-manager-'||m||'@example.invalid','authenticated','authenticated',now(),now(),now());
+ insert into public.guardian_profiles(user_id,display_name) values(g,'Synthetic parent');insert into public.staff_members(user_id,role,active) values(m,'manager',true);
+ insert into followup_test values('parent',g::text),('other',o::text),('manager',m::text);
+ if has_function_privilege('anon','public.set_assessment_contact(uuid,boolean)','EXECUTE') then raise exception 'Anonymous contact update allowed';end if;
+end$$;
+set local role authenticated;
+select set_config('request.jwt.claim.sub',(select value from followup_test where key='parent'),true);
+do $$declare r public.player_intakes;begin r:=public.intake_create('guardian');insert into followup_test values('intake',r.id::text);end$$;
+reset role;
+update public.player_intakes set assessment_status='requested',assessment_requested_at=now() where id=(select value::uuid from followup_test where key='intake');
+set local role authenticated;
+select set_config('request.jwt.claim.sub',(select value from followup_test where key='parent'),true);
+do $$begin begin perform public.set_assessment_contact((select value::uuid from followup_test where key='intake'),true);raise exception 'TEST FAILED parent marked contact';exception when others then if sqlerrm like 'TEST FAILED%' then raise;end if;end;end$$;
+select set_config('request.jwt.claim.sub',(select value from followup_test where key='other'),true);
+do $$begin if exists(select 1 from public.player_intakes where id=(select value::uuid from followup_test where key='intake')) then raise exception 'Other family can read request';end if;begin perform public.set_assessment_contact((select value::uuid from followup_test where key='intake'),true);raise exception 'TEST FAILED unrelated account marked contact';exception when others then if sqlerrm like 'TEST FAILED%' then raise;end if;end;end$$;
+select set_config('request.jwt.claim.sub',(select value from followup_test where key='manager'),true);
+do $$declare a timestamptz;b timestamptz;begin a:=public.set_assessment_contact((select value::uuid from followup_test where key='intake'),true);b:=public.set_assessment_contact((select value::uuid from followup_test where key='intake'),true);if a is null or b is distinct from a then raise exception 'Contact marker not saved or idempotent';end if;perform public.set_assessment_contact((select value::uuid from followup_test where key='intake'),false);if exists(select 1 from public.player_intakes where id=(select value::uuid from followup_test where key='intake') and assessment_contacted_at is not null) then raise exception 'Undo failed';end if;perform public.set_assessment_contact((select value::uuid from followup_test where key='intake'),true);end$$;
+reset role;
+update public.player_intakes set assessment_status='confirmed',assessment_starts_at=now()+interval '1 day',assessment_venue='Synthetic venue',assessment_message='Synthetic arrangements' where id=(select value::uuid from followup_test where key='intake');
+set local role authenticated;
+select set_config('request.jwt.claim.sub',(select value from followup_test where key='parent'),true);
+do $$begin if not exists(select 1 from public.player_intakes where id=(select value::uuid from followup_test where key='intake') and assessment_status='confirmed' and assessment_venue='Synthetic venue' and assessment_message='Synthetic arrangements') then raise exception 'Parent cannot see confirmed assessment';end if;end$$;
+reset role;
+update public.player_intakes set assessment_requested_at=assessment_requested_at+interval '1 second' where id=(select value::uuid from followup_test where key='intake');
+do $$begin if exists(select 1 from public.player_intakes where id=(select value::uuid from followup_test where key='intake') and assessment_contacted_at is not null) then raise exception 'New request retained prior contact status';end if;end$$;
+rollback;
+select 'PASS: manager-only contact tracking; idempotent marking and undo; new-request reset; parent-only assessment visibility; synthetic fixtures rolled back' as result;

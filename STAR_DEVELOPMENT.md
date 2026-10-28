@@ -43,7 +43,7 @@ These are business requirements provided in earlier planning; check with the own
 - Submission validates and saves the completed form, records the parent’s participation/media confirmation and requests the **FREE 30-minute assessment and introduction** together. STAR confirms time and venue separately.
 - On parent submission, `/onboarding` creates the family’s own Player Space under the **Assessment** programme. This does not enrol the player in a paid programme. Its stored `portal_player_id` connects both portals to one profile; existing approved onboarding links are carried through. Never match existing coaching records by name or grant access to a different family’s record.
 - Account linking uses the invited person’s verified email and one named **Connect** action in Player Space or onboarding. Do not ask families to copy account IDs or invitation codes. A connected player opens the same profile on later sign-ins. Keep onboarding and Player Space links consistent when access is revoked.
-- Staff managers manage assessment requests at Staff Portal → Onboarding & assessments. New profile edits invalidate parent review.
+- Staff managers manage assessment requests at Staff Portal → Onboarding & assessments, and can record when they have contacted a family. This marker records a manual action; it does not send a message. Parents can see their assessment status and confirmed arrangements in the Parent Portal. New profile edits invalidate parent review.
 
 ## Portal product intent
 ### Player Space
