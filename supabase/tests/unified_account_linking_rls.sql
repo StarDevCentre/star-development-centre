@@ -77,6 +77,15 @@ do $$declare r public.player_intakes;begin
  if r.portal_player_id<>(select value::uuid from account_link_test where key='mapped') then raise exception 'Resubmission created a second Player Space';end if;
  delete from public.player_account_links where user_id=(select value::uuid from account_link_test where key='player');
  if exists(select 1 from public.player_intakes where id=r.id and player_user_id is not null) then raise exception 'Revoking player access left onboarding linked';end if;
+end$$;
+reset role;
+delete from public.guardian_player_links where guardian_id=(select value::uuid from account_link_test where key='guardian') and player_id=(select value::uuid from account_link_test where key='mapped');
+set local role authenticated;
+select set_config('request.jwt.claim.sub',(select value from account_link_test where key='guardian'),true);
+do $$declare r public.player_intakes;begin
+ select * into r from public.player_intakes where id=(select value::uuid from account_link_test where key='intake');
+ begin perform public.intake_submit(r.id,r.version,r.first_name,r.last_name,r.date_of_birth,r.details,r.photo_path,true);raise exception 'TEST FAILED saved intake restored staff-revoked family access';exception when others then if sqlerrm like 'TEST FAILED%' then raise;end if;end;
+ if exists(select 1 from public.guardian_player_links where player_id=r.portal_player_id) then raise exception 'Revoked family link was restored';end if;
  -- Existing enrolled players use the same email-and-accept flow.
  perform public.request_player_link((select value::uuid from account_link_test where key='core'),(select value from account_link_test where key='email'));
 end$$;
@@ -91,4 +100,4 @@ do $$begin
 end$$;
 reset role;
 rollback;
-select 'PASS: parent-only submission opens own Assessment profile; invitation before signup; verified recipient only; named one-click acceptance; stable fresh sign-in; private photo; family isolation; no second profile; revocation consistency; enrolled-player email invitations; all fixtures rolled back' as result;
+select 'PASS: parent-only submission opens own Assessment profile; invitation before signup; verified recipient only; named one-click acceptance; stable fresh sign-in; private photo; family isolation; no second profile; revocation consistency; staff revocation cannot be bypassed; enrolled-player email invitations; all fixtures rolled back' as result;
