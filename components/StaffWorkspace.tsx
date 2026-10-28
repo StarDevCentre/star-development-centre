@@ -3,6 +3,7 @@ import {useState} from "react";
 import {StaffAppShell} from "./StaffAppShell";
 import {useStaffNavigation} from "./useStaffNavigation";
 import {staffCanManage,staffSections,type StaffRole,type StaffSection} from "../lib/staffApp";
+import {StaffOnboarding} from "./StaffOnboarding";
 import {StaffHome} from "./StaffHome";
 import {StaffMediaGallery} from "./StaffMediaGallery";
 import {StaffCoachingProfile} from "./StaffCoachingProfile";
@@ -43,6 +44,7 @@ export function StaffWorkspace({userId,role,onSignOut}:{userId:string;role:Staff
   case "playerSpace":return <StaffPlayerSpaceHub userId={userId} canManage={canManage}/>;
   case "communications":return canManage?<FamilyCommunications userId={userId} role="staff" active={section==="communications"&&!menuOpen}/>:null;
   case "sessionRequests":return canManage?<SessionChangeRequests userId={userId} role="staff"/>:null;
+  case "onboarding":return canManage?<StaffOnboarding/>:null;
   case "admissions":return canManage?<AdmissionsManagement userId={userId}/>:null;
   case "familyPublishing":return canManage?<FamilyPublishing userId={userId} initialPlayerId={publishingPlayerId} selectionRequest={publishingRequest}/>:null;
   case "families":return canManage?<FamilyAccessAdmin userId={userId}/>:null;
