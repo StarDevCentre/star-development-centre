@@ -16,7 +16,7 @@ create table public.player_media (
  title text not null check(length(trim(title)) between 1 and 100), caption text not null default '' check(length(caption)<=1000),
  status text not null default 'uploading' check(status in ('uploading','draft','shared','removed')),
  revision bigint not null default 1, created_at timestamptz not null default now(), created_by uuid not null references auth.users(id),
- changed_at timestamptz not null default now(), shared_at timestamptz,
+ changed_at timestamptz not null default now(), shared_at timestamptz, purged_at timestamptz,
  check(object_path=player_id::text||'/'||id::text||case mime_type when 'image/jpeg' then '.jpg' when 'image/png' then '.png' when 'image/webp' then '.webp' when 'video/mp4' then '.mp4' when 'video/webm' then '.webm' when 'video/quicktime' then '.mov' end),
  check(mime_type not like 'image/%' or file_size<=8388608)
 );
@@ -48,7 +48,7 @@ create policy gallery_object_delete on storage.objects for delete to authenticat
 );
 -- Storage delete also needs SELECT; allow only the delete operation for tombstones.
 create policy gallery_removed_cleanup_read on storage.objects for select to authenticated using (
- bucket_id='player-coaching-media' and storage.allow_only_operation('object.delete') and exists(select 1 from public.player_media m where m.object_path=name and m.status='removed' and star_private.gallery_staff(m.player_id))
+ bucket_id='player-coaching-media' and storage.allow_any_operation(array['object.delete','object.delete_many']) and exists(select 1 from public.player_media m where m.object_path=name and m.status='removed' and star_private.gallery_staff(m.player_id))
 );
 create function public.set_player_media_consent(target_player uuid,permission boolean) returns public.player_media_consent
 language plpgsql security definer set search_path='' as $$
@@ -87,7 +87,7 @@ begin
  parent:=exists(select 1 from public.guardian_player_links l where l.player_id=r.player_id and l.guardian_id=auth.uid());
  if not staff and not (parent and media_action='remove' and r.status='shared') then raise insufficient_privilege; end if;
  if expected_revision is null or r.revision<>expected_revision then raise serialization_failure using message='This item changed. Refresh and review it again'; end if;
- if r.status='removed' then raise check_violation using message='Item already removed'; end if;
+ if r.status='removed' and media_action<>'purge' then raise check_violation using message='Item already removed'; end if;
  if media_action in ('finish','share') then
   if not exists(select 1 from public.player_media_consent where player_id=r.player_id and allowed) then raise insufficient_privilege using message='Parent media permission is required'; end if;
   if not exists(select 1 from storage.objects o where o.bucket_id='player-coaching-media' and o.name=r.object_path and (o.metadata->>'size')::bigint=r.file_size and o.metadata->>'mimetype'=r.mime_type) then raise check_violation using message='Upload is incomplete or does not match this item'; end if;
@@ -97,8 +97,11 @@ begin
  elsif media_action='unshare' and r.status='shared' and manager then r.status:='draft';r.shared_at:=null;
  elsif media_action='edit' and r.status='draft' and staff then r.title:=trim(new_title);r.caption:=coalesce(new_caption,'');
  elsif media_action='remove' then r.status:='removed';r.shared_at:=null;
+ elsif media_action='purge' and r.status='removed' and staff then
+  if exists(select 1 from storage.objects o where o.bucket_id='player-coaching-media' and o.name=r.object_path) then raise check_violation using message='Stored file still exists'; end if;
+  r.purged_at:=clock_timestamp();
  else raise insufficient_privilege using message='This action is not available'; end if;
- update public.player_media set status=r.status,title=r.title,caption=r.caption,shared_at=r.shared_at,revision=revision+1,changed_at=clock_timestamp() where id=r.id returning * into r;
+ update public.player_media set status=r.status,title=r.title,caption=r.caption,shared_at=r.shared_at,purged_at=r.purged_at,revision=revision+1,changed_at=clock_timestamp() where id=r.id returning * into r;
  insert into public.player_media_events(player_id,media_id,action,actor_id) values(r.player_id,r.id,media_action,auth.uid());return r;
 end $$;
 revoke all on function public.set_player_media_consent(uuid,boolean),public.reserve_player_media(uuid,text,text,text,bigint),public.change_player_media(uuid,bigint,text,text,text) from public,anon;

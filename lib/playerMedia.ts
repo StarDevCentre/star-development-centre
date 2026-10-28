@@ -1,7 +1,7 @@
 import type {SupabaseClient} from '@supabase/supabase-js';
 export const mediaBucket='player-coaching-media';
-export const mediaFields='id,player_id,object_path,mime_type,file_size,title,caption,status,revision,created_at,shared_at';
-export type PlayerMedia={id:string;player_id:string;object_path:string;mime_type:string;file_size:number;title:string;caption:string;status:'uploading'|'draft'|'shared'|'removed';revision:number;created_at:string;shared_at:string|null};
+export const mediaFields='id,player_id,object_path,mime_type,file_size,title,caption,status,revision,created_at,shared_at,purged_at';
+export type PlayerMedia={id:string;player_id:string;object_path:string;mime_type:string;file_size:number;title:string;caption:string;status:'uploading'|'draft'|'shared'|'removed';revision:number;created_at:string;shared_at:string|null;purged_at?:string|null};
 export type MediaConsent={player_id:string;allowed:boolean;changed_at:string};
 export const mediaTypes=['image/jpeg','image/png','image/webp','video/mp4','video/webm','video/quicktime'];
 export function mediaProblem(file:Pick<File,'type'|'size'>){return !mediaTypes.includes(file.type)?'Choose a JPEG, PNG, WebP photo or MP4, WebM or MOV video.':file.size<=0?'This file is empty.':file.size>(file.type.startsWith('image/')?8388608:20971520)?(file.type.startsWith('image/')?'Photos must be 8 MB or smaller.':'Clips must be 20 MB or smaller.'):null;}
