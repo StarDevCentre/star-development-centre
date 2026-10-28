@@ -87,7 +87,8 @@ export function PlayerTrophyPortal() {
           db.from("player_award_receipts").select("achievement_id").eq("guardian_id", currentUserId),
           db.from("player_cosmetic_unlocks").select("player_id,cosmetic,unlocked_at").in("player_id",ids),
           readHistoryPages((from,to)=>db!.from("player_goal_events").select("id,player_id,source_id,source,kind,goal,occurred_at").in("player_id",ids).order("occurred_at",{ascending:false}).order("id").range(from,to)),
-          loadPortalFeatures(ids,currentUserId).then(data=>({data,error:null}))
+          loadPortalFeatures(ids,currentUserId).then(data=>({data,error:null})),
+          db.from("player_intakes").select("portal_player_id,photo_path").in("portal_player_id",ids)
         ]);
         if (results.some(result => result.error)) throw new Error("Unable to load player data");
         const assignmentIds = (results[2].data || []).map(value => value.id);
@@ -102,8 +103,10 @@ export function PlayerTrophyPortal() {
         const feedbackRows=feedbackPages.flat().sort((a,b)=>b.reviewed_at.localeCompare(a.reviewed_at));
         const profiles = await Promise.all((results[7].data || []).map(async value => {
           const profile = value as unknown as SpaceProfile;
-          if (!profile.photo_path) return profile;
-          const photo = await db!.storage.from("player-card-photos").createSignedUrl(profile.photo_path, 3600);
+          const intakePhoto=results[13].data?.find(i=>i.portal_player_id===profile.player_id)?.photo_path;
+          const path=profile.photo_path||intakePhoto;
+          if (!path) return profile;
+          const photo = await db!.storage.from(profile.photo_path?"player-card-photos":"player-intake-photos").createSignedUrl(path, 3600);
           return { ...profile, photo_url: photo.data?.signedUrl };
         }));
         if (active) {
@@ -116,10 +119,10 @@ export function PlayerTrophyPortal() {
   }, [user?.id, revision]);
 
   useEffect(()=>{
-    if(!user||!data.players.length)return;
+    if(!user)return;
     const refresh=()=>{if(document.visibilityState==='visible')setRevision(v=>v+1);};
-    const timer=window.setInterval(refresh,45000);window.addEventListener('focus',refresh);
-    return()=>{window.clearInterval(timer);window.removeEventListener('focus',refresh);};
+    const timer=data.players.length?window.setInterval(refresh,45000):null;window.addEventListener('focus',refresh);
+    return()=>{if(timer!==null)window.clearInterval(timer);window.removeEventListener('focus',refresh);};
   },[user?.id,data.players.length]);
 
   useEffect(() => {
@@ -229,3 +232,4 @@ export function PlayerTrophyPortal() {
 
   </section></div><footer className="ps-footer"><span>DEVELOP. BELIEVE. ACHIEVE.</span><Link href="/privacy">Privacy & support ↗</Link></footer></div></div>;
 }
+

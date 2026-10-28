@@ -41,7 +41,8 @@ These are business requirements provided in earlier planning; check with the own
 - Keep the family journey simple: complete the form, review it, then use one prominent **Submit & request FREE assessment** action. Show a clear completion screen with a link back to the Parent Portal and explain that the parent can leave.
 - Keep player login setup and secure email-specific account linking under an optional section after submission; do not make parents wait for player activation or linking.
 - Submission validates and saves the completed form, records the parent’s participation/media confirmation and requests the **FREE 30-minute assessment and introduction** together. STAR confirms time and venue separately.
-- `/onboarding` holds pre-assessment profiles independently of existing enrolled coaching records. It never grants access to existing coaching records.
+- On parent submission, `/onboarding` creates the family’s own Player Space under the **Assessment** programme. This does not enrol the player in a paid programme. Its stored `portal_player_id` connects both portals to one profile; existing approved onboarding links are carried through. Never match existing coaching records by name or grant access to a different family’s record.
+- Account linking uses the invited person’s verified email and one named **Connect** action in Player Space or onboarding. Do not ask families to copy account IDs or invitation codes. A connected player opens the same profile on later sign-ins. Keep onboarding and Player Space links consistent when access is revoked.
 - Staff managers manage assessment requests at Staff Portal → Onboarding & assessments. New profile edits invalidate parent review.
 
 ## Portal product intent
