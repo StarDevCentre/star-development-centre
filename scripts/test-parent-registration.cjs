@@ -36,7 +36,7 @@ const client={auth:{
   }
   return {data:[],error:null};
  };
- const q={select(){return q},eq(k,v){filters.push([k,v]);return q},in(){return q},gte(){return q},order(){return q},then(resolve,reject){return Promise.resolve(result()).then(resolve,reject)},maybeSingle(){return Promise.resolve(result())},single(){return Promise.resolve(result())},upsert(p){operation='upsert';payload=p;return Promise.resolve(result())},insert(p){operation='insert';payload=p;return q}};
+ const q={select(){return q},returns(){return q},eq(k,v){filters.push([k,v]);return q},in(){return q},gte(){return q},order(){return q},then(resolve,reject){return Promise.resolve(result()).then(resolve,reject)},maybeSingle(){return Promise.resolve(result())},single(){return Promise.resolve(result())},upsert(p){operation='upsert';payload=p;return Promise.resolve(result())},insert(p){operation='insert';payload=p;return q}};
  return q;
 }};
 function compile(relative,requireFn){const exports={};const code=ts.transpileModule(fs.readFileSync(path.join(root,relative),'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,jsx:ts.JsxEmit.ReactJSX,target:ts.ScriptTarget.ES2022}}).outputText;vm.runInNewContext(code,{exports,require:requireFn,window:{location:{origin:'https://star.example',search:''},sessionStorage:{getItem(){return null},setItem(){}},setTimeout(){return 1},clearTimeout(){}},document:{getElementById(){return {scrollIntoView(){}}}},Date,Error,URLSearchParams});return exports;}

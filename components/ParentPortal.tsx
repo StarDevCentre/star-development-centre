@@ -19,10 +19,11 @@ import {ParentExperience} from "./ParentExperience";
 import {ParentAccountDetails} from "./ParentAccountDetails";
 import {registrationFields,type ParentRegistration} from "../lib/parentProgrammes";
 import type {LinkedPlayer,PlayerGoal,FamilyReport,FamilySession,PlayerAssessment} from "../lib/parentDashboard";
+import {familyPositionFields,type FamilyPosition} from "../lib/coachingPositions";
 const playerDraftsEnabled=true;
 type Profile={user_id:string;display_name:string;contact_phone:string|null};
-type FamilyData={owner:string;loaded:boolean;loading:boolean;failed:boolean;players:LinkedPlayer[];goals:PlayerGoal[];assessments:PlayerAssessment[];reports:FamilyReport[];sessions:FamilySession[]};
-const emptyFamily:FamilyData={owner:"",loaded:false,loading:false,failed:false,players:[],goals:[],assessments:[],reports:[],sessions:[]};
+type FamilyData={owner:string;loaded:boolean;loading:boolean;failed:boolean;players:LinkedPlayer[];goals:PlayerGoal[];assessments:PlayerAssessment[];reports:FamilyReport[];sessions:FamilySession[];positions:FamilyPosition[]};
+const emptyFamily:FamilyData={owner:"",loaded:false,loading:false,failed:false,players:[],goals:[],assessments:[],reports:[],sessions:[],positions:[]};
 type Registration=ParentRegistration;
 type AuthMode="login"|"signup"|"confirm"|"reset"|"update";
 export function ParentPortal({initialMode="login",initialProgramme:requestedProgramme=""}:{initialMode?:"login"|"signup"|"reset";initialProgramme?:string}){
@@ -69,15 +70,16 @@ export function ParentPortal({initialMode="login",initialProgramme:requestedProg
    if(links.error)throw Error();
    const ids=(links.data||[]).map(x=>x.player_id);
    if(!ids.length){if(active)setFamily({...emptyFamily,owner:guardianId,loaded:true});return;}
-   const [players,goals,assessments,reports,upcoming]=await Promise.all([
+   const [players,goals,assessments,reports,upcoming,positions]=await Promise.all([
     supabase!.from("coaching_players").select("id,first_name,last_name,programme").in("id",ids),
     supabase!.from("coaching_development_goals").select("id,player_id,goal,status").in("player_id",ids),
     supabase!.from("coaching_idp_assessments").select("id,player_id,category,rating,assessed_on").in("player_id",ids).order("assessed_on",{ascending:false}),
     supabase!.from("family_monthly_reports").select("id,player_id,review_month,strengths,development_areas,next_steps").in("player_id",ids).order("review_month",{ascending:false}),
-    supabase!.from("family_session_schedule").select("id,player_id,title,starts_at,ends_at,venue").in("player_id",ids).gte("ends_at",new Date().toISOString()).order("starts_at",{ascending:true})
+    supabase!.from("family_session_schedule").select("id,player_id,title,starts_at,ends_at,venue").in("player_id",ids).gte("ends_at",new Date().toISOString()).order("starts_at",{ascending:true}),
+    supabase!.from("family_position_profiles").select(familyPositionFields).in("player_id",ids).returns<FamilyPosition[]>()
    ]);
-   if([players,goals,assessments,reports,upcoming].some(result=>result.error))throw Error();
-   if(active)setFamily({owner:guardianId,loaded:true,loading:false,failed:false,players:players.data||[],goals:goals.data||[],assessments:assessments.data||[],reports:reports.data||[],sessions:upcoming.data||[]});
+   if([players,goals,assessments,reports,upcoming,positions].some(result=>result.error))throw Error();
+   if(active)setFamily({owner:guardianId,loaded:true,loading:false,failed:false,players:players.data||[],goals:goals.data||[],assessments:assessments.data||[],reports:reports.data||[],sessions:upcoming.data||[],positions:positions.data||[]});
   }catch{if(active)setFamily({...emptyFamily,owner:guardianId,loaded:true,failed:true});}}
   void loadLinked();return()=>{active=false};
  },[supabase,user?.id,familyAttempt]);
@@ -151,7 +153,7 @@ export function ParentPortal({initialMode="login",initialProgramme:requestedProg
  <ParentProgrammePrices key={user.id} supabase={supabase} userId={user.id} eligible={!!profile&&hasRegistration} registrations={registrations} players={linkedPlayers} onRequest={requestProgramme} onRegisterNew={programme=>{setInitialProgramme(programme);setShowRegistration(true);setRecentRegistration(null);window.requestAnimationFrame(()=>document.getElementById("player-registration")?.scrollIntoView({block:"start"}))}}/>
  {registrations.some(r=>["submitted","under_review","waitlisted","accepted"].includes(r.status))&&<section className="parent-next-steps"><h3>What happens next?</h3><ol><li><strong>STAR reviews her registration.</strong> We check the programme choice and availability.</li><li><strong>We agree her starting point.</strong> Discuss the venue, session arrangements and any support she needs directly with STAR.</li><li><strong>Confirm her place together.</strong> Enrolment consent and payment arrangements are completed separately.</li></ol><a href="https://wa.me/447902594064" className="parent-inline-link">Ask STAR on WhatsApp ↗</a></section>}
 </>:null;
- const memberExperience=user?<ParentExperience key={user.id} ownerKey={user.id} guardianName={profile?.display_name||""} updatesContent={onOpen=><><ParentUpdates items={updates.items} players={linkedPlayers} loading={updates.loading} error={updates.error} onRefresh={()=>void updates.refresh()} onRead={updates.markRead} onOpen={(next,id)=>{setFamilyAttempt(n=>n+1);if(next==="account")setLoadAttempt(n=>n+1);onOpen(next,id)}}/><ParentPhoneAlerts key={user.id} userKey={user.id}/></>} updateCount={updates.unread} updateBadge={updates.unread>0?<span className="parent-update-badge">{updates.unread>99?"99+":updates.unread}</span>:null} onSignOut={()=>void signOut()} players={linkedPlayers} goals={linkedGoals} reports={familyReports} sessions={familySessions} assessments={linkedAssessments} refreshing={ownFamily.loading} onRefresh={()=>{setFamilyAttempt(n=>n+1);void updates.refresh()}} messageBadge={<FamilyUnreadBadge userId={user.id} role="guardian"/>} practiceContent={<PlayerTrainingHub userId={user.id} role="guardian"/>} messagesContent={active=><FamilyCommunications userId={user.id} role="guardian" active={active}/>} sessionRequestsContent={<SessionChangeRequests userId={user.id} role="guardian"/>} accountContent={<>{accountContent}<PlayerAccountSetup players={linkedPlayers} userId={user.id}/><p><Link className="parent-inline-link" href="/player-portal">Open family Player Space →</Link></p></>}/>:null;
+ const memberExperience=user?<ParentExperience key={user.id} ownerKey={user.id} guardianName={profile?.display_name||""} updatesContent={onOpen=><><ParentUpdates items={updates.items} players={linkedPlayers} loading={updates.loading} error={updates.error} onRefresh={()=>void updates.refresh()} onRead={updates.markRead} onOpen={(next,id)=>{setFamilyAttempt(n=>n+1);if(next==="account")setLoadAttempt(n=>n+1);onOpen(next,id)}}/><ParentPhoneAlerts key={user.id} userKey={user.id}/></>} updateCount={updates.unread} updateBadge={updates.unread>0?<span className="parent-update-badge">{updates.unread>99?"99+":updates.unread}</span>:null} onSignOut={()=>void signOut()} players={linkedPlayers} goals={linkedGoals} reports={familyReports} sessions={familySessions} assessments={linkedAssessments} positionProfiles={ownFamily.positions} refreshing={ownFamily.loading} onRefresh={()=>{setFamilyAttempt(n=>n+1);void updates.refresh()}} messageBadge={<FamilyUnreadBadge userId={user.id} role="guardian"/>} practiceContent={<PlayerTrainingHub userId={user.id} role="guardian"/>} messagesContent={active=><FamilyCommunications userId={user.id} role="guardian" active={active}/>} sessionRequestsContent={<SessionChangeRequests userId={user.id} role="guardian"/>} accountContent={<>{accountContent}<PlayerAccountSetup players={linkedPlayers} userId={user.id}/><p><Link className="parent-inline-link" href="/player-portal">Open family Player Space →</Link></p></>}/>:null;
  if(usingDashboard)return <div className="parent-member parent-new-member">{error&&<p className="star-portal-error" role="alert">{error}</p>}{notice&&<p className="star-portal-notice" role="status">{notice}</p>}{memberExperience}</div>;
  return <div className={usingDashboard?"star-portal parent-member":!user?"star-portal parent-auth-"+mode:"star-portal"} id="parent-account">
  <div className="star-portal-main" id="parent-form-start">
