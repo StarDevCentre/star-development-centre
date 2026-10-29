@@ -65,3 +65,4 @@ export default function Inclusion() {
     <section className="inclusion-faq inclusion-section" aria-labelledby="inclusion-faq-title"><div className="home-width inclusion-faq-grid"><div><p className="inclusion-eyebrow">A FEW PRACTICAL QUESTIONS</p><h2 id="inclusion-faq-title">Before you<br/><span>get in touch.</span></h2><Link className="inclusion-text-link" href="/our-approach">Explore our coaching approach →</Link></div><div className="inclusion-disclosures">{questions.map(item => <details key={item.title}><summary>{item.title}<span aria-hidden="true"/></summary><p>{item.text}</p></details>)}</div></div></section>
   </div>;
 }
+
