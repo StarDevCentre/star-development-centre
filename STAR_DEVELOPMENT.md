@@ -42,6 +42,15 @@ These are business requirements provided in earlier planning; check with the own
 - The pricing sign-in links accept only the `programmes` or `finder` return destinations. The existing parent sign-in/confirmation flow returns to that page; password recovery must finish before redirecting.
 - Run `node --test scripts/test-programmes.cjs` for age/focus matching and mocked pricing authentication checks when modifying these areas.
 
+## Contact and enquiries
+- `/contact` follows the agreed navy, gold, red and off-white website style, with WhatsApp, phone and email options near the top. Reuse `EnquiryForm` for contact and booking enquiries.
+- Reply-time wording: **We normally reply within 12 hours, but please allow up to 48 hours.** Show this beside the form and after confirmed online submission.
+- Programme, exact group session and optional player age carry from the Programmes page into an editable enquiry summary. Request basic parent contact information; leave sensitive player information to the private onboarding process.
+- Direct form delivery requires `STAR_ENQUIRY_ENABLED=true`, `RESEND_API_KEY` and `STAR_ENQUIRY_FROM` in the deployment environment. Only pass a Boolean availability flag to the browser. Enabling delivery requires a new deployment so the page and API use the same configuration.
+- When direct delivery is unavailable, the form prepares an email/WhatsApp message. The visitor must choose a channel and press send in their app. Never describe preparation or opening an app as a received enquiry. A network/provider failure has an unconfirmed state and retains the entered details.
+- `/api/enquiry` sends only to `coachdmp7@gmail.com`, validates contact/consent/programme/group data and reports success only when the email provider returns a receipt ID. No enquiry is saved to the player database.
+- Run `node --test scripts/test-enquiries.cjs` for selection, validation, disabled delivery, provider-failure and confirmed-receipt checks. Mock delivery; do not send real test messages.
+
 ## Staplegrove Ladies pathway referrals
 - `/pathways` includes a separate Staplegrove-branded enquiry box for players aged 15+. Open-age match eligibility is 16+; the club confirms arrangements.
 - `/api/staplegrove-referral` accepts only the four requested fields and explicit sharing consent, validates server-side, and sends to the fixed club address `staplegroveladiesfootballclub@gmail.com` through Resend. It requires `RESEND_API_KEY` and the verified sender `STAR_ENQUIRY_FROM` in the deployment environment; it does not use the general-enquiry enable flag. Missing configuration or delivery failure must never display success. A labelled email-app fallback requires the player to send the message herself.
