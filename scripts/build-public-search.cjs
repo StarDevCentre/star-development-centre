@@ -2,6 +2,7 @@
 const fs=require('node:fs');
 const ts=require('typescript');
 const pages={
+ '/first-session':['app/first-session/page.tsx'],
  '/':['app/page.tsx','components/HomeExperience.tsx'],
  '/our-approach':['app/our-approach/page.tsx','components/ApproachExample.tsx'],
  '/inclusion':['app/inclusion/page.tsx'],

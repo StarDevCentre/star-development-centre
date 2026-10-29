@@ -1,0 +1,56 @@
+.first-session-page{background:#f7f6f2;color:#11243d}
+.first-session-page p{line-height:1.8}
+.first-session-page h1,.first-session-page h2,.first-session-page h3{letter-spacing:-.025em}
+.first-session-page h2{font-size:clamp(36px,4.5vw,60px);line-height:1.06;margin:0 0 24px}
+.first-session-page h3{font-size:21px;line-height:1.3;margin:0 0 12px}
+.first-session-eyebrow{font-size:10px!important;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#80601d;margin:0 0 20px}
+.first-session-hero{padding:65px 0;background:radial-gradient(ellipse at 90% 30%,#24446780,transparent 65%),#071326;color:#f7f4ed;border-bottom:4px solid #c7a24a}
+.first-session-hero-grid{display:grid;grid-template-columns:1.4fr 1fr;align-items:center;gap:clamp(35px,7vw,100px)}
+.first-session-hero h1{font-size:clamp(52px,6.5vw,90px);line-height:.98;margin:0 0 28px;max-width:850px}
+.first-session-hero h1 span,.first-session-finish h2 span{color:#e3c783}
+.first-session-hero .first-session-eyebrow,.first-session-after .first-session-eyebrow,.first-session-finish .first-session-eyebrow{color:#e3c783}
+.first-session-hero p{color:#c5d1e0;max-width:630px;font-size:14px}
+.first-session-hero .first-session-lead{font-size:18px;color:#f4f0e7}
+.first-session-actions{display:flex;align-items:center;flex-wrap:wrap;gap:23px;margin-top:28px}
+.first-session-link{font-size:13px;font-weight:750;text-decoration:underline;text-underline-offset:5px;line-height:1.7}
+.first-session-overview{padding:32px;border:1px solid #e3c78366;background:linear-gradient(145deg,#1d3552,#102139);border-radius:6px}
+.first-session-duration{display:flex;align-items:center;gap:16px;font-size:64px;line-height:1;color:#e3c783;font-weight:800;border-bottom:1px solid #e3c78355;padding-bottom:24px;margin-bottom:26px}
+.first-session-duration>span{font-size:10px;letter-spacing:.1em;font-weight:800;max-width:100px;line-height:1.8}
+.first-session-overview h2{font-size:42px;line-height:1.1}
+.first-session-overview ul{list-style:none;padding:0;margin:20px 0;color:#d7e0eb;font-size:13px;line-height:1.7}
+.first-session-overview li{padding:9px 0;border-bottom:1px solid #ffffff1f}
+.first-session-overview .first-session-small{font-size:12px}
+.first-session-jumps{display:flex;gap:25px;flex-wrap:wrap;padding-block:25px;border-bottom:1px solid #cbd3de}
+.first-session-jumps a{font-size:12px;font-weight:750;min-height:32px;display:inline-flex;align-items:center}
+.first-session-section{padding-block:75px;scroll-margin-top:25px}
+.first-session-heading{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:end;margin-bottom:30px}
+.first-session-heading>p{font-size:15px;color:#4a5b72;max-width:570px}
+.first-session-stages{padding:0;margin:0;list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.first-session-stages li{border-top:2px solid #b89750;padding:24px 0}
+.first-session-stages li>span{display:block;color:#8d6820;font-size:26px;font-weight:800;margin-bottom:25px}
+.first-session-stages p,.first-session-support p,.first-session-faq p{font-size:14px;color:#4a5b72;margin-bottom:0}
+.first-session-preparation{background:#ebe8df}
+.first-session-checklist{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.first-session-checklist li{display:flex;align-items:flex-start;gap:16px;padding:27px;background:#fff;border:1px solid #dbd9d1;border-radius:4px}
+.first-session-checklist li>span{display:grid;place-items:center;flex-shrink:0;width:28px;height:28px;border-radius:50%;background:#f4e8c9;color:#745316;font-size:16px;font-weight:800}
+.first-session-checklist h3{font-size:18px}
+.first-session-checklist p{font-size:13px;color:#4a5b72;margin:0}
+.first-session-callout{border-left:3px solid #a67c25;padding:20px 24px;margin-top:24px;background:#f7f6f2;font-size:14px}
+.first-session-callout p{font-size:13px;color:#4a5b72;margin:8px 0 0}
+.first-session-support,.first-session-after-grid,.first-session-faq{display:grid;grid-template-columns:1fr 1fr;gap:clamp(35px,7vw,100px)}
+.first-session-support>.first-session-link{margin-top:20px}
+.first-session-support .first-session-link{display:inline-block;margin-top:24px}
+.first-session-support-cards article{padding:0 0 24px;margin-bottom:24px;border-bottom:1px solid #cbd3de}
+.first-session-support-cards article:last-child{margin-bottom:0}
+.first-session-support-cards h3{font-size:19px}
+.first-session-after{background:#102139;color:#f7f4ed}
+.first-session-after p{font-size:14px;color:#c5d1e0}
+.first-session-next{align-self:start;border:1px solid #e3c78355;border-radius:4px;padding:30px;background:#ffffff05}
+.first-session-next h3{color:#e3c783}
+.first-session-faq details{padding:22px 0;border-bottom:1px solid #cbd3de}
+.first-session-faq details:first-child{padding-top:0}
+.first-session-faq summary{font-size:15px;font-weight:750;cursor:pointer;line-height:1.6}
+.first-session-finish{background:#071326;color:#f7f4ed;padding:65px 0}
+.first-session-finish p:not(.first-session-eyebrow){max-width:700px;color:#c5d1e0;font-size:14px}
+.first-session-page a:focus-visible,.first-session-page summary:focus-visible{outline:3px solid #a77b1d;outline-offset:5px}
+@media(max-width:700px){.first-session-hero{padding:40px 0}.first-session-hero-grid,.first-session-heading,.first-session-stages,.first-session-checklist,.first-session-support,.first-session-after-grid,.first-session-faq{grid-template-columns:1fr;gap:25px}.first-session-hero h1{font-size:52px}.first-session-hero .first-session-lead{font-size:16px}.first-session-overview{padding:25px}.first-session-overview h2{font-size:34px}.first-session-overview h2 br{display:none}.first-session-overview h2{word-spacing:3px}.first-session-duration{font-size:54px;margin-bottom:20px}.first-session-section{padding-block:48px}.first-session-heading{gap:0;margin-bottom:25px}.first-session-jumps{gap:8px 22px;padding-block:18px}.first-session-stages{gap:0}.first-session-stages li{display:flex;gap:22px;padding-block:22px}.first-session-stages li>span{font-size:21px;margin-bottom:0}.first-session-checklist li{padding:23px 20px}.first-session-after-grid{gap:30px}.first-session-next{padding:25px}.first-session-finish{padding:45px 0}.first-session-actions{gap:18px}.first-session-page .home-button{font-size:12px;padding:16px 18px;gap:18px}}

@@ -16,6 +16,7 @@ test('search finds programmes, common questions and account destinations',()=>{
  assert.ok(searchSite('Monday').results.some(r=>r.href==='/programmes#sparks-5-7'));
  assert.ok(searchSite('how much does training cost').results.some(r=>r.title==='Programme prices and payment options'));
  assert.ok(searchSite('individual coaching age 12').results.some(r=>r.href==='/programmes#one-to-one'));
+ assert.ok(searchSite('playing surface').results.some(r=>r.href==='/first-session'));
  assert.ok(searchSite('autistic').results.some(r=>r.href==='/inclusion'));
 });
 test('matches article body beyond the summary and tolerates a small typo',()=>{
@@ -34,7 +35,7 @@ test('bounds queries, handles punctuation safely and refuses unrelated matches',
  assert.equal(searchSite('coaching','nonsense').total,0);
 });
 test('public index contains no private paths or signed-in pricing data',()=>{
- const allowed=new Set(['/','/site-index','/search','/programmes','/find-your-programme','/our-approach','/inclusion','/coaches','/pathways','/contact','/book','/register','/privacy','/articles','/parent-portal','/player-portal','/staff',...hubArticles.map(a=>'/articles/'+a.slug)]);
+ const allowed=new Set(['/','/site-index','/search','/first-session','/programmes','/find-your-programme','/our-approach','/inclusion','/coaches','/pathways','/contact','/book','/register','/privacy','/articles','/parent-portal','/player-portal','/staff',...hubArticles.map(a=>'/articles/'+a.slug)]);
  for(const e of siteDirectory){assert.ok(allowed.has(e.href.split('#')[0]),e.href);assert.ok(!/[£]|\bGBP\b|service_role|portal_player_id/.test(JSON.stringify(e)))}
  for(const e of siteDirectory.filter(e=>['/parent-portal','/player-portal','/staff'].includes(e.href))){assert.equal(e.body,undefined);assert.match(e.title,/login/)}
 });

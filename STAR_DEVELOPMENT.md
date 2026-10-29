@@ -74,6 +74,7 @@ These are business requirements provided in earlier planning; check with the own
 - Referrals are not stored in the player database. Keep secrets and submitted contact details out of logs. The honeypot, origin validation and bounded per-instance request limit reduce abuse; the latter is not a distributed quota. Run `node --test scripts/test-staplegrove-referral.cjs` for mocked delivery and validation checks; do not send real test referrals.
 
 ## Player onboarding journey
+- `/first-session` is the public preparation guide, linked from registration, programmes, booking and shared navigation. It explains the free 30-minute assessment, practical preparation, individual support and next steps. Keep dates, venues, watching arrangements and kit requirements subject to confirmation with STAR; an assessment request does not enrol a player in a paid programme.
 - Parent account first. Parents complete and submit onboarding from their own login; creating, activating or linking a separate player login is optional and can happen later.
 - Parent or player completes a saveable full player profile: football experience, goals, support needs, relevant health/emergency information and separate media consent choices.
 - Kit sizing means **training-top size and boot size only**.

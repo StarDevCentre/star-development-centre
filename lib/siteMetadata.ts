@@ -5,6 +5,7 @@ export const siteName='STAR Development Centre';
 export const isPreview=!!process.env.VERCEL_ENV&&process.env.VERCEL_ENV!=='production';
 export const privateRobots={index:false,follow:false,noarchive:true};
 export const publicPages=[
+ {path:'/first-session',id:'first-session',title:'Your First STAR Session: What to Expect',description:'Prepare for a free 30-minute STAR football assessment and introduction. What happens, what to bring, individual support and choosing the next step.',category:'HER FIRST STEP. CHOSEN TOGETHER.'},
  {path:'/site-index',id:'site-index',title:'Site Index: Explore STAR',description:'Browse STAR coaching programmes, football guides, practical support and account links in one place.',category:'FIND YOUR WAY AT STAR'},
  {path:'/search',id:'search',title:'Search STAR',description:'Search STAR programmes, public pages, common questions and detailed football guides for players and families.',category:'FIND WHAT MATTERS TO YOU'},
  {path:'/',id:'home',title:'Girls’ Football Coaching in Somerset',description:'Girls’ football coaching in Taunton and Wellington, Somerset. Group sessions and individual programmes for ages 5–18, built around each player.',category:'DEVELOP. BELIEVE. ACHIEVE.'},
