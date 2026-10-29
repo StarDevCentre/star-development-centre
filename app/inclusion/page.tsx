@@ -1,15 +1,11 @@
+import {pageMetadata} from '../../lib/siteMetadata';
 import Link from "next/link";
 import type {Metadata} from "next";
 import "../home.css";
 import "./inclusion.css";
 
 const description = "Inclusive girls’ football coaching in Taunton and Wellington. Discover how STAR supports different learning needs, autistic players, ADHD, beginners and confidence.";
-export const metadata: Metadata = {
-  title: "Inclusion & Individual Support",
-  description,
-  alternates: {canonical: "https://star-development-centre.vercel.app/inclusion"},
-  openGraph: {title: "Coaching that works for her. | STAR Development Centre", description, url: "https://star-development-centre.vercel.app/inclusion", type: "website", images: [{url: "https://star-development-centre.vercel.app/images/star-home-cinematic.webp", width: 1142, height: 1377, alt: "Two STAR players smiling together on a football pitch"}]},
-};
+export const metadata: Metadata = pageMetadata('/inclusion');
 
 const support = [
   {icon: "show", title: "Show it clearly.", text: "Use direct language, demonstrate the action and break a task into smaller steps. Check what she has understood before adding more detail."},

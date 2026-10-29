@@ -1,3 +1,4 @@
+import {pageMetadata} from '../../lib/siteMetadata';
 import Link from "next/link";
 import type {Metadata} from "next";
 import StaplegrovePathway from "../../components/StaplegrovePathway";
@@ -5,7 +6,7 @@ import PathwayExplorer from "../../components/PathwayExplorer";
 import "../home.css";
 import "./pathways.css";
 const description="Explore girls’ football pathways with STAR: grassroots clubs, Emerging Talent Centres, academies, education and women’s football. Find a next step that suits her.";
-export const metadata:Metadata={title:"Player Pathways",description,alternates:{canonical:"https://star-development-centre.vercel.app/pathways"}};
+export const metadata:Metadata=pageMetadata('/pathways');
 export default function Pathways(){return <div className="pathways-page">
 <section className="pathways-hero" aria-labelledby="pathways-title"><div className="home-width pathways-hero-grid"><div><p className="pathways-eyebrow">HER FOOTBALL. HER CHOICES.</p><h1 id="pathways-title">MORE THAN<br/>ONE WAY<br/><span>FORWARD.</span></h1><p className="pathways-hero-lead">A team she loves. A new challenge. Football alongside her studies. The right next step starts with what matters to her.</p><a className="home-button home-button-red" href="#explore-pathways">Explore her options <span aria-hidden="true">↓</span></a></div><div className="pathways-route-map" aria-label="Three ways to explore football"><p>START WITH HER</p><div className="pathways-map-root"><span>Her interests.</span><span>Her ambitions.</span><span>Her life.</span></div><div className="pathways-map-branches"><a href="#explore-pathways"><span>01 / PLAY</span><strong>Find her<br/>place.</strong><small>Club, school & women’s football</small></a><a href="#explore-pathways"><span>02 / DEVELOP</span><strong>Explore a<br/>challenge.</strong><small>Talent centres & academies</small></a><a href="#explore-pathways"><span>03 / STUDY</span><strong>Keep her<br/>options open.</strong><small>College, university & overseas</small></a></div><p className="pathways-map-note">Routes can overlap. Goals can change.</p></div></div></section>
 <section className="pathways-perspective pathways-section"><div className="home-width pathways-split"><div><p className="pathways-eyebrow">A CHOICE THAT FITS HER</p><h2>Progress has<br/><span>different meanings.</span></h2></div><div><p className="pathways-lead">More confidence in her team is progress. So is finding a challenge she is ready for.</p><p>A pathway is not a checklist every girl has to complete. She can keep enjoying grassroots football, explore talent opportunities or continue through education. Start with her enjoyment, readiness and the practical demands on your family.</p></div></div></section>

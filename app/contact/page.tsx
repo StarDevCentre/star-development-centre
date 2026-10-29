@@ -1,14 +1,11 @@
+import {pageMetadata} from '../../lib/siteMetadata';
 import {Suspense} from "react";
 import type {Metadata} from "next";
 import {EnquiryForm} from "../../components/EnquiryForm";
 import {enquiryResponseTime} from "../../lib/enquiries";
 import "../home.css";
 import "./contact.css";
-export const metadata: Metadata = {
-  title: "Contact STAR | Girls’ Football Coaching in Somerset",
-  description: "Talk to STAR about girls’ football coaching in Taunton and Wellington. Enquire online, call, email or WhatsApp to discuss a suitable starting point.",
-  alternates: {canonical: "https://star-development-centre.vercel.app/contact"}
-};
+export const metadata: Metadata = pageMetadata('/contact');
 function ContactIcon({kind}: {kind: "chat" | "phone" | "mail"}) {
   return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{kind === "chat" ? <><path d="M20 11.5a8 8 0 0 1-8 8H5l-4 3 1.5-6a8 8 0 1 1 17.5-5Z"/><path d="M7 9h8M7 13h5"/></> : kind === "phone" ? <path d="m7 3 3 5-3 3a16 16 0 0 0 6 6l3-3 5 3v3c0 1-1 2-2 2C9 22 2 15 2 5c0-1 1-2 2-2h3Z"/> : <><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m3 6 9 7 9-7"/></>}</svg>;
 }

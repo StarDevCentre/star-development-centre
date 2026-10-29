@@ -1,0 +1,22 @@
+import type {Metadata} from 'next';
+import {hubArticles} from './footballHub';
+export const siteOrigin='https://star-development-centre.vercel.app';
+export const siteName='STAR Development Centre';
+export const isPreview=!!process.env.VERCEL_ENV&&process.env.VERCEL_ENV!=='production';
+export const privateRobots={index:false,follow:false,noarchive:true};
+export const publicPages=[
+ {path:'/',id:'home',title:'Girls’ Football Coaching in Somerset',description:'Girls’ football coaching in Taunton and Wellington, Somerset. Group sessions and individual programmes for ages 5–18, built around each player.',category:'DEVELOP. BELIEVE. ACHIEVE.'},
+ {path:'/programmes',id:'programmes',title:'Girls’ Football Coaching Programmes',description:'Explore One to One Coaching, Flyers, Prestige and age-group football sessions in Somerset. Find coaching that fits her age, experience and goals.',category:'HER GAME. HER NEXT STEP.'},
+ {path:'/find-your-programme',id:'finder',title:'Find Her Football Programme',description:'Choose her age and what she wants from football to explore suitable STAR group and individual coaching programmes.',category:'FIND THE RIGHT FIT'},
+ {path:'/our-approach',id:'approach',title:'Our Approach to Girls’ Football Coaching',description:'How STAR listens to each player, coaches the detail and helps her use new skills and understanding in her club football.',category:'WE START WITH HER'},
+ {path:'/inclusion',id:'inclusion',title:'Inclusive Girls’ Football Coaching',description:'Explore how STAR adapts football coaching around individual needs, confidence and communication, including support for neurodivergent players.',category:'COACHING THAT WORKS FOR HER'},
+ {path:'/coaches',id:'team',title:'Meet the STAR Coaching Team',description:'Meet Dean, Becky and Louise, the people supporting girls’ football development at STAR Development Centre in Somerset.',category:'THE PEOPLE BEHIND HER PROGRESS'},
+ {path:'/pathways',id:'pathways',title:'Girls’ Football Development Pathways',description:'Understand football opportunities from grassroots and individual development to education and women’s football, with realistic guidance from STAR.',category:'HER JOURNEY. HER CHOICE.'},
+ {path:'/contact',id:'contact',title:'Contact STAR Development Centre',description:'Ask about girls’ football coaching in Somerset. Contact STAR by WhatsApp, phone or email, or prepare an enquiry about the right next step.',category:'LET’S TALK ABOUT HER FOOTBALL'},
+ {path:'/book',id:'booking',title:'Request a Football Coaching Session',description:'Enquire about a STAR football coaching session in Somerset, discuss suitability and availability, or find out about a free introduction and assessment.',category:'A STARTING POINT FOR HER GAME'},
+ {path:'/register',id:'join',title:'Join STAR: Player Registration',description:'Learn how to create a parent account, complete her player profile and request a free 30-minute STAR introduction and assessment.',category:'HER STAR STARTS HERE'},
+ {path:'/privacy',id:'privacy',title:'Privacy and Safeguarding',description:'How STAR handles enquiries, private onboarding, family accounts and photographs, and how to contact us about privacy and safeguarding.',category:'PLAYER WELLBEING FIRST'},
+ {path:'/articles',id:'hub',title:'Football Hub: Guides for Players and Families',description:'Explore 12 detailed STAR guides to confidence, home practice, game understanding, coaching feedback and supporting girls in football.',category:'UNDERSTAND MORE. ENJOY THE GAME.'}
+];
+export const shareEntries=[...publicPages,...hubArticles.map(a=>({path:'/articles/'+a.slug,id:a.slug,title:a.title,description:a.summary,category:'FOOTBALL HUB / '+a.category.toUpperCase()}))];
+export function pageMetadata(path:string):Metadata{const p=shareEntries.find(p=>p.path===path);if(!p)throw new Error('Unknown public metadata path');const title=p.title+' | '+siteName;const image={url:siteOrigin+'/share/'+p.id,width:1200,height:630,alt:p.title+' — '+siteName};return {title:{absolute:title},description:p.description,alternates:{canonical:siteOrigin+p.path},robots:isPreview?privateRobots:{index:true,follow:true},openGraph:{title,description:p.description,url:siteOrigin+p.path,siteName,locale:'en_GB',type:path.startsWith('/articles/')?'article':'website',images:[image]},twitter:{card:'summary_large_image',title,description:p.description,images:[image]}}}

@@ -1,3 +1,4 @@
+import {pageMetadata} from '../../lib/siteMetadata';
 import Link from "next/link";
 import type {Metadata} from "next";
 import ApproachExample from "../../components/ApproachExample";
@@ -5,11 +6,7 @@ import "../home.css";
 import "./approach.css";
 
 const description = "See how STAR listens, assesses, plans, coaches and reviews individual girls’ football development in Somerset, alongside her club football.";
-export const metadata: Metadata = {
-  title: "Our Coaching Approach", description,
-  alternates: {canonical: "https://star-development-centre.vercel.app/our-approach"},
-  openGraph: {title: "We start with her. | STAR Development Centre", description, type: "website", url: "https://star-development-centre.vercel.app/our-approach", images: [{url: "https://star-development-centre.vercel.app/images/star-home-cinematic.webp", alt: "Two STAR players enjoying their football"}]},
-};
+export const metadata: Metadata = pageMetadata('/our-approach');
 const cycle = [
   {id: "understand", title: "Get to know her game.", method: "Observe & assess · Understand", intro: "We ask what she enjoys, what feels difficult and what she wants to improve. Then we watch how she moves, uses the ball and responds to different football situations.", detail: "Her position, club experience and confidence give the practice context. We look for strengths to build on as well as the details that need attention.", outcome: "A starting point we can explain to her."},
   {id: "plan", title: "Agree a useful next step.", method: "Plan", intro: "We turn what we have learned into clear priorities. A target should mean something to the player and give her a specific action to practise.", detail: "Structured individual programmes use an Individual Development Plan (IDP). In a flexible session, we agree a focused aim. Group players work through challenges suited to their age and stage.", outcome: "She knows what she is working on and why."},

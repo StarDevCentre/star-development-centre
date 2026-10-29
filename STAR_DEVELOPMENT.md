@@ -51,6 +51,12 @@ These are business requirements provided in earlier planning; check with the own
 - Content lives in `lib/content/football-hub-articles.json`, with helpers in `lib/footballHub.ts`. Keep public content independent of family records and portal content. Reading times are calculated from article text.
 - Maintain the agreed website style and shared header. These are practical STAR coaching guides, not research reports or guaranteed development outcomes. Link external further reading where it informs an article; distinguish STAR examples from third-party guidance.
 
+## Search and sharing
+- `lib/siteMetadata.ts` is the public page metadata registry and canonical origin (`https://star-development-centre.vercel.app`). Update the registry if the approved public domain changes; never infer it from an incoming Host header.
+- Public pages and Football Hub articles have explicit canonical URLs, descriptions and Open Graph/Twitter cards. `/share/[id]` builds 1200×630 PNG cards using the official STAR logo and a whitelisted public title; it accepts no arbitrary user text or private records.
+- `/sitemap.xml` lists only public pages and published articles. Portal/onboarding pages use noindex metadata and `X-Robots-Tag` headers; API and share-image responses also carry noindex. Robots allows portal crawling so compliant crawlers can see noindex; these directives never replace authentication or permissions. Non-production Vercel deployments use site-wide noindex headers and restrictive robots.
+- Do not claim submission to search engines or guaranteed indexing/ranking. Existing shared-link previews may remain cached by social platforms.
+
 ## Contact and enquiries
 - `/contact` follows the agreed navy, gold, red and off-white website style, with WhatsApp, phone and email options near the top. Reuse `EnquiryForm` for contact and booking enquiries.
 - Reply-time wording: **We normally reply within 12 hours, but please allow up to 48 hours.** Show this beside the form and after confirmed online submission.

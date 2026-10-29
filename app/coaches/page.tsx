@@ -1,7 +1,8 @@
+import {pageMetadata} from '../../lib/siteMetadata';
 import Link from "next/link";
 import "../home.css";
 import "./team.css";
-export const metadata={title:"Our Team",description:"Meet Dean, Becky and Louise, the people supporting players at STAR Development Centre."};
+export const metadata=pageMetadata('/coaches');
 export default function Coaches(){return <main className="team-page">
 <section className="team-hero"><div className="home-width"><p className="home-eyebrow">THE PEOPLE BEHIND STAR</p><h1>GET TO KNOW<br/><span>OUR TEAM.</span></h1><p>Every player has her own story. We’re here to listen, help her learn and make her feel welcome.</p><div className="team-jump"><a href="#dean">Meet Dean ↓</a><a href="#becky">Meet Becky ↓</a><a href="#louise">Meet Louise ↓</a></div></div></section>
 <section className="team-intro home-width"><p className="home-eyebrow">REAL PEOPLE. PERSONAL SUPPORT.</p><h2>Here for her football.<br/><span>Here for her.</span></h2><p>Getting to know a player matters as much as getting to know her game. Our team works with girls and their families to create a place where they can learn, ask questions and enjoy their football.</p></section>

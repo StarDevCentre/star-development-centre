@@ -1,10 +1,11 @@
+import {pageMetadata} from '../lib/siteMetadata';
 import Link from "next/link";
 import type {Metadata} from "next";
 import "./home.css";
 import {HomeAtmosphere,HomeCoachingJourney,HomePlayerTour,HomeMobileActions} from "../components/HomeExperience";
 const pageTitle="Girls’ Football Coaching in Somerset | STAR Development Centre";
 const pageDescription="Girls’ football coaching in Taunton and Wellington, Somerset. Group sessions and one-to-one programmes for ages 5–18, built around each player.";
-export const metadata:Metadata={title:{absolute:pageTitle},description:pageDescription,alternates:{canonical:"https://star-development-centre.vercel.app/"},openGraph:{title:pageTitle,description:pageDescription,url:"https://star-development-centre.vercel.app/",siteName:"STAR Development Centre",type:"website",locale:"en_GB",images:[{url:"https://star-development-centre.vercel.app/images/star-home-cinematic.webp",width:1142,height:1377,alt:"Two STAR players wearing the official training kit on a floodlit football pitch"}]},twitter:{card:"summary_large_image",title:pageTitle,description:pageDescription,images:["https://star-development-centre.vercel.app/images/star-home-cinematic.webp"]}};
+export const metadata:Metadata=pageMetadata('/');
 const hero="/images/star-home-cinematic.webp";
 const groups=[{name:"Group football coaching",label:"STAR Sparks & Development Groups",copy:"Fun, age-appropriate sessions for girls aged 5–10, and focused development groups for ages 11–16. Practise skills, awareness and decisions with other players.",link:"Explore group coaching",href:"/programmes#sparks",imageClass:"home-crop-smile",image:"/images/star-player-grass.webp",alt:"STAR player holding a yellow football beside a goal",width:1200,height:800},{name:"One-to-one football coaching",label:"STAR Flyers, Prestige & flexible sessions",copy:"Structured individual programmes for ages 7–10 and 11–18, plus flexible one-to-one sessions for older players. Work on the skills, positions and goals that matter to her.",link:"Explore individual coaching",href:"/programmes#flyers",imageClass:"home-crop-kit",image:"/images/star-player-individual.webp",alt:"STAR player with a football on her shoulder at a floodlit pitch",width:850,height:1366}];
 export default function Home(){return <div className="star-home"><HomeAtmosphere/>
