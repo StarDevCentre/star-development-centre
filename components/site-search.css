@@ -76,3 +76,10 @@
 @media(max-width:700px){.header-search-caption{display:none}.header-search-row{padding-block:9px}.header-search{max-width:none}.home-header .header-search form{gap:7px;padding-left:10px}.home-header .header-search input{font-size:16px}.home-header .header-search form>button{padding:10px}.home-header .header-search form>button>span{display:none}.header-search-panel{padding:12px;max-height:60dvh}.discovery-hero{padding:40px 0 32px}.discovery-hero h1{font-size:43px}.discovery-hero p:not(.discovery-eyebrow){font-size:14px}.discovery-form>div{gap:4px}.discovery-form input[type=search]{padding:10px 6px}.discovery-form button{padding:10px 12px;font-size:12px}.directory-grid{grid-template-columns:1fr}.directory-card{padding:20px}.directory-heading h2{font-size:26px}.search-results-heading{align-items:flex-start;flex-direction:column;gap:12px}.search-results h3{font-size:20px}.discovery-content{padding-block:26px 45px}.discovery-empty{padding:22px}.discovery-jumps a,.discovery-filters a{padding:10px 12px;font-size:12px}}
 
 .home-header .header-search input:focus-visible{outline:2px solid #a77b1d;outline-offset:2px}
+
+/* Search stays compact until a visitor opens it. Keep mobile identity marks in their existing row. */
+.home-header .header-search-toggle{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;width:44px;height:44px;padding:0;border:1px solid #d5dce6;border-radius:5px;background:#fff;color:#0b1d38;cursor:pointer}
+.home-header .header-search-toggle:hover,.home-header .header-search-toggle[aria-expanded=true]{background:#f3f5f8;border-color:#a77b1d}
+.home-header .header-search-toggle-mobile{display:none}
+.home-header .header-search form>.header-search-close{background:#eef2f6;color:#0b1d38;padding:10px;min-width:40px}
+@media(max-width:700px){.home-header .header-search-toggle-desktop{display:none}.home-header .header-search-toggle-mobile{display:inline-flex;margin-left:auto;width:44px;height:40px;min-height:40px;border:0;border-left:1px solid #dce2eb;border-radius:0}.home-header .home-mobile-logins{padding-right:12px}.home-header .header-search form>.header-search-close{padding:8px;min-width:32px}}
