@@ -5,10 +5,14 @@ import { activityProgress, activityRoute, footballActivities, nextUnexploredScen
   type ActivityChoice, type ActivityMarker, type ActivityScenario, type FootballActivity, type PitchPoint } from '../lib/playerActivities';
 import type { LearningProgress, PortalFeatureActions } from '../lib/playerPortalFeatures';
 import './player-activities.css';
+import {badgeKey,learningRewards} from '../lib/learningRewards';
+import type {SpaceUnlock} from '../lib/playerSpace';
+import {LearningRewardArt} from './LearningRewardArt';
 
 type Props = {
   playerId: string; senior: boolean; progress: LearningProgress[];
   onLearningProgress: PortalFeatureActions['onLearningProgress'];
+  onLearningAnswer:PortalFeatureActions['onLearningAnswer'];unlocks?:SpaceUnlock[];onCollection?:()=>void;
 };
 const outcomes = { 'opens-play': 'You found a useful option.', 'another-option': 'Another way to play.', 'look-again': 'Look at what could change.' };
 const point = (p: PitchPoint) => `${p.x},${p.y}`;
@@ -52,28 +56,28 @@ export function ActivityPitch({ activity, scenario, selected, revealed, disabled
   </figure>;
 }
 
-function ActivityScene({ activity, scenario, index, senior, playerId, explored, favourite, savingProgress, onBack, onNavigate }: {
+function ActivityScene({ activity, scenario, index, senior, playerId, explored, favourite, savingProgress, savingAnswer, mastered, onBack, onNavigate }: {
   activity: FootballActivity; scenario: ActivityScenario; index: number; senior: boolean; playerId: string;
-  explored: Set<string>; favourite: boolean; savingProgress: Props['onLearningProgress'];
+  explored: Set<string>; mastered:Set<string>; favourite: boolean; savingProgress: Props['onLearningProgress'];savingAnswer:Props['onLearningAnswer'];
   onBack: () => void; onNavigate: (index: number) => void;
 }) {
   const [selectedId, setSelectedId] = useState<ActivityChoice['id'] | null>(null);
   const [revealed, setRevealed] = useState(false);
   const [hint, setHint] = useState(false);
-  const [busy, setBusy] = useState<ActivityMarker | null>(null);
+  const [busy, setBusy] = useState<ActivityMarker | 'answer' | null>(null);
   const saving = useRef(false);
   const result = useRef<HTMLDivElement>(null);
   const firstOption = useRef<HTMLButtonElement>(null);
-  const [error, setError] = useState<{ kind: ActivityMarker; value: boolean; message: string } | null>(null);
+  const [error, setError] = useState<{ kind: ActivityMarker | 'answer'; value: boolean; message: string } | null>(null);
   const selected = scenario.choices.find(c => c.id === selectedId);
   const saved = explored.has(scenario.id);
   const hintId = useId(), resultId = useId();
   useEffect(() => { if (revealed) result.current?.focus(); }, [revealed]);
 
-  async function save(kind: ActivityMarker, value: boolean) {
+  async function save(kind: ActivityMarker | 'answer', value: boolean) {
     if (saving.current) return;
     saving.current = true; setBusy(kind); setError(null);
-    try { await saveActivityProgress(playerId, scenario.id, kind, value, savingProgress); }
+    try { if(kind==='answer'){if(!selected)throw new Error('Choose a move first.');await savingAnswer(playerId,scenario.id,selected.id);}else await saveActivityProgress(playerId, scenario.id, kind, value, savingProgress); }
     catch (v) { setError({ kind, value, message: v instanceof Error ? v.message : 'Your choice could not be saved. Try again.' }); }
     finally { saving.current = false; setBusy(null); }
   }
@@ -95,14 +99,14 @@ function ActivityScene({ activity, scenario, index, senior, playerId, explored, 
         <fieldset disabled={!!busy}><legend>Choose on the pitch or use these buttons</legend><div className="ps-activity-options">{scenario.choices.map((c, i) => <button ref={i === 0 ? firstOption : undefined} type="button" key={c.id} aria-pressed={selectedId === c.id} onClick={() => choose(c.id)}><b>{c.id}</b><span>{c.label}</span>{selectedId === c.id && <span className="ps-activity-check" aria-hidden="true">✓</span>}</button>)}</div></fieldset>
         <button type="button" className="ps-activity-link ps-activity-hint-toggle" aria-expanded={hint} aria-controls={hintId} onClick={() => setHint(v => !v)}>{hint ? 'Hide the hint' : 'Give me a hint'}</button>
         {hint && <div className="ps-activity-hint" id={hintId}><strong>Try looking for this</strong><p>{senior ? scenario.seniorHint : scenario.hint}</p></div>}
-        {!revealed && <button type="button" className="ps-activity-primary" disabled={!selected || !!busy} onClick={() => { if (!selected || saving.current) return; setRevealed(true); if (!saved) void save('activity', true); }} aria-controls={resultId}>SEE THIS MOVE <span aria-hidden="true">↗</span></button>}
+        {!revealed && <button type="button" className="ps-activity-primary" disabled={!selected || !!busy} onClick={() => { if (!selected || saving.current) return; setRevealed(true); void save('answer', true); }} aria-controls={resultId}>SEE THIS MOVE <span aria-hidden="true">↗</span></button>}
         {revealed && selected && <div ref={result} tabIndex={-1} className={`ps-activity-feedback ps-activity-feedback-${selected.outcome}`} id={resultId} role="region" aria-label="Your move explained"><span className="ps-activity-eyebrow">YOU CHOSE: {selected.label}</span><h3>{outcomes[selected.outcome]}</h3><p>{selected.feedback}</p>{senior ? <div className="ps-activity-detail"><strong>Look deeper</strong><p>{selected.detail}</p></div> : <details className="ps-activity-detail"><summary>More football detail</summary><p>{selected.detail}</p></details>}<button type="button" className="ps-activity-link" disabled={!!busy} onClick={() => { setSelectedId(null); setRevealed(false); requestAnimationFrame(() => firstOption.current?.focus()); }}>Try another move ↺</button></div>}
-        {busy === 'activity' && <p className="ps-activity-save" role="status">Saving your exploration…</p>}
-        {!busy && saved && <p className="ps-activity-save">Explored ✓ · Your progress is saved.</p>}
+        {(busy === 'activity'||busy==='answer') && <p className="ps-activity-save" role="status">Saving your move…</p>}
+        {!busy && saved && <p className="ps-activity-save">{mastered.has(scenario.id)?'Useful choice found ✓ · Saved.':'Explored ✓ · Try a useful choice to complete this scenario.'}</p>}
         {error && <div className="ps-activity-save-error" role="alert"><p>{error.message} Your scenario is still here.</p><button type="button" disabled={!!busy} onClick={() => void save(error.kind, error.value)}>Try saving again</button></div>}
       </div>
     </div>
-    <div className="ps-activity-bottom"><nav className="ps-activity-steps" aria-label={`${activity.title} scenarios`}>{activity.scenarios.map((s, i) => <button type="button" key={s.id} aria-current={i === index ? 'step' : undefined} aria-label={`Scenario ${i + 1}: ${s.title}${explored.has(s.id) ? ', explored' : ''}`} disabled={!!busy} onClick={() => navigate(i)}>{i + 1}{explored.has(s.id) && <span aria-hidden="true">✓</span>}</button>)}</nav><div className="ps-activity-next"><button type="button" className="ps-activity-link" disabled={index === 0 || !!busy} onClick={() => navigate(index - 1)}>← Previous</button>{index + 1 < activity.scenarios.length ? <button type="button" className="ps-activity-primary" disabled={!!busy} onClick={() => navigate(index + 1)}>NEXT SCENARIO →</button> : <button type="button" className="ps-activity-primary" disabled={!!busy} onClick={onBack}>CHOOSE AN ACTIVITY →</button>}</div></div>
+    <div className="ps-activity-bottom"><nav className="ps-activity-steps" aria-label={`${activity.title} scenarios`}>{activity.scenarios.map((s, i) => <button type="button" key={s.id} aria-current={i === index ? 'step' : undefined} aria-label={`Scenario ${i + 1}: ${s.title}${explored.has(s.id) ? ', explored' : ''}`} disabled={!!busy} onClick={() => navigate(i)}>{i + 1}{mastered.has(s.id) && <span aria-hidden="true">✓</span>}</button>)}</nav><div className="ps-activity-next"><button type="button" className="ps-activity-link" disabled={index === 0 || !!busy} onClick={() => navigate(index - 1)}>← Previous</button>{index + 1 < activity.scenarios.length ? <button type="button" className="ps-activity-primary" disabled={!!busy} onClick={() => navigate(index + 1)}>NEXT SCENARIO →</button> : <button type="button" className="ps-activity-primary" disabled={!!busy} onClick={onBack}>CHOOSE AN ACTIVITY →</button>}</div></div>
     <p className="ps-activity-footnote">These original STAR snapshots show a few players. Real games change: scan again and follow your coach’s plan. Arrows show possible actions, not guaranteed results.{activity.mode === 'receive' ? ' First-touch arrows show direction; choose a distance you can control.' : ''}{activity.view === 'goal-area' ? ' This enlarged diagram is not to scale; positions show decision areas, not exact distances.' : ''}</p>
     {activity.source && <p className="ps-activity-source">Further learning: <a href={activity.source.url} target="_blank" rel="noopener noreferrer">{activity.source.label} ↗</a></p>}
   </section>;
@@ -123,7 +127,7 @@ function ActivityCardArt({ activity, number }: { activity: FootballActivity; num
   return <div className="ps-activity-card-art" aria-hidden="true"><span>{String(number).padStart(2, '0')}</span><svg viewBox="0 0 160 88"><path d="M8 12H152V76H8ZM80 12V76"/>{art}</svg></div>;
 }
 
-export function PlayerActivities({ playerId, senior, progress, onLearningProgress }: Props) {
+export function PlayerActivities({ playerId, senior, progress, onLearningProgress,onLearningAnswer,unlocks=[],onCollection=()=>{} }: Props) {
   const [active, setActive] = useState<{ activityId: FootballActivity['id']; index: number } | null>(null);
   const [group, setGroup] = useState<'all' | 'outfield' | 'goalkeeper'>('all');
   const heading = useRef<HTMLHeadingElement>(null);
@@ -142,16 +146,19 @@ export function PlayerActivities({ playerId, senior, progress, onLearningProgres
 
   return <div className="ps-activities">
     <h2 className="ps-activity-section-heading" ref={heading} tabIndex={-1}>{activity ? activity.title : 'Your football playground'}</h2>
-    {activity && scenario && active ? <ActivityScene key={`${playerId}:${scenario.id}`} activity={activity} scenario={scenario} index={active.index} senior={senior} playerId={playerId} explored={status.explored} favourite={status.favourites.has(scenario.id)} savingProgress={onLearningProgress} onBack={back} onNavigate={index => open(activity.id, index)}/> : <>
+    {activity && scenario && active ? <><ActivityScene key={`${playerId}:${scenario.id}`} activity={activity} scenario={scenario} index={active.index} senior={senior} playerId={playerId} explored={status.explored} mastered={status.mastered} savingAnswer={onLearningAnswer} favourite={status.favourites.has(scenario.id)} savingProgress={onLearningProgress} onBack={back} onNavigate={index => open(activity.id, index)}/>{unlocks.some(u=>u.player_id===playerId&&u.cosmetic===badgeKey(activity.id))&&<div className="ps-learning-complete ps-paper" role="status"><LearningRewardArt motif={learningRewards.find(r=>r.id===activity.id)!.motif} badge/><h3>GAME COMPLETE ✓</h3><p>Your learning badge and profile extra are yours to keep.</p><button type="button" className="ps-action" onClick={onCollection}>SEE MY REWARDS →</button></div>}</> : <>
       <div className="ps-activity-intro"><p>{footballActivities.length} games to explore. Take your time, use a hint and try different ideas.</p><span>{status.explored.size} of {totalActivityScenarios} scenarios explored</span></div>
       <nav className="ps-activity-filters" aria-label="Filter games">{([{ id: 'all', label: 'All games', count: footballActivities.length }, { id: 'outfield', label: 'Outfield', count: footballActivities.length - goalkeeperCount }, { id: 'goalkeeper', label: 'Goalkeepers', count: goalkeeperCount }] as const).map(g => <button type="button" key={g.id} aria-pressed={group === g.id} onClick={() => setGroup(g.id)}>{g.label} <span>{g.count}</span></button>)}</nav>
       <div className={`ps-activity-library${group === 'goalkeeper' ? ' ps-activity-library-keepers' : ''}`}>{visibleActivities.map(a => {
         const count = a.scenarios.filter(s => status.explored.has(s.id)).length;
-        const next = nextUnexploredScenario(a, status.explored);
-        return <article key={a.id} className="ps-activity-card ps-paper" data-activity={a.id}><ActivityCardArt activity={a} number={footballActivities.indexOf(a) + 1}/><p className="ps-activity-eyebrow">{a.role === 'goalkeeper' ? 'GOALKEEPER · ' : ''}{a.scenarios.length} SCENARIOS · YOUR PACE</p><h3>{a.title}</h3><p>{a.description}</p><strong className="ps-activity-focus">{a.focus}</strong><div className="ps-activity-card-progress"><span>{count} of {a.scenarios.length} explored{count === a.scenarios.length ? ' ✓' : ''}</span><progress max={a.scenarios.length} value={count} aria-label={`${a.title}: ${count} of ${a.scenarios.length} explored`}/></div><button type="button" className="ps-activity-primary" onClick={() => open(a.id, next)}>{count === a.scenarios.length ? 'PLAY AGAIN' : count > 0 ? 'KEEP EXPLORING' : 'LET’S PLAY'} <span aria-hidden="true">→</span></button></article>;
+        const useful=a.scenarios.filter(s=>status.mastered.has(s.id)).length;
+        const next = nextUnexploredScenario(a, status.mastered);
+        const reward=learningRewards.find(r=>r.id===a.id)!;
+        const earned=unlocks.some(u=>u.player_id===playerId&&u.cosmetic===badgeKey(a.id));
+        return <article key={a.id} className="ps-activity-card ps-paper" data-activity={a.id}><ActivityCardArt activity={a} number={footballActivities.indexOf(a) + 1}/><p className="ps-activity-eyebrow">{a.role === 'goalkeeper' ? 'GOALKEEPER · ' : ''}{a.scenarios.length} SCENARIOS · YOUR PACE</p><h3>{a.title}</h3><p>{a.description}</p><strong className="ps-activity-focus">{a.focus}</strong><div className="ps-activity-card-progress"><span>{useful} of {a.scenarios.length} useful choices · {count} explored{count === a.scenarios.length ? ' ✓' : ''}</span><progress max={a.scenarios.length} value={useful} aria-label={`${a.title}: ${useful} of ${a.scenarios.length} explored`}/></div><button type="button" className="ps-activity-primary" onClick={() => open(a.id, next)}>{earned ? 'PLAY AGAIN' : count > 0 ? 'KEEP EXPLORING' : 'LET’S PLAY'} <span aria-hidden="true">→</span></button><p className="ps-learning-game-reward">{earned?'Reward earned ✓':`Unlock: ${reward.extra} ${reward.kind==='theme'?'background':reward.kind} + badge`}</p></article>;
       })}</div>
       <section className="ps-activity-favourites"><div><h3>Your favourites <span aria-hidden="true">★</span></h3><p>Keep the situations you want to try again.</p></div>{favourites.length ? <ul>{favourites.map(f => <li key={f.scenario.id}><button type="button" onClick={() => open(f.activity.id, f.index)}><span>{f.activity.title}</span><strong>{f.scenario.title}</strong><span aria-hidden="true">↗</span></button></li>)}</ul> : <p className="ps-activity-empty">Open a scenario and choose “Save favourite” to keep it here.</p>}</section>
-      <p className="ps-activity-footnote">No timer, leaderboard or score to beat. Exploring any move counts towards your own progress. Activities do not change coach-awarded badges.</p>
+      <p className="ps-activity-footnote">No timer, leaderboard or score to beat. Find a useful choice in all six scenarios to earn the game’s learning badge and profile extra. Unlimited retries. Each game rewards you once; coach-awarded badges stay separate.</p>
     </>}
   </div>;
 }

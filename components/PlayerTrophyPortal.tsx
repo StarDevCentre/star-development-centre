@@ -224,6 +224,20 @@ export function PlayerTrophyPortal() {
         return {...current,learningProgress:complete?[...remaining,{player_id:playerId,lesson_id:lessonId,completed_at:new Date().toISOString()}]:remaining};
       });
     },
+    onLearningAnswer:async(playerId,itemId,choice)=>{
+      assertPlayer(playerId);const savingUser=user!.id;
+      const r=await db!.rpc('submit_learning_answer',{target_player:playerId,item_id:itemId,choice_id:choice});
+      if(r.error||!r.data?.progress||!r.data?.unlocks)throw new Error('Your answer could not be saved. Please try again.');
+      if(identity.current!==savingUser)throw new Error('Please sign in again to view your rewards.');
+      setData(current=>({...current,learningProgress:[...current.learningProgress.filter(p=>p.player_id!==playerId),...r.data.progress],unlocks:[...current.unlocks.filter(u=>u.player_id!==playerId),...r.data.unlocks]}));
+    },
+    onUnlockHairstyle:async(playerId,hairstyle)=>{
+      assertPlayer(playerId);const savingUser=user!.id;
+      const r=await db!.rpc('unlock_learning_hairstyle',{target_player:playerId,hairstyle});
+      if(r.error||!r.data)throw new Error('Your hairstyle could not be unlocked. Refresh your collection and try again.');
+      if(identity.current!==savingUser)throw new Error('Please sign in again to view your rewards.');
+      setData(current=>({...current,unlocks:[...current.unlocks.filter(u=>u.player_id!==playerId),...r.data]}));
+    },
     onReadNotifications:async ids=>{if(!db||!user||ids.some(id=>!data.notifications.some(n=>n.id===id)))throw new Error("Please refresh updates.");const r=await db.from('player_notification_reads').upsert(ids.map(id=>({user_id:user.id,notification_id:id})),{onConflict:'user_id,notification_id',ignoreDuplicates:true});if(r.error)throw new Error("Could not mark updates as read.");setData(current=>({...current,notificationReads:[...new Set([...current.notificationReads,...ids])]}));},
     onShareAward:async(playerId,awardId,share)=>{assertPlayer(playerId);if(!data.awards.some(a=>a.id===awardId&&a.player_id===playerId))throw new Error("Choose one of your own awards.");const r=share?await db!.from('player_shared_awards').upsert({achievement_id:awardId,player_id:playerId,shared_by:user!.id},{onConflict:'achievement_id',ignoreDuplicates:true}):await db!.from('player_shared_awards').delete().eq('achievement_id',awardId).eq('player_id',playerId);if(r.error)throw new Error("Sharing choice couldn’t be saved.");await refreshFeatures().catch(()=>{});},
     onSaveAlias:async(playerId,alias)=>{assertPlayer(playerId);const fields={alias,updated_by:user!.id};const old=data.showcases.some(s=>s.player_id===playerId);const r=old?await db!.from('player_showcase_settings').update(fields).eq('player_id',playerId):await db!.from('player_showcase_settings').insert({...fields,player_id:playerId});if(r.error)throw new Error("Sharing name couldn’t be saved.");await refreshFeatures().catch(()=>{});}

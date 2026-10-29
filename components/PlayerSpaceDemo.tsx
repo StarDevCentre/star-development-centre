@@ -1,4 +1,6 @@
 "use client";
+import {quizQuestions} from '../lib/playerLearning';
+import {learningRewards,learningRequirements,extraKey,badgeKey,hairstyleChoices,learningHairstyles,learningAnswerMarker} from '../lib/learningRewards';
 import { useEffect, useRef, useState } from "react";
 import { PlayerSpace } from "./PlayerSpace";
 import { todayInLondon } from "../lib/achievementBadges";
@@ -73,6 +75,17 @@ export function PlayerSpaceDemo() {
     onSaveMatchPlan:async(playerId,date,items)=>setData(current=>({...current,matchPlans:[{player_id:playerId,match_date:date,checked_items:items},...current.matchPlans.filter(p=>!(p.player_id===playerId&&p.match_date===date))]})),
     onSaveMatch:async(playerId,value,id)=>setData(current=>({...current,matchJournal:[{...value,player_id:playerId,id:id||`sample-match-${current.matchJournal.length+1}`,created_at:new Date().toISOString()},...current.matchJournal.filter(j=>j.id!==id)]})),
     onLearningProgress:async(playerId,lessonId,complete)=>setData(current=>({...current,learningProgress:complete?[{player_id:playerId,lesson_id:lessonId,completed_at:new Date().toISOString()},...current.learningProgress.filter(p=>p.player_id!==playerId||p.lesson_id!==lessonId)]:current.learningProgress.filter(p=>p.player_id!==playerId||p.lesson_id!==lessonId)})),
+    onLearningAnswer:async(playerId,itemId,choice)=>setData(current=>{
+      const marker=learningAnswerMarker(itemId,choice),now=new Date().toISOString();
+      const ids=[...(marker?[marker]:[]),...(!itemId.startsWith('quiz:')&& !quizQuestions.some(q=>q.id===itemId)?['activity:'+itemId]:[])];
+      const progress=[...current.learningProgress,...ids.filter(id=>!current.learningProgress.some(p=>p.player_id===playerId&&p.lesson_id===id)).map(lesson_id=>({player_id:playerId,lesson_id,completed_at:now}))];
+      const rewards=learningRewards.filter(r=>learningRequirements(r.id).every(id=>progress.some(p=>p.player_id===playerId&&p.lesson_id===id))).flatMap(r=>[badgeKey(r.id),extraKey(r)]);
+      return {...current,learningProgress:progress,unlocks:[...current.unlocks,...rewards.filter(key=>!current.unlocks.some(u=>u.player_id===playerId&&u.cosmetic===key)).map(cosmetic=>({player_id:playerId,cosmetic,unlocked_at:now}))]};
+    }),
+    onUnlockHairstyle:async(playerId,hairstyle)=>{
+      if(!learningHairstyles.some(h=>h.key===hairstyle)||hairstyleChoices(data.unlocks,playerId)<1)throw new Error('Complete another game or quiz round first.');
+      setData(current=>current.unlocks.some(u=>u.player_id===playerId&&u.cosmetic==='hair-'+hairstyle)||hairstyleChoices(current.unlocks,playerId)<1?current:{...current,unlocks:[...current.unlocks,{player_id:playerId,cosmetic:'hair-'+hairstyle,unlocked_at:new Date().toISOString()}]});
+    },
     onReadNotifications:async ids=>setData(current=>({...current,notificationReads:[...new Set([...current.notificationReads,...ids])]})),
     onShareAward:async(playerId,awardId,share)=>setData(current=>{const award=current.awards.find(a=>a.id===awardId)!;const alias=current.showcases.find(s=>s.player_id===playerId)?.alias||'STAR player';return {...current,sharedAwards:share?[{player_id:playerId,achievement_id:awardId},...current.sharedAwards.filter(s=>s.achievement_id!==awardId)]:current.sharedAwards.filter(s=>s.achievement_id!==awardId),sharingFeed:{...current.sharingFeed,[playerId]:share?[{achievement_id:awardId,alias,title:award.title,badge_id:award.badge_id,awarded_on:award.awarded_on},...(current.sharingFeed[playerId]||[]).filter(a=>a.achievement_id!==awardId)]:(current.sharingFeed[playerId]||[]).filter(a=>a.achievement_id!==awardId)}};}),
     onSaveAlias:async(playerId,alias)=>setData(current=>({...current,showcases:[{player_id:playerId,alias},...current.showcases.filter(s=>s.player_id!==playerId)],sharingFeed:{...current.sharingFeed,[playerId]:(current.sharingFeed[playerId]||[]).map(a=>current.awards.some(own=>own.id===a.achievement_id)?{...a,alias}:a)}}))

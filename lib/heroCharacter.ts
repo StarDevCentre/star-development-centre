@@ -1,3 +1,4 @@
+import {learningHairstyles} from './learningRewards';
 import {playerBalls,type BallKey} from './playerBalls';
 export const heroSkinTones = [
   { key: 'fair', label: 'Fair', colour: '#edc4a8', shadow: [112,67,52], mid: [230,177,145], light: [255,239,218] },
@@ -18,6 +19,7 @@ export const heroHairTypes = [
   { key: 'curls', label: 'Loose curls', asset: '/player-space/hero-curls.webp' },
   { key: 'coils', label: 'Coily puff', asset: '/player-space/hero-coils.webp' },
   { key: 'braids', label: 'Braided ponytail', asset: '/player-space/hero-braids.webp' },
+  ...learningHairstyles.map(h=>({...h,asset:`/player-space/hero-${h.key}.webp`})),
 ] as const;
 export type HeroAppearance = {
   hero_ball: BallKey;
@@ -34,3 +36,4 @@ export function heroAppearance(value?: Partial<HeroAppearance>):HeroAppearance {
     hero_hair_type:heroHairTypes.some(t=>t.key===value?.hero_hair_type)?value!.hero_hair_type!:defaultHero.hero_hair_type,
   };
 }
+

@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { cosmetics, defaultProfile, type AvatarKey, type SpaceUnlock, type ProfileFields, type SpaceActions, type SpaceProfile } from '../lib/playerSpace';
 import { positions } from "../lib/playerPortalFeatures";
+import {LearningProfileFrame} from './LearningRewardArt';
 import { BootSticker, PlayerDecoration, SpaceIcon } from './PlayerSpaceIcons';
 
 const mottos = ['Your game. Your journey.', 'Small steps. Big dreams.', 'Be brave. Be you.'];
@@ -57,7 +58,7 @@ export function PlayerCard({ name, playerId, userKey, profile, unlocks, onUpdate
   }
   return <section className={`ps-player-card ps-paper ps-accent-${card.accent} ps-decoration-${profile?.decoration || "none"}`}><h2 className="ps-label">MY PLAYER CARD</h2>
     <div className="ps-shirt-heading"><p className="ps-card-name">{card.shirt_name || name}</p>{card.shirt_number !== null && <span className="ps-shirt-number" aria-label={`Shirt number ${card.shirt_number}`}>{card.shirt_number}</span>}</div>
-    <div className="ps-avatar-wrap"><PlayerDecoration kind={profile?.decoration||"none"}/>{image ? <img className="ps-profile-photo" src={image} alt={`${name}'s player card portrait`}/> : card.icon === 'train' ? <BootSticker/> : <SpaceIcon className="ps-card-icon" name={card.icon}/>}<span className="ps-be-you">BE<br/>YOU!</span></div>
+    <div className="ps-avatar-wrap"><LearningProfileFrame kind={profile?.frame||'none'}/><PlayerDecoration kind={profile?.decoration||"none"}/>{image ? <img className="ps-profile-photo" src={image} alt={`${name}'s player card portrait`}/> : card.icon === 'train' ? <BootSticker/> : <SpaceIcon className="ps-card-icon" name={card.icon}/>}<span className="ps-be-you">BE<br/>YOU!</span></div>
     <p className="ps-card-motto">{card.motto}</p>{card.ambition && <div className="ps-ambition"><strong>MY FOOTBALL DREAM</strong><p>{card.ambition}</p></div>}
     {(card.preferred_positions.length>0||card.stronger_foot||card.favourite_footballer||card.favourite_team||card.playing_teams||card.school)&&<details className="ps-private-football-details"><summary>My football details</summary>{card.preferred_positions.length>0&&<p><strong>Positions:</strong> {card.preferred_positions.join(', ')}</p>}{card.stronger_foot&&<p><strong>Stronger foot:</strong> {card.stronger_foot}</p>}{card.favourite_footballer&&<p><strong>Favourite footballer:</strong> {card.favourite_footballer}</p>}{card.favourite_team&&<p><strong>Favourite team:</strong> {card.favourite_team}</p>}{card.playing_teams&&<p><strong>My teams:</strong> {card.playing_teams}</p>}{card.school&&<p><strong>My school:</strong> {card.school}</p>}</details>}
     {!setup&&<button className="ps-text-link" disabled={busy} onClick={() => { setEditing(value => !value); setNotice(''); }} aria-expanded={editing}>{editing ? 'Close customisation' : 'Personalise your card'} <SpaceIcon name="arrow"/></button>}
@@ -77,3 +78,4 @@ export function PlayerCard({ name, playerId, userKey, profile, unlocks, onUpdate
     {error && <p className="ps-error" role="alert">{error}</p>}{notice && <p className="ps-card-saved" role="status">{notice}</p>}
   </section>;
 }
+

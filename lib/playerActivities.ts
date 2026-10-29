@@ -397,15 +397,16 @@ export function activityMarker(kind: ActivityMarker, scenarioId: string) {
 }
 
 export function activityProgress(progress: LearningProgress[], playerId: string) {
-  const explored = new Set<string>(), favourites = new Set<string>();
+  const explored = new Set<string>(), favourites = new Set<string>(), mastered = new Set<string>();
   for (const row of progress) {
     if (row.player_id !== playerId) continue;
     const split = row.lesson_id.indexOf(':'), kind = row.lesson_id.slice(0, split), id = row.lesson_id.slice(split + 1);
     if (!scenarioIds.has(id)) continue;
     if (kind === 'activity') explored.add(id);
     if (kind === 'favourite') favourites.add(id);
+    if (kind === 'mastery') mastered.add(id);
   }
-  return { explored, favourites };
+  return { explored, favourites, mastered };
 }
 
 export function nextUnexploredScenario(activity: FootballActivity, explored: Set<string>) {

@@ -19,6 +19,8 @@ export type PortalFeatureActions={
  onSaveMatchPlan:(playerId:string,date:string,items:string[])=>Promise<void>;
  onSaveMatch:(playerId:string,value:MatchInput,id?:string)=>Promise<void>;
  onLearningProgress:(playerId:string,lessonId:string,complete:boolean)=>Promise<void>;
+ onLearningAnswer:(playerId:string,itemId:string,choice:string)=>Promise<void>;
+ onUnlockHairstyle:(playerId:string,hairstyle:string)=>Promise<void>;
  onReadNotifications:(ids:string[])=>Promise<void>;
  onShareAward:(playerId:string,awardId:string,share:boolean)=>Promise<void>;
  onSaveAlias:(playerId:string,alias:string)=>Promise<void>;
@@ -26,3 +28,4 @@ export type PortalFeatureActions={
 export const positions=['Goalkeeper','Defender','Midfielder','Forward'];
 export const matchKit=[{id:'kit',label:'Football kit packed'},{id:'boots',label:'Boots ready'},{id:'shin-pads',label:'Shin pads packed'},{id:'water',label:'Water bottle ready'},{id:'layers',label:'Layers for the weather'},{id:'travel',label:'Time, venue and travel checked'}];
 export function sessionTime(session:SpaceSession){return new Date(session.starts_at).toLocaleString('en-GB',{timeZone:'Europe/London',weekday:'long',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});}
+

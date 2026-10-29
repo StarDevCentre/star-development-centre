@@ -32,5 +32,7 @@ export function BootSticker() {
 
 export function PlayerDecoration({kind}:{kind:string}) {
  if(kind==='none')return null;
+ if(kind==='touch-trail'||kind==='breakaway')return <svg className="ps-card-decoration" viewBox="0 0 300 180" aria-hidden="true" fill="none" stroke="#f5c64d" strokeWidth="5" strokeLinecap="round">{kind==='touch-trail'?<path d="M20 140Q-5 20 75 20" strokeDasharray="6 9"/>:<path d="m12 120 35-35m-20 60 35-35m-15 50 35-35m-48-40h13v13m2 12h13v13m7 2h13v13"/>}<circle cx="268" cy="143" r="21" fill="#fffdf7" stroke="#06142e"/><path d="m268 131 12 9-5 14h-14l-5-14z" fill="#06142e" stroke="#06142e"/></svg>;
  return <svg className="ps-card-decoration" viewBox="0 0 300 180" aria-hidden="true" fill="none" stroke="#f5c64d" strokeWidth="5" strokeLinecap="round">{kind==='lightning'?<><path d="m45 15-22 52h25l-12 53 49-70H58l13-35z" fill="#f5c64d"/><path d="m250 50-20 45h25l-15 60 48-80h-25l12-25z" fill="#df1f38"/></>:kind==='laurel'?<><path d="M95 165Q8 90 55 20m150 145Q292 90 245 20"/>{[40,65,90,115,140].map((y,i)=><g key={y}><ellipse cx={36+i*4} cy={y} rx="16" ry="7" transform={`rotate(35 ${36+i*4} ${y})`} fill="#f5c64d"/><ellipse cx={264-i*4} cy={y} rx="16" ry="7" transform={`rotate(-35 ${264-i*4} ${y})`} fill="#f5c64d"/></g>)}</>:<>{[[35,40],[265,55],[55,145],[245,145]].map(([x,y])=><path key={x} d={`M${x} ${y-16}v32m-16-16h32m-27-11 22 22m0-22-22 22`}/>)}</>}</svg>;
 }
+
