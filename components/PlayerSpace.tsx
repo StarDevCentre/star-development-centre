@@ -109,7 +109,7 @@ export function PlayerSpace({ data, userKey, onSavePractice, onRefresh, onSignOu
 
   function navigate(value: Tab) { if(value!=="home")setStyleRequest(0); setTab(value); setAccount(false); setMore(false); setMessage(""); setError(""); requestAnimationFrame(() => { pageHeading.current?.focus({ preventScroll: true }); pageHeading.current?.scrollIntoView({ block: "start", behavior: "auto" }); }); }
   useEffect(()=>{if(new URLSearchParams(window.location.search).get('updates')==='1')setTab('updates');},[]);
-  useEffect(()=>{if(!demo)return;const showcase=new URLSearchParams(window.location.search).get('showcase');if(showcase==='training'||showcase==='trophies'||showcase==='home')setTab(showcase);},[demo]);
+  useEffect(()=>{if(!demo)return;const showcase=new URLSearchParams(window.location.search).get('showcase');if(showcase==='training'||showcase==='trophies'||showcase==='home'||showcase==='learn')setTab(showcase);},[demo]);
 
   function openStyle(){navigate("home");setStyleRequest(v=>v+1);}
   function startPractice(assignmentId: string) { setSavedMoment(null); setDate(todayInLondon()); const task=assignments.find(a=>a.id===assignmentId); setWeek(task?.week_start || weekOf(todayInLondon())); setMinutes(String(task?.suggested_minutes || 15)); setConfidence(null); setEnjoyment(null); setActiveAssignment(assignmentId); navigate("training"); }
