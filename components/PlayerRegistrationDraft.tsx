@@ -1,7 +1,7 @@
 "use client";
 import {useEffect,useState} from "react";
 import {playerAge,programmeForAge} from "../lib/siteData";
-const programmeLabels=[["sparks","STAR Sparks (ages 5–10)"],["development","Development Groups (ages 11–16)"],["flyers","STAR Flyers (ages 7–10)"],["prestige","STAR Prestige (ages 11–18)"],["one-to-one","One-to-One (ages 11–18)"],["season-support","Season Support"]];
+const programmeLabels=[["sparks","STAR Sparks (ages 5–10)"],["development","Development Groups (ages 11–16)"],["flyers","STAR Flyers (ages 7–10)"],["prestige","STAR Prestige (ages 11–18)"],["one-to-one","One to One Coaching (ages 11–18)"],["season-support","Season Support"]];
 type Props={onSave:(data:{player_first_name:string;player_last_name:string;date_of_birth:string;programme:string})=>Promise<boolean>;busy:boolean;initialProgramme?:string};
 export function PlayerRegistrationDraft({onSave,busy,initialProgramme=""}:Props){
  const [first,setFirst]=useState(""),[last,setLast]=useState(""),[dob,setDob]=useState(""),[programme,setProgramme]=useState(initialProgramme);
@@ -32,3 +32,4 @@ export function PlayerRegistrationDraft({onSave,busy,initialProgramme=""}:Props)
  <p className="parent-form-hint">Prices and payment options appear in this account after submission, so you can review them before agreeing a place.</p>
  </form>;
 }
+

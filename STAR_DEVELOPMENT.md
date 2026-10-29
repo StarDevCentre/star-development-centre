@@ -1,6 +1,6 @@
 # STAR Development Centre — Development Guide
 
-> Working reference for AI coding agents and human developers. Last updated: 28 October 2026.
+> Working reference for AI coding agents and human developers. Last updated: 29 October 2026.
 > This document records product intent and working preferences. **The repository code, configuration and deployment environment are the source of truth for implemented behaviour.** Do not assume every planned feature exists.
 
 ## Purpose
@@ -27,11 +27,20 @@ These are business requirements provided in earlier planning; check with the own
 - STAR Sparks ages 5–10: £5 per 45-minute group session, pay-as-you-go.
 - Group coaching ages 11–16: £5 per 45-minute group session.
 - Flyers ages 7–10: 16 weekly one-hour individual sessions; £375 upfront or £380 total across three payments.
-- Ad-hoc individual coaching ages 11–18: £40 per one-hour session.
+- One to One Coaching ages 11–18: £40 per one-hour session.
 - Prestige ages 11–18: 24 weeks, typically weekly 90-minute individual sessions; £800 upfront, 3 × £280 or 6 × £150.
 - Player Season Support: £25 per visit, with agreed observations and coaching support.
 - Ages 17–18: individual coaching only.
 - Do not imply external academy endorsement or guarantee trials/pathway outcomes.
+
+## Programmes page and finder
+- One to One Coaching is the lead service and its consistent public name. Keep the agreed website design; the audience includes players and families.
+- `/programmes` has an age filter, an individual-coaching feature, Flyers/Prestige cards, separate cards for group ages 5–7, 8–10, 11–13 and 14–16, and a separate Player Season Support section. Preserve existing programme anchor IDs.
+- Reuse `/find-your-programme` as the single guided finder. Match age and stated focus, show the reason for each suggestion and rank One to One Coaching first for eligible individual goals. Do not suggest individual programmes as group matches; explain ages 17–18 have individual options.
+- Public descriptions and enquiries do not require an account. Programme enquiries use the existing contact form with the programme and selected age carried through.
+- Prices and payment options stay exclusively in the server pricing route and are returned only after validating a non-anonymous signed-in user. Viewing prices no longer requires a parent profile or submitted player registration; enrolment permissions remain separate. Never embed prices in public page data, HTML or client bundles.
+- The pricing sign-in links accept only the `programmes` or `finder` return destinations. The existing parent sign-in/confirmation flow returns to that page; password recovery must finish before redirecting.
+- Run `node --test scripts/test-programmes.cjs` for age/focus matching and mocked pricing authentication checks when modifying these areas.
 
 ## Staplegrove Ladies pathway referrals
 - `/pathways` includes a separate Staplegrove-branded enquiry box for players aged 15+. Open-age match eligibility is 16+; the club confirms arrangements.
