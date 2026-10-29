@@ -1,9 +1,10 @@
 import type { LearningProgress, PortalFeatureActions } from './playerPortalFeatures';
+import { extraFootballActivities } from './playerActivitiesMore';
 
 export type PitchPoint = { x: number; y: number };
 export type ActivityChoice = {
   id: 'A' | 'B' | 'C'; label: string; at: PitchPoint;
-  kind: 'pass' | 'move' | 'carry' | 'shoot' | 'hold' | 'touch';
+  kind: 'pass' | 'loft' | 'move' | 'carry' | 'shoot' | 'hold' | 'touch';
   outcome: 'opens-play' | 'another-option' | 'look-again';
   feedback: string; detail: string;
 };
@@ -13,7 +14,9 @@ export type ActivityScenario = {
   teammates: PitchPoint[]; opponents: PitchPoint[]; choices: ActivityChoice[];
 };
 export type FootballActivity = {
-  id: 'pass' | 'space' | 'next' | 'touch'; title: string;
+  id: 'pass' | 'space' | 'next' | 'touch' | 'defend' | 'counter' | 'keeper-position' | 'keeper-distribution'; title: string;
+  mode: 'ball' | 'player' | 'receive'; phase?: 'attack' | 'defend';
+  role?: 'goalkeeper'; view?: 'goal-area'; source?: { label: string; url: string };
   description: string; focus: string; instruction: string;
   scenarios: ActivityScenario[];
 };
@@ -23,10 +26,10 @@ const choice = (id: ActivityChoice['id'], label: string, x: number, y: number,
   ({ id, label, at: p(x, y), kind, outcome, feedback, detail });
 
 // Original STAR decision snapshots, not match simulations or official assessments.
-// Coordinates share a 100 × 72 pitch; every team attacks towards the right.
+// Coordinates share a 100 × 72 diagram. Our team attacks right and defends left.
 export const footballActivities: FootballActivity[] = [
   {
-    id: 'pass', title: 'Spot the Pass', focus: 'Look up. Find a passing lane.',
+    id: 'pass', mode: 'ball', title: 'Spot the Pass', focus: 'Look up. Find a passing lane.',
     description: 'Pick a teammate and discover what your pass could open up.',
     instruction: 'You have the ball. Tap A, B or C to choose a teammate.',
     scenarios: [
@@ -111,7 +114,7 @@ export const footballActivities: FootballActivity[] = [
     ],
   },
   {
-    id: 'space', title: 'Find the Space', focus: 'Move to help a teammate.',
+    id: 'space', mode: 'player', title: 'Find the Space', focus: 'Move to help a teammate.',
     description: 'Move your player to give the ball carrier a useful option.',
     instruction: 'Your teammate has the ball. Tap A, B or C to choose where you move.',
     scenarios: [
@@ -196,7 +199,7 @@ export const footballActivities: FootballActivity[] = [
     ],
   },
   {
-    id: 'next', title: 'What Happens Next?', focus: 'Choose a move. Explore the possibilities.',
+    id: 'next', mode: 'ball', title: 'What Happens Next?', focus: 'Choose a move. Explore the possibilities.',
     description: 'Pass, carry, shoot or protect the ball. Work out what the moment needs.',
     instruction: 'You have the ball. Tap A, B or C to choose your next action.',
     scenarios: [
@@ -281,7 +284,7 @@ export const footballActivities: FootballActivity[] = [
     ],
   },
   {
-    id: 'touch', title: 'First-Touch Choices', focus: 'Your first touch sets up your next move.',
+    id: 'touch', mode: 'receive', title: 'First-Touch Choices', focus: 'Your first touch sets up your next move.',
     description: 'See a pass coming, scan the pressure and choose where to take your touch.',
     instruction: 'A pass is coming to you. Tap A, B or C to choose your first-touch direction.',
     scenarios: [
@@ -365,7 +368,26 @@ export const footballActivities: FootballActivity[] = [
       },
     ],
   },
+  ...extraFootballActivities,
 ];
+
+export const totalActivityScenarios = footballActivities.reduce((total, activity) => total + activity.scenarios.length, 0);
+
+export function activityRoute(activity: FootballActivity, scenario: ActivityScenario, selected: ActivityChoice) {
+  const start = activity.mode === 'ball' ? scenario.ball : scenario.you;
+  const end = selected.at;
+  const point = (p: PitchPoint) => `${p.x},${p.y}`;
+  const distance = Math.hypot(end.x - start.x, end.y - start.y);
+  const t = distance ? 1 - Math.min(10 / distance, 1 / 3) : 1;
+  if (selected.kind === 'loft') {
+    const control = { x: (start.x + end.x) / 2, y: Math.max(7, Math.min(start.y, end.y) - 18) };
+    const cutControl = { x: start.x + t * (control.x - start.x), y: start.y + t * (control.y - start.y) };
+    const cutEnd = { x: (1 - t) ** 2 * start.x + 2 * (1 - t) * t * control.x + t ** 2 * end.x, y: (1 - t) ** 2 * start.y + 2 * (1 - t) * t * control.y + t ** 2 * end.y };
+    return { start, path: `M${point(start)} Q${point(control)} ${point(end)}`, arrowPath: `M${point(start)} Q${point(cutControl)} ${point(cutEnd)}` };
+  }
+  const cutEnd = { x: start.x + t * (end.x - start.x), y: start.y + t * (end.y - start.y) };
+  return { start, path: `M${point(start)} L${point(end)}`, arrowPath: `M${point(start)} L${point(cutEnd)}` };
+}
 
 const scenarioIds = new Set(footballActivities.flatMap(a => a.scenarios.map(s => s.id)));
 export type ActivityMarker = 'activity' | 'favourite';

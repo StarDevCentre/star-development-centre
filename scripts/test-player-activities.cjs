@@ -5,7 +5,7 @@ const ts=require('typescript');
 require.extensions['.ts']=(mod,file)=>mod._compile(ts.transpileModule(fs.readFileSync(file,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2020,jsx:ts.JsxEmit.ReactJSX,esModuleInterop:true}}).outputText,file);
 require.extensions['.tsx']=require.extensions['.ts'];
 require.extensions['.css']=()=>{};
-const {footballActivities,activityMarker,activityProgress,nextUnexploredScenario,saveActivityProgress}=require('../lib/playerActivities.ts');
+const {footballActivities,totalActivityScenarios,activityRoute,activityMarker,activityProgress,nextUnexploredScenario,saveActivityProgress}=require('../lib/playerActivities.ts');
 const {learningArticles,quizQuestions}=require('../lib/playerLearning.ts');
 const {ActivityPitch,PlayerActivities}=require('../components/PlayerActivities.tsx');
 const {PlayerLearning}=require('../components/PlayerLearning.tsx');
@@ -19,9 +19,9 @@ function distanceFromSegment(p,a,b){
  return Math.hypot(p.x-(a.x+t*dx),p.y-(a.y+t*dy));
 }
 
-test('four complete activities contain 24 distinct scenarios with feedback for all 72 choices',()=>{
- assert.deepEqual(footballActivities.map(a=>a.id),['pass','space','next','touch']);
- assert.equal(scenarios.length,24);assert.equal(new Set(scenarios.map(s=>s.id)).size,24);
+test('eight complete games contain 48 distinct scenarios with feedback for all 144 choices',()=>{
+ assert.deepEqual(footballActivities.map(a=>a.id),['pass','space','next','touch','defend','counter','keeper-position','keeper-distribution']);
+ assert.equal(totalActivityScenarios,48);assert.equal(scenarios.length,48);assert.equal(new Set(scenarios.map(s=>s.id)).size,48);
  for(const a of footballActivities){
   assert.equal(a.scenarios.length,6);
   for(const s of a.scenarios){
@@ -44,8 +44,8 @@ test('pitch targets stay within the diagram and separate touch targets on a 260p
    assert.ok(Math.hypot(x.x-y.x,x.y-y.y)*2.6>=44,`${s.id}: choice targets overlap`);
   }
   for(const c of s.choices){
-   if(c.kind==='pass')assert.ok(s.teammates.some(t=>same(t,c.at)),`${s.id}: pass needs a teammate`);
-   if(c.kind==='hold')assert.ok(same(s.you,c.at),`${s.id}: protection stays with the player`);
+   if(c.kind==='pass'||c.kind==='loft')assert.ok(s.teammates.some(t=>same(t,c.at)),`${s.id}: pass needs a teammate`);
+   if(c.kind==='hold')assert.ok(same(s.you,c.at),`${s.id}: a stationary action stays with the player`);
   }
  }
 });
@@ -84,7 +84,7 @@ test('all move diagrams expose labelled keyboard buttons and finite animated pat
   const html=renderToStaticMarkup(React.createElement(ActivityPitch,{activity:a,scenario:s,selected:c,revealed:true,disabled:false,onChoose:()=>{}}));
   assert.equal((html.match(/<button/g)||[]).length,3);
   assert.equal((html.match(/aria-pressed="true"/g)||[]).length,1);
-  assert.match(html,/role="img"/);assert.match(html,/<desc id=/);assert.match(html,/ATTACK THIS WAY/);
+  assert.match(html,/role="img"/);assert.match(html,/<desc id=/);assert.match(html,a.phase==='defend'?/DEFEND YOUR GOAL/:a.role==='goalkeeper'?/BUILD FROM YOUR GOAL/:/ATTACK THIS WAY/);
   assert.match(html,/aria-label="A\./);assert.doesNotMatch(html,/NaN|undefined|Infinity/);
   if(c.kind!=='hold')assert.match(html,/<animateMotion/);
  }
@@ -101,9 +101,46 @@ test('library shows only this player’s favourites and learning counts exclude 
  const progress=[row('activity:'+own.id),row('favourite:'+own.id),row('favourite:'+other.id,'other'),row(learningArticles[0].id),row('quiz:'+quizQuestions[0].id),row('removed-guide')];
  const props={playerId:'p',senior:false,progress,onLearningProgress:async()=>{}};
  const html=renderToStaticMarkup(React.createElement(PlayerActivities,props));
- assert.match(html,/1 of 24 scenarios explored/);assert.equal((html.match(/<progress/g)||[]).length,4);
+ assert.match(html,/1 of 48 scenarios explored/);assert.equal((html.match(/<progress/g)||[]).length,8);
  assert.match(html,new RegExp(own.title));assert.doesNotMatch(html,new RegExp(other.title));
  const learning=renderToStaticMarkup(React.createElement(PlayerLearning,props));
  assert.match(learning,/1 activity scenarios explored · 1 guides explored · 1 quiz questions completed/);
  assert.match(learning,/Play &amp; explore/);assert.match(learning,/First-Touch Choices/);
+});
+
+
+test('exactly two goalkeeper games have six situations, correct ball ownership and an enlarged positioning view',()=>{
+ const keepers=footballActivities.filter(a=>a.role==='goalkeeper');
+ assert.deepEqual(keepers.map(a=>a.id),['keeper-position','keeper-distribution']);
+ assert.equal(keepers.flatMap(a=>a.scenarios).length,12);
+ for(const a of footballActivities)for(const s of a.scenarios){
+  if(a.phase==='defend')assert.ok(s.opponents.some(o=>same(o,s.ball)),s.id+': opponent owns the ball');
+  if(a.mode==='ball')assert.ok(same(s.ball,s.you),s.id+': player owns the ball');
+  for(const c of s.choices){
+   const route=activityRoute(a,s,c),origin=a.mode==='ball'?s.ball:s.you;
+   assert.deepEqual(route.start,origin,s.id);
+   assert.ok(route.path.startsWith(`M${origin.x},${origin.y} `),s.id);
+   assert.ok(route.path.endsWith(`${c.at.x},${c.at.y}`),s.id);
+   assert.doesNotMatch(route.path+route.arrowPath,/NaN|Infinity|undefined/);
+   assert.equal(route.path.includes(' Q'),c.kind==='loft',s.id+': only a lifted pass uses an arc');
+  }
+ }
+ const a=keepers[0],s=a.scenarios[0];
+ assert.equal(a.mode,'player');assert.equal(a.phase,'defend');assert.equal(a.view,'goal-area');
+ const html=renderToStaticMarkup(React.createElement(ActivityPitch,{activity:a,scenario:s,selected:s.choices[0],revealed:true,disabled:false,onChoose:()=>{}}));
+ assert.match(html,/You: goalkeeper/);assert.match(html,/shooting angle · enlarged view/);assert.doesNotMatch(html,/ATTACK THIS WAY/);
+ const lifted=keepers[1].scenarios.flatMap(s=>s.choices.map(c=>({s,c}))).find(x=>x.c.kind==='loft');
+ assert.ok(lifted);
+ const arc=renderToStaticMarkup(React.createElement(ActivityPitch,{activity:keepers[1],scenario:lifted.s,selected:lifted.c,revealed:true,disabled:false,onChoose:()=>{}}));
+ assert.match(arc,/Curved gold arrow: lifted pass over the press/);
+});
+
+test('new goalkeeper favourites persist alongside original activity progress without changing its IDs',()=>{
+ const original=['pass-wide','space-angle','next-carry','touch-away'];
+ const keeper=footballActivities.find(a=>a.id==='keeper-position').scenarios[0].id;
+ const rows=[...original.map(id=>row('activity:'+id)),row('activity:'+keeper),row('favourite:'+keeper),row('favourite:'+keeper,'other')];
+ const state=activityProgress(rows,'p');assert.equal(state.explored.size,5);assert.deepEqual([...state.favourites],[keeper]);
+ for(const id of original)assert.ok(state.explored.has(id));
+ const html=renderToStaticMarkup(React.createElement(PlayerActivities,{playerId:'p',senior:true,progress:rows,onLearningProgress:async()=>{}}));
+ assert.match(html,/5 of 48 scenarios explored/);assert.match(html,/aria-label="Filter games"/);assert.match(html,/Goalkeepers/);assert.match(html,/Face the central threat/);
 });
