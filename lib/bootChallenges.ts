@@ -1,3 +1,4 @@
+import {extraBoots,extraBootChallenges} from './playerCollectionExpansion';
 import type {LearningProgress} from './playerPortalFeatures';
 export type BootChoice={id:string;label:string;feedback:string;useful:boolean};
 export type BootDecision={id:string;prompt:string;choices:BootChoice[]};
@@ -6,6 +7,7 @@ export type CollectibleBoot={id:string;name:string;colour:string;edition:string;
 const adidas='https://www.arsenal.com/news/adidas-launches-road-to-glory-pack-aIfmK8S6ta41';
 const puma='https://mediahub.puma.com/articles/puma-launches-the-foreverfaster-pack';
 export const collectibleBoots:CollectibleBoot[]=[
+ ...extraBoots,
  {id:'tiempo',name:'Nike Tiempo Legend 10 Pro',colour:'Black / Deep Jungle',edition:'Black Pack',challenge:'first-touch',source:'https://www.nike.com/gb/w/all-products-tiempo-football-1gdj0z20w7kz3ci69'},
  {id:'copa',name:'adidas Copa Pure III',colour:'White / Black / Metallic Gold',edition:'Road to Glory · 2025',challenge:'passing',source:adidas},
  {id:'mercurial',name:'Nike Mercurial Vapor 16 Pro',colour:'Limelight / Hyper Crimson / Volt',edition:'Limelight',challenge:'dribbling',source:'https://www.nike.com/gb/t/mercurial-vapor-16-pro-firm-ground-low-top-football-boot-Kwi10YUj/FQ8685-300'},
@@ -78,6 +80,7 @@ bootChallenges.push(
  decision('team-transition','Your team loses the ball. What is a useful first response?','C',[
  ['Argue about the last pass.','That delays your team’s reaction.'],['Everyone chase into the same space.','You may leave dangerous routes unprotected.'],['React together: the nearest delays, others recover and cover.','Connected jobs help your team protect the goal.']])]}
 );
+bootChallenges.push(...extraBootChallenges);
 export const bootKey=(id:string)=>'boot-'+id;
 export const bootAsset=(id:string)=>`/player-space/boots/${id}.webp`;
 export const bootMarker=(stepId:string)=>'mastery:boot:'+stepId;

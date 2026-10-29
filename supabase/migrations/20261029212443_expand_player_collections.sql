@@ -1,0 +1,108 @@
+-- Add 16 players and nine boot challenges. Existing progress, rewards and permissions are retained.
+create or replace function star_private.validate_player_squad() returns trigger language plpgsql set search_path='' as $$
+declare selected text;keepers text[]:=array['brosnan','kop','roebuck','hampton','yamashita','tullis-joyce'];roster text[]:=array['hemp','blindkilde','kelly','caldentey','walsh','carpenter','fisk','brosnan','koga','stanway','kop','roebuck','asllani','godfrey','tierney','goodwin','hampton','yamashita','tullis-joyce','williamson','fox','bronze','greenwood','le-tissier','little','cuthbert','hasegawa','toone','kirby','kendall','russo','james','shaw','terland','seike','daly'];
+begin
+ if tg_op='UPDATE' and new.player_id<>old.player_id then raise exception 'A squad stays with its player' using errcode='23514';end if;
+ if cardinality(new.footballers)<>5 or (select count(distinct p) from unnest(new.footballers) p)<>5 then raise exception 'Choose five different players' using errcode='23514';end if;
+ foreach selected in array new.footballers loop
+  if selected is null or not(selected=any(roster)) then raise exception 'Choose a player from the roster' using errcode='23514';end if;
+ end loop;
+ if not(new.footballers[1]=any(keepers)) or exists(select 1 from unnest(new.footballers[2:5]) p where p=any(keepers)) then raise exception 'Choose one goalkeeper and four outfield players' using errcode='23514';end if;
+ if not(new.captain=any(new.footballers)) then raise exception 'Choose a captain from your squad' using errcode='23514';end if;
+ new.name:=btrim(new.name);new.updated_at:=now();return new;
+end $$;
+alter table public.player_cosmetic_unlocks drop constraint player_cosmetic_unlocks_cosmetic_check;
+alter table public.player_cosmetic_unlocks add constraint player_cosmetic_unlocks_cosmetic_check check(cosmetic in ('avatar-captain','avatar-comet','avatar-shield','decoration-lightning','decoration-laurel','decoration-starburst','ball-nike-10','ball-gold-50','learning-badge-pass','theme-passing-lanes','learning-badge-space','theme-open-pitch','learning-badge-next','frame-next-move','learning-badge-touch','decoration-touch-trail','learning-badge-defend','frame-hold-line','learning-badge-counter','decoration-breakaway','learning-badge-keeper-position','frame-between-posts','learning-badge-keeper-distribution','theme-build-back','learning-badge-football-foundations','theme-notebook','learning-badge-teamwork-trailblazers','frame-learning-crest','hair-high-bun','hair-double-braids','hair-half-up','hair-curly-ponytail','hair-twisted-bun','hair-short-crop','boot-tiempo','boot-copa','boot-mercurial','boot-predator','boot-future','boot-ultra','boot-phantom','boot-f50','boot-ida-rise','boot-furon-pink','boot-tekela-white','boot-morelia-ruby','boot-superfly-pink','boot-absolute-2006','boot-total90-2004','boot-stadio-1990','boot-etrusco-1990'));
+insert into star_private.boot_challenge_options(item,choice,marker,useful) values
+('turn-check','A','mastery:boot:turn-check',true),
+('turn-check','B','mastery:boot:turn-check',false),
+('turn-check','C','mastery:boot:turn-check',false),
+('turn-room','A','mastery:boot:turn-room',false),
+('turn-room','B','mastery:boot:turn-room',true),
+('turn-room','C','mastery:boot:turn-room',false),
+('turn-tight','A','mastery:boot:turn-tight',false),
+('turn-tight','B','mastery:boot:turn-tight',false),
+('turn-tight','C','mastery:boot:turn-tight',true),
+('both-open','A','mastery:boot:both-open',true),
+('both-open','B','mastery:boot:both-open',false),
+('both-open','C','mastery:boot:both-open',false),
+('both-balance','A','mastery:boot:both-balance',false),
+('both-balance','B','mastery:boot:both-balance',true),
+('both-balance','C','mastery:boot:both-balance',false),
+('both-match','A','mastery:boot:both-match',false),
+('both-match','B','mastery:boot:both-match',false),
+('both-match','C','mastery:boot:both-match',true),
+('shield-body','A','mastery:boot:shield-body',true),
+('shield-body','B','mastery:boot:shield-body',false),
+('shield-body','C','mastery:boot:shield-body',false),
+('shield-arms','A','mastery:boot:shield-arms',false),
+('shield-arms','B','mastery:boot:shield-arms',true),
+('shield-arms','C','mastery:boot:shield-arms',false),
+('shield-exit','A','mastery:boot:shield-exit',false),
+('shield-exit','B','mastery:boot:shield-exit',false),
+('shield-exit','C','mastery:boot:shield-exit',true),
+('cross-look','A','mastery:boot:cross-look',true),
+('cross-look','B','mastery:boot:cross-look',false),
+('cross-look','C','mastery:boot:cross-look',false),
+('cross-cutback','A','mastery:boot:cross-cutback',false),
+('cross-cutback','B','mastery:boot:cross-cutback',true),
+('cross-cutback','C','mastery:boot:cross-cutback',false),
+('cross-reset','A','mastery:boot:cross-reset',false),
+('cross-reset','B','mastery:boot:cross-reset',false),
+('cross-reset','C','mastery:boot:cross-reset',true),
+('combine-run','A','mastery:boot:combine-run',true),
+('combine-run','B','mastery:boot:combine-run',false),
+('combine-run','C','mastery:boot:combine-run',false),
+('combine-lane','A','mastery:boot:combine-lane',false),
+('combine-lane','B','mastery:boot:combine-lane',true),
+('combine-lane','C','mastery:boot:combine-lane',false),
+('combine-weight','A','mastery:boot:combine-weight',false),
+('combine-weight','B','mastery:boot:combine-weight',false),
+('combine-weight','C','mastery:boot:combine-weight',true),
+('press-trigger','A','mastery:boot:press-trigger',true),
+('press-trigger','B','mastery:boot:press-trigger',false),
+('press-trigger','C','mastery:boot:press-trigger',false),
+('press-angle','A','mastery:boot:press-angle',false),
+('press-angle','B','mastery:boot:press-angle',true),
+('press-angle','C','mastery:boot:press-angle',false),
+('press-beaten','A','mastery:boot:press-beaten',false),
+('press-beaten','B','mastery:boot:press-beaten',false),
+('press-beaten','C','mastery:boot:press-beaten',true),
+('recover-goal','A','mastery:boot:recover-goal',true),
+('recover-goal','B','mastery:boot:recover-goal',false),
+('recover-goal','C','mastery:boot:recover-goal',false),
+('recover-runner','A','mastery:boot:recover-runner',false),
+('recover-runner','B','mastery:boot:recover-runner',true),
+('recover-runner','C','mastery:boot:recover-runner',false),
+('recover-set','A','mastery:boot:recover-set',false),
+('recover-set','B','mastery:boot:recover-set',false),
+('recover-set','C','mastery:boot:recover-set',true),
+('voice-warning','A','mastery:boot:voice-warning',true),
+('voice-warning','B','mastery:boot:voice-warning',false),
+('voice-warning','C','mastery:boot:voice-warning',false),
+('voice-mistake','A','mastery:boot:voice-mistake',false),
+('voice-mistake','B','mastery:boot:voice-mistake',true),
+('voice-mistake','C','mastery:boot:voice-mistake',false),
+('voice-listen','A','mastery:boot:voice-listen',false),
+('voice-listen','B','mastery:boot:voice-listen',false),
+('voice-listen','C','mastery:boot:voice-listen',true),
+('keeper-pass-route','A','mastery:boot:keeper-pass-route',true),
+('keeper-pass-route','B','mastery:boot:keeper-pass-route',false),
+('keeper-pass-route','C','mastery:boot:keeper-pass-route',false),
+('keeper-pass-weight','A','mastery:boot:keeper-pass-weight',false),
+('keeper-pass-weight','B','mastery:boot:keeper-pass-weight',true),
+('keeper-pass-weight','C','mastery:boot:keeper-pass-weight',false),
+('keeper-pass-support','A','mastery:boot:keeper-pass-support',false),
+('keeper-pass-support','B','mastery:boot:keeper-pass-support',false),
+('keeper-pass-support','C','mastery:boot:keeper-pass-support',true);
+insert into star_private.boot_reward_catalogue(challenge,requirements,cosmetic) values
+('turning',array['mastery:boot:turn-check','mastery:boot:turn-room','mastery:boot:turn-tight'],'boot-ida-rise'),
+('weaker-foot',array['mastery:boot:both-open','mastery:boot:both-balance','mastery:boot:both-match'],'boot-furon-pink'),
+('shielding',array['mastery:boot:shield-body','mastery:boot:shield-arms','mastery:boot:shield-exit'],'boot-tekela-white'),
+('crossing',array['mastery:boot:cross-look','mastery:boot:cross-cutback','mastery:boot:cross-reset'],'boot-morelia-ruby'),
+('combinations',array['mastery:boot:combine-run','mastery:boot:combine-lane','mastery:boot:combine-weight'],'boot-superfly-pink'),
+('pressing',array['mastery:boot:press-trigger','mastery:boot:press-angle','mastery:boot:press-beaten'],'boot-absolute-2006'),
+('recovery',array['mastery:boot:recover-goal','mastery:boot:recover-runner','mastery:boot:recover-set'],'boot-total90-2004'),
+('communication',array['mastery:boot:voice-warning','mastery:boot:voice-mistake','mastery:boot:voice-listen'],'boot-stadio-1990'),
+('keeper-distribution',array['mastery:boot:keeper-pass-route','mastery:boot:keeper-pass-weight','mastery:boot:keeper-pass-support'],'boot-etrusco-1990');
+notify pgrst,'reload schema';

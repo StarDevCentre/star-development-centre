@@ -1,7 +1,9 @@
+import {extraSquad} from './playerCollectionExpansion';
 export type SquadRole='Goalkeeper'|'Defender'|'Midfielder'|'Forward';
 export type SquadFootballer={id:string;name:string;club:string;role:SquadRole;number:number;watch:string;source:string;kit:string};
 // Club memberships checked against official club/WSL sources on 29 October 2026.
 export const squadRoster:SquadFootballer[]=[
+ ...extraSquad,
  {id:'hampton',name:'Hannah Hampton',club:'Chelsea',role:'Goalkeeper',number:24,watch:'Watch her starting position and the way she finds a teammate to play out.',source:'https://www.chelseafc.com/en/teams/profile/hannah-hampton',kit:'2026/27 home goalkeeper'},
  {id:'yamashita',name:'Ayaka Yamashita',club:'Manchester City',role:'Goalkeeper',number:31,watch:'Watch how she gets set before a shot and supports the player on the ball.',source:'https://www.mancity.com/players/ayaka-yamashita',kit:'2026/27 home goalkeeper'},
  {id:'tullis-joyce',name:'Phallon Tullis-Joyce',club:'Manchester United',role:'Goalkeeper',number:91,watch:'Watch how she covers the goal and resets her feet as the ball moves.',source:'https://www.manutd.com/en/teams/womens-team',kit:'2026/27 home goalkeeper'},

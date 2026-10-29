@@ -55,17 +55,25 @@ do $$declare pid uuid:=(select value::uuid from collection_test where key='core'
  if jsonb_array_length(r->'progress')<>3 or jsonb_array_length(r->'unlocks')<>1 then raise exception 'Response not complete';end if;
  if exists(select 1 from jsonb_array_elements(r->'progress') x where x->>'player_id'<>pid::text) then raise exception 'Response leaked another player';end if;
 end$$;
+-- New roster entries work through the same RLS and trigger.
+do $$declare pid uuid:=(select value::uuid from collection_test where key='core');keeper text;begin
+ foreach keeper in array array['brosnan','kop','roebuck'] loop
+  update public.player_squads set footballers=array[keeper,'hemp','stanway','asllani','goodwin'],captain='hemp',updated_by=auth.uid() where player_id=pid;
+  begin update public.player_squads set footballers=array['hampton',keeper,'stanway','asllani','goodwin'] where player_id=pid;raise exception 'TEST FAILED new second goalkeeper';exception when check_violation then null;end;
+ end loop;
+ update public.player_squads set footballers=array['hampton','williamson','hasegawa','toone','shaw'],captain='shaw',updated_by=auth.uid() where player_id=pid;
+end$$;
 -- A linked player continues the same private squad and permanent challenge progress.
 select set_config('request.jwt.claim.sub',(select value from collection_test where key='player'),true);
 do $$declare pid uuid:=(select value::uuid from collection_test where key='core');a record;begin
  if not exists(select 1 from public.player_squads where player_id=pid and name='My box' and captain='shaw') then raise exception 'Linked player cannot read saved squad';end if;
  update public.player_squads set name='Our five',formation='diamond',updated_by=auth.uid() where player_id=pid;
  for a in select * from boot_options_test where useful loop perform public.submit_boot_answer(pid,a.item,a.choice);end loop;
- if (select count(*) from public.player_cosmetic_unlocks where player_id=pid and cosmetic like 'boot-%')<>8 then raise exception 'Not all eight boots earned';end if;
+ if (select count(*) from public.player_cosmetic_unlocks where player_id=pid and cosmetic like 'boot-%')<>17 then raise exception 'Not all 17 boots earned';end if;
  if exists(select 1 from public.player_cosmetic_unlocks where player_id=pid and cosmetic not like 'boot-%') then raise exception 'Boots granted unrelated rewards';end if;
- if (select count(*) from public.player_learning_progress where player_id=pid and lesson_id like 'mastery:boot:%')<>24 then raise exception 'Expected 24 permanent decisions';end if;
+ if (select count(*) from public.player_learning_progress where player_id=pid and lesson_id like 'mastery:boot:%')<>51 then raise exception 'Expected 51 permanent decisions';end if;
  delete from public.player_learning_progress where player_id=pid and lesson_id like 'mastery:boot:%';
- if (select count(*) from public.player_learning_progress where player_id=pid and lesson_id like 'mastery:boot:%')<>24 then raise exception 'Boot mastery could be removed';end if;
+ if (select count(*) from public.player_learning_progress where player_id=pid and lesson_id like 'mastery:boot:%')<>51 then raise exception 'Boot mastery could be removed';end if;
  begin perform public.unlock_learning_hairstyle(pid,'high-bun');raise exception 'TEST FAILED boot earned hairstyle entitlement';exception when check_violation then null;end;
 end$$;
 select set_config('request.jwt.claim.sub',(select value from collection_test where key='other'),true);
@@ -76,4 +84,4 @@ do $$declare pid uuid:=(select value::uuid from collection_test where key='core'
 end$$;
 reset role;
 rollback;
-select 'PASS: eight free backgrounds; validated private squads; linked account continuity; 24 verified decisions; eight permanent boots; no duplicate or unrelated rewards; family isolation. All synthetic fixtures rolled back.' as result;
+select 'PASS: eight free backgrounds; validated private squads; linked account continuity; 51 verified decisions; 17 permanent boots; no duplicate or unrelated rewards; family isolation. All synthetic fixtures rolled back.' as result;
