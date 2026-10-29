@@ -22,6 +22,10 @@ STAR Development Centre is an independent girls' football development service in
 - STAR contact: call/text/WhatsApp 07902594064; email coachdmp7@gmail.com.
 - Do not add a prospectus to the homepage or use it as a required user journey unless explicitly requested.
 
+## Shared public header
+- All routes use the same current public header from `components/Site.tsx`; do not select legacy headers using a route allowlist. Its shared `home.css` is loaded by the root layout so direct visits and navigation use the same sizing and styling.
+- Player Space keeps its own header. Parent and staff app shells suppress the public header using their existing scoped styles; preserve those rules when changing shared chrome.
+
 ## Programmes — confirm prices before publishing changes
 These are business requirements provided in earlier planning; check with the owner before changing public pricing.
 - STAR Sparks ages 5–10: £5 per 45-minute group session, pay-as-you-go.
