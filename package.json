@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "node scripts/dev.mjs",
-    "build": "next build",
+    "build": "node scripts/build-public-search.cjs && next build",
     "start": "next start",
     "test:push": "node scripts/test-player-push.cjs"
   },

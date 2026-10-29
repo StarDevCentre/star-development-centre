@@ -5,6 +5,8 @@ export const siteName='STAR Development Centre';
 export const isPreview=!!process.env.VERCEL_ENV&&process.env.VERCEL_ENV!=='production';
 export const privateRobots={index:false,follow:false,noarchive:true};
 export const publicPages=[
+ {path:'/site-index',id:'site-index',title:'Site Index: Explore STAR',description:'Browse STAR coaching programmes, football guides, practical support and account links in one place.',category:'FIND YOUR WAY AT STAR'},
+ {path:'/search',id:'search',title:'Search STAR',description:'Search STAR programmes, public pages, common questions and detailed football guides for players and families.',category:'FIND WHAT MATTERS TO YOU'},
  {path:'/',id:'home',title:'Girls’ Football Coaching in Somerset',description:'Girls’ football coaching in Taunton and Wellington, Somerset. Group sessions and individual programmes for ages 5–18, built around each player.',category:'DEVELOP. BELIEVE. ACHIEVE.'},
  {path:'/programmes',id:'programmes',title:'Girls’ Football Coaching Programmes',description:'Explore One to One Coaching, Flyers, Prestige and age-group football sessions in Somerset. Find coaching that fits her age, experience and goals.',category:'HER GAME. HER NEXT STEP.'},
  {path:'/find-your-programme',id:'finder',title:'Find Her Football Programme',description:'Choose her age and what she wants from football to explore suitable STAR group and individual coaching programmes.',category:'FIND THE RIGHT FIT'},
