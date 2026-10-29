@@ -27,8 +27,9 @@ import {SessionAnalytics} from "./SessionAnalytics";
 export function StaffWorkspace({userId,role,onSignOut}:{userId:string;role:StaffRole;onSignOut:()=>void}){
  const{section,visited,goTo}=useStaffNavigation(role);const[menuOpen,setMenuOpen]=useState(false),[hubPlayerId,setHubPlayerId]=useState(""),[badgePlayerId,setBadgePlayerId]=useState(""),[rosterPlayerId,setRosterPlayerId]=useState(""),[sessionId,setSessionId]=useState(""),[rosterRequest,setRosterRequest]=useState(0),[hubRequest,setHubRequest]=useState(0),[badgeRequest,setBadgeRequest]=useState(0),[coachingTarget,setCoachingTarget]=useState<{playerId:string;sessionId:string;revision:number}|null>(null);
  const [profilePlayerId,setProfilePlayerId]=useState(""),[profileRequest,setProfileRequest]=useState(0),[publishingPlayerId,setPublishingPlayerId]=useState(""),[publishingRequest,setPublishingRequest]=useState(0);
+ const [actionTarget,setActionTarget]=useState<{area:StaffSection;id:string;revision:number}|null>(null);
  const canManage=staffCanManage(role),allowed=staffSections(role);
- function navigate(area:StaffSection,playerId?:string,targetSessionId?:string){if(!allowed.some(i=>i.id===area))return;if(playerId){if(area==="coachingProfiles"){setProfilePlayerId(playerId);setProfileRequest(n=>n+1)}if(area==="familyPublishing"){setPublishingPlayerId(playerId);setPublishingRequest(n=>n+1)}if(area==="records")setCoachingTarget(previous=>({playerId,sessionId:targetSessionId||"",revision:(previous?.revision||0)+1}));if(area==="idps"){setHubPlayerId(playerId);setHubRequest(n=>n+1)}if(area==="badges"){setBadgePlayerId(playerId);setBadgeRequest(n=>n+1)}if(area==="players"){setRosterPlayerId(playerId);setRosterRequest(n=>n+1)}}if(area==="workspace"&&targetSessionId)setSessionId(targetSessionId);goTo(area);}
+ function navigate(area:StaffSection,playerId?:string,targetSessionId?:string){if(!allowed.some(i=>i.id===area))return;if(playerId){if(area==="onboarding"||area==="sessionRequests")setActionTarget(v=>({area,id:playerId,revision:(v?.revision||0)+1}));if(area==="coachingProfiles"){setProfilePlayerId(playerId);setProfileRequest(n=>n+1)}if(area==="familyPublishing"){setPublishingPlayerId(playerId);setPublishingRequest(n=>n+1)}if(area==="records")setCoachingTarget(previous=>({playerId,sessionId:targetSessionId||"",revision:(previous?.revision||0)+1}));if(area==="idps"){setHubPlayerId(playerId);setHubRequest(n=>n+1)}if(area==="badges"){setBadgePlayerId(playerId);setBadgeRequest(n=>n+1)}if(area==="players"){setRosterPlayerId(playerId);setRosterRequest(n=>n+1)}}if(area==="workspace"&&targetSessionId)setSessionId(targetSessionId);goTo(area);}
  function panel(id:StaffSection){switch(id){
   case "overview":return <StaffHome active={section==="overview"&&!menuOpen} canManage={canManage} onNavigate={navigate}/>;
   case "workspace":return <SessionAttendance userId={userId} initialSessionId={sessionId} onSessionChange={setSessionId} onCoachPlayer={(player,session)=>navigate("records",player,session)} onPlayerDevelopment={player=>navigate("idps",player)}/>;
@@ -43,8 +44,8 @@ export function StaffWorkspace({userId,role,onSignOut}:{userId:string;role:Staff
   case "trainingHub":return <PlayerTrainingHub userId={userId} role="staff"/>;
   case "playerSpace":return <StaffPlayerSpaceHub userId={userId} canManage={canManage}/>;
   case "communications":return canManage?<FamilyCommunications userId={userId} role="staff" active={section==="communications"&&!menuOpen}/>:null;
-  case "sessionRequests":return canManage?<SessionChangeRequests userId={userId} role="staff"/>:null;
-  case "onboarding":return canManage?<StaffOnboarding/>:null;
+  case "sessionRequests":return canManage?<SessionChangeRequests userId={userId} role="staff" initialRequestId={actionTarget?.area==="sessionRequests"?actionTarget.id:undefined} selectionRequest={actionTarget?.revision}/>:null;
+  case "onboarding":return canManage?<StaffOnboarding initialIntakeId={actionTarget?.area==="onboarding"?actionTarget.id:undefined} selectionRequest={actionTarget?.revision}/>:null;
   case "admissions":return canManage?<AdmissionsManagement userId={userId}/>:null;
   case "familyPublishing":return canManage?<FamilyPublishing userId={userId} initialPlayerId={publishingPlayerId} selectionRequest={publishingRequest}/>:null;
   case "families":return canManage?<FamilyAccessAdmin userId={userId}/>:null;

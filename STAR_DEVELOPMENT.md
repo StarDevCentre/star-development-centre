@@ -106,6 +106,7 @@ These are business requirements provided in earlier planning; check with the own
 - Stadium/pitch presentation should be polished and intuitive, not at the expense of mobile performance.
 
 ### Coaching / Staff Portal
+- Staff Home has a manager-only action list for requested assessments, incomplete/unreviewed onboarding (labelled as awaiting the family) and pending session changes. It uses existing RLS-protected tables, minimal summary fields, oldest-first ordering and exact counts; fetches at most 100 per source. Items open their existing workflow at the selected record. Refresh/reopening Home reloads the list; no contact, approval or schedule change occurs from opening an action. No new database permissions or schema are required.
 - Support authorised coaches with player management, assessments, individual development plans, session planning, progress reports, achievements, observations and communications as features are implemented.
 - Keep staff-only functionality and private player records behind appropriate server-enforced access control.
 - Never assume a staff role from a client-side toggle.
