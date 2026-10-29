@@ -18,6 +18,7 @@ import {AdmissionsManagement} from "./AdmissionsManagement";
 import {FamilyPublishing} from "./FamilyPublishing";
 import {FamilyAccessAdmin} from "./FamilyAccessAdmin";
 import {StaffAdmin} from "./StaffAdmin";
+import {StaffSessionBuilder} from "./StaffSessionBuilder";
 import {TrainingPlanner} from "./TrainingPlanner";
 import {SessionAttendance} from "./SessionAttendance";
 import {CoachingRecords} from "./CoachingRecords";
@@ -36,6 +37,7 @@ export function StaffWorkspace({userId,role,onSignOut}:{userId:string;role:Staff
   case "gallery":return <StaffMediaGallery userId={userId} canManage={canManage}/>;
   case "coachingProfiles":return <StaffCoachingProfile key={userId} userId={userId} canManage={canManage} initialPlayerId={profilePlayerId} selectionRequest={profileRequest} onNavigate={navigate}/>;
   case "players":return <StaffPlayers userId={userId} canManage={canManage} initialPlayerId={rosterPlayerId} selectionRequest={rosterRequest} onNote={id=>navigate("records",id)} onDevelopment={id=>navigate("idps",id)} onBadge={id=>navigate("badges",id)} onPositions={id=>navigate("coachingProfiles",id)}/>;
+  case "sessionBuilder":return <StaffSessionBuilder userId={userId}/>;
   case "sessions":return <TrainingPlanner userId={userId} canManage={canManage}/>;
   case "attendance":return <SessionAttendance userId={userId} onCoachPlayer={(player,session)=>navigate("records",player,session)}/>;
   case "records":return <CoachingRecords key={coachingTarget?coachingTarget.playerId+":"+coachingTarget.sessionId+":"+coachingTarget.revision:"general"} userId={userId} initialPlayerId={coachingTarget?.playerId} initialSessionId={coachingTarget?.sessionId} onPositions={id=>navigate("coachingProfiles",id)} onPublish={canManage?id=>navigate("familyPublishing",id):undefined}/>;

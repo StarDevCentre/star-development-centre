@@ -176,3 +176,10 @@ These are business requirements provided in earlier planning; check with the own
 - Additions live in lib/playerCollectionExpansion.ts. Counts derive from the catalogues; sample unlocks automatically include every pair. Artwork and prompts are recorded in scripts/collection-expansion-assets.md.
 - Migration 20261029212443_expand_player_collections.sql is applied. It only extends the squad validator, allowed cosmetic keys and private challenge/reward catalogue; no permission or identity rules change. Generate future additions as new migrations, never re-run or overwrite applied ones.
 - Validation: 24 focused checks, production build, and rollback-only database checks covering the expanded roster, all 17 boot rewards, family isolation, duplicate prevention and linked player access.
+
+
+## Staff Session Builder — 29 October 2026
+- Staff Portal → Session Builder provides ten original starter activities, custom activities, reorder controls, editable coaching points/equipment/adaptations, duration totals, a pitch-side view and print/PDF layout.
+- Plans are separate from the training calendar and player assignments. Saving a plan does not schedule or publish a session. Use general group descriptions, no player names or sensitive information.
+- Each active staff member can save and copy their own plans across devices. public.staff_session_plans uses creator-scoped RLS plus existing is_active_staff checks for every operation; family, other-staff and revoked-staff access is denied. Saves use updated_at concurrency checks and retain edits on failure.
+- Migration 20261029220332_staff_session_builder is applied. Rollback-only validation is in supabase/tests/staff_session_builder_rls.sql.

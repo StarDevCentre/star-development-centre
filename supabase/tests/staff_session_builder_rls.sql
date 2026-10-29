@@ -1,0 +1,23 @@
+begin;
+insert into auth.users(id) values ('00000000-0000-4000-8000-000000007001'),('00000000-0000-4000-8000-000000007002'),('00000000-0000-4000-8000-000000007003');
+insert into public.staff_members(user_id,role,active) values ('00000000-0000-4000-8000-000000007001','coach',true),('00000000-0000-4000-8000-000000007002','coach',true);
+set local role authenticated;
+select set_config('request.jwt.claim.sub','00000000-0000-4000-8000-000000007001',true);
+insert into public.staff_session_plans(id,created_by,title,plan) values ('00000000-0000-4000-8000-000000007004','00000000-0000-4000-8000-000000007001','Synthetic test','{}');
+do $$ begin if (select count(*) from public.staff_session_plans)<>1 then raise exception 'own plan read failed'; end if; end $$;
+update public.staff_session_plans set title='Updated test' where id='00000000-0000-4000-8000-000000007004';
+select set_config('request.jwt.claim.sub','00000000-0000-4000-8000-000000007002',true);
+do $$ begin if (select count(*) from public.staff_session_plans)<>0 then raise exception 'cross staff exposure'; end if; end $$;
+update public.staff_session_plans set title='Forbidden' where id='00000000-0000-4000-8000-000000007004';
+select set_config('request.jwt.claim.sub','00000000-0000-4000-8000-000000007003',true);
+do $$ begin
+if (select count(*) from public.staff_session_plans)<>0 then raise exception 'nonstaff exposure'; end if;
+begin insert into public.staff_session_plans(created_by,title,plan) values ('00000000-0000-4000-8000-000000007003','Forbidden','{}'); raise exception 'nonstaff insert allowed'; exception when insufficient_privilege then null; end;
+end $$;
+select set_config('request.jwt.claim.sub','00000000-0000-4000-8000-000000007001',true);
+do $$ begin if (select title from public.staff_session_plans where id='00000000-0000-4000-8000-000000007004')<>'Updated test' then raise exception 'cross staff mutation'; end if; end $$;
+reset role;
+update public.staff_members set active=false where user_id='00000000-0000-4000-8000-000000007001';
+set local role authenticated;
+do $$ begin if (select count(*) from public.staff_session_plans)<>0 then raise exception 'revoked staff exposure'; end if; end $$;
+rollback;
