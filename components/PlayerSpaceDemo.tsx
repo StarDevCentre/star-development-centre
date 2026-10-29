@@ -40,7 +40,8 @@ function sampleData(): SpaceData {
     sharingGroups:[{id:'sample-group',name:'Sample STAR teammates',player_ids:['sample-player']}],
     sharingFeed:{'sample-player':[{achievement_id:'sample-teammate-award',alias:'Sam on the ball',title:'Character Builder',badge_id:'character-builder',awarded_on:today}]},
     assessments: ["Technical", "Tactical", "Physical", "Psychological", "Social"].map((category, index) => ({ id: "sample-assessment-" + index, player_id: "sample-player", category, rating: [3, 3, 4, 4, 4][index], assessed_on: today })),
-    unlocks: cosmetics.map(c=>c.key).map(cosmetic=>({player_id:'sample-player',cosmetic,unlocked_at:today+'T12:00:00Z'})),
+    // The public sample showcases the full collection; real player unlocks remain server-controlled.
+    unlocks: [...cosmetics.map(c=>c.key),...learningRewards.flatMap(r=>[badgeKey(r.id),extraKey(r)]),...learningHairstyles.map(h=>'hair-'+h.key)].map(cosmetic=>({player_id:'sample-player',cosmetic,unlocked_at:today+'T12:00:00Z'})),
     goalEvents: [
       {id:'sample-history-1',player_id:'sample-player',source_id:'sample-personal-goal',source:'personal',kind:'set',goal:'Try my weaker foot in every practice',occurred_at:addDays(today,-10)+'T12:00:00Z'},
       {id:'sample-history-2',player_id:'sample-player',source_id:'sample-goal-1',source:'coach',kind:'set',goal:'Try using both feet in practice',occurred_at:addDays(today,-14)+'T12:00:00Z'},
