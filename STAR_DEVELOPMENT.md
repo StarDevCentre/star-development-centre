@@ -33,6 +33,11 @@ These are business requirements provided in earlier planning; check with the own
 - Ages 17–18: individual coaching only.
 - Do not imply external academy endorsement or guarantee trials/pathway outcomes.
 
+## Staplegrove Ladies pathway referrals
+- `/pathways` includes a separate Staplegrove-branded enquiry box for players aged 15+. Open-age match eligibility is 16+; the club confirms arrangements.
+- `/api/staplegrove-referral` accepts only the four requested fields and explicit sharing consent, validates server-side, and sends to the fixed club address `staplegroveladiesfootballclub@gmail.com` through Resend. It requires `RESEND_API_KEY` and the verified sender `STAR_ENQUIRY_FROM` in the deployment environment; it does not use the general-enquiry enable flag. Missing configuration or delivery failure must never display success. A labelled email-app fallback requires the player to send the message herself.
+- Referrals are not stored in the player database. Keep secrets and submitted contact details out of logs. The honeypot, origin validation and bounded per-instance request limit reduce abuse; the latter is not a distributed quota. Run `node --test scripts/test-staplegrove-referral.cjs` for mocked delivery and validation checks; do not send real test referrals.
+
 ## Player onboarding journey
 - Parent account first. Parents complete and submit onboarding from their own login; creating, activating or linking a separate player login is optional and can happen later.
 - Parent or player completes a saveable full player profile: football experience, goals, support needs, relevant health/emergency information and separate media consent choices.
