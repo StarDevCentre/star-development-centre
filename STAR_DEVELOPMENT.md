@@ -183,3 +183,10 @@ These are business requirements provided in earlier planning; check with the own
 - Plans are separate from the training calendar and player assignments. Saving a plan does not schedule or publish a session. Use general group descriptions, no player names or sensitive information.
 - Each active staff member can save and copy their own plans across devices. public.staff_session_plans uses creator-scoped RLS plus existing is_active_staff checks for every operation; family, other-staff and revoked-staff access is denied. Saves use updated_at concurrency checks and retain edits on failure.
 - Migration 20261029220332_staff_session_builder is applied. Rollback-only validation is in supabase/tests/staff_session_builder_rls.sql.
+
+
+## Session Builder library expansion — 29 October 2026
+- lib/content/session-builder-library.json adds exactly 140 original entries alongside the ten retained starters: 50 one-to-one drills, 10 one-to-one activities, 40 small-group drills, 20 small-group activities and 20 one-to-one goalkeeper drills. New entries target female players aged 11–18; adapt to readiness and experience.
+- Drills average 12.4 minutes (all 10–15); activities are 30 minutes with work/rest/review blocks. One-to-one entries require only one player and one coach. Each entry specifies player count, space/setup, equipment, coaching points and easier/harder options. No heading or collision work is required.
+- The library has category counts, full-content search and 12-entry progressive loading. Player counts carry into pitch-side and printed plans. Existing saved plans remain compatible; no database migration or permission changes.
+- Validation: node scripts/test-session-builder-library.cjs checks exact counts, unique IDs/titles/setups, original-title exclusion, durations, fields and staffing. Conceptual review excludes repeated starter setups; related football skills are intentionally practised in different situations.
