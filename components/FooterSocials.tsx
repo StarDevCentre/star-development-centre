@@ -11,6 +11,11 @@ const socials = [
     href: "https://www.instagram.com/stardevcentre/",
     icon: <><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" strokeWidth="1.8"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" strokeWidth="1.8"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></>,
   },
+  {
+    name: "Substack",
+    href: "https://open.substack.com/pub/stardevcentre",
+    icon: <path d="M4 3h16v2H4V3Zm0 4h16v2H4V7Zm0 4h16v11l-8-4.5L4 22V11Z" fill="currentColor"/>,
+  },
 ];
 
 export function FooterSocials() {
