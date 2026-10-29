@@ -46,6 +46,11 @@ These are business requirements provided in earlier planning; check with the own
 - The pricing sign-in links accept only the `programmes` or `finder` return destinations. The existing parent sign-in/confirmation flow returns to that page; password recovery must finish before redirecting.
 - Run `node --test scripts/test-programmes.cjs` for age/focus matching and mocked pricing authentication checks when modifying these areas.
 
+## Public Football Hub
+- `/articles` is the public collection of 12 original, detailed coaching guides; `/articles/[slug]` serves each guide with contents navigation, a practical activity, takeaways and related reading. It is separate from the completed private Parent Learning Hub.
+- Content lives in `lib/content/football-hub-articles.json`, with helpers in `lib/footballHub.ts`. Keep public content independent of family records and portal content. Reading times are calculated from article text.
+- Maintain the agreed website style and shared header. These are practical STAR coaching guides, not research reports or guaranteed development outcomes. Link external further reading where it informs an article; distinguish STAR examples from third-party guidance.
+
 ## Contact and enquiries
 - `/contact` follows the agreed navy, gold, red and off-white website style, with WhatsApp, phone and email options near the top. Reuse `EnquiryForm` for contact and booking enquiries.
 - Reply-time wording: **We normally reply within 12 hours, but please allow up to 48 hours.** Show this beside the form and after confirmed online submission.
