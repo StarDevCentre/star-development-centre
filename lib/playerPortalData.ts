@@ -16,10 +16,13 @@ export async function loadPortalFeatures(ids:string[],userId:string):Promise<Por
   db.from('player_shared_awards').select('achievement_id,player_id').in('player_id',ids),
   db.from('player_showcase_settings').select('player_id,alias').in('player_id',ids),
   db.from('player_sharing_members').select('group_id,player_id').in('player_id',ids),
-  Promise.all(ids.map(async id=>{const response=await db!.rpc('shared_trophy_feed',{viewer:id});if(response.error)throw response.error;return{id,data:response.data as SharedTrophy[]};}))
+  Promise.all(ids.map(async id=>{const response=await db!.rpc('shared_trophy_feed',{viewer:id});if(response.error)throw response.error;return{id,data:response.data as SharedTrophy[]};})),
+  db.from('player_squads').select('player_id,name,formation,footballers,captain,updated_at').in('player_id',ids)
  ]);
  if(r.slice(0,11).some(result=>'error'in result&&result.error))throw new Error('Could not load player features');
+ if(r[12].error)throw new Error('Could not load your saved squad. Please refresh.');
  const members=r[10].data||[],groupIds=[...new Set(members.map(m=>m.group_id))];
  const groups=groupIds.length?await db.from('player_sharing_groups').select('id,name').in('id',groupIds):{data:[],error:null};if(groups.error)throw groups.error;
- return{preparations:r[0].data||[],coachNotes:r[1].data||[],messages:r[2].data||[],matchPlans:r[3].data||[],matchJournal:r[4].data||[],learningProgress:r[5].data||[],notifications:r[6].data||[],notificationReads:(r[7].data||[]).map(v=>v.id),sharedAwards:r[8].data||[],showcases:r[9].data||[],sharingGroups:(groups.data||[]).map(g=>({...g,player_ids:members.filter(m=>m.group_id===g.id).map(m=>m.player_id)})),sharingFeed:Object.fromEntries(r[11].map(v=>[v.id,v.data]))} as PortalFeatures;
+ return{squads:r[12].data||[],preparations:r[0].data||[],coachNotes:r[1].data||[],messages:r[2].data||[],matchPlans:r[3].data||[],matchJournal:r[4].data||[],learningProgress:r[5].data||[],notifications:r[6].data||[],notificationReads:(r[7].data||[]).map(v=>v.id),sharedAwards:r[8].data||[],showcases:r[9].data||[],sharingGroups:(groups.data||[]).map(g=>({...g,player_ids:members.filter(m=>m.group_id===g.id).map(m=>m.player_id)})),sharingFeed:Object.fromEntries(r[11].map(v=>[v.id,v.data]))} as PortalFeatures;
 }
+

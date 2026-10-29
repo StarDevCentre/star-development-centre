@@ -7,6 +7,7 @@ import { supabaseBrowser as db } from "../lib/supabaseBrowser";
 import { assignmentFields, diaryFields, defaultProfile, emptySpaceData, type PracticeInput, type SpaceActions, type SpaceData, type SpaceProfile } from "../lib/playerSpace";
 import { PlayerSpace, PlayerSpaceHeader, PlayerSpaceHero } from "./PlayerSpace";
 import { PlayerAccess } from "./PlayerAccountSetup";
+import {validateSquad} from '../lib/playerSquad';
 import { loadPortalFeatures, sessionFields } from "../lib/playerPortalData";
 import type { PortalFeatureActions, MatchJournal } from "../lib/playerPortalFeatures";
 import { SpaceIcon } from "./PlayerSpaceIcons";
@@ -207,6 +208,23 @@ export function PlayerTrophyPortal() {
   function assertPlayer(playerId:string){if(!db||!user||loadedUserId!==user.id||!data.players.some(p=>p.id===playerId))throw new Error("Please refresh your player access.");}
   async function refreshFeatures(){if(!db||!user)return;const extra=await loadPortalFeatures(data.players.map(p=>p.id),user.id);setData(current=>({...current,...extra}));}
   const featureActions:PortalFeatureActions={
+    onSaveSquad:async(playerId,value)=>{
+      assertPlayer(playerId);const invalid=validateSquad(value);if(invalid)throw new Error(invalid);const savingUser=user!.id;
+      const fields={name:value.name.trim(),formation:value.formation,footballers:value.footballers,captain:value.captain,updated_by:savingUser};
+      const update=()=>db!.from('player_squads').update(fields).eq('player_id',playerId).select('player_id,name,formation,footballers,captain,updated_at').single();
+      let r=data.squads.some(s=>s.player_id===playerId)?await update():await db!.from('player_squads').insert({...fields,player_id:playerId}).select('player_id,name,formation,footballers,captain,updated_at').single();
+      if(r.error?.code==='23505')r=await update();
+      if(r.error||!r.data)throw new Error('Your squad could not be saved. Your choices are still here. Please retry.');
+      if(identity.current!==savingUser)throw new Error('Please sign in again to view your squad.');
+      setData(current=>({...current,squads:[...current.squads.filter(s=>s.player_id!==playerId),r.data]}));
+    },
+    onBootAnswer:async(playerId,itemId,choice)=>{
+      assertPlayer(playerId);const savingUser=user!.id;
+      const r=await db!.rpc('submit_boot_answer',{target_player:playerId,item_id:itemId,choice_id:choice});
+      if(r.error||!r.data?.progress||!r.data?.unlocks)throw new Error('Your answer could not be saved. Please try again.');
+      if(identity.current!==savingUser)throw new Error('Please sign in again to view your boots.');
+      setData(current=>({...current,learningProgress:[...current.learningProgress.filter(p=>p.player_id!==playerId),...r.data.progress],unlocks:[...current.unlocks.filter(u=>u.player_id!==playerId),...r.data.unlocks]}));
+    },
     onSavePreparation:async(playerId,sessionId,help,kit)=>{assertPlayer(playerId);const session=data.sessions.find(s=>s.id===sessionId&&s.player_id===playerId);if(!session||kit.some(k=>!session.kit_list.includes(k)))throw new Error("Check this session's kit list.");const value={help_request:help,checked_kit:kit,updated_by:user!.id,updated_at:new Date().toISOString()};const old=data.preparations.some(p=>p.session_id===sessionId);const r=old?await db!.from('player_session_preparation').update(value).eq('session_id',sessionId).eq('player_id',playerId):await db!.from('player_session_preparation').insert({...value,session_id:sessionId,player_id:playerId});if(r.error)throw new Error("Preparation couldn’t be saved.");await refreshFeatures().catch(()=>{});},
     onSendMessage:async(playerId,body)=>{assertPlayer(playerId);const r=await db!.from('player_space_messages').insert({player_id:playerId,sender_id:user!.id,sender_role:actorRole,body});if(r.error)throw new Error("Your message couldn’t be sent.");await refreshFeatures().catch(()=>{});},
     onSaveMatchPlan:async(playerId,date,items)=>{assertPlayer(playerId);const fields={checked_items:items,updated_by:user!.id};const old=data.matchPlans.some(p=>p.player_id===playerId&&p.match_date===date);const r=old?await db!.from('player_match_plans').update(fields).eq('player_id',playerId).eq('match_date',date):await db!.from('player_match_plans').insert({...fields,player_id:playerId,match_date:date});if(r.error)throw new Error("Checklist couldn’t be saved.");await refreshFeatures().catch(()=>{});},

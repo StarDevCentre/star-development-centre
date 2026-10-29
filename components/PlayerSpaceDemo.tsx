@@ -1,4 +1,6 @@
 "use client";
+import {collectibleBoots,bootChallenges,bootKey,bootMarker,bootAnswerMarker} from '../lib/bootChallenges';
+import {validateSquad} from '../lib/playerSquad';
 import {quizQuestions} from '../lib/playerLearning';
 import {learningRewards,learningRequirements,extraKey,badgeKey,hairstyleChoices,learningHairstyles,learningAnswerMarker} from '../lib/learningRewards';
 import { useEffect, useRef, useState } from "react";
@@ -13,6 +15,7 @@ function sampleData(): SpaceData {
   return {
     ...emptyPortalFeatures,
     ballProgress:[],
+    squads:[{player_id:'sample-player',name:'Alex’s STAR five',formation:'diamond',footballers:['hampton','williamson','hasegawa','toone','shaw'],captain:'williamson',updated_at:today+'T12:00:00Z'}],
     players: [{ id: "sample-player", first_name: "Alex", last_name: "", programme: "Development" }],
     awards: [
       { id: "sample-award-1", player_id: "sample-player", badge_id: "first-steps-bronze", title: "First Steps", description: "You kept trying a new first-touch technique, even when it felt tricky. That determination deserves celebrating.", awarded_on: addDays(today,-7) },
@@ -41,7 +44,7 @@ function sampleData(): SpaceData {
     sharingFeed:{'sample-player':[{achievement_id:'sample-teammate-award',alias:'Sam on the ball',title:'Character Builder',badge_id:'character-builder',awarded_on:today}]},
     assessments: ["Technical", "Tactical", "Physical", "Psychological", "Social"].map((category, index) => ({ id: "sample-assessment-" + index, player_id: "sample-player", category, rating: [3, 3, 4, 4, 4][index], assessed_on: today })),
     // The public sample showcases the full collection; real player unlocks remain server-controlled.
-    unlocks: [...cosmetics.map(c=>c.key),...learningRewards.flatMap(r=>[badgeKey(r.id),extraKey(r)]),...learningHairstyles.map(h=>'hair-'+h.key)].map(cosmetic=>({player_id:'sample-player',cosmetic,unlocked_at:today+'T12:00:00Z'})),
+    unlocks: [...cosmetics.map(c=>c.key),...learningRewards.flatMap(r=>[badgeKey(r.id),extraKey(r)]),...learningHairstyles.map(h=>'hair-'+h.key),...collectibleBoots.map(b=>bootKey(b.id))].map(cosmetic=>({player_id:'sample-player',cosmetic,unlocked_at:today+'T12:00:00Z'})),
     goalEvents: [
       {id:'sample-history-1',player_id:'sample-player',source_id:'sample-personal-goal',source:'personal',kind:'set',goal:'Try my weaker foot in every practice',occurred_at:addDays(today,-10)+'T12:00:00Z'},
       {id:'sample-history-2',player_id:'sample-player',source_id:'sample-goal-1',source:'coach',kind:'set',goal:'Try using both feet in practice',occurred_at:addDays(today,-14)+'T12:00:00Z'},
@@ -71,6 +74,13 @@ export function PlayerSpaceDemo() {
   const photoUrls = useRef<string[]>([]);
   useEffect(()=>()=>{photoUrls.current.forEach(url=>URL.revokeObjectURL(url));},[]);
   const actions:PortalFeatureActions={
+    onSaveSquad:async(playerId,value)=>{const invalid=validateSquad(value);if(invalid)throw new Error(invalid);setData(current=>({...current,squads:[...current.squads.filter(s=>s.player_id!==playerId),{...value,player_id:playerId,updated_at:new Date().toISOString()}]}));},
+    onBootAnswer:async(playerId,itemId,choice)=>setData(current=>{
+      const marker=bootAnswerMarker(itemId,choice),now=new Date().toISOString();
+      const progress=marker&&!current.learningProgress.some(p=>p.player_id===playerId&&p.lesson_id===marker)?[...current.learningProgress,{player_id:playerId,lesson_id:marker,completed_at:now}]:current.learningProgress;
+      const rewards=collectibleBoots.filter(b=>bootChallenges.find(c=>c.id===b.challenge)!.decisions.every(d=>progress.some(p=>p.player_id===playerId&&p.lesson_id===bootMarker(d.id)))).map(b=>bootKey(b.id));
+      return {...current,learningProgress:progress,unlocks:[...current.unlocks,...rewards.filter(key=>!current.unlocks.some(u=>u.player_id===playerId&&u.cosmetic===key)).map(cosmetic=>({player_id:playerId,cosmetic,unlocked_at:now}))]};
+    }),
     onSavePreparation:async(playerId,sessionId,help,kit)=>setData(current=>({...current,preparations:[{player_id:playerId,session_id:sessionId,help_request:help,checked_kit:kit},...current.preparations.filter(p=>p.session_id!==sessionId)]})),
     onSendMessage:async(playerId,body)=>setData(current=>({...current,messages:[...current.messages,{id:`sample-message-${current.messages.length+1}`,player_id:playerId,sender_id:'sample',sender_role:'player',body,created_at:new Date().toISOString()}]})),
     onSaveMatchPlan:async(playerId,date,items)=>setData(current=>({...current,matchPlans:[{player_id:playerId,match_date:date,checked_items:items},...current.matchPlans.filter(p=>!(p.player_id===playerId&&p.match_date===date))]})),

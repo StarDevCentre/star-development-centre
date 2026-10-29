@@ -1,7 +1,9 @@
-export type SpaceIconName = "home" | "train" | "journey" | "trophy" | "star" | "arrow" | "ball" | "clock" | "check" | "settings" | "refresh" | "exit" | "calendar" | "captain" | "comet" | "shield" | "book" | "chat" | "bell" | "more";
+export type SpaceIconName = "home" | "train" | "journey" | "trophy" | "star" | "arrow" | "ball" | "clock" | "check" | "settings" | "refresh" | "exit" | "calendar" | "captain" | "comet" | "shield" | "book" | "chat" | "bell" | "more" | "lock" | "boot";
 
 export function SpaceIcon({ name, className = "" }: { name: SpaceIconName; className?: string }) {
   const paths: Record<SpaceIconName, React.ReactNode> = {
+    lock:<><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></>,
+    boot:<><path d="M5 3h6v7l6 3h3a2 2 0 0 1 2 2v4H2v-7h3zM2 19v3m5-3v3m10-3v3m5-3v3M11 10l-3 2m6 0-3 2"/></>,
     book:<><path d="M3 4h7q2 0 2 2 0-2 2-2h7v16h-7q-2 0-2 2 0-2-2-2H3zM12 6v16M6 8h3m6 0h3M6 12h3m6 0h3"/></>,
     chat:<><path d="M3 3h18v14H9l-6 5zM7 8h10M7 12h7"/></>,
     bell:<><path d="M5 17h14l-2-4V8a5 5 0 0 0-10 0v5zM10 21h4M12 1v2"/></>,

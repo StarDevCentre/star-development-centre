@@ -1,4 +1,5 @@
 import type { SpaceSession } from './playerSpace';
+import type {PlayerSquad,SquadInput} from './playerSquad';
 export type SessionPreparation={session_id:string;player_id:string;help_request:string;checked_kit:string[]};
 export type CoachNote={id:string;player_id:string;week_start:string;body:string;updated_at:string};
 export type PortalMessage={id:string;player_id:string;sender_id:string;sender_role:'player'|'guardian'|'coach';body:string;created_at:string};
@@ -11,9 +12,11 @@ export type SharedAward={achievement_id:string;player_id:string};
 export type Showcase={player_id:string;alias:string};
 export type SharedTrophy={achievement_id:string;alias:string;title:string;badge_id:string|null;awarded_on:string};
 export type SharingGroup={id:string;name:string;player_ids?:string[]};
-export type PortalFeatures={preparations:SessionPreparation[];coachNotes:CoachNote[];messages:PortalMessage[];matchPlans:MatchPlan[];matchJournal:MatchJournal[];learningProgress:LearningProgress[];notifications:PortalNotification[];notificationReads:string[];sharedAwards:SharedAward[];showcases:Showcase[];sharingGroups:SharingGroup[];sharingFeed:Record<string,SharedTrophy[]>};
-export const emptyPortalFeatures:PortalFeatures={preparations:[],coachNotes:[],messages:[],matchPlans:[],matchJournal:[],learningProgress:[],notifications:[],notificationReads:[],sharedAwards:[],showcases:[],sharingGroups:[],sharingFeed:{}};
+export type PortalFeatures={squads:PlayerSquad[];preparations:SessionPreparation[];coachNotes:CoachNote[];messages:PortalMessage[];matchPlans:MatchPlan[];matchJournal:MatchJournal[];learningProgress:LearningProgress[];notifications:PortalNotification[];notificationReads:string[];sharedAwards:SharedAward[];showcases:Showcase[];sharingGroups:SharingGroup[];sharingFeed:Record<string,SharedTrophy[]>};
+export const emptyPortalFeatures:PortalFeatures={squads:[],preparations:[],coachNotes:[],messages:[],matchPlans:[],matchJournal:[],learningProgress:[],notifications:[],notificationReads:[],sharedAwards:[],showcases:[],sharingGroups:[],sharingFeed:{}};
 export type PortalFeatureActions={
+ onSaveSquad:(playerId:string,squad:SquadInput)=>Promise<void>;
+ onBootAnswer:(playerId:string,itemId:string,choice:string)=>Promise<void>;
  onSavePreparation:(playerId:string,sessionId:string,help:string,kit:string[])=>Promise<void>;
  onSendMessage:(playerId:string,body:string)=>Promise<void>;
  onSaveMatchPlan:(playerId:string,date:string,items:string[])=>Promise<void>;
