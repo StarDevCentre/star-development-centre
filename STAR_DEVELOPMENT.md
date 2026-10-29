@@ -89,7 +89,8 @@ These are business requirements provided in earlier planning; check with the own
 ## Portal product intent
 ### Player Space
 - Mobile-first and age-appropriate for younger and older players.
-- Homepage prioritises next session.
+- Homepage prioritises next session. Its personalised weekly feature chooses unlogged current-week/ongoing coach practices before optional extras, highlights a new award/unread update/latest feedback, and shows the closest existing cosmetic milestone. Practice-day rewards count distinct dates with positive minutes; saved server unlocks remain the authority, including after goals reopen.
+- Successful practice saves show a personal completion card; failed saves retain the form and show no celebration. Quick reflection choices explicitly fill the existing editable reflection field and keep the same validation and family/coach visibility. No extra training quotas, consecutive-day streaks or new reward rules are introduced.
 - Profile: photo/avatar, shirt name/number, positions, stronger foot, ambitions and appropriate football preferences.
 - Personal goals, coach-assigned practice plans, optional extra challenges, achievements and trophy cabinet.
 - Progress timeline, confidence/enjoyment reflections, match reflections and football learning.
