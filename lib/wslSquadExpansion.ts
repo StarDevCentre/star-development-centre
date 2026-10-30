@@ -723,5 +723,105 @@ export const wslSquadAdditions:SquadFootballer[]=[
  "watch": "Watch her checks before receiving and how she helps her team regain its shape after losing the ball.",
  "source": "https://www.wslfootball.com/players/aurora-galli",
  "kit": "2026/27 home"
+},
+{
+ "id": "naomi-girma",
+ "name": "Naomi Girma",
+ "club": "Chelsea",
+ "role": "Defender",
+ "number": 4,
+ "watch": "Watch her checks before receiving and how she stays ready to cover a teammate who steps out.",
+ "source": "https://www.wslfootball.com/players/naomi-girma",
+ "kit": "2026/27 home"
+},
+{
+ "id": "hinata-miyazawa",
+ "name": "Hinata Miyazawa",
+ "club": "Manchester United",
+ "role": "Midfielder",
+ "number": 20,
+ "watch": "Watch how she finds a passing angle in midfield and turns her first touch away from pressure.",
+ "source": "https://www.wslfootball.com/players/hinata-miyazawa",
+ "kit": "2026/27 home"
+},
+{
+ "id": "olivia-smith",
+ "name": "Olivia Smith",
+ "club": "Arsenal",
+ "role": "Forward",
+ "number": 11,
+ "watch": "Watch her change of pace with the ball and how she attacks the space beside a defender.",
+ "source": "https://www.wslfootball.com/players/olivia-smith",
+ "kit": "2026/27 home"
+},
+{
+ "id": "victoria-pelova",
+ "name": "Victoria Pelova",
+ "club": "Tottenham Hotspur",
+ "role": "Midfielder",
+ "number": 23,
+ "watch": "Watch her movement between opponents and the angle she creates to receive on the turn.",
+ "source": "https://www.wslfootball.com/players/victoria-pelova",
+ "kit": "2026/27 home"
+},
+{
+ "id": "maelys-mpome",
+ "name": "Maelys Mpome",
+ "club": "Brighton & Hove Albion",
+ "role": "Defender",
+ "number": 5,
+ "watch": "Watch how she tracks a runner and chooses when to step towards an attacker.",
+ "source": "https://www.wslfootball.com/players/maelys-mpome",
+ "kit": "2026/27 home"
+},
+{
+ "id": "megan-finnigan",
+ "name": "Megan Finnigan",
+ "club": "Everton",
+ "role": "Defender",
+ "number": 20,
+ "watch": "Watch her awareness before a cross and how she keeps the defensive line connected.",
+ "source": "https://www.wslfootball.com/players/megan-finnigan",
+ "kit": "2026/27 home"
+},
+{
+ "id": "simone-magill",
+ "name": "Simone Magill",
+ "club": "Birmingham City",
+ "role": "Forward",
+ "number": 9,
+ "watch": "Watch how she moves across a defender and prepares to meet a pass in the box.",
+ "source": "https://www.wslfootball.com/players/simone-magill",
+ "kit": "2026/27 home"
+},
+{
+ "id": "kirsty-howat",
+ "name": "Kirsty Howat",
+ "club": "Crystal Palace",
+ "role": "Forward",
+ "number": 10,
+ "watch": "Watch the timing of her forward runs and how she makes room to receive near goal.",
+ "source": "https://www.wslfootball.com/players/kirsty-howat",
+ "kit": "2026/27 away"
+},
+{
+ "id": "rebecca-knaak",
+ "name": "Rebecca Knaak",
+ "club": "Manchester City",
+ "role": "Defender",
+ "number": 27,
+ "watch": "Watch how she opens her body to receive and covers the space behind a teammate.",
+ "source": "https://www.wslfootball.com/players/rebecca-knaak",
+ "kit": "2026/27 home"
+},
+{
+ "id": "nikita-parris",
+ "name": "Nikita Parris",
+ "club": "London City Lionesses",
+ "role": "Forward",
+ "number": 17,
+ "watch": "Watch her acceleration into space and how she times a run to meet a delivery into the box.",
+ "source": "https://www.wslfootball.com/players/nikita-parris",
+ "kit": "2026/27 home"
 }
 ];
