@@ -1,14 +1,39 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('fs'),ts=require('typescript');
 require.extensions['.ts']=(m,f)=>m._compile(ts.transpileModule(fs.readFileSync(f,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText,f);
-const {squadRoster,squadFormations,validateSquad}=require('../lib/playerSquad.ts');
+const {squadRoster,squadFormations,changeSquadFormation,validateSquad}=require('../lib/playerSquad.ts');
 const {bootChallenges,collectibleBoots,bootKey,bootMarker,bootProgress,bootAnswerMarker}=require('../lib/bootChallenges.ts');
 const {illustratedScenes}=require('../lib/playerScenes.ts');
 const sql=fs.readFileSync('supabase/migrations/20261029150000_player_collections.sql','utf8')+'\n'+fs.readFileSync(process.env.COLLECTION_EXPANSION_SQL||'supabase/'+fs.readdirSync('supabase/migrations').map(n=>'migrations/'+n).find(n=>n.endsWith('_expand_player_collections.sql')),'utf8');
-const wslSql=fs.readFileSync('supabase/migrations/'+fs.readdirSync('supabase/migrations').find(n=>n.endsWith('_remaining_wsl2_selections.sql')),'utf8');
+const wslSql=fs.readFileSync('supabase/migrations/'+fs.readdirSync('supabase/migrations').find(n=>n.endsWith('_squad_eleven_a_side.sql')),'utf8');
 const valid=()=>({name:'My five',formation:'diamond',footballers:['hampton','williamson','hasegawa','toone','shaw'],captain:'williamson'});
 test('175 distinct real players cover twenty-six clubs and goalkeeper/outfield choices',()=>{assert.equal(squadRoster.length,175);assert.equal(new Set(squadRoster.map(p=>p.id)).size,175);assert.equal(new Set(squadRoster.map(p=>p.name.normalize('NFD').replace(/\p{Diacritic}/gu,'').toLowerCase().replace(/[^a-z]/g,''))).size,175);assert.equal(new Set(squadRoster.map(p=>p.club)).size,26);assert.equal(squadRoster.filter(p=>p.role==='Goalkeeper').length,27);for(const p of squadRoster){assert.match(p.source,/^https:\/\//);assert.match(wslSql,new RegExp("'"+p.id+"'"));}});
 test('a saved squad requires exactly five distinct eligible players and a selected captain',()=>{assert.equal(validateSquad(valid()),null);for(const footballers of [['hampton','williamson','hasegawa','toone'],['hampton','williamson','toone','toone','shaw'],['hampton','yamashita','hasegawa','toone','shaw'],['toone','williamson','hasegawa','james','shaw'],['hampton','williamson','hasegawa','toone','unknown']])assert.ok(validateSquad({...valid(),footballers}));assert.ok(validateSquad({...valid(),captain:'james'}));assert.ok(validateSquad({...valid(),name:' '.repeat(5)}));assert.ok(validateSquad({...valid(),name:'a'.repeat(41)}));assert.ok(validateSquad({...valid(),formation:'forged'}));});
-test('formations give each player a distinct grid cell and the goalkeeper a separate final row',()=>{for(const [key,f] of Object.entries(squadFormations)){assert.equal(f.slots.length,5);assert.equal(f.slots[0].label,'Goalkeeper');assert.equal(new Set(f.slots.map(s=>`${s.column}:${s.row}`)).size,5);assert.ok(f.slots.every(s=>Number.isInteger(s.column)&&s.column>=1&&s.column<=3&&Number.isInteger(s.row)&&s.row>=1));assert.ok(f.slots.slice(1).every(s=>s.row<f.slots[0].row));assert.equal(validateSquad({...valid(),formation:key}),null);}assert.equal(squadFormations.diamond.slots[0].row-squadFormations.diamond.slots[1].row,1);});
+test('formations have non-overlapping player cells with a separate goalkeeper row',()=>{
+ for(const [key,f] of Object.entries(squadFormations)){
+  assert.equal(f.slots.length,f.size);assert.equal(f.slots[0].label,'Goalkeeper');
+  const cells=new Set();
+  for(const slot of f.slots){
+   assert.ok(Number.isInteger(slot.column)&&slot.column>=1&&slot.column+slot.span-1<=f.columns);
+   for(let x=slot.column;x<slot.column+slot.span;x++){const cell=`${x}:${slot.row}`;assert.ok(!cells.has(cell),key+' '+cell);cells.add(cell);}
+  }
+  assert.ok(f.slots.slice(1).every(s=>s.row<f.slots[0].row));
+ }
+ assert.equal(squadFormations.diamond.slots[0].row-squadFormations.diamond.slots[1].row,1);
+});
+test('eleven-a-side validates roster, size, goalkeeper, uniqueness and captain',()=>{
+ const footballers=['hampton',...squadRoster.filter(p=>p.role!=='Goalkeeper').slice(0,10).map(p=>p.id)];
+ for(const formation of ['4-3-3','4-4-2','4-2-3-1']){
+  const v={name:'My eleven',formation,footballers,captain:footballers[10]};assert.equal(validateSquad(v),null);
+  for(const broken of [footballers.slice(0,10),[...footballers,'shaw'],[...footballers.slice(0,10),footballers[1]],[...footballers.slice(0,10),'yamashita'],['williamson',...footballers.slice(1)],[...footballers.slice(0,10),'unknown']])assert.ok(validateSquad({...v,footballers:broken}));
+  assert.ok(validateSquad({...v,captain:'not-selected'}));assert.ok(validateSquad({...valid(),formation}));assert.ok(validateSquad({...v,formation:'diamond'}));
+ }
+});
+test('formation changes retain players, add empty slots and remove a departed captain',()=>{
+ const expanded=changeSquadFormation(valid(),'4-3-3');assert.deepEqual(expanded.footballers.slice(0,5),valid().footballers);assert.equal(expanded.footballers.length,11);assert.equal(expanded.captain,'williamson');
+ expanded.footballers[10]='james';expanded.captain='james';
+ const reshaped=changeSquadFormation(expanded,'4-2-3-1');assert.deepEqual(reshaped.footballers,expanded.footballers);assert.equal(reshaped.captain,'james');
+ const compact=changeSquadFormation(reshaped,'box');assert.equal(compact.footballers.length,5);assert.equal(compact.captain,'hampton');assert.equal(validateSquad(compact),null);
+});
 test('17 boots map one-to-one to 17 original challenges and 51 decisions',()=>{assert.equal(collectibleBoots.length,17);assert.equal(bootChallenges.length,17);assert.equal(new Set(collectibleBoots.map(b=>b.challenge)).size,17);const decisions=bootChallenges.flatMap(c=>c.decisions);assert.equal(decisions.length,51);assert.equal(new Set(decisions.map(d=>d.id)).size,51);for(const c of bootChallenges){assert.equal(c.decisions.length,3);assert.ok(c.lesson.length>60);assert.ok(c.tryIt.length>60);assert.equal(collectibleBoots.filter(b=>b.challenge===c.id).length,1);}});
 test('all 153 answers agree with the protected server catalogue',()=>{for(const c of bootChallenges)for(const d of c.decisions){assert.equal(d.choices.length,3);assert.equal(d.choices.filter(a=>a.useful).length,1);for(const a of d.choices){assert.ok(a.feedback.length>20);assert.equal(bootAnswerMarker(d.id,a.id),a.useful?bootMarker(d.id):null);assert.ok(sql.includes(`('${d.id}','${a.id}','${bootMarker(d.id)}',${a.useful})`));}}assert.throws(()=>bootAnswerMarker('forged','A'));assert.throws(()=>bootAnswerMarker('touch-space','forged'));});
 test('boot completion ignores exploration and is scoped to one player with no duplicate count',()=>{const row=(id,player_id='p')=>({player_id,lesson_id:id,completed_at:'2026-10-29T12:00:00Z'});for(const c of bootChallenges){const rows=c.decisions.map(d=>row(bootMarker(d.id)));assert.equal(bootProgress(c.id,rows.slice(0,2),'p'),2);assert.equal(bootProgress(c.id,[...rows,...rows],'p'),3);assert.equal(bootProgress(c.id,rows,'other'),0);assert.equal(bootProgress(c.id,c.decisions.map(d=>row('activity:'+d.id)),'p'),0);const b=collectibleBoots.find(b=>b.challenge===c.id);assert.ok(sql.includes("'"+bootKey(b.id)+"'"));}});

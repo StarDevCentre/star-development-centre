@@ -29,19 +29,32 @@ export const squadRoster:SquadFootballer[]=[
 ];
 export const squadPlayer=(id:string|null|undefined)=>squadRoster.find(p=>p.id===id);
 export const squadAsset=(id:string)=>`/player-space/squad/${id}.webp`;
+type SquadSlot={column:number;row:number;span:number;label:string};
+function elevenSlots(lines:string[][]):SquadSlot[]{
+ return [{column:5,row:lines.length+1,span:4,label:'Goalkeeper'},...lines.flatMap((line,index)=>line.map((label,i)=>({column:1+i*(12/line.length),row:lines.length-index,span:12/line.length,label})))];
+}
 export const squadFormations={
- diamond:{title:'Diamond · 1–2–1',description:'One deeper player, two wide options and a forward.',slots:[{column:2,row:4,label:'Goalkeeper'},{column:2,row:3,label:'Anchor'},{column:1,row:2,label:'Left'},{column:3,row:2,label:'Right'},{column:2,row:1,label:'Forward'}]},
- box:{title:'Box · 2–2',description:'Two players supporting behind two attacking options.',slots:[{column:2,row:3,label:'Goalkeeper'},{column:1,row:2,label:'Left support'},{column:3,row:2,label:'Right support'},{column:1,row:1,label:'Left attack'},{column:3,row:1,label:'Right attack'}]}
+ diamond:{size:5,columns:3,title:'Diamond · 1–2–1',description:'One deeper player, two wide options and a forward.',slots:[{column:2,row:4,span:1,label:'Goalkeeper'},{column:2,row:3,span:1,label:'Anchor'},{column:1,row:2,span:1,label:'Left'},{column:3,row:2,span:1,label:'Right'},{column:2,row:1,span:1,label:'Forward'}]},
+ box:{size:5,columns:3,title:'Box · 2–2',description:'Two players supporting behind two attacking options.',slots:[{column:2,row:3,span:1,label:'Goalkeeper'},{column:1,row:2,span:1,label:'Left support'},{column:3,row:2,span:1,label:'Right support'},{column:1,row:1,span:1,label:'Left attack'},{column:3,row:1,span:1,label:'Right attack'}]},
+ '4-3-3':{size:11,columns:12,title:'4–3–3',description:'A back four, three midfielders and three forwards.',slots:elevenSlots([['Left back','Left centre back','Right centre back','Right back'],['Left midfield','Central midfield','Right midfield'],['Left wing','Striker','Right wing']])},
+ '4-4-2':{size:11,columns:12,title:'4–4–2',description:'A back four, four midfielders and two strikers.',slots:elevenSlots([['Left back','Left centre back','Right centre back','Right back'],['Left midfield','Left central midfield','Right central midfield','Right midfield'],['Left striker','Right striker']])},
+ '4-2-3-1':{size:11,columns:12,title:'4–2–3–1',description:'A back four, two holding midfielders, three attacking midfielders and a striker.',slots:elevenSlots([['Left back','Left centre back','Right centre back','Right back'],['Left holding midfield','Right holding midfield'],['Left wing','Attacking midfield','Right wing'],['Striker']])}
 } as const;
 export type SquadFormation=keyof typeof squadFormations;
 export type SquadInput={name:string;formation:SquadFormation;footballers:string[];captain:string};
 export type PlayerSquad=SquadInput&{player_id:string;updated_at:string};
+export function changeSquadFormation(value:SquadInput,formation:SquadFormation):SquadInput{
+ const size=squadFormations[formation].size;
+ const footballers=Array.from({length:size},(_,i)=>value.footballers[i]||'');
+ return {...value,formation,footballers,captain:footballers.includes(value.captain)?value.captain:footballers.find(Boolean)||''};
+}
 export function validateSquad(value:SquadInput):string|null{
  if(!value.name.trim()||value.name.trim().length>40)return 'Give your squad a name of 1–40 characters.';
  if(!Object.hasOwn(squadFormations,value.formation))return 'Choose a formation.';
- if(value.footballers.length!==5||new Set(value.footballers).size!==5)return 'Choose five different players.';
+ const size=squadFormations[value.formation].size;
+ if(value.footballers.length!==size||new Set(value.footballers).size!==size)return `Choose ${size} different players.`;
  if(!value.footballers.every(id=>squadPlayer(id)))return 'Choose players from this collection.';
- if(squadPlayer(value.footballers[0])?.role!=='Goalkeeper'||value.footballers.slice(1).some(id=>squadPlayer(id)?.role==='Goalkeeper'))return 'Choose one goalkeeper and four outfield players.';
- if(!value.footballers.includes(value.captain))return 'Choose a captain from your five players.';
+ if(squadPlayer(value.footballers[0])?.role!=='Goalkeeper'||value.footballers.slice(1).some(id=>squadPlayer(id)?.role==='Goalkeeper'))return `Choose one goalkeeper and ${size-1} outfield players.`;
+ if(!value.footballers.includes(value.captain))return 'Choose a captain from your squad.';
  return null;
 }
