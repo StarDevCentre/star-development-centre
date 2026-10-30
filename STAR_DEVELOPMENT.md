@@ -1,6 +1,6 @@
 # STAR Development Centre — Development Guide
 
-> Working reference for AI coding agents and human developers. Last updated: 29 October 2026.
+> Working reference for AI coding agents and human developers. Last updated: 30 October 2026.
 > This document records product intent and working preferences. **The repository code, configuration and deployment environment are the source of truth for implemented behaviour.** Do not assume every planned feature exists.
 
 ## Purpose
@@ -89,8 +89,10 @@ These are business requirements provided in earlier planning; check with the own
 
 ## Portal product intent
 ### Player Space
-- Mobile-first with exactly two presentation choices: **Children** (7–11) and **Teenagers** (12–18). Teenagers keeps the former younger-teen illustrated styling; the older-teen styling is retired. Children uses rounded cards, larger controls and simpler practice, goal, learning and matchday wording. This is a presentation choice, not an access or reward level.
-- Both legacy `junior` and `senior` preferences migrate to `teenagers`, preserving progress and other customisation. New onboarding profiles default to Children below age 12 and Teenagers from age 12; families can change the style in their player card. Cached legacy writes normalise to Teenagers. Keep profile RLS and `updated_by` checks unchanged.
+- Every player uses the same illustrated presentation and wording previously named Teenagers. No age-style selector or child-specific presentation remains. The historical database `experience` field is compatibility data only: every loaded value normalises to the shared style, including `children`, `junior` and `senior`. Do not use it to branch the interface or access/reward rules. Other customisation and saved progress are preserved; no new database migration is required for this removal.
+- Home begins with Style My Space and Personalise My Card shortcuts. The latter opens and focuses the existing card editor. Keep the player card before the trophy cabinet on mobile, with the next-step panel following both. Home gives the chosen background visible room at the top and between cards; illustrated scenes show their full width on phones.
+- Torn-paper edges use fixed pixel depths, never a percentage of form height. Long style, card-editing and collection panels must not clip their controls. Retain focused code/build checks; do not run usability tests.
+- Shared-style/mobile refinement validation: 36 focused checks across player experience compatibility, activities, learning rewards, highlights and collections; TypeScript check and production build. No authentication, database permissions or reward rules changed.
 - `20261030041324_player_space_age_styles.sql` was applied as Supabase migration `20261030041947` (`player_space_age_styles`); do not reapply. Validation: 36 focused checks across player experience, activities, learning rewards, highlights and collections; type check; production build; rollback-only `supabase/tests/player_space_age_styles_rls.sql` covering style persistence, legacy compatibility, progress preservation and family isolation. No usability testing.
 - Homepage prioritises next session. Its personalised weekly feature chooses unlogged current-week/ongoing coach practices before optional extras, highlights a new award/unread update/latest feedback, and shows the closest existing cosmetic milestone. Practice-day rewards count distinct dates with positive minutes; saved server unlocks remain the authority, including after goals reopen.
 - Successful practice saves show a personal completion card; failed saves retain the form and show no celebration. Quick reflection choices explicitly fill the existing editable reflection field and keep the same validation and family/coach visibility. No extra training quotas, consecutive-day streaks or new reward rules are introduced.
