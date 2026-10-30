@@ -1,0 +1,83 @@
+.star-register{background:#081428;color:#f6f3eb;overflow-wrap:anywhere}
+.star-register *{box-sizing:border-box}
+.register-width{width:min(1180px,calc(100% - 64px));margin-inline:auto}
+.star-register h1,.star-register h2,.star-register h3{font-family:'Barlow Condensed',Impact,sans-serif;font-weight:800;letter-spacing:-.02em;text-transform:none}
+.star-register h1{font-size:clamp(52px,6.5vw,84px);line-height:.98;margin:0 0 20px}
+.star-register h2{font-size:clamp(36px,4vw,52px);line-height:1.05;margin:0 0 18px}
+.star-register h3{font-size:27px;line-height:1.15;margin:0 0 12px}
+.star-register h1 span,.star-register h2 span{color:#e9cc88}
+.star-register p{line-height:1.7;margin:0 0 18px}
+.star-register a:focus-visible{outline:3px solid #f5c64d;outline-offset:5px}
+.register-eyebrow{font-size:11px;font-weight:800;letter-spacing:.14em;color:#e4c884;margin-bottom:18px!important}
+.register-entry{position:relative;padding:52px 0 48px;background:radial-gradient(ellipse at 90% 10%,#2a486b7a,transparent 65%),linear-gradient(120deg,#071325,#102440);border-bottom:1px solid #c8a45d55}
+.register-entry-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(32px,6vw,80px);align-items:center}
+.register-intro{min-width:0}
+.register-lead{max-width:510px;font-size:18px;color:#dce4ef}
+.star-register .register-reassurance{color:#e9cc88;font-size:13px;font-weight:700;margin-bottom:0}
+.register-start-card{min-width:0;padding:30px;background:linear-gradient(135deg,#fffdf6,#eee9dc);color:#14243b;border:1px solid #d5b878;border-radius:16px;box-shadow:0 18px 45px #0003}
+.register-step-label{display:block;font-size:10px;font-weight:800;letter-spacing:.1em;color:#86611d;margin-bottom:16px}
+.register-start-card h2{font-size:36px;color:#10223b;margin-bottom:12px}
+.register-start-card>p{font-size:15px;color:#46556a}
+.register-primary{display:inline-flex;align-items:center;justify-content:space-between;gap:18px;min-height:52px;padding:15px 20px;background:#d81f39;color:#fff;border:1px solid #d81f39;border-radius:7px;font-size:15px;font-weight:800;line-height:1.4;text-decoration:none}
+.register-primary:hover{background:#b51d32;border-color:#b51d32}
+.register-start-card>.register-primary{width:100%}
+.star-register .register-signin{font-size:13px;margin:17px 0 0}
+.register-signin a{font-weight:800;color:#9c2136;text-decoration:underline;text-underline-offset:4px}
+.register-resume{margin-top:20px;padding-top:18px;border-top:1px solid #14243b26;font-size:13px;line-height:1.6}
+.register-resume a{color:#14243b;font-weight:700;text-decoration:underline;text-underline-offset:4px}
+.register-process{padding-block:58px}
+.register-section-heading{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:end;margin-bottom:28px}
+.register-section-heading h2{margin-bottom:0}
+.register-section-heading>p{font-size:15px;color:#bdcadd;max-width:440px;margin:0}
+.register-steps{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px}
+.register-steps li{min-width:0;border-top:1px solid #cfaf6c70;padding-top:24px}
+.register-step-number{display:block;color:#e9cc88;font:800 27px/1 'Barlow Condensed',Impact,sans-serif;margin-bottom:18px}
+.register-steps p{font-size:14px;color:#bdcadd;margin-bottom:0}
+.star-register .register-confirmation{margin:30px 0 0;border-left:3px solid #cfaf6c;padding:4px 0 4px 18px;font-size:13px;color:#bdcadd;max-width:900px}
+.register-confirmation strong{color:#f3e4c4}
+.register-details{background:linear-gradient(120deg,#0e2038,#0a192d);padding-block:56px;border-block:1px solid #cfaf6c30}
+.register-details-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(35px,7vw,90px)}
+.register-checklist{padding-left:22px;margin:22px 0;color:#dce4ef;font-size:15px;line-height:1.8}
+.register-checklist li{padding-left:4px;margin-bottom:7px}
+.register-checklist li::marker{color:#e9cc88}
+.star-register .register-small{font-size:13px;color:#b5c4d9;max-width:480px;margin:18px 0}
+.register-assessment{border-left:1px solid #cfaf6c50;padding-left:36px}
+.register-duration{display:flex;gap:12px;align-items:center;color:#e9cc88;font:800 45px/1 'Barlow Condensed',Impact,sans-serif;margin-bottom:18px}
+.register-duration>span{font:800 11px/1.5 'Barlow',Arial,sans-serif;letter-spacing:.12em}
+.register-assessment h2{font-size:40px}
+.register-assessment>p{font-size:15px;color:#c2cede}
+.register-text-link{color:#ecd5a4;display:inline-block;font-size:14px;font-weight:700;line-height:1.6;text-decoration:underline;text-underline-offset:5px;padding-block:6px}
+.register-text-link:hover{color:#fff3d6}
+.register-help{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;padding-block:52px 60px}
+.register-help p:not(.register-eyebrow){color:#bdcadd;font-size:15px;max-width:450px;margin-bottom:0}
+.register-help-links{display:grid;gap:10px;justify-items:start}
+@media(max-width:760px){
+ .register-width{width:calc(100% - 40px)}
+ .register-entry{padding:28px 0 30px}
+ .register-entry-grid{grid-template-columns:1fr;gap:24px}
+ .star-register h1{font-size:clamp(44px,12.8vw,62px);margin-bottom:14px}
+ .register-eyebrow{font-size:10px;margin-bottom:14px!important;letter-spacing:.1em}
+ .register-lead{font-size:16px;margin-bottom:12px!important}
+ .register-start-card{padding:22px;border-radius:12px}
+ .register-step-label{margin-bottom:12px}
+ .register-start-card h2{font-size:30px;margin-bottom:10px}
+ .register-start-card>p{font-size:14px;margin-bottom:16px}
+ .register-primary{font-size:14px;min-height:52px;padding:14px 16px}
+ .register-process{padding-block:38px}
+ .register-section-heading{grid-template-columns:1fr;gap:18px;margin-bottom:24px}
+ .star-register h2{font-size:38px}
+ .register-start-card h2{font-size:30px}
+ .register-section-heading>p{font-size:14px}
+ .register-steps{grid-template-columns:1fr;gap:22px}
+ .register-steps li{display:flex;gap:18px;padding-top:20px}
+ .register-step-number{flex-shrink:0;width:28px;margin:0}
+ .register-steps h3{font-size:25px}
+ .register-confirmation{padding-left:14px!important}
+ .register-details{padding-block:36px}
+ .register-details-grid{grid-template-columns:1fr;gap:30px}
+ .register-assessment{border-left:0;border-top:1px solid #cfaf6c50;padding:28px 0 0}
+ .register-help{grid-template-columns:1fr;gap:24px;padding-block:36px 42px}
+ .register-help-links{justify-items:stretch}
+ .register-help-links .register-primary{width:100%}
+}
+@media(prefers-reduced-motion:no-preference){.register-primary{transition:background .15s,border-color .15s}}
