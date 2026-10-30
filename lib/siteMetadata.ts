@@ -1,6 +1,6 @@
 import type {Metadata} from 'next';
 import {hubArticles} from './footballHub';
-export const siteOrigin='https://star-development-centre.vercel.app';
+export const siteOrigin='https://starfootball.uk';
 export const siteName='STAR Development Centre';
 export const isPreview=!!process.env.VERCEL_ENV&&process.env.VERCEL_ENV!=='production';
 export const privateRobots={index:false,follow:false,noarchive:true};
