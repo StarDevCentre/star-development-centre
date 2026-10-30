@@ -54,6 +54,12 @@ export function PlayerSpace({ data, userKey, onSavePractice, onRefresh, onSignOu
   const [tab, setTab] = useState<Tab>("home");
   const activeTab=useRef<Tab>("home");
   const [playerId, setPlayerId] = useState(data.players[0]?.id || "");
+  const linkedPlayerRequest=useRef('');
+  useEffect(()=>{
+    if(linkedPlayerRequest.current===userKey)return;
+    const requested=new URLSearchParams(window.location.search).get('player');
+    if(data.players.length){linkedPlayerRequest.current=userKey;if(requested&&data.players.some(p=>p.id===requested))setPlayerId(requested);}
+  },[userKey,data.players]);
   const [more,setMore] = useState(false);
   const [welcomeReplay,setWelcomeReplay]=useState(0);
   const [account, setAccount] = useState(false);

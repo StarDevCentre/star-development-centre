@@ -104,6 +104,9 @@ These are business requirements provided in earlier planning; check with the own
 
 ### Parent Portal
 - Clear, accessible view of their own child's sessions, development, progress and coach communications.
+- Home uses a personal player card below the next-session panel: name/programme and decorative personalised shirt or the player's chosen private card photo, current shared coaching focus, most recently created active personal goal (falling back to her ambition), and latest real coach award with its badge/date/reason. Missing goals/awards leave no empty panels. The old promotional hero and separate focus panel are replaced; the new card has its own CSS namespace and content controls its height.
+- Personal details reuse existing family RLS on `player_space_profiles`, `player_personal_goals` and `player_achievements`. Read only the selected player's minimal fields; private card-photo URLs expire after an hour and refresh on focus/visible five-minute refresh. Never use the onboarding identification photo or a generic coaching image as her real photo. Appearance remains browser-local; no personal goals, awards or signed photo URLs are stored there. The design studio labels photo availability and links to Player Space. `?player=` links select only an already-authorised player, once on entry; they never grant access.
+- Focused validation for this data projection and private-photo fallback: `node --test scripts/test-parent-player-card.cjs`. Sample routes use explicitly fictional snapshots and make no player-card database requests.
 - Age-appropriate football/tactics education with simple explanations.
 - Formation explorer product intent: 9-a-side 2-4-2, 3-3-2, 3-2-3; 11-a-side 4-3-3, 4-4-2, 4-2-3-1, 3-5-2, 4-5-1, 3-1-4-2.
 - Highlight primary and secondary coach-set positions distinctly; explain movements using short animations, arrows and plain language.

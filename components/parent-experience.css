@@ -29,23 +29,5 @@ body:has(.ppx-responsive-review)>.site-header,body:has(.ppx-responsive-review)>.
 /* Practical information leads the family dashboard. Keep functional text readable. */
 .ppx-live-next{margin:18px 0}.ppx :is(.ppx-eyebrow,.ppx-strip-label,.ppx-member-chip,.ppx-hero-signature small,.ppx-shirt-caption,.ppx-nav-label){font-size:12px}
 .ppx :is(button,input,select,textarea){min-height:44px}.ppx :is(.ppx-text-btn,.ppx-outline-btn){font-size:14px}
-/* Mobile hero content must determine its height: fixed art offsets clip the shirt
-   and let the footer cover a wrapped action when text size increases. */
-@media(max-width:700px){
- .ppx .ppx-hero{display:flex;flex-direction:column;min-height:0}
- .ppx .ppx-hero-copy{width:100%;min-width:0;padding:24px 22px 20px;pointer-events:auto}
- .ppx .ppx-member-chip{max-width:100%;font-size:12px;line-height:1.6;letter-spacing:.1em;margin-bottom:18px;flex-wrap:wrap}
- .ppx .ppx-hero h1{font-size:clamp(36px,10.6vw,48px);line-height:1.06;white-space:normal;margin:0 0 18px}
- .ppx .ppx-hero-copy>p{max-width:none;font-size:14px;line-height:1.7;margin:0 0 20px}
- .ppx .ppx-hero-copy>.ppx-gold-btn{width:100%;max-width:none;min-height:48px;padding:13px 16px;font-size:14px!important;line-height:1.5;white-space:normal;gap:12px;justify-content:space-between}
- .ppx .ppx-hero-copy>.ppx-gold-btn svg{width:18px;height:18px;flex:none}
- .ppx .ppx-hero-signature{display:none}
- .ppx .ppx-hero-art{position:relative;inset:auto;width:100%;min-height:0;max-height:none;display:flex;flex-direction:column;padding:0 22px 20px;overflow:visible;gap:12px}
- .ppx .ppx-hero-art .ppx-shirt{width:180px;max-width:80%;height:auto;max-height:none;flex:none;margin:0 auto;transform:rotate(-5deg);animation:none}
- .ppx .ppx-shirt-caption{position:relative;inset:auto;max-width:100%;margin:0 auto;padding:10px 14px!important;font-size:12px!important;line-height:1.5;letter-spacing:.06em;gap:8px;white-space:normal}
- .ppx .ppx-shirt-caption>svg{width:16px;height:16px;flex:none}
- .ppx .ppx-shirt-number{top:0;right:8%;font-size:180px;pointer-events:none}
- .ppx .ppx-photo-mode .ppx-hero-photo{position:relative;inset:auto;width:220px;max-width:100%;height:200px;object-fit:cover;transform:none;border-radius:8px;mask-image:none}
- .ppx .ppx-hero-foot{position:relative;inset:auto;flex:none;flex-wrap:wrap;padding:14px 20px;font-size:11px;line-height:1.6;letter-spacing:.1em}
- .ppx small{font-size:12px}.ppx-live-next{padding:22px!important}
-}
+/* Functional type remains readable on small screens. */
+@media(max-width:700px){.ppx small{font-size:12px}.ppx-live-next{padding:22px!important}}
