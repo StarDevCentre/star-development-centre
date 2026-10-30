@@ -20,10 +20,11 @@ do $$declare pid uuid:=current_setting('star_test.player')::uuid;selected text;n
   if not exists(select 1 from public.player_squads where player_id=pid and footballers[1]=selected and captain=selected) then raise exception 'Goalkeeper did not save';end if;
   begin update public.player_squads set footballers=array['hampton',selected,'hasegawa','toone','shaw'],captain='shaw' where player_id=pid;raise exception 'Second goalkeeper accepted';exception when check_violation then null;end;
  end loop;
- foreach selected in array array['anna-patten','lynn-wilms','missy-bo-kearns','millie-turner','neve-herron','lisa-naalsund','lily-crosthwaite','veatriki-sarri','marisa-olislagers','maisie-symonds','madison-haley','ellie-mason','kiera-skeels','jodie-hutton','lucy-fitzgerald','gillian-kenney','allyson-swaby','aimee-everett','annabel-blanchard','ashleigh-weerden','bethany-england','ruby-mace','mayumi-pacheco','clare-wheeler','yuka-momiki','ornella-vignola','jenna-clark','fuka-nagano','ceri-holland','beata-olsson','maria-leon','alexia-putellas','kadidiatou-diani','anna-sandberg','jessica-park','amanda-nilden','olivia-holdt','jessica-naz','cathinka-tandberg','estelle-cascarino','ffion-morgan','katie-zelem','riko-ueki','ebony-salmon'] loop
+ foreach selected in array array['anna-patten','lynn-wilms','missy-bo-kearns','millie-turner','neve-herron','lisa-naalsund','lily-crosthwaite','veatriki-sarri','marisa-olislagers','maisie-symonds','madison-haley','ellie-mason','kiera-skeels','jodie-hutton','lucy-fitzgerald','gillian-kenney','allyson-swaby','aimee-everett','annabel-blanchard','ashleigh-weerden','bethany-england','ruby-mace','mayumi-pacheco','clare-wheeler','yuka-momiki','ornella-vignola','jenna-clark','fuka-nagano','ceri-holland','beata-olsson','maria-leon','alexia-putellas','kadidiatou-diani','anna-sandberg','jessica-park','amanda-nilden','olivia-holdt','jessica-naz','cathinka-tandberg','estelle-cascarino','ffion-morgan','katie-zelem','riko-ueki','ebony-salmon','asmita-ale'] loop
   update public.player_squads set footballers=array['hampton',selected,'hasegawa','toone','shaw'],captain=selected,updated_by=auth.uid() where player_id=pid;
   if not exists(select 1 from public.player_squads where player_id=pid and footballers[2]=selected and captain=selected) then raise exception 'Outfield player did not save';end if;
  end loop;
+ begin update public.player_squads set footballers=array['asmita-ale','williamson','hasegawa','toone','shaw'],captain='shaw' where player_id=pid;raise exception 'Leicester defender accepted as goalkeeper';exception when check_violation then null;end;
  if exists(select 1 from public.player_squads where player_id<>pid) then raise exception 'Cross-family squad visible';end if;
  update public.player_squads set name='Stolen' where player_id<>pid;get diagnostics n=row_count;if n<>0 then raise exception 'Cross-family squad writable';end if;
  begin update public.player_squads set footballers=array['hampton','anna-patten','anna-patten','toone','shaw'],captain='shaw' where player_id=pid;raise exception 'Duplicate accepted';exception when check_violation then null;end;
@@ -40,4 +41,4 @@ do $$begin
 end$$;
 reset role;
 rollback;
-select 'PASS: all 51 additions save; goalkeeper slots, unique players, linked account access and family isolation enforced; fixtures rolled back.' as result;
+select 'PASS: all 52 additions save; goalkeeper slots, unique players, linked account access and family isolation enforced; fixtures rolled back.' as result;

@@ -1027,5 +1027,22 @@
     "boot_note": "Use the boot silhouette, sole and colour visible in her match reference photographs; make the best visual interpretation where hidden. Do not copy boots from the style reference.",
     "accuracy_note": "Kits/likeness follow 2026/27 portraits where available; footwear and body/foot proportions are best photographic interpretations when no public measurements exist, as authorised by owner. No exact shoe-size claim.",
     "artwork_review": "One figure in the strip for her listed role; full body and both boots; transparency reviewed."
+  },
+  {
+    "id": "asmita-ale",
+    "name": "Asmita Ale",
+    "club": "Leicester City",
+    "role": "Defender",
+    "number": 12,
+    "watch": "Watch when she supports the attack out wide and how she recovers to protect the space behind.",
+    "source": "https://www.wslfootball.com/players/asmita-ale",
+    "kit": "2026/27 home",
+    "checked": "2026-10-30",
+    "kit_source": "https://www.lcfc.com/media-article/26-27-adidas-womens-home-kit-available-now-away-kit-available-to-pre-order",
+    "number_source": "https://www.lcfc.com/media-article/lcfc-women-squad-numbers-confirmed-wsl2-2627",
+    "portrait": "https://media-sdp.wslfootball.com/playerImages/422757a2c70d450eba118ad97bed5222/d9382b89534044908bb9a740fcb2ac86/773d224707984cf0b3bcbcca97224deb/home/caf115fc06094f3198aa2b1e648cb879_left.webp",
+    "accuracy_note": "Current official portrait guides kit and likeness. Boot details, body proportions and foot scale are photographic interpretations where measurements are unavailable; no exact shoe-size claim.",
+    "body_reference": "https://www.bbc.co.uk/sport/football/articles/cx238lnrlwjo",
+    "boot_note": "Light-coloured Nike Phantom-style interpretation; exact current boot model, colourway and shoe size are not independently verified."
   }
 ]

@@ -513,4 +513,15 @@ export const wslSquadAdditions:SquadFootballer[]=[
   "source": "https://www.wslfootball.com/players/ebony-salmon",
   "kit": "2026/27 home"
  }
+,
+{
+ "id": "asmita-ale",
+ "name": "Asmita Ale",
+ "club": "Leicester City",
+ "role": "Defender",
+ "number": 12,
+ "watch": "Watch when she supports the attack out wide and how she recovers to protect the space behind.",
+ "source": "https://www.wslfootball.com/players/asmita-ale",
+ "kit": "2026/27 home"
+}
 ];
