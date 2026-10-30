@@ -228,3 +228,6 @@
 .star-home .home-assessment-next .home-helper{max-width:770px;color:#bac8dc}
 @media(max-width:1000px){.star-home .home-reasons{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}.star-home .home-proof{gap:18px}}
 @media(max-width:700px){.star-home .home-reasons{grid-template-columns:1fr;gap:24px;margin-top:30px}.star-home .home-reasons article{padding-top:16px}.star-home .home-reason-number{margin-bottom:10px}.star-home .home-reasons h3{font-size:28px}.star-home .home-proof{grid-template-columns:1fr;gap:22px}.star-home .home-start-intro{font-size:15px}.star-home .home-assessment-next .home-button{width:100%}.star-home .home-assessment-next .home-link{font-size:13px}.star-home .home-structured-options p{font-size:13px}}
+
+/* Add meaningful H1 context for assistive technology and search without changing the branded hero. */
+.home-hero h1 .home-seo-context{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
