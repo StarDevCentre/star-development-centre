@@ -85,7 +85,7 @@
 .home-coach-inner{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(40px,7vw,100px);align-items:center}
 .home-coach-identity{max-width:360px;justify-self:center;width:100%;position:relative}
 .home-coach-photo{position:relative;width:100%;aspect-ratio:1/1.12;overflow:hidden;background:#fff;border-radius:55px 8px 8px 8px;box-shadow:15px 15px 0 #d2b46b38}
-.home-coach-photo img{position:absolute;right:0;top:-2%;width:230%;height:auto;max-width:none}
+.home-coach-photo img{display:block;width:100%;height:100%;object-fit:cover}
 .home-coach-identity>p{position:relative;margin:-5px 15px 0;background:#091a32;color:#fff;padding:19px 24px;border-left:3px solid #d9b75f;transform:rotate(-2deg)}
 .home-coach-identity strong{font:800 31px/1 'Barlow Condensed',Impact,sans-serif;display:block}
 .home-coach-identity span{display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#e6cf95;margin-top:8px}

@@ -3,7 +3,6 @@ import {Suspense} from "react";
 import type {Metadata} from "next";
 import {EnquiryForm} from "../../components/EnquiryForm";
 import {enquiryResponseTime} from "../../lib/enquiries";
-import "../home.css";
 import "./contact.css";
 export const metadata: Metadata = pageMetadata('/contact');
 function ContactIcon({kind}: {kind: "chat" | "phone" | "mail"}) {

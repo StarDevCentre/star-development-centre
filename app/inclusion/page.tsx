@@ -1,7 +1,6 @@
 import {pageMetadata} from '../../lib/siteMetadata';
 import Link from "next/link";
 import type {Metadata} from "next";
-import "../home.css";
 import "./inclusion.css";
 
 const description = "Inclusive girls’ football coaching in Taunton and Wellington. Discover how STAR supports different learning needs, autistic players, ADHD, beginners and confidence.";

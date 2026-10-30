@@ -3,7 +3,6 @@ import Link from "next/link";
 import {useEffect, useMemo, useState} from "react";
 import {finderGoals, findProgrammeMatches, playerAges, programmeEnquiryHref, type FinderGoal} from "../../lib/programmeOptions";
 import {ProgrammePrice, ProgrammePricingProvider} from "../../components/ProgrammePricing";
-import "../home.css";
 import "../programmes/programmes.css";
 import "./finder.css";
 export default function ProgrammeFinder() {

@@ -1,6 +1,5 @@
 import {pageMetadata} from '../../lib/siteMetadata';
 import Link from "next/link";
-import "../home.css";
 import "./team.css";
 export const metadata=pageMetadata('/coaches');
 export default function Coaches(){return <main className="team-page">

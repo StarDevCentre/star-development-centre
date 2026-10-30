@@ -2,7 +2,6 @@ import {pageMetadata} from '../../lib/siteMetadata';
 import Link from "next/link";
 import type {Metadata} from "next";
 import ApproachExample from "../../components/ApproachExample";
-import "../home.css";
 import "./approach.css";
 
 const description = "See how STAR listens, assesses, plans, coaches and reviews individual girls’ football development in Somerset, alongside her club football.";

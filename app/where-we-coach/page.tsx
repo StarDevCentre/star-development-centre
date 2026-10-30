@@ -2,7 +2,6 @@ import Link from "next/link";
 import type {Metadata} from "next";
 import {pageMetadata,siteOrigin} from "../../lib/siteMetadata";
 import {StructuredData} from "../../components/StructuredData";
-import "../home.css";
 
 export const metadata:Metadata=pageMetadata("/where-we-coach");
 

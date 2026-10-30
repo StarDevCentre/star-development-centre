@@ -3,7 +3,6 @@ import Link from "next/link";
 import type {Metadata} from "next";
 import StaplegrovePathway from "../../components/StaplegrovePathway";
 import PathwayExplorer from "../../components/PathwayExplorer";
-import "../home.css";
 import "./pathways.css";
 const description="Explore girls’ football pathways with STAR: grassroots clubs, Emerging Talent Centres, academies, education and women’s football. Find a next step that suits her.";
 export const metadata:Metadata=pageMetadata('/pathways');
