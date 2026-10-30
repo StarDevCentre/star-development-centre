@@ -623,5 +623,105 @@ export const wslSquadAdditions:SquadFootballer[]=[
  "watch": "Watch her body position against a winger and when she moves forward to support a teammate.",
  "source": "https://www.wslfootball.com/players/noelle-maritz",
  "kit": "2026/27 home"
+},
+{
+ "id": "lotte-wubben-moy",
+ "name": "Lotte Wubben-Moy",
+ "club": "Arsenal",
+ "role": "Defender",
+ "number": 3,
+ "watch": "Watch how she checks runners before a cross and keeps a passing option open when her team builds play.",
+ "source": "https://www.wslfootball.com/players/lotte-wubben-moy",
+ "kit": "2026/27 home"
+},
+{
+ "id": "drew-spence",
+ "name": "Drew Spence",
+ "club": "Tottenham Hotspur",
+ "role": "Midfielder",
+ "number": 24,
+ "watch": "Watch how she shields the ball in midfield and changes the passing angle with her next touch.",
+ "source": "https://www.wslfootball.com/players/drew-spence",
+ "kit": "2026/27 home"
+},
+{
+ "id": "seraina-piubel",
+ "name": "Seraina Piubel",
+ "club": "West Ham United",
+ "role": "Forward",
+ "number": 77,
+ "watch": "Watch her movement into wide space and how she supports a teammate after releasing the ball.",
+ "source": "https://www.wslfootball.com/players/seraina-piubel",
+ "kit": "2026/27 home"
+},
+{
+ "id": "danielle-van-de-donk",
+ "name": "Daniëlle van de Donk",
+ "club": "London City Lionesses",
+ "role": "Midfielder",
+ "number": 10,
+ "watch": "Watch how she finds space between opponents and times a supporting run towards the box.",
+ "source": "https://www.wslfootball.com/players/danielle-van-de-donk",
+ "kit": "2026/27 home"
+},
+{
+ "id": "shannon-cooke",
+ "name": "Shannon Cooke",
+ "club": "Birmingham City",
+ "role": "Defender",
+ "number": 6,
+ "watch": "Watch how she covers a teammate who steps out and chooses when to challenge an attacker.",
+ "source": "https://www.wslfootball.com/players/shannon-cooke",
+ "kit": "2026/27 home"
+},
+{
+ "id": "pauline-peyraud-magnin",
+ "name": "Pauline Peyraud-Magnin",
+ "club": "Crystal Palace",
+ "role": "Goalkeeper",
+ "number": 26,
+ "watch": "Watch her starting position as the ball moves and how she resets her feet before a shot.",
+ "source": "https://www.wslfootball.com/players/pauline-peyraud-magnin",
+ "kit": "2026/27 goalkeeper"
+},
+{
+ "id": "elisha-n-dow",
+ "name": "Elisha N'Dow",
+ "club": "Charlton Athletic",
+ "role": "Defender",
+ "number": 5,
+ "watch": "Watch her body position beside a forward and how she protects the space behind the defensive line.",
+ "source": "https://www.wslfootball.com/players/elisha-n-dow",
+ "kit": "2026/27 home"
+},
+{
+ "id": "aoba-fujino",
+ "name": "Aoba Fujino",
+ "club": "Manchester City",
+ "role": "Forward",
+ "number": 20,
+ "watch": "Watch how she changes direction with close touches and combines with teammates around the box.",
+ "source": "https://www.wslfootball.com/players/aoba-fujino",
+ "kit": "2026/27 home"
+},
+{
+ "id": "aggie-beever-jones",
+ "name": "Aggie Beever-Jones",
+ "club": "Chelsea",
+ "role": "Forward",
+ "number": 33,
+ "watch": "Watch how she curves her run behind a defender and prepares her first touch towards goal.",
+ "source": "https://www.wslfootball.com/players/agnes-beever-jones",
+ "kit": "2026/27 home"
+},
+{
+ "id": "aurora-galli",
+ "name": "Aurora Galli",
+ "club": "Everton",
+ "role": "Midfielder",
+ "number": 22,
+ "watch": "Watch her checks before receiving and how she helps her team regain its shape after losing the ball.",
+ "source": "https://www.wslfootball.com/players/aurora-galli",
+ "kit": "2026/27 home"
 }
 ];
