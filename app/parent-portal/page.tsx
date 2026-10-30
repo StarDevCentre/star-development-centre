@@ -2,8 +2,6 @@ import {programmeSignInReturn} from "../../lib/programmeOptions";
 import {ParentPortal} from "../../components/ParentPortal";
 import {programmes} from "../../lib/siteData";
 import {ParentMobileHeader} from "../../components/ParentAppChrome";
-import "../home.css";
-import "./parent.css";
 export const metadata={title:"Parent Portal & Player Registration",description:"Register your player, view shared sessions and coaching progress, and stay in touch with STAR from your parent account.",robots:{index:false,follow:true}};
 export default async function Page({searchParams}:{searchParams:Promise<{mode?:string;programme?:string;returnTo?:string}>}){
  const params=await searchParams;

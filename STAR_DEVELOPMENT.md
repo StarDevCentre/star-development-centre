@@ -25,6 +25,7 @@ STAR Development Centre is an independent girls' football development service in
 ## Shared public header
 - All routes use the same current public header from `components/Site.tsx`; do not select legacy headers using a route allowlist. Its shared `home.css` is loaded by the root layout so direct visits and navigation use the same sizing and styling.
 - Player Space keeps its own header. Parent and staff app shells suppress the public header using their existing scoped styles; preserve those rules when changing shared chrome.
+- Parent Portal layout eagerly loads `parent.css`, `parent-dashboard.css` and `parent-app.css` in that order. The entry header renders before authentication and for accounts without linked players, so its styles must never depend on the dynamically loaded `ParentExperience`. The entry logo also has small intrinsic dimensions to prevent document-width overflow if styles are delayed.
 
 ## Programmes — confirm prices before publishing changes
 These are business requirements provided in earlier planning; check with the owner before changing public pricing.
