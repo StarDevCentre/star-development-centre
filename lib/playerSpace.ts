@@ -1,3 +1,4 @@
+import type {PlayerExperience} from './playerExperience';
 import type {LearningFrame,LearningTheme,LearningDecoration} from './learningRewards';
 import type {IllustratedScene} from './playerScenes';
 import { emptyPortalFeatures, type PortalFeatures } from "./playerPortalFeatures";
@@ -15,9 +16,9 @@ export type SpaceData = PortalFeatures & { ballProgress:{player_id:string;attend
 export const emptySpaceData: SpaceData = { ...emptyPortalFeatures, ballProgress:[], players: [], awards: [], assignments: [], diary: [], feedback: [], goals: [], sessions: [], assessments: [], reports: [], profiles: [], personalGoals: [], celebrated: [], unlocks: [], goalEvents: [] };
 export type PracticeInput = { assignment_id: string; practice_date: string; minutes: number; reflection: string; confidence?: number | null; enjoyment?: number | null };
 
-export type ProfileFields = HeroAppearance & { accent: 'navy' | 'red' | 'gold'; icon: AvatarKey; motto: string; shirt_name: string; shirt_number: number | null; ambition: string; cabinet_lights: boolean; frame:LearningFrame; theme: 'midnight' | 'stadium' | 'scrapbook' | LearningTheme | IllustratedScene; decoration: 'none' | 'lightning' | 'laurel' | 'starburst' | LearningDecoration; experience:'junior'|'senior'; preferred_positions:string[]; stronger_foot:''|'Left'|'Right'|'Both'; favourite_footballer:string; favourite_team:string; playing_teams:string; school:string };
+export type ProfileFields = HeroAppearance & { accent: 'navy' | 'red' | 'gold'; icon: AvatarKey; motto: string; shirt_name: string; shirt_number: number | null; ambition: string; cabinet_lights: boolean; frame:LearningFrame; theme: 'midnight' | 'stadium' | 'scrapbook' | LearningTheme | IllustratedScene; decoration: 'none' | 'lightning' | 'laurel' | 'starburst' | LearningDecoration; experience:PlayerExperience; preferred_positions:string[]; stronger_foot:''|'Left'|'Right'|'Both'; favourite_footballer:string; favourite_team:string; playing_teams:string; school:string };
 export type SpaceProfile = ProfileFields & { player_id: string; photo_path: string | null; photo_url?: string };
-export const defaultProfile: ProfileFields = { ...defaultHero, accent: 'navy', icon: 'train', motto: 'Your game. Your journey.', shirt_name: '', shirt_number: null, ambition: '', cabinet_lights: true, frame:'none', theme: 'midnight', decoration: 'none', experience:'junior',preferred_positions:[],stronger_foot:'',favourite_footballer:'',favourite_team:'',playing_teams:'',school:'' };
+export const defaultProfile: ProfileFields = { ...defaultHero, accent: 'navy', icon: 'train', motto: 'Your game. Your journey.', shirt_name: '', shirt_number: null, ambition: '', cabinet_lights: true, frame:'none', theme: 'midnight', decoration: 'none', experience:'teenagers',preferred_positions:[],stronger_foot:'',favourite_footballer:'',favourite_team:'',playing_teams:'',school:'' };
 export type PersonalGoal = { id: string; player_id: string; goal: string; target_date: string | null; status: 'active' | 'achieved' | 'archived' };
 export type GoalInput = Pick<PersonalGoal, 'goal' | 'target_date' | 'status'>;
 export type SpaceActions = {

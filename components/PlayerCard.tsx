@@ -6,6 +6,8 @@ import { positions } from "../lib/playerPortalFeatures";
 import {LearningProfileFrame} from './LearningRewardArt';
 import { BootSticker, PlayerDecoration, SpaceIcon } from './PlayerSpaceIcons';
 
+import {playerExperience,playerExperiences} from '../lib/playerExperience';
+
 const mottos = ['Your game. Your journey.', 'Small steps. Big dreams.', 'Be brave. Be you.'];
 async function preparePhoto(file: File): Promise<Blob> {
   if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type) || file.size > 5 * 1024 * 1024) throw new Error('Choose a JPG, PNG or WebP photo under 5 MB.');
@@ -36,7 +38,7 @@ export function PlayerCard({ name, playerId, userKey, profile, unlocks, onUpdate
   useEffect(() => {
     if (editing && !setup) return;
     let initial: ProfileFields = { ...defaultProfile };
-    if (profile) initial = { ...initial, ...profile };
+    if (profile) initial = { ...initial, ...profile,experience:playerExperience(profile.experience) };
     else try {
       const old = JSON.parse(localStorage.getItem(`star-player-card-v1:${userKey}:${playerId}`) || 'null');
       const accent = ({lilac:'gold',blue:'navy',coral:'red'} as Record<string,string>)[old?.accent] || old?.accent;
@@ -48,6 +50,7 @@ export function PlayerCard({ name, playerId, userKey, profile, unlocks, onUpdate
     if (!photo) { setPreview(''); return; }
     const url = URL.createObjectURL(photo); setPreview(url); return () => URL.revokeObjectURL(url);
   }, [photo]);
+  const child=card.experience==='children';
   const image = photo === null ? '' : preview || profile?.photo_url;
   async function save(event: React.FormEvent) {
     event.preventDefault(); if (busy) return; setBusy(true); setError(''); setNotice('');
@@ -63,15 +66,15 @@ export function PlayerCard({ name, playerId, userKey, profile, unlocks, onUpdate
     <div className="ps-avatar-wrap"><LearningProfileFrame kind={profile?.frame||'none'}/><PlayerDecoration kind={profile?.decoration||"none"}/>{image ? <img className="ps-profile-photo" src={image} alt={`${name}'s player card portrait`}/> : card.icon === 'train' ? <BootSticker/> : <SpaceIcon className="ps-card-icon" name={card.icon}/>}<span className="ps-be-you">BE<br/>YOU!</span></div>
     <p className="ps-card-motto">{card.motto}</p>{card.ambition && <div className="ps-ambition"><strong>MY FOOTBALL DREAM</strong><p>{card.ambition}</p></div>}
     {(card.preferred_positions.length>0||card.stronger_foot||card.favourite_footballer||card.favourite_team||card.playing_teams||card.school)&&<details className="ps-private-football-details"><summary>My football details</summary>{card.preferred_positions.length>0&&<p><strong>Positions:</strong> {card.preferred_positions.join(', ')}</p>}{card.stronger_foot&&<p><strong>Stronger foot:</strong> {card.stronger_foot}</p>}{card.favourite_footballer&&<p><strong>Favourite footballer:</strong> {card.favourite_footballer}</p>}{card.favourite_team&&<p><strong>Favourite team:</strong> {card.favourite_team}</p>}{card.playing_teams&&<p><strong>My teams:</strong> {card.playing_teams}</p>}{card.school&&<p><strong>My school:</strong> {card.school}</p>}</details>}
-    {!setup&&<button className="ps-text-link" disabled={busy} onClick={() => { setEditing(value => !value); setNotice(''); }} aria-expanded={editing}>{editing ? 'Close customisation' : 'Personalise your card'} <SpaceIcon name="arrow"/></button>}
+    {!setup&&<button className="ps-text-link" disabled={busy} onClick={() => { setEditing(value => !value); setNotice(''); }} aria-expanded={editing}>{editing ? 'Close customisation' : child?'Make my card':'Personalise your card'} <SpaceIcon name="arrow"/></button>}
     {editing && <form className="ps-card-editor" onSubmit={save}><fieldset disabled={busy}><legend>Your colour</legend><div className="ps-choice-row">{(['navy','red','gold'] as const).map(value => <button type="button" aria-pressed={card.accent===value} className={`ps-colour-choice ps-swatch-${value}`} key={value} onClick={() => setCard(current => ({...current,accent:value}))}>{value}{card.accent===value && ' ✓'}</button>)}</div></fieldset>
       <fieldset disabled={busy}><legend>Your avatar</legend><div className="ps-choice-row">{(['train','ball','star','captain','comet','shield'] as AvatarKey[]).map(value => <button type="button" disabled={!["train","ball","star"].includes(value)&&!unlocks.some(u=>u.cosmetic===`avatar-${value}`)} title={cosmetics.find(c=>c.key===`avatar-${value}`)?.requirement} aria-pressed={!image && card.icon===value} aria-label={value==='train'?'Boot avatar':`${value} avatar`} key={value} onClick={() => { setPhoto(null); setCard(current => ({...current,icon:value})); }}><SpaceIcon name={value}/><small>{value==='train'?'Boot':value==='shield'?'Guardian':value}{!["train","ball","star"].includes(value)&&!unlocks.some(u=>u.cosmetic===`avatar-${value}`)?' · Locked':''}</small></button>)}</div><small>More avatars unlock through practice, goals and badges. See “Style my space” for the requirements.</small></fieldset>
       <label>Or add a profile photo<input disabled={busy} type="file" accept="image/jpeg,image/png,image/webp" onChange={async event => { const file=event.target.files?.[0]; if(!file)return; setBusy(true); setError(''); try { setPhoto(await preparePhoto(file)); } catch(value) { setError(value instanceof Error ? value.message : 'Could not open that photo.'); } finally { setBusy(false); event.target.value=''; } }}/></label><small>JPG, PNG or WebP · up to 5 MB. Your photo stays within your approved family account.</small>
       {image && <button disabled={busy} className="ps-text-link" type="button" onClick={() => setPhoto(null)}>Use avatar instead</button>}
       <label>Shirt name<input disabled={busy} maxLength={30} value={card.shirt_name} placeholder={name} onChange={event=>setCard(current=>({...current,shirt_name:event.target.value}))}/></label>
       <label>Shirt number<input disabled={busy} type="number" inputMode="numeric" min={1} max={99} step={1} value={card.shirt_number??''} placeholder="1–99" onChange={event=>setCard(current=>({...current,shirt_number:event.target.value===''?null:Number(event.target.value)}))}/></label>
-      <label>My football ambitions<textarea disabled={busy} rows={3} maxLength={500} placeholder="What would you love to achieve?" value={card.ambition} onChange={event=>setCard(current=>({...current,ambition:event.target.value}))}/></label>
-      <label>My experience<select disabled={busy} value={card.experience} onChange={e=>setCard(c=>({...c,experience:e.target.value as ProfileFields['experience']}))}><option value="junior">Foundation · younger teens</option><option value="senior">Next level · older teens</option></select></label><small>This changes the look, wording and learning content. No date of birth is needed.</small>
+      <label>{child?'My football wish':'My football ambitions'}<textarea disabled={busy} rows={3} maxLength={500} placeholder={child?'What would you love to try?':'What would you love to achieve?'} value={card.ambition} onChange={event=>setCard(current=>({...current,ambition:event.target.value}))}/></label>
+      <label>Player Space style<select disabled={busy} value={card.experience} onChange={e=>setCard(c=>({...c,experience:e.target.value as ProfileFields['experience']}))}>{playerExperiences.map(option=><option key={option.value} value={option.value}>{option.label}</option>)}</select></label><small>Children: ages 7–11. Teenagers: ages 12–18. Choose the style you enjoy. Your progress stays with you.</small>
       {!setup&&<><fieldset className="ps-position-choices" disabled={busy}><legend>Preferred positions</legend>{positions.map(p=><label key={p}><input type="checkbox" checked={card.preferred_positions.includes(p)} onChange={e=>setCard(c=>({...c,preferred_positions:e.target.checked?[...c.preferred_positions,p]:c.preferred_positions.filter(v=>v!==p)}))}/>{p}</label>)}</fieldset>
       <label>Stronger foot<select disabled={busy} value={card.stronger_foot} onChange={e=>setCard(c=>({...c,stronger_foot:e.target.value as ProfileFields['stronger_foot']}))}><option value="">Choose if you like</option><option>Left</option><option>Right</option><option>Both</option></select></label>
       {([{key:'favourite_footballer',label:'Favourite footballer',max:100},{key:'favourite_team',label:'Favourite team',max:100},{key:'playing_teams',label:'Club or school teams I play for',max:200},{key:'school',label:'School I attend',max:100}] as const).map(field=><label key={field.key}>{field.label}<input disabled={busy} maxLength={field.max} value={card[field.key]} onChange={e=>setCard(c=>({...c,[field.key]:e.target.value}))}/></label>)}<small>These profile details stay with you and your linked family account. They are never included in teammate badge sharing.</small>

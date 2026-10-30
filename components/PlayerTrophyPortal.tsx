@@ -1,4 +1,5 @@
 "use client";
+import {playerExperience,requestedExperience} from '../lib/playerExperience';
 
 import { useEffect, useRef, useState } from "react";
 import type { User } from "@supabase/supabase-js";
@@ -106,7 +107,7 @@ export function PlayerTrophyPortal() {
         }));
         const feedbackRows=feedbackPages.flat().sort((a,b)=>b.reviewed_at.localeCompare(a.reviewed_at));
         const profiles = await Promise.all((results[7].data || []).map(async value => {
-          const profile = value as unknown as SpaceProfile;
+          const profile = {...value,experience:playerExperience(value.experience)} as unknown as SpaceProfile;
           if (!profile.photo_path) return profile;
           const photo = await db!.storage.from("player-card-photos").createSignedUrl(profile.photo_path, 3600);
           return { ...profile, photo_url: photo.data?.signedUrl };
@@ -158,6 +159,7 @@ export function PlayerTrophyPortal() {
   }
   const updateProfile: SpaceActions['onUpdateProfile'] = async (playerId, patch, photo) => {
     if (!db || !user || loadedUserId !== user.id || !data.players.some(p=>p.id===playerId)) throw new Error("Please sign in again to save your card.");
+    if(patch.experience!==undefined&&!requestedExperience(patch.experience))throw new Error("Choose Children or Teenagers.");
     const old = data.profiles.find(p=>p.player_id===playerId);
     let initial = { ...defaultProfile };
     if(!old) try {

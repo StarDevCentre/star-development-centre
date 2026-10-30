@@ -1,0 +1,44 @@
+/* Children adds a clear, playful presentation. Teenagers uses the original base. */
+.player-space-shell.ps-experience-children{--ps-paper:#fffef8;--ps-yellow:#ffd15c;background-color:#0d2850;background-image:radial-gradient(circle at 8% 4%,#f5c64d25,transparent 25%),radial-gradient(circle at 90% 20%,#5087ce30,transparent 32%);font-size:16px}
+.ps-experience-children :is(h1,h2,h3,h4){font-family:'DM Sans',Arial,sans-serif;font-weight:900;letter-spacing:-.025em;line-height:1.18}
+.ps-experience-children h1{font-size:clamp(32px,5vw,60px)}
+.ps-experience-children h2{font-size:clamp(25px,3vw,34px)}
+.ps-experience-children h3{font-size:23px}
+.ps-experience-children p{font-size:16px;line-height:1.75}
+.ps-experience-children .ps-paper{clip-path:none;background-image:none;border:3px solid #e2b44c;border-radius:22px;box-shadow:0 7px 0 #020c2166;transform:none}
+.ps-experience-children :is(.ps-tape,.ps-label){clip-path:none;border-radius:12px;transform:none;font-family:'DM Sans',Arial,sans-serif;font-size:14px;font-weight:800;line-height:1.5;letter-spacing:.01em}
+.ps-experience-children .ps-tape{background:#b31931;color:#fff}
+.ps-experience-children .ps-brand-name{clip-path:none;border-radius:12px;transform:none;font-family:'DM Sans',Arial,sans-serif;font-weight:900;font-size:23px}
+.ps-experience-children .ps-logo-paper{clip-path:none;transform:none;border-radius:12px;overflow:hidden}
+.ps-experience-children :is(.ps-action,.ps-text-link){font-family:'DM Sans',Arial,sans-serif;font-weight:800;font-size:16px;line-height:1.5;min-height:48px;border-radius:12px;white-space:normal;letter-spacing:0}
+.ps-experience-children :is(label,legend){font-size:15px;line-height:1.6}
+.ps-experience-children :is(input:not([type=checkbox]):not([type=radio]),select,textarea){border-radius:12px;min-height:48px;font-size:16px}
+.ps-experience-children :is(.ps-feature-links button,.ps-learning-tabs button,.ps-goal-actions button,.ps-quick-reflection button){min-height:48px;border-radius:12px;font-size:15px;font-weight:800;line-height:1.5;white-space:normal}
+.ps-experience-children :is(.ps-feature-links button,.ps-learning-tabs button){border:2px solid #e2b44c}
+.ps-experience-children .ps-coach-note{border-radius:14px;border-left:5px solid #bc8713;background:#fff4ce}
+.ps-experience-children .ps-coach-note p{font-family:'DM Sans',Arial,sans-serif;font-size:16px;font-weight:600;line-height:1.7}
+.ps-experience-children .ps-next-session-hero h1{font-size:clamp(32px,4.8vw,54px);white-space:normal}
+.ps-experience-children .ps-next-session-hero{overflow:hidden;background-image:radial-gradient(circle at 90% 22%,#f5c64d55,transparent 55%)}
+.ps-experience-children .ps-session-focus{border-radius:12px}
+.ps-experience-children .ps-session-focus p{font:700 18px/1.6 'DM Sans',Arial,sans-serif!important}
+.ps-experience-children .ps-be-you{border-radius:50%;font-family:'DM Sans',Arial,sans-serif;font-weight:900}
+.ps-experience-children .ps-card-motto{font-family:'DM Sans',Arial,sans-serif;font-size:20px;font-weight:800;line-height:1.5}
+.ps-experience-children .ps-mobile-dock{border-top:3px solid #e2b44c;background:#0d2850}
+.ps-experience-children .ps-mobile-dock button{font-size:12px;font-weight:800;min-height:52px}
+.ps-experience-children .ps-child-help{display:flex;align-items:flex-start;gap:10px;padding:14px 16px;margin:0 0 18px;border:1px solid #f5c64d66;border-radius:14px;color:#fff7da;font-size:14px;line-height:1.7}
+.ps-experience-children .ps-child-guide{padding:12px 0}
+.ps-experience-children .ps-child-guide>p{font-size:17px}
+@media(max-width:600px){
+ .player-space-shell.ps-experience-children{padding:14px 12px 0}
+ .ps-experience-children .ps-paper{border-radius:18px}
+ .ps-experience-children :is(.ps-title-paper,.ps-personal-goals,.ps-training-card,.ps-match-prep,.ps-match-confidence,.ps-match-reflection,.ps-match-history){padding:24px 20px}
+ .ps-experience-children .ps-next-session-hero{padding:24px 20px}
+ .ps-experience-children .ps-next-session-hero h1{font-size:32px;max-width:100%}
+ .ps-experience-children .ps-feature-links{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .ps-experience-children .ps-feature-links button{font-size:14px;padding:12px}
+ .ps-experience-children .ps-quick-reflection{grid-template-columns:minmax(0,1fr)}
+ .ps-experience-children .ps-learning-tabs button{font-size:14px}
+ .ps-experience-children .ps-brand-name{font-size:18px;padding:6px 10px}
+}
+
+.ps-experience-children .ps-checklist label{min-height:48px;align-items:center}
