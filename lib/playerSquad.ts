@@ -28,8 +28,8 @@ export const squadRoster:SquadFootballer[]=[
 export const squadPlayer=(id:string|null|undefined)=>squadRoster.find(p=>p.id===id);
 export const squadAsset=(id:string)=>`/player-space/squad/${id}.webp`;
 export const squadFormations={
- diamond:{title:'Diamond · 1–2–1',description:'One deeper player, two wide options and a forward.',slots:[{x:50,y:83,label:'Goalkeeper'},{x:50,y:62,label:'Anchor'},{x:22,y:39,label:'Left'},{x:78,y:39,label:'Right'},{x:50,y:17,label:'Forward'}]},
- box:{title:'Box · 2–2',description:'Two players supporting behind two attacking options.',slots:[{x:50,y:83,label:'Goalkeeper'},{x:26,y:61,label:'Left support'},{x:74,y:61,label:'Right support'},{x:26,y:24,label:'Left attack'},{x:74,y:24,label:'Right attack'}]}
+ diamond:{title:'Diamond · 1–2–1',description:'One deeper player, two wide options and a forward.',slots:[{column:2,row:4,label:'Goalkeeper'},{column:2,row:3,label:'Anchor'},{column:1,row:2,label:'Left'},{column:3,row:2,label:'Right'},{column:2,row:1,label:'Forward'}]},
+ box:{title:'Box · 2–2',description:'Two players supporting behind two attacking options.',slots:[{column:2,row:3,label:'Goalkeeper'},{column:1,row:2,label:'Left support'},{column:3,row:2,label:'Right support'},{column:1,row:1,label:'Left attack'},{column:3,row:1,label:'Right attack'}]}
 } as const;
 export type SquadFormation=keyof typeof squadFormations;
 export type SquadInput={name:string;formation:SquadFormation;footballers:string[];captain:string};
