@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type {Metadata} from "next";
-import {pageMetadata} from "../../lib/siteMetadata";
+import {pageMetadata,siteOrigin} from "../../lib/siteMetadata";
+import {StructuredData} from "../../components/StructuredData";
 import "../home.css";
 
 export const metadata:Metadata=pageMetadata("/where-we-coach");
@@ -11,6 +12,7 @@ const locations=[
   {id:"wellington",name:"Wellington",text:"STAR provides girls’ football coaching in Wellington, with sessions designed around the player’s experience, confidence and development priorities."}
 ];
 export default function WhereWeCoach(){return <main className="star-home">
+<StructuredData data={{"@context":"https://schema.org","@type":"Service","@id":siteOrigin+"/where-we-coach#service",name:"Girls’ football coaching in Taunton, Bridgwater and Wellington",serviceType:"Girls’ football coaching",provider:{"@id":siteOrigin+"/#organisation"},areaServed:[{"@type":"City",name:"Taunton"},{"@type":"City",name:"Bridgwater"},{"@type":"City",name:"Wellington"}],audience:{"@type":"PeopleAudience",suggestedMinAge:5,suggestedMaxAge:18},url:siteOrigin+"/where-we-coach",description:"Individual and group girls’ football coaching in Somerset. Exact session venues are arranged and confirmed individually."}}/>
 <section className="home-section" style={{background:"#071a34",color:"#fff",padding:"clamp(56px,8vw,110px) 0"}}>
 <div className="home-width">
 <p className="home-eyebrow" style={{color:"#f5c64d"}}>TAUNTON · BRIDGWATER · WELLINGTON</p>
