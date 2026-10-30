@@ -1,4 +1,7 @@
-export type Activity = {id?: string; category?: string; format?: string; kind?: string; players?: string; age?: string; title: string; minutes: number; setup: string; points: string; progression: string; equipment: string};
+export type PracticeDiagram = {width:number;length:number;people:{label:string;x:number;y:number;role:string}[];arrows:{x1:number;y1:number;x2:number;y2:number;kind:string;label:string}[];goals:string[];caption:string;targets?:{x1:number;y1:number;x2:number;y2:number;label:string}[];zones?:{x:number;y:number;w:number;h:number;label:string}[]};
+export type PracticeSource = {diagram?:string;publisher:string;title:string;url:string;original:string;section:string;adaptation:string;checked:string};
+export type PracticeDetail = {organisation:string[];sequence:string[];coaching:string[];adaptations:string[];timing:string;success:string;diagram:PracticeDiagram};
+export type Activity = {detail?:PracticeDetail;source?:PracticeSource|null;id?: string; category?: string; format?: string; kind?: string; players?: string; age?: string; title: string; minutes: number; setup: string; points: string; progression: string; equipment: string};
 export type Plan = {focus: string; group: string; target: number; activities: Activity[]};
 export type SavedPlan = {id: string; title: string; plan: Plan; updated_at: string};
 export type LibraryFilters = {query: string; category: string; theme: string; duration: string; favouritesOnly: boolean; favourites: string[]; sort: string};

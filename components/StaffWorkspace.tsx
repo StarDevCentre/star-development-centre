@@ -28,6 +28,7 @@ import {SessionAnalytics} from "./SessionAnalytics";
 export function StaffWorkspace({userId,role,onSignOut}:{userId:string;role:StaffRole;onSignOut:()=>void}){
  const{section,visited,goTo}=useStaffNavigation(role);const[menuOpen,setMenuOpen]=useState(false),[hubPlayerId,setHubPlayerId]=useState(""),[badgePlayerId,setBadgePlayerId]=useState(""),[rosterPlayerId,setRosterPlayerId]=useState(""),[sessionId,setSessionId]=useState(""),[rosterRequest,setRosterRequest]=useState(0),[hubRequest,setHubRequest]=useState(0),[badgeRequest,setBadgeRequest]=useState(0),[coachingTarget,setCoachingTarget]=useState<{playerId:string;sessionId:string;revision:number}|null>(null);
  const [profilePlayerId,setProfilePlayerId]=useState(""),[profileRequest,setProfileRequest]=useState(0),[publishingPlayerId,setPublishingPlayerId]=useState(""),[publishingRequest,setPublishingRequest]=useState(0);
+ const [planRequest,setPlanRequest]=useState<{id:string;revision:number}|null>(null);
  const [actionTarget,setActionTarget]=useState<{area:StaffSection;id:string;revision:number}|null>(null);
  const canManage=staffCanManage(role),allowed=staffSections(role);
  function navigate(area:StaffSection,playerId?:string,targetSessionId?:string){if(!allowed.some(i=>i.id===area))return;if(playerId){if(area==="onboarding"||area==="sessionRequests")setActionTarget(v=>({area,id:playerId,revision:(v?.revision||0)+1}));if(area==="coachingProfiles"){setProfilePlayerId(playerId);setProfileRequest(n=>n+1)}if(area==="familyPublishing"){setPublishingPlayerId(playerId);setPublishingRequest(n=>n+1)}if(area==="records")setCoachingTarget(previous=>({playerId,sessionId:targetSessionId||"",revision:(previous?.revision||0)+1}));if(area==="idps"){setHubPlayerId(playerId);setHubRequest(n=>n+1)}if(area==="badges"){setBadgePlayerId(playerId);setBadgeRequest(n=>n+1)}if(area==="players"){setRosterPlayerId(playerId);setRosterRequest(n=>n+1)}}if(area==="workspace"&&targetSessionId)setSessionId(targetSessionId);goTo(area);}
@@ -37,8 +38,8 @@ export function StaffWorkspace({userId,role,onSignOut}:{userId:string;role:Staff
   case "gallery":return <StaffMediaGallery userId={userId} canManage={canManage}/>;
   case "coachingProfiles":return <StaffCoachingProfile key={userId} userId={userId} canManage={canManage} initialPlayerId={profilePlayerId} selectionRequest={profileRequest} onNavigate={navigate}/>;
   case "players":return <StaffPlayers userId={userId} canManage={canManage} initialPlayerId={rosterPlayerId} selectionRequest={rosterRequest} onNote={id=>navigate("records",id)} onDevelopment={id=>navigate("idps",id)} onBadge={id=>navigate("badges",id)} onPositions={id=>navigate("coachingProfiles",id)}/>;
-  case "sessionBuilder":return <StaffSessionBuilder userId={userId}/>;
-  case "sessions":return <TrainingPlanner userId={userId} canManage={canManage}/>;
+  case "sessionBuilder":return <StaffSessionBuilder userId={userId} openRequest={planRequest}/>;
+  case "sessions":return <TrainingPlanner userId={userId} canManage={canManage} onOpenPlan={id=>{setPlanRequest(v=>({id,revision:(v?.revision||0)+1}));goTo("sessionBuilder")}}/>;
   case "attendance":return <SessionAttendance userId={userId} onCoachPlayer={(player,session)=>navigate("records",player,session)}/>;
   case "records":return <CoachingRecords key={coachingTarget?coachingTarget.playerId+":"+coachingTarget.sessionId+":"+coachingTarget.revision:"general"} userId={userId} initialPlayerId={coachingTarget?.playerId} initialSessionId={coachingTarget?.sessionId} onPositions={id=>navigate("coachingProfiles",id)} onPublish={canManage?id=>navigate("familyPublishing",id):undefined}/>;
   case "idps":return <PlayerIDP key={(hubPlayerId||"all")+":"+hubRequest} userId={userId} initialPlayerId={hubPlayerId} onAddNote={id=>navigate("records",id)} onManageGoals={id=>navigate("players",id)} onPositions={id=>navigate("coachingProfiles",id)}/>;
@@ -57,4 +58,5 @@ export function StaffWorkspace({userId,role,onSignOut}:{userId:string;role:Staff
  }}
  return <StaffAppShell role={role} section={section} onNavigate={navigate} onSignOut={onSignOut} onMenuChange={setMenuOpen} badges={canManage?{communications:<FamilyUnreadBadge userId={userId} role="staff"/>}:{}}>{visited.filter(id=>allowed.some(i=>i.id===id)).map(id=><section key={id} className="staff-tool-panel" hidden={section!==id} aria-label={allowed.find(i=>i.id===id)?.label}>{panel(id)}</section>)}</StaffAppShell>;
 }
+
 

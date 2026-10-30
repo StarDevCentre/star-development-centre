@@ -1,0 +1,51 @@
+begin;
+insert into auth.users(id) values ('00000000-0000-4000-8000-000000008101'),('00000000-0000-4000-8000-000000008102'),('00000000-0000-4000-8000-000000008103');
+insert into public.staff_members(user_id,role,active) values ('00000000-0000-4000-8000-000000008101','coach',true),('00000000-0000-4000-8000-000000008102','coach',true);
+insert into public.training_sessions(id,title,programme,starts_at,ends_at,venue,created_by) values ('00000000-0000-4000-8000-000000008110','Synthetic connection test','Other',now()+interval '1 day',now()+interval '1 day 1 hour','Test field','00000000-0000-4000-8000-000000008101');
+insert into public.coaching_players(id,first_name,last_name,programme,consent_confirmed,consent_recorded_by,created_by) values ('00000000-0000-4000-8000-000000008120','Synthetic','Fixture','Other',true,'00000000-0000-4000-8000-000000008101','00000000-0000-4000-8000-000000008101');
+insert into public.coaching_assignments(player_id,staff_user_id) values ('00000000-0000-4000-8000-000000008120','00000000-0000-4000-8000-000000008101');
+insert into public.family_session_schedule(id,player_id,title,starts_at,ends_at,venue,published_by) values ('00000000-0000-4000-8000-000000008121','00000000-0000-4000-8000-000000008120','Synthetic booking',now()+interval '1 day',now()+interval '1 day 1 hour','Test field','00000000-0000-4000-8000-000000008101');
+insert into public.staff_session_plans(id,created_by,title,plan) values ('00000000-0000-4000-8000-000000008130','00000000-0000-4000-8000-000000008101','Synthetic plan A','{}'),('00000000-0000-4000-8000-000000008131','00000000-0000-4000-8000-000000008102','Synthetic plan B','{}');
+set local role authenticated;
+select set_config('request.jwt.claim.sub','00000000-0000-4000-8000-000000008101',true);
+insert into public.staff_session_plan_links(id,created_by,plan_id,training_session_id) values ('00000000-0000-4000-8000-000000008140','00000000-0000-4000-8000-000000008101','00000000-0000-4000-8000-000000008130','00000000-0000-4000-8000-000000008110');
+insert into public.staff_session_plan_links(id,created_by,plan_id,family_session_id) values ('00000000-0000-4000-8000-000000008141','00000000-0000-4000-8000-000000008101','00000000-0000-4000-8000-000000008130','00000000-0000-4000-8000-000000008121');
+insert into public.staff_session_plan_links(created_by,plan_id,training_session_id) values ('00000000-0000-4000-8000-000000008101','00000000-0000-4000-8000-000000008130','00000000-0000-4000-8000-000000008110') on conflict(created_by,training_session_id) do update set plan_id=excluded.plan_id;
+do $$ begin
+ if (select count(*) from public.staff_session_plan_links)<>2 then raise exception 'own connections not visible'; end if;
+ begin update public.staff_session_plan_links set plan_id='00000000-0000-4000-8000-000000008131' where id='00000000-0000-4000-8000-000000008140'; raise exception 'foreign plan accepted'; exception when insufficient_privilege then null; end;
+ begin update public.staff_session_plan_links set created_by='00000000-0000-4000-8000-000000008102' where id='00000000-0000-4000-8000-000000008140'; raise exception 'ownership reassigned'; exception when insufficient_privilege then null; end;
+ begin insert into public.staff_session_plan_links(created_by,plan_id,training_session_id,family_session_id) values ('00000000-0000-4000-8000-000000008101','00000000-0000-4000-8000-000000008130','00000000-0000-4000-8000-000000008110','00000000-0000-4000-8000-000000008121'); raise exception 'ambiguous target accepted'; exception when check_violation or unique_violation then null; end;
+end $$;
+select set_config('request.jwt.claim.sub','00000000-0000-4000-8000-000000008102',true);
+do $$ begin
+ if exists(select 1 from public.staff_session_plan_links) then raise exception 'cross coach exposure'; end if;
+ begin insert into public.staff_session_plan_links(created_by,plan_id,family_session_id) values ('00000000-0000-4000-8000-000000008102','00000000-0000-4000-8000-000000008131','00000000-0000-4000-8000-000000008121'); raise exception 'unassigned family accepted'; exception when insufficient_privilege then null; end;
+end $$;
+update public.staff_session_plan_links set plan_id='00000000-0000-4000-8000-000000008131' where id='00000000-0000-4000-8000-000000008140';
+insert into public.staff_session_plan_links(created_by,plan_id,training_session_id) values ('00000000-0000-4000-8000-000000008102','00000000-0000-4000-8000-000000008131','00000000-0000-4000-8000-000000008110');
+select set_config('request.jwt.claim.sub','00000000-0000-4000-8000-000000008103',true);
+do $$ begin
+ if exists(select 1 from public.staff_session_plan_links) then raise exception 'nonstaff exposure'; end if;
+ begin insert into public.staff_session_plan_links(created_by,plan_id,training_session_id) values ('00000000-0000-4000-8000-000000008103','00000000-0000-4000-8000-000000008130','00000000-0000-4000-8000-000000008110'); raise exception 'nonstaff write accepted'; exception when insufficient_privilege then null; end;
+end $$;
+reset role;
+delete from public.coaching_assignments where player_id='00000000-0000-4000-8000-000000008120';
+set local role authenticated;
+select set_config('request.jwt.claim.sub','00000000-0000-4000-8000-000000008101',true);
+do $$ begin
+ if exists(select 1 from public.staff_session_plan_links where family_session_id is not null) then raise exception 'revoked family assignment exposure'; end if;
+ if (select plan_id from public.staff_session_plan_links where id='00000000-0000-4000-8000-000000008140')<>'00000000-0000-4000-8000-000000008130'::uuid then raise exception 'foreign mutation succeeded'; end if;
+end $$;
+reset role;
+update public.staff_members set active=false where user_id='00000000-0000-4000-8000-000000008101';
+set local role authenticated;
+do $$ begin if exists(select 1 from public.staff_session_plan_links) then raise exception 'revoked staff exposure'; end if; end $$;
+reset role;
+set local role anon;
+do $$ begin begin perform 1 from public.staff_session_plan_links; raise exception 'anonymous access accepted'; exception when insufficient_privilege then null; end; end $$;
+reset role;
+delete from public.training_sessions where id='00000000-0000-4000-8000-000000008110';
+do $$ begin if exists(select 1 from public.staff_session_plan_links where training_session_id='00000000-0000-4000-8000-000000008110') then raise exception 'deleted booking left stale links'; end if; end $$;
+rollback;
+select 'Session connection RLS checks passed; all fixtures rolled back' as result;
