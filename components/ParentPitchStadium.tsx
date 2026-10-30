@@ -44,7 +44,7 @@ export const ParentPitchStadium = memo(function ParentPitchStadium({ name, forma
   {Array.from({ length: 10 }, (_, i) => <path key={i} d={fieldRect(0, i * 10, 100, 10)} fill={i % 2 ? "#031c1e20" : "#c9ffd90b"}/>)}
   <path d={fieldRect(0, 0, 100, 100)} fill={fill("grain")}/>
   <path d={fieldRect(-4, -7, 108, 4)} fill="#142a40" stroke="#7ea3b866" strokeWidth=".8"/>
-  <text x="300" y="168" fill="#e7c978" fontFamily="Arial" fontSize="8" textAnchor="middle" fontWeight="700" letterSpacing="3">DEVELOP. BELIEVE. ACHIEVE.</text>
+  <text x="300" y="168" fill="#e7c978" fontFamily="Arial" fontSize="8" textAnchor="middle" fontWeight="700" letterSpacing="3">BELIEVE. DEVELOP. ACHIEVE.</text>
   <path d="M17 668 58 652 542 652 583 668 583 713 17 713Z" fill={fill("seats")}/>
   <path d="M46 658 554 658 562 670H38Z" fill="#122c43" stroke="#b7ccdf55" strokeWidth="1"/>
   <text x="300" y="667" fill="#c3d8eb" fontFamily="Arial" fontSize="7" textAnchor="middle" letterSpacing="4">S T A R   D E V E L O P M E N T   C E N T R E</text>

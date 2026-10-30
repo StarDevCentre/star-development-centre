@@ -14,6 +14,7 @@ STAR Development Centre is an independent girls' football development service in
 - Do not assume authentication, booking, payments, notifications or portal features are complete merely because they appear in this guide.
 
 ## Brand and public-facing content
+- Approved tagline: **Believe. Develop. Achieve.** Use this order consistently across public pages, metadata, sharing cards and portals.
 - Brand palette: deep navy, STAR red, metallic/textured gold, white/off-white; polished, professional, cinematic where appropriate.
 - Use the **actual official STAR logo assets** from the project; never approximate or redraw the logo. Use approved Autism Friendly Coaching/Gold badge assets faithfully, including their intended white interior.
 - Maintain accessible contrast; do not communicate important status by red/green colour alone.

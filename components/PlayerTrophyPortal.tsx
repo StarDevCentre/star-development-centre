@@ -277,6 +277,6 @@ export function PlayerTrophyPortal() {
   return <div className="player-space-shell"><div className="ps-shell-inner"><PlayerSpaceHeader/><div className="ps-welcome-grid"><PlayerSpaceHero compact/><section className="ps-welcome-panel ps-paper">
     {!ready?<p role="status">Checking your account…</p>:!db?<><h2>Your space is taking a breather.</h2><p>Please try again soon.</p></>:<PlayerAccess key={revision+":"+(user?.id||"signed-out")} user={user} recovering={recovering} onRecovered={()=>setRecovering(false)} onRefresh={()=>setRevision(v=>v+1)} onSignOut={signOut} error={error} failed={failed} loading={!!user&&loadedUserId!==user.id}/>}
 
-  </section></div><footer className="ps-footer"><span>DEVELOP. BELIEVE. ACHIEVE.</span><Link href="/privacy">Privacy & support ↗</Link></footer></div></div>;
+  </section></div><footer className="ps-footer"><span>BELIEVE. DEVELOP. ACHIEVE.</span><Link href="/privacy">Privacy & support ↗</Link></footer></div></div>;
 }
 
