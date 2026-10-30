@@ -1103,5 +1103,295 @@ export const wslSquadAdditions:SquadFootballer[]=[
  "watch": "Watch how she changes pace and times her movement to receive in space near goal.",
  "source": "https://www.wslfootball.com/players/beth-lumsden",
  "kit": "2026/27 home"
+},
+{
+ "id": "katie-cox",
+ "name": "Katie Cox",
+ "club": "Nottingham Forest",
+ "role": "Goalkeeper",
+ "number": 24,
+ "watch": "Watch how she sets her feet before a shot and offers a passing option to her defenders.",
+ "source": "https://www.wslfootball.com/players/katie-cox",
+ "kit": "2026/27 home goalkeeper"
+},
+{
+ "id": "chloe-mustaki",
+ "name": "Chloe Mustaki",
+ "club": "Nottingham Forest",
+ "role": "Defender",
+ "number": 5,
+ "watch": "Watch her body position as she tracks an opponent, then how she offers a pass after winning possession.",
+ "source": "https://www.wslfootball.com/players/chloe-mustaki",
+ "kit": "2026/27 home"
+},
+{
+ "id": "codie-thomas",
+ "name": "Codie Thomas",
+ "club": "Nottingham Forest",
+ "role": "Defender",
+ "number": 16,
+ "watch": "Watch her body position as she tracks an opponent, then how she offers a pass after winning possession.",
+ "source": "https://www.wslfootball.com/players/codie-thomas",
+ "kit": "2026/27 home"
+},
+{
+ "id": "tove-almqvist",
+ "name": "Tove Almqvist",
+ "club": "Nottingham Forest",
+ "role": "Midfielder",
+ "number": 11,
+ "watch": "Watch her checks before receiving and how she moves to offer another passing angle.",
+ "source": "https://www.wslfootball.com/players/tove-almqvist",
+ "kit": "2026/27 home"
+},
+{
+ "id": "aimee-claypole",
+ "name": "Aimee Claypole",
+ "club": "Nottingham Forest",
+ "role": "Forward",
+ "number": 10,
+ "watch": "Watch the timing of her runs and how she creates room to receive or shoot.",
+ "source": "https://www.wslfootball.com/players/aimee-claypole",
+ "kit": "2026/27 home"
+},
+{
+ "id": "sian-rogers",
+ "name": "Sian Rogers",
+ "club": "Sheffield United",
+ "role": "Goalkeeper",
+ "number": 1,
+ "watch": "Watch how she sets her feet before a shot and offers a passing option to her defenders.",
+ "source": "https://www.wslfootball.com/players/sian-rogers",
+ "kit": "2026/27 home goalkeeper"
+},
+{
+ "id": "chloe-warrington",
+ "name": "Chloe Warrington",
+ "club": "Sheffield United",
+ "role": "Defender",
+ "number": 3,
+ "watch": "Watch her body position as she tracks an opponent, then how she offers a pass after winning possession.",
+ "source": "https://www.wslfootball.com/players/chloe-warrington",
+ "kit": "2026/27 home"
+},
+{
+ "id": "tilly-bristow",
+ "name": "Tilly Bristow",
+ "club": "Sheffield United",
+ "role": "Midfielder",
+ "number": 17,
+ "watch": "Watch her checks before receiving and how she moves to offer another passing angle.",
+ "source": "https://www.wslfootball.com/players/tilly-bristow",
+ "kit": "2026/27 home"
+},
+{
+ "id": "halle-houssein",
+ "name": "Halle Houssein",
+ "club": "Sheffield United",
+ "role": "Midfielder",
+ "number": 14,
+ "watch": "Watch her checks before receiving and how she moves to offer another passing angle.",
+ "source": "https://www.wslfootball.com/players/halle-houssein",
+ "kit": "2026/27 home"
+},
+{
+ "id": "ava-baker",
+ "name": "Ava Baker",
+ "club": "Sheffield United",
+ "role": "Forward",
+ "number": 32,
+ "watch": "Watch the timing of her runs and how she creates room to receive or shoot.",
+ "source": "https://www.wslfootball.com/players/ava-baker",
+ "kit": "2026/27 home"
+},
+{
+ "id": "grace-moloney",
+ "name": "Grace Moloney",
+ "club": "Southampton",
+ "role": "Goalkeeper",
+ "number": 1,
+ "watch": "Watch how she sets her feet before a shot and offers a passing option to her defenders.",
+ "source": "https://www.wslfootball.com/players/grace-moloney",
+ "kit": "2026/27 home goalkeeper"
+},
+{
+ "id": "amy-goddard",
+ "name": "Amy Goddard",
+ "club": "Southampton",
+ "role": "Defender",
+ "number": 5,
+ "watch": "Watch her body position as she tracks an opponent, then how she offers a pass after winning possession.",
+ "source": "https://www.wslfootball.com/players/amy-goddard",
+ "kit": "2026/27 home"
+},
+{
+ "id": "lilly-mitchell",
+ "name": "Lilly Mitchell",
+ "club": "Southampton",
+ "role": "Midfielder",
+ "number": 17,
+ "watch": "Watch her checks before receiving and how she moves to offer another passing angle.",
+ "source": "https://www.wslfootball.com/players/libby-mcinnes",
+ "kit": "2026/27 home"
+},
+{
+ "id": "emma-harries",
+ "name": "Emma Harries",
+ "club": "Southampton",
+ "role": "Forward",
+ "number": 9,
+ "watch": "Watch the timing of her runs and how she creates room to receive or shoot.",
+ "source": "https://www.wslfootball.com/players/emma-harries",
+ "kit": "2026/27 home"
+},
+{
+ "id": "maria-edwards",
+ "name": "Maria Edwards",
+ "club": "Southampton",
+ "role": "Forward",
+ "number": 12,
+ "watch": "Watch the timing of her runs and how she creates room to receive or shoot.",
+ "source": "https://www.wslfootball.com/players/maria-edwards",
+ "kit": "2026/27 home"
+},
+{
+ "id": "frances-stenson",
+ "name": "Frances Stenson",
+ "club": "Sunderland",
+ "role": "Goalkeeper",
+ "number": 1,
+ "watch": "Watch how she sets her feet before a shot and offers a passing option to her defenders.",
+ "source": "https://www.wslfootball.com/players/frances-stenson",
+ "kit": "2026/27 home goalkeeper"
+},
+{
+ "id": "rhiannon-roberts",
+ "name": "Rhiannon Roberts",
+ "club": "Sunderland",
+ "role": "Defender",
+ "number": 5,
+ "watch": "Watch her body position as she tracks an opponent, then how she offers a pass after winning possession.",
+ "source": "https://www.wslfootball.com/players/rhiannon-roberts",
+ "kit": "2026/27 home"
+},
+{
+ "id": "chloe-paxton",
+ "name": "Chloe Paxton",
+ "club": "Sunderland",
+ "role": "Defender",
+ "number": 31,
+ "watch": "Watch her body position as she tracks an opponent, then how she offers a pass after winning possession.",
+ "source": "https://www.wslfootball.com/players/chloe-paxton",
+ "kit": "2026/27 home"
+},
+{
+ "id": "katie-kitching",
+ "name": "Katie Kitching",
+ "club": "Sunderland",
+ "role": "Midfielder",
+ "number": 10,
+ "watch": "Watch her checks before receiving and how she moves to offer another passing angle.",
+ "source": "https://www.wslfootball.com/players/katie-kitching",
+ "kit": "2026/27 home"
+},
+{
+ "id": "izzy-atkinson",
+ "name": "Izzy Atkinson",
+ "club": "Sunderland",
+ "role": "Forward",
+ "number": 17,
+ "watch": "Watch the timing of her runs and how she creates room to receive or shoot.",
+ "source": "https://www.wslfootball.com/players/izzy-atkinson",
+ "kit": "2026/27 home"
+},
+{
+ "id": "safia-middleton-patel",
+ "name": "Safia Middleton-Patel",
+ "club": "Watford",
+ "role": "Goalkeeper",
+ "number": 39,
+ "watch": "Watch how she sets her feet before a shot and offers a passing option to her defenders.",
+ "source": "https://www.wslfootball.com/players/safia-middleton-patel",
+ "kit": "2026/27 home goalkeeper"
+},
+{
+ "id": "eden-skyers",
+ "name": "Eden Skyers",
+ "club": "Watford",
+ "role": "Defender",
+ "number": 12,
+ "watch": "Watch her body position as she tracks an opponent, then how she offers a pass after winning possession.",
+ "source": "https://www.wslfootball.com/players/eden-skyers",
+ "kit": "2026/27 home"
+},
+{
+ "id": "poppy-wilson",
+ "name": "Poppy Wilson",
+ "club": "Watford",
+ "role": "Midfielder",
+ "number": 18,
+ "watch": "Watch her checks before receiving and how she moves to offer another passing angle.",
+ "source": "https://www.wslfootball.com/players/poppy-wilson",
+ "kit": "2026/27 home"
+},
+{
+ "id": "madison-perry",
+ "name": "Madison Perry",
+ "club": "Watford",
+ "role": "Forward",
+ "number": 9,
+ "watch": "Watch the timing of her runs and how she creates room to receive or shoot.",
+ "source": "https://www.wslfootball.com/players/madison-perry",
+ "kit": "2026/27 home"
+},
+{
+ "id": "alex-brooks",
+ "name": "Alex Brooks",
+ "club": "Wolverhampton Wanderers",
+ "role": "Goalkeeper",
+ "number": 1,
+ "watch": "Watch how she sets her feet before a shot and offers a passing option to her defenders.",
+ "source": "https://www.wslfootball.com/players/alex-brooks",
+ "kit": "2026/27 home goalkeeper"
+},
+{
+ "id": "tara-ohanlon",
+ "name": "Tara O'Hanlon",
+ "club": "Wolverhampton Wanderers",
+ "role": "Defender",
+ "number": 22,
+ "watch": "Watch her body position as she tracks an opponent, then how she offers a pass after winning possession.",
+ "source": "https://www.wslfootball.com/players/tara-o-hanlon",
+ "kit": "2026/27 home"
+},
+{
+ "id": "melissa-lawley",
+ "name": "Melissa Lawley",
+ "club": "Wolverhampton Wanderers",
+ "role": "Midfielder",
+ "number": 14,
+ "watch": "Watch her checks before receiving and how she moves to offer another passing angle.",
+ "source": "https://www.wslfootball.com/players/melissa-lawley",
+ "kit": "2026/27 home"
+},
+{
+ "id": "chloe-williams",
+ "name": "Chloe Williams",
+ "club": "Wolverhampton Wanderers",
+ "role": "Midfielder",
+ "number": 24,
+ "watch": "Watch her checks before receiving and how she moves to offer another passing angle.",
+ "source": "https://www.wslfootball.com/players/chloe-williams",
+ "kit": "2026/27 home"
+},
+{
+ "id": "yana-daniels",
+ "name": "Yana Daniëls",
+ "club": "Wolverhampton Wanderers",
+ "role": "Forward",
+ "number": 20,
+ "watch": "Watch the timing of her runs and how she creates room to receive or shoot.",
+ "source": "https://www.wslfootball.com/players/yana-daniels",
+ "kit": "2026/27 home"
 }
 ];
