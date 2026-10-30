@@ -1,3 +1,4 @@
+import '../portal-base.css';
 import {PlayerOnboarding} from '../../components/PlayerOnboarding';
 import './onboarding.css';
 export const metadata={title:'Join STAR · Player onboarding',description:'Create your player profile and request a free 30-minute assessment and introduction.',robots:{index:false,follow:false}};

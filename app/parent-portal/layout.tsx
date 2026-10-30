@@ -1,3 +1,4 @@
+import '../portal-base.css';
 import {privateRobots} from '../../lib/siteMetadata';
 import type {Metadata,Viewport} from "next";
 // Entry, sign-in and accounts without a linked player need these before the dashboard loads.

@@ -1,4 +1,5 @@
 "use client";
+import "./legacy-home.css";
 import {useState} from "react";
 import Link from "next/link";
 const stages=[

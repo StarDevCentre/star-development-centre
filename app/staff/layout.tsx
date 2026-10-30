@@ -1,3 +1,4 @@
+import '../portal-base.css';
 import {privateRobots} from '../../lib/siteMetadata';
 import type {Metadata,Viewport} from "next";
 export const metadata:Metadata={robots:privateRobots};

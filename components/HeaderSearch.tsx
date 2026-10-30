@@ -3,7 +3,7 @@ import Link from 'next/link';
 import {useEffect,useRef,useState} from 'react';
 import {usePathname} from 'next/navigation';
 import type {SearchResult} from '../lib/siteSearch';
-import './site-search.css';
+import './header-search.css';
 
 export function SearchIcon(){return <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>}
 export function HeaderSearch({expanded,onExpandedChange}:{expanded:boolean;onExpandedChange:(value:boolean)=>void}){
