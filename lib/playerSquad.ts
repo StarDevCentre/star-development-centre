@@ -1,4 +1,5 @@
 import {extraSquad} from './playerCollectionExpansion';
+import {wslSquadAdditions} from './wslSquadExpansion';
 export type SquadRole='Goalkeeper'|'Defender'|'Midfielder'|'Forward';
 export type SquadFootballer={id:string;name:string;club:string;role:SquadRole;number:number;watch:string;source:string;kit:string};
 // Club memberships checked against official club/WSL sources on 29 October 2026.
@@ -23,7 +24,8 @@ export const squadRoster:SquadFootballer[]=[
  {id:'shaw',name:'Khadija Shaw',club:'Manchester City',role:'Forward',number:9,watch:'Watch how she makes space for a shot and times her movement towards the goal.',source:'https://www.mancity.com/players/bunny-shaw',kit:'2026/27 home'},
  {id:'terland',name:'Elisabeth Terland',club:'Manchester United',role:'Forward',number:10,watch:'Watch the timing of her movement into the box and her position for a finish.',source:'https://www.manutd.com/en/teams/womens-team',kit:'2026/27 home'},
  {id:'seike',name:'Kiko Seike',club:'Brighton & Hove Albion',role:'Forward',number:11,watch:'Watch when she carries the ball into space and when she releases a teammate.',source:'https://www.brightonandhovealbion.com/media-article/wft-news-mens-first-team-squad-numbers-confirmed-for-2026-27-season',kit:'2026/27 home'},
- {id:'daly',name:'Rachel Daly',club:'Aston Villa',role:'Forward',number:9,watch:'Watch how she changes her run to find room for a shot or meet a cross.',source:'https://www.wslfootball.com/players/rachel-daly',kit:'2026/27 home'}
+ {id:'daly',name:'Rachel Daly',club:'Aston Villa',role:'Forward',number:9,watch:'Watch how she changes her run to find room for a shot or meet a cross.',source:'https://www.wslfootball.com/players/rachel-daly',kit:'2026/27 home'},
+ ...wslSquadAdditions
 ];
 export const squadPlayer=(id:string|null|undefined)=>squadRoster.find(p=>p.id===id);
 export const squadAsset=(id:string)=>`/player-space/squad/${id}.webp`;
