@@ -15,12 +15,12 @@ set local role authenticated;
 select set_config('request.jwt.claim.sub',current_setting('star_test.guardian'),true);
 do $$declare pid uuid:=current_setting('star_test.player')::uuid;selected text;n integer;begin
  insert into public.player_squads(player_id,name,formation,footballers,captain,updated_by) values(pid,'My five','diamond',array['hampton','williamson','hasegawa','toone','shaw'],'shaw',auth.uid());
- foreach selected in array array['sophie-baggaley','chiamaka-nnadozie','sophie-whitehouse','shae-yanez','khiara-keating','mary-earps','constance-picaud'] loop
+ foreach selected in array array['sophie-baggaley','chiamaka-nnadozie','sophie-whitehouse','shae-yanez','khiara-keating','mary-earps','constance-picaud','daphne-van-domselaar'] loop
   update public.player_squads set footballers=array[selected,'anna-patten','alexia-putellas','jessica-park','riko-ueki'],captain=selected,updated_by=auth.uid() where player_id=pid;
   if not exists(select 1 from public.player_squads where player_id=pid and footballers[1]=selected and captain=selected) then raise exception 'Goalkeeper did not save';end if;
   begin update public.player_squads set footballers=array['hampton',selected,'hasegawa','toone','shaw'],captain='shaw' where player_id=pid;raise exception 'Second goalkeeper accepted';exception when check_violation then null;end;
  end loop;
- foreach selected in array array['anna-patten','lynn-wilms','missy-bo-kearns','millie-turner','neve-herron','lisa-naalsund','lily-crosthwaite','veatriki-sarri','marisa-olislagers','maisie-symonds','madison-haley','ellie-mason','kiera-skeels','jodie-hutton','lucy-fitzgerald','gillian-kenney','allyson-swaby','aimee-everett','annabel-blanchard','ashleigh-weerden','bethany-england','ruby-mace','mayumi-pacheco','clare-wheeler','yuka-momiki','ornella-vignola','jenna-clark','fuka-nagano','ceri-holland','beata-olsson','maria-leon','alexia-putellas','kadidiatou-diani','anna-sandberg','jessica-park','amanda-nilden','olivia-holdt','jessica-naz','cathinka-tandberg','estelle-cascarino','ffion-morgan','katie-zelem','riko-ueki','ebony-salmon','asmita-ale'] loop
+ foreach selected in array array['anna-patten','lynn-wilms','missy-bo-kearns','millie-turner','neve-herron','lisa-naalsund','lily-crosthwaite','veatriki-sarri','marisa-olislagers','maisie-symonds','madison-haley','ellie-mason','kiera-skeels','jodie-hutton','lucy-fitzgerald','gillian-kenney','allyson-swaby','aimee-everett','annabel-blanchard','ashleigh-weerden','bethany-england','ruby-mace','mayumi-pacheco','clare-wheeler','yuka-momiki','ornella-vignola','jenna-clark','fuka-nagano','ceri-holland','beata-olsson','maria-leon','alexia-putellas','kadidiatou-diani','anna-sandberg','jessica-park','amanda-nilden','olivia-holdt','jessica-naz','cathinka-tandberg','estelle-cascarino','ffion-morgan','katie-zelem','riko-ueki','ebony-salmon','asmita-ale','sjoeke-nusken','vivianne-miedema','kirsty-hanson','caitlin-hayes','hikaru-kitagawa','mia-enderby','grace-geyoro','rebeca-bernal','noelle-maritz'] loop
   update public.player_squads set footballers=array['hampton',selected,'hasegawa','toone','shaw'],captain=selected,updated_by=auth.uid() where player_id=pid;
   if not exists(select 1 from public.player_squads where player_id=pid and footballers[2]=selected and captain=selected) then raise exception 'Outfield player did not save';end if;
  end loop;
@@ -41,4 +41,4 @@ do $$begin
 end$$;
 reset role;
 rollback;
-select 'PASS: all 52 additions save; goalkeeper slots, unique players, linked account access and family isolation enforced; fixtures rolled back.' as result;
+select 'PASS: all 62 additions save; goalkeeper slots, unique players, linked account access and family isolation enforced; fixtures rolled back.' as result;

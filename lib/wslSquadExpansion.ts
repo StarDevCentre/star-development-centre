@@ -523,5 +523,105 @@ export const wslSquadAdditions:SquadFootballer[]=[
  "watch": "Watch when she supports the attack out wide and how she recovers to protect the space behind.",
  "source": "https://www.wslfootball.com/players/asmita-ale",
  "kit": "2026/27 home"
+},
+{
+ "id": "daphne-van-domselaar",
+ "name": "Daphne van Domselaar",
+ "club": "Arsenal",
+ "role": "Goalkeeper",
+ "number": 1,
+ "watch": "Watch her footwork before a shot and how she offers a passing option behind the defenders.",
+ "source": "https://www.wslfootball.com/players/daphne-van-domselaar",
+ "kit": "2026/27 goalkeeper"
+},
+{
+ "id": "sjoeke-nusken",
+ "name": "Sjoeke Nüsken",
+ "club": "Chelsea",
+ "role": "Midfielder",
+ "number": 6,
+ "watch": "Watch her timing as she arrives from midfield and how she supports the press.",
+ "source": "https://www.wslfootball.com/players/sjoeke-nusken",
+ "kit": "2026/27 home"
+},
+{
+ "id": "vivianne-miedema",
+ "name": "Vivianne Miedema",
+ "club": "Manchester City",
+ "role": "Forward",
+ "number": 10,
+ "watch": "Watch how she finds space between defenders and links a pass with her next movement.",
+ "source": "https://www.wslfootball.com/players/vivianne-miedema",
+ "kit": "2026/27 home"
+},
+{
+ "id": "kirsty-hanson",
+ "name": "Kirsty Hanson",
+ "club": "Tottenham Hotspur",
+ "role": "Forward",
+ "number": 16,
+ "watch": "Watch her change of pace on the wing and how she times her run beyond a defender.",
+ "source": "https://www.wslfootball.com/players/kirsty-hanson",
+ "kit": "2026/27 home"
+},
+{
+ "id": "caitlin-hayes",
+ "name": "Caitlin Hayes",
+ "club": "Brighton & Hove Albion",
+ "role": "Defender",
+ "number": 18,
+ "watch": "Watch how she checks runners before a cross and stays connected to the defensive line.",
+ "source": "https://www.wslfootball.com/players/caitlin-hayes",
+ "kit": "2026/27 home"
+},
+{
+ "id": "hikaru-kitagawa",
+ "name": "Hikaru Kitagawa",
+ "club": "Everton",
+ "role": "Defender",
+ "number": 13,
+ "watch": "Watch when she supports an attack down the side and how she recovers when possession changes.",
+ "source": "https://www.wslfootball.com/players/hikaru-kitagawa",
+ "kit": "2026/27 home"
+},
+{
+ "id": "mia-enderby",
+ "name": "Mia Enderby",
+ "club": "Liverpool",
+ "role": "Forward",
+ "number": 13,
+ "watch": "Watch her first touch into space and the timing of her run behind the defence.",
+ "source": "https://www.wslfootball.com/players/mia-enderby",
+ "kit": "2026/27 home"
+},
+{
+ "id": "grace-geyoro",
+ "name": "Grace Geyoro",
+ "club": "London City Lionesses",
+ "role": "Midfielder",
+ "number": 88,
+ "watch": "Watch her scanning before receiving and how she protects space when her team loses the ball.",
+ "source": "https://www.wslfootball.com/players/grace-geyoro",
+ "kit": "2026/27 home"
+},
+{
+ "id": "rebeca-bernal",
+ "name": "Rebeca Bernal",
+ "club": "Manchester United",
+ "role": "Defender",
+ "number": 16,
+ "watch": "Watch her positioning to cover a teammate and how she chooses a pass out of defence.",
+ "source": "https://www.wslfootball.com/players/rebeca-bernal",
+ "kit": "2026/27 home"
+},
+{
+ "id": "noelle-maritz",
+ "name": "Noëlle Maritz",
+ "club": "Aston Villa",
+ "role": "Defender",
+ "number": 16,
+ "watch": "Watch her body position against a winger and when she moves forward to support a teammate.",
+ "source": "https://www.wslfootball.com/players/noelle-maritz",
+ "kit": "2026/27 home"
 }
 ];
