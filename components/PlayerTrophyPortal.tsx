@@ -5,7 +5,9 @@ import type { User } from "@supabase/supabase-js";
 import Link from "next/link";
 import { supabaseBrowser as db } from "../lib/supabaseBrowser";
 import { assignmentFields, diaryFields, defaultProfile, emptySpaceData, type PracticeInput, type SpaceActions, type SpaceData, type SpaceProfile } from "../lib/playerSpace";
-import { PlayerSpace, PlayerSpaceHeader, PlayerSpaceHero } from "./PlayerSpace";
+import dynamic from "next/dynamic";
+import {PlayerSpaceHeader,PlayerSpaceHero} from "./PlayerSpaceChrome";
+const PlayerSpace=dynamic(()=>import("./PlayerSpace").then(m=>m.PlayerSpace),{loading:()=> <p role="status">Opening your Player Space…</p>});
 import { PlayerAccess } from "./PlayerAccountSetup";
 import {validateSquad} from '../lib/playerSquad';
 import { loadPortalFeatures, sessionFields } from "../lib/playerPortalData";
@@ -121,7 +123,7 @@ export function PlayerTrophyPortal() {
   useEffect(()=>{
     if(!user)return;
     const refresh=()=>{if(document.visibilityState==='visible')setRevision(v=>v+1);};
-    const timer=data.players.length?window.setInterval(refresh,45000):null;window.addEventListener('focus',refresh);
+    const timer=data.players.length?window.setInterval(refresh,300000):null;window.addEventListener('focus',refresh);
     return()=>{if(timer!==null)window.clearInterval(timer);window.removeEventListener('focus',refresh);};
   },[user?.id,data.players.length]);
 

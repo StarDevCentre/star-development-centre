@@ -10,7 +10,7 @@ type Assignment=SpaceAssignment;
 type Diary={id:string;assignment_id:string;guardian_id:string;practice_date:string;minutes:number;reflection:string;created_at:string;confidence:number|null;enjoyment:number|null};
 type Feedback={diary_id:string;feedback:string;reviewed_at:string};
 type Award={id:string;player_id:string;title:string;description:string;awarded_on:string;badge_id:string|null};
-export function PlayerTrainingHub({userId,role}:{userId:string;role:"staff"|"guardian"}){
+export function PlayerTrainingHub({userId,role,initialPlayerId=""}:{userId:string;role:"staff"|"guardian";initialPlayerId?:string}){
  const [players,setPlayers]=useState<Player[]>([]),[goals,setGoals]=useState<Goal[]>([]),[assignments,setAssignments]=useState<Assignment[]>([]),[diary,setDiary]=useState<Diary[]>([]),[feedback,setFeedback]=useState<Feedback[]>([]),[awards,setAwards]=useState<Award[]>([]);
  const [player,setPlayer]=useState(""),[title,setTitle]=useState(""),[instructions,setInstructions]=useState(""),[target,setTarget]=useState(""),[due,setDue]=useState(""),[goal,setGoal]=useState("");
  const [coachingPoints,setCoachingPoints]=useState("");
@@ -31,6 +31,7 @@ export function PlayerTrainingHub({userId,role}:{userId:string;role:"staff"|"gua
  if([p,a,d,f,w,g,pg].some(x=>x.error)){setError("Could not load training records. Please refresh.");return}
  setPlayers((p.data||[]) as Player[]);setAssignments((a.data||[]) as Assignment[]);setDiary((d.data||[]) as Diary[]);setFeedback((f.data||[]) as Feedback[]);setAwards((w.data||[]) as Award[]);setGoals((g.data||[]) as Goal[]);setPersonalGoals((pg.data||[]) as PersonalGoal[]);
  },[db,role]);
+ useEffect(()=>{if(initialPlayerId)setPlayer(initialPlayerId)},[initialPlayerId]);
  useEffect(()=>{void load()},[load]);
  const visible=assignments.filter(a=>!player||a.player_id===player);
  const filteredAwards=awards.filter(a=>!player||a.player_id===player);

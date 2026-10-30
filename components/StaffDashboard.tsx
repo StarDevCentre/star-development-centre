@@ -1,7 +1,8 @@
 "use client";
+import dynamic from "next/dynamic";
 import {useEffect,useRef,useState} from "react";
 import {type User} from "@supabase/supabase-js";
-import {StaffWorkspace} from "./StaffWorkspace";
+const StaffWorkspace=dynamic(()=>import("./StaffWorkspace").then(m=>m.StaffWorkspace),{loading:()=> <p role="status">Loading…</p>});
 import {supabaseBrowser} from "../lib/supabaseBrowser";
 type Staff={user_id:string;role:"owner"|"manager"|"coach"|"assistant_coach";active:boolean;welfare_officer:boolean};
 export function StaffDashboard(){

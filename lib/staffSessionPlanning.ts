@@ -1,10 +1,10 @@
 export type PracticeDiagram = {width:number;length:number;people:{label:string;x:number;y:number;role:string}[];arrows:{x1:number;y1:number;x2:number;y2:number;kind:string;label:string}[];goals:string[];caption:string;targets?:{x1:number;y1:number;x2:number;y2:number;label:string}[];zones?:{x:number;y:number;w:number;h:number;label:string}[]};
 export type PracticeSource = {diagram?:string;publisher:string;title:string;url:string;original:string;section:string;adaptation:string;checked:string};
 export type PracticeDetail = {organisation:string[];sequence:string[];coaching:string[];adaptations:string[];timing:string;success:string;diagram:PracticeDiagram};
-export type Activity = {detail?:PracticeDetail;source?:PracticeSource|null;id?: string; category?: string; format?: string; kind?: string; players?: string; age?: string; title: string; minutes: number; setup: string; points: string; progression: string; equipment: string};
+export type Activity = {diagram?:PracticeDiagram;detail?:PracticeDetail;source?:PracticeSource|null;id?: string; category?: string; format?: string; kind?: string; players?: string; age?: string; title: string; minutes: number; setup: string; points: string; progression: string; equipment: string};
 export type Plan = {focus: string; group: string; target: number; activities: Activity[]};
 export type SavedPlan = {id: string; title: string; plan: Plan; updated_at: string};
-export type LibraryFilters = {query: string; category: string; theme: string; duration: string; favouritesOnly: boolean; favourites: string[]; sort: string};
+export type LibraryFilters = {query: string; category: string; theme: string; duration: string; favouritesOnly: boolean; favourites: string[]; sort: string;equipment?:string;space?:string};
 
 export const themes = ["Passing & receiving", "Dribbling & turning", "Finishing", "Defending", "Movement & support", "Decisions & scanning", "Goalkeeping", "Reflection & recovery"];
 const themePatterns = [/pass|receiv|touch|bounce|connect|distribut|throw|roll-out/i, /dribbl|turn|carry|carrying|feint|shield|escape|slalom|sole|reverse/i, /finish|shoot|shot|strike|cutback|volley|scor/i, /defen|press|intercept|delay|recover|tackl|regain|block/i, /mov|support|overlap|underlap|run|spin|space|angle/i, /scan|decid|decision|choos|choice|recogn|signal|read|look|cue/i, /goalkeep|keeper|catch|save|handling/i, /reflect|review|cool-down|relax|breath/i];
@@ -13,12 +13,15 @@ export function activityThemes(a: Activity): string[] {
   const text = `${a.title} ${a.points} ${a.format || ""}`;
   return themes.filter((_, i) => themePatterns[i].test(text));
 }
+export function spaceCategory(a:Activity){const match=a.setup.match(/(\d+(?:\.\d+)?)\s*(?:m|metres?)?\s*(?:[×x]|by)\s*(\d+(?:\.\d+)?)\s*(?:m|metres?)/i);if(!match)return 'flexible';return Math.max(Number(match[1]),Number(match[2]))<=15?'compact':'larger';}
 export function filterLibrary(library: Activity[], filters: LibraryFilters): Activity[] {
   const words = filters.query.trim().toLowerCase().split(/\s+/).filter(Boolean);
   const result = library.filter(a => {
     const tags = activityThemes(a);
     const haystack = [a.title, a.setup, a.points, a.progression, a.equipment, a.players, a.category, a.format, a.kind, ...tags].join(" ").toLowerCase();
     return (!filters.category || a.category === filters.category)
+      && (!filters.equipment || (filters.equipment==="basic"?!/goal|wall|rebound|bibs|gloves|target|surface|landing|obstacle|water/i.test(a.equipment):a.equipment.toLowerCase().includes(filters.equipment)))
+      && (!filters.space || spaceCategory(a)===filters.space)
       && (!filters.theme || tags.includes(filters.theme))
       && (!filters.duration || (filters.duration === "short" ? a.minutes <= 15 : a.minutes > 15))
       && (!filters.favouritesOnly || filters.favourites.includes(activityKey(a)))

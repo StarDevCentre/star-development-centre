@@ -1,14 +1,16 @@
 "use client";
-import {useCallback,useEffect,useState} from "react";
+import {useCallback,useEffect,useRef,useState} from "react";
 import {supabaseBrowser as db} from "../lib/supabaseBrowser";
 type Link={guardian_id:string;player_id:string};
 type Player={id:string;first_name:string;last_name:string};
 type Guardian={user_id:string;display_name:string};
 type Message={id:string;guardian_id:string;player_id:string;sender_id:string;sender_role:string;kind:string;body:string;created_at:string;read_at:string|null};
 const kinds=[["message","General message"],["review_request","Development review request"],["session_reminder","Session reminder"]];
-export function FamilyCommunications({userId,role,active=true}:{userId:string;role:"staff"|"guardian";active?:boolean}){
+export function FamilyCommunications({userId,role,active=true,initialPlayerId=""}:{userId:string;role:"staff"|"guardian";active?:boolean;initialPlayerId?:string}){
  const [links,setLinks]=useState<Link[]>([]),[players,setPlayers]=useState<Player[]>([]),[guardians,setGuardians]=useState<Guardian[]>([]),[messages,setMessages]=useState<Message[]>([]);
  const [thread,setThread]=useState(""),[body,setBody]=useState(""),[kind,setKind]=useState("message"),[busy,setBusy]=useState(false),[loading,setLoading]=useState(true),[error,setError]=useState(""),[notice,setNotice]=useState("");
+ const contextApplied=useRef("");
+ useEffect(()=>{if(initialPlayerId&&contextApplied.current!==initialPlayerId){const match=links.find(l=>l.player_id===initialPlayerId);if(match){contextApplied.current=initialPlayerId;setThread(match.guardian_id+":"+match.player_id);setBody("");}}},[initialPlayerId,links]);
  const refresh=useCallback(async()=>{if(!db)return;setError("");const linkQuery=db.from("guardian_player_links").select("guardian_id,player_id");if(role==="guardian")linkQuery.eq("guardian_id",userId);const l=await linkQuery;if(l.error){setError("Unable to load approved family conversations.");setLoading(false);return;}const allowed=(l.data||[]) as Link[];const playerIds=[...new Set(allowed.map(x=>x.player_id))],guardianIds=[...new Set(allowed.map(x=>x.guardian_id))];if(!allowed.length){setLinks([]);setPlayers([]);setGuardians([]);setMessages([]);setLoading(false);return;}
  const queries=[db.from("coaching_players").select("id,first_name,last_name").in("id",playerIds),db.from("family_messages").select("id,guardian_id,player_id,sender_id,sender_role,kind,body,created_at,read_at").in("player_id",playerIds).order("created_at",{ascending:true}).limit(500)];
  const [p,m]=await Promise.all(queries);const g=role==="staff"?await db.from("guardian_profiles").select("user_id,display_name").in("user_id",guardianIds):null;

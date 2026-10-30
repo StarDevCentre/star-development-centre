@@ -1,6 +1,6 @@
 export type Intake = {id:string;creator_id:string;guardian_id:string|null;player_user_id:string|null;portal_player_id:string|null;first_name:string;last_name:string;date_of_birth:string|null;details:Record<string,string>;photo_path:string|null;version:number;completed_at:string|null;guardian_reviewed_at:string|null;assessment_status:'not_requested'|'requested'|'confirmed'|'completed'|'cancelled';assessment_requested_at:string|null;assessment_starts_at:string|null;assessment_venue:string|null;assessment_message:string|null;updated_at:string};
 export type IntakeField={key:string;label:string;type?:'textarea'|'select'|'tel'|'email';options?:string[];required?:boolean;hint?:string;when?:{key:string;value:string}};
-export const intakeSections:{title:string;description:string;fields:IntakeField[]}[]=[
+const fullIntakeSections:{title:string;description:string;fields:IntakeField[]}[]=[
  {title:'About the player',description:'The practical details we need to know who she is and keep in touch.',fields:[
  {key:'preferred_name',label:'Preferred name'}, {key:'address',label:'Home address',type:'textarea',required:true},{key:'postcode',label:'Postcode',required:true},{key:'player_phone',label:'Player phone (optional)',type:'tel'},{key:'contact_name',label:'Parent / guardian full name',required:true},{key:'relationship',label:'Relationship to player',required:true},{key:'contact_phone',label:'Parent / guardian phone',type:'tel',required:true},{key:'contact_email',label:'Parent / guardian email',type:'email',required:true},
  {key:'emergency_name',label:'Emergency contact name',required:true},{key:'emergency_relationship',label:'Emergency contact relationship',required:true},{key:'emergency_phone',label:'Emergency contact phone',type:'tel',required:true},{key:'backup_contact',label:'Additional emergency contact and phone (optional)',type:'textarea'}]},
@@ -19,8 +19,18 @@ export const intakeSections:{title:string;description:string;fields:IntakeField[
  {title:'Assessment availability',description:'Your introduction and assessment lasts 30 minutes and is FREE. Requesting it does not book a time or commit you to a paid programme.',fields:[
  {key:'availability',label:'Suitable days and times',type:'textarea',required:true},{key:'assessment_questions',label:'Questions or anything to discuss at the introduction',type:'textarea'}]}
 ];
+// Only information needed to arrange safe assessment is compulsory. Enrolment extras can wait.
+const essential=new Set(['contact_name','relationship','contact_phone','contact_email','emergency_name','emergency_relationship','emergency_phone','support','medical','medical_details','allergies','medication','injuries','emergency_plan','coaching_media','public_photos','public_video','public_name','availability']);
+const fields=(...indexes:number[])=>indexes.flatMap(i=>fullIntakeSections[i].fields).map(f=>({...f,required:essential.has(f.key)}));
+export const intakeSections=[
+ {title:'Player and family contacts',description:'Start with her name, date of birth and the contacts we need for safe participation. Address details are optional for the assessment.',fields:fields(0)},
+ {title:'Safe and comfortable coaching',description:'Tell us about support, health and emergency arrangements before she takes part. “None known” or “Discuss privately” are welcome where appropriate.',fields:fields(3,4)},
+ {title:'Her football — optional',description:'Share what you already know, or continue and talk this through at her introduction. Every football question here is optional.',fields:fields(1,2)},
+ {title:'Your separate consent choices',description:fullIntakeSections[6].description,fields:fields(6)},
+ {title:'Availability and optional extras',description:'Tell us when you are available for the FREE 30-minute assessment. Kit sizes and a private identification photo can wait until enrolment.',fields:fields(7,5)}
+];
 export function visibleField(f:IntakeField,d:Record<string,string>){return !f.when||d[f.when.key]===f.when.value;}
-export function intakeMissing(p:Intake){const missing:string[]=[];if(!p.first_name.trim())missing.push('Player first name');if(!p.last_name.trim())missing.push('Player last name');if(!p.date_of_birth)missing.push('Date of birth');for(const s of intakeSections)for(const f of s.fields)if(f.required&&visibleField(f,p.details)&&!p.details[f.key]?.trim())missing.push(f.label);if(!p.photo_path)missing.push('Player photograph');return missing;}
+export function intakeMissing(p:Intake){const missing:string[]=[];if(!p.first_name.trim())missing.push('Player first name');if(!p.last_name.trim())missing.push('Player last name');if(!p.date_of_birth)missing.push('Date of birth');for(const s of intakeSections)for(const f of s.fields)if(f.required&&visibleField(f,p.details)&&!p.details[f.key]?.trim())missing.push(f.label);return missing;}
 export const intakeSelect='id,creator_id,guardian_id,player_user_id,portal_player_id,first_name,last_name,date_of_birth,details,photo_path,version,completed_at,guardian_reviewed_at,assessment_status,assessment_requested_at,assessment_starts_at,assessment_venue,assessment_message,updated_at';
 
 export function intakeResult(data:unknown):Intake{const value=Array.isArray(data)?data[0]:data;if(!value||typeof value!=="object"||typeof value.id!=="string"||typeof value.version!=="number")throw Error("Could not read the saved profile. Reload to check its latest status.");return value as Intake;}

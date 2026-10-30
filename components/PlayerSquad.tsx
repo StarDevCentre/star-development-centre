@@ -1,5 +1,6 @@
 "use client";
 import Image from 'next/image';
+import {usePlayerDraftGuard} from './usePlayerDraftGuard';
 import {useEffect,useRef,useState} from 'react';
 import {squadAsset,squadFormations,squadPlayer,squadRoster,validateSquad,type PlayerSquad,type SquadFormation,type SquadInput} from '../lib/playerSquad';
 import type {PortalFeatureActions} from '../lib/playerPortalFeatures';
@@ -14,6 +15,7 @@ export function PlayerSquadBuilder({playerId,saved,onSaveSquad,demo=false}:{play
  useEffect(()=>{if(slot!==null&&!dialog.current?.open)dialog.current?.showModal();if(slot===null&&dialog.current?.open)dialog.current.close();},[slot]);
  const formation=squadFormations[draft.formation],count=draft.footballers.filter(Boolean).length;
  const dirty=JSON.stringify(draft)!==JSON.stringify(squadInput(saved));
+ usePlayerDraftGuard(dirty);
  const roster=squadRoster.filter(p=>(slot===0?p.role==='Goalkeeper':p.role!=='Goalkeeper')&&(!club||p.club===club)&&(!role||p.role===role)&&(!search.trim()||(p.name+' '+p.club).toLowerCase().includes(search.trim().toLowerCase())));
  function closePicker(){setSlot(null);requestAnimationFrame(()=>lastSlot.current?.focus());}
  function choose(id:string){if(slot===null)return;setDraft(d=>{const footballers=[...d.footballers],old=footballers[slot];footballers[slot]=id;return{...d,footballers,captain:!d.captain||d.captain===old?id:d.captain};});setNotice('');setError('');closePicker();}

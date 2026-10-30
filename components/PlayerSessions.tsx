@@ -1,4 +1,5 @@
 "use client";
+import {usePlayerDraftGuard} from './usePlayerDraftGuard';
 import {PlayerHeroCharacter} from './PlayerHeroCharacter';
 import type {HeroAppearance} from '../lib/heroCharacter';
 import {useEffect,useState} from 'react';
@@ -10,6 +11,7 @@ export function NextSessionHero({session,onOpen,appearance}:{session?:SpaceSessi
 }
 function Preparation({session,saved,onSave}:{session:SpaceSession;saved?:SessionPreparation;onSave:PortalFeatureActions['onSavePreparation']}){
  const[help,setHelp]=useState(''),[checked,setChecked]=useState<string[]>([]),[busy,setBusy]=useState(false),[notice,setNotice]=useState(''),[error,setError]=useState(''),[dirty,setDirty]=useState(false);
+ usePlayerDraftGuard(dirty);
  useEffect(()=>{if(dirty)return;setHelp(saved?.help_request||'');setChecked((saved?.checked_kit||[]).filter(item=>session.kit_list.includes(item)));},[saved,session.id,dirty]);
  return <article className="ps-session-prep ps-paper"><div className="ps-section-top"><span className="ps-label">GET READY</span><time dateTime={session.starts_at}>{sessionTime(session)}</time></div><h2>{session.title}</h2><p><strong>Where:</strong> {session.venue}</p><div className="ps-coach-note"><strong>Coach’s focus</strong><p>{session.coach_focus||'Your coach will add the focus before the session.'}</p></div><form onSubmit={async e=>{e.preventDefault();if(busy)return;setBusy(true);setError('');setNotice('');try{await onSave(session.player_id,session.id,help.trim(),checked.filter(item=>session.kit_list.includes(item)));setDirty(false);setNotice('Your preparation is saved. Your coach can see what you want help with.');}catch(v){setError(v instanceof Error?v.message:'Could not save preparation.');}finally{setBusy(false);}}}><fieldset disabled={busy} className="ps-checklist"><legend>MY KIT CHECK</legend>{session.kit_list.map(item=><label key={item}><input type="checkbox" checked={checked.includes(item)} onChange={e=>{setDirty(true);setChecked(current=>e.target.checked?[...current,item]:current.filter(v=>v!==item));}}/><span>{item}</span></label>)}</fieldset><label>I’d like help with…<textarea rows={3} maxLength={500} disabled={busy} value={help} placeholder="For example: looking up before I receive the ball" onChange={e=>{setDirty(true);setHelp(e.target.value);}}/></label><p className="ps-fineprint">Your coach and linked parent or guardian can see this.</p><button className="ps-action" disabled={busy}>{busy?'SAVING…':'SAVE MY PREPARATION'} <SpaceIcon name="check"/></button></form>{notice&&<p role="status" className="ps-notice">{notice}</p>}{error&&<p role="alert" className="ps-error">{error}</p>}</article>;
 }

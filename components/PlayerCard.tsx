@@ -1,4 +1,5 @@
 "use client";
+import {usePlayerDraftGuard} from './usePlayerDraftGuard';
 import { useEffect, useState } from 'react';
 import { cosmetics, defaultProfile, type AvatarKey, type SpaceUnlock, type ProfileFields, type SpaceActions, type SpaceProfile } from '../lib/playerSpace';
 import { positions } from "../lib/playerPortalFeatures";
@@ -31,6 +32,7 @@ export function PlayerCard({ name, playerId, userKey, profile, unlocks, onUpdate
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');
+  usePlayerDraftGuard(editing&&(photo!==undefined||Object.keys(card).some(key=>JSON.stringify(card[key as keyof ProfileFields])!==JSON.stringify((profile||defaultProfile)[key as keyof ProfileFields]))));
   useEffect(() => {
     if (editing && !setup) return;
     let initial: ProfileFields = { ...defaultProfile };

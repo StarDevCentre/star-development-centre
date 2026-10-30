@@ -43,7 +43,12 @@
       "Notice attempts and decisions as well as outcomes.",
       "Let the player help decide the next step."
     ],
-    "sources": []
+    "sources": [
+      {
+        "label": "England Football: Respect and positive environments",
+        "url": "https://www.englandfootball.com/respect"
+      }
+    ]
   },
   {
     "slug": "home-practice-that-fits",
@@ -89,7 +94,12 @@
       "Add information and choice when the basic task is comfortable.",
       "Treat extra practice as optional support, not a punishment."
     ],
-    "sources": []
+    "sources": [
+      {
+        "label": "England Football Learning: The FA 4 Corner Model",
+        "url": "https://learn.englandfootball.com/articles-and-resources/coaching/resources/2022/the-fa-4-corner-model"
+      }
+    ]
   },
   {
     "slug": "scanning-before-receiving",
@@ -190,7 +200,12 @@
       "Vary the pass as well as the receiving movement.",
       "Keep awareness, control and choice connected."
     ],
-    "sources": []
+    "sources": [
+      {
+        "label": "England Football: Respect and positive environments",
+        "url": "https://www.englandfootball.com/respect"
+      }
+    ]
   },
   {
     "slug": "beating-a-defender",
@@ -236,7 +251,12 @@
       "Watch the defender’s response before choosing the exit.",
       "Practise the action after getting past."
     ],
-    "sources": []
+    "sources": [
+      {
+        "label": "England Football Learning: The FA 4 Corner Model",
+        "url": "https://learn.englandfootball.com/articles-and-resources/coaching/resources/2022/the-fa-4-corner-model"
+      }
+    ]
   },
   {
     "slug": "movement-without-the-ball",
@@ -282,7 +302,12 @@
       "Different angles are often more helpful than crowding the ball.",
       "A run can matter even when the pass goes elsewhere."
     ],
-    "sources": []
+    "sources": [
+      {
+        "label": "The FA: Spotlight on receiving",
+        "url": "https://www.thefa.com/bootroom/resources/coaching/spotlight-on-receiving"
+      }
+    ]
   },
   {
     "slug": "defending-with-patience",
@@ -328,7 +353,12 @@
       "A controlled delay can help the team recover.",
       "Practise a useful action after winning possession."
     ],
-    "sources": []
+    "sources": [
+      {
+        "label": "England Football Learning: The FA 4 Corner Model",
+        "url": "https://learn.englandfootball.com/articles-and-resources/coaching/resources/2022/the-fa-4-corner-model"
+      }
+    ]
   },
   {
     "slug": "using-coaching-feedback",
@@ -374,7 +404,12 @@
       "Practise one adjustment and recognise when it applies.",
       "Explain what changed so feedback becomes a conversation."
     ],
-    "sources": []
+    "sources": [
+      {
+        "label": "England Football: Respect and positive environments",
+        "url": "https://www.englandfootball.com/respect"
+      }
+    ]
   },
   {
     "slug": "supporting-her-from-the-sideline",
@@ -420,7 +455,12 @@
       "Leave match instructions to the team’s coach.",
       "Give her a choice about when to discuss the game."
     ],
-    "sources": []
+    "sources": [
+      {
+        "label": "England Football: Respect and positive environments",
+        "url": "https://www.englandfootball.com/respect"
+      }
+    ]
   },
   {
     "slug": "starting-football",
@@ -466,7 +506,12 @@
       "Check equipment requirements before buying.",
       "Measure the first experience by fit and willingness to return."
     ],
-    "sources": []
+    "sources": [
+      {
+        "label": "England Football: Respect and positive environments",
+        "url": "https://www.englandfootball.com/respect"
+      }
+    ]
   },
   {
     "slug": "player-led-goals",
@@ -512,7 +557,12 @@
       "Use real examples to notice progress.",
       "Let goals change when the player’s priorities change."
     ],
-    "sources": []
+    "sources": [
+      {
+        "label": "England Football Learning: The FA 4 Corner Model",
+        "url": "https://learn.englandfootball.com/articles-and-resources/coaching/resources/2022/the-fa-4-corner-model"
+      }
+    ]
   },
   {
     "slug": "learning-by-watching-football",
@@ -558,6 +608,11 @@
       "Discuss options without pretending the camera shows everything.",
       "Adapt an idea to your level and keep watching enjoyable."
     ],
-    "sources": []
+    "sources": [
+      {
+        "label": "England Football Learning: The FA 4 Corner Model",
+        "url": "https://learn.englandfootball.com/articles-and-resources/coaching/resources/2022/the-fa-4-corner-model"
+      }
+    ]
   }
 ]
