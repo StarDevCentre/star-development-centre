@@ -26,7 +26,7 @@ test('player card setup has no age-style selector and keeps normal customisation
  for(const label of ['Your colour','Your avatar','Shirt name','Shirt number','My football ambitions','SAVE MY CARD'])assert(html.includes(label));
  for(const label of ['Player Space style','value="children"','value="teenagers"','younger teens','older teens'])assert(!html.includes(label));
 });
-test('legacy child and teenage profiles render the same Home, with customisation before session cards',()=>{
+test('shared Home has compact customisation before sessions and the unlock card last',()=>{
  const data={...emptySpaceData,players:[{id:'p',first_name:'Alex',last_name:'Example',programme:'Assessment'}],profiles:[{...defaultProfile,player_id:'p',photo_path:null,experience:'children'}]};
  const props={data,userKey:'u',demo:true,onUpdateProfile:async()=>{},onSaveGoal:async()=>{},onCelebrate:async()=>{},onSavePractice:async()=>{}};
  const legacy=render(PlayerSpace,props);
@@ -34,4 +34,8 @@ test('legacy child and teenage profiles render the same Home, with customisation
  assert.equal(legacy,standard);
  assert(legacy.indexOf('STYLE MY SPACE')<legacy.indexOf('ps-next-session-hero'));
  assert(legacy.includes('Personalise my card'));assert(!legacy.includes('ps-experience-children'));
+ assert(!legacy.includes('style extras unlocked'));assert(!legacy.includes('REPLAY WELCOME'));
+ assert(legacy.indexOf('ps-home-unlock')>legacy.indexOf('ps-session-strip'));
+ assert(legacy.indexOf('ps-home-unlock')>legacy.indexOf('ps-home-grid'));
+ assert.equal((legacy.match(/ps-home-unlock/g)||[]).length,1);
 });

@@ -10,12 +10,12 @@ import {SpaceIcon} from './PlayerSpaceIcons';
 const steps=['Welcome','Your look','Player card','Your goal','Explore','Updates'] as const;
 const templates=['Look up before receiving the ball','Try my weaker foot in each practice','Encourage a teammate every session','Ask my coach when I need help','Try one brave new skill this week'];
 type Progress={step:number;status:'in_progress'|'completed'|'skipped'};
-type Props=Pick<SpaceActions,'onUpdateProfile'|'onSaveGoal'>&{playerId:string;name:string;userKey:string;actorRole:'player'|'guardian';profile?:SpaceProfile;unlocks:SpaceUnlock[];goals:PersonalGoal[];attendedSessions:number;demo:boolean;visible:boolean;replay:number};
+type Props=Pick<SpaceActions,'onUpdateProfile'|'onSaveGoal'>&{playerId:string;name:string;userKey:string;actorRole:'player'|'guardian';profile?:SpaceProfile;unlocks:SpaceUnlock[];goals:PersonalGoal[];attendedSessions:number;demo:boolean;visible:boolean};
 
-export function PlayerWelcome({playerId,name,userKey,actorRole,profile,unlocks,goals,attendedSessions,demo,visible,replay,onUpdateProfile,onSaveGoal}:Props){
+export function PlayerWelcome({playerId,name,userKey,actorRole,profile,unlocks,goals,attendedSessions,demo,visible,onUpdateProfile,onSaveGoal}:Props){
 
  const[progress,setProgress]=useState<Progress>({step:0,status:'in_progress'}),[open,setOpen]=useState(false),[ready,setReady]=useState(demo),[busy,setBusy]=useState(false),[error,setError]=useState(''),[notice,setNotice]=useState(''),[goal,setGoal]=useState('');
- const root=useRef<HTMLElement>(null),heading=useRef<HTMLHeadingElement>(null),previousReplay=useRef(replay),focusNext=useRef(false),saving=useRef(false),goalSaving=useRef(false);
+ const root=useRef<HTMLElement>(null),heading=useRef<HTMLHeadingElement>(null),focusNext=useRef(false),saving=useRef(false),goalSaving=useRef(false);
  useEffect(()=>{let active=true;
   if(demo)return;
   void(async()=>{try{
@@ -23,26 +23,25 @@ export function PlayerWelcome({playerId,name,userKey,actorRole,profile,unlocks,g
    const r=await db.from('player_space_onboarding').select('step,status').eq('user_id',userKey).eq('player_id',playerId).maybeSingle();
    if(r.error)throw new Error('Your saved setup could not be loaded. You can still explore Player Space.');
    if(active){const saved=(r.data as Progress|null)||{step:0,status:'in_progress'};setProgress(saved);setOpen(actorRole==='player'&&saved.status==='in_progress');setReady(true);}
-  }catch(value){if(active){setError(value instanceof Error?value.message:'Could not load setup.');setReady(true);}}})();
+  }catch(value){if(active){setError(value instanceof Error?value.message:'Could not load setup.');setReady(false);}}})();
   return()=>{active=false;};
  },[playerId,userKey,actorRole,demo]);
- useEffect(()=>{if(replay!==previousReplay.current){previousReplay.current=replay;setProgress({step:0,status:'in_progress'});setOpen(true);focusNext.current=true;setNotice('');}},[replay]);
  useEffect(()=>{if(visible&&focusNext.current){focusNext.current=false;if(open)heading.current?.focus({preventScroll:true});else root.current?.focus({preventScroll:true});root.current?.scrollIntoView({block:'start',behavior:'auto'});}},[progress.step,open,visible]);
  async function move(step:number,status:Progress['status']='in_progress'){
-  if(saving.current)return;
+  if(saving.current||progress.status==='completed')return;
   saving.current=true;setBusy(true);setError('');
   try{
    const next={step,status};
    if(!demo){if(!db)throw new Error('Please sign in again.');const r=await db.from('player_space_onboarding').upsert({user_id:userKey,player_id:playerId,...next,updated_at:new Date().toISOString()},{onConflict:'user_id,player_id'});if(r.error)throw new Error('Your choices are saved, but setup progress could not be saved. Please try again.');}
    focusNext.current=true;setProgress(next);
-   if(status!=='in_progress'){setOpen(false);setNotice(status==='completed'?'YOU’RE READY. Welcome to your Player Space!':'Explore at your own pace. You can replay the welcome journey here any time.');}
+   if(status!=='in_progress'){setOpen(false);setNotice(status==='completed'?'YOU’RE READY. Welcome to your Player Space!':'Explore at your own pace. You can continue setup later.');}
   }catch(value){setError(value instanceof Error?value.message:'Could not save setup progress.');throw value;}
   finally{saving.current=false;setBusy(false);}
  }
  const next=()=>move(Math.min(5,progress.step+1));
- if(!visible)return null;
+ if(!visible||!ready||progress.status==='completed')return null;
  return <section ref={root} tabIndex={-1} id="ps-welcome" className={`ps-welcome ${open?'ps-welcome-open ps-paper':''}`} aria-label="Welcome to Player Space">
-  {!open?<div className="ps-welcome-invite"><div><span className="ps-eyebrow">{progress.status==='completed'?'YOUR SPACE IS READY.':'MAKE THIS SPACE YOURS.'}</span><p>{notice||`A quick welcome journey for ${name}. Every step is optional.`}</p></div><button className="ps-action" disabled={!ready} onClick={()=>{setOpen(true);focusNext.current=true;setNotice('');if(progress.status!=='in_progress')setProgress({step:0,status:'in_progress'});}}>{!ready?'LOADING…':progress.status==='completed'?'REPLAY WELCOME':progress.step>0&&progress.status==='in_progress'?'CONTINUE SETUP':'START WELCOME'}<SpaceIcon name="arrow"/></button></div>:<>
+  {!open?<div className="ps-welcome-invite"><div><span className="ps-eyebrow">MAKE THIS SPACE YOURS.</span><p>{notice||`A quick welcome journey for ${name}. Every step is optional.`}</p></div><button className="ps-action" disabled={!ready} onClick={()=>{setOpen(true);focusNext.current=true;setNotice('');setProgress(current=>({...current,status:'in_progress'}));}}>{progress.step>0||progress.status==='skipped'?'CONTINUE SETUP':'START WELCOME'}<SpaceIcon name="arrow"/></button></div>:<>
    <div className="ps-welcome-top"><span className="ps-tape">THIS SPACE IS YOURS</span><button className="ps-text-link" disabled={busy} onClick={()=>void move(progress.step,'skipped').catch(()=>{})}>Set up later ↗</button></div>
    <ol className="ps-welcome-steps" aria-label="Welcome steps">{steps.map((label,i)=><li key={label} aria-current={i===progress.step?'step':undefined}><span aria-hidden="true">{i<progress.step?'✓':i+1}</span><small>{label}</small></li>)}</ol>
    <h2 ref={heading} tabIndex={-1} className="ps-welcome-heading">{progress.step===0?`HEY, ${name.toUpperCase()}!`:progress.step===1?'YOUR HERO. YOUR LOOK.':progress.step===2?'PUT YOUR NAME ON IT.':progress.step===3?'ONE SMALL NEXT STEP.':progress.step===4?'FIND YOUR FEET.':'YOUR UPDATES. YOUR CHOICE.'}</h2>

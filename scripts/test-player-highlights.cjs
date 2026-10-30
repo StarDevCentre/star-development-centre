@@ -7,7 +7,7 @@ require.extensions['.tsx']=require.extensions['.ts'];
 const {emptySpaceData,cosmetics}=require('../lib/playerSpace.ts');
 const {weeklyPlayerPlan,playerUnlockProgress,distinctPracticeDays,savePracticeMoment}=require('../lib/playerSpaceHighlights.ts');
 const React=require('react'),{renderToStaticMarkup}=require('react-dom/server');
-const {PlayerWeekHighlights}=require('../components/PlayerWeekHighlights.tsx');
+const {PlayerWeekHighlights,PlayerNextUnlock}=require('../components/PlayerWeekHighlights.tsx');
 const today='2026-10-29',week='2026-10-26';
 const assignment=(id,patch={})=>({id,player_id:'p',title:id,instructions:'Practice',target:null,due_date:null,created_at:'2026-10-25T12:00:00Z',week_start:week,practice_day:0,suggested_minutes:10,equipment:null,is_optional:false,coaching_points:null,goal_id:null,...patch});
 const entry=(id,date,minutes=10)=>({id:'entry-'+id+date,assignment_id:id,practice_date:date,minutes,reflection:'I tried again.',created_at:date+'T12:00:00Z',confidence:null,enjoyment:null});
@@ -52,5 +52,7 @@ test('completion waits for a confirmed save; failures and another player’s ass
 test('Home highlights use only the selected player and distinguish new awards from existing feedback',()=>{
  const d=data({awards:[{id:'hidden',player_id:'other',badge_id:'x',title:'Private other award',description:'Private'}],notifications:[],diary:[entry('a',today)],feedback:[{diary_id:'entry-a'+today,feedback:'Your first touch improved.',reviewed_at:today}]});
  const html=renderToStaticMarkup(React.createElement(PlayerWeekHighlights,{data:d,playerId:'p',name:'Demo',today,onPractice:()=>{},onOpen:()=>{},onStyle:()=>{}}));
- assert.doesNotMatch(html,/Private other award/);assert.match(html,/LATEST COACH FEEDBACK/);assert.match(html,/Your first touch improved/);assert.match(html,/role="progressbar"/);assert.match(html,/Revisit|REVISIT/);
+ assert.doesNotMatch(html,/Private other award/);assert.match(html,/LATEST COACH FEEDBACK/);assert.match(html,/Your first touch improved/);assert.doesNotMatch(html,/role="progressbar"/);assert.match(html,/Revisit|REVISIT/);
+ const unlock=renderToStaticMarkup(React.createElement(PlayerNextUnlock,{data:d,playerId:'p',onStyle:()=>{}}));
+ assert.match(unlock,/role="progressbar"/);assert.doesNotMatch(unlock,/Private other award/);
 });
