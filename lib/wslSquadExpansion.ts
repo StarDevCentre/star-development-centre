@@ -823,5 +823,285 @@ export const wslSquadAdditions:SquadFootballer[]=[
  "watch": "Watch her acceleration into space and how she times a run to meet a delivery into the box.",
  "source": "https://www.wslfootball.com/players/nikita-parris",
  "kit": "2026/27 home"
+},
+{
+ "id": "fran-bentley",
+ "name": "Fran Bentley",
+ "club": "Bristol City",
+ "role": "Goalkeeper",
+ "number": 1,
+ "watch": "Watch how she sets her feet before a shot and offers a passing option to her defenders.",
+ "source": "https://www.wslfootball.com/players/fran-bentley",
+ "kit": "2026/27 home"
+},
+{
+ "id": "brooke-aspin",
+ "name": "Brooke Aspin",
+ "club": "Bristol City",
+ "role": "Defender",
+ "number": 5,
+ "watch": "Watch how she checks for runners and adjusts her position before challenging for the ball.",
+ "source": "https://www.wslfootball.com/players/brooke-aspin",
+ "kit": "2026/27 home"
+},
+{
+ "id": "ella-powell",
+ "name": "Ella Powell",
+ "club": "Bristol City",
+ "role": "Defender",
+ "number": 2,
+ "watch": "Watch how she checks for runners and adjusts her position before challenging for the ball.",
+ "source": "https://www.wslfootball.com/players/ella-powell",
+ "kit": "2026/27 home"
+},
+{
+ "id": "marine-dafeur",
+ "name": "Marine Dafeur",
+ "club": "Bristol City",
+ "role": "Midfielder",
+ "number": 21,
+ "watch": "Watch her scans before receiving and the passing angles she creates for teammates.",
+ "source": "https://www.wslfootball.com/players/marine-dafeur",
+ "kit": "2026/27 home"
+},
+{
+ "id": "lotta-lindstrom",
+ "name": "Lotta Lindström",
+ "club": "Bristol City",
+ "role": "Forward",
+ "number": 19,
+ "watch": "Watch how she changes pace and times her movement to receive in space near goal.",
+ "source": "https://www.wslfootball.com/players/lotta-lindstrom",
+ "kit": "2026/27 home"
+},
+{
+ "id": "kirstie-levell",
+ "name": "Kirstie Levell",
+ "club": "Burnley",
+ "role": "Goalkeeper",
+ "number": 28,
+ "watch": "Watch how she sets her feet before a shot and offers a passing option to her defenders.",
+ "source": "https://www.wslfootball.com/players/kirstie-levell",
+ "kit": "2026/27 home"
+},
+{
+ "id": "maddi-wilde",
+ "name": "Maddi Wilde",
+ "club": "Burnley",
+ "role": "Defender",
+ "number": 20,
+ "watch": "Watch how she checks for runners and adjusts her position before challenging for the ball.",
+ "source": "https://www.wslfootball.com/players/maddi-wilde",
+ "kit": "2026/27 home"
+},
+{
+ "id": "jamie-finn",
+ "name": "Jamie Finn",
+ "club": "Burnley",
+ "role": "Midfielder",
+ "number": 8,
+ "watch": "Watch her scans before receiving and the passing angles she creates for teammates.",
+ "source": "https://www.wslfootball.com/players/jamie-finn",
+ "kit": "2026/27 home"
+},
+{
+ "id": "rachel-williams",
+ "name": "Rachel Williams",
+ "club": "Burnley",
+ "role": "Forward",
+ "number": 28,
+ "watch": "Watch how she changes pace and times her movement to receive in space near goal.",
+ "source": "https://www.wslfootball.com/players/rachel-williams",
+ "kit": "2026/27 home"
+},
+{
+ "id": "charlie-wellings",
+ "name": "Charlie Wellings",
+ "club": "Burnley",
+ "role": "Forward",
+ "number": 21,
+ "watch": "Watch how she changes pace and times her movement to receive in space near goal.",
+ "source": "https://www.wslfootball.com/players/charlie-wellings",
+ "kit": "2026/27 home"
+},
+{
+ "id": "anna-king",
+ "name": "Anna King",
+ "club": "Durham",
+ "role": "Goalkeeper",
+ "number": 13,
+ "watch": "Watch how she sets her feet before a shot and offers a passing option to her defenders.",
+ "source": "https://www.wslfootball.com/players/anna-king",
+ "kit": "2026/27 home"
+},
+{
+ "id": "emma-brown",
+ "name": "Emma Brown",
+ "club": "Durham",
+ "role": "Defender",
+ "number": 25,
+ "watch": "Watch how she checks for runners and adjusts her position before challenging for the ball.",
+ "source": "https://www.wslfootball.com/players/emma-brown",
+ "kit": "2026/27 home"
+},
+{
+ "id": "beth-hepple",
+ "name": "Beth Hepple",
+ "club": "Durham",
+ "role": "Midfielder",
+ "number": 7,
+ "watch": "Watch her scans before receiving and the passing angles she creates for teammates.",
+ "source": "https://www.wslfootball.com/players/beth-hepple",
+ "kit": "2026/27 home"
+},
+{
+ "id": "lucy-watson",
+ "name": "Lucy Watson",
+ "club": "Durham",
+ "role": "Forward",
+ "number": 9,
+ "watch": "Watch how she changes pace and times her movement to receive in space near goal.",
+ "source": "https://www.wslfootball.com/players/lucy-watson",
+ "kit": "2026/27 home"
+},
+{
+ "id": "olivia-fergusson",
+ "name": "Olivia Fergusson",
+ "club": "Durham",
+ "role": "Forward",
+ "number": 17,
+ "watch": "Watch how she changes pace and times her movement to receive in space near goal.",
+ "source": "https://www.wslfootball.com/players/olivia-fergusson",
+ "kit": "2026/27 home"
+},
+{
+ "id": "lysianne-proulx",
+ "name": "Lysianne Proulx",
+ "club": "Ipswich Town",
+ "role": "Goalkeeper",
+ "number": 44,
+ "watch": "Watch how she sets her feet before a shot and offers a passing option to her defenders.",
+ "source": "https://www.wslfootball.com/players/lysianne-proulx",
+ "kit": "2026/27 home"
+},
+{
+ "id": "jorja-fox",
+ "name": "Jorja Fox",
+ "club": "Ipswich Town",
+ "role": "Defender",
+ "number": 3,
+ "watch": "Watch how she checks for runners and adjusts her position before challenging for the ball.",
+ "source": "https://www.wslfootball.com/players/jorja-fox",
+ "kit": "2026/27 home"
+},
+{
+ "id": "jenna-slattery",
+ "name": "Jenna Slattery",
+ "club": "Ipswich Town",
+ "role": "Midfielder",
+ "number": 8,
+ "watch": "Watch her scans before receiving and the passing angles she creates for teammates.",
+ "source": "https://www.wslfootball.com/players/jenna-slattery",
+ "kit": "2026/27 home"
+},
+{
+ "id": "mary-mcateer",
+ "name": "Mary McAteer",
+ "club": "Ipswich Town",
+ "role": "Forward",
+ "number": 15,
+ "watch": "Watch how she changes pace and times her movement to receive in space near goal.",
+ "source": "https://www.wslfootball.com/players/mary-mcateer",
+ "kit": "2026/27 home"
+},
+{
+ "id": "princess-ademiluyi",
+ "name": "Princess Ademiluyi",
+ "club": "Ipswich Town",
+ "role": "Forward",
+ "number": 99,
+ "watch": "Watch how she changes pace and times her movement to receive in space near goal.",
+ "source": "https://www.wslfootball.com/players/princess-ademiluyi",
+ "kit": "2026/27 home"
+},
+{
+ "id": "olivia-clark",
+ "name": "Olivia Clark",
+ "club": "Leicester City",
+ "role": "Goalkeeper",
+ "number": 1,
+ "watch": "Watch how she sets her feet before a shot and offers a passing option to her defenders.",
+ "source": "https://www.wslfootball.com/players/olivia-clark",
+ "kit": "2026/27 home"
+},
+{
+ "id": "olivia-mcloughlin",
+ "name": "Olivia McLoughlin",
+ "club": "Leicester City",
+ "role": "Midfielder",
+ "number": 24,
+ "watch": "Watch her scans before receiving and the passing angles she creates for teammates.",
+ "source": "https://www.wslfootball.com/players/olivia-mcloughlin",
+ "kit": "2026/27 home"
+},
+{
+ "id": "poppy-pritchard",
+ "name": "Poppy Pritchard",
+ "club": "Leicester City",
+ "role": "Forward",
+ "number": 15,
+ "watch": "Watch how she changes pace and times her movement to receive in space near goal.",
+ "source": "https://www.wslfootball.com/players/poppy-pritchard",
+ "kit": "2026/27 home"
+},
+{
+ "id": "alisha-lehmann",
+ "name": "Alisha Lehmann",
+ "club": "Leicester City",
+ "role": "Forward",
+ "number": 11,
+ "watch": "Watch how she changes pace and times her movement to receive in space near goal.",
+ "source": "https://www.wslfootball.com/players/alisha-lehmann",
+ "kit": "2026/27 home"
+},
+{
+ "id": "anna-tamminen",
+ "name": "Anna Tamminen",
+ "club": "Newcastle United",
+ "role": "Goalkeeper",
+ "number": 1,
+ "watch": "Watch how she sets her feet before a shot and offers a passing option to her defenders.",
+ "source": "https://www.wslfootball.com/players/anna-tamminen",
+ "kit": "2026/27 home"
+},
+{
+ "id": "demi-stokes",
+ "name": "Demi Stokes",
+ "club": "Newcastle United",
+ "role": "Defender",
+ "number": 3,
+ "watch": "Watch how she checks for runners and adjusts her position before challenging for the ball.",
+ "source": "https://www.wslfootball.com/players/demi-stokes",
+ "kit": "2026/27 home"
+},
+{
+ "id": "jordan-nobbs",
+ "name": "Jordan Nobbs",
+ "club": "Newcastle United",
+ "role": "Midfielder",
+ "number": 4,
+ "watch": "Watch her scans before receiving and the passing angles she creates for teammates.",
+ "source": "https://www.wslfootball.com/players/jordan-nobbs",
+ "kit": "2026/27 home"
+},
+{
+ "id": "beth-lumsden",
+ "name": "Beth Lumsden",
+ "club": "Newcastle United",
+ "role": "Forward",
+ "number": 26,
+ "watch": "Watch how she changes pace and times her movement to receive in space near goal.",
+ "source": "https://www.wslfootball.com/players/beth-lumsden",
+ "kit": "2026/27 home"
 }
 ];
