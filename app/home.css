@@ -201,3 +201,30 @@
 }
 .site-footer.home-footer .footer-logo-link{position:relative!important;display:block!important;overflow:hidden!important;background:#fff!important;width:220px!important;height:108px!important;border-radius:3px!important}
 .site-footer.home-footer .footer-official-logo{position:absolute!important;width:auto!important;height:240%!important;max-width:none!important;left:50%!important;top:49%!important;transform:translate(-50%,-49%)!important}
+
+/* Parent-facing reasons to choose STAR and the free assessment invitation. */
+.star-home .home-reasons{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:26px;margin-top:44px}
+.star-home .home-reasons article{min-width:0;padding-top:20px;border-top:1px solid #d2b06e65}
+.star-home .home-reason-number{display:block;color:#e8cb87;font:800 22px/1 'Barlow Condensed',Impact,sans-serif;margin-bottom:14px}
+.star-home .home-reasons h3{color:#f4ecda;font-size:29px;margin-bottom:12px}
+.star-home .home-reasons p{color:#becbdd;font-size:14px;margin:0}
+.star-home .home-proof{list-style:none;padding:24px 0 0;margin:32px 0 0;border-top:1px solid #d2b06e40;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.star-home .home-proof li{min-width:0;display:grid;gap:8px;align-content:start}
+.star-home .home-proof strong{color:#f1dfb1;font-size:14px;line-height:1.5}
+.star-home .home-proof span,.star-home .home-proof a{color:#c8d2e2;font-size:12px;line-height:1.6}
+.star-home .home-proof a{text-decoration:underline;text-underline-offset:4px}
+.star-home .home-programme-lead{border-color:#d7b875;box-shadow:0 0 0 1px #d7b87550}
+.star-home .home-programme-priority{display:inline-block;margin-bottom:12px;color:#f2d28d;font-size:11px;font-weight:800;letter-spacing:.12em}
+.star-home .home-structured-options{padding:24px 0;margin-top:24px;border-block:1px solid #d7b87550}
+.star-home .home-structured-options h3{color:#f1dfb1;font-size:27px}
+.star-home .home-structured-options p{color:#c8d2e2;font-size:14px;max-width:850px;margin:0}
+.star-home .home-structured-options a{color:#f4dfb2;text-decoration:underline;text-underline-offset:4px}
+.star-home .home-start h2{font-size:clamp(40px,4.3vw,62px)}
+.star-home .home-start h2 span{color:#f1dfb1}
+.star-home .home-start-intro{max-width:790px;color:#c8d2e2;font-size:17px}
+.star-home .home-assessment-next{margin-top:32px;padding-top:26px;border-top:1px solid #d7b87540}
+.star-home .home-assessment-next .home-actions{align-items:center;gap:22px}
+.star-home .home-assessment-next .home-link{color:#f1dfb1}
+.star-home .home-assessment-next .home-helper{max-width:770px;color:#bac8dc}
+@media(max-width:1000px){.star-home .home-reasons{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}.star-home .home-proof{gap:18px}}
+@media(max-width:700px){.star-home .home-reasons{grid-template-columns:1fr;gap:24px;margin-top:30px}.star-home .home-reasons article{padding-top:16px}.star-home .home-reason-number{margin-bottom:10px}.star-home .home-reasons h3{font-size:28px}.star-home .home-proof{grid-template-columns:1fr;gap:22px}.star-home .home-start-intro{font-size:15px}.star-home .home-assessment-next .home-button{width:100%}.star-home .home-assessment-next .home-link{font-size:13px}.star-home .home-structured-options p{font-size:13px}}
