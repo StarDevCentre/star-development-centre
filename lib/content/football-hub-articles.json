@@ -1062,5 +1062,86 @@
         "url": "https://fulltime.thefa.com/index.html?league=8640969&selectedCompetition=0&selectedDivision=246958705&selectedFixtureGroupKey=1_946303651&selectedSeason=945003672"
       }
     ]
+  },
+  {
+    "slug": "girls-football-coaching-wellington",
+    "title": "Girls’ Football Coaching in Wellington",
+    "category": "Choosing coaching",
+    "summary": "A guide to Wellington Wildcats and the individual coaching support available alongside club football.",
+    "intro": "Wellington already has a strong base for girls’ football. Wellington AFC’s Wildcats section is well established, with youth teams and a senior ladies side. For many families in the town, an important decision is whether their daughter wants to join or stay with the local club. This article is written for parents in Wellington who are thinking about the next step — whether that is finding a team, or adding some extra support alongside the one she already has.",
+    "sections": [
+      {
+        "title": "The local club: Wellington Wildcats",
+        "paragraphs": [
+          "Wellington AFC has girls’ youth teams and Wellington Wildcats Ladies, who play in the Somerset County Women’s League. Youth teams play in the Somerset Girls’ Football League, and opportunities for younger players may also be available.",
+          "Wildcats gives players opportunities for regular training, matches, teammates and progression as they grow. Ask the club about current age groups, festival football, places and eligibility, as these can change.",
+          "If she is settled and enjoying her football with the Wildcats, that is often enough."
+        ]
+      },
+      {
+        "title": "When local club football is not quite enough",
+        "paragraphs": [
+          "Even in a well-run club, some girls reach a point where they would benefit from more individual attention. Common situations include:",
+          "She is going quiet or losing confidence in larger group sessions.",
+          "She has a specific technical focus she wants to work on, such as first touch, receiving or decision-making.",
+          "She finds busy training environments overwhelming.",
+          "She wants clearer feedback she can take straight back into her Wildcats sessions.",
+          "Growth, school pressure or a difficult period has affected how she feels about the game.",
+          "A familiar and supportive club environment is a strength. When a girl needs something more personal, a team coach may have limited time to focus on one player within a group session."
+        ]
+      },
+      {
+        "title": "What individual coaching adds",
+        "paragraphs": [
+          "Individual coaching is not about replacing her club. It is about giving her focused time alongside the team environment.",
+          "The coach can observe her closely and adjust the session as she responds. Priorities can be agreed with her rather than set for a whole age group.",
+          "A player can have opportunities to repeat key actions, with feedback she can use the next time she trains or plays for the Wildcats.",
+          "Some players may feel more comfortable trying things without comparison with other players. The pace and style of coaching can be matched to how she learns, with practical adjustments for girls who are neurodivergent or need a quieter starting point.",
+          "Many families find a useful combination is the local club for team football and matches, plus occasional or regular individual sessions for personal development."
+        ]
+      },
+      {
+        "title": "How STAR works in Wellington",
+        "paragraphs": [
+          "STAR Development Centre offers independent girls’ football coaching in Wellington for ages 5–18. We work alongside local clubs rather than competing with them.",
+          "We provide flexible one-to-one coaching, structured individual programmes with progress reviews, and smaller group sessions when that format is a better fit.",
+          "Everything starts with a free 30-minute assessment. There is no cost and no commitment. Your daughter meets the coach, tries a few activities suited to her, and you both get a sense of whether it feels right. We arrange venues locally and confirm the details with you beforehand.",
+          "We are an Approved Autism Friendly Coaching provider and take time to understand what helps each player feel comfortable and able to learn."
+        ]
+      },
+      {
+        "title": "A practical way to decide",
+        "paragraphs": [
+          "If your daughter is happy at the Wildcats, progressing, and still looking forward to training, her current setup may be all she needs.",
+          "If she has gone quieter, lost some confidence, or has a clear skill she wants to improve, a short period of individual coaching may be worth exploring. It does not mean leaving her club. It means giving her extra support that sits alongside it."
+        ]
+      },
+      {
+        "title": "Next step",
+        "paragraphs": [
+          "If you would like to talk about what might help your daughter in Wellington, we are happy to start with a conversation or a free assessment. No pressure — just a practical discussion about her game and whether some focused individual support would be useful."
+        ]
+      }
+    ],
+    "practice": "Request a free 30-minute assessment in Wellington, or get in touch. We normally reply within 12 hours, but please allow up to 48 hours. The venue is confirmed in advance.",
+    "takeaways": [
+      "A player who enjoys her club football may need nothing extra.",
+      "Individual coaching can support a player alongside her team.",
+      "Check current youth age groups and places with Wellington AFC."
+    ],
+    "sources": [
+      {
+        "label": "Wellington AFC: Club information",
+        "url": "https://www.wellingtonafc.co.uk/"
+      },
+      {
+        "label": "Somerset County Women’s League",
+        "url": "https://fulltime.thefa.com/index.html?selectedCompetition=0&selectedDivision=26372470&selectedFixtureGroupAgeGroup=0&selectedSeason=649869614"
+      },
+      {
+        "label": "Somerset Girls’ Football League: Wellington Wildcats U12",
+        "url": "https://www.teamstats.net/team/football/wellington-wildcats-u12-wildcats"
+      }
+    ]
   }
 ]
