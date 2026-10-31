@@ -33,7 +33,7 @@ These are business requirements provided in earlier planning; check with the own
 - STAR Sparks ages 5–10: £5 per 45-minute group session, pay-as-you-go.
 - Group coaching ages 11–16: £5 per 45-minute group session.
 - Flyers ages 7–10: 16 weekly one-hour individual sessions; £375 upfront or £380 total across three payments.
-- One to One Coaching ages 11–18: £40 per one-hour session.
+- One to One Coaching ages 11–18: £35 per one-hour session.
 - Prestige ages 11–18: 24 weeks, typically weekly 90-minute individual sessions; £800 upfront, 3 × £280 or 6 × £150.
 - Player Season Support: £25 per visit, with agreed observations and coaching support.
 - Ages 17–18: individual coaching only.
@@ -44,9 +44,7 @@ These are business requirements provided in earlier planning; check with the own
 - `/programmes` has an age filter, an individual-coaching feature, Flyers/Prestige cards, separate cards for group ages 5–7, 8–10, 11–13 and 14–16, and a separate Player Season Support section. Preserve existing programme anchor IDs.
 - Reuse `/find-your-programme` as the single guided finder. Match age and stated focus, show the reason for each suggestion and rank One to One Coaching first for eligible individual goals. Do not suggest individual programmes as group matches; explain ages 17–18 have individual options.
 - Public descriptions and enquiries do not require an account. Programme enquiries use the existing contact form with the programme and selected age carried through.
-- Prices and payment options stay exclusively in the server pricing route and are returned only after validating a non-anonymous signed-in user. Viewing prices no longer requires a parent profile or submitted player registration; enrolment permissions remain separate. Never embed prices in public page data, HTML or client bundles.
-- The pricing sign-in links accept only the `programmes` or `finder` return destinations. The existing parent sign-in/confirmation flow returns to that page; password recovery must finish before redirecting.
-- Run `node --test scripts/test-programmes.cjs` for age/focus matching and mocked pricing authentication checks when modifying these areas.
+- All programme prices and payment options are public and visible without sign-in on programme pages and the finder. Keep enrolment and private player records protected separately.\n- Run `node --test scripts/test-programmes.cjs` for age/focus matching and mocked pricing authentication checks when modifying these areas.
 
 ## Public Football Hub
 - `/articles` is the public collection of 12 original, detailed coaching guides; `/articles/[slug]` serves each guide with contents navigation, a practical activity, takeaways and related reading. It is separate from the completed private Parent Learning Hub.
