@@ -1218,5 +1218,94 @@
       "Allow time, adapt activities and respect requests to pause or stop."
     ],
     "sources": []
+  },
+  {
+    "slug": "japanese-coaching-philosophies-star",
+    "title": "How Japanese Coaching Philosophies Shape the Way We Work at STAR",
+    "category": "Coaching approach",
+    "summary": "How ideas from Japanese player development influence STAR’s patient, individual and long-term approach.",
+    "intro": "At STAR we draw on ideas that have shaped youth development in Japan. Certain principles align closely with how we believe girls develop best: patiently, individually, and with a long-term view. Two places that have influenced our thinking are the JFA Academy, run by the Japan Football Association, and the academy system at Kashima Antlers.",
+    "sections": [
+      {
+        "title": "Players First",
+        "paragraphs": [
+          "One principle in Japanese youth development is “Players First.” The Japan Football Association uses this idea in its approach to player development.",
+          "This matches how we work. We start with the individual girl in front of us — her current level, her confidence, what she finds difficult, and what she wants to improve. The session is built around her, not around a generic plan or the need to look impressive in the short term."
+        ]
+      },
+      {
+        "title": "Long-term development over quick wins",
+        "paragraphs": [
+          "The JFA Academy describes a long-term approach to individual development. Kashima Antlers also organises its academy across different youth age groups. Their environments are different from STAR’s, but the long-term perspective resonates with us.",
+          "This is why we are careful about pressure. We do not rush technical or physical development. We prefer clear, repeatable focuses that a player can take away and use in her club sessions and matches. Small, consistent improvements can build over time."
+        ]
+      },
+      {
+        "title": "Individual development inside a team game",
+        "paragraphs": [
+          "The JFA Academy describes developing the individual and providing age-appropriate environments. Kashima’s academy also describes support for players’ sporting and educational development.",
+          "At STAR this translates into individual and small-group coaching that sits alongside club football. We give a player time and attention that is hard to provide in a full team session, then help her explore how to use that learning back in her club environment."
+        ]
+      },
+      {
+        "title": "Technical detail and repetition with purpose",
+        "paragraphs": [
+          "At STAR, one practical expression of this influence is our attention to technical detail: quality of contact, body shape, first touch and the ability to play under increasing pressure, built gradually.",
+          "Rather than overloading a player with information, we identify one or two clear priorities and give her the time and conditions to improve them. The aim is for the skill to become more reliable so she can use it when it matters."
+        ]
+      },
+      {
+        "title": "Respect for different rates of development",
+        "paragraphs": [
+          "Players grow at different speeds. Physical, technical and emotional development do not always move together. Good coaching recognises this and avoids writing players off too early or pushing them too hard too soon.",
+          "This is central to how we work with girls between 11 and 14, when confidence can change. We listen to each player and adjust the coaching accordingly."
+        ]
+      },
+      {
+        "title": "Creating the right environment",
+        "paragraphs": [
+          "The JFA Academy highlights the importance of appropriate environments and coaching for each stage of development. Kashima describes support for sporting and educational growth.",
+          "We try to create a supportive environment on a smaller scale. Sessions should feel purposeful but not pressured. Players should leave knowing what they were working on and feeling capable of trying it again."
+        ]
+      },
+      {
+        "title": "How this looks in practice at STAR",
+        "paragraphs": [
+          "We prioritise the individual player’s needs and starting point, and favour long-term progress over quick, visible results.",
+          "We keep technical focuses clear and limited, and give proper time for repetition and refinement.",
+          "We respect that confidence and physical development move at different speeds, and design coaching that supports a girl’s existing club football.",
+          "We are not trying to recreate a Japanese academy in Somerset. The contexts are different. What we have taken is a set of principles that value patience, individuality, technical quality and the long view.",
+          "These ideas sit comfortably alongside our other priorities — supporting neurodivergent players, protecting enjoyment, and giving girls a clearer sense of their own game."
+        ]
+      }
+    ],
+    "practice": "If you would like to see how this approach feels in practice, you are welcome to arrange a free 30-minute assessment. There is no commitment — just an opportunity for your daughter to experience the coaching and for you both to decide whether it feels like a good fit.",
+    "takeaways": [
+      "Put the player’s needs and goals first.",
+      "Support progress over time with clear technical priorities.",
+      "Let individual coaching complement club football."
+    ],
+    "sources": [
+      {
+        "label": "Japan Football Association: Players First",
+        "url": "https://www.jfa.jp/eng/youth_development/players_first/"
+      },
+      {
+        "label": "JFA Academy: Introduction and philosophy",
+        "url": "https://www.jfa.jp/eng/youth_development/jfa_academy/philosophy.html"
+      },
+      {
+        "label": "JFA Academy: About the academy",
+        "url": "https://jfa.jp/eng/youth_development/jfa_academy/introduction.html"
+      },
+      {
+        "label": "Kashima Antlers: Academy overview",
+        "url": "https://www.antlers.co.jp/en/pages/academy-index"
+      },
+      {
+        "label": "Kashima Antlers: Youth academy",
+        "url": "https://www.antlers.co.jp/en/pages/academy-youth"
+      }
+    ]
   }
 ]
