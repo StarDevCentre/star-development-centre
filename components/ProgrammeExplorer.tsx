@@ -17,6 +17,7 @@ function StructuredProgramme({slug, age}: {slug: string; age?: number}) {
     <div className="programme-offer-fit"><h4>Who it’s for</h4><p>{detail.fit}</p></div>
     <h4>What’s included</h4><ul className="programme-includes">{detail.includes.map(item => <li key={item}>{item}</li>)}</ul>
     <details className="programme-more"><summary>Session arrangements <span aria-hidden="true">+</span></summary><p>{detail.schedule}</p><p>Taunton & Wellington area. Confirm the venue and availability with STAR.</p><p>{detail.note}</p></details>
+    {slug === "prestige" && <Link href="/prestige" className="programme-text-link" style={{marginBottom: "16px", color: "#e3c783"}}>Explore the full Prestige journey →</Link>}
     <ProgrammePrice slug={slug}/><Enquire slug={slug} age={age} label={"Enquire about " + programme.title}/>
   </article>;
 }
