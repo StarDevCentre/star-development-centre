@@ -3,7 +3,9 @@ import type {BuilderLook} from './buildMyPlayer';
 type View='front'|'back';
 type Point=readonly [number,number];
 const width=460,height=1024;
-const brandedTops=['nike-club-hoodie','whitefox-shadow-hoodie','whitefox-glacier-hoodie'];
+const brandedTops=['nike-club-hoodie','whitefox-shadow-hoodie','whitefox-glacier-hoodie','adidas-firebird-top','ua-tech-halfzip','puma-essentials-hoodie'];
+const brandedTees=['adidas-originals-tee'];
+const fittedLongBottoms=['nike-club-joggers','adidas-firebird-trousers'];
 const bottomMask:readonly Point[]=[[90,434],[374,434],[374,570],[420,570],[420,910],[50,910],[50,570],[90,570]];
 const images=new Map<string,Promise<HTMLImageElement>>();
 function readImage(src:string){
@@ -44,7 +46,7 @@ function personalise(c:HTMLCanvasElement,look:BuilderLook,view:View,kind:'traini
    const colour=look.top==='white-tee'?[245,247,252]:look.top==='gold-hoodie'?[221,180,72]:null;
    if(colour){const l=Math.min(1,(r+g+b)/220);for(let k=0;k<3;k++)p[i+k]=colour[k]*(.60+l*.40);}
   }
-  if(y>=(look.bottoms==='nike-club-joggers'?878:848)&&y<910&&r>150&&Math.max(r,g,b)-Math.min(r,g,b)<30){const colour=({navy:[24,42,73],black:[30,32,40],red:[189,38,53]} as Record<string,number[]>)[look.socks];if(colour){const l=(r+g+b)/765;for(let k=0;k<3;k++)p[i+k]=colour[k]*(.6+l*.4);}}
+  if(y>=(look.bottoms==='adidas-firebird-trousers'?888:look.bottoms==='nike-club-joggers'?878:848)&&y<910&&r>150&&Math.max(r,g,b)-Math.min(r,g,b)<30){const colour=({navy:[24,42,73],black:[30,32,40],red:[189,38,53]} as Record<string,number[]>)[look.socks];if(colour){const l=(r+g+b)/765;for(let k=0;k<3;k++)p[i+k]=colour[k]*(.6+l*.4);}}
  }
  ctx.putImageData(d,0,0);
  if(view==='front'){
@@ -59,7 +61,7 @@ export async function renderBuilderArtwork(look:BuilderLook,view:View){
  const branded=brandedTops.includes(look.top),hoodie=look.top==='hoodie'||look.top==='gold-hoodie'||branded;
  const kind=hoodie?'hoodie':'training';
  const asset=(name:string)=>readImage(`/player-space/builder/v2/${name}-${view}.webp`);
- const [base,top,bottom]=await Promise.all([asset('training'),hoodie?asset(branded?look.top:'hoodie'):null,look.bottoms==='nike-club-joggers'?asset(look.bottoms):null]);
+ const [base,top,bottom]=await Promise.all([asset('training'),hoodie?asset(branded?look.top:'hoodie'):brandedTees.includes(look.top)?asset(look.top):null,fittedLongBottoms.includes(look.bottoms)?asset(look.bottoms):null]);
  const out=surface(),ctx=out.getContext('2d')!;ctx.drawImage(base,0,0);
  function replace(im:HTMLImageElement,points:readonly Point[]){
   ctx.save();polygon(ctx,points);ctx.clip();ctx.clearRect(0,0,width,height);ctx.drawImage(im,0,0);ctx.restore();
@@ -67,6 +69,6 @@ export async function renderBuilderArtwork(look:BuilderLook,view:View){
  // Replace shorts AND covered legs before painting joggers. The mask excludes
  // the hands and preserves the common feet; tops then overlap the waistband.
  if(bottom)replace(bottom,bottomMask);
- if(top)replace(top,topMasks.hoodie[view]);
+ if(top)replace(top,topMasks[kind][view]);
  personalise(out,look,view,kind);return out;
 }

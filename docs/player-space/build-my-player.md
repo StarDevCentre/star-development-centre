@@ -52,3 +52,12 @@ Enabled the existing IDs `nike-club-hoodie`, `nike-club-joggers`, `whitefox-shad
 Joggers replace the covered shorts and legs using a lower-body mask that excludes the hands and retains the common feet. Tops draw after bottoms, so the hems overlap the waistband naturally. The sock-colour region begins below the jogger cuffs, preventing fleece from being recoloured as socks. The three branded hoodies use their own source artwork rather than recolouring another brand's garment. White Fox has its small chest mark and large rear lettering; the Nike pieces have their white front swoosh and plain rear. The same fixed teenage model, skin/hair colours and accessories remain in use. Other pending items stay unavailable.
 
 Validation: TypeScript and production build; 56 rendered combinations (seven tops x two bottoms x two views x two appearance/sock configurations), inspected for waist/cuff/hand/boot continuity, logos, skin/hair colours and mixed outfits. No usability tests or database changes.
+
+
+## Branded fitting batch three — 1 November 2026
+
+Five existing free catalogue IDs are now fitted: `adidas-firebird-top`, `adidas-firebird-trousers`, `adidas-originals-tee`, `ua-tech-halfzip`, and `puma-essentials-hoodie`. Ten v2 WebP exports use the same fixed teenage-template crops. Exact built-in image_gen prompts, edit targets, design references and source hashes are recorded in `builder-branded-batch-3.json`; use `scripts/export-builder-branded.cjs` with the recorded source sheets.
+
+The renderer now loads branded short-sleeve tees separately from long-sleeve tops, preserving their existing coverage masks. Firebird trousers replace covered legs before the top is drawn. Their sock-colour threshold begins below the white side stripes, retaining the adidas design with coloured socks. Existing saved IDs, reward entitlements and remaining fitting gates are unchanged. No database migration.
+
+Validation: TypeScript, production build and 132 rendered combinations (eleven fitted tops × three bottoms × front/back × two skin/hair/sock configurations), visually inspected for mixed outfits, waist/sleeve/cuff/hand joins and branding. No usability testing.

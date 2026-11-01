@@ -1,0 +1,47 @@
+{
+  "date": "2026-11-01",
+  "method": "Built-in image_gen edits of the fitted teenage template",
+  "export": "1536x1024 sources, fixed crops x222/x854,460x1024 WebP; no scaling",
+  "items": [
+    {
+      "id": "adidas-firebird-top",
+      "edit_target": "exec-d226e514-c903-46a3-a1eb-58a57a9f9462.png",
+      "prompt": "Use case: precise-object-edit. Technical wardrobe sprite for existing game. Image 1 EDIT TARGET is exact 1536x1024 front LEFT/back RIGHT sheet of fully clothed fictional 16-year-old slim teenage football girl. Image 2 GARMENT DESIGN REFERENCE only; do not copy its adult proportions. Replace ONLY hoodie with black adidas Firebird zip track top. Stand collar (no hood), full central zipper, white three stripes along both shoulders and sleeves, white trefoil on wearer left chest, welt pockets, rib cuffs/hem. Plain rear except sleeve stripes. Keep garment hem and wrist endpoints identical. Preserve EXACTLY target face, hair, teenage body proportions, pose, hands, feet, unaffected clothing, socks, black starter boots, scale and coordinates. No resizing, no shifting either figure, maintain 1536x1024 canvas. Match illustrated sports-game style. True transparent background, NO floor, shadow, glow, background pixels, text labels or extra objects. Both views required.",
+      "source_file": "exec-aad285bd-57d2-4843-abe3-2ebf7de5607a.png",
+      "source_sha256": "85fd514ea17cfa77f20056dcc631f95da7f70ba654a3a418fbe64b224b8b77b3",
+      "design_reference": "public/player-space/builder/wardrobe/adidas-firebird-top-front.webp"
+    },
+    {
+      "id": "adidas-firebird-trousers",
+      "edit_target": "exec-d43b2a7d-c894-4d25-bb2c-8abf399e2d07.png",
+      "prompt": "Use case: precise-object-edit. Technical wardrobe sprite for existing game. Image 1 EDIT TARGET is exact 1536x1024 front LEFT/back RIGHT sheet of fully clothed fictional 16-year-old slim teenage football girl. Image 2 GARMENT DESIGN REFERENCE only; do not copy its adult proportions. Replace ONLY navy shorts and bare legs with black adidas Firebird track trousers. Straight relaxed legs following same stance, white three side stripes from hips to ankles, small white trefoil at wearer left thigh in front, plain rear. Waist meets unchanged tee hem at y444, legs end at y878 above unchanged white socks and boots. Preserve hands. Preserve EXACTLY target face, hair, teenage body proportions, pose, hands, feet, unaffected clothing, socks, black starter boots, scale and coordinates. No resizing, no shifting either figure, maintain 1536x1024 canvas. Match illustrated sports-game style. True transparent background, NO floor, shadow, glow, background pixels, text labels or extra objects. Both views required.",
+      "source_file": "exec-46e8fa69-6fa6-4c4b-b1b9-1ede33ffe3e7.png",
+      "source_sha256": "04f4166084280e4fa3dff74a1e17a3b01a06fc27d558636710ea9fe71a1313db",
+      "design_reference": "public/player-space/builder/wardrobe/adidas-firebird-trousers-front.webp"
+    },
+    {
+      "id": "adidas-originals-tee",
+      "edit_target": "exec-d43b2a7d-c894-4d25-bb2c-8abf399e2d07.png",
+      "prompt": "Use case: precise-object-edit. Technical wardrobe sprite for existing game. Image 1 EDIT TARGET is exact 1536x1024 front LEFT/back RIGHT sheet of fully clothed fictional 16-year-old slim teenage football girl. Image 2 GARMENT DESIGN REFERENCE only; do not copy its adult proportions. Replace ONLY navy tee with white adidas Originals crew-neck T-shirt: black three stripes along shoulders onto short sleeves and small black trefoil on wearer left chest. Plain white rear except shoulder/sleeve stripes. Keep same relaxed teen fit, sleeves and hem edges exactly. Preserve EXACTLY target face, hair, teenage body proportions, pose, hands, feet, unaffected clothing, socks, black starter boots, scale and coordinates. No resizing, no shifting either figure, maintain 1536x1024 canvas. Match illustrated sports-game style. True transparent background, NO floor, shadow, glow, background pixels, text labels or extra objects. Both views required.",
+      "source_file": "exec-2cdf8b1e-c643-4f62-967a-fad3cdd2819e.png",
+      "source_sha256": "3e4b7562f9636bcb40a48f48e884ee4ff4819a6fa0aab510eb97eff944a27a6b",
+      "design_reference": "public/player-space/builder/wardrobe/adidas-originals-tee-front.webp"
+    },
+    {
+      "id": "ua-tech-halfzip",
+      "edit_target": "exec-d226e514-c903-46a3-a1eb-58a57a9f9462.png",
+      "prompt": "Use case: precise-object-edit. Technical wardrobe sprite for existing game. Image 1 EDIT TARGET is exact 1536x1024 front LEFT/back RIGHT sheet of fully clothed fictional 16-year-old slim teenage football girl. Image 2 GARMENT DESIGN REFERENCE only; do not copy its adult proportions. Replace ONLY hoodie with black Under Armour Tech long-sleeve half-zip. No hood, low stand collar and short central zipper, small white UA chest logo at wearer left, white UNDER ARMOUR lettering down wearer left sleeve. Plain black rear. Same slim teenage body under gently loose fabric, same hem and cuffs. Preserve EXACTLY target face, hair, teenage body proportions, pose, hands, feet, unaffected clothing, socks, black starter boots, scale and coordinates. No resizing, no shifting either figure, maintain 1536x1024 canvas. Match illustrated sports-game style. True transparent background, NO floor, shadow, glow, background pixels, text labels or extra objects. Both views required.",
+      "source_file": "exec-123f0c8c-272b-41d7-8a6d-ede3993a606d.png",
+      "source_sha256": "39397e98bd95ed6892a5feacc9c261ce0bbeaac22d29fc5ad9bf1d746749f8b5",
+      "design_reference": "public/player-space/builder/wardrobe/ua-tech-halfzip-front.webp"
+    },
+    {
+      "id": "puma-essentials-hoodie",
+      "edit_target": "exec-d226e514-c903-46a3-a1eb-58a57a9f9462.png",
+      "prompt": "Use case: precise-object-edit. Technical wardrobe sprite for existing game. Image 1 EDIT TARGET is exact 1536x1024 front LEFT/back RIGHT sheet of fully clothed fictional 16-year-old slim teenage football girl. Image 2 GARMENT DESIGN REFERENCE only; do not copy its adult proportions. Replace ONLY navy hoodie with black PUMA Essentials pullover hoodie: small white PUMA wordmark with leaping cat on wearer left chest, matching black drawstrings, kangaroo pocket. Plain black rear, hood down, same hem and cuffs. Preserve EXACTLY target face, hair, teenage body proportions, pose, hands, feet, unaffected clothing, socks, black starter boots, scale and coordinates. No resizing, no shifting either figure, maintain 1536x1024 canvas. Match illustrated sports-game style. True transparent background, NO floor, shadow, glow, background pixels, text labels or extra objects. Both views required.",
+      "source_file": "exec-63c3bbdc-aeed-467e-9d4d-edebf90a8499.png",
+      "source_sha256": "69e0a7405038e0c9aafa152ac5d6ade684ffd9864e9bb4153eed2d7930668fa8",
+      "design_reference": "public/player-space/builder/wardrobe/puma-essentials-hoodie-front.webp"
+    }
+  ]
+}

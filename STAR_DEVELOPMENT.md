@@ -348,3 +348,10 @@ These are business requirements provided in earlier planning; check with the own
 - `builderFit.ts` now enables the existing Nike Club grey-marl hoodie/joggers and White Fox Shadow/Glacier Grey hoodies. Eight v2 exports are edited directly from the working teenage template; maintain identical fixed coordinates. Other pending pieces remain unavailable.
 - The lower-body replacement mask covers old shorts/legs and excludes hands; tops overlay the waistband. Sock recolouring starts below full-length cuffs. Preserve separate brand artwork, saved IDs and existing entitlements. No migration.
 - TypeScript, production build and 56 mixed outfit/view/appearance artwork renders passed. No usability tests. Exact source hashes/prompts and export details: `docs/player-space/builder-branded-batch-2.json` and `build-my-player.md`.
+
+
+## Branded builder batch three — 1 November 2026
+
+- Five more existing IDs fitted: adidas Firebird top/trousers, adidas Originals tee, Under Armour Tech half-zip and PUMA Essentials hoodie. Ten aligned v2 exports, same template. Short-sleeve branded tees use training coverage; long sleeves use the established full-arm mask. Firebird sock recolouring begins below its white stripes.
+- Saved IDs/unlocks and remaining fitting gates stay intact; no migration. Exact source metadata/prompts: `docs/player-space/builder-branded-batch-3.json`.
+- TypeScript, production build and 132 mixed outfit/view/appearance renders passed. No usability tests.
