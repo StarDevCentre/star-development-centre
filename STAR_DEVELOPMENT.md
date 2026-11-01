@@ -342,3 +342,9 @@ These are business requirements provided in earlier planning; check with the own
 - `lib/builderFit.ts` gates the completed fitting batch: navy/white tees, navy/gold hoodies, navy shorts, ankle-sock colours, starter boots and ponytail. Pending garments, kits, earned boots and other hairstyles stay visibly marked Being fitted. Preserve saved IDs/unlocks; pending saved looks use the clearly explained training fallback and cannot overwrite a saved look until fitted items are selected.
 - `public/player-space/builder/v2/` and fixed template crops replace garment bounding-box scaling. Keep all landmarks shared; explicit coverage clears the old body before aligned sleeves are composited. Never enable legacy adult sprites on this template. Refit and inspect items in small batches. See `docs/player-space/build-my-player.md` for exact prompts, export and limits.
 - Eight existing builder checks, TypeScript, production build and sixteen artwork/view/appearance renders passed. No usability testing or database changes.
+
+## Branded builder batch two — 1 November 2026
+
+- `builderFit.ts` now enables the existing Nike Club grey-marl hoodie/joggers and White Fox Shadow/Glacier Grey hoodies. Eight v2 exports are edited directly from the working teenage template; maintain identical fixed coordinates. Other pending pieces remain unavailable.
+- The lower-body replacement mask covers old shorts/legs and excludes hands; tops overlay the waistband. Sock recolouring starts below full-length cuffs. Preserve separate brand artwork, saved IDs and existing entitlements. No migration.
+- TypeScript, production build and 56 mixed outfit/view/appearance artwork renders passed. No usability tests. Exact source hashes/prompts and export details: `docs/player-space/builder-branded-batch-2.json` and `build-my-player.md`.

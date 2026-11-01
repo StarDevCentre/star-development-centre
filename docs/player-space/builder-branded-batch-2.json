@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-01",
+  "method": "Built-in image_gen edits of the existing fictional teenage template; approved wardrobe sprites used as design references.",
+  "export": "Original 1536x1024 sheets; fixed x=222 / x=854 crops, 460x1024, no scaling.",
+  "items": [
+    {
+      "id": "nike-club-hoodie",
+      "source_file": "exec-45c31709-38b5-40ca-9dbf-26c470b1f8ef.png",
+      "source_sha256": "7dbc818e78c4e20c171e40532cbc7577108b5afd66b08428772ca8e096c1fb64",
+      "design_reference": "public/player-space/builder/wardrobe/nike-club-hoodie-front.webp",
+      "prompt": "Technical wardrobe sprite edit. Image 1 is the EDIT TARGET: existing 1536x1024 two-view sheet of a fully clothed fictional 16-year-old teenage football girl, front LEFT and back RIGHT. Preserve EXACTLY her face, hair, slim teenage body, pose, stance, hands, feet, shorts, socks, boots, scale, placement, and canvas dimensions. Change ONLY the hoodie in BOTH views, following the same precise shoulder/arm angles, cuffs at the same wrists and hem at the same waist height. Keep naturally loose sleeves with hands fully visible; hood down. Image 2 is garment DESIGN REFERENCE ONLY: do not use its width or pose. True transparent background, no glow/shadow/floor. No additional objects or figures. Replace the navy hoodie with Nike Club Fleece hoodie in light grey marl, matching reference fleece texture, kangaroo pocket, matching grey drawstrings and small clean WHITE Nike swoosh on wearer's left chest. Plain grey rear with no back branding. Preserve neck, head and ponytail.",
+      "exports": [
+        "public/player-space/builder/v2/nike-club-hoodie-front.webp",
+        "public/player-space/builder/v2/nike-club-hoodie-back.webp"
+      ]
+    },
+    {
+      "id": "nike-club-joggers",
+      "source_file": "exec-d02bb7dd-bcbe-45fd-ad7a-7048fa787013.png",
+      "source_sha256": "15faa7ef839f5bdfbdffdd501337eb952461a85b0534b4e85bc1440a25331123",
+      "design_reference": "public/player-space/builder/wardrobe/nike-club-joggers-front.webp",
+      "prompt": "Technical wardrobe sprite edit. Image 1 is the EDIT TARGET: existing 1536x1024 two-view sheet of the SAME fully clothed fictional 16-year-old teenage football girl, front LEFT and back RIGHT. Preserve EXACTLY her face, ponytail, slim teenage body, pose, hands, feet, T-shirt, socks and boots, scale, placement and canvas dimensions. Change ONLY her navy shorts into Nike Club Fleece JOGGERS in light grey marl in BOTH views, using image 2 as DESIGN REFERENCE ONLY. Do not use reference 2's width or stance. Joggers fit naturally loose around hips and legs, follow the existing slightly apart leg positions, cuffs at ankles ending just above the unchanged black starter boots. Waistband meets original shirt hem with no gap; show grey drawstrings below shirt if visible. Small WHITE Nike swoosh on wearer's left thigh in FRONT; plain rear apart from natural seams and rear pocket. Cover the original shorts and legs fully with fabric, preserve BOTH HANDS in front beside hips without moving. True transparent background, no floor/shadow/glow. High fidelity illustrated sports-game style matching target. No extra objects or figures.",
+      "exports": [
+        "public/player-space/builder/v2/nike-club-joggers-front.webp",
+        "public/player-space/builder/v2/nike-club-joggers-back.webp"
+      ]
+    },
+    {
+      "id": "whitefox-shadow-hoodie",
+      "source_file": "exec-f4aec45f-696e-4f25-b248-94f6a24f9e21.png",
+      "source_sha256": "4044274fad35cad79a012832db50557378c4537275d8a3eb60f97c279e3dcb88",
+      "design_reference": "public/player-space/builder/wardrobe/whitefox-shadow-hoodie-front.webp",
+      "prompt": "Technical wardrobe sprite edit. Image 1 is the EDIT TARGET: existing 1536x1024 two-view sheet of a fully clothed fictional 16-year-old teenage football girl, front LEFT and back RIGHT. Preserve EXACTLY her face, hair, slim teenage body, pose, stance, hands, feet, shorts, socks, boots, scale, placement, and canvas dimensions. Change ONLY the hoodie in BOTH views, following the same precise shoulder/arm angles, cuffs at the same wrists and hem at the same waist height. Keep naturally loose sleeves with hands fully visible; hood down. Image 2 is garment DESIGN REFERENCE ONLY: do not use its width or pose. True transparent background, no glow/shadow/floor. No additional objects or figures. Replace the navy hoodie with White Fox Offstage hoodie in Shadow charcoal, matching reference cut and fabric. Small off-white WHITE FOX text on wearer's left chest on FRONT. Large off-white collegiate arched WHITE FOX lettering on upper BACK beneath the hood, partly naturally obscured by the unchanged ponytail. No drawstrings. Kangaroo pocket. Exactly spelled WHITE FOX.",
+      "exports": [
+        "public/player-space/builder/v2/whitefox-shadow-hoodie-front.webp",
+        "public/player-space/builder/v2/whitefox-shadow-hoodie-back.webp"
+      ]
+    },
+    {
+      "id": "whitefox-glacier-hoodie",
+      "source_file": "exec-5f904df2-3a57-4ab3-94cd-708b07e36ad1.png",
+      "source_sha256": "72ba01c16fa516ef2d64feb128c94f638bfe3e45763304b4f7b954c6e8e890e8",
+      "design_reference": "public/player-space/builder/wardrobe/whitefox-glacier-hoodie-back.webp",
+      "prompt": "Technical wardrobe sprite edit. Image 1 is the EDIT TARGET: existing 1536x1024 two-view sheet of a fully clothed fictional 16-year-old teenage football girl, front LEFT and back RIGHT. Preserve EXACTLY her face, hair, slim teenage body, pose, stance, hands, feet, shorts, socks, boots, scale, placement, and canvas dimensions. Change ONLY the hoodie in BOTH views, following the same precise shoulder/arm angles, cuffs at the same wrists and hem at the same waist height. Keep naturally loose sleeves with hands fully visible; hood down. Image 2 is garment DESIGN REFERENCE ONLY: do not use its width or pose. True transparent background, no glow/shadow/floor. No additional objects or figures. Replace the navy hoodie with White Fox Offstage hoodie in Glacier Grey light cool grey, matching reference cut and fabric. Small charcoal WHITE FOX text on wearer's left chest on FRONT. Large charcoal collegiate arched WHITE FOX lettering on upper BACK beneath the hood, partly naturally obscured by unchanged ponytail. No drawstrings. Kangaroo pocket. Exactly spelled WHITE FOX.",
+      "exports": [
+        "public/player-space/builder/v2/whitefox-glacier-hoodie-front.webp",
+        "public/player-space/builder/v2/whitefox-glacier-hoodie-back.webp"
+      ]
+    }
+  ]
+}
