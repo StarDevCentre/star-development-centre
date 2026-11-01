@@ -362,3 +362,10 @@ These are business requirements provided in earlier planning; check with the own
 - Enabled existing Nike Pro crop/shorts IDs in black/white. Crop outfits use four fitted torso/waist variants for all completed bottoms; eight v2 exports. Regular tops keep their full hem when worn with Pro shorts. Further bottoms need a crop-compatible variant before activation.
 - Same fixed crop/export coordinates and existing personalisation/save/unlock rules; no migration. Exact prompts and source hashes: `docs/player-space/builder-nike-pro-batch.json`.
 - TypeScript, production build and 192 mixed outfit/view/appearance renders passed; no usability tests.
+
+
+## Ellesse pink tracksuit — 1 November 2026
+
+- Added separately selectable free Ellesse pink crew-neck sweatshirt and joggers from owner garment photos; six v2 exports include the crop/jogger variant. Preserve plain backs, chest/thigh branding, pink fabric and fixed template dimensions. Jogger rear export uses x887 to compensate for its measured source translation, without scaling.
+- Warm brand emblems are protected from skin recolouring; socks begin below cuffs. `export-builder-branded.cjs` supports optional rear crop alignment. Source hashes/prompts: `docs/player-space/builder-ellesse-pink.json`.
+- Migration `20261101222814_ellesse_pink_tracksuit` is applied; only two validator IDs added, existing permissions/unlocks unchanged. TypeScript, production build, 260 mixed artwork renders and rollback-only authenticated save/privacy/entitlement checks passed; no usability tests.

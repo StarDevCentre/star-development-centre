@@ -1,5 +1,7 @@
 /** Approved 1 November 2026. Each garment has its own front and rear sprite. */
 export const builderWardrobe = [
+ {id:'ellesse-pink-sweatshirt',label:'Ellesse crew-neck sweatshirt · pink',slot:'top',style:'casual'},
+ {id:'ellesse-pink-joggers',label:'Ellesse joggers · pink',slot:'bottoms',style:'casual',fullLength:true},
  {id:'nike-club-hoodie',label:'Nike Club Fleece hoodie · grey marl',slot:'top',style:'sport'},
  {id:'nike-club-joggers',label:'Nike Club Fleece joggers · grey marl',slot:'bottoms',style:'sport',fullLength:true},
  {id:'adidas-firebird-top',label:'adidas Firebird track top · black/white',slot:'top',style:'sport'},

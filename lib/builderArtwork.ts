@@ -3,9 +3,9 @@ import type {BuilderLook} from './buildMyPlayer';
 type View='front'|'back';
 type Point=readonly [number,number];
 const width=460,height=1024;
-const brandedTops=['nike-club-hoodie','whitefox-shadow-hoodie','whitefox-glacier-hoodie','adidas-firebird-top','ua-tech-halfzip','puma-essentials-hoodie'];
+const brandedTops=['nike-club-hoodie','whitefox-shadow-hoodie','whitefox-glacier-hoodie','adidas-firebird-top','ua-tech-halfzip','puma-essentials-hoodie','ellesse-pink-sweatshirt'];
 const brandedTees=['adidas-originals-tee'];
-const fittedLongBottoms=['nike-club-joggers','adidas-firebird-trousers'];
+const fittedLongBottoms=['nike-club-joggers','adidas-firebird-trousers','ellesse-pink-joggers'];
 const bottomMask:readonly Point[]=[[90,434],[374,434],[374,570],[420,570],[420,910],[50,910],[50,570],[90,570]];
 const images=new Map<string,Promise<HTMLImageElement>>();
 function readImage(src:string){
@@ -35,18 +35,20 @@ function shade(r:number,g:number,b:number,tone:{shadow:readonly number[];mid:rea
 function personalise(c:HTMLCanvasElement,look:BuilderLook,view:View,kind:'training'|'hoodie'){
  const ctx=c.getContext('2d')!,d=ctx.getImageData(0,0,width,height),p=d.data;
  const hair=heroHairColours.find(t=>t.key===look.hair)!,skin=heroSkinTones.find(t=>t.key===look.skin)!;
- const hairMask=mask(hairMasks[view]),topMask=mask(topMasks[kind][view]);
+ const hairMask=mask(hairMasks[view]),topMask=mask(topMasks[kind][view]),lowerMask=look.bottoms==='ellesse-pink-joggers'?mask(bottomMask):null;
  for(let i=0;i<p.length;i+=4){if(!p[i+3])continue;const y=Math.floor(i/4/width),r=p[i],g=p[i+1],b=p[i+2];
   // Hair is identified spatially and by its brown pigment. Navy fabric and skin
   // never become hair, including the rear ponytail that overlaps the shirt.
   const isHair=hairMask[i+3]>0&&r>g*1.12&&g>b*1.08&&r<185;
-  const isSkin=!isHair&&r>g*1.12&&g>b*1.12&&r>90;
+  // Protect the Ellesse orange/red emblems from warm-pigment skin recolouring.
+  const garment=(look.top==='ellesse-pink-sweatshirt'&&y>=195&&y<=450&&topMask[i+3]>0)||(lowerMask&&lowerMask[i+3]>0);
+  const isSkin=!isHair&&!garment&&r>g*1.12&&g>b*1.12&&r>90;
   if(isHair&&look.hair!=='brown'||isSkin&&look.skin!=='light'){const rgb=shade(r,g,b,isHair?hair:skin);for(let k=0;k<3;k++)p[i+k]=rgb[k];}
   if(topMask[i+3]&&b>r*1.15&&b>g*1.08){
    const colour=look.top==='white-tee'?[245,247,252]:look.top==='gold-hoodie'?[221,180,72]:null;
    if(colour){const l=Math.min(1,(r+g+b)/220);for(let k=0;k<3;k++)p[i+k]=colour[k]*(.60+l*.40);}
   }
-  if(y>=(look.bottoms==='adidas-firebird-trousers'?888:look.bottoms==='nike-club-joggers'?878:848)&&y<910&&r>150&&Math.max(r,g,b)-Math.min(r,g,b)<30){const colour=({navy:[24,42,73],black:[30,32,40],red:[189,38,53]} as Record<string,number[]>)[look.socks];if(colour){const l=(r+g+b)/765;for(let k=0;k<3;k++)p[i+k]=colour[k]*(.6+l*.4);}}
+  if(y>=(look.bottoms==='adidas-firebird-trousers'?888:(look.bottoms==='nike-club-joggers'||look.bottoms==='ellesse-pink-joggers')?878:848)&&y<910&&r>150&&Math.max(r,g,b)-Math.min(r,g,b)<30){const colour=({navy:[24,42,73],black:[30,32,40],red:[189,38,53]} as Record<string,number[]>)[look.socks];if(colour){const l=(r+g+b)/765;for(let k=0;k<3;k++)p[i+k]=colour[k]*(.6+l*.4);}}
  }
  ctx.putImageData(d,0,0);
  if(view==='front'){

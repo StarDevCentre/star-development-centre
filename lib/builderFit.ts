@@ -4,7 +4,7 @@ import type {BuilderLook} from './buildMyPlayer';
  * Keep the full persisted catalogue so existing saved looks are never discarded.
  */
 export const fittedBuilderItems:Record<string,readonly string[]>={
- top:['navy-tee','white-tee','hoodie','gold-hoodie','nike-club-hoodie','whitefox-shadow-hoodie','whitefox-glacier-hoodie','adidas-firebird-top','adidas-originals-tee','ua-tech-halfzip','puma-essentials-hoodie','nike-pro-crop'],bottoms:['shorts','nike-club-joggers','adidas-firebird-trousers','nike-pro-shorts'],
+ top:['navy-tee','white-tee','hoodie','gold-hoodie','nike-club-hoodie','whitefox-shadow-hoodie','whitefox-glacier-hoodie','adidas-firebird-top','adidas-originals-tee','ua-tech-halfzip','puma-essentials-hoodie','nike-pro-crop','ellesse-pink-sweatshirt'],bottoms:['shorts','nike-club-joggers','adidas-firebird-trousers','nike-pro-shorts','ellesse-pink-joggers'],
  socks:['white','navy','black','red'],boots:['starter'],hairstyle:['ponytail']
 };
 export function builderItemFitted(slot:string,id:string){return !fittedBuilderItems[slot]||fittedBuilderItems[slot].includes(id);}

@@ -1,0 +1,46 @@
+{
+  "date": "2026-11-01",
+  "method": "Built-in image_gen edits; user photographs are garment-only references, not identity inputs",
+  "references": [
+    {
+      "file": "01-53272.webp",
+      "sha256": "a070fdce2b8962e25f69426d1cc4f381497c24601d6d543afa67db3c26362a74"
+    },
+    {
+      "file": "02-53273.webp",
+      "sha256": "bf64ebf1cd82c68abfcd6db0895dcd547f560dc691568312dfe3d6982fca7e2b"
+    },
+    {
+      "file": "03-53275.webp",
+      "sha256": "6afdf7b144345326ccb84ad942f6409733a5cb2a84e7681e72846f9283540475"
+    },
+    {
+      "file": "04-53274.webp",
+      "sha256": "4ea81f1c8709b6830c12162619cde8ded6a88cea052b9d38b1d372578a858b9f"
+    }
+  ],
+  "export": "460x1024 WebP, no scaling. Standard crops x222/x854; Ellesse joggers rear uses x887 to correct a measured +33px source translation.",
+  "items": [
+    {
+      "id": "ellesse-pink-sweatshirt",
+      "edit_target": "exec-d226e514-c903-46a3-a1eb-58a57a9f9462.png",
+      "prompt": "Use case: precise-object-edit. Asset: technical front/back wardrobe sprites for football game. Image1 EDIT TARGET is the existing 1536x1024 two-view sheet of the same fictional slim teenage football girl. Other images GARMENT REFERENCES ONLY: use their tracksuit colour, fabric, branding and rear construction, NOT the photographed child identity or proportions. Replace ONLY the navy hoodie with the dusty blush PINK Ellesse CREW-NECK sweatshirt in garment references. No hood, zipper or pouch pocket. White lowercase ellesse wordmark centred on chest with orange/red semi-circle emblem and small white since 1959 underneath. Ribbed neck, cuffs and hem; soft fleece, relaxed sleeves following unchanged arms; identical wrist cuffs and waist hem height. Plain pink back. Keep NAVY FOOTBALL SHORTS unchanged. Preserve exactly target head, ponytail, face, slim teenage body, neutral standing pose, arms, hands, feet, all unaffected clothing, scale, positions and original1536x1024 canvas. Front LEFT, back RIGHT, full head to toe. Match existing illustrated game style, not photorealism. True transparent background: no floor, shadow, glow, labels or extra objects. Both views required.",
+      "source_file": "exec-d54c1d44-a84a-42c3-b4f0-dbb810154248.png",
+      "source_sha256": "90da4c4b12319c42d0177b6b878ee58f4ebc44a35f87fe892283293b9ead5b60"
+    },
+    {
+      "id": "ellesse-pink-joggers",
+      "edit_target": "exec-d02bb7dd-bcbe-45fd-ad7a-7048fa787013.png",
+      "prompt": "Use case: precise-object-edit. Asset: technical front/back wardrobe sprites for football game. Image1 EDIT TARGET is the existing 1536x1024 two-view sheet of the same fictional slim teenage football girl. Other images GARMENT REFERENCES ONLY: use their tracksuit colour, fabric, branding and rear construction, NOT the photographed child identity or proportions. Replace ONLY grey Nike joggers with dusty blush PINK Ellesse joggers matching garment refs. Soft relaxed fleece, ribbed waist and ankle cuffs, same-colour drawstrings, side pockets, small white ellesse plus orange/red emblem and since 1959 on wearer LEFT THIGH in front. NO Nike swoosh. Plain pink rear WITHOUT rear patch pocket, per rear photograph. Keep existing navy T-shirt, hands, socks and boots unchanged. Same hip/leg silhouette, waistband below original tee hem at y444, ankle cuffs just above white socks. Preserve exactly target head, ponytail, face, slim teenage body, neutral standing pose, arms, hands, feet, all unaffected clothing, scale, positions and original1536x1024 canvas. Front LEFT, back RIGHT, full head to toe. Match existing illustrated game style, not photorealism. True transparent background: no floor, shadow, glow, labels or extra objects. Both views required.",
+      "source_file": "exec-076abf36-1760-4ea2-ab8b-c4eeeb889ba7.png",
+      "source_sha256": "d73a83f9f5012045e482520d2bf9916f22b5616b33cf6540083ed2756550ea9e"
+    },
+    {
+      "id": "nike-pro-crop-ellesse-pink-joggers",
+      "edit_target": "exec-5c04cdda-af4e-4a9a-9cd7-35309c205521.png",
+      "prompt": "Use case: precise-object-edit. Asset: technical front/back wardrobe sprites for football game. Image1 EDIT TARGET is the existing 1536x1024 two-view sheet of the same fictional slim teenage football girl. Other images GARMENT REFERENCES ONLY: use their tracksuit colour, fabric, branding and rear construction, NOT the photographed child identity or proportions. Replace ONLY grey Nike joggers with dusty blush PINK Ellesse joggers matching garment refs. Soft relaxed fleece, ribbed waist and ankle cuffs, pink drawstrings, side pockets, small white ellesse plus orange/red emblem and since 1959 on wearer LEFT THIGH in front. NO Nike swoosh. Plain pink rear WITHOUT rear patch pocket. Keep the black NIKE PRO crop top, bare midriff, face, hands, socks and boots unchanged. Keep natural waistband position from edit target. Preserve exactly target head, ponytail, face, slim teenage body, neutral standing pose, arms, hands, feet, all unaffected clothing, scale, positions and original1536x1024 canvas. Front LEFT, back RIGHT, full head to toe. Match existing illustrated game style, not photorealism. True transparent background: no floor, shadow, glow, labels or extra objects. Both views required.",
+      "source_file": "exec-a4deda52-6ea1-46e2-be4e-939d9b7f093c.png",
+      "source_sha256": "95e95024c66bf1e11aab25a8fa9733ab2ccfe1c2f9013f3f11d4c539290655a7"
+    }
+  ]
+}

@@ -70,3 +70,14 @@ Enabled existing free IDs `nike-pro-crop` and `nike-pro-shorts` with black/white
 Future fitted bottoms must include a compatible crop variant before being enabled alongside this crop. Existing skin/hair/sock personalisation, accessories, saving, pending gates and entitlements are unchanged; no database migration.
 
 Validation: TypeScript, production build and 192 mixed renders (12 tops × 4 bottoms × front/back × two appearance/sock configurations), inspected for torso/waist continuity, regular shirt length, sleeves, hands and footwear. No usability tests.
+
+
+## Ellesse pink tracksuit — 1 November 2026
+
+Added free independent catalogue entries `ellesse-pink-sweatshirt` and `ellesse-pink-joggers` from the owner's four garment photographs. Dusty pink crew neck with white/orange/red chest branding, matching drawstring cuffed joggers with left-thigh branding; plain backs without a rear patch pocket. Six new v2 exports include the Nike Pro crop/jogger waist variant. Photos guide clothing only; the existing fictional model is retained. Exact prompts, reference/source hashes and export details are in `builder-ellesse-pink.json`.
+
+The jogger rear source translated 33px to the right; its export uses fixed x887 instead of x854 to restore the common template coordinates, without scaling or body reshaping. `export-builder-branded.cjs` accepts an optional `backLeft` alignment alongside its existing string input format. Skin recolouring protects the warm-coloured Ellesse emblems, and sock recolouring begins below the jogger cuffs.
+
+Migration `20261101222814_ellesse_pink_tracksuit` is applied. It adds only the two IDs to the live security-invoker validator; exact function comparison confirmed every other rule unchanged. Existing RLS/grants, save identity checks and boot/gold entitlements are preserved. Do not reapply it.
+
+Validation: TypeScript, production build and 260 renders (13 tops × 5 bottoms × two views × two appearance/sock configurations), inspected for mixing, seams, rear alignment and branding. Rollback-only authenticated checks in `supabase/tests/ellesse_tracksuit_rls.sql` passed set/mixed saves, linked-player save, unknown item and locked boot/gold rejection, and cross-family isolation. No actual player rows retained; security advisor categories/counts unchanged from the pre-change baseline. No usability tests.
