@@ -9,13 +9,9 @@ export const builderOptions={
  socks:['none','white','navy','black','red',...builderKitOptions],accessory:['none','glasses','headband','gold-headband']
 } as const;
 export type BuilderLook = {[K in keyof typeof builderOptions]:typeof builderOptions[K][number]} & {boots:string};
-export const defaultBuilderLook:BuilderLook={skin:'light',hair:'brown',hairstyle:'ponytail',face:'oval',eyes:'brown',build:'standard',top:'base',bottoms:'base',socks:'none',boots:'none',accessory:'none'};
-export const playerPresets:Array<{label:string;look:BuilderLook}>=[
- {label:'Alex',look:{...defaultBuilderLook}},
- {label:'Sam',look:{...defaultBuilderLook,skin:'deep',hair:'black',hairstyle:'coils',eyes:'brown'}},
- {label:'Charlie',look:{...defaultBuilderLook,skin:'medium',hair:'black',hairstyle:'braids',build:'strong'}},
- {label:'Taylor',look:{...defaultBuilderLook,skin:'fair',hair:'ginger',hairstyle:'curls',face:'freckles',eyes:'green'}}
-];
+export const defaultBuilderLook:BuilderLook={skin:'light',hair:'brown',hairstyle:'ponytail',face:'oval',eyes:'brown',build:'slim',top:'navy-tee',bottoms:'shorts',socks:'white',boots:'starter',accessory:'none'};
+/** Compatibility export; the editor has one fixed slim character and no presets. */
+export const playerPresets=[{label:'Your player',look:{...defaultBuilderLook}}];
 export const builderLabels:Record<string,string>={base:'Base layer',star:'STAR training top',arsenal:'Arsenal home',chelsea:'Chelsea home','navy-tee':'Navy T-shirt','white-tee':'White T-shirt',hoodie:'Navy hoodie','gold-hoodie':'Gold hoodie',shorts:'Navy football shorts',leggings:'Sports leggings',trackies:'Tracksuit bottoms',none:'None',ponytail:'Wavy ponytail',curls:'Curly bob',coils:'Coily puff',braids:'Braided bun','gold-headband':'Gold headband'};
 export const builderRequirements:Record<string,{key:string;label:string}>={'gold-hoodie':{key:'avatar-captain',label:'Earn your first coach badge'},'gold-headband':{key:'decoration-laurel',label:'Earn three coach badges'}};
 for(const item of builderWardrobe)builderLabels[item.id]=item.label;
@@ -39,6 +35,7 @@ export function builderLook(value:unknown):BuilderLook {
  const v=value as Record<string,unknown>,out={...defaultBuilderLook};
  for(const [key,options] of Object.entries(builderOptions))if((options as readonly unknown[]).includes(v[key]))(out as Record<string,unknown>)[key]=v[key];
  if(typeof v.boots==='string'&&['none','starter',...collectibleBoots.map(b=>b.id)].includes(v.boots))out.boots=v.boots;
+ out.build='slim';
  return out;
 }
 export function builderDressed(look:BuilderLook){return look.top!=='base'&&look.bottoms!=='base';}
