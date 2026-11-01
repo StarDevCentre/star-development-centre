@@ -19,10 +19,29 @@ function polygon(ctx:CanvasRenderingContext2D,points:readonly Point[]){ctx.begin
  * never per-garment bounding-box scaling. Hoodie cuffs cover the existing arms;
  * hands, shorts, knees, ankles and starter boots remain the training template.
  */
-const topMasks:Record<'training'|'hoodie',Record<View,readonly Point[]>>={
- training:{front:[[90,165],[370,165],[377,295],[328,295],[331,444],[133,444],[133,295],[88,295]],back:[[88,165],[370,165],[379,296],[329,296],[333,444],[131,444],[131,296],[85,296]]},
- hoodie:{front:[[0,150],[460,150],[460,479],[334,479],[334,444],[131,444],[131,479],[0,479]],back:[[0,150],[460,150],[460,479],[334,479],[334,446],[131,446],[131,479],[0,479]]}
+// Measured hem boundaries, left to right at the same fixed template landmarks.
+// Each source includes navy shorts below its top: copying a rectangular strip
+// also copies those shorts and cuts the wider joggers into square hip notches.
+const hemX=[125,140,160,180,200,230,260,280,300,320,340];
+const hems:Record<string,Record<View,readonly number[]>>={
+ hoodie:{front:[437,440,442,444,445,446,445,444,442,440,437],back:[442,444,445,446,446,447,447,446,446,445,442]},
+ 'nike-club-hoodie':{front:[437,440,442,444,445,445,445,444,442,440,437],back:[442,444,445,446,446,447,447,446,446,445,442]},
+ 'whitefox-shadow-hoodie':{front:[438,441,443,445,446,446,446,445,443,441,438],back:[442,445,445,446,446,447,447,446,446,445,442]},
+ 'whitefox-glacier-hoodie':{front:[440,443,445,446,447,448,448,447,446,444,440],back:[446,449,451,452,452,453,452,452,450,448,445]},
+ 'adidas-firebird-top':{front:[435,439,441,443,444,445,444,443,441,438,435],back:[440,443,443,444,445,446,445,445,444,443,440]},
+ 'ua-tech-halfzip':{front:[436,439,442,443,445,445,445,444,442,440,436],back:[440,443,444,445,445,447,446,446,445,444,441]},
+ 'puma-essentials-hoodie':{front:[436,439,441,443,444,445,444,443,441,439,436],back:[440,443,443,444,445,446,445,445,444,444,441]},
+ 'adidas-originals-tee':{front:[435,438,441,443,445,446,445,444,442,439,435],back:[437,440,441,442,443,444,443,442,440,439,436]},
+ 'ellesse-pink-sweatshirt':{front:[434,437,440,442,443,444,443,442,440,438,434],back:[442,445,445,445,446,446,446,446,445,444,441]}
 };
+function topCoverage(top:string,view:View,kind:'training'|'hoodie'):readonly Point[]{
+ const hem=(hems[top]??hems.hoodie)[view].map((y,i)=>[hemX[i],y] as Point).reverse();
+ // Clear the old bare arms through y425, then keep sleeve coverage outside
+ // the hips. The space below the hem never erases the selected trousers.
+ return kind==='hoodie'
+  ?[[0,150],[460,150],[460,479],[360,479],[340,425],[335,425],...hem,[130,425],[120,425],[100,479],[0,479]]
+  :[[90,165],[370,165],[377,295],[328,295],...hem,[133,295],[88,295]];
+}
 const hairMasks:Record<View,readonly Point[]>={
  front:[[174,8],[275,8],[296,75],[282,168],[266,184],[267,54],[192,54],[193,183],[174,165],[164,75]],
  back:[[178,5],[279,5],[292,81],[280,279],[199,279],[172,139]]
@@ -35,7 +54,7 @@ function shade(r:number,g:number,b:number,tone:{shadow:readonly number[];mid:rea
 function personalise(c:HTMLCanvasElement,look:BuilderLook,view:View,kind:'training'|'hoodie'){
  const ctx=c.getContext('2d')!,d=ctx.getImageData(0,0,width,height),p=d.data;
  const hair=heroHairColours.find(t=>t.key===look.hair)!,skin=heroSkinTones.find(t=>t.key===look.skin)!;
- const hairMask=mask(hairMasks[view]),topMask=mask(topMasks[kind][view]),lowerMask=look.bottoms==='ellesse-pink-joggers'?mask(bottomMask):null;
+ const hairMask=mask(hairMasks[view]),topMask=mask(topCoverage(look.top,view,kind)),lowerMask=look.bottoms==='ellesse-pink-joggers'?mask(bottomMask):null;
  for(let i=0;i<p.length;i+=4){if(!p[i+3])continue;const y=Math.floor(i/4/width),r=p[i],g=p[i+1],b=p[i+2];
   // Hair is identified spatially and by its brown pigment. Navy fabric and skin
   // never become hair, including the rear ponytail that overlaps the shirt.
@@ -74,6 +93,6 @@ export async function renderBuilderArtwork(look:BuilderLook,view:View){
  // Crops use fitted torso/waist variants for each completed bottom.
  // Long tops cover the high waistband of Nike Pro shorts.
  if(bottom)replace(bottom,bottomMask);
- if(top)replace(top,topMasks[kind][view]);
+ if(top)replace(top,topCoverage(look.top,view,kind));
  personalise(out,look,view,kind);return out;
 }

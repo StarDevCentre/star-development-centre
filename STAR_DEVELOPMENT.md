@@ -369,3 +369,8 @@ These are business requirements provided in earlier planning; check with the own
 - Added separately selectable free Ellesse pink crew-neck sweatshirt and joggers from owner garment photos; six v2 exports include the crop/jogger variant. Preserve plain backs, chest/thigh branding, pink fabric and fixed template dimensions. Jogger rear export uses x887 to compensate for its measured source translation, without scaling.
 - Warm brand emblems are protected from skin recolouring; socks begin below cuffs. `export-builder-branded.cjs` supports optional rear crop alignment. Source hashes/prompts: `docs/player-space/builder-ellesse-pink.json`.
 - Migration `20261101222814_ellesse_pink_tracksuit` is applied; only two validator IDs added, existing permissions/unlocks unchanged. TypeScript, production build, 260 mixed artwork renders and rollback-only authenticated save/privacy/entitlement checks passed; no usability tests.
+
+## Builder waist clipping correction — 1 November 2026
+
+- Replaced flat top boundaries with measured front/rear hems for fitted tops. Long-sleeve coverage clears the original bare arms above the waist, then stays outside the selected bottoms at the hips. Do not copy the source outfit's navy shorts below a top or clear trousers with sleeve rectangles.
+- The Ellesse waist defect was visible despite the earlier reduced-size render review. Rechecked 120 top/bottom/view combinations in waist crops at source resolution and the Ellesse front/rear waist at 2× size, plus both appearance render sets. TypeScript and production build passed. Renderer only; no migration, save rules or entitlement changes. No usability tests.
