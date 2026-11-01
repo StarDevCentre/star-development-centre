@@ -61,3 +61,12 @@ Five existing free catalogue IDs are now fitted: `adidas-firebird-top`, `adidas-
 The renderer now loads branded short-sleeve tees separately from long-sleeve tops, preserving their existing coverage masks. Firebird trousers replace covered legs before the top is drawn. Their sock-colour threshold begins below the white side stripes, retaining the adidas design with coloured socks. Existing saved IDs, reward entitlements and remaining fitting gates are unchanged. No database migration.
 
 Validation: TypeScript, production build and 132 rendered combinations (eleven fitted tops × three bottoms × front/back × two skin/hair/sock configurations), visually inspected for mixed outfits, waist/sleeve/cuff/hand joins and branding. No usability testing.
+
+
+## Nike Pro fitting batch — 1 November 2026
+
+Enabled existing free IDs `nike-pro-crop` and `nike-pro-shorts` with black/white front/back artwork. The crop exposes torso previously hidden by longer shirts. Its four fitted outfit variants cover navy shorts, Nike Club joggers, Firebird trousers and Nike Pro shorts, retaining independent selections without leftover shirt panels or mismatched waist seams. Eight v2 exports retain fixed canvas crops and no bounding-box scaling. Exact built-in prompts/source hashes: `builder-nike-pro-batch.json`. The Pro shorts use their covered lower-body region with regular tops; preserve the regular shirt hem so selecting shorts never crops a T-shirt.
+
+Future fitted bottoms must include a compatible crop variant before being enabled alongside this crop. Existing skin/hair/sock personalisation, accessories, saving, pending gates and entitlements are unchanged; no database migration.
+
+Validation: TypeScript, production build and 192 mixed renders (12 tops × 4 bottoms × front/back × two appearance/sock configurations), inspected for torso/waist continuity, regular shirt length, sleeves, hands and footwear. No usability tests.

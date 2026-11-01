@@ -59,15 +59,18 @@ function personalise(c:HTMLCanvasElement,look:BuilderLook,view:View,kind:'traini
  * display the fitted training outfit until that item's batch is completed. */
 export async function renderBuilderArtwork(look:BuilderLook,view:View){
  const branded=brandedTops.includes(look.top),hoodie=look.top==='hoodie'||look.top==='gold-hoodie'||branded;
- const kind=hoodie?'hoodie':'training';
+ const kind=hoodie?'hoodie':'training',crop=look.top==='nike-pro-crop';
  const asset=(name:string)=>readImage(`/player-space/builder/v2/${name}-${view}.webp`);
- const [base,top,bottom]=await Promise.all([asset('training'),hoodie?asset(branded?look.top:'hoodie'):brandedTees.includes(look.top)?asset(look.top):null,fittedLongBottoms.includes(look.bottoms)?asset(look.bottoms):null]);
+ const cropBase=look.bottoms==='nike-pro-shorts'?'nike-pro-shorts':look.bottoms==='shorts'?'nike-pro-crop':`nike-pro-crop-${look.bottoms}`;
+ const [base,top,bottom]=await Promise.all([asset(crop?cropBase:'training'),!crop&&hoodie?asset(branded?look.top:'hoodie'):brandedTees.includes(look.top)?asset(look.top):null,!crop&&(fittedLongBottoms.includes(look.bottoms)||look.bottoms==='nike-pro-shorts')?asset(look.bottoms):null]);
  const out=surface(),ctx=out.getContext('2d')!;ctx.drawImage(base,0,0);
  function replace(im:HTMLImageElement,points:readonly Point[]){
   ctx.save();polygon(ctx,points);ctx.clip();ctx.clearRect(0,0,width,height);ctx.drawImage(im,0,0);ctx.restore();
  }
  // Replace shorts AND covered legs before painting joggers. The mask excludes
  // the hands and preserves the common feet; tops then overlap the waistband.
+ // Crops use fitted torso/waist variants for each completed bottom.
+ // Long tops cover the high waistband of Nike Pro shorts.
  if(bottom)replace(bottom,bottomMask);
  if(top)replace(top,topMasks[kind][view]);
  personalise(out,look,view,kind);return out;

@@ -1,0 +1,31 @@
+{
+  "date": "2026-11-01",
+  "method": "Built-in image_gen edits of existing fictional teenage model",
+  "export": "Fixed x222/x854 crops from 1536x1024 sources; 460x1024 WebP, no scaling",
+  "items": [
+    {
+      "id": "nike-pro-shorts",
+      "prompt": "Use case: precise-object-edit. Technical two-view wardrobe sprite sheet for an existing football game. Image 1 is the EDIT TARGET: 1536x1024 sheet of the same fictional 16-year-old teenage football girl, front LEFT and back RIGHT. Image 2 is DESIGN REFERENCE for Nike Pro crop top; image 3 is DESIGN REFERENCE for Nike Pro shorts. Replace ONLY her navy T-shirt and navy shorts with this black/white Nike Pro training set in BOTH views. Crop top is an opaque black short-sleeve crew-neck sports crop, normal sports coverage, white small Nike swoosh centred on upper chest, black elastic lower band with repeating white NIKE PRO text. Top band ends at natural lower ribcage around y350; show a small natural midriff to waistband. Shorts are opaque black mid-thigh compression training shorts with black elastic waistband carrying white NIKE PRO lettering and white swoosh on wearer left thigh in front. Shorts waistband upper edge at EXACT original shorts waistband y444; leg hems at same original shorts mid-thigh height around y562. Do not raise shorts onto the shirt region. Plain rear fabric except white NIKE PRO bands. Preserve EXACTLY face, hair, slim teenage proportions, stance, arm angles, hands, thighs below shorts, legs, white socks, black starter boots, figure scale/position and original 1536x1024 canvas. No adult reshaping, no glamour, neutral sports-game technical presentation. Preserve natural original silhouette. True transparent background with no floor, shadow, glow, text labels or extra objects. Match the target's high-quality illustrated game art. Both views, full head to toe, unchanged placement.",
+      "source": "exec-d0efdb06-27a6-40aa-b06e-a040fed46b57.png",
+      "source_sha256": "f216a1cf093b087780bf07f3b26a16fd1d40096b22ce14d12a225e0787bdc028"
+    },
+    {
+      "id": "nike-pro-crop",
+      "prompt": "Edit this game sprite sheet with ONE localized change only: replace the navy T-shirt with a black short-sleeve Nike Pro crop top, white chest swoosh, white NIKE PRO lettering on black hem elastic. Show bare midriff where the lower half of the T-shirt was. ALL NAVY SHORTS PIXELS MUST STAY EXACTLY AS THEY ARE. In particular, the upper edge of shorts is concealed by T-shirt hem near y444 and must stay there; do not invent a higher waistband. Do not change shorts to high-waisted shorts. Do not move shorts upward at all. Keep identical original shorts at low hip height, original crotch, legs, hands, head, face, ponytail, body proportions and shoes. EXACT original1536x1024 canvas, both front/back views, same positions. Neutral technical football-game garment swap on the same fictional teenage girl. Transparent background. Crop top hem at ribcage; preserve original shorts and reveal the area formerly under the lower shirt using natural skin.",
+      "source": "exec-dd170303-7a3e-45c6-8ef9-90bc1a8b8ee2.png",
+      "source_sha256": "db5b6b3544e19031d812bad9e8f3b07c4519322611e81fc9005d006a44d5c41a"
+    },
+    {
+      "id": "nike-pro-crop-nike-club-joggers",
+      "prompt": "Technical garment edit for existing football game. Image1 is EDIT TARGET: same fictional teenage girl front left/back right wearing grey Nike Club joggers. Change ONLY the navy T-shirt to the black short-sleeve Nike Pro crop top in Image2: black crew neck, white central swoosh, white NIKE PRO hem elastic. Show natural midriff to the trousers waistband. Preserve existing grey Nike Club joggers, brand details, legs, socks, black boots, hands, face, ponytail and slim teenage body proportions. Same pose, scale and coordinates, 1536x1024 canvas. Neutral technical sports illustration, no glamour/body exaggeration. Image2 design reference only. Both full-body views. True transparent background no floor/shadow/glow/labels.",
+      "source": "exec-5c04cdda-af4e-4a9a-9cd7-35309c205521.png",
+      "source_sha256": "9d23a3dc1fe1c57cf9ac3f3bda72e67cb1ae6c8f8e308fb395c7ae9956d44228"
+    },
+    {
+      "id": "nike-pro-crop-adidas-firebird-trousers",
+      "prompt": "Technical garment edit for existing football game. Image1 is EDIT TARGET: same fictional teenage girl front left/back right wearing black adidas Firebird trousers. Change ONLY the navy T-shirt to the black short-sleeve Nike Pro crop top in Image2: black crew neck, white central swoosh, white NIKE PRO hem elastic. Show natural midriff to the trousers waistband. Preserve existing black adidas Firebird trousers, brand details, legs, socks, black boots, hands, face, ponytail and slim teenage body proportions. Same pose, scale and coordinates, 1536x1024 canvas. Neutral technical sports illustration, no glamour/body exaggeration. Image2 design reference only. Both full-body views. True transparent background no floor/shadow/glow/labels.",
+      "source": "exec-c9c69621-5683-48d5-baa7-c448be57d30d.png",
+      "source_sha256": "791abacd73deaa8aa540db8ff65de77981873f62ffd054bbec44f7ae6de6b246"
+    }
+  ]
+}

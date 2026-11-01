@@ -355,3 +355,10 @@ These are business requirements provided in earlier planning; check with the own
 - Five more existing IDs fitted: adidas Firebird top/trousers, adidas Originals tee, Under Armour Tech half-zip and PUMA Essentials hoodie. Ten aligned v2 exports, same template. Short-sleeve branded tees use training coverage; long sleeves use the established full-arm mask. Firebird sock recolouring begins below its white stripes.
 - Saved IDs/unlocks and remaining fitting gates stay intact; no migration. Exact source metadata/prompts: `docs/player-space/builder-branded-batch-3.json`.
 - TypeScript, production build and 132 mixed outfit/view/appearance renders passed. No usability tests.
+
+
+## Nike Pro builder fitting batch — 1 November 2026
+
+- Enabled existing Nike Pro crop/shorts IDs in black/white. Crop outfits use four fitted torso/waist variants for all completed bottoms; eight v2 exports. Regular tops keep their full hem when worn with Pro shorts. Further bottoms need a crop-compatible variant before activation.
+- Same fixed crop/export coordinates and existing personalisation/save/unlock rules; no migration. Exact prompts and source hashes: `docs/player-space/builder-nike-pro-batch.json`.
+- TypeScript, production build and 192 mixed outfit/view/appearance renders passed; no usability tests.
