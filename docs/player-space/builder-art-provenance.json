@@ -1,0 +1,1174 @@
+{
+  "date": "2026-11-01",
+  "generator": "built-in image_gen",
+  "privacy": "Fictional adult athlete pose references and public garment/product images only; no private player data or photographs.",
+  "export": "Standalone transparent 460x1024 WebP layers in public/player-space/builder/{wardrobe,footwear,kits}. Export scripts in scripts/.",
+  "limitations": [
+    "Durham, Sunderland and Watford are explicitly labelled launch versions: blank principal-front sponsor area because current women\u2019s sponsorship could not be verified.",
+    "Everton uses the white home-replica shorts.",
+    "Illustrated fan interpretations, not exact match-issued replicas."
+  ],
+  "whiteFoxSources": [
+    "https://whitefoxboutique.co.uk/collections/best-selling-lounge",
+    "https://whitefoxboutique.co.uk/products/offstage-hoodie-shadow",
+    "https://whitefoxboutique.co.uk/products/offstage-hoodie-glacier-grey"
+  ],
+  "wardrobe": [
+    {
+      "id": "adidas-firebird-top",
+      "part": "top",
+      "target": [
+        25,
+        130,
+        410,
+        345
+      ],
+      "fitWidth": 410,
+      "generatedAtlas": "exec-ba1b3351-1ce5-4607-a2bc-717159c8b9fc.png",
+      "generationBrief": "Independent transparent front/back garment pair matching fictional adult athlete pose, natural curved waist/hips, polished shaded sports-game illustration; adidas-firebird-top"
+    },
+    {
+      "id": "adidas-firebird-trousers",
+      "spec": "adidas Originals Firebird black track trousers, three white stripes down outer legs, small white trefoil upper thigh, relaxed fit.",
+      "part": "bottoms",
+      "prompt": "Use case: stylized-concept. Create independent game clothing layer, front view LEFT and true rear view RIGHT, equal size, transparent outside clothing and through openings. Garment: adidas Originals Firebird black track trousers, three white stripes down outer legs, small white trefoil upper thigh, relaxed fit. Match polished ink outlines and soft shading of attached generic FICTIONAL ADULT age25 athlete references, images1front 2back pose. Garment ONLY, no person/skin/mannequin/head/hands/feet/other clothes. Garment follows actual pose: arms gently outward but DOWN, shoulders at local x130/330 y190, wrists x65/395 y490 in a 460x1024 fullfigure. Natural curved waist at y392, widest hips around y475, knees y700, ankles y945; legs slightly apart precisely as reference. No rigid square hips, no flat rectangular waistband. Both front/back sized identically. Authentic recognisable brand details. Transparent background. No text labels or collage borders, full garment visible.",
+      "target": [
+        75,
+        392,
+        310,
+        565
+      ],
+      "generatedAtlas": "exec-4249e6ac-f639-4b25-a592-b13b45b7df48.png"
+    },
+    {
+      "id": "adidas-leggings",
+      "spec": "adidas black full length sports leggings with white three stripes down outer sides and small white adidas hip mark, naturally curved high waist, shaped hips, snug legs.",
+      "part": "bottoms",
+      "prompt": "Use case: stylized-concept. Independent transparent game garment layer, front view LEFT and rear view RIGHT, equal size. Garment: adidas black full length sports leggings with white three stripes down outer sides and small white adidas hip mark, naturally curved high waist, shaped hips, snug legs. Match polished outlines and soft shaded sports-game illustration of attached generic FICTIONAL ADULT athlete age25 reference. Reference1front 2back set pose, not depicted people. Draw ONLY garment, no skin, mannequin, head, hands, feet, underwear or other clothes. True transparent neck/sleeve/leg openings and background. Follow reference relaxed stance, arms angled down/out slightly. Natural curved waist follows pelvis at y392, hips at y475, knees y700, ankles y945 in 460x1024 figure; legs apart matching reference. Follow curved hip/thigh silhouette, no rigid square hips or rectangular waist. Full garment visible in both views, same scale, authentic restrained branding. No labels, no panels, no background shadow.",
+      "target": [
+        75,
+        392,
+        310,
+        565
+      ],
+      "generatedAtlas": "exec-e8da96d0-5b12-4ad1-be77-ed1b03149fbf.png"
+    },
+    {
+      "id": "adidas-originals-tee",
+      "spec": "adidas Originals white T-shirt with three black shoulder/sleeve stripes and small black trefoil chest.",
+      "part": "top",
+      "prompt": "Use case: stylized-concept. Create independent game clothing layer, front view LEFT and true rear view RIGHT, equal size, transparent outside clothing and through openings. Garment: adidas Originals white T-shirt with three black shoulder/sleeve stripes and small black trefoil chest. Match polished ink outlines and soft shading of attached generic FICTIONAL ADULT age25 athlete references, images1front 2back pose. Garment ONLY, no person/skin/mannequin/head/hands/feet/other clothes. Garment follows actual pose: arms gently outward but DOWN, shoulders at local x130/330 y190, wrists x65/395 y490 in a 460x1024 fullfigure. Neck y170, waist y390, full-length hem y450; sleeves follow reference arms, with short sleeves ending above elbow if T-shirt. Both front/back sized identically. Authentic recognisable brand details. Transparent background. No text labels or collage borders, full garment visible.",
+      "target": [
+        60,
+        170,
+        340,
+        285
+      ],
+      "generatedAtlas": "exec-5207f7cb-446b-4f4a-acd3-aa68a9dbd089.png"
+    },
+    {
+      "id": "bershka-denim-skirt",
+      "spec": "Bershka mid-blue denim skirt, natural curved waist fitted around hips, five pockets and fly, mid-thigh straight hem.",
+      "part": "bottoms",
+      "prompt": "Use case: stylized-concept. Independent transparent game garment layer, front view LEFT and rear view RIGHT, equal size. Garment: Bershka mid-blue denim skirt, natural curved waist fitted around hips, five pockets and fly, mid-thigh straight hem. Match polished outlines and soft shaded sports-game illustration of attached generic FICTIONAL ADULT athlete age25 reference. Reference1front 2back set pose, not depicted people. Draw ONLY garment, no skin, mannequin, head, hands, feet, underwear or other clothes. True transparent neck/sleeve/leg openings and background. Follow reference relaxed stance, arms angled down/out slightly. Natural curved waist follows pelvis at y392, hips at y475, knees y700, ankles y945 in 460x1024 figure; legs apart matching reference. Follow curved hip/thigh silhouette, no rigid square hips or rectangular waist. Full garment visible in both views, same scale, authentic restrained branding. No labels, no panels, no background shadow.",
+      "target": [
+        90,
+        392,
+        280,
+        200
+      ],
+      "generatedAtlas": "exec-7c03c8cf-9ef3-43f4-b42b-d731888fc0ae.png"
+    },
+    {
+      "id": "bershka-raglan-tee",
+      "spec": "Bershka fitted raglan T-shirt, white torso and burgundy short raglan sleeves, crewneck, waist-length, discreet branding inside neck only.",
+      "part": "top",
+      "prompt": "Use case: stylized-concept. Independent transparent game garment layer, front view LEFT and rear view RIGHT, equal size. Garment: Bershka fitted raglan T-shirt, white torso and burgundy short raglan sleeves, crewneck, waist-length, discreet branding inside neck only. Match polished outlines and soft shaded sports-game illustration of attached generic FICTIONAL ADULT athlete age25 reference. Reference1front 2back set pose, not depicted people. Draw ONLY garment, no skin, mannequin, head, hands, feet, underwear or other clothes. True transparent neck/sleeve/leg openings and background. Follow reference relaxed stance, arms angled down/out slightly. Neck at y170, shoulders x130/330 y190, waist y390 in 460x1024 figure, wrists x65/395 y490 for long sleeves. Keep sleeve angles in same downward pose, do not use T pose. Full garment visible in both views, same scale, authentic restrained branding. No labels, no panels, no background shadow.",
+      "target": [
+        75,
+        174,
+        310,
+        230
+      ],
+      "generatedAtlas": "exec-89ab5d82-8673-4fb6-b8ae-149a576034c3.png"
+    },
+    {
+      "id": "core-leggings",
+      "spec": "Plain black full-length sports leggings, natural curved waist, fitted legs, no logos",
+      "part": "bottoms",
+      "prompt": "Use case: stylized-concept. Transparent independent game garment sprite. Plain black full-length sports leggings, natural curved waist, fitted legs, no logos. Front view LEFT and rear view RIGHT at matching scale. Match attached fictional ADULT athlete age25 pose: natural curved waist at y392, hips y475, legs apart, knees y700 and ankles y945 in 460x1024 fullfigure. Draw ONLY clothing, no body/skin/feet/shoes/other clothes. Follow natural waist and curved pelvis, no rectangular waistband/square hips. Polished outlined shaded sports-game illustration matching reference, fabric folds. Full garments, generous transparent gap, no labels, no outside shadows.",
+      "target": [
+        75,
+        392,
+        310,
+        565
+      ],
+      "generatedAtlas": "exec-a9488785-0cf3-454a-818b-769c4614ba8d.png"
+    },
+    {
+      "id": "core-shorts",
+      "spec": "Plain navy football shorts, elastic curved waist, modest mid-thigh length, white piping only, no logos",
+      "part": "bottoms",
+      "prompt": "Use case: stylized-concept. Transparent independent game garment sprite. Plain navy football shorts, elastic curved waist, modest mid-thigh length, white piping only, no logos. Front view LEFT and rear view RIGHT at matching scale. Match attached fictional ADULT athlete age25 pose: natural curved waist at y392, hips y475, legs apart, knees y700 and ankles y945 in 460x1024 fullfigure. Draw ONLY clothing, no body/skin/feet/shoes/other clothes. Follow natural waist and curved pelvis, no rectangular waistband/square hips. Polished outlined shaded sports-game illustration matching reference, fabric folds. Full garments, generous transparent gap, no labels, no outside shadows.",
+      "target": [
+        90,
+        392,
+        280,
+        190
+      ],
+      "generatedAtlas": "exec-2c9842cf-c417-4fd6-a1fc-554d9229d099.png"
+    },
+    {
+      "id": "core-trackies",
+      "spec": "Plain navy tapered tracksuit bottoms, curved elastic waist, narrow white side piping, ankle hems, no logos",
+      "part": "bottoms",
+      "prompt": "Use case: stylized-concept. Transparent independent game garment sprite. Plain navy tapered tracksuit bottoms, curved elastic waist, narrow white side piping, ankle hems, no logos. Front view LEFT and rear view RIGHT at matching scale. Match attached fictional ADULT athlete age25 pose: natural curved waist at y392, hips y475, legs apart, knees y700 and ankles y945 in 460x1024 fullfigure. Draw ONLY clothing, no body/skin/feet/shoes/other clothes. Follow natural waist and curved pelvis, no rectangular waistband/square hips. Polished outlined shaded sports-game illustration matching reference, fabric folds. Full garments, generous transparent gap, no labels, no outside shadows.",
+      "target": [
+        75,
+        392,
+        310,
+        565
+      ],
+      "generatedAtlas": "exec-b2c62a54-595d-4dcb-9937-84b3a4a17c38.png"
+    },
+    {
+      "id": "hm-rib-cardigan",
+      "spec": "H&M cream rib-knit button cardigan, long sleeves, neat round neckline, buttoned closed and waist-length, tiny brand label inside neck only.",
+      "part": "top",
+      "prompt": "Use case: stylized-concept. Independent transparent game garment layer, front view LEFT and rear view RIGHT, equal size. Garment: H&M cream rib-knit button cardigan, long sleeves, neat round neckline, buttoned closed and waist-length, tiny brand label inside neck only. Match polished outlines and soft shaded sports-game illustration of attached generic FICTIONAL ADULT athlete age25 reference. Reference1front 2back set pose, not depicted people. Draw ONLY garment, no skin, mannequin, head, hands, feet, underwear or other clothes. True transparent neck/sleeve/leg openings and background. Follow reference relaxed stance, arms angled down/out slightly. Neck at y170, shoulders x130/330 y190, waist y390 in 460x1024 figure, wrists x65/395 y490 for long sleeves. Keep sleeve angles in same downward pose, do not use T pose. Full garment visible in both views, same scale, authentic restrained branding. No labels, no panels, no background shadow.",
+      "target": [
+        25,
+        153,
+        410,
+        345
+      ],
+      "generatedAtlas": "exec-e24098e9-118a-407e-bd78-59b9e9f55fd4.png"
+    },
+    {
+      "id": "hollister-andi-jeans",
+      "spec": "Hollister Andi baggy jeans, light blue washed denim, curved natural waist, classic five pockets, loose wide legs to ankles.",
+      "part": "bottoms",
+      "prompt": "Use case: stylized-concept. Independent transparent game garment layer, front view LEFT and rear view RIGHT, equal size. Garment: Hollister Andi baggy jeans, light blue washed denim, curved natural waist, classic five pockets, loose wide legs to ankles. Match polished outlines and soft shaded sports-game illustration of attached generic FICTIONAL ADULT athlete age25 reference. Reference1front 2back set pose, not depicted people. Draw ONLY garment, no skin, mannequin, head, hands, feet, underwear or other clothes. True transparent neck/sleeve/leg openings and background. Follow reference relaxed stance, arms angled down/out slightly. Natural curved waist follows pelvis at y392, hips at y475, knees y700, ankles y945 in 460x1024 figure; legs apart matching reference. Follow curved hip/thigh silhouette, no rigid square hips or rectangular waist. Full garment visible in both views, same scale, authentic restrained branding. No labels, no panels, no background shadow.",
+      "target": [
+        75,
+        392,
+        310,
+        565
+      ],
+      "generatedAtlas": "exec-32a7bc25-9810-4ae2-8ed8-c51a7f54ea1e.png"
+    },
+    {
+      "id": "hollister-baby-tee",
+      "spec": "Hollister fitted white baby T-shirt, small navy Hollister seagull emblem chest, short sleeves, waist-length.",
+      "part": "top",
+      "prompt": "Use case: stylized-concept. Independent transparent game garment layer, front view LEFT and rear view RIGHT, equal size. Garment: Hollister fitted white baby T-shirt, small navy Hollister seagull emblem chest, short sleeves, waist-length. Match polished outlines and soft shaded sports-game illustration of attached generic FICTIONAL ADULT athlete age25 reference. Reference1front 2back set pose, not depicted people. Draw ONLY garment, no skin, mannequin, head, hands, feet, underwear or other clothes. True transparent neck/sleeve/leg openings and background. Follow reference relaxed stance, arms angled down/out slightly. Neck at y170, shoulders x130/330 y190, waist y390 in 460x1024 figure, wrists x65/395 y490 for long sleeves. Keep sleeve angles in same downward pose, do not use T pose. Full garment visible in both views, same scale, authentic restrained branding. No labels, no panels, no background shadow.",
+      "target": [
+        75,
+        174,
+        310,
+        230
+      ],
+      "generatedAtlas": "exec-e3b3c57a-925f-495a-a186-06a9d168f3aa.png"
+    },
+    {
+      "id": "hollister-ivy-jumper",
+      "spec": "Hollister Ivy cream cable-knit jumper with subtle small tonal seagull emblem, long sleeves, classic crew neck, waist-length.",
+      "part": "top",
+      "prompt": "Use case: stylized-concept. Independent transparent game garment layer, front view LEFT and rear view RIGHT, equal size. Garment: Hollister Ivy cream cable-knit jumper with subtle small tonal seagull emblem, long sleeves, classic crew neck, waist-length. Match polished outlines and soft shaded sports-game illustration of attached generic FICTIONAL ADULT athlete age25 reference. Reference1front 2back set pose, not depicted people. Draw ONLY garment, no skin, mannequin, head, hands, feet, underwear or other clothes. True transparent neck/sleeve/leg openings and background. Follow reference relaxed stance, arms angled down/out slightly. Neck at y170, shoulders x130/330 y190, waist y390 in 460x1024 figure, wrists x65/395 y490 for long sleeves. Keep sleeve angles in same downward pose, do not use T pose. Full garment visible in both views, same scale, authentic restrained branding. No labels, no panels, no background shadow.",
+      "target": [
+        25,
+        153,
+        410,
+        345
+      ],
+      "generatedAtlas": "exec-da18b6af-d170-4530-94df-434d3c6fe527.png"
+    },
+    {
+      "id": "juicy-velour-hoodie",
+      "spec": "Juicy Couture velour zip hoodie in dark pink, silver front zip, hood down, small sparkling JC chest detail and Juicy lettering across upper back.",
+      "part": "top",
+      "prompt": "Use case: stylized-concept. Independent transparent game garment layer, front view LEFT and rear view RIGHT, equal size. Garment: Juicy Couture velour zip hoodie in dark pink, silver front zip, hood down, small sparkling JC chest detail and Juicy lettering across upper back. Match polished outlines and soft shaded sports-game illustration of attached generic FICTIONAL ADULT athlete age25 reference. Reference1front 2back set pose, not depicted people. Draw ONLY garment, no skin, mannequin, head, hands, feet, underwear or other clothes. True transparent neck/sleeve/leg openings and background. Follow reference relaxed stance, arms angled down/out slightly. Neck at y170, shoulders x130/330 y190, waist y390 in 460x1024 figure, wrists x65/395 y490 for long sleeves. Keep sleeve angles in same downward pose, do not use T pose. Full garment visible in both views, same scale, authentic restrained branding. No labels, no panels, no background shadow.",
+      "target": [
+        25,
+        153,
+        410,
+        345
+      ],
+      "generatedAtlas": "exec-7203e1b0-5ff5-4eba-a00f-5bde33d14199.png"
+    },
+    {
+      "id": "juicy-velour-trousers",
+      "spec": "Juicy Couture matching dark pink velour bootcut trousers, natural curved drawstring waist, small silver JC hip detail, fitted thighs and gently flared ankle hems.",
+      "part": "bottoms",
+      "prompt": "Use case: stylized-concept. Independent transparent game garment layer, front view LEFT and rear view RIGHT, equal size. Garment: Juicy Couture matching dark pink velour bootcut trousers, natural curved drawstring waist, small silver JC hip detail, fitted thighs and gently flared ankle hems. Match polished outlines and soft shaded sports-game illustration of attached generic FICTIONAL ADULT athlete age25 reference. Reference1front 2back set pose, not depicted people. Draw ONLY garment, no skin, mannequin, head, hands, feet, underwear or other clothes. True transparent neck/sleeve/leg openings and background. Follow reference relaxed stance, arms angled down/out slightly. Natural curved waist follows pelvis at y392, hips at y475, knees y700, ankles y945 in 460x1024 figure; legs apart matching reference. Follow curved hip/thigh silhouette, no rigid square hips or rectangular waist. Full garment visible in both views, same scale, authentic restrained branding. No labels, no panels, no background shadow.",
+      "target": [
+        75,
+        392,
+        310,
+        565
+      ],
+      "generatedAtlas": "exec-b52a7022-21cf-4268-9659-971f0c43d813.png"
+    },
+    {
+      "id": "nike-club-hoodie",
+      "part": "top",
+      "target": [
+        25,
+        130,
+        410,
+        345
+      ],
+      "fitWidth": 410,
+      "generatedAtlas": "exec-0a279251-3d45-4131-b689-4718267d9599.png",
+      "generationBrief": "Independent transparent front/back garment pair matching fictional adult athlete pose, natural curved waist/hips, polished shaded sports-game illustration; nike-club-hoodie"
+    },
+    {
+      "id": "nike-club-joggers",
+      "part": "bottoms",
+      "target": [
+        75,
+        392,
+        310,
+        565
+      ],
+      "generatedAtlas": "exec-a8e67207-e88e-41a9-ba92-4bff4831d192.png",
+      "generationBrief": "Independent transparent front/back garment pair matching fictional adult athlete pose, natural curved waist/hips, polished shaded sports-game illustration; nike-club-joggers"
+    },
+    {
+      "id": "nike-pro-crop",
+      "spec": "Nike Pro black short sleeved athletic crop top with small white Swoosh chest and white NIKE PRO branding around elastic bottom band, athletic coverage.",
+      "part": "top",
+      "prompt": "Use case: stylized-concept. Independent transparent game garment layer, front view LEFT and rear view RIGHT, equal size. Garment: Nike Pro black short sleeved athletic crop top with small white Swoosh chest and white NIKE PRO branding around elastic bottom band, athletic coverage. Match polished outlines and soft shaded sports-game illustration of attached generic FICTIONAL ADULT athlete age25 reference. Reference1front 2back set pose, not depicted people. Draw ONLY garment, no skin, mannequin, head, hands, feet, underwear or other clothes. True transparent neck/sleeve/leg openings and background. Follow reference relaxed stance, arms angled down/out slightly. Neck at y170, shoulders x130/330 y190, waist y390 in 460x1024 figure, wrists x65/395 y490 for long sleeves. Keep sleeve angles in same downward pose, do not use T pose. Full garment visible in both views, same scale, authentic restrained branding. No labels, no panels, no background shadow.",
+      "target": [
+        80,
+        172,
+        300,
+        165
+      ],
+      "generatedAtlas": "exec-6d763a33-7c4d-4d53-982e-3e2e7aae8f3a.png"
+    },
+    {
+      "id": "nike-pro-shorts",
+      "spec": "Nike Pro black mid-thigh compression training shorts with white Swoosh and white NIKE PRO waistband. Naturally curved high waist, shaped hips, snug cycling shorts.",
+      "part": "bottoms",
+      "prompt": "Use case: stylized-concept. Independent transparent game garment layer, front view LEFT and rear view RIGHT, equal size. Garment: Nike Pro black mid-thigh compression training shorts with white Swoosh and white NIKE PRO waistband. Naturally curved high waist, shaped hips, snug cycling shorts. Match polished outlines and soft shaded sports-game illustration of attached generic FICTIONAL ADULT athlete age25 reference. Reference1front 2back set pose, not depicted people. Draw ONLY garment, no skin, mannequin, head, hands, feet, underwear or other clothes. True transparent neck/sleeve/leg openings and background. Follow reference relaxed stance, arms angled down/out slightly. Natural curved waist follows pelvis at y392, hips at y475, knees y700, ankles y945 in 460x1024 figure; legs apart matching reference. Follow curved hip/thigh silhouette, no rigid square hips or rectangular waist. Full garment visible in both views, same scale, authentic restrained branding. No labels, no panels, no background shadow.",
+      "target": [
+        90,
+        392,
+        280,
+        190
+      ],
+      "generatedAtlas": "exec-c609d540-7ba3-4407-933b-1c7aa562e331.png"
+    },
+    {
+      "id": "puma-cargo-shorts",
+      "spec": "PUMA Essentials woven cargo shorts, black with small white PUMA mark, mid-thigh loose cargo shorts, flap pockets.",
+      "part": "bottoms",
+      "prompt": "Use case: stylized-concept. Independent transparent game garment layer, front view LEFT and rear view RIGHT, equal size. Garment: PUMA Essentials woven cargo shorts, black with small white PUMA mark, mid-thigh loose cargo shorts, flap pockets. Match polished outlines and soft shaded sports-game illustration of attached generic FICTIONAL ADULT athlete age25 reference. Reference1front 2back set pose, not depicted people. Draw ONLY garment, no skin, mannequin, head, hands, feet, underwear or other clothes. True transparent neck/sleeve/leg openings and background. Follow reference relaxed stance, arms angled down/out slightly. Natural curved waist follows pelvis at y392, hips at y475, knees y700, ankles y945 in 460x1024 figure; legs apart matching reference. Follow curved hip/thigh silhouette, no rigid square hips or rectangular waist. Full garment visible in both views, same scale, authentic restrained branding. No labels, no panels, no background shadow.",
+      "target": [
+        90,
+        392,
+        280,
+        190
+      ],
+      "generatedAtlas": "exec-05ae0131-3802-489d-97f2-95d1b3fc2f06.png"
+    },
+    {
+      "id": "puma-essentials-hoodie",
+      "spec": "PUMA Essentials No.1 Logo black fleece hoodie, small white PUMA wordmark/leaping cat chest, hood down and pouch pocket.",
+      "part": "top",
+      "prompt": "Use case: stylized-concept. Create independent game clothing layer, front view LEFT and true rear view RIGHT, equal size, transparent outside clothing and through openings. Garment: PUMA Essentials No.1 Logo black fleece hoodie, small white PUMA wordmark/leaping cat chest, hood down and pouch pocket. Match polished ink outlines and soft shading of attached generic FICTIONAL ADULT age25 athlete references, images1front 2back pose. Garment ONLY, no person/skin/mannequin/head/hands/feet/other clothes. Garment follows actual pose: arms gently outward but DOWN, shoulders at local x130/330 y190, wrists x65/395 y490 in a 460x1024 fullfigure. Neck y170, waist y390, full-length hem y450; sleeves follow reference arms, with short sleeves ending above elbow if T-shirt. Both front/back sized identically. Authentic recognisable brand details. Transparent background. No text labels or collage borders, full garment visible.",
+      "target": [
+        25,
+        130,
+        410,
+        345
+      ],
+      "fitWidth": 410,
+      "generatedAtlas": "exec-3e0b0a79-cc01-491b-97e6-86ad54891974.png"
+    },
+    {
+      "id": "ua-tech-halfzip",
+      "spec": "Under Armour Tech Wordmark black half-zip long sleeved training top with small white UA chest branding and white wordmark on sleeve.",
+      "part": "top",
+      "prompt": "Use case: stylized-concept. Create independent game clothing layer, front view LEFT and true rear view RIGHT, equal size, transparent outside clothing and through openings. Garment: Under Armour Tech Wordmark black half-zip long sleeved training top with small white UA chest branding and white wordmark on sleeve. Match polished ink outlines and soft shading of attached generic FICTIONAL ADULT age25 athlete references, images1front 2back pose. Garment ONLY, no person/skin/mannequin/head/hands/feet/other clothes. Garment follows actual pose: arms gently outward but DOWN, shoulders at local x130/330 y190, wrists x65/395 y490 in a 460x1024 fullfigure. Neck y170, waist y390, full-length hem y450; sleeves follow reference arms, with short sleeves ending above elbow if T-shirt. Both front/back sized identically. Authentic recognisable brand details. Transparent background. No text labels or collage borders, full garment visible.",
+      "target": [
+        25,
+        130,
+        410,
+        345
+      ],
+      "fitWidth": 390,
+      "generatedAtlas": "exec-f22e1e3a-6761-4b4e-aced-54b93ebb31a2.png"
+    },
+    {
+      "id": "whitefox-glacier-hoodie",
+      "part": "top",
+      "target": [
+        25,
+        130,
+        410,
+        345
+      ],
+      "fitWidth": 410,
+      "generatedAtlas": "exec-e57cf610-9f7f-4b73-9d66-4480226d4240.png",
+      "generationBrief": "Independent transparent front/back garment pair matching fictional adult athlete pose, natural curved waist/hips, polished shaded sports-game illustration; whitefox-glacier-hoodie"
+    },
+    {
+      "id": "whitefox-offstage-tee",
+      "spec": "White Fox Offstage oversized graphic T-shirt in Shadow washed charcoal, contrasting cream WHITE FOX chest and large back graphic lettering, short sleeves, hip length.",
+      "part": "top",
+      "prompt": "Use case: stylized-concept. Independent transparent game garment layer, front view LEFT and rear view RIGHT, equal size. Garment: White Fox Offstage oversized graphic T-shirt in Shadow washed charcoal, contrasting cream WHITE FOX chest and large back graphic lettering, short sleeves, hip length. Match polished outlines and soft shaded sports-game illustration of attached generic FICTIONAL ADULT athlete age25 reference. Reference1front 2back set pose, not depicted people. Draw ONLY garment, no skin, mannequin, head, hands, feet, underwear or other clothes. True transparent neck/sleeve/leg openings and background. Follow reference relaxed stance, arms angled down/out slightly. Neck at y170, shoulders x130/330 y190, waist y390 in 460x1024 figure, wrists x65/395 y490 for long sleeves. Keep sleeve angles in same downward pose, do not use T pose. Full garment visible in both views, same scale, authentic restrained branding. No labels, no panels, no background shadow.",
+      "target": [
+        60,
+        152,
+        340,
+        285
+      ],
+      "fitWidth": 340,
+      "generatedAtlas": "exec-e718ab55-fe5d-4d25-829a-09205665d4a7.png"
+    },
+    {
+      "id": "whitefox-shadow-hoodie",
+      "part": "top",
+      "target": [
+        25,
+        130,
+        410,
+        345
+      ],
+      "fitWidth": 410,
+      "generatedAtlas": "exec-6f2e0448-7c6e-4946-8457-d69247e9f527.png",
+      "generationBrief": "Independent transparent front/back garment pair matching fictional adult athlete pose, natural curved waist/hips, polished shaded sports-game illustration; whitefox-shadow-hoodie"
+    }
+  ],
+  "footwear": [
+    {
+      "id": "absolute-2006",
+      "name": "adidas Predator Absolute",
+      "colour": "Black / White / Red",
+      "edition": "Retro \u00b7 2006",
+      "challenge": "pressing",
+      "source": "https://adidaspredator.com/history/",
+      "prompt": "Use case: stylized-concept. Production game boot sprites. Create completely NEW FOOTWEAR ART, adidas Predator Absolute, Black / White / Red, Retro \u00b7 2006. Image1 existing Boot Locker product illustration is MODEL/COLOUR/BRANDING reference ONLY. Image2 front adult character and image3 back character are POSE/VIEW reference only, do not draw character. Transparent 2x2 sprite grid with four separate shoes: TOP LEFT player's right boot seen from FRONT, toe slightly toward viewer-left; TOP RIGHT player's left boot front, toe slightly toward viewer-right. BOTTOM LEFT player's left boot seen from REAR showing heel, BOTTOM RIGHT player's right boot rear showing heel. Orthographic eye-level looking slightly down as full standing character reference, not side profile, not sole view. Boots worn on invisible feet with real empty ankle openings, no leg/skin/socks. Detailed authentic silhouette, correct low collar, laces/toebox in front and distinctive heel in rear, visible thin sole/stud tips. Match polished shaded outlined sports-game illustration style, brand markings faithful to reference. Four shoes same physical scale, well separated with generous transparent gutters; no contact shadows, no labels, no text except brand markings. Each shoe fits a standing adult athlete foot naturally, no flattened or stretched product photo.",
+      "generatedAtlas": "exec-3dd4fa62-119d-4c96-9949-ee0c247911cd.png"
+    },
+    {
+      "id": "copa",
+      "name": "adidas Copa Pure III",
+      "colour": "White / Black / Metallic Gold",
+      "edition": "Road to Glory \u00b7 2025",
+      "challenge": "passing",
+      "source": "https://www.arsenal.com/news/adidas-launches-road-to-glory-pack-aIfmK8S6ta41",
+      "prompt": "Use case: stylized-concept. Production game boot sprites. Create completely NEW FOOTWEAR ART, adidas Copa Pure III, White / Black / Metallic Gold, Road to Glory \u00b7 2025. Image1 existing Boot Locker product illustration is MODEL/COLOUR/BRANDING reference ONLY. Image2 front adult character and image3 back character are POSE/VIEW reference only, do not draw character. Transparent 2x2 sprite grid with four separate shoes: TOP LEFT player's right boot seen from FRONT, toe slightly toward viewer-left; TOP RIGHT player's left boot front, toe slightly toward viewer-right. BOTTOM LEFT player's left boot seen from REAR showing heel, BOTTOM RIGHT player's right boot rear showing heel. Orthographic eye-level looking slightly down as full standing character reference, not side profile, not sole view. Boots worn on invisible feet with real empty ankle openings, no leg/skin/socks. Detailed authentic silhouette, correct low collar, laces/toebox in front and distinctive heel in rear, visible thin sole/stud tips. Match polished shaded outlined sports-game illustration style, brand markings faithful to reference. Four shoes same physical scale, well separated with generous transparent gutters; no contact shadows, no labels, no text except brand markings. Each shoe fits a standing adult athlete foot naturally, no flattened or stretched product photo.",
+      "generatedAtlas": "exec-1a315f64-02e0-4b1a-a174-1e484e89e201.png"
+    },
+    {
+      "id": "etrusco-1990",
+      "name": "adidas Etrusco Unico",
+      "colour": "Black / White",
+      "edition": "Classic \u00b7 1990",
+      "challenge": "keeper-distribution",
+      "source": "https://footballslegacy.com/products/botas-etrusco-unico-made-in-france-1990",
+      "prompt": "Use case: stylized-concept. Production game boot sprites. Create completely NEW FOOTWEAR ART, adidas Etrusco Unico, Black / White, Classic \u00b7 1990. Image1 existing Boot Locker product illustration is MODEL/COLOUR/BRANDING reference ONLY. Image2 front adult character and image3 back character are POSE/VIEW reference only, do not draw character. Transparent 2x2 sprite grid with four separate shoes: TOP LEFT player's right boot seen from FRONT, toe slightly toward viewer-left; TOP RIGHT player's left boot front, toe slightly toward viewer-right. BOTTOM LEFT player's left boot seen from REAR showing heel, BOTTOM RIGHT player's right boot rear showing heel. Orthographic eye-level looking slightly down as full standing character reference, not side profile, not sole view. Boots worn on invisible feet with real empty ankle openings, no leg/skin/socks. Detailed authentic silhouette, correct low collar, laces/toebox in front and distinctive heel in rear, visible thin sole/stud tips. Match polished shaded outlined sports-game illustration style, brand markings faithful to reference. Four shoes same physical scale, well separated with generous transparent gutters; no contact shadows, no labels, no text except brand markings. Each shoe fits a standing adult athlete foot naturally, no flattened or stretched product photo.",
+      "generatedAtlas": "exec-9fb37f73-f708-4c3a-863d-492b6aaabd35.png"
+    },
+    {
+      "id": "f50",
+      "name": "adidas F50",
+      "colour": "White / Black / Metallic Gold",
+      "edition": "Road to Glory \u00b7 2025",
+      "challenge": "teamwork",
+      "source": "https://www.arsenal.com/news/adidas-launches-road-to-glory-pack-aIfmK8S6ta41",
+      "prompt": "Use case: stylized-concept. Production game boot sprites. Create completely NEW FOOTWEAR ART, adidas F50, White / Black / Metallic Gold, Road to Glory \u00b7 2025. Image1 existing Boot Locker product illustration is MODEL/COLOUR/BRANDING reference ONLY. Image2 front adult character and image3 back character are POSE/VIEW reference only, do not draw character. Transparent 2x2 sprite grid with four separate shoes: TOP LEFT player's right boot seen from FRONT, toe slightly toward viewer-left; TOP RIGHT player's left boot front, toe slightly toward viewer-right. BOTTOM LEFT player's left boot seen from REAR showing heel, BOTTOM RIGHT player's right boot rear showing heel. Orthographic eye-level looking slightly down as full standing character reference, not side profile, not sole view. Boots worn on invisible feet with real empty ankle openings, no leg/skin/socks. Detailed authentic silhouette, correct low collar, laces/toebox in front and distinctive heel in rear, visible thin sole/stud tips. Match polished shaded outlined sports-game illustration style, brand markings faithful to reference. Four shoes same physical scale, well separated with generous transparent gutters; no contact shadows, no labels, no text except brand markings. Each shoe fits a standing adult athlete foot naturally, no flattened or stretched product photo.",
+      "generatedAtlas": "exec-19135fa6-e05c-4a7b-ae79-2875e5b91fa2.png"
+    },
+    {
+      "id": "furon-pink",
+      "name": "New Balance Furon v8",
+      "colour": "Pink Heat / Sea Salt / Metallic Gold",
+      "edition": "Pink Heat",
+      "challenge": "weaker-foot",
+      "source": "https://www.newbalance.co.uk/pd/furon-team-fg-v8/UF3FV8_GF-FTW-803315.html",
+      "prompt": "Use case: stylized-concept. Production game boot sprites. Create completely NEW FOOTWEAR ART, New Balance Furon v8, Pink Heat / Sea Salt / Metallic Gold, Pink Heat. Image1 existing Boot Locker product illustration is MODEL/COLOUR/BRANDING reference ONLY. Image2 front adult character and image3 back character are POSE/VIEW reference only, do not draw character. Transparent 2x2 sprite grid with four separate shoes: TOP LEFT player's right boot seen from FRONT, toe slightly toward viewer-left; TOP RIGHT player's left boot front, toe slightly toward viewer-right. BOTTOM LEFT player's left boot seen from REAR showing heel, BOTTOM RIGHT player's right boot rear showing heel. Orthographic eye-level looking slightly down as full standing character reference, not side profile, not sole view. Boots worn on invisible feet with real empty ankle openings, no leg/skin/socks. Detailed authentic silhouette, correct low collar, laces/toebox in front and distinctive heel in rear, visible thin sole/stud tips. Match polished shaded outlined sports-game illustration style, brand markings faithful to reference. Four shoes same physical scale, well separated with generous transparent gutters; no contact shadows, no labels, no text except brand markings. Each shoe fits a standing adult athlete foot naturally, no flattened or stretched product photo.",
+      "generatedAtlas": "exec-bad218ea-63a0-4958-a869-9a19a56a1ddc.png"
+    },
+    {
+      "id": "future",
+      "name": "PUMA FUTURE 7",
+      "colour": "Sunset Glow / Sun Stream",
+      "edition": "FOREVER. FASTER. \u00b7 2024",
+      "challenge": "defending",
+      "source": "https://mediahub.puma.com/articles/puma-launches-the-foreverfaster-pack",
+      "prompt": "Use case: stylized-concept. Production game boot sprites. Create completely NEW FOOTWEAR ART, PUMA FUTURE 7, Sunset Glow / Sun Stream, FOREVER. FASTER. \u00b7 2024. Image1 existing Boot Locker product illustration is MODEL/COLOUR/BRANDING reference ONLY. Image2 front adult character and image3 back character are POSE/VIEW reference only, do not draw character. Transparent 2x2 sprite grid with four separate shoes: TOP LEFT player's right boot seen from FRONT, toe slightly toward viewer-left; TOP RIGHT player's left boot front, toe slightly toward viewer-right. BOTTOM LEFT player's left boot seen from REAR showing heel, BOTTOM RIGHT player's right boot rear showing heel. Orthographic eye-level looking slightly down as full standing character reference, not side profile, not sole view. Boots worn on invisible feet with real empty ankle openings, no leg/skin/socks. Detailed authentic silhouette, correct low collar, laces/toebox in front and distinctive heel in rear, visible thin sole/stud tips. Match polished shaded outlined sports-game illustration style, brand markings faithful to reference. Four shoes same physical scale, well separated with generous transparent gutters; no contact shadows, no labels, no text except brand markings. Each shoe fits a standing adult athlete foot naturally, no flattened or stretched product photo.",
+      "generatedAtlas": "exec-d2ce287e-c725-4d38-8abf-198a32af7456.png"
+    },
+    {
+      "id": "ida-rise",
+      "name": "IDA Rise Elite",
+      "colour": "Green",
+      "edition": "Rise Elite",
+      "challenge": "turning",
+      "source": "https://www.idasports.com/collections/rise",
+      "prompt": "Use case: stylized-concept. Production game boot sprites. Create completely NEW FOOTWEAR ART, IDA Rise Elite, Green, Rise Elite. Image1 existing Boot Locker product illustration is MODEL/COLOUR/BRANDING reference ONLY. Image2 front adult character and image3 back character are POSE/VIEW reference only, do not draw character. Transparent 2x2 sprite grid with four separate shoes: TOP LEFT player's right boot seen from FRONT, toe slightly toward viewer-left; TOP RIGHT player's left boot front, toe slightly toward viewer-right. BOTTOM LEFT player's left boot seen from REAR showing heel, BOTTOM RIGHT player's right boot rear showing heel. Orthographic eye-level looking slightly down as full standing character reference, not side profile, not sole view. Boots worn on invisible feet with real empty ankle openings, no leg/skin/socks. Detailed authentic silhouette, correct low collar, laces/toebox in front and distinctive heel in rear, visible thin sole/stud tips. Match polished shaded outlined sports-game illustration style, brand markings faithful to reference. Four shoes same physical scale, well separated with generous transparent gutters; no contact shadows, no labels, no text except brand markings. Each shoe fits a standing adult athlete foot naturally, no flattened or stretched product photo.",
+      "generatedAtlas": "exec-ac9ddb64-ab40-401b-a4fd-09fc9a71f7da.png"
+    },
+    {
+      "id": "mercurial",
+      "name": "Nike Mercurial Vapor 16 Pro",
+      "colour": "Limelight / Hyper Crimson / Volt",
+      "edition": "Limelight",
+      "challenge": "dribbling",
+      "source": "https://www.nike.com/gb/t/mercurial-vapor-16-pro-firm-ground-low-top-football-boot-Kwi10YUj/FQ8685-300",
+      "prompt": "Use case: stylized-concept. Production game boot sprites. Create completely NEW FOOTWEAR ART, Nike Mercurial Vapor 16 Pro, Limelight / Hyper Crimson / Volt, Limelight. Image1 existing Boot Locker product illustration is MODEL/COLOUR/BRANDING reference ONLY. Image2 front adult character and image3 back character are POSE/VIEW reference only, do not draw character. Transparent 2x2 sprite grid with four separate shoes: TOP LEFT player's right boot seen from FRONT, toe slightly toward viewer-left; TOP RIGHT player's left boot front, toe slightly toward viewer-right. BOTTOM LEFT player's left boot seen from REAR showing heel, BOTTOM RIGHT player's right boot rear showing heel. Orthographic eye-level looking slightly down as full standing character reference, not side profile, not sole view. Boots worn on invisible feet with real empty ankle openings, no leg/skin/socks. Detailed authentic silhouette, correct low collar, laces/toebox in front and distinctive heel in rear, visible thin sole/stud tips. Match polished shaded outlined sports-game illustration style, brand markings faithful to reference. Four shoes same physical scale, well separated with generous transparent gutters; no contact shadows, no labels, no text except brand markings. Each shoe fits a standing adult athlete foot naturally, no flattened or stretched product photo.",
+      "generatedAtlas": "exec-f50fe879-82a1-4c20-9abd-21bb23f7f5f6.png"
+    },
+    {
+      "id": "morelia-ruby",
+      "name": "Mizuno Morelia Neo IV Japan",
+      "colour": "Ruby Red / White",
+      "edition": "40th anniversary \u00b7 2025",
+      "challenge": "crossing",
+      "source": "https://jpn.mizuno.com/ec/disp/attgrp/P1GA253060/",
+      "prompt": "Use case: stylized-concept. Production game boot sprites. Create completely NEW FOOTWEAR ART, Mizuno Morelia Neo IV Japan, Ruby Red / White, 40th anniversary \u00b7 2025. Image1 existing Boot Locker product illustration is MODEL/COLOUR/BRANDING reference ONLY. Image2 front adult character and image3 back character are POSE/VIEW reference only, do not draw character. Transparent 2x2 sprite grid with four separate shoes: TOP LEFT player's right boot seen from FRONT, toe slightly toward viewer-left; TOP RIGHT player's left boot front, toe slightly toward viewer-right. BOTTOM LEFT player's left boot seen from REAR showing heel, BOTTOM RIGHT player's right boot rear showing heel. Orthographic eye-level looking slightly down as full standing character reference, not side profile, not sole view. Boots worn on invisible feet with real empty ankle openings, no leg/skin/socks. Detailed authentic silhouette, correct low collar, laces/toebox in front and distinctive heel in rear, visible thin sole/stud tips. Match polished shaded outlined sports-game illustration style, brand markings faithful to reference. Four shoes same physical scale, well separated with generous transparent gutters; no contact shadows, no labels, no text except brand markings. Each shoe fits a standing adult athlete foot naturally, no flattened or stretched product photo.",
+      "generatedAtlas": "exec-5807245a-d34f-4ef4-bb76-9a3f842a96b4.png"
+    },
+    {
+      "id": "phantom",
+      "name": "Nike Phantom 6 Low Pro",
+      "colour": "Racer Blue / White / Pink Blast",
+      "edition": "Turf edition",
+      "challenge": "scanning",
+      "source": "https://www.nike.com/gb/t/phantom-6-low-pro-turf-football-shoe-GrYLmVwl",
+      "prompt": "Use case: stylized-concept. Production game boot sprites. Create completely NEW FOOTWEAR ART, Nike Phantom 6 Low Pro, Racer Blue / White / Pink Blast, Turf edition. Image1 existing Boot Locker product illustration is MODEL/COLOUR/BRANDING reference ONLY. Image2 front adult character and image3 back character are POSE/VIEW reference only, do not draw character. Transparent 2x2 sprite grid with four separate shoes: TOP LEFT player's right boot seen from FRONT, toe slightly toward viewer-left; TOP RIGHT player's left boot front, toe slightly toward viewer-right. BOTTOM LEFT player's left boot seen from REAR showing heel, BOTTOM RIGHT player's right boot rear showing heel. Orthographic eye-level looking slightly down as full standing character reference, not side profile, not sole view. Boots worn on invisible feet with real empty ankle openings, no leg/skin/socks. Detailed authentic silhouette, correct low collar, laces/toebox in front and distinctive heel in rear, visible thin sole/stud tips. Match polished shaded outlined sports-game illustration style, brand markings faithful to reference. Four shoes same physical scale, well separated with generous transparent gutters; no contact shadows, no labels, no text except brand markings. Each shoe fits a standing adult athlete foot naturally, no flattened or stretched product photo.",
+      "generatedAtlas": "exec-aea9dc04-eb0c-4787-9855-47d06718e7e7.png"
+    },
+    {
+      "id": "predator",
+      "name": "adidas Predator",
+      "colour": "White / Black / Metallic Gold",
+      "edition": "Road to Glory \u00b7 2025",
+      "challenge": "finishing",
+      "source": "https://www.arsenal.com/news/adidas-launches-road-to-glory-pack-aIfmK8S6ta41",
+      "prompt": "Use case: stylized-concept. Production game boot sprites. Create completely NEW FOOTWEAR ART, adidas Predator, White / Black / Metallic Gold, Road to Glory \u00b7 2025. Image1 existing Boot Locker product illustration is MODEL/COLOUR/BRANDING reference ONLY. Image2 front adult character and image3 back character are POSE/VIEW reference only, do not draw character. Transparent 2x2 sprite grid with four separate shoes: TOP LEFT player's right boot seen from FRONT, toe slightly toward viewer-left; TOP RIGHT player's left boot front, toe slightly toward viewer-right. BOTTOM LEFT player's left boot seen from REAR showing heel, BOTTOM RIGHT player's right boot rear showing heel. Orthographic eye-level looking slightly down as full standing character reference, not side profile, not sole view. Boots worn on invisible feet with real empty ankle openings, no leg/skin/socks. Detailed authentic silhouette, correct low collar, laces/toebox in front and distinctive heel in rear, visible thin sole/stud tips. Match polished shaded outlined sports-game illustration style, brand markings faithful to reference. Four shoes same physical scale, well separated with generous transparent gutters; no contact shadows, no labels, no text except brand markings. Each shoe fits a standing adult athlete foot naturally, no flattened or stretched product photo.",
+      "generatedAtlas": "exec-13e63561-2c30-40b3-8ad2-ffebd96b73b7.png"
+    },
+    {
+      "id": "stadio-1990",
+      "name": "Lotto Stadio",
+      "colour": "Black / Green",
+      "edition": "Classic \u00b7 1990",
+      "challenge": "communication",
+      "source": "https://lottosport.com/pages/our-story",
+      "prompt": "Use case: stylized-concept. Production game boot sprites. Create completely NEW FOOTWEAR ART, Lotto Stadio, Black / Green, Classic \u00b7 1990. Image1 existing Boot Locker product illustration is MODEL/COLOUR/BRANDING reference ONLY. Image2 front adult character and image3 back character are POSE/VIEW reference only, do not draw character. Transparent 2x2 sprite grid with four separate shoes: TOP LEFT player's right boot seen from FRONT, toe slightly toward viewer-left; TOP RIGHT player's left boot front, toe slightly toward viewer-right. BOTTOM LEFT player's left boot seen from REAR showing heel, BOTTOM RIGHT player's right boot rear showing heel. Orthographic eye-level looking slightly down as full standing character reference, not side profile, not sole view. Boots worn on invisible feet with real empty ankle openings, no leg/skin/socks. Detailed authentic silhouette, correct low collar, laces/toebox in front and distinctive heel in rear, visible thin sole/stud tips. Match polished shaded outlined sports-game illustration style, brand markings faithful to reference. Four shoes same physical scale, well separated with generous transparent gutters; no contact shadows, no labels, no text except brand markings. Each shoe fits a standing adult athlete foot naturally, no flattened or stretched product photo.",
+      "generatedAtlas": "exec-c934e313-be66-4ff5-bd61-8136baf52898.png"
+    },
+    {
+      "id": "starter",
+      "name": "Starter boots",
+      "prompt": "Use case: stylized-concept. Create four new generic plain black football boot sprites with understated white trim, no logos. Transparent 2x2 grid: top left front boot toe angled slightly viewer-left, top right front boot toe angled slightly viewer-right; bottom left rear boot heel visible toe angled left, bottom right rear boot heel visible toe angled right. Polished outlined shaded sports-game illustration matching fictional adult standing athlete references. Low-cut collar, normal laces, subtle moulded studs, proportionate adult footwear. Shoes only, empty ankle openings, no feet/legs/socks, no labels, no shadows outside shoes. Correct distinct front and rear views, no side-on product pose. Four individual shoes same scale well separated by generous transparent gutters.",
+      "generatedAtlas": "exec-a5cda82e-a1af-4d7c-a21e-38aa7c28f1f7.png"
+    },
+    {
+      "id": "superfly-pink",
+      "name": "Nike Mercurial Superfly 9 Elite",
+      "colour": "Pink Foam / Black",
+      "edition": "Pink Foam \u00b7 2024",
+      "challenge": "combinations",
+      "source": "https://sidekicks.co.uk/products/nike-zoom-mercurial-superfly-9-elite-fg-pink-foam",
+      "prompt": "Use case: stylized-concept. Production game boot sprites. Create completely NEW FOOTWEAR ART, Nike Mercurial Superfly 9 Elite, Pink Foam / Black, Pink Foam \u00b7 2024. Image1 existing Boot Locker product illustration is MODEL/COLOUR/BRANDING reference ONLY. Image2 front adult character and image3 back character are POSE/VIEW reference only, do not draw character. Transparent 2x2 sprite grid with four separate shoes: TOP LEFT player's right boot seen from FRONT, toe slightly toward viewer-left; TOP RIGHT player's left boot front, toe slightly toward viewer-right. BOTTOM LEFT player's left boot seen from REAR showing heel, BOTTOM RIGHT player's right boot rear showing heel. Orthographic eye-level looking slightly down as full standing character reference, not side profile, not sole view. Boots worn on invisible feet with real empty ankle openings, no leg/skin/socks. Detailed authentic silhouette, high knit ankle collar, laces/toebox in front and distinctive heel in rear, visible thin sole/stud tips. Match polished shaded outlined sports-game illustration style, brand markings faithful to reference. Four shoes same physical scale, well separated with generous transparent gutters; no contact shadows, no labels, no text except brand markings. Each shoe fits a standing adult athlete foot naturally, no flattened or stretched product photo.",
+      "generatedAtlas": "exec-982d47ae-5c31-456c-99b9-59e95ec51b99.png"
+    },
+    {
+      "id": "tekela-white",
+      "name": "New Balance Tekela V4+ Magique",
+      "colour": "White / Black / True Red",
+      "edition": "V4+",
+      "challenge": "shielding",
+      "source": "https://www.newbalance.co.uk/pd/tekela-magique-fg-v4and/ST3FV45-45326-EMEA-ST3FW45.html",
+      "prompt": "Use case: stylized-concept. Production game boot sprites. Create completely NEW FOOTWEAR ART, New Balance Tekela V4+ Magique, White / Black / True Red, V4+. Image1 existing Boot Locker product illustration is MODEL/COLOUR/BRANDING reference ONLY. Image2 front adult character and image3 back character are POSE/VIEW reference only, do not draw character. Transparent 2x2 sprite grid with four separate shoes: TOP LEFT player's right boot seen from FRONT, toe slightly toward viewer-left; TOP RIGHT player's left boot front, toe slightly toward viewer-right. BOTTOM LEFT player's left boot seen from REAR showing heel, BOTTOM RIGHT player's right boot rear showing heel. Orthographic eye-level looking slightly down as full standing character reference, not side profile, not sole view. Boots worn on invisible feet with real empty ankle openings, no leg/skin/socks. Detailed authentic silhouette, correct low collar, laces/toebox in front and distinctive heel in rear, visible thin sole/stud tips. Match polished shaded outlined sports-game illustration style, brand markings faithful to reference. Four shoes same physical scale, well separated with generous transparent gutters; no contact shadows, no labels, no text except brand markings. Each shoe fits a standing adult athlete foot naturally, no flattened or stretched product photo.",
+      "generatedAtlas": "exec-fc45b75e-6f60-47be-aee6-9e8e3b3c6666.png"
+    },
+    {
+      "id": "tiempo",
+      "name": "Nike Tiempo Legend 10 Pro",
+      "colour": "Black / Deep Jungle",
+      "edition": "Black Pack",
+      "challenge": "first-touch",
+      "source": "https://www.nike.com/gb/w/all-products-tiempo-football-1gdj0z20w7kz3ci69",
+      "prompt": "Use case: stylized-concept. Production game boot sprites. Create completely NEW FOOTWEAR ART, Nike Tiempo Legend 10 Pro, Black / Deep Jungle, Black Pack. Image1 existing Boot Locker product illustration is MODEL/COLOUR/BRANDING reference ONLY. Image2 front adult character and image3 back character are POSE/VIEW reference only, do not draw character. Transparent 2x2 sprite grid with four separate shoes: TOP LEFT player's right boot seen from FRONT, toe slightly toward viewer-left; TOP RIGHT player's left boot front, toe slightly toward viewer-right. BOTTOM LEFT player's left boot seen from REAR showing heel, BOTTOM RIGHT player's right boot rear showing heel. Orthographic eye-level looking slightly down as full standing character reference, not side profile, not sole view. Boots worn on invisible feet with real empty ankle openings, no leg/skin/socks. Detailed authentic silhouette, correct low collar, laces/toebox in front and distinctive heel in rear, visible thin sole/stud tips. Match polished shaded outlined sports-game illustration style, brand markings faithful to reference. Four shoes same physical scale, well separated with generous transparent gutters; no contact shadows, no labels, no text except brand markings. Each shoe fits a standing adult athlete foot naturally, no flattened or stretched product photo.",
+      "generatedAtlas": "exec-8b259e5f-9c96-4b43-b581-5fa95849fc3e.png"
+    },
+    {
+      "id": "total90-2004",
+      "name": "Nike Air Zoom Total 90 III",
+      "colour": "Silver / Red",
+      "edition": "Retro \u00b7 2004",
+      "challenge": "recovery",
+      "source": "https://www.bootsfinder.co.uk/product-page/nike-air-zoom-total-90-iii-sg-silver-red",
+      "prompt": "Use case: stylized-concept. Production game boot sprites. Create completely NEW FOOTWEAR ART, Nike Air Zoom Total 90 III, Silver / Red, Retro \u00b7 2004. Image1 existing Boot Locker product illustration is MODEL/COLOUR/BRANDING reference ONLY. Image2 front adult character and image3 back character are POSE/VIEW reference only, do not draw character. Transparent 2x2 sprite grid with four separate shoes: TOP LEFT player's right boot seen from FRONT, toe slightly toward viewer-left; TOP RIGHT player's left boot front, toe slightly toward viewer-right. BOTTOM LEFT player's left boot seen from REAR showing heel, BOTTOM RIGHT player's right boot rear showing heel. Orthographic eye-level looking slightly down as full standing character reference, not side profile, not sole view. Boots worn on invisible feet with real empty ankle openings, no leg/skin/socks. Detailed authentic silhouette, correct low collar, laces/toebox in front and distinctive heel in rear, visible thin sole/stud tips. Match polished shaded outlined sports-game illustration style, brand markings faithful to reference. Four shoes same physical scale, well separated with generous transparent gutters; no contact shadows, no labels, no text except brand markings. Each shoe fits a standing adult athlete foot naturally, no flattened or stretched product photo.",
+      "generatedAtlas": "exec-6fb2ae82-a9c3-4190-99bd-62631012241b.png"
+    },
+    {
+      "id": "ultra",
+      "name": "PUMA ULTRA ULTIMATE",
+      "colour": "Sun Stream / Sunset Glow",
+      "edition": "FOREVER. FASTER. \u00b7 2024",
+      "challenge": "goalkeeping",
+      "source": "https://mediahub.puma.com/articles/puma-launches-the-foreverfaster-pack",
+      "prompt": "Use case: stylized-concept. Production game boot sprites. Create completely NEW FOOTWEAR ART, PUMA ULTRA ULTIMATE, Sun Stream / Sunset Glow, FOREVER. FASTER. \u00b7 2024. Image1 existing Boot Locker product illustration is MODEL/COLOUR/BRANDING reference ONLY. Image2 front adult character and image3 back character are POSE/VIEW reference only, do not draw character. Transparent 2x2 sprite grid with four separate shoes: TOP LEFT player's right boot seen from FRONT, toe slightly toward viewer-left; TOP RIGHT player's left boot front, toe slightly toward viewer-right. BOTTOM LEFT player's left boot seen from REAR showing heel, BOTTOM RIGHT player's right boot rear showing heel. Orthographic eye-level looking slightly down as full standing character reference, not side profile, not sole view. Boots worn on invisible feet with real empty ankle openings, no leg/skin/socks. Detailed authentic silhouette, correct low collar, laces/toebox in front and distinctive heel in rear, visible thin sole/stud tips. Match polished shaded outlined sports-game illustration style, brand markings faithful to reference. Four shoes same physical scale, well separated with generous transparent gutters; no contact shadows, no labels, no text except brand markings. Each shoe fits a standing adult athlete foot naturally, no flattened or stretched product photo.",
+      "generatedAtlas": "exec-7e634ccf-ba2c-4067-a3cf-565454f9b2fc.png"
+    }
+  ],
+  "kits": [
+    {
+      "id": "arsenal",
+      "prompt": "Use case: stylized-concept. Production game clothing atlas for Arsenal Women 2026/27 HOME kit. Reference1 actual 2026/27 shirt is GARMENT/PATTERN/BRANDING reference only, never reproduce model. References2 front and3 rear fictional adult athlete age25 are POSE/ILLUSTRATION reference only. Six garment-only cells in TWO COLUMNS and THREE ROWS with generous fully transparent gutters: top-left FRONT shirt, top-right BACK shirt; middle-left FRONT shorts, middle-right BACK shorts; bottom-left FRONT pair of knee-high socks, bottom-right REAR pair of knee-high socks. No people, mannequin, skin, hands, legs or boots. Polished shaded outlined sports-game illustration matching athlete references. Short sleeves hang slightly down matching relaxed arm angle. Shorts have natural curved waist and shaped hips matching body pose, not rectangular. Socks follow knee-to-ankle leg angle and calf curve of references, slightly apart. Faithfully preserve red shirt with white sleeves, red shoulder stripes and patterned collar/cuffs as reference. Exact white sponsor text 'Emirates FLY BETTER' on shirt front; red 'Deel' on sleeve. Arsenal crest and adidas branding in correct places. Shirt back plain red with subtle reference details, NO name or number. White shorts with red adidas side stripes and crest, white socks with red cuff/stripes and adidas marks. Transparent neck openings/outside each garment. Every one of the six cells separate and complete, no borders, labels or extraneous text.",
+      "generatedAtlas": "exec-b77bbd8a-bb56-4ff1-b034-fc2d1501f087.png",
+      "publicReferenceURLs": [
+        "https://us.sportsdirect.com/adidas-arsenal-home-shirt-2026/27-womens-376144",
+        "https://www.sportsdirect.com/images/imgzoom/37/37614408_xxl.jpg#",
+        "https://www.adidas.com/us/arsenal-fc-26-27-home-jersey/KB9946.html",
+        "https://assets.adidas.com/images/h_2000%2Cf_auto%2Cq_auto%2Cfl_lossy%2Cc_fill%2Cg_auto/5489e796de7049bebd27524f4a57cf96_9366/Arsenal_FC_26-27_Home_Jersey_Red_KB9946_41_detail.jpg#",
+        "https://www.nss-sports.com/en/kits/45391/arsenal-adidas-new-home-kit-2026-2027-emirates-stadium",
+        "https://data2.nssmag.com/images/galleries/48093/nss-arsenal-adidas-new-home-kit-2026-2027-emirates-stadium-5.webp#",
+        "https://www.adidas.co.id/id/jersey-arsenal-fc-26-27-home/KB9946.html",
+        "https://assets.adidas.com/images/h_2000%2Cf_auto%2Cq_auto%2Cfl_lossy%2Cc_fill%2Cg_auto/c554c7f693df4acebaf178e1dc450000_9366/Jersey_Arsenal_FC_26-27_Home_Merah_KB9946_02_laydown.jpg#"
+      ]
+    },
+    {
+      "id": "aston-villa",
+      "club": "Aston Villa",
+      "league": "WSL",
+      "brand": "adidas",
+      "front": "Visit Rwanda",
+      "back": "no sponsor or number",
+      "details": "Claret shirt with glow-blue collar, shoulder stripes and cuffs, light blue shorts with claret stripes and crest, light blue socks with claret details.",
+      "sockColour": [
+        170,
+        210,
+        230
+      ],
+      "prompt": "Use case: stylized-concept. Production game garment atlas: Aston Villa WOMEN 2026/27 HOME kit, WSL. First 1 image(s) are real GARMENT DESIGN reference(s) ONLY; do NOT reproduce people. Last two images are fictional ADULT athlete age25 front/back POSE and polished sports-game ILLUSTRATION reference. Draw garments only on a truly transparent background: SIX separate cells in TWO columns and THREE rows, generous empty gutters. TOP ROW front shirt left and back shirt right; MIDDLE ROW front shorts left and back shorts right; BOTTOM ROW pair of knee-high socks FRONT left and pair REAR right. No people, skin, mannequin, hands, bare legs, boots, labels, borders or background glow. Shirt short sleeves angle DOWN gently to match relaxed reference arms. Shorts natural curved waist and shaped hips, not rectangular, legs apart matching athlete. Socks follow calf shape/knee-to-ankle angle from athlete, tops knee-high. Faithfully reproduce visible current shirt design/crest, manufacturer adidas, textile/pattern/collar details from photo. Exact front sponsor: Visit Rwanda. Exact rear details: no sponsor or number. Claret shirt with glow-blue collar, shoulder stripes and cuffs, light blue shorts with claret stripes and crest, light blue socks with claret details. No names or player numbers. Preserve front/back sponsor placement, do not duplicate front sponsor on back. Render complete individual garments at equal front/back scales, no touching or overlapping cells. Same polished outlined shaded character-art style; not photographs.",
+      "generatedAtlas": "exec-c5cf0522-bc87-45a9-b3b1-41440d64d89f.png",
+      "publicReferenceURLs": [
+        "https://www.avfc.co.uk/news/2026/may/26/news-aston-villa-and-adidas-unveil-2026-27-home-kit/",
+        "https://img.gc.avfcservices.co.uk/fit-in/1400x1400/1758e460-58e6-11f1-a272-63a292ad1e97.jpg#",
+        "https://shop.avfc.co.uk/en/jerseys/aston-villa-adidas-home-shirt-2026-27-womens-with-ruggeri-13-cup-printing/d-3417226718%2Bf-80779343660005%2Bz-9-1255567891",
+        "https://images.footballfanatics.com/aston-villa/aston-villa-adidas-home-shirt-2026-27-womens-with-ruggeri-13-cup-printing_ss5_p-204907989%2Bpv-2%2Bu-4wzp2qoucdikgbt4viuw%2Bv-jgu1iyz0x1bubpy7oakc.jpg?_hv=2&w=1018#",
+        "https://shop3.avfc.co.uk/en/aston-villa-adidas-home-shirt-2026-27-womens/p-244470287698697470%2Bz-93-375576700",
+        "https://images.footballfanatics.com/aston-villa/aston-villa-adidas-home-shirt-2026-27-womens_ss5_p-203699373%2Bpv-6%2Bu-thrzys9wpsdjqtmct68z%2Bv-akr55mmxnhutl1bsoknl.jpg?_hv=2&w=1018#",
+        "https://img.gc.avfcservices.co.uk/fit-in/1400x1400/16f76370-58e6-11f1-85be-c109594de7d5.jpg#",
+        "https://www.global.jdsports.com/product/burgundy-adidas-aston-villa-fc-202627-home-shirt-womens/793090/"
+      ]
+    },
+    {
+      "id": "birmingham",
+      "club": "Birmingham City",
+      "league": "WSL",
+      "brand": "Nike",
+      "front": "CORAL",
+      "back": "no sponsor or number",
+      "details": "Royal blue polo shirt with white trim and piping, white shorts with blue crest and Nike Swoosh, royal blue socks with white Nike details.",
+      "sockColour": [
+        25,
+        67,
+        170
+      ],
+      "prompt": "Use case: stylized-concept. Production game garment atlas: Birmingham City WOMEN 2026/27 HOME kit, WSL. First 1 image(s) are real GARMENT DESIGN reference(s) ONLY; do NOT reproduce people. Last two images are fictional ADULT athlete age25 front/back POSE and polished sports-game ILLUSTRATION reference. Draw garments only on a truly transparent background: SIX separate cells in TWO columns and THREE rows, generous empty gutters. TOP ROW front shirt left and back shirt right; MIDDLE ROW front shorts left and back shorts right; BOTTOM ROW pair of knee-high socks FRONT left and pair REAR right. No people, skin, mannequin, hands, bare legs, boots, labels, borders or background glow. Shirt short sleeves angle DOWN gently to match relaxed reference arms. Shorts natural curved waist and shaped hips, not rectangular, legs apart matching athlete. Socks follow calf shape/knee-to-ankle angle from athlete, tops knee-high. Faithfully reproduce visible current shirt design/crest, manufacturer Nike, textile/pattern/collar details from photo. Exact front sponsor: CORAL. Exact rear details: no sponsor or number. Royal blue polo shirt with white trim and piping, white shorts with blue crest and Nike Swoosh, royal blue socks with white Nike details. No names or player numbers. Preserve front/back sponsor placement, do not duplicate front sponsor on back. Render complete individual garments at equal front/back scales, no touching or overlapping cells. Same polished outlined shaded character-art style; not photographs.",
+      "generatedAtlas": "exec-93ac8a43-e495-45e9-9d9e-ad9c3770ec2b.png",
+      "publicReferenceURLs": [
+        "https://www.footylogos.com/es/kits/birmingham-city-2026-27",
+        "https://assets.footylogos.com/kits/2026-27/efl-championship/batch-01/cover-birmingham-city-2026-27-home-kit-footylogos.jpg#",
+        "https://assets.footylogos.com/kits/2026-27/efl-championship/batch-01/07-birmingham-city-2026-27-home-kit-footylogos.jpg#",
+        "https://shirtsociety.eu/shirt/birmingham-city-2026-27-home-kit",
+        "https://shirtsociety.eu/minio/images/shirts/75943-2.jpg#",
+        "https://www.footballshirtculture.com/new-kits/birmingham-city-jersey-26-27-home-kit-nike.html",
+        "https://www.footballshirtculture.com/images/2026/birmingham_city_26_27_home_jersey.jpg#",
+        "https://assets.footylogos.com/kits/2026-27/efl-championship/batch-01/cover-birmingham-city-2026-27-home-kit-footylogos.jpg"
+      ]
+    },
+    {
+      "id": "brighton",
+      "club": "Brighton & Hove Albion",
+      "league": "WSL",
+      "brand": "Nike",
+      "front": "AMERICAN EXPRESS",
+      "back": "Pinterest",
+      "details": "Royal blue shirt with fine white vertical pinstripes, white neckline and subtle blue shoulder piping, royal blue shorts and royal blue socks with white details. Experience Kissimmee sleeve mark.",
+      "sockColour": [
+        25,
+        70,
+        172
+      ],
+      "prompt": "Use case: stylized-concept. Production game garment atlas: Brighton & Hove Albion WOMEN 2026/27 HOME kit, WSL. First 1 image(s) are real GARMENT DESIGN reference(s) ONLY; do NOT reproduce people. Last two images are fictional ADULT athlete age25 front/back POSE and polished sports-game ILLUSTRATION reference. Draw garments only on a truly transparent background: SIX separate cells in TWO columns and THREE rows, generous empty gutters. TOP ROW front shirt left and back shirt right; MIDDLE ROW front shorts left and back shorts right; BOTTOM ROW pair of knee-high socks FRONT left and pair REAR right. No people, skin, mannequin, hands, bare legs, boots, labels, borders or background glow. Shirt short sleeves angle DOWN gently to match relaxed reference arms. Shorts natural curved waist and shaped hips, not rectangular, legs apart matching athlete. Socks follow calf shape/knee-to-ankle angle from athlete, tops knee-high. Faithfully reproduce visible current shirt design/crest, manufacturer Nike, textile/pattern/collar details from photo. Exact front sponsor: AMERICAN EXPRESS. Exact rear details: Pinterest. Royal blue shirt with fine white vertical pinstripes, white neckline and subtle blue shoulder piping, royal blue shorts and royal blue socks with white details. Experience Kissimmee sleeve mark. No names or player numbers. Preserve front/back sponsor placement, do not duplicate front sponsor on back. Render complete individual garments at equal front/back scales, no touching or overlapping cells. Same polished outlined shaded character-art style; not photographs.",
+      "generatedAtlas": "exec-e43360f2-d7f0-4930-ae9b-8764f5672c81.png",
+      "publicReferenceURLs": [
+        "https://x.com/vsrsus/status/2074824979481313775",
+        "https://pbs.twimg.com/media/HMtCUjGW4AAMZ33.jpg#",
+        "https://shop.brightonandhovealbion.com/kit/home-kit/adult/7588_bhafc-adult-2627-home-shirt.html",
+        "https://shop.brightonandhovealbion.com/siteimg/prodhires/7588-505.jpg#",
+        "https://www.goal.com/en-za/lists/2026-27-football-kits/blt76514273b0c6e298",
+        "https://assets.goal.com/images/v3/blt334f7fea7e291a01/Bournemouth%2026%3A27%20home%20kit%20.jpg?auto=webp&format=pjpg&quality=60&width=3840#",
+        "https://shop.brightonandhovealbion.com/kit/home-kit/",
+        "https://shop.brightonandhovealbion.com/siteimg/listings/7602.jpg?v=1783497422#"
+      ]
+    },
+    {
+      "id": "bristol-city",
+      "club": "Bristol City",
+      "league": "WSL2",
+      "brand": "O'Neills",
+      "front": "GUINNESS 0.0",
+      "back": "PROUD TO BE DIFFERENT at neck, no added sponsor absent from reference",
+      "details": "Bespoke BURGUNDY/maroon home shirt and shorts with fine cream microstripe texture and Gothic architecture motif, cricket-cream collar/cuff lines, cream crest and O'Neills marks; gold Guinness harp and cream text with blue 0.0. Maroon socks with two cricket-cream cuff rings, cream O'Neills and WHITE foot portions. Match attached front/back/short/sock products exactly.",
+      "sockColour": [
+        117,
+        30,
+        46
+      ],
+      "prompt": "Use case: stylized-concept. Production game garment atlas: Bristol City WOMEN 2026/27 HOME kit, WSL2. First 3 image(s) real GARMENT DESIGN reference ONLY; do not reproduce people. Last two images fictional ADULT athlete age25 front/back POSE and polished sports-game ILLUSTRATION reference. Draw garments only on truly transparent background. SIX separate cells, TWO columns THREE rows, generous transparent gutters. TOP ROW front shirt left, back shirt right. MIDDLE ROW front shorts left, back shorts right. BOTTOM ROW pair knee-high socks FRONT left, pair REAR right. No people, skin, mannequin, hands, bare legs, boots, labels, borders or glow. Short sleeves angle DOWN gently matching relaxed reference arms. Shorts natural curved waist, shaped hips, legs slightly apart matching athlete. Socks follow calf shape and knee-to-ankle angle. Faithfully reproduce current design, crest, manufacturer O'Neills, pattern/collar details from photo. Exact front sponsor: GUINNESS 0.0. Rear details: PROUD TO BE DIFFERENT at neck, no added sponsor absent from reference. Bespoke BURGUNDY/maroon home shirt and shorts with fine cream microstripe texture and Gothic architecture motif, cricket-cream collar/cuff lines, cream crest and O'Neills marks; gold Guinness harp and cream text with blue 0.0. Maroon socks with two cricket-cream cuff rings, cream O'Neills and WHITE foot portions. Match attached front/back/short/sock products exactly. No names or numbers. Preserve sponsor placement; no front sponsor duplicated on back. Complete individual garments at equal front/back scales, no touching cells. Polished outlined shaded character art, not photographs. Transparent neck openings.",
+      "generatedAtlas": "exec-139c65b8-88e7-46f5-956c-9af28823c499.png",
+      "publicReferenceURLs": [
+        "https://uk.sports.yahoo.com/news/bristol-city-unveil-oneills-home-170248257.html",
+        "https://s.yimg.com/lo/mysterio/api/5c9ebfbd90db29445d2d2e195c197f6e73624a659bcffef5aca24fffe8a3b152/lightyear_networkapi/resizefill_w810_h540%3Bquality_80%3Bformat_webp/https%3A/media.zenfs.com/en/bristol_live_714/43d0205ff9a3841e026261d9eec5c452#",
+        "https://www.footballkitarchive.com/championship-kits-2026-27-l61/",
+        "https://www.footballkitarchive.com/cdn/2026/07/10/3fSHtTM6IqmxPuc-small/bristol-city-2026-27-home-kit.jpg#",
+        "https://s.yimg.com/lo/mysterio/api/5c9ebfbd90db29445d2d2e195c197f6e73624a659bcffef5aca24fffe8a3b152/lightyear_networkapi/resizefill_w810_h540%3Bquality_80%3Bformat_webp/https%3A/media.zenfs.com/en/bristol_live_714/43d0205ff9a3841e026261d9eec5c452"
+      ]
+    },
+    {
+      "id": "burnley",
+      "club": "Burnley",
+      "league": "WSL2",
+      "brand": "Castore",
+      "front": "Finotive One",
+      "back": "white BFC monogram beneath neck",
+      "details": "Claret shirt with subtle jacquard stripes and sky blue V-neck/cuffs. Sky-blue shorts, claret socks with sky-blue/white bands and BFC details. Correct Castore wings and crest.",
+      "sockColour": [
+        102,
+        28,
+        48
+      ],
+      "prompt": "Use case: stylized-concept. Production game garment atlas: Burnley WOMEN 2026/27 HOME kit, WSL2. First 1 image(s) real GARMENT DESIGN reference ONLY; do not reproduce people. Last two images fictional ADULT athlete age25 front/back POSE and polished sports-game ILLUSTRATION reference. Draw garments only on truly transparent background. SIX separate cells, TWO columns THREE rows, generous transparent gutters. TOP ROW front shirt left, back shirt right. MIDDLE ROW front shorts left, back shorts right. BOTTOM ROW pair knee-high socks FRONT left, pair REAR right. No people, skin, mannequin, hands, bare legs, boots, labels, borders or glow. Short sleeves angle DOWN gently matching relaxed reference arms. Shorts natural curved waist, shaped hips, legs slightly apart matching athlete. Socks follow calf shape and knee-to-ankle angle. Faithfully reproduce current design, crest, manufacturer Castore, pattern/collar details from photo. Exact front sponsor: Finotive One. Rear details: white BFC monogram beneath neck. Claret shirt with subtle jacquard stripes and sky blue V-neck/cuffs. Sky-blue shorts, claret socks with sky-blue/white bands and BFC details. Correct Castore wings and crest. No names or numbers. Preserve sponsor placement; no front sponsor duplicated on back. Complete individual garments at equal front/back scales, no touching cells. Polished outlined shaded character art, not photographs. Transparent neck openings.",
+      "generatedAtlas": "exec-f73d0ece-6a17-46c4-b682-dd355b79eb76.png",
+      "publicReferenceURLs": [
+        "https://www.footballshirtculture.com/new-kits/burnley-jersey-26-27-home-castore.html",
+        "https://www.footballshirtculture.com/images/cwgallery/5404-burnley-26-27-castore-home-kit/5404_burnley_26_27_castore_home_kit_2.jpg#",
+        "https://www.footballshirtculture.com/images/cwgallery/5404-burnley-26-27-castore-home-kit/5404_burnley_26_27_castore_home_kit_2.jpg"
+      ]
+    },
+    {
+      "id": "charlton",
+      "club": "Charlton Athletic",
+      "league": "WSL",
+      "brand": "Reebok",
+      "front": "RSK",
+      "back": "todaytix",
+      "details": "Red shirt with subtle diagonal pinstripes, white collar and sleeve cuffs, round sword crest, Christopher Ward sleeve detail, black shorts with white/red trim, red socks with white Reebok details.",
+      "sockColour": [
+        187,
+        24,
+        41
+      ],
+      "prompt": "Use case: stylized-concept. Production game garment atlas: Charlton Athletic WOMEN 2026/27 HOME kit, WSL. First 1 image(s) are real GARMENT DESIGN reference(s) ONLY; do NOT reproduce people. Last two images are fictional ADULT athlete age25 front/back POSE and polished sports-game ILLUSTRATION reference. Draw garments only on a truly transparent background: SIX separate cells in TWO columns and THREE rows, generous empty gutters. TOP ROW front shirt left and back shirt right; MIDDLE ROW front shorts left and back shorts right; BOTTOM ROW pair of knee-high socks FRONT left and pair REAR right. No people, skin, mannequin, hands, bare legs, boots, labels, borders or background glow. Shirt short sleeves angle DOWN gently to match relaxed reference arms. Shorts natural curved waist and shaped hips, not rectangular, legs apart matching athlete. Socks follow calf shape/knee-to-ankle angle from athlete, tops knee-high. Faithfully reproduce visible current shirt design/crest, manufacturer Reebok, textile/pattern/collar details from photo. Exact front sponsor: RSK. Exact rear details: todaytix. Red shirt with subtle diagonal pinstripes, white collar and sleeve cuffs, round sword crest, Christopher Ward sleeve detail, black shorts with white/red trim, red socks with white Reebok details. No names or player numbers. Preserve front/back sponsor placement, do not duplicate front sponsor on back. Render complete individual garments at equal front/back scales, no touching or overlapping cells. Same polished outlined shaded character-art style; not photographs.",
+      "generatedAtlas": "exec-82e30af8-0a5e-4b16-9643-9ba79f1e5285.png",
+      "publicReferenceURLs": [
+        "https://clubshop.cafc.co.uk/",
+        "https://clubshop.cafc.co.uk/cdn/shop/files/HomeShirt_W_1_RSK.jpg?v=1782849015#Charlton",
+        "https://clubshop.cafc.co.uk/collections/home-kit-1",
+        "https://clubshop.cafc.co.uk/cdn/shop/files/womens-hover.webp?v=1783014439&width=533#",
+        "https://clubshop.cafc.co.uk/products/2026-27-charlton-athletic-home-shirt-womens-red",
+        "https://clubshop.cafc.co.uk/cdn/shop/files/HomeShirt_W_7.jpg?v=1782849016&width=1445#",
+        "https://clubshop.cafc.co.uk/cdn/shop/files/Desktop_-_1.jpg?v=1783067790&width=3840#Charlton",
+        "https://clubshop.cafc.co.uk/cdn/shop/files/HomeShirt_W_7.jpg?v=1782849016&width=1445"
+      ]
+    },
+    {
+      "id": "chelsea",
+      "club": "Chelsea",
+      "league": "WSL",
+      "brand": "Nike",
+      "front": "USDC by Circle",
+      "back": "\u0160KODA",
+      "details": "Rich royal blue Italian Renaissance shirt, gold trim and gold retro crest, blue shorts with gold Nike and crest and Here We Flo on rear shorts, WHITE socks with blue/gold club and Nike details.",
+      "sockColour": [
+        244,
+        245,
+        240
+      ],
+      "prompt": "Use case: stylized-concept. Production game garment atlas: Chelsea WOMEN 2026/27 HOME kit, WSL. First 1 image(s) are real GARMENT DESIGN reference(s) ONLY; do NOT reproduce people. Last two images are fictional ADULT athlete age25 front/back POSE and polished sports-game ILLUSTRATION reference. Draw garments only on a truly transparent background: SIX separate cells in TWO columns and THREE rows, generous empty gutters. TOP ROW front shirt left and back shirt right; MIDDLE ROW front shorts left and back shorts right; BOTTOM ROW pair of knee-high socks FRONT left and pair REAR right. No people, skin, mannequin, hands, bare legs, boots, labels, borders or background glow. Shirt short sleeves angle DOWN gently to match relaxed reference arms. Shorts natural curved waist and shaped hips, not rectangular, legs apart matching athlete. Socks follow calf shape/knee-to-ankle angle from athlete, tops knee-high. Faithfully reproduce visible current shirt design/crest, manufacturer Nike, textile/pattern/collar details from photo. Exact front sponsor: USDC by Circle. Exact rear details: \u0160KODA. Rich royal blue Italian Renaissance shirt, gold trim and gold retro crest, blue shorts with gold Nike and crest and Here We Flo on rear shorts, WHITE socks with blue/gold club and Nike details. No names or player numbers. Preserve front/back sponsor placement, do not duplicate front sponsor on back. Render complete individual garments at equal front/back scales, no touching or overlapping cells. Same polished outlined shaded character-art style; not photographs.",
+      "generatedAtlas": "exec-9adb9777-d5ca-48c6-ab9c-743251ad9ba9.png",
+      "publicReferenceURLs": [
+        "https://www.nike.com/bg/t/chelsea-fc-2026-27-match-home-aero-fit-football-authentic-shirt-jtdza9z9",
+        "https://static.nike.com/a/images/t_web_pdp_535_v2/f_auto%2Cu_9ddf04c7-2a9a-4d76-add1-d15af8f0263d%2Cc_scale%2Cfl_relative%2Cw_1.0%2Ch_1.0%2Cfl_layer_apply/5b813b42-f09c-4d92-9db7-54c46b3afd2f/CFC%2BW%2BNK%2BDFADV%2BJSY%2BSS%2BMATCH%2BHM.png#",
+        "https://www.rebelsport.com.au/p/chelsea-nike-home-stadium-shirt-2026-27---womens-with-enzo-8-printing-FAN204343086.html",
+        "https://feeds.frgimages.com/ss4/https%3A/feeds.frgimages.com/ss5/altimages/ss5/p-204343086_pv-2_u-ubai6tt2nl0xzp1oo5ww_v-4zk8zwerercv32bff5tu.jpg?_hv=3#",
+        "https://www.nike.com/lu/en/t/chelsea-fc-2026-27-stadium-home-dri-fit-football-replica-shorts-4O1VyRwR",
+        "https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto%2Cu_9ddf04c7-2a9a-4d76-add1-d15af8f0263d%2Cc_scale%2Cfl_relative%2Cw_1.0%2Ch_1.0%2Cfl_layer_apply/04cddcab-60cb-46a7-9c5e-7cd9eef0da0c/CFC%2BW%2BNK%2BDF%2BSHORT%2BSTAD%2BHM.png#",
+        "https://www.nike.com/t/chelsea-fc-2026-27-stadium-home-womens-dri-fit-soccer-repica-jersey-O4HsloKI",
+        "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto%2Cq_auto%3Aeco%2Cc_scale%2Cw_300%2Cu_9ddf04c7-2a9a-4d76-add1-d15af8f0263d%2Cc_scale%2Cfl_relative%2Cw_1.0%2Ch_1.0%2Cfl_layer_apply/de609c64-ebad-49f6-871e-24e8ec0b414f/CFC%2BW%2BNK%2BDF%2BJSY%2BSS%2BSTAD%2BHM.png#"
+      ]
+    },
+    {
+      "id": "crystal-palace",
+      "club": "Crystal Palace",
+      "league": "WSL",
+      "brand": "Macron",
+      "front": "Temporal",
+      "back": "no sponsor or number",
+      "details": "White shirt with bold red-and-blue diagonal sash, subtle geometric texture and retro circular eagle crest, white shorts with red and blue side details, white socks with red/blue bands.",
+      "sockColour": [
+        244,
+        245,
+        242
+      ],
+      "prompt": "Use case: stylized-concept. Production game garment atlas: Crystal Palace WOMEN 2026/27 HOME kit, WSL. First 1 image(s) are real GARMENT DESIGN reference(s) ONLY; do NOT reproduce people. Last two images are fictional ADULT athlete age25 front/back POSE and polished sports-game ILLUSTRATION reference. Draw garments only on a truly transparent background: SIX separate cells in TWO columns and THREE rows, generous empty gutters. TOP ROW front shirt left and back shirt right; MIDDLE ROW front shorts left and back shorts right; BOTTOM ROW pair of knee-high socks FRONT left and pair REAR right. No people, skin, mannequin, hands, bare legs, boots, labels, borders or background glow. Shirt short sleeves angle DOWN gently to match relaxed reference arms. Shorts natural curved waist and shaped hips, not rectangular, legs apart matching athlete. Socks follow calf shape/knee-to-ankle angle from athlete, tops knee-high. Faithfully reproduce visible current shirt design/crest, manufacturer Macron, textile/pattern/collar details from photo. Exact front sponsor: Temporal. Exact rear details: no sponsor or number. White shirt with bold red-and-blue diagonal sash, subtle geometric texture and retro circular eagle crest, white shorts with red and blue side details, white socks with red/blue bands. No names or player numbers. Preserve front/back sponsor placement, do not duplicate front sponsor on back. Render complete individual garments at equal front/back scales, no touching or overlapping cells. Same polished outlined shaded character-art style; not photographs.",
+      "generatedAtlas": "exec-f3991f3d-867f-442c-be46-fd0beba0c930.png",
+      "publicReferenceURLs": [
+        "https://www.footballshirtculture.com/new-kits/crystal-palace-jersey-26-27-home-macron.html",
+        "https://www.footballshirtculture.com/images/cwgallery/5450-crystal-palace-26-27-macron-home-kit/5450_crystal_palace_26_27_macron_home_kit_6.jpg#",
+        "https://www.footballshirtculture.com/images/cwgallery/5450-crystal-palace-26-27-macron-home-kit/5450_crystal_palace_26_27_macron_home_kit_6.jpg"
+      ]
+    },
+    {
+      "id": "durham",
+      "club": "Durham",
+      "league": "WSL2",
+      "brand": "hummel",
+      "front": "launch version: keep front blank as actual 2026/27 reference",
+      "back": "no sponsor or number",
+      "details": "Blue bespoke shirt with large white angled sleeve inserts and white hummel shoulder chevrons, blue shorts with white chevrons, blue socks with white trim. Use 2026/27 launch reference, not 2025/26 shirt.",
+      "sockColour": [
+        30,
+        80,
+        155
+      ],
+      "launchVersion": true,
+      "prompt": "Use case: stylized-concept. Production game garment atlas: Durham WOMEN 2026/27 HOME kit, WSL2. First 1 image(s) real GARMENT DESIGN reference ONLY; do not reproduce people. Last two images fictional ADULT athlete age25 front/back POSE and polished sports-game ILLUSTRATION reference. Draw garments only on truly transparent background. SIX separate cells, TWO columns THREE rows, generous transparent gutters. TOP ROW front shirt left, back shirt right. MIDDLE ROW front shorts left, back shorts right. BOTTOM ROW pair knee-high socks FRONT left, pair REAR right. No people, skin, mannequin, hands, bare legs, boots, labels, borders or glow. Short sleeves angle DOWN gently matching relaxed reference arms. Shorts natural curved waist, shaped hips, legs slightly apart matching athlete. Socks follow calf shape and knee-to-ankle angle. Faithfully reproduce current design, crest, manufacturer hummel, pattern/collar details from photo. Exact front sponsor: launch version: keep front blank as actual 2026/27 reference. Rear details: no sponsor or number. Blue bespoke shirt with large white angled sleeve inserts and white hummel shoulder chevrons, blue shorts with white chevrons, blue socks with white trim. Use 2026/27 launch reference, not 2025/26 shirt. No names or numbers. Preserve sponsor placement; no front sponsor duplicated on back. Complete individual garments at equal front/back scales, no touching cells. Polished outlined shaded character art, not photographs. Transparent neck openings.",
+      "generatedAtlas": "exec-8fd4b71c-0ad8-49c3-9794-cf5d8e59edac.png",
+      "publicReferenceURLs": [
+        "https://www.footballkitarchive.com/es/durham-women-2025-26-kits/",
+        "https://cdn.footballkitarchive.com/2025/08/04/7SgP3P2RC6FuTJg.jpg#",
+        "https://durhamwfc.co.uk/2025/08/04/durham-women-unveil-2025-26-hummel-home-shirt/",
+        "https://i0.wp.com/durhamwfc.co.uk/wp-content/uploads/2025/08/1x1GraphicKitLaunch.png?resize=1024%2C1024&ssl=1#",
+        "https://www.wslfootball.com/clubs/wsl2/durham",
+        "https://images.wslfootball.com/image/private/t_w_480/prd/assets/widgets/player-action-photo/fc713d8f115b4628bed9ba9b731acd14#",
+        "https://www.footballkitarchive.com/es/durham-women-2025-26-home-kit/397363/",
+        "https://cdn.footballkitarchive.com/2025/08/04/EAs5H2TQHo1oQlV.jpg#"
+      ]
+    },
+    {
+      "id": "everton",
+      "club": "Everton",
+      "league": "WSL",
+      "brand": "Castore",
+      "front": "CMC MARKETS",
+      "back": "no sponsor or number",
+      "details": "Royal blue shirt, white round cut-away collar and sleeve trim with amber highlights, Stake sleeve mark. White home replica shorts with blue side panels and amber trim, royal blue socks with white and amber cuff and EFC lettering.",
+      "sockColour": [
+        29,
+        62,
+        150
+      ],
+      "prompt": "Use case: stylized-concept. Production game garment atlas: Everton WOMEN 2026/27 HOME kit, WSL. First 1 image(s) are real GARMENT DESIGN reference(s) ONLY; do NOT reproduce people. Last two images are fictional ADULT athlete age25 front/back POSE and polished sports-game ILLUSTRATION reference. Draw garments only on a truly transparent background: SIX separate cells in TWO columns and THREE rows, generous empty gutters. TOP ROW front shirt left and back shirt right; MIDDLE ROW front shorts left and back shorts right; BOTTOM ROW pair of knee-high socks FRONT left and pair REAR right. No people, skin, mannequin, hands, bare legs, boots, labels, borders or background glow. Shirt short sleeves angle DOWN gently to match relaxed reference arms. Shorts natural curved waist and shaped hips, not rectangular, legs apart matching athlete. Socks follow calf shape/knee-to-ankle angle from athlete, tops knee-high. Faithfully reproduce visible current shirt design/crest, manufacturer Castore, textile/pattern/collar details from photo. Exact front sponsor: CMC MARKETS. Exact rear details: no sponsor or number. Royal blue shirt, white round cut-away collar and sleeve trim with amber highlights, Stake sleeve mark. White home replica shorts with blue side panels and amber trim, royal blue socks with white and amber cuff and EFC lettering. No names or player numbers. Preserve front/back sponsor placement, do not duplicate front sponsor on back. Render complete individual garments at equal front/back scales, no touching or overlapping cells. Same polished outlined shaded character-art style; not photographs.",
+      "generatedAtlas": "exec-2ffba225-65fc-404c-9169-1bd3ae9db4ce.png",
+      "publicReferenceURLs": [
+        "https://www.kitbag.com/en/premier-league/everton/everton-castore-home-pro-shirt-2026-27-womens-with-dewsbury-hall-22-printing/o-21640484%2Bt-97324532%2Bp-24666094658%2Bz-9-2512349255",
+        "https://images.footballfanatics.com/everton/everton-castore-home-pro-shirt-2026-27-womens-with-dewsbury-hall-8-printing_ss5_p-204496724%2Bpv-2%2Bu-qguzjfwbwwhxduyzigxl%2Bv-ps2r3ly8djzzmbcc8nml.png?_hv=2&w=1018#",
+        "https://www.footballshirtculture.com/new-kits/everton-jersey-26-27-home-castore.html",
+        "https://www.footballshirtculture.com/images/cwgallery/5397-everton-26-27-castore-home-kit/5397_everton_26_27_castore_home_kit_d.jpeg#",
+        "https://www.footballshirtculture.com/images/cwgallery/5397-everton-26-27-castore-home-kit/5397_everton_26_27_castore_home_kit_b.jpeg#",
+        "https://www.footylogos.com/kits/everton-2026-27",
+        "https://cdn.prod.website-files.com/68f550992570ca0322737dc2/6a4b8d8435ebedff9e8f7996_everton-fc-2026-27-home-kit-footylogos%20%287%29-p-1080.jpg#",
+        "https://images.footballfanatics.com/everton/everton-castore-home-pro-shirt-2026-27-womens-with-dewsbury-hall-8-printing_ss5_p-204496724%2Bpv-2%2Bu-qguzjfwbwwhxduyzigxl%2Bv-ps2r3ly8djzzmbcc8nml.png?_hv=2&w=1018"
+      ]
+    },
+    {
+      "id": "ipswich",
+      "club": "Ipswich Town",
+      "league": "WSL2",
+      "brand": "Umbro",
+      "front": "HALO",
+      "back": "MSC",
+      "details": "Deep blue shirt with embossed angular geometric pattern inspired by Portman Road, white side panels, navy collar/cuffs. White shorts with blue trim, blue socks with white Umbro and club details.",
+      "sockColour": [
+        27,
+        62,
+        151
+      ],
+      "prompt": "Use case: stylized-concept. Production game garment atlas: Ipswich Town WOMEN 2026/27 HOME kit, WSL2. First 1 image(s) real GARMENT DESIGN reference ONLY; do not reproduce people. Last two images fictional ADULT athlete age25 front/back POSE and polished sports-game ILLUSTRATION reference. Draw garments only on truly transparent background. SIX separate cells, TWO columns THREE rows, generous transparent gutters. TOP ROW front shirt left, back shirt right. MIDDLE ROW front shorts left, back shorts right. BOTTOM ROW pair knee-high socks FRONT left, pair REAR right. No people, skin, mannequin, hands, bare legs, boots, labels, borders or glow. Short sleeves angle DOWN gently matching relaxed reference arms. Shorts natural curved waist, shaped hips, legs slightly apart matching athlete. Socks follow calf shape and knee-to-ankle angle. Faithfully reproduce current design, crest, manufacturer Umbro, pattern/collar details from photo. Exact front sponsor: HALO. Rear details: MSC. Deep blue shirt with embossed angular geometric pattern inspired by Portman Road, white side panels, navy collar/cuffs. White shorts with blue trim, blue socks with white Umbro and club details. No names or numbers. Preserve sponsor placement; no front sponsor duplicated on back. Complete individual garments at equal front/back scales, no touching cells. Polished outlined shaded character art, not photographs. Transparent neck openings.",
+      "generatedAtlas": "exec-31d785c4-ec09-4b45-b7a1-12b036336b18.png",
+      "publicReferenceURLs": [
+        "https://shop.itfc.co.uk/products/2627-womens-home-shirt-ss-blue",
+        "https://shop.itfc.co.uk/cdn/shop/files/Home_Shirt_SS_ff61803d-186f-424e-be10-92b2347377a6.jpg?v=1783073024#",
+        "https://shop.itfc.co.uk/cdn/shop/files/Home_Shirt_SS_2_03c2cf78-882b-4c03-8468-3761d710678d.jpg?v=1783073024&width=1445#",
+        "https://shop.itfc.co.uk/cdn/shop/files/Home_Shirt_SS_ff61803d-186f-424e-be10-92b2347377a6.jpg?v=1783073024"
+      ]
+    },
+    {
+      "id": "leicester",
+      "club": "Leicester City",
+      "league": "WSL2",
+      "brand": "adidas",
+      "front": "KING POWER, NOT men's BC.GAME",
+      "back": "no sponsor or number",
+      "details": "Royal blue shirt with tonal wyvern print, white adidas shoulder stripes and white neckline/cuffs. Women's KING POWER sponsor with crown. Blue shorts with white adidas details, blue socks with white details.",
+      "sockColour": [
+        31,
+        63,
+        154
+      ],
+      "prompt": "Use case: stylized-concept. Production game garment atlas: Leicester City WOMEN 2026/27 HOME kit, WSL2. First 1 image(s) real GARMENT DESIGN reference ONLY; do not reproduce people. Last two images fictional ADULT athlete age25 front/back POSE and polished sports-game ILLUSTRATION reference. Draw garments only on truly transparent background. SIX separate cells, TWO columns THREE rows, generous transparent gutters. TOP ROW front shirt left, back shirt right. MIDDLE ROW front shorts left, back shorts right. BOTTOM ROW pair knee-high socks FRONT left, pair REAR right. No people, skin, mannequin, hands, bare legs, boots, labels, borders or glow. Short sleeves angle DOWN gently matching relaxed reference arms. Shorts natural curved waist, shaped hips, legs slightly apart matching athlete. Socks follow calf shape and knee-to-ankle angle. Faithfully reproduce current design, crest, manufacturer adidas, pattern/collar details from photo. Exact front sponsor: KING POWER, NOT men's BC.GAME. Rear details: no sponsor or number. Royal blue shirt with tonal wyvern print, white adidas shoulder stripes and white neckline/cuffs. Women's KING POWER sponsor with crown. Blue shorts with white adidas details, blue socks with white details. No names or numbers. Preserve sponsor placement; no front sponsor duplicated on back. Complete individual garments at equal front/back scales, no touching cells. Polished outlined shaded character art, not photographs. Transparent neck openings.",
+      "generatedAtlas": "exec-e8c36c66-3b7d-4f6a-8952-814f613ff6e8.png",
+      "publicReferenceURLs": [
+        "https://shop.lcfc.com/en/kit/home-kit",
+        "https://shop-admin.lcfc.com/media/catalog/product/l/c/lcfc-home-shirt-mens-01_27_copy.jpg?image-type=thumbnail&store=en#",
+        "https://www.footballshirtculture.com/new-kits/leicester-city-jersey-26-27-home-adidas.html?ml=1",
+        "https://www.footballshirtculture.com/images/cwgallery/5399-leicester-city-26-27-adidas-home-kit/5399_leicester_city_26_27_adidas_home_kit_b.jpeg#",
+        "https://www.footballshirtculture.com/new-kits/leicester-city-jersey-26-27-home-adidas.html",
+        "https://www.footballshirtculture.com/images/cwgallery/5399-leicester-city-26-27-adidas-home-kit/5399_leicester_city_26_27_adidas_home_kit_c.jpeg#",
+        "https://www.footballshirtculture.com/images/cwgallery/5399-leicester-city-26-27-adidas-home-kit/5399_leicester_city_26_27_adidas_home_kit_f1.jpg#",
+        "https://shop-admin.lcfc.com/media/catalog/product/l/c/lcfc-home-shirt-mens-01_27_copy.jpg?image-type=thumbnail&store=en"
+      ]
+    },
+    {
+      "id": "liverpool",
+      "club": "Liverpool",
+      "league": "WSL",
+      "brand": "adidas",
+      "front": "standard chartered",
+      "back": "LFC FOUNDATION",
+      "details": "Rich red shirt with tonal geometric print, white adidas shoulder stripes, collar/cuff trim, Expedia sleeve. Matching red shorts with white adidas stripes and crest, red socks with white details.",
+      "sockColour": [
+        175,
+        25,
+        40
+      ],
+      "prompt": "Use case: stylized-concept. Production game garment atlas: Liverpool WOMEN 2026/27 HOME kit, WSL. First 1 image(s) are real GARMENT DESIGN reference(s) ONLY; do NOT reproduce people. Last two images are fictional ADULT athlete age25 front/back POSE and polished sports-game ILLUSTRATION reference. Draw garments only on a truly transparent background: SIX separate cells in TWO columns and THREE rows, generous empty gutters. TOP ROW front shirt left and back shirt right; MIDDLE ROW front shorts left and back shorts right; BOTTOM ROW pair of knee-high socks FRONT left and pair REAR right. No people, skin, mannequin, hands, bare legs, boots, labels, borders or background glow. Shirt short sleeves angle DOWN gently to match relaxed reference arms. Shorts natural curved waist and shaped hips, not rectangular, legs apart matching athlete. Socks follow calf shape/knee-to-ankle angle from athlete, tops knee-high. Faithfully reproduce visible current shirt design/crest, manufacturer adidas, textile/pattern/collar details from photo. Exact front sponsor: standard chartered. Exact rear details: LFC FOUNDATION. Rich red shirt with tonal geometric print, white adidas shoulder stripes, collar/cuff trim, Expedia sleeve. Matching red shorts with white adidas stripes and crest, red socks with white details. No names or player numbers. Preserve front/back sponsor placement, do not duplicate front sponsor on back. Render complete individual garments at equal front/back scales, no touching or overlapping cells. Same polished outlined shaded character-art style; not photographs.",
+      "generatedAtlas": "exec-2286ae33-fa6d-4bb2-910b-a6ba090d4f97.png",
+      "publicReferenceURLs": [
+        "https://www.rebelsport.com.au/p/liverpool-adidas-home-shirt-2026-27---womens-SPO10588882.html",
+        "https://feeds.frgimages.com/ss4/https%3A/feeds.frgimages.com/ss5/altimages/ss5/p-203839526_pv-3_u-v9zk6ehezap6r5yur8fd_v-wfoqwaqdcrvyxuqtsjp8.png?_hv=3#",
+        "https://www.ace.co.uk/adidas-liverpool-2026-2027-home-shirt-womens-376152",
+        "https://www.ace.co.uk/images/imgzoom/37/37615208_xxl.jpg#",
+        "https://www.unisportstore.com/football-shirts/adidas-liverpool-fc-2627-home-jersey/475164/",
+        "https://thumblr.uniid.it/product/475164/bafa6a47c82b.jpg#",
+        "https://feeds.frgimages.com/ss4/https%3A/feeds.frgimages.com/ss5/altimages/ss5/p-203839526_pv-1_u-v9zk6ehezap6r5yur8fd_v-mqdbiem0cl2dqdrovggd.png?_hv=3#Liverpool",
+        "https://www.abola.pt/noticias/liverpool-vai-ao-passado-para-apresentar-novo-equipamento-fotos-2026051908592125187"
+      ]
+    },
+    {
+      "id": "london-city",
+      "club": "London City Lionesses",
+      "league": "WSL",
+      "brand": "Nike",
+      "front": "distinctive Nike Goddess of Victory emblem, NOT generic wordmark",
+      "back": "no sponsor or number",
+      "details": "Turquoise shirt with cream/white lino-print diamond crest and Rosebay Willowherb flower pattern, dark navy shorts and navy socks with turquoise details.",
+      "sockColour": [
+        23,
+        40,
+        65
+      ],
+      "prompt": "Use case: stylized-concept. Production game garment atlas: London City Lionesses WOMEN 2026/27 HOME kit, WSL. First 1 image(s) are real GARMENT DESIGN reference(s) ONLY; do NOT reproduce people. Last two images are fictional ADULT athlete age25 front/back POSE and polished sports-game ILLUSTRATION reference. Draw garments only on a truly transparent background: SIX separate cells in TWO columns and THREE rows, generous empty gutters. TOP ROW front shirt left and back shirt right; MIDDLE ROW front shorts left and back shorts right; BOTTOM ROW pair of knee-high socks FRONT left and pair REAR right. No people, skin, mannequin, hands, bare legs, boots, labels, borders or background glow. Shirt short sleeves angle DOWN gently to match relaxed reference arms. Shorts natural curved waist and shaped hips, not rectangular, legs apart matching athlete. Socks follow calf shape/knee-to-ankle angle from athlete, tops knee-high. Faithfully reproduce visible current shirt design/crest, manufacturer Nike, textile/pattern/collar details from photo. Exact front sponsor: distinctive Nike Goddess of Victory emblem, NOT generic wordmark. Exact rear details: no sponsor or number. Turquoise shirt with cream/white lino-print diamond crest and Rosebay Willowherb flower pattern, dark navy shorts and navy socks with turquoise details. No names or player numbers. Preserve front/back sponsor placement, do not duplicate front sponsor on back. Render complete individual garments at equal front/back scales, no touching or overlapping cells. Same polished outlined shaded character-art style; not photographs.",
+      "generatedAtlas": "exec-22ffa9bf-03a2-4dab-a29d-5af6920b5425.png",
+      "publicReferenceURLs": [
+        "https://www.londoncitylionesses.com/category/202627-home-kit",
+        "https://static.wixstatic.com/media/76fc02_b48c2161e2454adb82baf0445b59bdc2~mv2.jpg/v1/fill/w_980%2Ch_980%2Cal_c%2Cq_85%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto/76fc02_b48c2161e2454adb82baf0445b59bdc2~mv2.jpg#",
+        "https://www.footballkitarchive.com/london-city-lionesses-2026-27-home-kit-493997/",
+        "https://www.footballkitarchive.com/cdn/2026/07/08/BqXFJtsZfsBHN0a/london-city-lionesses-2026-27-home-kit.jpg#",
+        "https://www.londoncitylionesses.com/products/pre-order-26-27-home-shirt",
+        "https://static.wixstatic.com/media/75dff0_a625ae58017248afabb86df6f863ca1f~mv2.jpg/v1/fill/w_6792%2Ch_9056%2Cal_c%2Cq_90/file.jpg#",
+        "https://www.footballkitarchive.com/cdn/2026/07/08/TVYlqIU4782PcRa/london-city-lionesses-2026-27-home-kit.jpg#",
+        "https://www.footballkitarchive.com/cdn/2026/07/08/dQi88Fs7nTu2qPx/london-city-lionesses-2026-27-home-kit.jpg#"
+      ]
+    },
+    {
+      "id": "manchester-city",
+      "club": "Manchester City",
+      "league": "WSL",
+      "brand": "PUMA",
+      "front": "ETIHAD AIRWAYS",
+      "back": "Revolut",
+      "details": "Gradient sky-blue shirt fading lighter to hem, white/icy-blue collar and cuffs, metallic monochrome crest and white OKX sleeve. Women's BLUE JEWEL dark blue shorts with white waistband and icy-blue trim, ICY BLUE socks with CITY shin lettering and PUMA marks.",
+      "sockColour": [
+        181,
+        218,
+        239
+      ],
+      "prompt": "Use case: stylized-concept. Production game garment atlas: Manchester City WOMEN 2026/27 HOME kit, WSL. First 2 image(s) are real GARMENT DESIGN reference(s) ONLY; do NOT reproduce people. Last two images are fictional ADULT athlete age25 front/back POSE and polished sports-game ILLUSTRATION reference. Draw garments only on a truly transparent background: SIX separate cells in TWO columns and THREE rows, generous empty gutters. TOP ROW front shirt left and back shirt right; MIDDLE ROW front shorts left and back shorts right; BOTTOM ROW pair of knee-high socks FRONT left and pair REAR right. No people, skin, mannequin, hands, bare legs, boots, labels, borders or background glow. Shirt short sleeves angle DOWN gently to match relaxed reference arms. Shorts natural curved waist and shaped hips, not rectangular, legs apart matching athlete. Socks follow calf shape/knee-to-ankle angle from athlete, tops knee-high. Faithfully reproduce visible current shirt design/crest, manufacturer PUMA, textile/pattern/collar details from photo. Exact front sponsor: ETIHAD AIRWAYS. Exact rear details: Revolut. Gradient sky-blue shirt fading lighter to hem, white/icy-blue collar and cuffs, metallic monochrome crest and white OKX sleeve. Women's BLUE JEWEL dark blue shorts with white waistband and icy-blue trim, ICY BLUE socks with CITY shin lettering and PUMA marks. No names or player numbers. Preserve front/back sponsor placement, do not duplicate front sponsor on back. Render complete individual garments at equal front/back scales, no touching or overlapping cells. Same polished outlined shaded character-art style; not photographs.",
+      "generatedAtlas": "exec-3dc57703-4816-4cff-9caa-8b540d29bdf7.png",
+      "publicReferenceURLs": [
+        "https://www.fanatics.co.uk/en/premier-league/manchester-city/manchester-city-puma-heimtrikot-2026-27-damen/o-10970484%2Bt-03193444%2Bp-02774501662%2Bz-9-2954232616",
+        "https://images.footballfanatics.com/manchester-city/manchester-city-puma-home-shirt-2026-27-womens_ss5_p-203603659%2Bpv-1%2Bu-aq7fsbio7gnd4xxvgulx%2Bv-0rwto8vb0ymqu1kmjlma.png?_hv=2&w=1018#",
+        "https://shop.mancity.com/us/en/womens-manchester-city-home-jersey-2026-27/701242808001806.html",
+        "https://shop.mancity.com/dw/image/v2/BDWJ_PRD/on/demandware.static/-/Sites-master-catalog-MAN/default/dw121c65e5/images/large/701242808001_pp_01_mcfc.png?sh=1600&sm=fit&sw=1600#",
+        "https://www.weston.com.sg/products/manchester-city-womens-2026-27-home-jersey-team-light-blue-icy-blue",
+        "https://www.weston.com.sg/cdn/shop/files/701242808001_pp_02_mcfc_1200x1200.png?v=1779261220#",
+        "https://shop.mancity.com/dw/image/v2/BDWJ_PRD/on/demandware.static/-/Sites-master-catalog-MAN/default/dw121c65e5/images/large/701242808001_pp_01_mcfc.png?sh=1600&sm=fit&sw=1600"
+      ]
+    },
+    {
+      "id": "manchester-united",
+      "club": "Manchester United",
+      "league": "WSL",
+      "brand": "adidas",
+      "front": "Snapdragon",
+      "back": "Microsoft Surface",
+      "details": "Red shirt, black/white striped polo collar and cuffs inspired by 1970s FA Cup kit, black shorts with white adidas stripes and red/white edging, black socks with red turn-over cuff and white adidas details.",
+      "sockColour": [
+        28,
+        29,
+        34
+      ],
+      "prompt": "Use case: stylized-concept. Production game garment atlas: Manchester United WOMEN 2026/27 HOME kit, WSL. First 1 image(s) are real GARMENT DESIGN reference(s) ONLY; do NOT reproduce people. Last two images are fictional ADULT athlete age25 front/back POSE and polished sports-game ILLUSTRATION reference. Draw garments only on a truly transparent background: SIX separate cells in TWO columns and THREE rows, generous empty gutters. TOP ROW front shirt left and back shirt right; MIDDLE ROW front shorts left and back shorts right; BOTTOM ROW pair of knee-high socks FRONT left and pair REAR right. No people, skin, mannequin, hands, bare legs, boots, labels, borders or background glow. Shirt short sleeves angle DOWN gently to match relaxed reference arms. Shorts natural curved waist and shaped hips, not rectangular, legs apart matching athlete. Socks follow calf shape/knee-to-ankle angle from athlete, tops knee-high. Faithfully reproduce visible current shirt design/crest, manufacturer adidas, textile/pattern/collar details from photo. Exact front sponsor: Snapdragon. Exact rear details: Microsoft Surface. Red shirt, black/white striped polo collar and cuffs inspired by 1970s FA Cup kit, black shorts with white adidas stripes and red/white edging, black socks with red turn-over cuff and white adidas details. No names or player numbers. Preserve front/back sponsor placement, do not duplicate front sponsor on back. Render complete individual garments at equal front/back scales, no touching or overlapping cells. Same polished outlined shaded character-art style; not photographs.",
+      "generatedAtlas": "exec-9c93fe86-686e-498e-801c-10f08ebb5620.png",
+      "publicReferenceURLs": [
+        "https://store.manutd.com/en-us/p/manchester-united-womens-2627-home-authentic-jersey-5775",
+        "https://mufc-live.cdn.scayle.cloud/images/85a07ac31d029ecb7cc488718df7f577.jpg?bg=ffffff&brightness=1&height=1230&quality=70&width=922#",
+        "https://www.ultrafootball.com/products/manchester-united-26-27-home-womens-jersey-kc4794",
+        "https://www.ultrafootball.com/cdn/shop/files/KC4794_1_APPAREL_Photography_FrontCenterView_transparent.png?v=1778715227#",
+        "https://www.manutd.com/en/news/united-and-adidas-launch-new-home-kit-for-202627-season",
+        "https://dynamic-crop-cdn.scoreplay.io/472/4839661/media_102309580_101916702.png?f=center&fmt=webp&h=720&w=720#",
+        "https://store.manutd.com/en-gb/p/manchester-united-womens-2627-home-authentic-shorts-black-5748",
+        "https://mufc-live.cdn.scayle.cloud/images/0f65f2ffc2fddacfccdc96a2247573b1.jpg?bg=ffffff&brightness=1&height=1230&quality=70&width=922#"
+      ]
+    },
+    {
+      "id": "newcastle",
+      "club": "Newcastle United",
+      "league": "WSL2",
+      "brand": "adidas",
+      "front": "KNOX HYDRATE",
+      "back": "small magpie neck emblem, no number",
+      "details": "Black/white disrupted stripe pattern with light blue collar, shoulder and cuff accents, yellow Noon sleeve mark. Black shorts with light blue side stripes, black socks with light blue bands and magpie motif.",
+      "sockColour": [
+        27,
+        28,
+        34
+      ],
+      "prompt": "Use case: stylized-concept. Production game garment atlas: Newcastle United WOMEN 2026/27 HOME kit, WSL2. First 1 image(s) real GARMENT DESIGN reference ONLY; do not reproduce people. Last two images fictional ADULT athlete age25 front/back POSE and polished sports-game ILLUSTRATION reference. Draw garments only on truly transparent background. SIX separate cells, TWO columns THREE rows, generous transparent gutters. TOP ROW front shirt left, back shirt right. MIDDLE ROW front shorts left, back shorts right. BOTTOM ROW pair knee-high socks FRONT left, pair REAR right. No people, skin, mannequin, hands, bare legs, boots, labels, borders or glow. Short sleeves angle DOWN gently matching relaxed reference arms. Shorts natural curved waist, shaped hips, legs slightly apart matching athlete. Socks follow calf shape and knee-to-ankle angle. Faithfully reproduce current design, crest, manufacturer adidas, pattern/collar details from photo. Exact front sponsor: KNOX HYDRATE. Rear details: small magpie neck emblem, no number. Black/white disrupted stripe pattern with light blue collar, shoulder and cuff accents, yellow Noon sleeve mark. Black shorts with light blue side stripes, black socks with light blue bands and magpie motif. No names or numbers. Preserve sponsor placement; no front sponsor duplicated on back. Complete individual garments at equal front/back scales, no touching cells. Polished outlined shaded character art, not photographs. Transparent neck openings.",
+      "generatedAtlas": "exec-8987330b-4488-4e7a-b84e-7e9cb04472b7.png",
+      "publicReferenceURLs": [
+        "https://www.newcastleunited.com/en/news/newcastle-united-and-adidas-unveil-2026-27-home-kit",
+        "https://images.ctfassets.net/9ec6988xevcz/7DaaXtsSkmQ8VJBxaZFS6Z/de938b3d56d5f4d27a9335830489f730/FW26_NUFC_HOME_CHARLOTTE_00035_16x9_RGB-2.jpg#",
+        "https://www.global.jdsports.com/product/adidas-newcastle-united-fc-202627-home-shirt-womens/793135/",
+        "https://i8.amplience.net/i/jpl/jd_793135_a?fmt=auto&h=765&qlt=92&v=1&w=600#",
+        "https://www.footballshirtculture.com/new-kits/newcastle-united-jersey-26-27-home-adidas.html",
+        "https://www.footballshirtculture.com/images/cwgallery/5369-newcastle-united-26-27-adidas-home-kit/5369_newcastle_united_26_27_adidas_b.jpeg#",
+        "https://www.newcastleunited.com/en",
+        "https://images.ctfassets.net/9ec6988xevcz/lShg98bCIXgJUOjfnzyzP/ba3d53960a5ba48e64cedfdf32c4bf1a/NUFC_FW25_HOME_PLAYER_MCQUADE_STOKES_STOBBS_4x5.jpg?f=top&fit=fill&fm=webp#"
+      ]
+    },
+    {
+      "id": "nottingham-forest",
+      "club": "Nottingham Forest",
+      "league": "WSL2",
+      "brand": "adidas",
+      "front": "MAREX, NOT E.ON training partner",
+      "back": "MIST ROLLIN' IN neck detail, no number",
+      "details": "Red shirt with organic dark red tonal leaf pattern, white adidas shoulder stripes and white Forest tree/two-star crest. White shorts with red side stripes, red socks with white details.",
+      "sockColour": [
+        183,
+        30,
+        43
+      ],
+      "prompt": "Use case: stylized-concept. Production game garment atlas: Nottingham Forest WOMEN 2026/27 HOME kit, WSL2. First 1 image(s) real GARMENT DESIGN reference ONLY; do not reproduce people. Last two images fictional ADULT athlete age25 front/back POSE and polished sports-game ILLUSTRATION reference. Draw garments only on truly transparent background. SIX separate cells, TWO columns THREE rows, generous transparent gutters. TOP ROW front shirt left, back shirt right. MIDDLE ROW front shorts left, back shorts right. BOTTOM ROW pair knee-high socks FRONT left, pair REAR right. No people, skin, mannequin, hands, bare legs, boots, labels, borders or glow. Short sleeves angle DOWN gently matching relaxed reference arms. Shorts natural curved waist, shaped hips, legs slightly apart matching athlete. Socks follow calf shape and knee-to-ankle angle. Faithfully reproduce current design, crest, manufacturer adidas, pattern/collar details from photo. Exact front sponsor: MAREX, NOT E.ON training partner. Rear details: MIST ROLLIN' IN neck detail, no number. Red shirt with organic dark red tonal leaf pattern, white adidas shoulder stripes and white Forest tree/two-star crest. White shorts with red side stripes, red socks with white details. No names or numbers. Preserve sponsor placement; no front sponsor duplicated on back. Complete individual garments at equal front/back scales, no touching cells. Polished outlined shaded character art, not photographs. Transparent neck openings.",
+      "generatedAtlas": "exec-8e30aa4e-a01f-4818-95c9-d3b1825af2a8.png",
+      "publicReferenceURLs": [
+        "https://www.footylogos.com/kits/nottingham-forest-2026-27",
+        "https://assets.footylogos.com/kits/2026-27/premier-league/batch-04/cover-nottingham-forest-2026-27-home-kit-footylogos.jpg#",
+        "https://www.adidas.co.uk/nottingham-forest-26-27-home-jersey/JY8110.html",
+        "https://assets.adidas.com/images/w_500%2Cf_auto%2Cq_auto/8d509c5bed544b178041c8d9390d3bb3_9366/Nottingham_Forest_26-27_Home_Jersey_Red_JY8110_21_model.jpg#",
+        "https://assets.adidas.com/images/w_500%2Cf_auto%2Cq_auto/a9a1a1380b4e4f00a20d3e0d1ea9f011_9366/Nottingham_Forest_26-27_Home_Jersey_Red_JY8110_23_hover_model.jpg#",
+        "https://www.footylogos.com/pt-br/kits/nottingham-forest-2026-27",
+        "https://assets.footylogos.com/kits/2026-27/premier-league/batch-01/02-nottingham-forest-2026-27-home-kit-footylogos.jpg#",
+        "https://assets.footylogos.com/kits/2026-27/premier-league/batch-04/cover-nottingham-forest-2026-27-home-kit-footylogos.jpg"
+      ]
+    },
+    {
+      "id": "sheffield-united",
+      "club": "Sheffield United",
+      "league": "WSL2",
+      "brand": "adidas, NOT previous Errea",
+      "front": "MIDNITE",
+      "back": "plain red as reference, no name/number",
+      "details": "Red/white vertical stripes separated by thin black pinlines, red raglan sleeves with white adidas stripes, black collar and cuffs trimmed red. Village Hotels sleeve. Black shorts with white adidas stripes and red trim, red socks with SUFC and white marks.",
+      "sockColour": [
+        183,
+        24,
+        40
+      ],
+      "prompt": "Use case: stylized-concept. Production game garment atlas: Sheffield United WOMEN 2026/27 HOME kit, WSL2. First 1 image(s) real GARMENT DESIGN reference ONLY; do not reproduce people. Last two images fictional ADULT athlete age25 front/back POSE and polished sports-game ILLUSTRATION reference. Draw garments only on truly transparent background. SIX separate cells, TWO columns THREE rows, generous transparent gutters. TOP ROW front shirt left, back shirt right. MIDDLE ROW front shorts left, back shorts right. BOTTOM ROW pair knee-high socks FRONT left, pair REAR right. No people, skin, mannequin, hands, bare legs, boots, labels, borders or glow. Short sleeves angle DOWN gently matching relaxed reference arms. Shorts natural curved waist, shaped hips, legs slightly apart matching athlete. Socks follow calf shape and knee-to-ankle angle. Faithfully reproduce current design, crest, manufacturer adidas, NOT previous Errea, pattern/collar details from photo. Exact front sponsor: MIDNITE. Rear details: plain red as reference, no name/number. Red/white vertical stripes separated by thin black pinlines, red raglan sleeves with white adidas stripes, black collar and cuffs trimmed red. Village Hotels sleeve. Black shorts with white adidas stripes and red trim, red socks with SUFC and white marks. No names or numbers. Preserve sponsor placement; no front sponsor duplicated on back. Complete individual garments at equal front/back scales, no touching cells. Polished outlined shaded character art, not photographs. Transparent neck openings.",
+      "generatedAtlas": "exec-bb9b3952-bb3d-4373-bc9c-f8691cdcf980.png",
+      "publicReferenceURLs": [
+        "https://www.footballshirtculture.com/new-kits/sheffield-united-jersey-26-27-home-adidas.html",
+        "https://www.footballshirtculture.com/images/cwgallery/5403-sheffield-united-26-27-adidas-home-kit/5403_sheffield_united_26_27_adidas_home_kit_f.jpeg#",
+        "https://www.footballshirtculture.com/images/2026/sheffield_united_26_27_home_jersey.jpg#",
+        "https://store.sufc.co.uk/en/sheffield-united-adidas-home-shirt-2026-27/p-910059053459844299%2Bz-8-1904347927",
+        "https://images.footballfanatics.com/sheffield-united-fc/sheffield-united-adidas-home-shirt-2026-27-mens_ss5_p-204514680%2Bu-7bqig58act2dq7qvq6jq%2Bv-ysjnxao3sahriys2twki.png?_hv=2#",
+        "https://www.footballkitarchive.com/pt/camisa-titular-sheffield-united-2026-27-492659/",
+        "https://www.footballkitarchive.com/cdn/2026/07/24/u5igbO53G75dEXk/camisa-titular-sheffield-united-2026-27.jpg#",
+        "https://store.sufc.co.uk/en/sheffield-united-adidas-home-socks-2026-27/p-687771613404179757%2Bz-8-3096925531"
+      ]
+    },
+    {
+      "id": "southampton",
+      "club": "Southampton",
+      "league": "WSL2",
+      "brand": "PUMA",
+      "front": "P&O CRUISES, NOT previous Starling",
+      "back": "Together We Rise at neck",
+      "details": "Women's BESPOKE shirt with red and white DIAGONAL stripes and thicker red sash, black collar and sleeve cuffs. Correct Southampton crest/PUMA. Black shorts with white/red details, white socks with red/black cuffs. Do not use men's vertical stripe design.",
+      "sockColour": [
+        244,
+        245,
+        242
+      ],
+      "prompt": "Use case: stylized-concept. Production game garment atlas: Southampton WOMEN 2026/27 HOME kit, WSL2. First 1 image(s) real GARMENT DESIGN reference ONLY; do not reproduce people. Last two images fictional ADULT athlete age25 front/back POSE and polished sports-game ILLUSTRATION reference. Draw garments only on truly transparent background. SIX separate cells, TWO columns THREE rows, generous transparent gutters. TOP ROW front shirt left, back shirt right. MIDDLE ROW front shorts left, back shorts right. BOTTOM ROW pair knee-high socks FRONT left, pair REAR right. No people, skin, mannequin, hands, bare legs, boots, labels, borders or glow. Short sleeves angle DOWN gently matching relaxed reference arms. Shorts natural curved waist, shaped hips, legs slightly apart matching athlete. Socks follow calf shape and knee-to-ankle angle. Faithfully reproduce current design, crest, manufacturer PUMA, pattern/collar details from photo. Exact front sponsor: P&O CRUISES, NOT previous Starling. Rear details: Together We Rise at neck. Women's BESPOKE shirt with red and white DIAGONAL stripes and thicker red sash, black collar and sleeve cuffs. Correct Southampton crest/PUMA. Black shorts with white/red details, white socks with red/black cuffs. Do not use men's vertical stripe design. No names or numbers. Preserve sponsor placement; no front sponsor duplicated on back. Complete individual garments at equal front/back scales, no touching cells. Polished outlined shaded character art, not photographs. Transparent neck openings.",
+      "generatedAtlas": "exec-5c3b0574-5545-4c49-ab7e-b33326ddf0d9.png",
+      "publicReferenceURLs": [
+        "https://store.southamptonfc.com/clearance/clearance/clearance/3747_home-shirt-2526-womens.html",
+        "https://store.southamptonfc.com/siteimg/prodhires/3747-785.jpg#"
+      ]
+    },
+    {
+      "id": "sunderland",
+      "club": "Sunderland",
+      "league": "WSL2",
+      "brand": "hummel",
+      "front": "launch version: keep blank as verified official 2026/27 retail home shirt",
+      "back": "reproduction 1937 city crest beneath neck; no name or number",
+      "details": "Red/white vertical stripes with tonal S jacquard pattern and white polo collar/single button, modern club crest inside historic shield. Black shorts, black socks with red/white cuff detail, hummel chevrons. Elliott James EJ Legal back-of-shorts partner.",
+      "sockColour": [
+        28,
+        29,
+        34
+      ],
+      "launchVersion": true,
+      "prompt": "Use case: stylized-concept. Production game garment atlas: Sunderland WOMEN 2026/27 HOME kit, WSL2. First 1 image(s) real GARMENT DESIGN reference ONLY; do not reproduce people. Last two images fictional ADULT athlete age25 front/back POSE and polished sports-game ILLUSTRATION reference. Draw garments only on truly transparent background. SIX separate cells, TWO columns THREE rows, generous transparent gutters. TOP ROW front shirt left, back shirt right. MIDDLE ROW front shorts left, back shorts right. BOTTOM ROW pair knee-high socks FRONT left, pair REAR right. No people, skin, mannequin, hands, bare legs, boots, labels, borders or glow. Short sleeves angle DOWN gently matching relaxed reference arms. Shorts natural curved waist, shaped hips, legs slightly apart matching athlete. Socks follow calf shape and knee-to-ankle angle. Faithfully reproduce current design, crest, manufacturer hummel, pattern/collar details from photo. Exact front sponsor: launch version: keep blank as verified official 2026/27 retail home shirt. Rear details: reproduction 1937 city crest beneath neck; no name or number. Red/white vertical stripes with tonal S jacquard pattern and white polo collar/single button, modern club crest inside historic shield. Black shorts, black socks with red/white cuff detail, hummel chevrons. Elliott James EJ Legal back-of-shorts partner. No names or numbers. Preserve sponsor placement; no front sponsor duplicated on back. Complete individual garments at equal front/back scales, no touching cells. Polished outlined shaded character art, not photographs. Transparent neck openings.",
+      "generatedAtlas": "exec-aee2f3a9-8e13-40a3-8bea-1037497536b8.png",
+      "publicReferenceURLs": [
+        "https://www.safcstore.com/en/sunderland/26/27-home-kit/t-53093164%2Bc-2488241010%2Bz-8-1943926910",
+        "https://images.footballfanatics.com/sunderland/sunderland-hummel-home-shirt-2026-27-womens_ss5_p-203600549%2Bu-rqdirderame90o9z5fre%2Bv-bwnrhvm6tf6vnndsradh.jpg?_hv=2&w=532#",
+        "https://images.footballfanatics.com/sunderland/sunderland-hummel-home-shirt-2026-27-womens_ss5_p-203600549%2Bu-rqdirderame90o9z5fre%2Bv-bwnrhvm6tf6vnndsradh.jpg?_hv=2&w=532"
+      ]
+    },
+    {
+      "id": "tottenham",
+      "club": "Tottenham Hotspur",
+      "league": "WSL",
+      "brand": "Nike",
+      "front": "AIA",
+      "back": "e.l.f.",
+      "details": "White shirt with subtle tonal vertical texture, binary-blue collar/cuffs and navy crest, red AIA sponsor, Kraken sleeve. Navy shorts with white crest/Nike, white socks with navy details.",
+      "sockColour": [
+        244,
+        245,
+        242
+      ],
+      "prompt": "Use case: stylized-concept. Production game garment atlas: Tottenham Hotspur WOMEN 2026/27 HOME kit, WSL. First 1 image(s) are real GARMENT DESIGN reference(s) ONLY; do NOT reproduce people. Last two images are fictional ADULT athlete age25 front/back POSE and polished sports-game ILLUSTRATION reference. Draw garments only on a truly transparent background: SIX separate cells in TWO columns and THREE rows, generous empty gutters. TOP ROW front shirt left and back shirt right; MIDDLE ROW front shorts left and back shorts right; BOTTOM ROW pair of knee-high socks FRONT left and pair REAR right. No people, skin, mannequin, hands, bare legs, boots, labels, borders or background glow. Shirt short sleeves angle DOWN gently to match relaxed reference arms. Shorts natural curved waist and shaped hips, not rectangular, legs apart matching athlete. Socks follow calf shape/knee-to-ankle angle from athlete, tops knee-high. Faithfully reproduce visible current shirt design/crest, manufacturer Nike, textile/pattern/collar details from photo. Exact front sponsor: AIA. Exact rear details: e.l.f.. White shirt with subtle tonal vertical texture, binary-blue collar/cuffs and navy crest, red AIA sponsor, Kraken sleeve. Navy shorts with white crest/Nike, white socks with navy details. No names or player numbers. Preserve front/back sponsor placement, do not duplicate front sponsor on back. Render complete individual garments at equal front/back scales, no touching or overlapping cells. Same polished outlined shaded character-art style; not photographs.",
+      "generatedAtlas": "exec-f371f18a-4039-4130-8b5c-7ea5cedc70a9.png",
+      "publicReferenceURLs": [
+        "https://www.nike.com/us/es/t/jersey-de-futbol-nike-dri-fit-replica-del-tottenham-hotspur-local-2026-27-stadium-para-mujer-mw6ulglw",
+        "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto%2Cq_auto%3Aeco%2Cc_scale%2Cw_300%2Cu_9ddf04c7-2a9a-4d76-add1-d15af8f0263d%2Cc_scale%2Cfl_relative%2Cw_1.0%2Ch_1.0%2Cfl_layer_apply/379be0f6-33f7-4cc8-af86-15c6a2771cda/THFC%2BWNK%2BDF%2BJSY%2BSS%2BSTAD%2BHM.png#",
+        "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto%2Cq_auto%3Aeco%2Cc_scale%2Cw_300%2Cu_9ddf04c7-2a9a-4d76-add1-d15af8f0263d%2Cc_scale%2Cfl_relative%2Cw_1.0%2Ch_1.0%2Cfl_layer_apply/379be0f6-33f7-4cc8-af86-15c6a2771cda/THFC%2BWNK%2BDF%2BJSY%2BSS%2BSTAD%2BHM.png"
+      ]
+    },
+    {
+      "id": "watford",
+      "club": "Watford",
+      "league": "WSL2",
+      "brand": "Kelme",
+      "front": "launch illustration: leave unverified women's principal sponsor blank; do not copy men's BOXT",
+      "back": "Audentior beneath collar, no number",
+      "details": "Yellow shirt with red/black horizontal chest bands, black sweeping panels, red/black collar/cuffs, Kelme paw and Watford crest. University of Hertfordshire sleeve. Black shorts with red trim, yellow socks with black/red cuff.",
+      "sockColour": [
+        238,
+        196,
+        30
+      ],
+      "launchVersion": true,
+      "prompt": "Use case: stylized-concept. Production game garment atlas: Watford WOMEN 2026/27 HOME kit, WSL2. First 1 image(s) real GARMENT DESIGN reference ONLY; do not reproduce people. Last two images fictional ADULT athlete age25 front/back POSE and polished sports-game ILLUSTRATION reference. Draw garments only on truly transparent background. SIX separate cells, TWO columns THREE rows, generous transparent gutters. TOP ROW front shirt left, back shirt right. MIDDLE ROW front shorts left, back shorts right. BOTTOM ROW pair knee-high socks FRONT left, pair REAR right. No people, skin, mannequin, hands, bare legs, boots, labels, borders or glow. Short sleeves angle DOWN gently matching relaxed reference arms. Shorts natural curved waist, shaped hips, legs slightly apart matching athlete. Socks follow calf shape and knee-to-ankle angle. Faithfully reproduce current design, crest, manufacturer Kelme, pattern/collar details from photo. Exact front sponsor: launch illustration: leave unverified women's principal sponsor blank; do not copy men's BOXT. Rear details: Audentior beneath collar, no number. Yellow shirt with red/black horizontal chest bands, black sweeping panels, red/black collar/cuffs, Kelme paw and Watford crest. University of Hertfordshire sleeve. Black shorts with red trim, yellow socks with black/red cuff. No names or numbers. Preserve sponsor placement; no front sponsor duplicated on back. Complete individual garments at equal front/back scales, no touching cells. Polished outlined shaded character art, not photographs. Transparent neck openings.",
+      "generatedAtlas": "exec-918478cb-4736-4e02-ab67-8af1a8be8481.png",
+      "publicReferenceURLs": [
+        "https://www.footballkitarchive.com/zh/watford-fc-2026-27-zhu-chang-qiu-yi-494787/",
+        "https://www.footballkitarchive.com/cdn/2026/07/11/FxAscZbBGj71WNK/watford-fc-2026-27-zhu-chang-qiu-yi.jpg#",
+        "https://www.footballshirtculture.com/new-kits/watford-jersey-26-27-home-kelme.html",
+        "https://www.footballshirtculture.com/images/2026/watford_26_27_home_jersey.jpg#",
+        "https://www.footballkitarchive.com/cdn/2026/07/11/tzkMt6XMigtHrvQ/watford-fc-2026-27-zhu-chang-qiu-yi.jpg#",
+        "https://uk.sports.yahoo.com/news/competition-win-watford-fc-2026-084305674.html",
+        "https://s.yimg.com/ny/api/res/1.2/QvO.YxLISdM0X4tmMex3pA--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTQyNztjZj13ZWJw/https%3A/media.zenfs.com/en/watford_observer_147/639486dd479e66372b87e8193c709d67#",
+        "https://www.footballshirtculture.com/images/cwgallery/5424-watford-26-27-kelme-home-kit/thumb_5424_watford_26_27_kelme_home_kit_c.jpeg#"
+      ]
+    },
+    {
+      "id": "west-ham",
+      "club": "West Ham United",
+      "league": "WSL",
+      "brand": "New Balance",
+      "front": "BOYLE SPORTS",
+      "back": "Paul Robinson Solicitors",
+      "details": "Claret torso with dark diagonal geometric brush pattern, sky-blue sleeves and small blue side accents. Lilley Plummer Risks sleeve. White shorts with claret/blue trim, white socks with claret-blue bands.",
+      "sockColour": [
+        244,
+        245,
+        242
+      ],
+      "prompt": "Use case: stylized-concept. Production game garment atlas: West Ham United WOMEN 2026/27 HOME kit, WSL. First 1 image(s) are real GARMENT DESIGN reference(s) ONLY; do NOT reproduce people. Last two images are fictional ADULT athlete age25 front/back POSE and polished sports-game ILLUSTRATION reference. Draw garments only on a truly transparent background: SIX separate cells in TWO columns and THREE rows, generous empty gutters. TOP ROW front shirt left and back shirt right; MIDDLE ROW front shorts left and back shorts right; BOTTOM ROW pair of knee-high socks FRONT left and pair REAR right. No people, skin, mannequin, hands, bare legs, boots, labels, borders or background glow. Shirt short sleeves angle DOWN gently to match relaxed reference arms. Shorts natural curved waist and shaped hips, not rectangular, legs apart matching athlete. Socks follow calf shape/knee-to-ankle angle from athlete, tops knee-high. Faithfully reproduce visible current shirt design/crest, manufacturer New Balance, textile/pattern/collar details from photo. Exact front sponsor: BOYLE SPORTS. Exact rear details: Paul Robinson Solicitors. Claret torso with dark diagonal geometric brush pattern, sky-blue sleeves and small blue side accents. Lilley Plummer Risks sleeve. White shorts with claret/blue trim, white socks with claret-blue bands. No names or player numbers. Preserve front/back sponsor placement, do not duplicate front sponsor on back. Render complete individual garments at equal front/back scales, no touching or overlapping cells. Same polished outlined shaded character-art style; not photographs.",
+      "generatedAtlas": "exec-f88bd65f-e239-4783-b060-ab2ecc29cae5.png",
+      "publicReferenceURLs": [
+        "https://shop.whufc.com/kits/home-kit/womens/15340_west-ham-2627-womens-home-shirt.html",
+        "https://shop.whufc.com/siteimg/prodhires/15340-1234.jpg#",
+        "https://www.whufc.com/en/news/west-ham-united-sign-young-lioness-sienna-wareing",
+        "https://contentfulproxy.stadion.io/zl2jjr3puakk/ukNxG2warIiZVwjXHi7J0/81e114e8fc04d242bc436c827c2f6660/WHU_Kit_Launch_HOME_1920x1080px_6.jpg?f=face&fit=fill&fm=webp&h=1080&w=1920#",
+        "https://www.whufc.com/en/news/our-home-kit-is-here-a-new-chapter-begins",
+        "https://contentfulproxy.stadion.io/zl2jjr3puakk/6IWFfwDbtcQYjzsIW49eQe/ff51e67c9bac2790d05a00fbc07f5e20/WHU_Kit_Launch_HOME_1920x1080px_1.jpg?f=face&fit=fill&fm=webp&h=1080&w=1920#",
+        "https://shop.whufc.com/kits/home-kit/adult/15330_west-ham-2627-home-shirt.html",
+        "https://shop.whufc.com/siteimg/rearview/15330.jpg?v=1782937614#"
+      ]
+    },
+    {
+      "id": "wolves",
+      "club": "Wolverhampton Wanderers",
+      "league": "WSL2",
+      "brand": "SUDU",
+      "front": "MIDNITE",
+      "back": "Reconomy",
+      "details": "Old Gold shirt with tonal Wolverhampton coat-of-arms fabric pattern, black V-neck/cuffs and ornate heritage crest exactly as official 2026/27 reference, SUDU and Midnite black marks. Black shorts, old-gold socks with black bands.",
+      "sockColour": [
+        221,
+        154,
+        28
+      ],
+      "prompt": "Use case: stylized-concept. Production game garment atlas: Wolverhampton Wanderers WOMEN 2026/27 HOME kit, WSL2. First 1 image(s) real GARMENT DESIGN reference ONLY; do not reproduce people. Last two images fictional ADULT athlete age25 front/back POSE and polished sports-game ILLUSTRATION reference. Draw garments only on truly transparent background. SIX separate cells, TWO columns THREE rows, generous transparent gutters. TOP ROW front shirt left, back shirt right. MIDDLE ROW front shorts left, back shorts right. BOTTOM ROW pair knee-high socks FRONT left, pair REAR right. No people, skin, mannequin, hands, bare legs, boots, labels, borders or glow. Short sleeves angle DOWN gently matching relaxed reference arms. Shorts natural curved waist, shaped hips, legs slightly apart matching athlete. Socks follow calf shape and knee-to-ankle angle. Faithfully reproduce current design, crest, manufacturer SUDU, pattern/collar details from photo. Exact front sponsor: MIDNITE. Rear details: Reconomy. Old Gold shirt with tonal Wolverhampton coat-of-arms fabric pattern, black V-neck/cuffs and ornate heritage crest exactly as official 2026/27 reference, SUDU and Midnite black marks. Black shorts, old-gold socks with black bands. No names or numbers. Preserve sponsor placement; no front sponsor duplicated on back. Complete individual garments at equal front/back scales, no touching cells. Polished outlined shaded character art, not photographs. Transparent neck openings.",
+      "generatedAtlas": "exec-a6a65d99-7772-4db7-ac45-febc1496a41e.png",
+      "publicReferenceURLs": [
+        "https://shop.wolves.co.uk/kit/home-kit/adult/6521_2026-27-wolves-pro-home-shirt-womens.html",
+        "https://shop.wolves.co.uk/siteimg/prodhires/6521-603.jpg#",
+        "https://shop.wolves.co.uk/siteimg/extrapics/14981.jpg?v=1780597197#",
+        "https://www.footylogos.com/kits/wolverhampton-wanderers-2026-27",
+        "https://www.footylogos.com/kits/wolverhampton-wanderers-2026-27/home-03.webp#",
+        "https://shop.wolves.co.uk/siteimg/prodhires/6521-603.jpg"
+      ]
+    }
+  ],
+  "verifiedSupplementalSources": [
+    "https://www.wslfootball.com/clubs/index",
+    "https://www.wslfootball.com/fixtures/wsl2",
+    "https://www.marex.com/marex-x-nottingham-forest",
+    "https://www.southamptonfc.com/en/news/article/southampton-fc-unveils-historic-2026-27-womens-home-shirt",
+    "https://bristolcitywomenfc.com/news/bristol-city-women-launch-202627-kits",
+    "https://shop.bristolcitywomenfc.com/collections/home-26-27",
+    "https://www.chelseafc.com/en/news/article/chelsea-football-club-announces-circle-internet-group-as-principal-partner",
+    "https://www.chelseafc.com/en/news/article/chelsea-fc-women-extends-with-skoda-uk",
+    "https://www.chelseafc.com/en/partner-page-flo",
+    "https://www.newcastleunited.com/en/news/knox-hydrate-front-of-shirt-partnership",
+    "https://www.londoncitylionesses.com/blog/london-city-lionesses-and-nike-announce-landmark-multi-year-deal",
+    "https://beta.mancity.com/news/club/revolut-back-of-shirt-partner-63906575",
+    "https://www.manutd.com.es/en/news/microsoft-surface-to-feature-on-back-of-united-shirts-v1",
+    "https://www.premierleague.com/en/news/4679460/aston-villa-announce-visit-rwanda-partnership",
+    "https://www.lcfc.com/media-article/26-27-adidas-womens-home-kit-available-now-away-kit-available-to-pre-order"
+  ]
+}

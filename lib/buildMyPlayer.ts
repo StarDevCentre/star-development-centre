@@ -1,10 +1,12 @@
 import {collectibleBoots,bootKey} from './bootChallenges';
 import type {SpaceUnlock} from './playerSpace';
+import {builderWardrobe} from './builderWardrobe';
+import {builderKitOptions,builderKitLabel} from './builderKits';
 export const builderOptions={
  skin:['fair','light','medium','brown','deep'],hair:['blonde','brown','black','ginger','silver'],hairstyle:['ponytail','curls','coils','braids'],
  face:['oval','round','freckles'],eyes:['brown','blue','green','grey'],build:['slim','standard','strong'],
- top:['base','star','arsenal','chelsea','navy-tee','white-tee','hoodie','gold-hoodie'],bottoms:['base','shorts','arsenal','chelsea','leggings','trackies'],
- socks:['none','white','navy','black','red'],accessory:['none','glasses','headband','gold-headband']
+ top:['base','star','arsenal','chelsea','navy-tee','white-tee','hoodie','gold-hoodie',...builderWardrobe.filter(item=>item.slot==='top').map(item=>item.id),...builderKitOptions],bottoms:['base','shorts','arsenal','chelsea','leggings','trackies',...builderWardrobe.filter(item=>item.slot==='bottoms').map(item=>item.id),...builderKitOptions],
+ socks:['none','white','navy','black','red',...builderKitOptions],accessory:['none','glasses','headband','gold-headband']
 } as const;
 export type BuilderLook = {[K in keyof typeof builderOptions]:typeof builderOptions[K][number]} & {boots:string};
 export const defaultBuilderLook:BuilderLook={skin:'light',hair:'brown',hairstyle:'ponytail',face:'oval',eyes:'brown',build:'standard',top:'base',bottoms:'base',socks:'none',boots:'none',accessory:'none'};
@@ -16,6 +18,9 @@ export const playerPresets:Array<{label:string;look:BuilderLook}>=[
 ];
 export const builderLabels:Record<string,string>={base:'Base layer',star:'STAR training top',arsenal:'Arsenal home',chelsea:'Chelsea home','navy-tee':'Navy T-shirt','white-tee':'White T-shirt',hoodie:'Navy hoodie','gold-hoodie':'Gold hoodie',shorts:'Navy football shorts',leggings:'Sports leggings',trackies:'Tracksuit bottoms',none:'None',ponytail:'Wavy ponytail',curls:'Curly bob',coils:'Coily puff',braids:'Braided bun','gold-headband':'Gold headband'};
 export const builderRequirements:Record<string,{key:string;label:string}>={'gold-hoodie':{key:'avatar-captain',label:'Earn your first coach badge'},'gold-headband':{key:'decoration-laurel',label:'Earn three coach badges'}};
+for(const item of builderWardrobe)builderLabels[item.id]=item.label;
+for(const id of builderKitOptions)builderLabels[id]=builderKitLabel(id);
+builderLabels.arsenal=builderKitLabel('arsenal');builderLabels.chelsea=builderKitLabel('chelsea');
 export function builderAvailable(value:string,unlocks:SpaceUnlock[],playerId:string,demo=false){const r=builderRequirements[value];return demo||!r||unlocks.some(u=>u.player_id===playerId&&u.cosmetic===r.key);}
 export function validateBuilderLook(value:unknown,unlocks:SpaceUnlock[],playerId:string,demo=false):string|null {
  if(!value||typeof value!=='object'||Array.isArray(value))return 'Choose your player look.';

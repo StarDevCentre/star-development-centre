@@ -23,3 +23,5 @@
  .bp-page .bp-controls{padding:.8rem}
  .bp-page{padding-bottom:calc(1rem + env(safe-area-inset-bottom,0px))}
 }
+.bp-wardrobe-tools{display:grid;gap:.6rem;margin:1rem 0}.bp-wardrobe-tools label{display:grid;gap:.35rem;font-weight:700}.bp-wardrobe-tools input{width:100%;box-sizing:border-box;padding:.7rem .8rem;border:1px solid #58708e;border-radius:.6rem;background:#fff;color:#14233b;font:inherit}.bp-wardrobe-tools input:focus-visible{outline:3px solid #e9be55;outline-offset:2px}
+.bp-wardrobe-tools select,.bp-kit-part-label select{width:100%;max-width:100%;box-sizing:border-box;padding:.7rem .8rem;border:1px solid #58708e;border-radius:.6rem;background:#fff;color:#14233b;font:inherit}.bp-kit-part-label{display:grid;gap:.35rem;margin-bottom:.65rem;font-size:.9rem}.bp-wardrobe-tools select:focus-visible,.bp-kit-part-label select:focus-visible{outline:3px solid #e9be55;outline-offset:2px}
