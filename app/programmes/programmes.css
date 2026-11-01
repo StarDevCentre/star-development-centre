@@ -55,8 +55,3 @@
 @media(max-width:700px){.programme-feature,.programme-support-grid{grid-template-columns:1fr}.programme-feature-copy,.programme-feature-panel{padding:28px 24px}.programme-feature-copy h2{font-size:62px}.programme-feature-panel>h3{font-size:36px}.programme-offer-section{padding-top:52px}.programme-structured-grid,.programme-group-grid{grid-template-columns:1fr;max-width:none}.programme-offer{padding:26px 23px}.programme-offer-heading{margin-bottom:22px}.programme-filter-bar{gap:18px;padding:20px 0;margin-bottom:28px}.programme-filter-bar>div{width:100%;justify-content:space-between}.programme-filter-bar>p{flex-basis:100%}.programme-filter-bar .programme-text-link{font-size:12px}.programme-group-heading{font-size:24px}.programme-support-grid{gap:30px}.programme-support h2,.programme-faq h2{font-size:52px}.programme-browse-link{margin-top:22px}}
 
 @media(max-width:700px){.programme-hero-photo{aspect-ratio:1.9}.programme-hero-photo img{object-position:50% 12%}.programme-hero-copy{padding-top:24px}}
-
-/* Official programme logo badges, transparent PNGs. */
-.programme-brand-icon{display:block;width:120px;height:40px;max-width:100%;object-fit:contain;object-position:left center;margin:0 0 16px;flex:none}
-.programme-feature-copy>.programme-brand-icon{width:144px;height:48px;margin-bottom:18px}
-@media(max-width:480px){.programme-brand-icon{width:112px;height:auto;aspect-ratio:3/1}.programme-feature-copy>.programme-brand-icon{width:132px;height:auto;aspect-ratio:3/1}}
