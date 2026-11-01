@@ -27,7 +27,7 @@ export const squadRoster:SquadFootballer[]=[
  {id:'daly',name:'Rachel Daly',club:'Aston Villa',role:'Forward',number:9,watch:'Watch how she changes her run to find room for a shot or meet a cross.',source:'https://www.wslfootball.com/players/rachel-daly',kit:'2026/27 home'},
  ...wslSquadAdditions
 ];
-export const squadPlayer=(id:string|null|undefined)=>squadRoster.find(p=>p.id===id);
+export const squadPlayer=(id:string|null|undefined):SquadFootballer|undefined=>id==='my-player'?{id:'my-player',name:'My player',club:'My STAR player',role:'Midfielder',number:0,watch:'Your own custom player.',source:'',kit:'Your chosen'}:squadRoster.find(p=>p.id===id);
 export const squadAsset=(id:string)=>`/player-space/squad/${id}.webp`;
 type SquadSlot={column:number;row:number;span:number;label:string};
 function elevenSlots(lines:string[][]):SquadSlot[]{

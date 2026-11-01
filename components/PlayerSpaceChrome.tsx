@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import {SpaceIcon,type SpaceIconName} from "./PlayerSpaceIcons";
-export type Tab = "home" | "training" | "journey" | "trophies" | "sessions" | "messages" | "learn" | "matchday" | "sharing" | "updates" | "squad" | "boots";
+export type Tab = "home" | "training" | "journey" | "trophies" | "sessions" | "messages" | "learn" | "matchday" | "sharing" | "updates" | "squad" | "boots" | "builder";
 export const nav: { id: Tab; title: string; mobile: string; icon: SpaceIconName }[] = [{ id: "home", title: "My space", mobile: "Home", icon: "home" }, { id: "training", title: "Training", mobile: "Train", icon: "train" }, { id: "journey", title: "My journey", mobile: "Journey", icon: "journey" }, { id: "trophies", title: "Trophies", mobile: "Trophies", icon: "trophy" },{id:"squad",title:"My squad",mobile:"Squad",icon:"captain"},{id:"boots",title:"Boot locker",mobile:"Boots",icon:"boot"},{id:"learn",title:"Learn",mobile:"Learn",icon:"book"},{id:"messages",title:"Inbox",mobile:"Inbox",icon:"chat"}];
 
 export function PlayerSpaceHeader({ tab, onNavigate, onAccount, onUpdates, unread=0, demo = false }: { tab?: Tab; onNavigate?: (tab: Tab) => void; onAccount?: () => void; onUpdates?:()=>void; unread?:number; demo?: boolean }) {

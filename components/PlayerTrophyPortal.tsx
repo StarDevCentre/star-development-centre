@@ -10,6 +10,7 @@ import dynamic from "next/dynamic";
 import {PlayerSpaceHeader,PlayerSpaceHero} from "./PlayerSpaceChrome";
 const PlayerSpace=dynamic(()=>import("./PlayerSpace").then(m=>m.PlayerSpace),{loading:()=> <p role="status">Opening your Player Space…</p>});
 import { PlayerAccess } from "./PlayerAccountSetup";
+import {validateBuilderLook,builderDressed} from '../lib/buildMyPlayer';
 import {validateSquad} from '../lib/playerSquad';
 import { loadPortalFeatures, sessionFields } from "../lib/playerPortalData";
 import type { PortalFeatureActions, MatchJournal } from "../lib/playerPortalFeatures";
@@ -160,6 +161,8 @@ export function PlayerTrophyPortal() {
   const updateProfile: SpaceActions['onUpdateProfile'] = async (playerId, patch, photo) => {
     if (!db || !user || loadedUserId !== user.id || !data.players.some(p=>p.id===playerId)) throw new Error("Please sign in again to save your card.");
     const old = data.profiles.find(p=>p.player_id===playerId);
+    if(patch.builder_look){const invalid=validateBuilderLook(patch.builder_look,data.unlocks,playerId);if(invalid)throw new Error(invalid);if(!builderDressed(patch.builder_look)&&data.squads.some(s=>s.player_id===playerId&&s.footballers.includes('my-player')))throw new Error('Choose a top and bottoms while your player is in your squad.');}
+    if(patch.builder_on_card&&(!(patch.builder_look||old?.builder_look)||!builderDressed((patch.builder_look||old?.builder_look)!)))throw new Error('Choose a top and bottoms first.');
     let initial = { ...defaultProfile };
     if(!old) try {
       const legacy=JSON.parse(localStorage.getItem(`star-player-card-v1:${user.id}:${playerId}`)||"null");
@@ -182,7 +185,7 @@ export function PlayerTrophyPortal() {
       let result = old ? await db.from("player_space_profiles").update(change).eq("player_id",playerId).select().single() : await db.from("player_space_profiles").insert({...initial,...change,player_id:playerId}).select().single();
       // Another family device may have created the first preferences row meanwhile.
       if (!old && result.error?.code==="23505") result = await db.from("player_space_profiles").update(change).eq("player_id",playerId).select().single();
-      if(result.error || !result.data) throw new Error("Your card couldn’t be saved. Please try again.");
+      if(result.error || !result.data) throw new Error(patch.builder_look?"Your player couldn’t be saved. Your choices are still here. Please try again.":"Your card couldn’t be saved. Please try again.");
       profileWrites.current++;
       const saved = { ...result.data, photo_url: photo===null ? undefined : photoUrl } as SpaceProfile;
       setData(current=>({...current,profiles:[...current.profiles.filter(p=>p.player_id!==playerId),saved]}));
@@ -212,7 +215,7 @@ export function PlayerTrophyPortal() {
   async function refreshFeatures(){if(!db||!user)return;const extra=await loadPortalFeatures(data.players.map(p=>p.id),user.id);setData(current=>({...current,...extra}));}
   const featureActions:PortalFeatureActions={
     onSaveSquad:async(playerId,value)=>{
-      assertPlayer(playerId);const invalid=validateSquad(value);if(invalid)throw new Error(invalid);const savingUser=user!.id;
+      assertPlayer(playerId);if(value.footballers.includes('my-player')&&(!data.profiles.find(p=>p.player_id===playerId)?.builder_look||!builderDressed(data.profiles.find(p=>p.player_id===playerId)!.builder_look!)))throw new Error('Save your dressed player first.');const invalid=validateSquad(value);if(invalid)throw new Error(invalid);const savingUser=user!.id;
       const fields={name:value.name.trim(),formation:value.formation,footballers:value.footballers,captain:value.captain,updated_by:savingUser};
       const update=()=>db!.from('player_squads').update(fields).eq('player_id',playerId).select('player_id,name,formation,footballers,captain,updated_at').single();
       let r=data.squads.some(s=>s.player_id===playerId)?await update():await db!.from('player_squads').insert({...fields,player_id:playerId}).select('player_id,name,formation,footballers,captain,updated_at').single();
