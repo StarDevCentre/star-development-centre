@@ -1,5 +1,6 @@
 import {heroSkinTones,heroHairColours} from './heroCharacter';
 import type {BuilderLook} from './buildMyPlayer';
+import {builderSockIds,paintBuilderSocks} from './builderSocks';
 type View='front'|'back';
 type Point=readonly [number,number];
 const width=460,height=1024;
@@ -67,7 +68,6 @@ function personalise(c:HTMLCanvasElement,look:BuilderLook,view:View,kind:'traini
    const colour=look.top==='white-tee'?[245,247,252]:look.top==='gold-hoodie'?[221,180,72]:null;
    if(colour){const l=Math.min(1,(r+g+b)/220);for(let k=0;k<3;k++)p[i+k]=colour[k]*(.60+l*.40);}
   }
-  if(y>=(look.bottoms==='adidas-firebird-trousers'?888:(look.bottoms==='nike-club-joggers'||look.bottoms==='ellesse-pink-joggers')?878:848)&&y<910&&r>150&&Math.max(r,g,b)-Math.min(r,g,b)<30){const colour=({navy:[24,42,73],black:[30,32,40],red:[189,38,53]} as Record<string,number[]>)[look.socks];if(colour){const l=(r+g+b)/765;for(let k=0;k<3;k++)p[i+k]=colour[k]*(.6+l*.4);}}
  }
  ctx.putImageData(d,0,0);
  if(view==='front'){
@@ -83,7 +83,7 @@ export async function renderBuilderArtwork(look:BuilderLook,view:View){
  const kind=hoodie?'hoodie':'training',crop=look.top==='nike-pro-crop';
  const asset=(name:string)=>readImage(`/player-space/builder/v2/${name}-${view}.webp`);
  const cropBase=look.bottoms==='nike-pro-shorts'?'nike-pro-shorts':look.bottoms==='shorts'?'nike-pro-crop':`nike-pro-crop-${look.bottoms}`;
- const [base,top,bottom]=await Promise.all([asset(crop?cropBase:'training'),!crop&&hoodie?asset(branded?look.top:'hoodie'):brandedTees.includes(look.top)?asset(look.top):null,!crop&&(fittedLongBottoms.includes(look.bottoms)||look.bottoms==='nike-pro-shorts')?asset(look.bottoms):null]);
+ const [base,top,bottom,socks]=await Promise.all([asset(crop?cropBase:'training'),!crop&&hoodie?asset(branded?look.top:'hoodie'):brandedTees.includes(look.top)?asset(look.top):null,!crop&&(fittedLongBottoms.includes(look.bottoms)||look.bottoms==='nike-pro-shorts')?asset(look.bottoms):null,builderSockIds.includes(look.socks as typeof builderSockIds[number])?readImage(`/player-space/builder/v2/socks/${look.socks}-${view}.webp`):null]);
  const out=surface(),ctx=out.getContext('2d')!;ctx.drawImage(base,0,0);
  function replace(im:HTMLImageElement,points:readonly Point[]){
   ctx.save();polygon(ctx,points);ctx.clip();ctx.clearRect(0,0,width,height);ctx.drawImage(im,0,0);ctx.restore();
@@ -94,5 +94,5 @@ export async function renderBuilderArtwork(look:BuilderLook,view:View){
  // Long tops cover the high waistband of Nike Pro shorts.
  if(bottom)replace(bottom,bottomMask);
  if(top)replace(top,topCoverage(look.top,view,kind));
- personalise(out,look,view,kind);return out;
+ personalise(out,look,view,kind);paintBuilderSocks(out,look.bottoms,look.socks,socks);return out;
 }

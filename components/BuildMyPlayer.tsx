@@ -23,7 +23,7 @@ export function BuildMyPlayer({playerId,saved,onCard=false,unlocks,demo=false,on
   const values=builderOptions[key].filter(value=>{
    if(!['top','bottoms','socks'].includes(key)||value==='base'||value==='none')return true;
    const style=wardrobeGarment(value)?.style||(['hoodie','gold-hoodie','navy-tee','white-tee'].includes(value)?'casual':['leggings','trackies'].includes(value)?'sport':'football');
-   if(key==='socks'&&!value.startsWith('home-2627-'))return true;
+   if(key==='socks'&&!value.startsWith('home-2627-'))return !clothesSearch||(builderLabels[value]||value).toLowerCase().includes(clothesSearch.toLowerCase().trim());
    return (clothesStyle==='all'||style===clothesStyle)&&(!clothesSearch||(builderLabels[value]||value).toLowerCase().includes(clothesSearch.toLowerCase().trim()));
   });
   const kits=values.filter(value=>value.startsWith('home-2627-')),plain=values.filter(value=>!value.startsWith('home-2627-'));

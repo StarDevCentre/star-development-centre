@@ -1,0 +1,229 @@
+{
+  "generated": "2026-11-01",
+  "tool": "built-in image_gen",
+  "targetSourceSha256": "9da725804539b735da1396e1f94e6071d6482f8c66dba13abf16671a435956a7",
+  "export": {
+    "canvas": [
+      1536,
+      1024
+    ],
+    "frontLeft": 222,
+    "backLeft": 854,
+    "top": 740,
+    "width": 460,
+    "height": 190,
+    "scale": 1
+  },
+  "items": [
+    {
+      "id": "nike-ankle-white",
+      "prompt": "Use case: precise-object-edit. Asset type: aligned football character game sprite. Image 1 is the EDIT TARGET, a 1536x1024 transparent front-and-back sheet of the same fully clothed fictional slim teenage girl. Image 2 is SOCK DESIGN REFERENCE ONLY. Change ONLY the socks on BOTH figures. Preserve the exact canvas, figure positions, standing pose, proportions, bare legs above the socks, navy shirt and shorts, face, hair, hands, and especially the identical black starter football boots and their coordinates. Do not change footwear, foot size or leg alignment. Front figure stays on left, rear figure stays on right. New socks fit the existing legs naturally, clean finished cuff, readable small branding and knit shading in the original polished illustrated style. Keep all background genuinely transparent. No panels, crop, zoom, annotations, price text or extra objects. White Nike ankle socks with ribbed cuffs and a small black Nike swoosh on the outward-facing ankle. Cuff rises just above the ankle to about y828, as in the reference.",
+      "reference": "02-53278.jpg",
+      "referenceSha256": "111c32c02480bc49cf6332865d797f59387d9298268a57192ad6607b6a667880",
+      "sourceSha256": "b4d237e9b463fb46cdcc70035aa2dc9d5227979470969c6b707de9b655744627",
+      "sourceFile": "exec-c75ecffb-d5d5-4547-81f3-01ce6d3e5e48.png",
+      "offsets": {
+        "front": {
+          "dx": 1,
+          "dy": 1,
+          "score": 39910
+        },
+        "back": {
+          "dx": 0,
+          "dy": 3,
+          "score": 48567
+        }
+      },
+      "outputs": [
+        {
+          "path": "public/player-space/builder/v2/socks/nike-ankle-white-front.webp",
+          "sha256": "51770f7efb7c9b5fdb2181806b70683f14aae3287ed65d49090bba75715f50eb"
+        },
+        {
+          "path": "public/player-space/builder/v2/socks/nike-ankle-white-back.webp",
+          "sha256": "132c47fdfb0b7a6c84b065876e074a978076eb48e2fa69f109ce9d38b31c62be"
+        }
+      ]
+    },
+    {
+      "id": "nike-ankle-black",
+      "prompt": "Use case: precise-object-edit. Asset type: aligned football character game sprite. Image 1 is the EDIT TARGET, a 1536x1024 transparent front-and-back sheet of the same fully clothed fictional slim teenage girl. Image 2 is SOCK DESIGN REFERENCE ONLY. Change ONLY the socks on BOTH figures. Preserve the exact canvas, figure positions, standing pose, proportions, bare legs above the socks, navy shirt and shorts, face, hair, hands, and especially the identical black starter football boots and their coordinates. Do not change footwear, foot size or leg alignment. Front figure stays on left, rear figure stays on right. New socks fit the existing legs naturally, clean finished cuff, readable small branding and knit shading in the original polished illustrated style. Keep all background genuinely transparent. No panels, crop, zoom, annotations, price text or extra objects. Black Nike ankle socks with ribbed cuffs and a small white Nike swoosh on the outward-facing ankle. Cuff rises just above the ankle to about y828, using the shape in the white reference but black knit and white swoosh.",
+      "reference": "02-53278.jpg",
+      "referenceSha256": "111c32c02480bc49cf6332865d797f59387d9298268a57192ad6607b6a667880",
+      "sourceSha256": "e3a0829ff07a5e75ec0480a1b54d53ff79584ae7ec5cd6d47ccd66a71d9b8d34",
+      "sourceFile": "exec-90fb0c3c-acab-48b3-8ca9-f71805f54373.png",
+      "offsets": {
+        "front": {
+          "dx": 0,
+          "dy": 0,
+          "score": 68216
+        },
+        "back": {
+          "dx": 0,
+          "dy": 0,
+          "score": 70862
+        }
+      },
+      "outputs": [
+        {
+          "path": "public/player-space/builder/v2/socks/nike-ankle-black-front.webp",
+          "sha256": "c7a5315f326c21ee3f80fff92ccf992cb2308c2ab4a84ff2a84d533c0c79c2a3"
+        },
+        {
+          "path": "public/player-space/builder/v2/socks/nike-ankle-black-back.webp",
+          "sha256": "514b4ea21abf84359eb1b0105f365cc4b7a6f6d8495eb156c359883848e202a6"
+        }
+      ]
+    },
+    {
+      "id": "nike-crew-white",
+      "prompt": "Use case: precise-object-edit. Asset type: aligned football character game sprite. Image 1 is the EDIT TARGET, a 1536x1024 transparent front-and-back sheet of the same fully clothed fictional slim teenage girl. Image 2 is SOCK DESIGN REFERENCE ONLY. Change ONLY the socks on BOTH figures. Preserve the exact canvas, figure positions, standing pose, proportions, bare legs above the socks, navy shirt and shorts, face, hair, hands, and especially the identical black starter football boots and their coordinates. Do not change footwear, foot size or leg alignment. Front figure stays on left, rear figure stays on right. New socks fit the existing legs naturally, clean finished cuff, readable small branding and knit shading in the original polished illustrated style. Keep all background genuinely transparent. No panels, crop, zoom, annotations, price text or extra objects. White Nike crew socks with ribbed shafts and small black Nike swooshes on outward-facing calves. Mid-calf length, cuff near y765.",
+      "reference": "03-53279.jpg",
+      "referenceSha256": "c8cd2e6788f3dc5e2a0fe356e219a39760a1f2d299fe79d1867d255e88ff16fd",
+      "sourceSha256": "418a907ad3f911060f480d570136c6c10eb48cdd23f6eb9cde4c5bfea738cc33",
+      "sourceFile": "exec-9cb0120e-f980-4488-a571-0d32a4265dba.png",
+      "offsets": {
+        "front": {
+          "dx": 0,
+          "dy": 1,
+          "score": 35050
+        },
+        "back": {
+          "dx": 18,
+          "dy": 3,
+          "score": 48352
+        }
+      },
+      "outputs": [
+        {
+          "path": "public/player-space/builder/v2/socks/nike-crew-white-front.webp",
+          "sha256": "8093e00ded5b85309c43bf353fc2ff4063fc32a99d9acde283c88eff99ea219b"
+        },
+        {
+          "path": "public/player-space/builder/v2/socks/nike-crew-white-back.webp",
+          "sha256": "3aaf3e68abb8a52836dbde4781fd2ababacc6721d65713da54ab309c36cbaede"
+        }
+      ]
+    },
+    {
+      "id": "nike-crew-black",
+      "prompt": "Use case: precise-object-edit. Asset type: aligned football character game sprite. Image 1 is the EDIT TARGET, a 1536x1024 transparent front-and-back sheet of the same fully clothed fictional slim teenage girl. Image 2 is SOCK DESIGN REFERENCE ONLY. Change ONLY the socks on BOTH figures. Preserve the exact canvas, figure positions, standing pose, proportions, bare legs above the socks, navy shirt and shorts, face, hair, hands, and especially the identical black starter football boots and their coordinates. Do not change footwear, foot size or leg alignment. Front figure stays on left, rear figure stays on right. New socks fit the existing legs naturally, clean finished cuff, readable small branding and knit shading in the original polished illustrated style. Keep all background genuinely transparent. No panels, crop, zoom, annotations, price text or extra objects. Black Nike crew socks with ribbed shafts and small white Nike swooshes on outward-facing calves. Mid-calf length, cuff near y765, using the white reference shape but black knit and white swoosh.",
+      "reference": "03-53279.jpg",
+      "referenceSha256": "c8cd2e6788f3dc5e2a0fe356e219a39760a1f2d299fe79d1867d255e88ff16fd",
+      "sourceSha256": "2d2339ca6f1e206358bebf7d3fffcfceb7d8d5b51a221d4882049a1411dbab9f",
+      "sourceFile": "exec-83d1d577-1c2e-4240-80dc-7c1169cfcb5f.png",
+      "offsets": {
+        "front": {
+          "dx": 0,
+          "dy": 0,
+          "score": 72575
+        },
+        "back": {
+          "dx": 0,
+          "dy": 0,
+          "score": 82896
+        }
+      },
+      "outputs": [
+        {
+          "path": "public/player-space/builder/v2/socks/nike-crew-black-front.webp",
+          "sha256": "a970b4100dfef1fe434ae0d7f010bf0e2d1a9d8b0a76998708ccea9b1c2c7ec4"
+        },
+        {
+          "path": "public/player-space/builder/v2/socks/nike-crew-black-back.webp",
+          "sha256": "4bedf583be794f3601ff6ada5149d894a4f4f8399aff72db84619b00cb872c01"
+        }
+      ]
+    },
+    {
+      "id": "adidas-ankle-black",
+      "prompt": "Use case: precise-object-edit. Asset type: aligned football character game sprite. Image 1 is the EDIT TARGET, a 1536x1024 transparent front-and-back sheet of the same fully clothed fictional slim teenage girl. Image 2 is SOCK DESIGN REFERENCE ONLY. Change ONLY the socks on BOTH figures. Preserve the exact canvas, figure positions, standing pose, proportions, bare legs above the socks, navy shirt and shorts, face, hair, hands, and especially the identical black starter football boots and their coordinates. Do not change footwear, foot size or leg alignment. Front figure stays on left, rear figure stays on right. New socks fit the existing legs naturally, clean finished cuff, readable small branding and knit shading in the original polished illustrated style. Keep all background genuinely transparent. No panels, crop, zoom, annotations, price text or extra objects. Black adidas ankle socks, white trefoil and three narrow white horizontal stripes around each ribbed cuff, matching the reference. Cuff near y828.",
+      "reference": "04-53280.jpg",
+      "referenceSha256": "bfeba3be2ddfd8d94f8b6649ec260989692533d031ec20b2469885b2fd4ff927",
+      "sourceSha256": "ea09cfbd6e9bd400df48e26210ee95159f7807f9413314c26b485342a8eefdfd",
+      "sourceFile": "exec-bd1b29b2-e255-4c12-a2e7-6fbfc073cae5.png",
+      "offsets": {
+        "front": {
+          "dx": 0,
+          "dy": 0,
+          "score": 54724
+        },
+        "back": {
+          "dx": 0,
+          "dy": 0,
+          "score": 55976
+        }
+      },
+      "outputs": [
+        {
+          "path": "public/player-space/builder/v2/socks/adidas-ankle-black-front.webp",
+          "sha256": "0393caef60d7fca05a452879d27bf033c3ecc47f3dd8e462afbbd318cf6be666"
+        },
+        {
+          "path": "public/player-space/builder/v2/socks/adidas-ankle-black-back.webp",
+          "sha256": "f6a3dec39d4095157234a5540e0a6736e67767ad4ad911ad6d40fbe0c6558d3f"
+        }
+      ]
+    },
+    {
+      "id": "gain-the-edge-crew",
+      "prompt": "Use case: precise-object-edit. Asset type: aligned football character game sprite. Image 1 is the EDIT TARGET, a 1536x1024 transparent front-and-back sheet of the same fully clothed fictional slim teenage girl. Image 2 is SOCK DESIGN REFERENCE ONLY. Change ONLY the socks on BOTH figures. Preserve the exact canvas, figure positions, standing pose, proportions, bare legs above the socks, navy shirt and shorts, face, hair, hands, and especially the identical black starter football boots and their coordinates. Do not change footwear, foot size or leg alignment. Front figure stays on left, rear figure stays on right. New socks fit the existing legs naturally, clean finished cuff, readable small branding and knit shading in the original polished illustrated style. Keep all background genuinely transparent. No panels, crop, zoom, annotations, price text or extra objects. White Gain The Edge grip crew socks matching the reference: white rib knit, black GAIN THE EDGE cuff lettering and vertical black triangular marks at the back. Mid-calf cuffs near y765. Grip dots are underneath the feet and remain hidden inside the unchanged boots.",
+      "reference": "06-53282.jpg",
+      "referenceSha256": "cecafef7b61b541c30319a179655f7112207873a828ce4301cfc0bee78667c63",
+      "sourceSha256": "cfd695a108b4fe616f4af16b4362de85243612889df3bb1a9425ea47a8b6934c",
+      "sourceFile": "exec-30c15225-1fdd-4091-a27e-b3f968fb1684.png",
+      "offsets": {
+        "front": {
+          "dx": 0,
+          "dy": 0,
+          "score": 25274
+        },
+        "back": {
+          "dx": 0,
+          "dy": 0,
+          "score": 25250
+        }
+      },
+      "outputs": [
+        {
+          "path": "public/player-space/builder/v2/socks/gain-the-edge-crew-front.webp",
+          "sha256": "da8d0c3eb37b0c35f39d6658abbe014295335cf64fbdbba3f0c380ff42f54d48"
+        },
+        {
+          "path": "public/player-space/builder/v2/socks/gain-the-edge-crew-back.webp",
+          "sha256": "0bdeb0abb1e80df46be00822d2c2282a67526189e50f479055cc1c7f258e375c"
+        }
+      ]
+    },
+    {
+      "id": "cherry-ribbon",
+      "prompt": "Use case: precise-object-edit. Asset type: aligned football character game sprite. Image 1 is the EDIT TARGET, a 1536x1024 transparent front-and-back sheet of the same fully clothed fictional slim teenage girl. Image 2 is SOCK DESIGN REFERENCE ONLY. Change ONLY the socks on BOTH figures. Preserve the exact canvas, figure positions, standing pose, proportions, bare legs above the socks, navy shirt and shorts, face, hair, hands, and especially the identical black starter football boots and their coordinates. Do not change footwear, foot size or leg alignment. Front figure stays on left, rear figure stays on right. New socks fit the existing legs naturally, clean finished cuff, readable small branding and knit shading in the original polished illustrated style. Keep all background genuinely transparent. No panels, crop, zoom, annotations, price text or extra objects. Pretty white ankle socks matching the reference: softly frilled lettuce-edge ribbed cuff near y828, burgundy embroidered paired cherries with tied ribbon/bow on the outward/front-facing side of each ankle. Grip dots stay hidden inside the boots.",
+      "reference": "05-53281.jpg",
+      "referenceSha256": "bc08ae3fd6135aa0aa80faca9944f060d1922b365d6ce8df7a9697030ceb6a78",
+      "sourceSha256": "fb3379cf877224679ad9e7d11a635c38af7303208fdbc7d265c3523555eb8990",
+      "sourceFile": "exec-99547faa-b800-4fcf-ba6b-7229bf52deea.png",
+      "offsets": {
+        "front": {
+          "dx": 0,
+          "dy": 0,
+          "score": 34597
+        },
+        "back": {
+          "dx": 1,
+          "dy": 1,
+          "score": 36566
+        }
+      },
+      "outputs": [
+        {
+          "path": "public/player-space/builder/v2/socks/cherry-ribbon-front.webp",
+          "sha256": "181eeccd12f7a1f9f8adb5a986b26adde5e069ab20025e1c90fae2c42d0aef30"
+        },
+        {
+          "path": "public/player-space/builder/v2/socks/cherry-ribbon-back.webp",
+          "sha256": "165b861ebe8ff28fa8064156f16f8622cd9eb2df92681ba704d20a7a03e1d2a8"
+        }
+      ]
+    }
+  ]
+}
