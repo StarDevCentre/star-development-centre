@@ -15,7 +15,7 @@ export const builderSockIds=builderSocks.map(s=>s.id);
  * assumes that two trouser styles end at the same horizontal pixel row. */
 function exposedKnit(p:Uint8ClampedArray,width:number,bottoms:string){
  const selected=new Uint8Array(p.length/4),lower=bottoms==='adidas-firebird-trousers'?873:['nike-club-joggers','ellesse-pink-joggers'].includes(bottoms)?866:840;
- for(const [left,right] of [[60,180],[280,410]]){
+ for(const [left,right] of [[35,200],[260,435]]){
   let seed=-1,brightest=-1;
   for(let y=883;y<=899;y++)for(let x=left;x<right;x++){
    const j=y*width+x,i=j*4,light=Math.min(p[i],p[i+1],p[i+2]);
@@ -25,7 +25,7 @@ function exposedKnit(p:Uint8ClampedArray,width:number,bottoms:string){
   const pending=[seed];
   while(pending.length){
    const j=pending.pop()!,x=j%width,y=Math.floor(j/width),i=j*4;
-   if(selected[j]||x<left||x>=right||y<lower||y>915||!p[i+3])continue;
+   if(selected[j]||x<left||x>=right||y<lower||y>990||!p[i+3])continue;
    const light=Math.min(p[i],p[i+1],p[i+2]);
    if(light<130||Math.max(p[i],p[i+1],p[i+2])-light>40)continue;
    selected[j]=1;pending.push(j-1,j+1,j-width,j+width);
@@ -43,7 +43,7 @@ export function paintBuilderSocks(canvas:HTMLCanvasElement,bottoms:string,socks:
   const layer=document.createElement('canvas');layer.width=canvas.width;layer.height=canvas.height;
   const source=layer.getContext('2d')!;source.drawImage(art,0,740);const q=source.getImageData(0,0,layer.width,layer.height).data;
   const trousers=['nike-club-joggers','adidas-firebird-trousers','ellesse-pink-joggers'].includes(bottoms);
-  for(let y=780;y<=915;y++)for(let x=60;x<410;x++){
+  for(let y=780;y<=990;y++)for(let x=35;x<435;x++){
    const j=y*canvas.width+x,i=j*4;
    if(knit[j]){
     // Keep the existing cuff/boot silhouette and antialiasing, replacing every
@@ -55,7 +55,7 @@ export function paintBuilderSocks(canvas:HTMLCanvasElement,bottoms:string,socks:
      const left=i-dx*4,right=i+dx*4;
      if(q[left+3]>=64){sample=left;break;}if(q[right+3]>=64){sample=right;break;}
     }
-    if(q[sample+3])for(let k=0;k<3;k++)p[i+k]=q[sample+k];
+    if(y<883&&q[sample+3]){for(let k=0;k<3;k++)p[i+k]=q[sample+k];}else{const dark=socks.endsWith('-black'),colour=dark?[30,32,40]:[245,247,252],light=(p[i]+p[i+1]+p[i+2])/765;for(let k=0;k<3;k++)p[i+k]=colour[k]*(.65+light*.35);}
    }else if(!trousers&&y<875&&q[i+3]>50){
     const r=q[i],g=q[i+1],b=q[i+2],skin=r>g*1.12&&g>b*1.12&&r>90;
     // The upper shaft/frill overlays the bare calf. Warm skin remains the

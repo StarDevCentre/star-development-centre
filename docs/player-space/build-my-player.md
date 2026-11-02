@@ -81,3 +81,13 @@ The jogger rear source translated 33px to the right; its export uses fixed x887 
 Migration `20261101222814_ellesse_pink_tracksuit` is applied. It adds only the two IDs to the live security-invoker validator; exact function comparison confirmed every other rule unchanged. Existing RLS/grants, save identity checks and boot/gold entitlements are preserved. Do not reapply it.
 
 Validation: TypeScript, production build and 260 renders (13 tops × 5 bottoms × two views × two appearance/sock configurations), inspected for mixing, seams, rear alignment and branding. Rollback-only authenticated checks in `supabase/tests/ellesse_tracksuit_rls.sql` passed set/mixed saves, linked-player save, unknown item and locked boot/gold rejection, and cross-family isolation. No actual player rows retained; security advisor categories/counts unchanged from the pre-change baseline. No usability tests.
+
+## Completed independent layers (2 November 2026)
+
+The active renderer uses `public/player-space/builder/v3/`: one fully clothed bald body, independent four-style hair, garment-only front/rear sprites, fitted club socks and footwear-only boot pairs. All existing catalogue choices are selectable; Boot Locker and gold entitlements remain required. `none` footwear shows the selected socks or bare feet. Base clothing remains opaque sportswear and does not satisfy the dressed-card requirement.
+
+The renderer personalises body and hair separately, before branded clothing is painted. Socks sit behind trousers. Fixed hips/crotches and separately registered lower legs avoid source outfit fragments at the waist. Neck skin covers the rear inside collar. Top replacement masks clear covered bare arms while retaining wrists/hands. A shared final frame leaves room for high hairstyles.
+
+Regenerate with `scripts/export-builder-complete.cjs <input-manifest.json>` and `@napi-rs/canvas` (or `BUILDER_CANVAS_MODULE` pointing to it). The manifest records generated sheets, garment frames and hair anchors; download the original generated source sheets and set their local paths before rerunning. Generation prompts and exact runtime/source hashes are recorded in `builder-complete.json`. Earlier full-body v2 sources remain for provenance and the seven existing sock texture strips; they are not used as clothing/body replacements.
+
+Durham's sponsor-free front matches the official 2026/27 launch. Sunderland/Watford retain labelled launch artwork with unverified principal fronts omitted. These are independent fan illustrations.

@@ -1,0 +1,1600 @@
+{
+  "date": "2026-11-02",
+  "generator": "built-in image_gen",
+  "scope": "Complete existing 24-piece wardrobe, 26 home kits, 17 earned boot pairs plus starter, four hairstyles and core clothing choices on one slim rig. Preserve IDs/entitlements.",
+  "privacy": "Fictional illustrated game body and public clothing/club references; no private player photographs. Owner STAR shirt reference used only for garment design.",
+  "rendering": "Independent body/skin, knit, bottoms, tops, neck, boots, hair/accessory layers. Hips remain continuous, lower legs register by bone. Native canvas export; preserve generated alpha. No adult body sprite overlays.",
+  "limitations": [
+    "Sunderland and Watford keep labelled launch versions with unverified principal-front sponsors omitted.",
+    "Fan illustrations; small logos/text and cloth detailing are illustrative."
+  ],
+  "durhamVerification": {
+    "source": "https://durhamwfc.co.uk/2026/08/07/durham-women-launch-2026-27-home-kit/",
+    "image": "https://durhamwfc.co.uk/wp-content/uploads/2026/08/LaunchOutfield.png",
+    "result": "Blue/white hummel home kit with blank principal front confirmed."
+  },
+  "existingGarmentAndBootSources": "builder-art-provenance.json",
+  "prompts": {
+    "method": "built-in image_gen",
+    "base": "Use case: precise-object-edit. Keep this exact two-view fully clothed fictional game character sheet unchanged: faces, bald heads, navy sports crop tops and opaque navy sports shorts, hands, pose, proportions, positions and scale. Change ONLY white socks into bare feet, natural toes with same foot lengths/directions and exact baseline. No other anatomy or clothing change. Genuinely transparent background. Same 1536x1024 composition, front left and rear right. No glow or backdrop.",
+    "knit": "Use case: precise-object-edit. Edit the supplied two-view game character sheet. Keep both characters' exact slim youthful proportions, faces, bald heads, navy sports crop tops and opaque navy sports shorts, pose, pixel positions and scale unchanged. Change ONLY footwear and background: replace black football boots with plain white ankle socks covering the ENTIRE feet, smooth knit toes, feet maintain same natural length and directions and bottom baseline, slightly narrower than existing boots. Remove the brown halo completely. Output genuine transparent background, no backdrop, no glow, no shadow outside the characters. Exactly the same 1536x1024 composition. This is a fully clothed game dress-up base, no nudity.",
+    "hair": [
+      {
+        "id": "ponytail",
+        "prompt": "Use case: stylized-concept. Asset type: independent transparent hair layer for a 2D football character game. Create ONLY straight medium brown hair with a neat high ponytail; front hair follows skull with side wisps, rear ponytail falls down to upper back. Two views side by side: exact straight-on front on left, exact straight-on rear on right. Painterly realistic illustrated game sprite, fine individual hair detail and soft directional highlights matching the supplied character reference. Hair sits on an oval youthful head, ear-level width about 110 pixels if the head is 140 pixels high. Front MUST have a genuinely transparent empty oval face opening, no skin, no face, no ears. Back shows hair covering skull. No body, no shoulders, no clothing, no mannequin, no labels. Leave lots of clear space around separate views. Medium brown neutral colour for recolouring. Transparent background."
+      },
+      {
+        "id": "coils",
+        "prompt": "Use case: stylized-concept. Asset type: independent transparent hair layer for a 2D football character game. Create ONLY dark brown natural tightly coiled hair gathered into a high rounded puff, textured edges. Two views side by side: exact straight-on front on left, exact straight-on rear on right. Painterly realistic illustrated game sprite, fine individual hair detail and soft directional highlights matching the supplied character reference. Hair sits on an oval youthful head, ear-level width about 110 pixels if the head is 140 pixels high. Front MUST have a genuinely transparent empty oval face opening, no skin, no face, no ears. Back shows hair covering skull. No body, no shoulders, no clothing, no mannequin, no labels. Leave lots of clear space around separate views. Medium brown neutral colour for recolouring. Transparent background."
+      },
+      {
+        "id": "braids",
+        "prompt": "Use case: stylized-concept. Asset type: independent transparent hair layer for a 2D football character game. Create ONLY dark brown neat cornrow braids gathered into a compact braided bun at back of head. Two views side by side: exact straight-on front on left, exact straight-on rear on right. Painterly realistic illustrated game sprite, fine individual hair detail and soft directional highlights matching the supplied character reference. Hair sits on an oval youthful head, ear-level width about 110 pixels if the head is 140 pixels high. Front MUST have a genuinely transparent empty oval face opening, no skin, no face, no ears. Back shows hair covering skull. No body, no shoulders, no clothing, no mannequin, no labels. Leave lots of clear space around separate views. Medium brown neutral colour for recolouring. Transparent background."
+      }
+    ],
+    "garments": [
+      {
+        "id": "ellesse-pink-sweatshirt",
+        "refs": [
+          "/workspace/scratch/d323f6222ecf/remaining-inputs/ellesse-target.png"
+        ],
+        "desc": "Extract the exact pale pink Ellesse crew-neck sweatshirt, including white ellesse wordmark and orange half-sun on front, completely plain rear. Remove the ponytail and reconstruct the pink fabric it hid. Keep the exact sleeve and hem shape.",
+        "prompt": "Use case: background-extraction. Asset type: independent transparent garment sprite for game dress-up. Extract the exact pale pink Ellesse crew-neck sweatshirt, including white ellesse wordmark and orange half-sun on front, completely plain rear. Remove the ponytail and reconstruct the pink fabric it hid. Keep the exact sleeve and hem shape. ONLY the garment, no head, no hair, no neck, no arms, no hands, no legs, no skin, no mannequin. Front view on LEFT, true rear view on RIGHT, same scale. Preserve realistic soft shaded sports-game illustrated style. Garment is fitted to a slim youthful body, natural fabric folds, avoid exaggerated bust shaping. Genuinely transparent neck and sleeve openings and all background. Both whole garments visible, no text labels or shadow outside garment."
+      },
+      {
+        "id": "core-hoodie",
+        "refs": [
+          "/workspace/scratch/d323f6222ecf/remaining-inputs/core-ref.png"
+        ],
+        "desc": "Extract the plain navy pullover hoodie from the right-hand figure, front and rear views. Draw a matching plain rear. Navy hood, drawstrings and kangaroo pocket. Long sleeves slope down and out to wrists matching the reference pose. No trousers.",
+        "prompt": "Use case: background-extraction. Asset type: independent transparent garment sprite for game dress-up. Extract the plain navy pullover hoodie from the right-hand figure, front and rear views. Draw a matching plain rear. Navy hood, drawstrings and kangaroo pocket. Long sleeves slope down and out to wrists matching the reference pose. No trousers. ONLY the garment, no head, no hair, no neck, no arms, no hands, no legs, no skin, no mannequin. Front view on LEFT, true rear view on RIGHT, same scale. Preserve realistic soft shaded sports-game illustrated style. Garment is fitted to a slim youthful body, natural fabric folds, avoid exaggerated bust shaping. Genuinely transparent neck and sleeve openings and all background. Both whole garments visible, no text labels or shadow outside garment."
+      },
+      {
+        "id": "star",
+        "refs": [
+          "/workspace/scratch/d323f6222ecf/remaining-inputs/core-ref.png",
+          "/workspace/scratch/d323f6222ecf/project_sources/01-37369-2-.jpg"
+        ],
+        "desc": "Create the white STAR training football top with purple diagonal panels, purple V neck, red cuffs and correct STAR chest crest, matching shirt design of supplied STAR reference. Front and rear, plain rear except the purple side panels. Exact text on front: THIS SHIRT / CARRIES THE FUTURE / IS PROOF GIRLS BELONG / REPRESENTS COURAGE / IS WORN WITH PRIDE / IS FOR WINNERS / IS STRENGTH / IS MINE. SWAZ red chest maker mark.",
+        "prompt": "Use case: background-extraction. Asset type: independent transparent garment sprite for game dress-up. Create the white STAR training football top with purple diagonal panels, purple V neck, red cuffs and correct STAR chest crest, matching shirt design of supplied STAR reference. Front and rear, plain rear except the purple side panels. Exact text on front: THIS SHIRT / CARRIES THE FUTURE / IS PROOF GIRLS BELONG / REPRESENTS COURAGE / IS WORN WITH PRIDE / IS FOR WINNERS / IS STRENGTH / IS MINE. SWAZ red chest maker mark. ONLY the garment, no head, no hair, no neck, no arms, no hands, no legs, no skin, no mannequin. Front view on LEFT, true rear view on RIGHT, same scale. Preserve realistic soft shaded sports-game illustrated style. Garment is fitted to a slim youthful body, natural fabric folds, avoid exaggerated bust shaping. Genuinely transparent neck and sleeve openings and all background. Both whole garments visible, no text labels or shadow outside garment."
+      }
+    ],
+    "starCorrection": "Use case: precise-object-edit. Image1 EDIT TARGET is the two independent shirt sprites. Image2 is correct official STAR crest reference. Image3 is correct shirt design reference only, do not depict person. Correct front garment to faithfully match image3: replace incorrect circular infinity chest emblem with EXACT official STAR logo from image2, small crest on wearer's left chest. Move SWAZ to wearer's right upper chest. Front text in narrow small condensed lines sits on wearer's left half BELOW crest, matching image3, not giant central lettering. Keep purple diagonal panels only on wearer's right half with white gaps, red cuffs and purple V neck. Back plain white with purple side panels. Keep two garments only, front left rear right, no body or hair. Genuine transparent background. Preserve illustration, sleeves down pose and overall garment shapes."
+  },
+  "initialPrototypes": [
+    {
+      "id": "base-body",
+      "kind": "body",
+      "refs": [
+        "/workspace/scratch/d323f6222ecf/generated_images/exec-d43b2a7d-c894-4d25-bb2c-8abf399e2d07.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Technical 1536x1024 front-left/back-right game character template. Preserve EXACT canvas, both figures' position, height, youthful fictional girl face, slim natural build, arm/hand positions, leg stance, white ankle socks and black starter boots. Change only: remove all hair to a clean naturally shaded bald head in both views; replace navy T-shirt with a plain navy sleeveless athletic crop top with broad straps and modest scoop neckline, hem ending y330. Replace loose football shorts with plain navy fitted upper-thigh sports shorts, waistband at y435 and hems at y495. Fully clothed, opaque sports clothing, neutral expression, non-glamorous same polished sports illustration. Keep torso skin naturally visible between sports crop and sports shorts. This is an under-clothes base for a football game, not a new character or pose. No redesign of body, feet or face. Genuinely transparent background, no glow, floor, shadows or labels. Exact registration: front head centered x452; rear x1084; knees at same original positions; boots unchanged."
+    },
+    {
+      "id": "hollister-baby-tee",
+      "kind": "top",
+      "refs": [
+        "/workspace/scratch/d323f6222ecf/generated_images/exec-d43b2a7d-c894-4d25-bb2c-8abf399e2d07.png",
+        "/workspace/scratch/d323f6222ecf/star-work/public/player-space/builder/wardrobe/hollister-baby-tee-front.webp",
+        "/workspace/scratch/d323f6222ecf/star-work/public/player-space/builder/wardrobe/hollister-baby-tee-back.webp"
+      ],
+      "prompt": "Use case: precise-object-edit. Image1 is exact POSITION/POSE/STYLE guide at 1536x1024; images2/3 are approved GARMENT DESIGN front/back only. Create an independently compositable white Hollister baby T-shirt FRONT at precisely image1's front figure torso and BACK at precisely its rear torso. Same slim teenage fit, original shoulder/neck/arms, short sleeves angled down; scoop crew neck, small navy Hollister bird at chest, fitted but natural, hem y400 (slightly shorter than training tee). Keep EXACT image1 canvas and garment coordinates, never zoom or recenter: front shirt spans approximately x320..590, y170..400; rear x950..1225,y170..400. REMOVE EVERYTHING EXCEPT THE TWO SHIRTS: no person, head, hair, skin, hands, shorts, legs, footwear, mannequin or background. Transparent neck/sleeve openings and outside each garment. Preserve the design, soft knit shading and game illustration style; plain back. Output1536x1024 with original large transparent margins. Garment only, not a person wearing it."
+    },
+    {
+      "id": "kit-arsenal",
+      "kind": "kit",
+      "refs": [
+        "/workspace/scratch/d323f6222ecf/remaining-inputs/kit-position-guide.png",
+        "/workspace/scratch/d323f6222ecf/remaining-inputs/arsenal-design.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Image1 is a PRECISE three-row position guide (1536x3072): each row repeats the same two fully clothed figures front left/back right. Image2 is Arsenal 2026/27 kit DESIGN reference only. Keep the guide's EXACT portrait canvas, scale and all original garment positions; do not pack or enlarge items. Replace clothing with accurate reference kit and REMOVE ALL PEOPLE and unwanted items. TOP ROW (y0..1023): ONLY the two short-sleeve Arsenal shirts at their original torso positions, front-left/back-right. MIDDLE ROW (y1024..2047): ONLY two Arsenal shorts at their original hip positions, waistband at row-relative y435, hems y560; no shirts/legs. BOTTOM ROW(y2048..3071): ONLY pairs of Arsenal knee-high socks at the exact original calf/ankle positions, fronts left/rears right, cuff at row-relative y710 and foot ending y970; no boots or legs. Output a sparse registered garment-only atlas1536x3072 with huge transparent margins, not a compact catalog. No skin, face, hair, body, mannequin, labels, border or backdrop. Shirt red with white sleeves, red shoulder stripes, white 'Emirates FLY BETTER', red 'Deel' sleeve, correct crest/adidas; plain red back without names/numbers. White shorts red stripes/crest; white socks red cuff stripes/adidas. Natural slim youthful fit to guide, never exaggerated adult tailoring. Faithful shaded sports illustration. All unused regions truly transparent."
+    },
+    {
+      "id": "boot-tiempo",
+      "kind": "boot",
+      "refs": [
+        "/workspace/scratch/d323f6222ecf/generated_images/exec-d43b2a7d-c894-4d25-bb2c-8abf399e2d07.png",
+        "/workspace/scratch/d323f6222ecf/star-work/public/player-space/builder/footwear/tiempo-front.webp",
+        "/workspace/scratch/d323f6222ecf/star-work/public/player-space/builder/footwear/tiempo-back.webp"
+      ],
+      "prompt": "Use case: precise-object-edit. Image1 is EXACT foot position/size/pose guide1536x1024, images2/3 are BOOT DESIGN front/rear references only. Change the four boots to Nike Tiempo Legend10 Pro Black/Deep Jungle, matching panel contours, laces, Nike branding, black upper and deep-jungle accents. Preserve original image1 boot positions, physical size, sole angle and standing foot perspective exactly. Front-view pair at the original left figure's feet, rear-view pair at original right figure's feet. THEN REMOVE EVERYTHING EXCEPT THOSE FOUR BOOTS, keeping original canvas and giant empty margins. No leg, skin, sock, person, floor, glow or extra shoes. Four isolated boots with opaque shaded interiors in natural open collars, thin soles and studs. Never magnify, pack, recenter or use side-profile product views. In original pixels front pair stays near x270..640,y883..978, rear pair near x905..1260,y898..978. Transparent background and all non-footwear transparent. Same polished game illustration, authentic reference colourway."
+    },
+    {
+      "id": "hair-curls",
+      "kind": "hair",
+      "refs": [
+        "/workspace/scratch/d323f6222ecf/generated_images/exec-d43b2a7d-c894-4d25-bb2c-8abf399e2d07.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Keep exact1536x1024 canvas and original fictional girl's front-left/back-right head coordinates and small head scale. Replace her ponytail with natural BROWN curly bob, soft defined curls, ear-to-nape length, appropriate understated teenage sports hairstyle. Then REMOVE EVERYTHING EXCEPT THE HAIR, including all face/scalp/ears/neck/body/clothing. Two independent hair-only sprites registered exactly at the original head positions; transparent facial opening for front, full curls crown/back for rear. Front hair within approximately x390..520,y8..175, rear x1017..1150,y8..190. No head, face, person, skin, mannequin, labels or backdrop. Do not enlarge hair to fill canvas or add loose ponytail. Preserve original polished softly shaded outlined sports-game style, natural curl texture, brown pigment for recolouring; genuine alpha transparency everywhere outside hair. Full original large transparent margins."
+    }
+  ],
+  "inputManifest": {
+    "body": "exec-be0dd579-5fe2-401a-a40b-b809b3059d5d.png",
+    "knit": "exec-6b95bdf0-592f-4b7d-8942-8eeed47df6a5.png",
+    "garments": [
+      {
+        "id": "ellesse-pink-sweatshirt",
+        "file": "exec-e58e29d4-7323-4267-a220-640b909a221c.png",
+        "target": [
+          25,
+          165,
+          410,
+          312
+        ]
+      },
+      {
+        "id": "star",
+        "file": "exec-955e8f22-9572-47a6-8305-35009d2daa23.png",
+        "target": [
+          65,
+          163,
+          330,
+          285
+        ]
+      },
+      {
+        "id": "hollister-baby-tee",
+        "file": "exec-c8c6a771-2c20-4d3e-8599-6e5acfe52ecd.png",
+        "target": [
+          75,
+          165,
+          310,
+          240
+        ]
+      }
+    ],
+    "hair": [
+      {
+        "id": "curls",
+        "file": "exec-a4c0c90b-314a-4786-89bc-051706afd085.png",
+        "anchors": [
+          [
+            450,
+            0,
+            0.8
+          ],
+          [
+            1090,
+            0,
+            0.8
+          ]
+        ]
+      },
+      {
+        "id": "ponytail",
+        "file": "exec-af24887a-7f2c-4a5e-8a7f-75735888c21b.png",
+        "anchors": [
+          [
+            393,
+            -16,
+            0.23
+          ],
+          [
+            1152,
+            0,
+            0.23
+          ]
+        ]
+      },
+      {
+        "id": "coils",
+        "file": "exec-1e260474-2d50-43db-a7df-b39a95e4bd35.png",
+        "anchors": [
+          [
+            505,
+            -50,
+            0.28
+          ],
+          [
+            1305,
+            -45,
+            0.28
+          ]
+        ]
+      },
+      {
+        "id": "braids",
+        "file": "exec-d19d9cf4-8eaa-43ed-a134-0cf223f019c1.png",
+        "anchors": [
+          [
+            535,
+            -30,
+            0.24
+          ],
+          [
+            1295,
+            -65,
+            0.24
+          ]
+        ]
+      }
+    ]
+  },
+  "generatedSources": [
+    {
+      "path": "exec-be0dd579-5fe2-401a-a40b-b809b3059d5d.png",
+      "sha256": "ecd872b1c64e5205a034877a681b60d790e718fcaaff043082e8a2b46a638a8f",
+      "bytes": 1445062
+    },
+    {
+      "path": "exec-6b95bdf0-592f-4b7d-8942-8eeed47df6a5.png",
+      "sha256": "a068405e2c3069c44b642d5cb293aa76370d9ccf4845c81bda7ca18bd787e4a2",
+      "bytes": 1442955
+    },
+    {
+      "path": "exec-e58e29d4-7323-4267-a220-640b909a221c.png",
+      "sha256": "fe96170904a4067fd496d62dfc5041e8fb55db9a8dadbe58da751d811c4f9918",
+      "bytes": 1625751
+    },
+    {
+      "path": "exec-955e8f22-9572-47a6-8305-35009d2daa23.png",
+      "sha256": "cf7ae9995ba771cade04b0914f3df4fbd637907f7805e9ba52fa971b1c1c7575",
+      "bytes": 1604470
+    },
+    {
+      "path": "exec-c8c6a771-2c20-4d3e-8599-6e5acfe52ecd.png",
+      "sha256": "e3b15ea44d36e05a886328d7c2767784621a1cb90074ed6d1f3265be5b62a5da",
+      "bytes": 1025374
+    },
+    {
+      "path": "exec-a4c0c90b-314a-4786-89bc-051706afd085.png",
+      "sha256": "4fad25818d224fddf87f147810b92159da4a940546c6fce2a9812a9661710af5",
+      "bytes": 775471
+    },
+    {
+      "path": "exec-af24887a-7f2c-4a5e-8a7f-75735888c21b.png",
+      "sha256": "366f030a75b412df727561d5c7cb0ea397b3d810d6d720bb4549c154e91c24d4",
+      "bytes": 1973688
+    },
+    {
+      "path": "exec-1e260474-2d50-43db-a7df-b39a95e4bd35.png",
+      "sha256": "5dc69e42eda263f89e10fa04d5c40e3a662517fbc9a5e62f3a22ccd5fd101f0b",
+      "bytes": 1592384
+    },
+    {
+      "path": "exec-d19d9cf4-8eaa-43ed-a134-0cf223f019c1.png",
+      "sha256": "98d71b234e36708a0c2bc0a9ac24828a1c6603a63b8ed1df7a85175b69fa943f",
+      "bytes": 1246544
+    }
+  ],
+  "runtimeAssets": [
+    {
+      "path": "public/player-space/builder/v3/body-back.webp",
+      "sha256": "e27feb1863a7300856ed2284a23c432517ef809134057d83898b5eed4057888a",
+      "bytes": 92258
+    },
+    {
+      "path": "public/player-space/builder/v3/body-front.webp",
+      "sha256": "c8284784ec0c878741f606b6f218c64bd7d5a523979ab9f13a41ea6e13bf9af4",
+      "bytes": 91232
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/absolute-2006-back.webp",
+      "sha256": "b9b6e972c5f0797ffee4d7ddc679a10d8fbc7d70a0c44b24314acd6c35b7227c",
+      "bytes": 14448
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/absolute-2006-front.webp",
+      "sha256": "4f36e94530d0d7c974f10285fe716057af44bdfd036813b433552c661fec33e2",
+      "bytes": 13266
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/copa-back.webp",
+      "sha256": "0db5a9a288769f418b388cdea2cd9b75d86bf3fa36836ce244fccae8a9ab6057",
+      "bytes": 15216
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/copa-front.webp",
+      "sha256": "bf5948c18dd56f378bb07ec8de2cb4d68dcb3ee59417b3d6869d7bc2fb21be8f",
+      "bytes": 12240
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/etrusco-1990-back.webp",
+      "sha256": "a46fed88cc98b2866591e47d1616b0c0f844e881941b6ba84c52b3f71592b8db",
+      "bytes": 14354
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/etrusco-1990-front.webp",
+      "sha256": "4a4e86a9ff19c3b58e1970aa81b280ffaa5179fddf52ed352a2e0ad86873c919",
+      "bytes": 12746
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/f50-back.webp",
+      "sha256": "6abe2c372fdf74fa4fcb9c25aa744d318dfe2af4e0ae5de38b77ef0da3184a2a",
+      "bytes": 15304
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/f50-front.webp",
+      "sha256": "15fc0c075b7567da10783db94306730ce99417119c03bb4ba5bf4c028b4a75d1",
+      "bytes": 13808
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/furon-pink-back.webp",
+      "sha256": "f06e4eae62f96da7bdcb947d77977031635891a6fded96fc6891359f2c169414",
+      "bytes": 16334
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/furon-pink-front.webp",
+      "sha256": "35c7e73738ea622808ab7abdb3afc55b9d0f778c8c6c5bbe950bb8aeab3fa4c6",
+      "bytes": 14374
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/future-back.webp",
+      "sha256": "e8b262f41ba7a09e07d0678b1ce785cccc3085f61918a501ba17363a67e348ba",
+      "bytes": 16816
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/future-front.webp",
+      "sha256": "af73f2dea99110fa08d3279646fdc1e56799d2f9b07af9dd12ffd268d67b9fc8",
+      "bytes": 14214
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/ida-rise-back.webp",
+      "sha256": "5baa09738b41d562dff417d0eb2aeb4cf5840a8762b30fb81172f70b10105fd8",
+      "bytes": 16020
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/ida-rise-front.webp",
+      "sha256": "370c557607a17a946e8d2a3e94a3233d8107defa27b2a0d6d1388e0c0c0a2e6d",
+      "bytes": 14458
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/mercurial-back.webp",
+      "sha256": "1cb0850ef97ddd6a9a9c9c9ed3816e1142e33912a6972747155b6ed1457df5a3",
+      "bytes": 15686
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/mercurial-front.webp",
+      "sha256": "51a42105c8ffd4c62995c8a828bdb18dba6cae74b7167269155363186412c271",
+      "bytes": 14676
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/morelia-ruby-back.webp",
+      "sha256": "f63dac447b60b00a9ad6bc690011e9ea5103ad4bbcec164a5647b5342e417539",
+      "bytes": 15706
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/morelia-ruby-front.webp",
+      "sha256": "7369d043dabc80eb235a6b8a507a9d9f167de3c494c12a7d8968c8e2ad140286",
+      "bytes": 13934
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/phantom-back.webp",
+      "sha256": "0863d614396f2de3b7fafd1698701d6275f32bb5fc83947a4998486bd3bd54ae",
+      "bytes": 12944
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/phantom-front.webp",
+      "sha256": "9a4c4a397cc453c3fb1d1c1e03087118aeefadebd57e67d1b36062e4ebf78d59",
+      "bytes": 12810
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/predator-back.webp",
+      "sha256": "1a2308dc500531170d8962e9f900ff7c9d77e28d1a1d72ae0812425d1d0a3e9b",
+      "bytes": 15740
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/predator-front.webp",
+      "sha256": "e1955fcf1bc67cabade516e777d5269e1985d4ecd28f378deba3040bbddd1dda",
+      "bytes": 13350
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/stadio-1990-back.webp",
+      "sha256": "ea4dd6185aedf42d25498c0df0eb2a16e6e922f8535fe497cea5e70cfa0447f6",
+      "bytes": 14494
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/stadio-1990-front.webp",
+      "sha256": "2a22eb769c06d35595c1db93419411f36da89d587dcf8a7e1ec71b33099cddef",
+      "bytes": 13410
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/starter-back.webp",
+      "sha256": "018b351ed10c85feb32eaa7350ae96b3edbf4617c03b6b2d876be87e7186d550",
+      "bytes": 10420
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/starter-front.webp",
+      "sha256": "d77ad90567242963734341f588cb4334bd0e947ca7af35a0fe971453d382222f",
+      "bytes": 9540
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/superfly-pink-back.webp",
+      "sha256": "7f81e7d0f7058cb63f8db9bc6c66b57800d2fc44fe1dc7228557331e42f76d12",
+      "bytes": 15178
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/superfly-pink-front.webp",
+      "sha256": "5abe7d92747e1ad6973b85cd75acd83c327edc25c283cd46c0c9a355fd809455",
+      "bytes": 13680
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/tekela-white-back.webp",
+      "sha256": "1fc8f9d2c027d26add958844b8de1344a06a6397ad1286f30413e331747c88df",
+      "bytes": 14818
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/tekela-white-front.webp",
+      "sha256": "d442e318b09ea7b33b865aa20be76c6e6ca9c839896ab83f882dd61b3e154c40",
+      "bytes": 12588
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/tiempo-back.webp",
+      "sha256": "d5b7a40061903138fb84b141661ad5cb0c0ceca778e91d71090eeabe5b030755",
+      "bytes": 13510
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/tiempo-front.webp",
+      "sha256": "663e234e4743b0a3a2bf96ae0c952d068415af5efeb2453cc7bb59aff1aa0a48",
+      "bytes": 11714
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/total90-2004-back.webp",
+      "sha256": "90e27f34309c1276d09c1d1da0fd10ee76dc0ea82ba25c8ab7fdc7ba8c0e32ef",
+      "bytes": 15878
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/total90-2004-front.webp",
+      "sha256": "1427f6b5ce895b2a652f60e30c7a38e8d4e3c54ed8c838ada7176f8fbf591043",
+      "bytes": 13710
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/ultra-back.webp",
+      "sha256": "ddc63f63775589a4a767c733b565cd27c878d1ac7ffb8482e06a4e229e35fe13",
+      "bytes": 15270
+    },
+    {
+      "path": "public/player-space/builder/v3/footwear/ultra-front.webp",
+      "sha256": "53e20732a46b5a5efbe01b1fd9f6f318562a01fad71dc670aa570fb9c784ef97",
+      "bytes": 14374
+    },
+    {
+      "path": "public/player-space/builder/v3/hair/braids-back.webp",
+      "sha256": "95d89d2299702c98942bb692c35abf5953603c1e6081baeeb769d2e9674ba6f4",
+      "bytes": 16738
+    },
+    {
+      "path": "public/player-space/builder/v3/hair/braids-front.webp",
+      "sha256": "37d2f9cf76a182ccc0e2f587ab05c84e1788576ca70dccfbc2a22a78631f6459",
+      "bytes": 12290
+    },
+    {
+      "path": "public/player-space/builder/v3/hair/coils-back.webp",
+      "sha256": "968172c8671fdcfae987df5724ad9214e0938706a100105da39554aad9d96142",
+      "bytes": 28482
+    },
+    {
+      "path": "public/player-space/builder/v3/hair/coils-front.webp",
+      "sha256": "9d4d6e9efa98c20370e239b51803a7183396e3d5ae2bfc71bd8fd67f45c779ce",
+      "bytes": 24356
+    },
+    {
+      "path": "public/player-space/builder/v3/hair/curls-back.webp",
+      "sha256": "4c14556ba81b00b6ca6c64d69f8f3fbeec77d19b8acab6c8c6e23ce593f363aa",
+      "bytes": 23328
+    },
+    {
+      "path": "public/player-space/builder/v3/hair/curls-front.webp",
+      "sha256": "c0ae704846ef28b93c034f296d8772d2d1721c1c86af40140ee76d15c5c0eb35",
+      "bytes": 21904
+    },
+    {
+      "path": "public/player-space/builder/v3/hair/ponytail-back.webp",
+      "sha256": "e05f2b849ed1dd737053572458889625238e4d5863e44c6f9b114b3c87717bdb",
+      "bytes": 19206
+    },
+    {
+      "path": "public/player-space/builder/v3/hair/ponytail-front.webp",
+      "sha256": "4bb0fdfd2c4be2aa3638fbe2a268c2b6cadd8bf3813093ffe1bbe58a0b3920f0",
+      "bytes": 14586
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/arsenal-bottoms-back.webp",
+      "sha256": "9db28254ff254128413252ec5044f85a4104bd4258315425849500093b9c7b32",
+      "bytes": 25244
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/arsenal-bottoms-front.webp",
+      "sha256": "5cac22c4a7b9ace72baa94e261535cc9156b9e9e67c39fe95edafc02c0bd2e86",
+      "bytes": 26248
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/arsenal-socks-back.webp",
+      "sha256": "f6b6da2d01a4c5e4c94ab1ac2e6be6eda46c3ba8f01defec216ebb708cfbef7b",
+      "bytes": 18752
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/arsenal-socks-front.webp",
+      "sha256": "b4ebc29e9614fb2545b19047f6d6db419923012314be1917117ab05ed2bc19a8",
+      "bytes": 19846
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/arsenal-top-back.webp",
+      "sha256": "25d567a18a6115e90682cef34768b55262621eb7d23f2355779dd9dfdc336202",
+      "bytes": 32236
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/arsenal-top-front.webp",
+      "sha256": "2005f633211d96bb52df8f0a86fda05eaace8e183ff4d2cfdf12bdc7ed772a11",
+      "bytes": 36858
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/aston-villa-bottoms-back.webp",
+      "sha256": "74d3282c33a65921cc81f61c9c4734816e57132c7927daba32d7d9b92bb16aae",
+      "bytes": 19874
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/aston-villa-bottoms-front.webp",
+      "sha256": "0f9b3ce2f988441dcf21db8afc3aa89817c96d7a8649f7598f4ba4cc46e0768e",
+      "bytes": 22632
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/aston-villa-socks-back.webp",
+      "sha256": "4ec2977664ead40a43086b21318be57c770f41063844bc95dceeeeb96560a8d7",
+      "bytes": 17850
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/aston-villa-socks-front.webp",
+      "sha256": "847c49c15a412fe5a68ed0309efa18173485908805c159ee85d6a3639b606b2b",
+      "bytes": 20552
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/aston-villa-top-back.webp",
+      "sha256": "85fd578b6bf88243f12418d48766f48c48fabcc167dba2aa89dc3bf31a7475f4",
+      "bytes": 26200
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/aston-villa-top-front.webp",
+      "sha256": "aac65e34345e89a279211178752b1702ed445be1f84e7f5d218c7eae4a543c34",
+      "bytes": 29386
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/birmingham-bottoms-back.webp",
+      "sha256": "d6acbc504ee2ae8b5580e075ab59758dfc407ebbd7b0c5f4e827ec97dc0d7706",
+      "bytes": 19002
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/birmingham-bottoms-front.webp",
+      "sha256": "b94ffecca91a7b6308f2e01ab985c3376a57caf80c7f72722d4f8ec65f1aa600",
+      "bytes": 22434
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/birmingham-socks-back.webp",
+      "sha256": "9c8eb758691978304dddd39577bff15e940caae511fead0564998b746890cb6e",
+      "bytes": 15502
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/birmingham-socks-front.webp",
+      "sha256": "be4a969a4e8798d310c56d19ab3d05d8971c0f3c10ea7295fb118301bcf36123",
+      "bytes": 16778
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/birmingham-top-back.webp",
+      "sha256": "aa7328764454d18052ac6d32a3eba1f41f205fc9d7a3ac208d0796222f7b1f24",
+      "bytes": 29746
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/birmingham-top-front.webp",
+      "sha256": "83324e725b8da7792c52120e6fb78544a7025ca8c17ec239e0874d0c441434e8",
+      "bytes": 34946
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/brighton-bottoms-back.webp",
+      "sha256": "380ffb9b50f7e0c23bc1988c87a17289360a7dbc9d81910fa32e4f97e6822a53",
+      "bytes": 21816
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/brighton-bottoms-front.webp",
+      "sha256": "c4fda8735e6b0606f51a0ab6bd2a7a6d31a5c601cd89ee506746a3874638acf8",
+      "bytes": 24026
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/brighton-socks-back.webp",
+      "sha256": "7457303f3af095fab7a4bdaed47e30c9b496b96ea7b2fd1a4c7304fc916e73de",
+      "bytes": 18034
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/brighton-socks-front.webp",
+      "sha256": "ddbd20075c0ea70c0240e854eb2f6d784d83fb2f4a4a43e8685c052e87018b62",
+      "bytes": 19118
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/brighton-top-back.webp",
+      "sha256": "d021e18775ec24d0a9435613d34a1e716ff172da0792632d6c7c2d0940e96e74",
+      "bytes": 34408
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/brighton-top-front.webp",
+      "sha256": "3489f1a47ebbae76bad30b4b19b7cb061ae577e73706939a1b57118c2e1b032f",
+      "bytes": 37056
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/bristol-city-bottoms-back.webp",
+      "sha256": "3e82ad70d787e09d7c8d036ba4b6a23b06a70cd309f24296b975c2f2a70ac4bf",
+      "bytes": 18316
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/bristol-city-bottoms-front.webp",
+      "sha256": "3f2ee1e901c8e1ffeaeaadd36e8a37e0fc3566f01a31c321f117cafd1d097037",
+      "bytes": 20496
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/bristol-city-socks-back.webp",
+      "sha256": "db6bec31f9fe61bc42969049c628565d0915e3b47a224ea9f3be47ad1170c85b",
+      "bytes": 18706
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/bristol-city-socks-front.webp",
+      "sha256": "b46afb1ed505fb8db08e259973298e317d573b519609491305aba65f6f8044be",
+      "bytes": 19942
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/bristol-city-top-back.webp",
+      "sha256": "3937efb5e0233581df8ba18c7e6d85548522e142c67a9dedec481354798d8408",
+      "bytes": 29938
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/bristol-city-top-front.webp",
+      "sha256": "465952789e8868f41975142c40b8ae8bb097bbb6392f2ba63625d84c7d04b776",
+      "bytes": 34410
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/burnley-bottoms-back.webp",
+      "sha256": "157ba264de5ba333ca41d9c8c8bd16472a1b9a34eae9b6aee2860702f9872c1b",
+      "bytes": 21072
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/burnley-bottoms-front.webp",
+      "sha256": "1825276db39456e0dd67bc29716c2be1d4c4e8ef5f96b33438003eeed81c2107",
+      "bytes": 23458
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/burnley-socks-back.webp",
+      "sha256": "c9406e8b0fa50472bf621ce4fa1cd3d68724ccb5608f60267786c4cc6bdd4ac1",
+      "bytes": 17002
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/burnley-socks-front.webp",
+      "sha256": "3d6af445c33df26f8de7b85c49d76bb0e37045200cb7e050999779c019196c7c",
+      "bytes": 17080
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/burnley-top-back.webp",
+      "sha256": "1af62b3d1c99f3bb0626f41ec73eb604d9f5e00351e355c1f9190bdb6417decb",
+      "bytes": 22744
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/burnley-top-front.webp",
+      "sha256": "f2cb8fe36581992add7a750b7a77de01c7c79baca660e39a500c12a2dad0ac8b",
+      "bytes": 26824
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/charlton-bottoms-back.webp",
+      "sha256": "fbd58b0ebabd334183e15292cfd71e59578c9e46181eed026d85fc0d8dacd67f",
+      "bytes": 19816
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/charlton-bottoms-front.webp",
+      "sha256": "26e808e3e4ca1f4d588c1486190eda018729285fb630077179a06537f9c6652b",
+      "bytes": 22236
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/charlton-socks-back.webp",
+      "sha256": "a361429ccaaa69286fb440fb6a16b17cc26b15b33953fc23ed8b3183bd393100",
+      "bytes": 16412
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/charlton-socks-front.webp",
+      "sha256": "a6a20a9c856cc7545fca37755bd93c3a4728c4181ee1072bb642fe624e7fb061",
+      "bytes": 18176
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/charlton-top-back.webp",
+      "sha256": "2d811dba36e28df23c80e63a85d78292902b87b86d77d20c3d07d87765cd7970",
+      "bytes": 28342
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/charlton-top-front.webp",
+      "sha256": "66c3d128d170a24c4abcbd67316fff34a7807961b62238aae52ff4e15f912445",
+      "bytes": 31032
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/chelsea-bottoms-back.webp",
+      "sha256": "f86ea889b61056d84f603ad595d04764e8986e4c5129fb05e22f5b3749daa466",
+      "bytes": 20508
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/chelsea-bottoms-front.webp",
+      "sha256": "371bb3aae6cc233e26eb70926bf716d4161d3e7199c116dff85d5a1c87069794",
+      "bytes": 21968
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/chelsea-socks-back.webp",
+      "sha256": "c3a8b74f7da9444512140224053ff1fa59be1a06c6ffd000091cd7dcd24a67b8",
+      "bytes": 17726
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/chelsea-socks-front.webp",
+      "sha256": "4723b2f2702de1101b361e91e60eebd7f96b734f7b1e54ecc53101143562092a",
+      "bytes": 19600
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/chelsea-top-back.webp",
+      "sha256": "4fcd6172792dc7354e5423e4deb08a026c13b72c4647be72caa4a29e4f108ef3",
+      "bytes": 28768
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/chelsea-top-front.webp",
+      "sha256": "7dd6b2f5ef612d82386abea16f100034309ba5e34e3c027bd933be6ddf86e911",
+      "bytes": 33132
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/crystal-palace-bottoms-back.webp",
+      "sha256": "0f6657aaf950e6f90b399aec997959f19e045b621b224cb7b989f4a5c8bdaa1f",
+      "bytes": 24282
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/crystal-palace-bottoms-front.webp",
+      "sha256": "a6ebbea02d355d156cbce78ada4c6494992bcd73d717bb542e8b9fa61d1bd22e",
+      "bytes": 25846
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/crystal-palace-socks-back.webp",
+      "sha256": "0c15e379a7d57efd074c82a32bbb6f9dba915de0a7a77adb115b05fea6217798",
+      "bytes": 18844
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/crystal-palace-socks-front.webp",
+      "sha256": "1f3ae8450942954adb9df87103051612d1a10e788e823dd552eef90643091a7f",
+      "bytes": 21270
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/crystal-palace-top-back.webp",
+      "sha256": "b4bf4837c33b4ae66194d08af3fd455b2bcb92bd9753fb471981772a5120cbe5",
+      "bytes": 40872
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/crystal-palace-top-front.webp",
+      "sha256": "f09f5da0a684ca07b28875ce19df4adafd8e3b501ff8b21a6dd5cd60046e9887",
+      "bytes": 44626
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/durham-bottoms-back.webp",
+      "sha256": "30872f305d279832e8624a84e10aad4f0022f0b275419af2002d17eb6d738c9c",
+      "bytes": 19350
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/durham-bottoms-front.webp",
+      "sha256": "ad0bb991e8e5ceb72f6e8ff53dfc9f7b29d6dc6b667b911a22ba097f05c832f8",
+      "bytes": 21338
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/durham-socks-back.webp",
+      "sha256": "54db7b66a884cde4e4aa5dfd3fef5f1e82044de404ca8635bd11e8c1d80996f3",
+      "bytes": 16782
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/durham-socks-front.webp",
+      "sha256": "2ab3552522d2043cd4684b79e0ea192452f39ac5a968877ca390017849d090cd",
+      "bytes": 18742
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/durham-top-back.webp",
+      "sha256": "6b30fc035b09e0066cbf3cb248423e91a18efa287ee28b81ff7024158e14f892",
+      "bytes": 26362
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/durham-top-front.webp",
+      "sha256": "0096a059365140f3640aeb4931ea0f1f57e24a5bc5f6a702580b03d642dee5ba",
+      "bytes": 28062
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/everton-bottoms-back.webp",
+      "sha256": "d042d77bac6107010c8e8af98ec1424f55b665734d7ce7f2de3b043a15b7d21a",
+      "bytes": 18654
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/everton-bottoms-front.webp",
+      "sha256": "f01492d095a55aad865f819ff6664143082430c1ea5491a200312a1dd488c4fa",
+      "bytes": 21438
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/everton-socks-back.webp",
+      "sha256": "be76e6903d78ee15bcc004cf1d83a780a206f4bb76706ad154346b4aa2b3ea61",
+      "bytes": 17098
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/everton-socks-front.webp",
+      "sha256": "11573d09677094fd7691a590954edc2a23af1244d3cc0118d647a24d086ae0d9",
+      "bytes": 19068
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/everton-top-back.webp",
+      "sha256": "1a108fcf5fba1af6bf29ace082531315e3760572531fe8b41d82ec4460d4397c",
+      "bytes": 25510
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/everton-top-front.webp",
+      "sha256": "541490ad822e2dff4dd0d743cdea28efb431348ff9f0d87615d40fdf9a148e53",
+      "bytes": 31146
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/ipswich-bottoms-back.webp",
+      "sha256": "77288460902bb099c323cf2fe02ed63f369f09966ad348ad29ebe741d7c8bcdd",
+      "bytes": 19530
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/ipswich-bottoms-front.webp",
+      "sha256": "5c9afc2f3ad99568a7611b18456fce89454cf4e576d4ba9acda9d44841e93d62",
+      "bytes": 22764
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/ipswich-socks-back.webp",
+      "sha256": "e89b91ea49d70ba69dff3f8cd2e326f6a17e4ffa8bdcfbf87ff5bbbaed2a99d1",
+      "bytes": 17956
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/ipswich-socks-front.webp",
+      "sha256": "362117dccdf441bdc368f5c5df530136f0a9608ba881ff35e78fdf1ef7fae8f8",
+      "bytes": 19304
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/ipswich-top-back.webp",
+      "sha256": "1da1efa5f95c5438fba94620c1810a05b86be1263cbd9274b1f29facc38a433b",
+      "bytes": 35128
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/ipswich-top-front.webp",
+      "sha256": "9a6631603fa5c76bdd142d6595d76a37b1e535420a3379a9ee388968924ad2c5",
+      "bytes": 37304
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/leicester-bottoms-back.webp",
+      "sha256": "b157ddca525f19b2a4df9508ada138394b9d4b9e3e3b74f194525f619c6cfb4b",
+      "bytes": 19820
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/leicester-bottoms-front.webp",
+      "sha256": "44097c680325819d35d32ece28831c3455bc7a01856088339720963b52faa23e",
+      "bytes": 23056
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/leicester-socks-back.webp",
+      "sha256": "d5eaa72ba3ad56a8ca4249bc3260a7f246548368606e543d9e24873b8103f4a1",
+      "bytes": 18224
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/leicester-socks-front.webp",
+      "sha256": "682e93eddf23859d1be7f20ea0b73172ba5b991204d7a914506000ff66821c2d",
+      "bytes": 20114
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/leicester-top-back.webp",
+      "sha256": "8d0b59ffb59ee2ae23e582b3a2af7f338527b3c48275780ebe71ecb7538c8ba5",
+      "bytes": 27828
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/leicester-top-front.webp",
+      "sha256": "92e073f63209671b050c10942cf9ed309089fa823eae70c7a744d49c6c57868a",
+      "bytes": 32412
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/liverpool-bottoms-back.webp",
+      "sha256": "b80c19c7105d4dec8b01ae812bb9e4644792ef139fc0a959915fafec447560be",
+      "bytes": 20462
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/liverpool-bottoms-front.webp",
+      "sha256": "92bcaf46a21eb7ad2a4199a1e507e0a8dd8a3c30ea62fe94664f92afab997dd8",
+      "bytes": 23210
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/liverpool-socks-back.webp",
+      "sha256": "8aaaf5311bb5a9a87d475ba3fc17b50434992f6ff60432ab6cdf37632859254e",
+      "bytes": 18230
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/liverpool-socks-front.webp",
+      "sha256": "2b311132cf712ac4d188678f2d7e037291bcda16751c3f3131ce52923dec21dc",
+      "bytes": 19620
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/liverpool-top-back.webp",
+      "sha256": "6ff7c30f40b6b92e44f3d6bde84eaf7c5b91c8511fc3b5f1d861792efddc569b",
+      "bytes": 36806
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/liverpool-top-front.webp",
+      "sha256": "5cb0d51639a2a97bcec094c3575a2d9e4af7eadd6bb455c1b8c8154d397a3f74",
+      "bytes": 39370
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/london-city-bottoms-back.webp",
+      "sha256": "572c0e191ffe17d23e6348ca74de50c5537aba629461d173d737d7c9479a73cb",
+      "bytes": 19500
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/london-city-bottoms-front.webp",
+      "sha256": "72d54d675a8cb566a06482aef4dffeccc6b0b3403c675ca4a0db6d5e3d5f8828",
+      "bytes": 20352
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/london-city-socks-back.webp",
+      "sha256": "0a50312b0b8e2022f7972478284152a59d93585940dc0eab36823e39d2a5b48a",
+      "bytes": 16616
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/london-city-socks-front.webp",
+      "sha256": "685c2b24af2bd61de4cc917882bb46b62d70379e5aa66261b7aa8067d54bde0a",
+      "bytes": 17332
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/london-city-top-back.webp",
+      "sha256": "7276c9ce81714b6f807b00e0d8170ad8fcb44fcc433a96ef51bac474b0b8f8f8",
+      "bytes": 51656
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/london-city-top-front.webp",
+      "sha256": "d382d615483035ffed048631b4a1dbb4d78a30ae424e54d6f8e519cfc11e4189",
+      "bytes": 52312
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/manchester-city-bottoms-back.webp",
+      "sha256": "029d4822e6f3e6e67ba17bc6f7b55c503ea2054e3ac07a25dbef24edc4f97d97",
+      "bytes": 15846
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/manchester-city-bottoms-front.webp",
+      "sha256": "1eaec4d3eb43a5322831ddefc241f0d80822931e1687c4f7b071ba1fe93fc586",
+      "bytes": 18276
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/manchester-city-socks-back.webp",
+      "sha256": "d4f1b3911825c355c4f415226b10ee7d8679f74153ec69c17e61bfea5e8b9269",
+      "bytes": 18024
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/manchester-city-socks-front.webp",
+      "sha256": "76a4c7dadb888ff8f1cb75e9149981034b6c2f4ddc2bcf9dc9c2b0d416a6e4be",
+      "bytes": 19168
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/manchester-city-top-back.webp",
+      "sha256": "f94add43fe9ef6f07bd598a832a971a325110d058c39c3bf6d13483adaec6232",
+      "bytes": 28748
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/manchester-city-top-front.webp",
+      "sha256": "451158b59b9acc9dc736975ca7eba2394dfb6d4cbe8d765be0c547e9f85d49b6",
+      "bytes": 31412
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/manchester-united-bottoms-back.webp",
+      "sha256": "e49a70d86a0ab8122b0d10fcbc0036a9f8ea0d045869d2247c3a20f26fba83df",
+      "bytes": 17216
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/manchester-united-bottoms-front.webp",
+      "sha256": "b49d0290896708598458d79d8c79cd64b0c5cacfac4e2d5609a05a5b75dd0d36",
+      "bytes": 19078
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/manchester-united-socks-back.webp",
+      "sha256": "3ce9ae5491c1727200a33d37af0ee899c678375042a3b905ad656ed1fc73916e",
+      "bytes": 13026
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/manchester-united-socks-front.webp",
+      "sha256": "9e0e4434ed0b7837bb00ee070fe3bc47812ed52341d0478c245ab8f7b893ef1b",
+      "bytes": 14802
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/manchester-united-top-back.webp",
+      "sha256": "c1357156e2f26b54bd684abea3117b3642273ae2aeed6e9ca6754b53f37e11b7",
+      "bytes": 29748
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/manchester-united-top-front.webp",
+      "sha256": "2f9a6d51eaad92ee89507ff81248a414b4475bc51412e07b4553e5f7de1ea7d8",
+      "bytes": 33444
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/newcastle-bottoms-back.webp",
+      "sha256": "b233ae3244ffef3a78cedb38aea0c7e8bb4312fc869a78f3146c5a84cf8f2860",
+      "bytes": 18530
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/newcastle-bottoms-front.webp",
+      "sha256": "b843a3458e36dc25e26b72aa567bd09397cac2d0ac931cf7d97696cf019511b2",
+      "bytes": 21248
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/newcastle-socks-back.webp",
+      "sha256": "58449107fbd6cd90796a3ce83019540fe01f561f63a7b8d4e3eaefb0b5961546",
+      "bytes": 15604
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/newcastle-socks-front.webp",
+      "sha256": "4e66efabbaff87d3b79cc0f02369629be6ddbdc345416194c3044c9ba40884e8",
+      "bytes": 16812
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/newcastle-top-back.webp",
+      "sha256": "2345f9f7e2c9b6a6fc78670f031d20a7e707297b038d9a03d4bca12cbeb40cfa",
+      "bytes": 37962
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/newcastle-top-front.webp",
+      "sha256": "ce324bd767dc670a4ba2e99a0b7a96770c392798f7679437f4af631f17b41a6b",
+      "bytes": 41138
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/nottingham-forest-bottoms-back.webp",
+      "sha256": "92e95f0317091b5992246f621fe9d04b58128cbf31b03ea2bb8feae077b40208",
+      "bytes": 20598
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/nottingham-forest-bottoms-front.webp",
+      "sha256": "0e52a6fcf1c266da0018cec64ec13a06a2a4d83dcd861103d9b7d911edd36d72",
+      "bytes": 23494
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/nottingham-forest-socks-back.webp",
+      "sha256": "e500ec1c2ceb03b82c336afe74c878ede0e449ac0504cd7c6a4a306f0a5dc30d",
+      "bytes": 18026
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/nottingham-forest-socks-front.webp",
+      "sha256": "c1c7d5be35698f85d8f3c0195414bed0b596921fdc12fcd8aef01c6ba586f931",
+      "bytes": 20422
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/nottingham-forest-top-back.webp",
+      "sha256": "f44f9fb2b8f04c9b273f64882e57720766f841e8b443dde2a95f5f88139f4163",
+      "bytes": 31358
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/nottingham-forest-top-front.webp",
+      "sha256": "3029abf4a0d4fdf78fbff2aa8acca8c02d3cf9c707e990def433d18992960f85",
+      "bytes": 34512
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/sheffield-united-bottoms-back.webp",
+      "sha256": "94009cf92df029ed9ad26d3b82ee7f2c7f141e997b8f0ecd2b8056fe9f53ec84",
+      "bytes": 17832
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/sheffield-united-bottoms-front.webp",
+      "sha256": "2b8ca361a6a55cd36e92e0b7ab85b8699e9299ace848dbc1861ee58b7301ec6c",
+      "bytes": 20332
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/sheffield-united-socks-back.webp",
+      "sha256": "e02904132a4c55838e524db9e01b521d4ad09e5166bd97602450874da79873eb",
+      "bytes": 16514
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/sheffield-united-socks-front.webp",
+      "sha256": "fcd6545d59ef857f813f6587e1b353face44fba06716fb84d06d643f5147f1c8",
+      "bytes": 18526
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/sheffield-united-top-back.webp",
+      "sha256": "7303e97cf55d1d2674f9131a20f10ba00a5ba55fa7102de7d7e04aed658fe0cf",
+      "bytes": 29832
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/sheffield-united-top-front.webp",
+      "sha256": "63fbefbe314495b1d7787d34b855ab104203c9b849c267bbdd76cc0645e91ed5",
+      "bytes": 33734
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/southampton-bottoms-back.webp",
+      "sha256": "011c62290dd42422699cb07894b8b4ee0bf59e49eb3ea7b52cf1caefabe6998a",
+      "bytes": 17588
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/southampton-bottoms-front.webp",
+      "sha256": "de9c4664ba66a1bc7dc07c7b274e8e9a0a745fc4272b355174726aca77fc3326",
+      "bytes": 19422
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/southampton-socks-back.webp",
+      "sha256": "afc66dd4e86ff5860b54d38b7dfb584a60b49e04bde1e6ee23001ffc22bad68d",
+      "bytes": 16436
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/southampton-socks-front.webp",
+      "sha256": "4c6e699e7eef5cebd925ad29f6e16632972b491af3fee5eb61946029c1e46fc3",
+      "bytes": 17310
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/southampton-top-back.webp",
+      "sha256": "6edbf5b3e967ce6a64cc7251a34e1db0f7bf5329d368f241584220e1dae8dd68",
+      "bytes": 32508
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/southampton-top-front.webp",
+      "sha256": "568295b05a27b82e4ba7ed595d4e81d55536f3565e4feeefca2792d58cef8135",
+      "bytes": 37484
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/sunderland-bottoms-back.webp",
+      "sha256": "5654bbd9c3b0f5b1ca931a91823df5001c63de17f211f5f5022af59bbebf564c",
+      "bytes": 16980
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/sunderland-bottoms-front.webp",
+      "sha256": "e36fb29f54b771bf512bff26708beaec22916ddeac131d81848642fed57b4fe7",
+      "bytes": 18434
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/sunderland-socks-back.webp",
+      "sha256": "9a2bce03bf497c0fee29662327f592b6391cf0a626d4033114104c288a069667",
+      "bytes": 13292
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/sunderland-socks-front.webp",
+      "sha256": "7b094b3b0b22db963674ddf9f16dfccc899ecc4cb6f1f6e55b2615b53f6dd426",
+      "bytes": 15560
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/sunderland-top-back.webp",
+      "sha256": "a5ab42f7705586aa89886ef5e17b0e337095c5b4cdcb133c8cd8d6a7de72584b",
+      "bytes": 29310
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/sunderland-top-front.webp",
+      "sha256": "7750e9a2c81d393f5db79b8e626bcc3ba577a6987e8579a9e6452a6fb33ab390",
+      "bytes": 31650
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/tottenham-bottoms-back.webp",
+      "sha256": "23b67a2edd521d73cdd7901acd6dabed7f6c9c999c59d65f14bbbf1023f3519c",
+      "bytes": 16912
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/tottenham-bottoms-front.webp",
+      "sha256": "dbc67e9d9beeac1fed61f3a2b5fb4b92d3058f06423c2101e4dd4303e544f118",
+      "bytes": 19098
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/tottenham-socks-back.webp",
+      "sha256": "9c5e1167135d7db76f0c582d0bef2d35290a5c9fb84c5418c2039b65da4987c3",
+      "bytes": 15030
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/tottenham-socks-front.webp",
+      "sha256": "daa8700d082cd074c4d8de5322296ba2196d930bd481374ceb124499f43bb28a",
+      "bytes": 17352
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/tottenham-top-back.webp",
+      "sha256": "def9e9e51f4668f02d42cf08f128ce2ad55e120eba3ebebccea1200d9ef61e5b",
+      "bytes": 23570
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/tottenham-top-front.webp",
+      "sha256": "8f0bcae8ca5ffa73a0e0e1ed26069360d78c4871c3926dd6c7fe5bad6f7a57cb",
+      "bytes": 26700
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/watford-bottoms-back.webp",
+      "sha256": "09bec2cdb069c71de29ae3ed0b3ed830d7957492aafb22fc378c1c367eb30a9d",
+      "bytes": 14986
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/watford-bottoms-front.webp",
+      "sha256": "258ae0a9b47fc409ee64300620bfe334f61e92e0d83d492aac0f74aeb873e735",
+      "bytes": 17832
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/watford-socks-back.webp",
+      "sha256": "228a1cfb1b4d7acae016698023cecb5dd61a409b328028c0a665b619951f5a84",
+      "bytes": 18518
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/watford-socks-front.webp",
+      "sha256": "e20ec5245918f7800357925216a83f797ae1a31793e65917fe545e63f5728eac",
+      "bytes": 18942
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/watford-top-back.webp",
+      "sha256": "b32141b4172a48c9025b1bfa13df8ed134f4aeef4cca267b9b94f5b9f6312a43",
+      "bytes": 30154
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/watford-top-front.webp",
+      "sha256": "1756634a526335f7d51609f8a9c2e5948cadc6579d3ac064bdda90481a7b28c1",
+      "bytes": 31754
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/west-ham-bottoms-back.webp",
+      "sha256": "cac263df42d93d595c5e14444b2809d2c9493fc3225e8291251c416ce9aacb40",
+      "bytes": 20508
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/west-ham-bottoms-front.webp",
+      "sha256": "d4b7f83de42a24ad32f9cfb19ade4dc1c0713835b270a0e11664485886bc5aeb",
+      "bytes": 22758
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/west-ham-socks-back.webp",
+      "sha256": "6984192f0bc27361d06acd47f5db6d06640dc6aaff11876dc3065ec5e68fda78",
+      "bytes": 18364
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/west-ham-socks-front.webp",
+      "sha256": "0bded93f9c6457c94a4914c7e7dda3279685596969f3a3c0f900dd8c6065ace2",
+      "bytes": 19498
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/west-ham-top-back.webp",
+      "sha256": "9fb8ceea098291c6ddacb885a0090c2823f7e373f661a4daa7fe1337941beeab",
+      "bytes": 31514
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/west-ham-top-front.webp",
+      "sha256": "a59e3e9f9c832b0e71a9d75d276a7da6cc4fd969e4da33f311ae437c7f97de1e",
+      "bytes": 34666
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/wolves-bottoms-back.webp",
+      "sha256": "e1becef3b485be2c1b72f7f364d7632172bc3d47a57c5471a993d5aa9874ec7d",
+      "bytes": 14946
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/wolves-bottoms-front.webp",
+      "sha256": "838a75e57fe38ab1907c894f013708b1dffb12f5507fa388a28fbe088175d084",
+      "bytes": 17866
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/wolves-socks-back.webp",
+      "sha256": "9bbf5c308b782702dd6f1e21e56b314d0901642aa50d06a4656aeae4bac59634",
+      "bytes": 19788
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/wolves-socks-front.webp",
+      "sha256": "66ffeedf9fa65ed66b21674b1dec38e4607ca8a2012d69776bf6ecaa7e60bfd2",
+      "bytes": 20702
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/wolves-top-back.webp",
+      "sha256": "7c61310a8efa0be0d22a0cf77ce4143b6e5f4748c2a6cb93d5a7bd3d7ca417a2",
+      "bytes": 40404
+    },
+    {
+      "path": "public/player-space/builder/v3/kits/wolves-top-front.webp",
+      "sha256": "546a75f84b3aa13d0aca862beeb181161a01024a6f52974178ffbb9e8c696fce",
+      "bytes": 41756
+    },
+    {
+      "path": "public/player-space/builder/v3/knit-back.webp",
+      "sha256": "ddd255dace3a52c526b2b5c466147dd366afb55eeb70d189b68f07e9246acc04",
+      "bytes": 10260
+    },
+    {
+      "path": "public/player-space/builder/v3/knit-front.webp",
+      "sha256": "742b90932b2606b0be0ecce02b6a88f5dc4913e40b11aa0991fd6298f00ac557",
+      "bytes": 12046
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/adidas-firebird-top-back.webp",
+      "sha256": "d856f54160a3c61b3c4616e62b56c6292f5e1694d475ecb9da75b54deef14542",
+      "bytes": 33088
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/adidas-firebird-top-front.webp",
+      "sha256": "ac37f1031762d30176bb1dd24cc662d47fd245638112e225f2e2b23dd3cc2e8f",
+      "bytes": 36780
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/adidas-firebird-trousers-back.webp",
+      "sha256": "317d09007950024ef0d31285ad5ae3cf072ccf04957104ef394ea054c3baade3",
+      "bytes": 33080
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/adidas-firebird-trousers-front.webp",
+      "sha256": "54a2ada3ba8881780efd37c319e7dfcb70cedcd51daf755bd84a2a3be0b73ea3",
+      "bytes": 34306
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/adidas-leggings-back.webp",
+      "sha256": "f8fbcb4d6322bb69d9f3f24cda4aad23c533903d1b3bc705751350a8b0f3ecab",
+      "bytes": 26714
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/adidas-leggings-front.webp",
+      "sha256": "b18a43c4c8d3fa3283f8565e597580a8c5dffa0aec8b71121652d20c2cabe122",
+      "bytes": 27116
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/adidas-originals-tee-back.webp",
+      "sha256": "9a070c93752060238c8c47d71be4c53f4ec95f58f9c124abfbb4b8e176837d48",
+      "bytes": 20918
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/adidas-originals-tee-front.webp",
+      "sha256": "cdb5664a856f3e17f606d9ba22e6913408f7a9df9bd50b239757f05babef8bc4",
+      "bytes": 22654
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/bershka-denim-skirt-back.webp",
+      "sha256": "935b2830e7652d12aaca8974e8265ba57712fe93e9471298d042b720234e4273",
+      "bytes": 29518
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/bershka-denim-skirt-front.webp",
+      "sha256": "40c2433d9993684176c680f5e527fed741bdbebbd83e75a86c2e8110278d4772",
+      "bytes": 29492
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/bershka-raglan-tee-back.webp",
+      "sha256": "075be0736e046c9b58375b34b5ed40cf812a2cc363f9c6bdb9b386710914da84",
+      "bytes": 14380
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/bershka-raglan-tee-front.webp",
+      "sha256": "b85a50fb4199236e9069201c5a2debc3c0ae5f746e1c3d267d73b9602273410f",
+      "bytes": 15476
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/core-hoodie-back.webp",
+      "sha256": "e552d80b66585f0ba7afe8c4798f193423ca325663ddfc1d4912da53c45e9794",
+      "bytes": 31692
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/core-hoodie-front.webp",
+      "sha256": "73b2f2e7b47ec86c1304bab305aaf391580521431a9067e99b055bd432298899",
+      "bytes": 32894
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/core-leggings-back.webp",
+      "sha256": "ecfcf7c8f20f7779d58d673f9b26d4664d522d8ecf7222598ffc48e176152f8f",
+      "bytes": 22248
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/core-leggings-front.webp",
+      "sha256": "1258cfb07edde7f72865f6e96e074021b77924d494bf03cb7bde7e28d931249f",
+      "bytes": 22322
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/core-shorts-back.webp",
+      "sha256": "063a64336c32361eac13c92f3ea3d672705d4eade9cdb669cf8932936ff5e7a9",
+      "bytes": 16622
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/core-shorts-front.webp",
+      "sha256": "692fdfc1aa52e2f08d46ec547a22599da8a78cb40ee7be4d1f88de81ae246abe",
+      "bytes": 18138
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/core-tee-back.webp",
+      "sha256": "3d2470433c68c6b88d58ef0678c38d592295e40e83f3f7dc819288512b1fae8b",
+      "bytes": 20078
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/core-tee-front.webp",
+      "sha256": "2892f2f291930e7366b77183072b1e1510347f4fc8b8bd0be0edd498152ef1d2",
+      "bytes": 20728
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/core-tee-white-back.webp",
+      "sha256": "8665ce4f1e10acd9e6baa4d51ef5277245f3d91fc88dd04a53d4748f8dcde7de",
+      "bytes": 28066
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/core-tee-white-front.webp",
+      "sha256": "71f564cf51351a9dce75ebcc8496ce70423934afa43e9f0f5b934c4787d82ead",
+      "bytes": 28814
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/core-trackies-back.webp",
+      "sha256": "d76c3a47bf372d350a8015b49f2b639c274b0bc8d7a612406d834b4a3df2d2ac",
+      "bytes": 33474
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/core-trackies-front.webp",
+      "sha256": "9cb1b5eb9e92f90b7ffc34d25c7605e0f456672978416f28a9e0b90b2767a3c9",
+      "bytes": 32858
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/ellesse-pink-joggers-back.webp",
+      "sha256": "597148f87dc3abc3cf2fd061bc9cf51950687326c3d5d206742bd30a89d988a5",
+      "bytes": 48152
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/ellesse-pink-joggers-front.webp",
+      "sha256": "08ac9037e7fd2207c104fb5a0cf7a74bf4e79959a5791dc945acd4385be60606",
+      "bytes": 48850
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/ellesse-pink-sweatshirt-back.webp",
+      "sha256": "d6d09c52cffad5009591e617e1e2dac04c733d250580a1cef281d03d05f2f93e",
+      "bytes": 39632
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/ellesse-pink-sweatshirt-front.webp",
+      "sha256": "0b79691cf67fac07195261fa68561084e14756bc0d3eabd21891720b2395d352",
+      "bytes": 41848
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/hm-rib-cardigan-back.webp",
+      "sha256": "0c957de66d77aebbdbda85134b9178c7e9a5d50a448ce898337f50dd1b623566",
+      "bytes": 44638
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/hm-rib-cardigan-front.webp",
+      "sha256": "6ed1956195c17ce05beb1382da6aa42c2831fac53ae13d1850fe9bdbd275d480",
+      "bytes": 44964
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/hollister-andi-jeans-back.webp",
+      "sha256": "42ae0e1b52099ce5a669aff27fa69d791d714d29e2894713d28ffebdfcdef484",
+      "bytes": 54052
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/hollister-andi-jeans-front.webp",
+      "sha256": "b87c9ab85c8d011a75b3f7d035e66fd556f03ce588bafb9b7908ace05c7dd16f",
+      "bytes": 54850
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/hollister-baby-tee-back.webp",
+      "sha256": "cf245651261184d7eb03ffcb0c58c27e58234c8cea4218425a8e7c3fe4a61948",
+      "bytes": 17652
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/hollister-baby-tee-front.webp",
+      "sha256": "13137ae550f11d2e5552cfdc8b92bb99b24fecb8c216eef50e26df2eb5da3813",
+      "bytes": 20126
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/hollister-ivy-jumper-back.webp",
+      "sha256": "1798dd68f2bd67e894126224ecd7d773cfe6cb10a78635c8e0cdf14c7ee74f46",
+      "bytes": 50862
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/hollister-ivy-jumper-front.webp",
+      "sha256": "a9b7f0dcff3c7d14673b38cb91863fa4e7b8ea443bae9590ec4b829fa0b6b0da",
+      "bytes": 52850
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/juicy-velour-hoodie-back.webp",
+      "sha256": "19877d1ac4d0e5ecf64cd527e12fcd9c772627707ab561859f6e5b642561d16f",
+      "bytes": 40650
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/juicy-velour-hoodie-front.webp",
+      "sha256": "18b5adc4b6616341527826dd0dc44cfb2ecfc147f49756383b7951355cea6a32",
+      "bytes": 41164
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/juicy-velour-trousers-back.webp",
+      "sha256": "6771af104ff0c090f906dd08c80418d4891bd7b3b530dcfbc50d05ef799e809c",
+      "bytes": 44650
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/juicy-velour-trousers-front.webp",
+      "sha256": "0f73e1d641d98cdcea3d93e46df712a80a4582ef0108987ac3de9bac2583c669",
+      "bytes": 47948
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/nike-club-hoodie-back.webp",
+      "sha256": "f9631c4821aff2273e7d5cb92bed7606f523e05c64023eebec3d9f33a62cd7bf",
+      "bytes": 52302
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/nike-club-hoodie-front.webp",
+      "sha256": "b77f05d8611243e0f7e6632304165d82f098c252b7df929aa9ef928a3cfa6b50",
+      "bytes": 53520
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/nike-club-joggers-back.webp",
+      "sha256": "7f48bccac4e4baacc9ca4efc429e903f2114de82f1bd2122532c4403e7a9bac8",
+      "bytes": 43474
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/nike-club-joggers-front.webp",
+      "sha256": "ea3333bee4c70f63a549f06dc06e9903d78cc648b937ce1b12bc48560d39f341",
+      "bytes": 45618
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/nike-pro-crop-back.webp",
+      "sha256": "35a6c4199d6f0858a030eafb1a93aae90c03ae44654755bf8341b6bc26ba002c",
+      "bytes": 11490
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/nike-pro-crop-front.webp",
+      "sha256": "16e094b5fbd3c1a0a2c4783fffce97ad1cb8177d4879d636da0cf67e4e12caa3",
+      "bytes": 12900
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/nike-pro-shorts-back.webp",
+      "sha256": "58a8717cf36df9cc795adabc2dab7ceaa26fb456c20213bbf2b0849be2ed6796",
+      "bytes": 10604
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/nike-pro-shorts-front.webp",
+      "sha256": "b54e66f86a8bde3170f82fcab4a0cc4695d38898f97e0b4b3a28e7c89a57f5b7",
+      "bytes": 11046
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/puma-cargo-shorts-back.webp",
+      "sha256": "087de1a3ada48b09577763c0b2b8697d717c756e296840ee079282008c6e93d3",
+      "bytes": 12486
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/puma-cargo-shorts-front.webp",
+      "sha256": "66854dbb6f44222662a5d5bd9969137e74cbc5fadf1a55bdac04be6f4bf491f6",
+      "bytes": 13960
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/puma-essentials-hoodie-back.webp",
+      "sha256": "39b18b9424c0ab22f30ddd31650d440a03f8f11d60a9054376a4b105d926e215",
+      "bytes": 24318
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/puma-essentials-hoodie-front.webp",
+      "sha256": "e106cd64a7ff74d4a80c545737abb6079e0020e9ff9c23a67de01267affe17f2",
+      "bytes": 27046
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/star-back.webp",
+      "sha256": "0af2ffac77c161e8fe9a93bc46d33fbc7a4b5f8127a22ba7bf5332456d6613b8",
+      "bytes": 24794
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/star-front.webp",
+      "sha256": "0e79634748e104b8d2e49912a6b31c5a0a867ce745f31e38305a3650b7e4fac7",
+      "bytes": 32572
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/ua-tech-halfzip-back.webp",
+      "sha256": "e12bee57bfeb3caf6c02c6cd79710598743f13c5671a2a758d55309a805a383f",
+      "bytes": 23054
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/ua-tech-halfzip-front.webp",
+      "sha256": "38092ed2ea73402805aa12641b440c0647cc3cca87aa47d2607adec4b67a17a6",
+      "bytes": 26826
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/whitefox-glacier-hoodie-back.webp",
+      "sha256": "29461a3c22588e7ccd8810318c0ec6ee25a800681364f386e1c2971f454cca3a",
+      "bytes": 48606
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/whitefox-glacier-hoodie-front.webp",
+      "sha256": "5f933a9b33291ac5dfea2fd2e24b8388b630ee7e50d04890581d7c73e01e1689",
+      "bytes": 50620
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/whitefox-offstage-tee-back.webp",
+      "sha256": "4ff8dfa50472e90c9ed1aec9998ed7567a6e628c633efe7ce4462d270f72b5b6",
+      "bytes": 23692
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/whitefox-offstage-tee-front.webp",
+      "sha256": "37f681c1fc47d310f39f5d19f5f6ebc0cb925debcf615a859f8d0826cc0f02ee",
+      "bytes": 22124
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/whitefox-shadow-hoodie-back.webp",
+      "sha256": "cfc0160ce6bd1921a97f7898b7287fda651fc1eb2321d9b4ea3d6d676470acab",
+      "bytes": 27830
+    },
+    {
+      "path": "public/player-space/builder/v3/wardrobe/whitefox-shadow-hoodie-front.webp",
+      "sha256": "8ee2d1b431133267744373ec73e7cb85a8980ede6c963fc3cb1587d5c223584c",
+      "bytes": 28992
+    }
+  ],
+  "validation": {
+    "builderChecks": 9,
+    "typescript": "passed",
+    "nativeArtworkRenders": 262,
+    "productionBuild": "passed",
+    "usabilityTests": false,
+    "databaseChanges": false
+  }
+}

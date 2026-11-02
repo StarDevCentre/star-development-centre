@@ -168,8 +168,7 @@ export const builderKits = [
    30,
    80,
    155
-  ],
-  "launchVersion": true
+  ]
  },
  {
   "id": "ipswich",
