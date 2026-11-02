@@ -1,0 +1,81 @@
+{
+  "id": "stadio-1990",
+  "registration": [
+    {
+      "view": "front",
+      "sourceBounds": [
+        26,
+        495,
+        374,
+        877
+      ],
+      "anchor": [
+        289.5,
+        495
+      ],
+      "target": [
+        116,
+        840
+      ],
+      "scale": 0.3333333333333333,
+      "topMargin": 0
+    },
+    {
+      "view": "front",
+      "sourceBounds": [
+        499,
+        495,
+        837,
+        881
+      ],
+      "anchor": [
+        591,
+        495
+      ],
+      "target": [
+        350,
+        840
+      ],
+      "scale": 0.3157894736842105,
+      "topMargin": 0
+    },
+    {
+      "view": "back",
+      "sourceBounds": [
+        833,
+        494,
+        1141,
+        878
+      ],
+      "anchor": [
+        1027,
+        494
+      ],
+      "target": [
+        113,
+        840
+      ],
+      "scale": 0.27388535031847133,
+      "topMargin": 0
+    },
+    {
+      "view": "back",
+      "sourceBounds": [
+        1262,
+        493,
+        1511,
+        879
+      ],
+      "anchor": [
+        1363,
+        493
+      ],
+      "target": [
+        344,
+        840
+      ],
+      "scale": 0.2925170068027211,
+      "topMargin": 0
+    }
+  ]
+}

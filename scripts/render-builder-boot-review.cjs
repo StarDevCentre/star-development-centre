@@ -1,0 +1,8 @@
+// Native artwork review only; no browser, network, player data or database writes.
+// Set BUILDER_CANVAS_MODULE to the available @napi-rs/canvas installation.
+const output=process.argv[2];if(!output)throw new Error('Pass an absolute review output directory.');
+const fs=require('fs'),ts=require(process.cwd()+'/node_modules/typescript'),{createCanvas,Image}=require(process.env.BUILDER_CANVAS_MODULE||'@napi-rs/canvas');
+require.extensions['.ts']=(m,f)=>m._compile(ts.transpileModule(fs.readFileSync(f,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText,f);
+global.document={createElement:()=>createCanvas(460,1024)};class Img extends Image{set src(v){super.src=fs.readFileSync('public'+v)}}global.window={Image:Img};
+const{renderBuilderArtwork}=require(process.cwd()+'/lib/builderArtwork.ts'),{defaultBuilderLook,builderOptions}=require(process.cwd()+'/lib/buildMyPlayer.ts');
+(async()=>{let ids=['starter',...require(process.cwd()+'/lib/bootChallenges.ts').collectibleBoots.map(b=>b.id)];if(process.argv[3])ids=ids.filter(id=>id===process.argv[3]);if(!ids.length)throw new Error('Unknown sock ID.');fs.mkdirSync(output,{recursive:true});for(let id of ids){let c=createCanvas(1640,380),x=c.getContext('2d');x.fillStyle='#becbdd';x.fillRect(0,0,c.width,c.height);for(let[j,v]of ['front','back'].entries())for(let[k,b]of ['nike-ankle-white','none'].entries()){let out=await renderBuilderArtwork({...defaultBuilderLook,socks:b,boots:id},v);x.drawImage(out,15,680,410,310,(j*2+k)*410,20,410,310);x.fillStyle='#111';x.font='16px sans-serif';x.fillText(id+' '+v+' socks:'+b,(j*2+k)*410+4,365)}fs.writeFileSync(output+'/'+id+'.png',c.toBuffer('image/png'));console.log(id)}})().catch(e=>{console.error(e);process.exitCode=1});

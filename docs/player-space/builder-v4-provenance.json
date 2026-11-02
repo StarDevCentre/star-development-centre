@@ -1,0 +1,292 @@
+{
+  "version": 4,
+  "date": "2026-11-02",
+  "status": "Work-in-progress checkpoint requested for owner inspection.",
+  "method": "Built-in generated art, individually measured uniform registration, independent boot/cuff extraction and separate native front/rear inspection.",
+  "canvas": [
+    460,
+    1024
+  ],
+  "assets": [
+    {
+      "id": "nike-ankle-white",
+      "file": "exec-06c0cb5f-aab9-432f-926c-3a01d1a07d22.png",
+      "sourceSha256": "c0719b9115d023c4cdfdb2049687ea1fdca927c927abf4b10038027347d9564f",
+      "promptSummary": "Remake four fitted white Nike ankle socks with thin knit, toe seams and distinct rear heels against the fixed model.",
+      "tool": "built-in image_gen",
+      "registration": "scripts/export-builder-v4.cjs"
+    },
+    {
+      "id": "nike-ankle-black",
+      "file": "exec-8ee8da80-8327-450e-aa93-3849eb79e1c2.png",
+      "sourceSha256": "ee9c894bece707f2601f45acf19d0f84876072047f334712efcddfaef2da1a85",
+      "promptSummary": "Change white knit to charcoal black and black swooshes to white, retaining foot proportions and true transparency.",
+      "tool": "built-in image_gen",
+      "registration": "scripts/export-builder-v4.cjs"
+    },
+    {
+      "id": "starter",
+      "file": "exec-f1cdd116-0363-4e00-8642-1840b6ee85c9.png",
+      "sourceSha256": "8248592fadfd2d631bcf599140e1b3166b7061ff73d46183aaac7e8324f786ce",
+      "promptSummary": "Add plain slim black lace-up football boots to the matched white sock feet; enclose heels and toes, maintain cuffs and stance.",
+      "tool": "built-in image_gen",
+      "registration": "scripts/export-builder-v4.cjs"
+    },
+    {
+      "id": "ida-rise",
+      "file": "exec-f7809f44-77fd-4060-8c22-ca375d1fb3f5.png",
+      "sourceSha256": "a2c6b9486affefe2bc396da418cd3e93d2bd684ae736da659271624d3048c838",
+      "promptSummary": "Replace only boots in the matched reference with IDA green/gold reference design, preserving cuff widths and centred rear heels.",
+      "tool": "built-in image_gen",
+      "registration": "docs/player-space/builder-v4-registration/ida-registration.json"
+    },
+    {
+      "id": "tekela-white",
+      "file": "exec-c1789dd8-577a-4f83-82ac-7ecd182388e1.png",
+      "sourceSha256": "71d18d779aa0a9701ef1431d34a82f4f9ea14759836734b75e79f3b8df502ed0",
+      "promptSummary": "Replace only boots with New Balance Tekela white/black/red reference design, surrounding cuffs fully and showing centred rear heels.",
+      "tool": "built-in image_gen",
+      "registration": "docs/player-space/builder-v4-registration/tekela-registration.json"
+    },
+    {
+      "id": "superfly-pink",
+      "file": "exec-e9f8f820-75f4-44e3-9291-f1cc6ae1ed26.png",
+      "sourceSha256": "592b2ea8503e2f756802bd2ab1beb925ab41be31c82203806d7650de6c1b2777",
+      "promptSummary": "Replace only boots with pink/black Nike Superfly high collars, preserving cuff widths and outward stance and rear heel centres.",
+      "tool": "built-in image_gen",
+      "registration": "docs/player-space/builder-v4-registration/superfly-registration.json"
+    },
+    {
+      "id": "stadio-1990",
+      "file": "exec-1e39f9e7-50f3-4810-9dd1-6cb2993f7a43.png",
+      "sourceSha256": "cf9afe23ff5638b3285129b142154fbadd5c773b3b4d0052f3c228f6123b4764",
+      "promptSummary": "Replace only boots with black leather/green Lotto Stadio reference design, preserving matched cuffs and foot stance.",
+      "tool": "built-in image_gen",
+      "registration": "docs/player-space/builder-v4-registration/stadio-registration.json"
+    }
+  ],
+  "registeredExistingPairs": [
+    "furon-pink",
+    "morelia-ruby",
+    "absolute-2006",
+    "total90-2004",
+    "etrusco-1990",
+    "tiempo"
+  ],
+  "existingBootAnkleAnchors": {
+    "front": [
+      [
+        110,
+        879
+      ],
+      [
+        357,
+        879
+      ]
+    ],
+    "back": [
+      [
+        109,
+        879
+      ],
+      [
+        350,
+        879
+      ]
+    ]
+  },
+  "outputs": [
+    {
+      "file": "public/player-space/builder/v4/footwear/absolute-2006-back.webp",
+      "sha256": "7d1142ff4883b8246d19a74761cbec5492000f861647fd088efb555f5ef5516d"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/absolute-2006-cuff-back.webp",
+      "sha256": "36a3b135b919cd44824c4525492e28cde312a407a7f2e93b2835a2040d1cfd31"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/absolute-2006-cuff-front.webp",
+      "sha256": "eeff07f1f3beb34ad2682ae2ee386931d73c98452ac80137adfcd3eecc544205"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/absolute-2006-front.webp",
+      "sha256": "58262769ac3cb99090451aa6f8a5d7c178c4194f19bafc7a25598ce33e7a78b5"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/etrusco-1990-back.webp",
+      "sha256": "2d42167cf5e26f07d03c8872265b8ec486a790a0d593966d6465a27192937eaa"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/etrusco-1990-cuff-back.webp",
+      "sha256": "36a3b135b919cd44824c4525492e28cde312a407a7f2e93b2835a2040d1cfd31"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/etrusco-1990-cuff-front.webp",
+      "sha256": "eeff07f1f3beb34ad2682ae2ee386931d73c98452ac80137adfcd3eecc544205"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/etrusco-1990-front.webp",
+      "sha256": "54375ab61069e931a07ba32269fc7a22c05aae46f524e5f33c3babd7387b7a10"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/furon-pink-back.webp",
+      "sha256": "c3a5d1773ea0840715dc45f44613b62f899af4645561038ddba6e75b2b78b6f3"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/furon-pink-cuff-back.webp",
+      "sha256": "36a3b135b919cd44824c4525492e28cde312a407a7f2e93b2835a2040d1cfd31"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/furon-pink-cuff-front.webp",
+      "sha256": "eeff07f1f3beb34ad2682ae2ee386931d73c98452ac80137adfcd3eecc544205"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/furon-pink-front.webp",
+      "sha256": "201d005f3ecb4e5527f236f726f45d4c2b635773bed6f5e1091040bd7e9bcefa"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/ida-rise-back.webp",
+      "sha256": "a22aa1a2ffa48593cec9baf2402f8b814d188b805a53f77f75b51232680eda9a"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/ida-rise-cuff-back.webp",
+      "sha256": "82c86b507164135729d6be7ecff1d21525da3bee3d966675ca911c7fbdf40544"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/ida-rise-cuff-front.webp",
+      "sha256": "37e901fd417d170dccc44520d2e50467a89ca6c1b2a0f043d6b7ace63d3d7bbf"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/ida-rise-front.webp",
+      "sha256": "3f534afce84f1ee4e2a46ac85dc0025faee65e82861242697f040d63c0bd7163"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/morelia-ruby-back.webp",
+      "sha256": "924b4a2034b48cab61dd6586b18b344e81a400f4e40f8e53d97f1403466ab52d"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/morelia-ruby-cuff-back.webp",
+      "sha256": "36a3b135b919cd44824c4525492e28cde312a407a7f2e93b2835a2040d1cfd31"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/morelia-ruby-cuff-front.webp",
+      "sha256": "eeff07f1f3beb34ad2682ae2ee386931d73c98452ac80137adfcd3eecc544205"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/morelia-ruby-front.webp",
+      "sha256": "f61acf4b216541cff4e9009b154c4b6059d472d25d48379cb196b8012b6e9bd1"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/stadio-1990-back.webp",
+      "sha256": "786576119126c985d30a69f20f1c5df5d5b91b5f91d6c5bb938d6ef02245cc05"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/stadio-1990-cuff-back.webp",
+      "sha256": "57826df24352b28d647980af31137d3d362017465568598340a9c787d4fb9d44"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/stadio-1990-cuff-front.webp",
+      "sha256": "c1508013770892242517c634aab6c18f388ec0874741635c61689d8ff4946c2c"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/stadio-1990-front.webp",
+      "sha256": "c87e333495b48cd459d10e374d4b01a1a751b5d7c15d40afc3fdf0b34d8d1469"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/starter-back.webp",
+      "sha256": "f69628c02cd6ca449e3b380b71a3c1de74996993f80a6542a84d30a9bbcdbad0"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/starter-cuff-back.webp",
+      "sha256": "0659445f7324e7bb73f1d433b1fe9db5740edf91705985e38a4a6d0689ed6a00"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/starter-cuff-front.webp",
+      "sha256": "faa1f663c09029fbbbe9eede762114a31ba5067c56218f687d76f34dd1cc6304"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/starter-front.webp",
+      "sha256": "1bca6b72b5d7071decddc6d1ec6ae0da2c42fcf5a9c962ab378345543a04fff9"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/superfly-pink-back.webp",
+      "sha256": "27710a2e156ddfa56ac07787402f566184a6805bf27da83979dcb965c158cac0"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/superfly-pink-cuff-back.webp",
+      "sha256": "6f6983d2e25be6ae8f2fdbc4343a12bdba95be00fb1a752a3278b4b304c8a14c"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/superfly-pink-cuff-front.webp",
+      "sha256": "9fe09783f8f2aee739584bdcbe6a1b67197ec407726a98aa249f1181a66c628a"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/superfly-pink-front.webp",
+      "sha256": "c37127934bd0740e7f6c9a1253ec7a54be5ddbaef7dc9faa80d7b9c8c4e33191"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/tekela-white-back.webp",
+      "sha256": "77b654d2c3fa356cfbb35659ec1243f2a78b1d8b7199d6091503ca22992564cc"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/tekela-white-cuff-back.webp",
+      "sha256": "e7ef63e95045f715f962a4406e8106fbaf69bc2609d364c20e4ccd7b0ab408dd"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/tekela-white-cuff-front.webp",
+      "sha256": "950eb226bb92f14e066b19d4f09237db222fc705d52375c411362aefa8f99a7b"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/tekela-white-front.webp",
+      "sha256": "4c64600f8156ce8888a23ec033fa5669aa0875a9adc14b8a8ae83421091b36d3"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/tiempo-back.webp",
+      "sha256": "aba3e94e11db9ea19c1971ae0a04fccc743d0e09456d0994e724667a7d1d09a4"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/tiempo-cuff-back.webp",
+      "sha256": "36a3b135b919cd44824c4525492e28cde312a407a7f2e93b2835a2040d1cfd31"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/tiempo-cuff-front.webp",
+      "sha256": "eeff07f1f3beb34ad2682ae2ee386931d73c98452ac80137adfcd3eecc544205"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/tiempo-front.webp",
+      "sha256": "35aee67b85199bd6e0ece95d0b92b80c283d31243f14378266c9918de85d0523"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/total90-2004-back.webp",
+      "sha256": "09d19b8d68023b21fa781407a5d52b8a35f6f654077e973e2f67df9107ea8d37"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/total90-2004-cuff-back.webp",
+      "sha256": "36a3b135b919cd44824c4525492e28cde312a407a7f2e93b2835a2040d1cfd31"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/total90-2004-cuff-front.webp",
+      "sha256": "eeff07f1f3beb34ad2682ae2ee386931d73c98452ac80137adfcd3eecc544205"
+    },
+    {
+      "file": "public/player-space/builder/v4/footwear/total90-2004-front.webp",
+      "sha256": "f51a8ca35e6d65b26c53b79ee50d27205b0299d00895233745e5541e74cb0fbb"
+    },
+    {
+      "file": "public/player-space/builder/v4/socks/nike-ankle-black-back.webp",
+      "sha256": "7574b64b6e56ce2b1aaa9ec55d11e419e5cf943e341d4b778df8f6b4b537df0b"
+    },
+    {
+      "file": "public/player-space/builder/v4/socks/nike-ankle-black-front.webp",
+      "sha256": "b01d921777179af8750b9f14a59376152162060a2818831cf04178830b013d61"
+    },
+    {
+      "file": "public/player-space/builder/v4/socks/nike-ankle-white-back.webp",
+      "sha256": "3a30680c08e718ee29a752c81339654814ba72cc1d4e7fa6baa6759f6c891290"
+    },
+    {
+      "file": "public/player-space/builder/v4/socks/nike-ankle-white-front.webp",
+      "sha256": "c9524161f23271b8e852b42c2c74f3d22caa7ed031b4b623b3ab6e8a8e5556fe"
+    }
+  ]
+}

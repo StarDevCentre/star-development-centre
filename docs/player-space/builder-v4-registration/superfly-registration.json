@@ -1,0 +1,81 @@
+{
+  "id": "superfly-pink",
+  "registration": [
+    {
+      "view": "front",
+      "sourceBounds": [
+        31,
+        521,
+        331,
+        882
+      ],
+      "anchor": [
+        250.5,
+        521
+      ],
+      "target": [
+        116,
+        840
+      ],
+      "scale": 0.35,
+      "topMargin": 0
+    },
+    {
+      "view": "front",
+      "sourceBounds": [
+        482,
+        522,
+        782,
+        882
+      ],
+      "anchor": [
+        557.5,
+        522
+      ],
+      "target": [
+        350,
+        840
+      ],
+      "scale": 0.3559322033898305,
+      "topMargin": 0
+    },
+    {
+      "view": "back",
+      "sourceBounds": [
+        838,
+        515,
+        1153,
+        882
+      ],
+      "anchor": [
+        1050,
+        515
+      ],
+      "target": [
+        113,
+        840
+      ],
+      "scale": 0.30935251798561153,
+      "topMargin": 0
+    },
+    {
+      "view": "back",
+      "sourceBounds": [
+        1278,
+        513,
+        1506,
+        882
+      ],
+      "anchor": [
+        1363,
+        513
+      ],
+      "target": [
+        344,
+        840
+      ],
+      "scale": 0.34959349593495936,
+      "topMargin": 0
+    }
+  ]
+}

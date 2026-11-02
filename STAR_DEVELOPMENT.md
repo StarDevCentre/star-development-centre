@@ -396,3 +396,13 @@ These are business requirements provided in earlier planning; check with the own
 - Arsenal, Charlton and Ellesse sweatshirt neck openings use shaped front apertures and separate rear nape boundaries. Rear ponytail anchor moves from -60px to -88px to cover the exposed scalp. Other hair placements and garment collars remain pending.
 - `docs/player-space/builder-item-review.json` records every catalogue entry separately and distinguishes corrected local artwork from related-outfit inspection and unreviewed items. Do not bulk mark the remaining catalogue complete. `scripts/render-builder-item-review.cjs <absolute-output-directory>` reproduces sock close-ups with `BUILDER_CANVAS_MODULE` pointing to an available @napi-rs/canvas installation; it does not interact with a browser or player data.
 - Keep all saved IDs, reward entitlements and database validation unchanged. No migrations, account changes or usability testing in this batch.
+
+
+
+## Builder artwork preview checkpoint — 2 November 2026
+
+- The owner requested deployment of the work in progress to inspect it. `/player-portal/builder-preview` uses the real builder and renderer with a synthetic demo ID, in-memory saves and all demo boots available. It has noindex metadata, reads no family data and does not change saved profiles or earned rewards. The regular Player Space Coming Soon panel remains in place.
+- v4 adds remade white/black Nike ankle socks and starter, IDA, Tekela, Superfly and Stadio footwear, plus individually registered Furon, Morelia, Absolute, Total 90, Etrusco and Tiempo pairs. Boot openings have their own cuff coverage; socked feet are not left projecting outside boots. Retained low-cut boots anchor at the ankle opening rather than the higher sock rim.
+- All 38 sock choices have had separate front/rear artwork checks without boots and with starter boots. Crew and club shafts stay above their actual boot cuffs; Bristol City's source stops at y860 to omit its former white footwear fragment. Native review sheets preserve aspect ratio.
+- This is not a completed wardrobe fitting. Tops, bottoms, hair, seven earned boot pairs and broader mixed-outfit compatibility remain pending. Keep the individual review record accurate and continue one item at a time. Do not infer visual correctness from render counts.
+- Source PNGs, measured registration receipts and output hashes are recorded in `docs/player-space/builder-v4-provenance.json`; `scripts/export-builder-v4.cjs` recreates the current batch. Saved IDs, server validation, entitlements and database schema are unchanged. No browser/usability testing or account/database writes.

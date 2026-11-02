@@ -1,0 +1,81 @@
+{
+  "id": "tekela-white",
+  "registration": [
+    {
+      "view": "front",
+      "sourceBounds": [
+        12,
+        483,
+        333,
+        847
+      ],
+      "anchor": [
+        238.5,
+        483
+      ],
+      "target": [
+        116,
+        840
+      ],
+      "scale": 0.328125,
+      "topMargin": 0
+    },
+    {
+      "view": "front",
+      "sourceBounds": [
+        481,
+        484,
+        812,
+        850
+      ],
+      "anchor": [
+        569,
+        484
+      ],
+      "target": [
+        350,
+        840
+      ],
+      "scale": 0.34146341463414637,
+      "topMargin": 0
+    },
+    {
+      "view": "back",
+      "sourceBounds": [
+        852,
+        483,
+        1145,
+        850
+      ],
+      "anchor": [
+        1036.5,
+        483
+      ],
+      "target": [
+        113,
+        840
+      ],
+      "scale": 0.2986111111111111,
+      "topMargin": 0
+    },
+    {
+      "view": "back",
+      "sourceBounds": [
+        1263,
+        483,
+        1523,
+        850
+      ],
+      "anchor": [
+        1364,
+        483
+      ],
+      "target": [
+        344,
+        840
+      ],
+      "scale": 0.30935251798561153,
+      "topMargin": 0
+    }
+  ]
+}
