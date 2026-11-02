@@ -1,8 +1,11 @@
 import {pageMetadata} from '../../lib/siteMetadata';
 import Link from "next/link";
+import {StructuredData} from '../../components/StructuredData';
+import {siteOrigin} from '../../lib/siteMetadata';
 import "./team.css";
 export const metadata=pageMetadata('/coaches');
 export default function Coaches(){return <main className="team-page">
+<StructuredData data={{"@context":"https://schema.org","@graph":[{ "@type":"Person","@id":siteOrigin+"/coaches#dean",name:"Dean Parkinson",jobTitle:"Founder and Head Coach",url:siteOrigin+"/coaches#dean",image:siteOrigin+"/images/team-dean-portrait.webp",worksFor:{"@id":siteOrigin+"/#organisation"}},{ "@type":"Person","@id":siteOrigin+"/coaches#becky",name:"Becky Briggs",jobTitle:"Trainee Coach and Player Welfare Officer",url:siteOrigin+"/coaches#becky",image:siteOrigin+"/images/team-becky-portrait.webp",worksFor:{"@id":siteOrigin+"/#organisation"}},{ "@type":"Person","@id":siteOrigin+"/coaches#louise",name:"Louise Lock",jobTitle:"Coach",url:siteOrigin+"/coaches#louise",image:siteOrigin+"/images/team-louise-portrait.webp",worksFor:{"@id":siteOrigin+"/#organisation"}}]}}/>
 <section className="team-hero"><div className="home-width"><p className="home-eyebrow">THE PEOPLE BEHIND STAR</p><h1>GET TO KNOW<br/><span>OUR TEAM.</span></h1><p>Every player has her own story. We’re here to listen, help her learn and make her feel welcome.</p><div className="team-jump"><a href="#dean">Meet Dean ↓</a><a href="#becky">Meet Becky ↓</a><a href="#louise">Meet Louise ↓</a></div></div></section>
 <section className="team-intro home-width"><p className="home-eyebrow">REAL PEOPLE. PERSONAL SUPPORT.</p><h2>Here for her football.<br/><span>Here for her.</span></h2><p>Getting to know a player matters as much as getting to know her game. Our team works with girls and their families to create a place where they can learn, ask questions and enjoy their football.</p></section>
 <section className="team-profiles home-width" aria-label="Meet the STAR team">
