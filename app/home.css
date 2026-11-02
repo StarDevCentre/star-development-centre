@@ -234,7 +234,7 @@
 
 /* Keep SASP's wide original artwork legible beside the existing badges. */
 .home-header .home-header-badge-sasp{width:144px;height:52px}
-@media(max-width:1320px) and (min-width:1001px){.home-header .home-desktop-nav{display:none}}
+@media(max-width:1400px) and (min-width:1001px){.home-header .home-desktop-nav{display:none}}
 @media(max-width:700px){
  .home-header .home-nav{height:auto;min-height:114px}
  .home-header .home-expanded-menu{top:100%}
