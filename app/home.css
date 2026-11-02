@@ -236,6 +236,8 @@
 .home-header .home-header-badge-sasp{width:144px;height:52px}
 @media(max-width:1320px) and (min-width:1001px){.home-header .home-desktop-nav{display:none}}
 @media(max-width:700px){
+ .home-header .home-nav{height:auto;min-height:114px}
+ .home-header .home-expanded-menu{top:100%}
  .home-header-badges{display:grid;grid-template-columns:repeat(2,54px);gap:4px 6px;padding-block:8px}
  .home-header .home-header-badge-sasp{grid-column:1 / -1;width:114px;height:40px}
 }
