@@ -66,6 +66,306 @@ const sources = {
 
 export const learningArticles: LearningArticle[] = [
   {
+    "id": "player-guide-find-space-early",
+    "title": "Find Space Before You Need It",
+    "category": "positions",
+    "level": "all",
+    "summary": "You don't have to wait for the ball to make a difference.",
+    "body": [
+      "Imagine your teammate has the ball and two opponents are close to her. Instead of standing still and calling louder, take two steps into a passing lane where she can actually see you.",
+      "Try looking over both shoulders as you move. Where is the defender? Can you receive facing forward, or would a safer supporting angle help? Space changes every second, so keep adjusting rather than finding one spot and staying there.",
+      "If a defender follows you, you may have created space for another teammate. That counts as useful movement even if you never touch the ball.",
+      "THINGS TO TRY: In a three-player passing triangle, move to a new angle after every pass. Add a passive defender and see how the passing lane changes."
+    ],
+    "takeaway": "YOUR CHALLENGE: During your next game, notice one moment when your movement helped someone else get the ball.",
+    "source": []
+  },
+  {
+    "id": "player-guide-first-five-metres",
+    "title": "The Secret of a Good First Five Metres",
+    "category": "positions",
+    "level": "all",
+    "summary": "Quick movement starts with noticing the moment, not just sprinting.",
+    "body": [
+      "Your first few steps can help you beat an opponent to a loose ball, recover into defence or make a run behind. But sprinting everywhere is exhausting and often takes you out of position.",
+      "Watch for clues: a teammate lifting her head to pass, an opponent taking a heavy touch, or space opening as a defender turns. Prepare your body so you can accelerate in the useful direction.",
+      "Think about your first step. If you're balanced and already facing the right way, you may not need to be the fastest player on the pitch to arrive first.",
+      "THINGS TO TRY: Put two cones five metres apart. Have a partner point left or right and accelerate only after the signal. Rest fully between attempts."
+    ],
+    "takeaway": "YOUR CHALLENGE: Identify one moment when reacting early mattered more than running fast.",
+    "source": []
+  },
+  {
+    "id": "player-guide-shield-ball-calmly",
+    "title": "How to Shield the Ball Without Panicking",
+    "category": "positions",
+    "level": "all",
+    "summary": "You can protect possession even when a defender is right behind you.",
+    "body": [
+      "Shielding isn't about pushing someone away. It's about placing your body between the defender and the ball, keeping a balanced stance and knowing where your next pass could go.",
+      "Use your arm for balance and awareness without holding or shoving. Keep the ball on the side farther from pressure, then look for a teammate or a turn into space.",
+      "If you feel trapped, a simple backward pass can be a smart choice. Keeping the ball for your team is better than forcing a risky turn just to look impressive.",
+      "THINGS TO TRY: In a small square, receive with a passive defender behind you. Hold possession for three seconds, then pass through a side gate. Swap roles."
+    ],
+    "takeaway": "YOUR CHALLENGE: Use your body position to give yourself one extra second on the ball.",
+    "source": []
+  },
+  {
+    "id": "player-guide-fullback-two-jobs",
+    "title": "The Full-Back's Two Jobs",
+    "category": "positions",
+    "level": "all",
+    "summary": "A full-back can defend brilliantly and still help the attack.",
+    "body": [
+      "When your team doesn't have the ball, watch the winger, the space inside you and your nearest centre-back. If you chase too wide without cover, an opponent may run through the gap.",
+      "When your team wins possession, look for a safe passing angle. Sometimes an overlapping run outside your winger is useful; other times staying behind her gives the team protection if possession is lost.",
+      "You don't have to overlap on every attack. Read where the ball is, whether your teammate can find you and whether someone can cover the space you leave.",
+      "THINGS TO TRY: In a 2v2 channel, take turns as the defending full-back and attacking support player. After each round, say where the space opened."
+    ],
+    "takeaway": "YOUR CHALLENGE: Make one clear decision to stay and support rather than running forward automatically.",
+    "source": []
+  },
+  {
+    "id": "player-guide-striker-movement",
+    "title": "Striker Movement: Make a Defender Choose",
+    "category": "positions",
+    "level": "all",
+    "summary": "A clever run can create a chance before you touch the ball.",
+    "body": [
+      "Standing between two defenders and waiting for a perfect pass makes their job easy. A short movement towards the ball can invite one defender to follow; a change of direction can then open space behind.",
+      "Watch the player who might pass to you. If she is under pressure and looking down, your sprint may be too early. If she has time and looks up, prepare to attack the space.",
+      "Not every run ends in a pass. Your movement may drag a defender away and open a lane for a teammate, which is another way to help the attack.",
+      "THINGS TO TRY: Mark two gates with cones. Start in the middle, move towards one, then change direction towards the other as your partner looks up."
+    ],
+    "takeaway": "YOUR CHALLENGE: Make one run that gives your teammate a clear choice, even if the pass doesn't come.",
+    "source": []
+  },
+  {
+    "id": "player-guide-midfield-escape",
+    "title": "The Midfielder's Escape Route",
+    "category": "positions",
+    "level": "all",
+    "summary": "Being surrounded doesn't mean you have no options.",
+    "body": [
+      "Central midfield can feel crowded because pressure arrives from different directions. Before receiving, check who is behind you, where your supporting players are and which foot would make your first touch easier.",
+      "You don't always need to turn. A first-time return pass can move an opponent, creating a better angle for the next pass. A sideways touch may be enough to escape pressure.",
+      "The smartest choice is often the one you spotted before the ball arrived. That is why scanning matters more than attempting a fancy turn every time.",
+      "THINGS TO TRY: Make a square with four cones. Receive from one side while a partner calls a different exit gate. Check before the pass and play through the chosen gate."
+    ],
+    "takeaway": "YOUR CHALLENGE: Find one moment to play a simple pass that helps your team escape pressure.",
+    "source": []
+  },
+  {
+    "id": "player-guide-defend-tricky-dribbler",
+    "title": "How to Defend a Player Who Loves Tricks",
+    "category": "tactics",
+    "level": "all",
+    "summary": "You don't have to win every duel with a dramatic tackle.",
+    "body": [
+      "A skilful dribbler wants you to dive in or turn your body too early. Stay balanced, slow down as you approach and keep enough distance to react to a change of direction.",
+      "Try to guide the attacker away from dangerous central space when your team's plan allows it. Watch the ball and the attacker's touch rather than copying every shoulder feint.",
+      "If the attacker passes backwards because you stayed patient, that can be a defensive success. You have helped your team without needing a tackle.",
+      "THINGS TO TRY: Play 1v1 in a narrow channel. The defender scores a point by delaying the attacker for five seconds, not just by winning the ball."
+    ],
+    "takeaway": "YOUR CHALLENGE: Celebrate one time you slowed an attack down without tackling.",
+    "source": []
+  },
+  {
+    "id": "player-guide-three-seconds-transition",
+    "title": "What to Do in the Three Seconds After Losing the Ball",
+    "category": "tactics",
+    "level": "all",
+    "summary": "The next few seconds can change the whole move.",
+    "body": [
+      "When possession changes, it's tempting to stop and feel annoyed about the pass that went wrong. Instead, check where the ball is, which opponent is nearest and whether you can help defend safely.",
+      "Sometimes pressing immediately is useful. Other times you need to recover towards your team and protect space. Chasing the ball alone can leave a bigger gap behind you.",
+      "Use a quick cue such as 'react' to shift your attention from the mistake to the next decision. Your teammates will benefit from your movement more than from an apology shouted across the pitch.",
+      "THINGS TO TRY: In a 3v3 game, award an extra point when a team regains shape quickly after losing possession. Discuss what helped."
+    ],
+    "takeaway": "YOUR CHALLENGE: After your next lost ball, make one useful defensive movement straight away.",
+    "source": []
+  },
+  {
+    "id": "player-guide-switch-play",
+    "title": "When to Switch Play",
+    "category": "tactics",
+    "level": "all",
+    "summary": "The crowded side isn't always the best side.",
+    "body": [
+      "If several opponents have moved towards the ball, there may be space on the other side of the pitch. Switching play means moving the ball to that space, sometimes through a supporting teammate rather than one huge pass.",
+      "Before switching, check that the receiving player has room and a safe angle. A long pass that hangs in the air can give defenders time to recover.",
+      "Moving the ball backwards for one pass can be the start of a better forward attack. Football isn't a race to pass towards goal every second.",
+      "THINGS TO TRY: Create two wide gates and a central helper. Pass into one side, then use the helper to move the ball to the opposite gate."
+    ],
+    "takeaway": "YOUR CHALLENGE: Spot one moment when a teammate on the far side has more space.",
+    "source": []
+  },
+  {
+    "id": "player-guide-counterattack-decisions",
+    "title": "How to Recognise a Counterattack",
+    "category": "tactics",
+    "level": "all",
+    "summary": "Winning the ball is only the start of the decision.",
+    "body": [
+      "A counterattack happens when your team moves forward quickly after regaining possession, often before opponents have reorganised. Look up: is there open space, a runner and a safe pass?",
+      "Speed doesn't mean rushing blindly. If the opposition is already organised, keeping possession may be the smarter choice. A useful first touch and a clear pass can be faster than dribbling into traffic.",
+      "If you're away from the ball, support at a different angle rather than following the same running line as your teammate.",
+      "THINGS TO TRY: Play 3v2 towards two small goals. Start when the three attackers receive a loose ball, then discuss whether to pass, carry or slow down."
+    ],
+    "takeaway": "YOUR CHALLENGE: After a turnover, look forward once before deciding whether to keep the ball.",
+    "source": []
+  },
+  {
+    "id": "player-guide-corner-movement",
+    "title": "Corners: Make Your Movement Matter",
+    "category": "tactics",
+    "level": "all",
+    "summary": "You can influence a corner without being the tallest player.",
+    "body": [
+      "A corner creates a busy area where defenders watch both the ball and the runners. Timing matters: arriving in a space as the ball is delivered can be more useful than standing there early.",
+      "Your role might be attacking the near area, waiting for a loose ball, offering a short pass or staying back to protect against a counterattack. Every role has a purpose.",
+      "Talk through the plan with your coach so players don't all run towards the same spot. Respect the rules and avoid pushing or blocking opponents illegally.",
+      "THINGS TO TRY: Walk through three corner roles without defenders, then add a passive defender. Focus on starting positions and timing."
+    ],
+    "takeaway": "YOUR CHALLENGE: Ask your coach what your job is when your team has a corner.",
+    "source": []
+  },
+  {
+    "id": "player-guide-high-defensive-line",
+    "title": "How to Play Against a High Defensive Line",
+    "category": "tactics",
+    "level": "all",
+    "summary": "Space behind defenders is useful only if your timing is right.",
+    "body": [
+      "A high defensive line leaves space towards the goal behind it, but attackers must pay attention to offside and the moment the pass is played.",
+      "Start by checking the defender's position and the teammate with the ball. A curved or delayed run may help you stay onside while moving into space.",
+      "If the pass isn't available, don't keep sprinting away. Reposition to support and be ready for the next chance. The best movement gives your teammate options.",
+      "THINGS TO TRY: With a coach, use cones as a defensive line and practise timing runs as a passer looks up. Add a moving defender once the idea is clear."
+    ],
+    "takeaway": "YOUR CHALLENGE: Watch one professional match and notice when an attacker delays a run to stay onside.",
+    "source": []
+  },
+  {
+    "id": "player-guide-wet-weather-football",
+    "title": "Playing in the Rain: Smart Adjustments",
+    "category": "tactics",
+    "level": "all",
+    "summary": "Wet football can be messy, but it can also teach you loads.",
+    "body": [
+      "On a wet pitch, the ball may skid faster or slow in patches. Your first touch, passing weight and turning speed might need adjusting. Don't assume the ball will behave the same way all match.",
+      "Keep your movements controlled and choose footwear suitable for the actual surface. If conditions are unsafe, coaches and officials should decide whether play can continue.",
+      "Communication becomes especially useful when a teammate is about to receive a slippery pass or when a goalkeeper may struggle with a bouncing ball.",
+      "THINGS TO TRY: In safe conditions, compare a gentle pass on a dry area and a damp area. Notice the difference and adjust the next pass."
+    ],
+    "takeaway": "YOUR CHALLENGE: Make one thoughtful change to your first touch or passing weight when conditions change.",
+    "source": []
+  },
+  {
+    "id": "player-guide-small-practice-habits",
+    "title": "Build a Practice Habit That Actually Sticks",
+    "category": "tactics",
+    "level": "all",
+    "summary": "Ten useful minutes can beat a huge plan you never do.",
+    "body": [
+      "A practice habit works better when it fits your life. Choose one skill you genuinely want to improve and a time when you have space, energy and permission to practise.",
+      "Keep the activity simple. Five minutes of passing against a safe wall or controlled touches in a small space can be enough to focus on one detail. Rest when you need to.",
+      "Track what you tried, not just how many perfect repetitions you managed. Some weeks will be busy with school, friends and family; that doesn't mean you've failed.",
+      "THINGS TO TRY: Pick a skill, choose two short practice slots this week and write down one thing you noticed after each."
+    ],
+    "takeaway": "YOUR CHALLENGE: Make a plan small enough that you would still want to do it on a busy week.",
+    "source": []
+  },
+  {
+    "id": "player-guide-ask-for-ball",
+    "title": "The Art of Asking for the Ball",
+    "category": "tactics",
+    "level": "all",
+    "summary": "Calling for a pass is about helping, not shouting the loudest.",
+    "body": [
+      "A good call tells your teammate something useful. You might say her name, point to the space you want or offer a clear angle so she knows where the pass can go.",
+      "Timing matters. If your teammate is under pressure, shouting for a difficult pass may make her job harder. Sometimes moving closer for a simple option is better.",
+      "You can communicate in different ways. A gesture, eye contact or agreed signal can work just as well as a loud voice.",
+      "THINGS TO TRY: In a passing game, communicate once before receiving using a word or signal. Discuss which messages helped the passer."
+    ],
+    "takeaway": "YOUR CHALLENGE: Give one teammate a genuinely helpful passing option and signal.",
+    "source": []
+  },
+  {
+    "id": "player-guide-substitute-match-learning",
+    "title": "What to Do When You're on the Bench",
+    "category": "tactics",
+    "level": "all",
+    "summary": "You can learn from a match before you step onto the pitch.",
+    "body": [
+      "Being a substitute can be disappointing, especially when you want to help. You're allowed to feel frustrated. While you wait, watch what your position needs: where is the space, who is tiring and what does the team need?",
+      "Stay prepared according to your coach's instructions. When you're called on, focus on your first useful action rather than trying to prove everything in one touch.",
+      "If playing time worries you regularly, ask your coach for a calm conversation about development and opportunities. You deserve respectful feedback.",
+      "THINGS TO TRY: While watching, identify two moments when a player in your position makes a helpful off-ball movement."
+    ],
+    "takeaway": "YOUR CHALLENGE: Choose one simple action to focus on when you enter the game.",
+    "source": []
+  },
+  {
+    "id": "player-guide-use-coaching-feedback",
+    "title": "Make Feedback Work for You",
+    "category": "tactics",
+    "level": "all",
+    "summary": "Feedback is information, not a verdict on who you are.",
+    "body": [
+      "'Check your shoulder' is easier to use than 'be better'. If an instruction feels confusing, ask for an example or a demonstration. Coaches should help you understand what to try.",
+      "Pick one piece of feedback rather than trying to change five things at once. You might focus on scanning before receiving for a whole session.",
+      "After training, ask yourself whether you attempted the action. Improvement isn't always immediate, and one mistake doesn't erase the progress you made.",
+      "THINGS TO TRY: Write one coaching instruction as an action you can see or feel. For example, 'look left and right before the pass arrives'."
+    ],
+    "takeaway": "YOUR CHALLENGE: Ask one question when feedback isn't clear.",
+    "source": []
+  },
+  {
+    "id": "player-guide-support-teammates",
+    "title": "How to Be a Brilliant Teammate on a Hard Day",
+    "category": "stories",
+    "level": "all",
+    "summary": "You don't need to score to make someone else's match better.",
+    "body": [
+      "Maybe a teammate has missed a chance, lost her place or arrived looking upset. You don't have to fix her feelings. A kind word, a clear passing option or simply including her in a drill can help.",
+      "Avoid teasing someone about mistakes, even if other people are laughing. Good teams make room for players to learn without embarrassment.",
+      "If a teammate tells you something serious or unsafe, tell a trusted adult or welfare officer. Supporting a friend doesn't mean carrying a safeguarding problem alone.",
+      "THINGS TO TRY: During your next session, notice one player who hasn't been included much and invite her into a warm-up or passing activity."
+    ],
+    "takeaway": "YOUR CHALLENGE: Give specific encouragement about an action, not just 'good job'.",
+    "source": []
+  },
+  {
+    "id": "player-guide-your-football-style",
+    "title": "Find Your Own Football Style",
+    "category": "stories",
+    "level": "all",
+    "summary": "You don't have to copy another player to be valuable.",
+    "body": [
+      "Watching great players can give you ideas, but you don't need their height, speed or personality to learn from them. Notice one decision or movement you admire and think about how it might fit your game.",
+      "Maybe you're calm under pressure, brave in challenges, clever at finding space or brilliant at encouraging others. These strengths can grow together over time.",
+      "Your football style will change as you develop. Trying new roles and skills isn't losing your identity; it's discovering more options.",
+      "THINGS TO TRY: Watch ten minutes of a match and choose one movement from a player in your position. Practise a safe, simplified version with a partner."
+    ],
+    "takeaway": "YOUR CHALLENGE: Write down one strength you enjoy using and one new skill you're curious about.",
+    "source": []
+  },
+  {
+    "id": "player-guide-match-nerves-toolkit",
+    "title": "Your Match-Day Nerves Toolkit",
+    "category": "stories",
+    "level": "all",
+    "summary": "Feeling nervous doesn't mean you're not ready.",
+    "body": [
+      "A match can feel important, and your body may react with butterflies, shaky legs or racing thoughts. Lots of players experience nerves. You don't have to pretend you're fearless.",
+      "Choose a short routine you control: arrive with time, prepare your kit, take a comfortable breath and focus on one task such as offering for the first pass.",
+      "Avoid setting a goal like 'I must score'. Instead choose something you can attempt whatever the result: communicate early, recover after losing the ball or try a positive first touch.",
+      "THINGS TO TRY: Before your next session, choose a three-step routine and practise it even if you feel calm."
+    ],
+    "takeaway": "YOUR CHALLENGE: After the match, notice whether your routine helped you focus, not whether you felt zero nerves.",
+    "source": []
+  },
+  {
     "id": "gk-goalkeeper-positioning-angles-football",
     "title": "Goalkeeper Positioning and Angles: How to Make More Saves",
     "category": "goalkeeping",
