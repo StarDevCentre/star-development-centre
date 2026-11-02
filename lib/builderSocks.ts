@@ -10,59 +10,46 @@ export const builderSocks=[
 ] as const;
 export const builderSockIds=builderSocks.map(s=>s.id);
 
-/** Find the exposed knit, seeded below each trouser cuff. Connectivity follows
- * the actual curved cuff and boot collar; it never recolours adidas stripes or
- * assumes that two trouser styles end at the same horizontal pixel row. */
-function exposedKnit(p:Uint8ClampedArray,width:number,bottoms:string){
- const selected=new Uint8Array(p.length/4),lower=bottoms==='adidas-firebird-trousers'?873:['nike-club-joggers','ellesse-pink-joggers'].includes(bottoms)?866:840;
- for(const [left,right] of [[35,200],[260,435]]){
-  let seed=-1,brightest=-1;
-  for(let y=883;y<=899;y++)for(let x=left;x<right;x++){
-   const j=y*width+x,i=j*4,light=Math.min(p[i],p[i+1],p[i+2]);
-   if(p[i+3]>200&&light>brightest){brightest=light;seed=j;}
-  }
-  if(seed<0)continue;
-  const pending=[seed];
-  while(pending.length){
-   const j=pending.pop()!,x=j%width,y=Math.floor(j/width),i=j*4;
-   if(selected[j]||x<left||x>=right||y<lower||y>990||!p[i+3])continue;
-   const light=Math.min(p[i],p[i+1],p[i+2]);
-   if(light<130||Math.max(p[i],p[i+1],p[i+2])-light>40)continue;
-   selected[j]=1;pending.push(j-1,j+1,j-width,j+width);
-  }
- }
- return selected;
-}
-export function paintBuilderSocks(canvas:HTMLCanvasElement,bottoms:string,socks:string,art:HTMLImageElement|null){
- const ctx=canvas.getContext('2d')!,frame=ctx.getImageData(0,0,canvas.width,canvas.height),p=frame.data,knit=exposedKnit(p,canvas.width,bottoms);
- const colour=({navy:[24,42,73],black:[30,32,40],red:[189,38,53]} as Record<string,number[]>)[socks];
- if(!art){
-  if(!colour)return;
-  for(let j=0;j<knit.length;j++)if(knit[j]){const i=j*4,light=(p[i]+p[i+1]+p[i+2])/765;for(let k=0;k<3;k++)p[i+k]=colour[k]*(.6+light*.4);}
- }else{
-  const layer=document.createElement('canvas');layer.width=canvas.width;layer.height=canvas.height;
-  const source=layer.getContext('2d')!;source.drawImage(art,0,740);const q=source.getImageData(0,0,layer.width,layer.height).data;
-  const trousers=['nike-club-joggers','adidas-firebird-trousers','ellesse-pink-joggers'].includes(bottoms);
-  for(let y=780;y<=990;y++)for(let x=35;x<435;x++){
-   const j=y*canvas.width+x,i=j*4;
-   if(knit[j]){
-    // Keep the existing cuff/boot silhouette and antialiasing, replacing every
-    // exposed white pixel, including the band above the former fixed cutoff.
-    let sample=i;
-    // Fixed exports can differ by a subpixel at the knit silhouette. Extend
-    // the nearest opaque texture over the template's antialiased sock edge.
-    if(q[sample+3]<64)for(let dx=1;dx<=6;dx++){
-     const left=i-dx*4,right=i+dx*4;
-     if(q[left+3]>=64){sample=left;break;}if(q[right+3]>=64){sample=right;break;}
-    }
-    if(y<883&&q[sample+3]){for(let k=0;k<3;k++)p[i+k]=q[sample+k];}else{const dark=socks.endsWith('-black'),colour=dark?[30,32,40]:[245,247,252],light=(p[i]+p[i+1]+p[i+2])/765;for(let k=0;k<3;k++)p[i+k]=colour[k]*(.65+light*.35);}
-   }else if(!trousers&&y<875&&q[i+3]>50){
-    const r=q[i],g=q[i+1],b=q[i+2],skin=r>g*1.12&&g>b*1.12&&r>90;
-    // The upper shaft/frill overlays the bare calf. Warm skin remains the
-    // personalised template; the source's illustrated boots are never copied.
-    if(!skin)for(let k=0;k<4;k++)p[i+k]=q[i+k];
+/** Each source cuff is measured independently on the original 740px crop.
+ * The textile is registered to the body's silhouette, never pasted as a second
+ * leg. The same mask continues through the foot when no boots are selected. */
+export const sockFit:Record<string,{sourceTop:number;rearTop:number;sourceEnd?:number;rearEnd?:number;top:number;dark?:boolean}>={
+ 'nike-ankle-white':{sourceTop:847,rearTop:851,top:840},
+ 'nike-ankle-black':{sourceTop:849,rearTop:855,top:840,dark:true},
+ 'nike-crew-white':{sourceTop:806,rearTop:804,top:804},
+ 'nike-crew-black':{sourceTop:814,rearTop:813,top:804,dark:true},
+ 'adidas-ankle-black':{sourceTop:844,rearTop:852,sourceEnd:891,rearEnd:898,top:840,dark:true},
+ 'gain-the-edge-crew':{sourceTop:810,rearTop:810,sourceEnd:885,top:804},
+ 'cherry-ribbon':{sourceTop:846,rearTop:851,top:840}
+};
+function pixels(im:CanvasImageSource,width:number,height:number,offset=0){const c=document.createElement('canvas');c.width=width;c.height=height;const x=c.getContext('2d')!;x.drawImage(im,0,offset);return x.getImageData(0,0,width,height).data;}
+/** Ignore detached antialias specks; use the actual connected leg/foot span. */
+function span(p:Uint8ClampedArray,width:number,y:number,side:number,textile=false){let best:[number,number]=[0,0],start=-1;const lo=side?250:20,hi=side?440:210;for(let x=lo;x<=hi;x++){const i=(y*width+x)*4,r=p[i],g=p[i+1],b=p[i+2],skin=r>g*1.12&&g>b*1.12&&r>90,hit=x<hi&&p[i+3]>160&&(!textile||!skin);if(hit&&start<0)start=x;if(!hit&&start>=0){if(x-start>best[1]-best[0])best=[start,x];start=-1;}}return best;}
+export function paintBuilderSocks(body:HTMLCanvasElement,socks:string,art:HTMLImageElement|null,knit:HTMLImageElement,view:'front'|'back'){
+ const width=body.width,height=body.height,ctx=body.getContext('2d')!,shape=ctx.getImageData(0,0,width,height).data;
+ const c=document.createElement('canvas');c.width=width;c.height=height;const x=c.getContext('2d')!,frame=x.createImageData(width,height),p=frame.data;
+ const club=socks.startsWith('home-2627-'),fit=sockFit[socks],top=club?700:fit?.top??840;
+ const q=art?pixels(art,width,height,club?0:740):null,k=pixels(knit,width,height);
+ const sourceTop=fit?(view==='back'?fit.rearTop:fit.sourceTop):849;
+ const colour=fit?.dark?[30,32,40]:({navy:[24,42,73],black:[30,32,40],red:[189,38,53]} as Record<string,number[]>)[socks]||[245,247,252];
+ for(let y=top;y<height;y++)for(let side=0;side<2;side++){
+  const [bl,br]=span(shape,width,y,side),[kl,kr]=span(k,width,Math.max(855,y),side);
+  const transition=Math.min(1,Math.max(0,(y-875)/35));
+  const lo=bl*(1-transition)+kl*transition,hi=br*(1-transition)+kr*transition;if(hi<=lo)continue;
+  const sourceY=club?y:Math.round(sourceTop+(Math.min(y,883)-top)/(883-top)*((view==='back'?(fit?.rearEnd??fit?.sourceEnd??879):(fit?.sourceEnd??879))-sourceTop));
+  const [sl,sr]=q?span(q,width,sourceY,side,!club):[0,0];
+  for(let xx=Math.floor(lo);xx<Math.ceil(hi);xx++){
+   const u=Math.max(0,Math.min(1,(xx-lo)/(hi-lo))),cuff=top+3*Math.sin(Math.PI*u)+(socks==='cherry-ribbon'?1.4*Math.sin(u*Math.PI*12):0),coverage=Math.min(1,Math.max(0,y+1-cuff));if(!coverage)continue;
+   const i=(y*width+xx)*4,ki=(Math.max(855,y)*width+Math.min(width-1,Math.round(kl+2+u*Math.max(0,kr-kl-5))))*4;
+   const light=kr>kl?(k[ki]+k[ki+1]+k[ki+2])/765:.9;
+   const shade=Math.pow(Math.max(0,Math.min(1,(light-.65)/.35)),2);
+   let rgb=fit?.dark||['black','navy','red'].includes(socks)?colour.map(v=>v*(.3+shade*.95)):colour.map(v=>v*light);
+   if(q&&sr>sl){const qi=(sourceY*width+Math.min(sr-1,Math.round(sl+u*(sr-sl-1))))*4;
+    const blend=club?1:Math.min(1,Math.max(0,(883-y)/2));
+    if(q[qi+3]>160)rgb=rgb.map((v,n)=>v*(1-blend)+q[qi+n]*blend);
    }
+   for(let n=0;n<3;n++)p[i+n]=rgb[n];p[i+3]=255*coverage*Math.min(1,xx+1-lo,hi-xx);
   }
  }
- ctx.putImageData(frame,0,0);
+ x.putImageData(frame,0,0);return c;
 }

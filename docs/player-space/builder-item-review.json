@@ -1,0 +1,985 @@
+{
+  "date": "2026-11-02",
+  "featureState": "Coming Soon remains locked",
+  "complete": false,
+  "scope": "First individually reviewed correction batch. Previous large render totals did not establish visual correctness.",
+  "evidence": "Local native canvas close-ups, front/back, no boots and starter boots. No browser/usability testing. No database writes.",
+  "sourceScreenshots": [
+    "53293.jpg",
+    "53295.jpg",
+    "53297.jpg",
+    "53299.jpg",
+    "53301.jpg"
+  ],
+  "items": [
+    {
+      "slot": "top",
+      "id": "base",
+      "label": "Base layer",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "star",
+      "label": "STAR training top",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "arsenal",
+      "label": "Arsenal home · 2026/27",
+      "status": "corrected-and-locally-reviewed",
+      "notes": "Curved front neck aperture and separate higher rear nape boundary; both views."
+    },
+    {
+      "slot": "top",
+      "id": "chelsea",
+      "label": "Chelsea home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "navy-tee",
+      "label": "Navy T-shirt",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "white-tee",
+      "label": "White T-shirt",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "hoodie",
+      "label": "Navy hoodie",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "gold-hoodie",
+      "label": "Gold hoodie",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "ellesse-pink-sweatshirt",
+      "label": "Ellesse crew-neck sweatshirt · pink",
+      "status": "corrected-and-locally-reviewed",
+      "notes": "Curved front neck aperture and separate higher rear nape boundary; both views."
+    },
+    {
+      "slot": "top",
+      "id": "nike-club-hoodie",
+      "label": "Nike Club Fleece hoodie · grey marl",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "adidas-firebird-top",
+      "label": "adidas Firebird track top · black/white",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "adidas-originals-tee",
+      "label": "adidas Originals T-shirt · white/black",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "ua-tech-halfzip",
+      "label": "Under Armour Tech half-zip · black",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "puma-essentials-hoodie",
+      "label": "PUMA Essentials hoodie · black",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "hollister-baby-tee",
+      "label": "Hollister baby T-shirt · white",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "hollister-ivy-jumper",
+      "label": "Hollister Ivy cable-knit jumper · cream",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "bershka-raglan-tee",
+      "label": "Bershka raglan T-shirt · white/burgundy",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "hm-rib-cardigan",
+      "label": "H&M rib-knit cardigan · cream",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "whitefox-offstage-tee",
+      "label": "White Fox Offstage T-shirt · Shadow",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "juicy-velour-hoodie",
+      "label": "Juicy Couture velour hoodie · dark pink",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "whitefox-shadow-hoodie",
+      "label": "White Fox Offstage hoodie · Shadow",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "whitefox-glacier-hoodie",
+      "label": "White Fox Offstage hoodie · Glacier Grey",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "nike-pro-crop",
+      "label": "Nike Pro crop top · black/white",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "home-2627-arsenal",
+      "label": "Arsenal home · 2026/27",
+      "status": "corrected-and-locally-reviewed",
+      "notes": "Curved front neck aperture and separate higher rear nape boundary; both views."
+    },
+    {
+      "slot": "top",
+      "id": "home-2627-aston-villa",
+      "label": "Aston Villa home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "home-2627-birmingham",
+      "label": "Birmingham City home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "home-2627-brighton",
+      "label": "Brighton & Hove Albion home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "home-2627-charlton",
+      "label": "Charlton Athletic home · 2026/27",
+      "status": "corrected-and-locally-reviewed",
+      "notes": "Curved front neck aperture and separate higher rear nape boundary; both views."
+    },
+    {
+      "slot": "top",
+      "id": "home-2627-chelsea",
+      "label": "Chelsea home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "home-2627-crystal-palace",
+      "label": "Crystal Palace home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "home-2627-everton",
+      "label": "Everton home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "home-2627-liverpool",
+      "label": "Liverpool home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "home-2627-london-city",
+      "label": "London City Lionesses home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "home-2627-manchester-city",
+      "label": "Manchester City home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "home-2627-manchester-united",
+      "label": "Manchester United home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "home-2627-tottenham",
+      "label": "Tottenham Hotspur home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "home-2627-west-ham",
+      "label": "West Ham United home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "home-2627-bristol-city",
+      "label": "Bristol City home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "home-2627-burnley",
+      "label": "Burnley home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "home-2627-durham",
+      "label": "Durham home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "home-2627-ipswich",
+      "label": "Ipswich Town home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "home-2627-leicester",
+      "label": "Leicester City home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "home-2627-newcastle",
+      "label": "Newcastle United home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "home-2627-nottingham-forest",
+      "label": "Nottingham Forest home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "home-2627-sheffield-united",
+      "label": "Sheffield United home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "home-2627-southampton",
+      "label": "Southampton home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "home-2627-sunderland",
+      "label": "Sunderland home · 2026/27 · launch",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "home-2627-watford",
+      "label": "Watford home · 2026/27 · launch",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "top",
+      "id": "home-2627-wolves",
+      "label": "Wolverhampton Wanderers home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "base",
+      "label": "Base layer",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "shorts",
+      "label": "Navy football shorts",
+      "status": "inspected-in-related-outfit",
+      "notes": "No artwork change in this batch; waist/hem/cuff inspected with selected tops and socks. This is not approval of every mixed outfit."
+    },
+    {
+      "slot": "bottoms",
+      "id": "arsenal",
+      "label": "Arsenal home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "chelsea",
+      "label": "Chelsea home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "leggings",
+      "label": "Sports leggings",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "trackies",
+      "label": "Tracksuit bottoms",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "ellesse-pink-joggers",
+      "label": "Ellesse joggers · pink",
+      "status": "inspected-in-related-outfit",
+      "notes": "No artwork change in this batch; waist/hem/cuff inspected with selected tops and socks. This is not approval of every mixed outfit."
+    },
+    {
+      "slot": "bottoms",
+      "id": "nike-club-joggers",
+      "label": "Nike Club Fleece joggers · grey marl",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "adidas-firebird-trousers",
+      "label": "adidas Firebird trousers · black/white",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "puma-cargo-shorts",
+      "label": "PUMA cargo shorts · black",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "hollister-andi-jeans",
+      "label": "Hollister Andi baggy jeans · light blue",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "bershka-denim-skirt",
+      "label": "Bershka denim skirt · mid-blue",
+      "status": "inspected-in-related-outfit",
+      "notes": "No artwork change in this batch; waist/hem/cuff inspected with selected tops and socks. This is not approval of every mixed outfit."
+    },
+    {
+      "slot": "bottoms",
+      "id": "juicy-velour-trousers",
+      "label": "Juicy Couture velour trousers · dark pink",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "nike-pro-shorts",
+      "label": "Nike Pro shorts · black/white",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "adidas-leggings",
+      "label": "adidas leggings · black/white",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "home-2627-arsenal",
+      "label": "Arsenal home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "home-2627-aston-villa",
+      "label": "Aston Villa home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "home-2627-birmingham",
+      "label": "Birmingham City home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "home-2627-brighton",
+      "label": "Brighton & Hove Albion home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "home-2627-charlton",
+      "label": "Charlton Athletic home · 2026/27",
+      "status": "inspected-in-related-outfit",
+      "notes": "No artwork change in this batch; waist/hem/cuff inspected with selected tops and socks. This is not approval of every mixed outfit."
+    },
+    {
+      "slot": "bottoms",
+      "id": "home-2627-chelsea",
+      "label": "Chelsea home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "home-2627-crystal-palace",
+      "label": "Crystal Palace home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "home-2627-everton",
+      "label": "Everton home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "home-2627-liverpool",
+      "label": "Liverpool home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "home-2627-london-city",
+      "label": "London City Lionesses home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "home-2627-manchester-city",
+      "label": "Manchester City home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "home-2627-manchester-united",
+      "label": "Manchester United home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "home-2627-tottenham",
+      "label": "Tottenham Hotspur home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "home-2627-west-ham",
+      "label": "West Ham United home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "home-2627-bristol-city",
+      "label": "Bristol City home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "home-2627-burnley",
+      "label": "Burnley home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "home-2627-durham",
+      "label": "Durham home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "home-2627-ipswich",
+      "label": "Ipswich Town home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "home-2627-leicester",
+      "label": "Leicester City home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "home-2627-newcastle",
+      "label": "Newcastle United home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "home-2627-nottingham-forest",
+      "label": "Nottingham Forest home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "home-2627-sheffield-united",
+      "label": "Sheffield United home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "home-2627-southampton",
+      "label": "Southampton home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "home-2627-sunderland",
+      "label": "Sunderland home · 2026/27 · launch",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "home-2627-watford",
+      "label": "Watford home · 2026/27 · launch",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "bottoms",
+      "id": "home-2627-wolves",
+      "label": "Wolverhampton Wanderers home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "socks",
+      "id": "none",
+      "label": "None",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "socks",
+      "id": "white",
+      "label": "white",
+      "status": "corrected-and-locally-reviewed",
+      "notes": "Connected cuff/foot silhouette; reviewed in the cited outfit combination."
+    },
+    {
+      "slot": "socks",
+      "id": "navy",
+      "label": "navy",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "socks",
+      "id": "black",
+      "label": "black",
+      "status": "corrected-and-locally-reviewed",
+      "notes": "Connected cuff/foot silhouette; reviewed in the cited outfit combination."
+    },
+    {
+      "slot": "socks",
+      "id": "red",
+      "label": "red",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "socks",
+      "id": "nike-ankle-white",
+      "label": "Nike ankle socks · white",
+      "status": "corrected-and-locally-reviewed",
+      "notes": "Independent front/rear source measurements; continuous cloth from cuff to toe; no white underlay; both views without footwear and with starter boots."
+    },
+    {
+      "slot": "socks",
+      "id": "nike-ankle-black",
+      "label": "Nike ankle socks · black",
+      "status": "corrected-and-locally-reviewed",
+      "notes": "Independent front/rear source measurements; continuous cloth from cuff to toe; no white underlay; both views without footwear and with starter boots."
+    },
+    {
+      "slot": "socks",
+      "id": "nike-crew-white",
+      "label": "Nike crew socks · white",
+      "status": "corrected-and-locally-reviewed",
+      "notes": "Independent front/rear source measurements; continuous cloth from cuff to toe; no white underlay; both views without footwear and with starter boots."
+    },
+    {
+      "slot": "socks",
+      "id": "nike-crew-black",
+      "label": "Nike crew socks · black",
+      "status": "corrected-and-locally-reviewed",
+      "notes": "Independent front/rear source measurements; continuous cloth from cuff to toe; no white underlay; both views without footwear and with starter boots."
+    },
+    {
+      "slot": "socks",
+      "id": "adidas-ankle-black",
+      "label": "adidas ankle socks · black",
+      "status": "corrected-and-locally-reviewed",
+      "notes": "Independent front/rear source measurements; continuous cloth from cuff to toe; no white underlay; both views without footwear and with starter boots."
+    },
+    {
+      "slot": "socks",
+      "id": "gain-the-edge-crew",
+      "label": "Gain The Edge grip crew socks · white",
+      "status": "corrected-and-locally-reviewed",
+      "notes": "Independent front/rear source measurements; continuous cloth from cuff to toe; no white underlay; both views without footwear and with starter boots."
+    },
+    {
+      "slot": "socks",
+      "id": "cherry-ribbon",
+      "label": "Cherry ribbon grip socks · white/burgundy",
+      "status": "corrected-and-locally-reviewed",
+      "notes": "Independent front/rear source measurements; continuous cloth from cuff to toe; no white underlay; both views without footwear and with starter boots."
+    },
+    {
+      "slot": "socks",
+      "id": "home-2627-arsenal",
+      "label": "Arsenal home · 2026/27",
+      "status": "corrected-and-locally-reviewed",
+      "notes": "Connected cuff/foot silhouette; reviewed in the cited outfit combination."
+    },
+    {
+      "slot": "socks",
+      "id": "home-2627-aston-villa",
+      "label": "Aston Villa home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "socks",
+      "id": "home-2627-birmingham",
+      "label": "Birmingham City home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "socks",
+      "id": "home-2627-brighton",
+      "label": "Brighton & Hove Albion home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "socks",
+      "id": "home-2627-charlton",
+      "label": "Charlton Athletic home · 2026/27",
+      "status": "corrected-and-locally-reviewed",
+      "notes": "Connected cuff/foot silhouette; reviewed in the cited outfit combination."
+    },
+    {
+      "slot": "socks",
+      "id": "home-2627-chelsea",
+      "label": "Chelsea home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "socks",
+      "id": "home-2627-crystal-palace",
+      "label": "Crystal Palace home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "socks",
+      "id": "home-2627-everton",
+      "label": "Everton home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "socks",
+      "id": "home-2627-liverpool",
+      "label": "Liverpool home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "socks",
+      "id": "home-2627-london-city",
+      "label": "London City Lionesses home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "socks",
+      "id": "home-2627-manchester-city",
+      "label": "Manchester City home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "socks",
+      "id": "home-2627-manchester-united",
+      "label": "Manchester United home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "socks",
+      "id": "home-2627-tottenham",
+      "label": "Tottenham Hotspur home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "socks",
+      "id": "home-2627-west-ham",
+      "label": "West Ham United home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "socks",
+      "id": "home-2627-bristol-city",
+      "label": "Bristol City home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "socks",
+      "id": "home-2627-burnley",
+      "label": "Burnley home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "socks",
+      "id": "home-2627-durham",
+      "label": "Durham home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "socks",
+      "id": "home-2627-ipswich",
+      "label": "Ipswich Town home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "socks",
+      "id": "home-2627-leicester",
+      "label": "Leicester City home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "socks",
+      "id": "home-2627-newcastle",
+      "label": "Newcastle United home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "socks",
+      "id": "home-2627-nottingham-forest",
+      "label": "Nottingham Forest home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "socks",
+      "id": "home-2627-sheffield-united",
+      "label": "Sheffield United home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "socks",
+      "id": "home-2627-southampton",
+      "label": "Southampton home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "socks",
+      "id": "home-2627-sunderland",
+      "label": "Sunderland home · 2026/27 · launch",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "socks",
+      "id": "home-2627-watford",
+      "label": "Watford home · 2026/27 · launch",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "socks",
+      "id": "home-2627-wolves",
+      "label": "Wolverhampton Wanderers home · 2026/27",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "hairstyle",
+      "id": "ponytail",
+      "label": "Wavy ponytail",
+      "status": "corrected-and-locally-reviewed",
+      "notes": "Rear anchor raised 28px to cover the exposed upper scalp; front anchor retained."
+    },
+    {
+      "slot": "hairstyle",
+      "id": "curls",
+      "label": "Curly bob",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "hairstyle",
+      "id": "coils",
+      "label": "Coily puff",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "hairstyle",
+      "id": "braids",
+      "label": "Braided bun",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "boots",
+      "id": "none",
+      "label": "None",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "boots",
+      "id": "starter",
+      "label": "starter",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "boots",
+      "id": "ida-rise",
+      "label": "ida-rise",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "boots",
+      "id": "furon-pink",
+      "label": "furon-pink",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "boots",
+      "id": "tekela-white",
+      "label": "tekela-white",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "boots",
+      "id": "morelia-ruby",
+      "label": "morelia-ruby",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "boots",
+      "id": "superfly-pink",
+      "label": "superfly-pink",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "boots",
+      "id": "absolute-2006",
+      "label": "absolute-2006",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "boots",
+      "id": "total90-2004",
+      "label": "total90-2004",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "boots",
+      "id": "stadio-1990",
+      "label": "stadio-1990",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "boots",
+      "id": "etrusco-1990",
+      "label": "etrusco-1990",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "boots",
+      "id": "tiempo",
+      "label": "tiempo",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "boots",
+      "id": "copa",
+      "label": "copa",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "boots",
+      "id": "mercurial",
+      "label": "mercurial",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "boots",
+      "id": "predator",
+      "label": "predator",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "boots",
+      "id": "future",
+      "label": "future",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "boots",
+      "id": "ultra",
+      "label": "ultra",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "boots",
+      "id": "phantom",
+      "label": "phantom",
+      "status": "awaiting-individual-review"
+    },
+    {
+      "slot": "boots",
+      "id": "f50",
+      "label": "f50",
+      "status": "awaiting-individual-review"
+    }
+  ],
+  "sockMeasurements": {
+    "nike-ankle-white": {
+      "sourceTop": 847,
+      "rearTop": 851,
+      "top": 840
+    },
+    "nike-ankle-black": {
+      "sourceTop": 849,
+      "rearTop": 855,
+      "top": 840,
+      "dark": true
+    },
+    "nike-crew-white": {
+      "sourceTop": 806,
+      "rearTop": 804,
+      "top": 804
+    },
+    "nike-crew-black": {
+      "sourceTop": 814,
+      "rearTop": 813,
+      "top": 804,
+      "dark": true
+    },
+    "adidas-ankle-black": {
+      "sourceTop": 844,
+      "rearTop": 852,
+      "sourceEnd": 891,
+      "rearEnd": 898,
+      "top": 840,
+      "dark": true
+    },
+    "gain-the-edge-crew": {
+      "sourceTop": 810,
+      "rearTop": 810,
+      "sourceEnd": 885,
+      "top": 804
+    },
+    "cherry-ribbon": {
+      "sourceTop": 846,
+      "rearTop": 851,
+      "top": 840
+    }
+  }
+}
