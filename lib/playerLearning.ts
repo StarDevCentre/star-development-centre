@@ -66,25 +66,6 @@ const sources = {
 
 export const learningArticles: LearningArticle[] = [
   {
-    "id": "gk-goalkeeper-training-drills-girls",
-    "title": "Goalkeeper Training for Girls: Five Essential Skills",
-    "category": "goalkeeping",
-    "level": "all",
-    "summary": "Practical guide to goalkeeper training drills girls, with age-appropriate advice, common mistakes and ideas players and parents can use in real football.",
-    "body": [
-      "Goalkeepers need handling, footwork, distribution, positioning and communication. Training should develop these safely and progressively.",
-      "Find a balanced ready position: Stand balanced with knees relaxed and hands ready. Positioning changes with the ball's angle and distance. Small steps can keep the goalkeeper aligned with the likely shot. A useful starting point is to focus on what the player can notice and control. Progress is rarely identical for two teammates, so feedback should be specific to the situation rather than based on comparisons or assumptions.",
-      "Practise secure handling: Begin with gentle throws and rolls at manageable heights. Watch the ball into the hands. Progress speed gradually under suitable supervision.",
-      "Move your feet before saving: Move between two markers, set the feet and receive a gentle ball. Prioritise balance over racing. Controlled movement often makes saves easier than dramatic dives.",
-      "Distribute accurately: Practise passing with both feet and rolling or throwing to moving teammates. Scan for pressure and choose a target the receiver can reach.",
-      "Communicate with teammates: Use short, useful calls and agreed signals to organise defenders. Diving and landing techniques need appropriate coaching and a suitable surface.",
-      "Putting it into practice: Choose one idea from this guide to focus on during your next training session or match. Keep the task small enough to repeat and notice what changes. The aim is to make goalkeeper training drills girls a useful part of football rather than another source of pressure. Ask the player what she noticed, what felt difficult and what she wants to try again. A coach can help adapt the challenge to her age, experience and confidence.",
-      "Build confidence after mistakes: Goalkeepers are visible when a mistake leads to a goal, but that moment does not define their performance. Help the player identify what she could control, then move on to the next action. For example, after a difficult catch, the next target might be taking a balanced starting position. After an inaccurate pass, it might be checking the receiver before distributing. Parents can help by asking what the goalkeeper learned rather than replaying the mistake on the journey home. A supportive environment makes it easier to take responsibility and improve."
-    ],
-    "takeaway": "Try one activity from the guide at your next suitable football opportunity. Talk with a coach about how to adapt it to your game, and explore other Football Hub articles for related skills and support.",
-    "source": []
-  },
-  {
     "id": "gk-goalkeeper-positioning-angles-football",
     "title": "Goalkeeper Positioning and Angles: How to Make More Saves",
     "category": "goalkeeping",
