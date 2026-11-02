@@ -35,7 +35,7 @@ test('bounds queries, handles punctuation safely and refuses unrelated matches',
  assert.equal(searchSite('coaching','nonsense').total,0);
 });
 test('public index contains no private paths or signed-in pricing data',()=>{
- const allowed=new Set(['/','/site-index','/search','/where-we-coach','/first-session','/programmes','/find-your-programme','/our-approach','/inclusion','/coaches','/pathways','/contact','/book','/register','/privacy','/articles','/parent-portal','/player-portal','/staff',...hubArticles.map(a=>'/articles/'+a.slug)]);
+ const allowed=new Set(['/','/site-index','/search','/where-we-coach','/first-session','/programmes','/find-your-programme','/our-approach','/inclusion','/coaches','/pathways','/contact','/register','/privacy','/articles','/parent-portal','/player-portal','/staff',...hubArticles.map(a=>'/articles/'+a.slug)]);
  for(const e of siteDirectory){assert.ok(allowed.has(e.href.split('#')[0]),e.href);assert.ok(!/[£]|\bGBP\b|service_role|portal_player_id/.test(JSON.stringify(e)))}
  for(const e of siteDirectory.filter(e=>['/parent-portal','/player-portal','/staff'].includes(e.href))){assert.equal(e.body,undefined);assert.match(e.title,/login/)}
 });

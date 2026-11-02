@@ -9,7 +9,6 @@ const pages={
  '/coaches':['app/coaches/page.tsx'],
  '/pathways':['app/pathways/page.tsx','components/PathwayExplorer.tsx'],
  '/contact':['app/contact/page.tsx'],
- '/book':['app/book/page.tsx'],
  '/register':['app/register/page.tsx'],
  '/privacy':['app/privacy/page.tsx'],
  '/find-your-programme':['app/find-your-programme/page.tsx']
