@@ -1,7 +1,7 @@
 export type LearningArticle = {
   id: string;
   title: string;
-  category: 'positions' | 'tactics' | 'stories';
+  category: 'positions' | 'tactics' | 'stories' | 'goalkeeping';
   level: 'all' | 'senior';
   summary: string;
   body: string[];
@@ -65,6 +65,115 @@ const sources = {
 };
 
 export const learningArticles: LearningArticle[] = [
+  {
+    "id": "gk-goalkeeper-training-drills-girls",
+    "title": "Goalkeeper Training for Girls: Five Essential Skills",
+    "category": "goalkeeping",
+    "level": "all",
+    "summary": "Practical guide to goalkeeper training drills girls, with age-appropriate advice, common mistakes and ideas players and parents can use in real football.",
+    "body": [
+      "Goalkeepers need handling, footwork, distribution, positioning and communication. Training should develop these safely and progressively.",
+      "Find a balanced ready position: Stand balanced with knees relaxed and hands ready. Positioning changes with the ball's angle and distance. Small steps can keep the goalkeeper aligned with the likely shot. A useful starting point is to focus on what the player can notice and control. Progress is rarely identical for two teammates, so feedback should be specific to the situation rather than based on comparisons or assumptions.",
+      "Practise secure handling: Begin with gentle throws and rolls at manageable heights. Watch the ball into the hands. Progress speed gradually under suitable supervision.",
+      "Move your feet before saving: Move between two markers, set the feet and receive a gentle ball. Prioritise balance over racing. Controlled movement often makes saves easier than dramatic dives.",
+      "Distribute accurately: Practise passing with both feet and rolling or throwing to moving teammates. Scan for pressure and choose a target the receiver can reach.",
+      "Communicate with teammates: Use short, useful calls and agreed signals to organise defenders. Diving and landing techniques need appropriate coaching and a suitable surface.",
+      "Putting it into practice: Choose one idea from this guide to focus on during your next training session or match. Keep the task small enough to repeat and notice what changes. The aim is to make goalkeeper training drills girls a useful part of football rather than another source of pressure. Ask the player what she noticed, what felt difficult and what she wants to try again. A coach can help adapt the challenge to her age, experience and confidence.",
+      "Build confidence after mistakes: Goalkeepers are visible when a mistake leads to a goal, but that moment does not define their performance. Help the player identify what she could control, then move on to the next action. For example, after a difficult catch, the next target might be taking a balanced starting position. After an inaccurate pass, it might be checking the receiver before distributing. Parents can help by asking what the goalkeeper learned rather than replaying the mistake on the journey home. A supportive environment makes it easier to take responsibility and improve."
+    ],
+    "takeaway": "Try one activity from the guide at your next suitable football opportunity. Talk with a coach about how to adapt it to your game, and explore other Football Hub articles for related skills and support.",
+    "source": []
+  },
+  {
+    "id": "gk-goalkeeper-positioning-angles-football",
+    "title": "Goalkeeper Positioning and Angles: How to Make More Saves",
+    "category": "goalkeeping",
+    "level": "all",
+    "summary": "Learn goalkeeper positioning, angles and starting positions in football, with practical exercises for young goalkeepers.",
+    "body": [
+      "The best goalkeeper save is often made easier before the shot is taken. Positioning helps a goalkeeper cover the goal, react to danger and make decisions with confidence. Young keepers can improve this skill without diving repeatedly or relying on exceptional reflexes.",
+      "Start with the ball and the goal: A goalkeeper should regularly check the ball's location in relation to the centre of the goal. As the ball moves sideways, the goalkeeper adjusts position so the likely shooting angle is covered. Standing exactly in the middle of the goal regardless of where the ball is can leave a large opening. Equally, moving too far towards the near post may expose the far side. Practise moving across the goal as a coach carries a ball from side to side. Pause at different angles and discuss what the keeper can see.",
+      "Understand distance from the goal line: Coming forward can reduce the angle available to a shooter, but it also creates a risk if the ball is lifted over the goalkeeper or played behind. The right starting position depends on the distance of the attacker, pressure on the ball, other defenders and the keeper's ability to recover. Rather than teaching one fixed distance, ask the goalkeeper to adjust as the attack develops and explain why she moved.",
+      "Set before the shot: Goalkeepers need a balanced position when the shot arrives. Moving continuously or crossing the feet at the wrong moment can make reacting difficult. Use controlled footwork to get into position, then prepare to respond. The precise timing depends on the shooter and the situation. A partner can move the ball to either side before taking a gentle shot, allowing the goalkeeper to practise adjusting and setting.",
+      "Read the attacker: Watch the ball, the attacker's approach and available passing options. A shot is not inevitable simply because an opponent approaches the penalty area. If a defender is closing down the shooter, the goalkeeper may need to prepare for a deflection or a pass rather than committing early. Encourage scanning between the attacker and other runners without losing track of the ball.",
+      "Train angles safely: Mark three shooting points outside the goal area and ask the goalkeeper to find a balanced position for each. Start with stationary balls and controlled shots. Add movement and decision-making gradually. Do not turn every repetition into a full-length dive, especially on unsuitable surfaces. Review the goalkeeper's starting position before discussing whether the shot was saved. A good position can be the real success.",
+      "Common positioning mistakes: Standing too deep, drifting towards the ball without checking the far post and moving during the shot are useful habits to notice. Correct one issue at a time. Overloading a young player with instructions can slow decision-making. Use short video clips where appropriate and with consent, or recreate the situation with cones to make the angle visible."
+    ],
+    "takeaway": "In a supervised session, place a ball in three different shooting positions. Have the goalkeeper move into position, explain what part of the goal she is protecting and then face a controlled shot.",
+    "source": []
+  },
+  {
+    "id": "gk-goalkeeper-handling-catching-technique",
+    "title": "Goalkeeper Handling and Catching: Techniques and Training Drills",
+    "category": "goalkeeping",
+    "level": "all",
+    "summary": "Improve goalkeeper handling and catching with age-appropriate drills for low balls, chest-height catches and rebounds.",
+    "body": [
+      "Reliable handling gives goalkeepers and defenders confidence. Catching is not just about strong hands: the goalkeeper must judge the ball, move into line and decide whether catching, parrying or another safe action is appropriate. These skills should be introduced gradually and without fear of mistakes.",
+      "Move behind the ball: A goalkeeper often catches more securely when her body is aligned with the ball's path. Small adjustment steps help avoid reaching awkwardly. Start with gentle throws directly towards the keeper, then vary the angle so she must move before receiving. Encourage players to watch the ball into their hands rather than looking ahead to the next pass too early.",
+      "Catching around chest height: For manageable balls, prepare the hands and arms to receive the ball with control. The exact technique varies by height, speed and coaching approach. Begin with soft, predictable serves and check that the goalkeeper is comfortable before increasing pace. A good coach adapts hand positioning to the player and does not demand identical technique for every delivery.",
+      "Handling low balls: Low balls require the goalkeeper to lower her centre of gravity, move into line and secure the ball without unnecessary strain. Practise gentle rolling balls first, then progress to controlled shots along the ground. The goalkeeper should learn when to gather and when movement or a safe block is more suitable. Avoid repeatedly forcing painful knee or hip positions. Adapt to the player's mobility and the playing surface.",
+      "When not to catch: Not every shot is safely catchable. A fast, awkward or deflected ball may call for a controlled parry or another action to protect the goal. The aim is to direct danger away from opponents and dangerous central areas where possible, not simply touch the ball. Teach judgement alongside technique so a player does not feel she has failed whenever she chooses not to hold a difficult shot.",
+      "Dealing with rebounds: After a save, the goalkeeper should locate the ball quickly and be ready for a second action. Defenders also have responsibilities in reacting to loose balls. In practice, begin with a gentle shot and a controlled second ball rather than chaotic repeated efforts. Praise recovery position and awareness even if the first action was imperfect.",
+      "Build a progressive practice: Use a sequence of easy catches, movement into line, low collections and a simple decision between catching and parrying. Give rest between repetitions and vary the service. Endless identical shots can lead to tired, careless technique. Diving and landing require appropriate coaching and a suitable surface; do not introduce them as an unsupervised home drill."
+    ],
+    "takeaway": "With a coach or suitable partner, complete a short progression of gentle catches, side-step catches and rolling-ball collections. Keep the pace controlled and focus on moving into line.",
+    "source": []
+  },
+  {
+    "id": "gk-goalkeeper-distribution-playing-out-back",
+    "title": "Goalkeeper Distribution: Passing, Throwing and Playing Out from the Back",
+    "category": "goalkeeping",
+    "level": "all",
+    "summary": "A practical goalkeeper distribution guide covering passing, throwing, scanning, playing out from the back and decision-making under pressure.",
+    "body": [
+      "Modern goalkeepers are part of the team's build-up play. They may receive passes under pressure, find teammates with throws or choose when a longer ball is the safer option. Good distribution is not about forcing short passes at all costs; it is about helping the team keep or progress possession when possible.",
+      "Scan before receiving: Before the ball arrives, check where teammates, opponents and open spaces are. A goalkeeper who already knows her options can make a calmer first touch. Coaches should create clear passing angles rather than leaving the goalkeeper isolated with no safe option. A useful cue is to look once while the pass is travelling and again as the situation changes.",
+      "First touch away from pressure: The first touch should help the goalkeeper prepare the next action. That may mean moving the ball away from an approaching opponent or setting it for a pass. Practise receiving from different angles with both feet. Begin without pressure, then introduce a defender who closes down slowly. A heavy touch can create danger, but so can freezing and waiting too long. Build comfort through repeated realistic situations.",
+      "Choose the right passing option: A short pass to a full-back, a central defender or a midfielder can help the team play through pressure. But passing into a marked teammate may simply transfer the problem. Ask the goalkeeper to consider the receiver's body position and nearby opponents, not just whether a teammate is technically available. Sometimes the sensible decision is to play into space or clear longer. Avoid treating every long kick as a failure.",
+      "Throwing and rolling accurately: Throws and rolls can start counterattacks when a teammate is free. Accuracy and timing matter more than distance. Practise releasing to a moving target, with the receiver checking into space. Vary the angle and distance gradually. Ensure the teammate is ready and the route is clear before releasing.",
+      "Communicate with defenders: Goalkeepers can help organise the build-up by telling teammates when to spread out, offer support or turn away from pressure. Communication should be short and useful. Defenders also need to recognise when the keeper is under pressure and provide an alternative. Agree simple team principles so players are not improvising conflicting instructions in dangerous areas.",
+      "Create a realistic decision game: Set two passing gates and one longer target. A coach moves as a passive defender, and the goalkeeper chooses the safest useful option. Progress by allowing the defender to press more actively, provided the player is comfortable and the drill remains safe. Review the decision as well as the pass. A technically accurate ball into danger may still be the wrong choice."
+    ],
+    "takeaway": "Set up two short targets and one longer target. Receive a pass, scan, then select a target based on where a passive defender moves. Repeat with both feet.",
+    "source": []
+  },
+  {
+    "id": "gk-goalkeeper-one-on-one-situations",
+    "title": "Goalkeeper One-on-Ones: Positioning, Timing and Decision-Making",
+    "category": "goalkeeping",
+    "level": "all",
+    "summary": "Learn how goalkeepers can manage one-on-one situations using positioning, patience, communication and safe decision-making.",
+    "body": [
+      "A one-on-one can feel like the most exposed moment in football. An attacker is running towards goal and the goalkeeper has only seconds to choose what to do. Effective one-on-one goalkeeping is less about a dramatic charge and more about reading the attacker, managing space and committing at the right moment.",
+      "Recognise the situation early: Notice whether the attacker has close control, whether a defender is recovering and how much space lies behind the defence. A heavy touch can create an opportunity to close down; a controlled attacker with time may require more patience. Keep checking the ball rather than assuming the attacker will shoot immediately.",
+      "Control the distance: Moving forward can narrow the shooting angle, but coming too far too early may allow the attacker to go around or lift the ball. Adjust the starting position as the attacker approaches. The correct distance changes with the attacker's speed and control. Teach the goalkeeper to stay balanced and able to react, not simply to sprint forward every time.",
+      "Stay patient and make the attacker decide: An attacker may be waiting for the goalkeeper to commit. Remaining composed can encourage a rushed touch or shot. The goalkeeper should be prepared to react to a shot while watching for a moment when the ball moves away from the attacker's feet. Avoid guessing based on a single trick or body feint. Read the ball and the available space.",
+      "Decide whether to claim or block: If the ball is genuinely loose and safe to reach, a goalkeeper may be able to claim it. If not, a controlled blocking action may be more appropriate. Contact situations carry risk. Coaches must teach safe techniques and respect the laws of the game; players should not be encouraged to launch themselves dangerously at opponents. Practise the judgement first with passive attackers and without collisions.",
+      "Use recovering defenders: A goalkeeper can communicate with defenders about covering the central route or tracking another attacker. The keeper should not assume she is alone if a teammate can recover. Equally, defenders should not rely on the goalkeeper to solve every breakaway. A clear early call can reduce confusion about who challenges the ball.",
+      "Practise progressively: Begin with an attacker dribbling slowly from a set point and a goalkeeper adjusting position. Freeze the action to discuss available choices. Add a controlled finish, then vary the attacker's touch. Increase speed only when technique and confidence are ready. Judge the goalkeeper's decision rather than counting every goal conceded as a mistake."
+    ],
+    "takeaway": "With a qualified coach, practise slow one-on-one approaches with a passive attacker. Pause at different distances to discuss whether to hold, advance or react to a loose touch.",
+    "source": []
+  },
+  {
+    "id": "gk-goalkeeper-confidence-after-mistakes",
+    "title": "Goalkeeper Confidence: Recovering from Mistakes and Handling Pressure",
+    "category": "goalkeeping",
+    "level": "all",
+    "summary": "Help young goalkeepers build confidence, recover after mistakes and manage pressure with practical guidance for players, parents and coaches.",
+    "body": [
+      "Goalkeepers often feel that their mistakes are more visible than anyone else's. A missed catch or misplaced pass can lead directly to a goal, even when many earlier actions contributed to the situation. Building confidence means helping a young goalkeeper learn from those moments without allowing them to define her.",
+      "Understand why the position feels different: An outfield player may lose possession several times without an immediate goal. A goalkeeper's error can be remembered for weeks, particularly if teammates or adults react strongly. This visibility can make young keepers cautious. Some stop coming for crosses or avoid passing short because they fear being blamed. The solution is not to tell a player to stop caring. It is to make learning and support part of the team culture.",
+      "Separate the action from the person: Describe what happened without attaching a label. 'Your starting position was deep' is useful feedback; 'You're a bad goalkeeper' is not. After a goal, consider whether the keeper had realistic options and whether the defence could have helped. Not every conceded goal is a goalkeeper error. Avoid analysing a mistake in front of an upset player immediately after the final whistle.",
+      "Create a short reset routine: A reset can be as simple as noticing frustration, taking a comfortable breath and choosing the next task: organising defenders, checking the ball or preparing for a restart. Practise the routine during training after ordinary handling or passing mistakes so it becomes familiar. A reset is not about suppressing emotion. It is a way to return attention to something controllable.",
+      "Build bravery in manageable steps: Confidence often grows when challenges are achievable but slightly uncomfortable. A keeper who fears high balls can begin with gentle predictable deliveries before facing realistic pressure. Progress through success and feedback rather than forcing repeated frightening situations. Diving, collisions and aerial challenges require suitable coaching and safe conditions. Let the player help choose the next step. Ownership matters.",
+      "How teammates can help: Defenders should respond to goals with useful organisation rather than blame. A simple message about the next marking responsibility can help the team move on. Celebrate good decisions such as a clear call, brave positioning or accurate distribution, not just spectacular saves. Goalkeepers also need to feel included in normal team conversation and encouragement.",
+      "What parents should say after a hard match: Ask whether the player wants to discuss football. She may prefer a quiet journey, a snack or conversation about something unrelated. When she is ready, ask what she felt she did well and what she wants to practise. Resist replaying one mistake repeatedly. If anxiety or distress persists and affects daily life, seek appropriate support beyond football coaching."
+    ],
+    "takeaway": "Choose one short reset cue, such as 'next action'. Use it after a mistake in training, then focus on a specific task the goalkeeper can control.",
+    "source": []
+  },
   {
     id: 'goalkeeper-part-of-the-team',
     title: 'Goalkeeper: another passing option',
