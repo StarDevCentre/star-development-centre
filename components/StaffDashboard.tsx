@@ -17,7 +17,13 @@ export function StaffDashboard(){
  useEffect(()=>{if(!client){setReady(true);return;}let alive=true;const revision=authRevision.current;
  client.auth.getUser().then(({data})=>{if(alive&&authRevision.current===revision){identity.current=data.user?.id||"";setUser(data.user)}}).catch(()=>{}).finally(()=>{if(alive)setReady(true)});
  const {data:{subscription}}=client.auth.onAuthStateChange((event,session)=>{if(!alive)return;authRevision.current++;const next=session?.user?.id||"";if(identity.current!==next||event==="SIGNED_OUT"){setStaff(null);setCheckedStaffUserId(null);setRequested(false);setError("");setNotice("")}identity.current=next;setUser(session?.user||null);setReady(true);if(event==="PASSWORD_RECOVERY")setMode("new_password");});return()=>{alive=false;subscription.unsubscribe()}},[client]);
- useEffect(()=>{if(!client||!user){setStaff(null);setCheckedStaffUserId(null);setStaffCheckError(false);return;}let alive=true;setStaffCheckError(false);Promise.resolve(client.from("staff_members").select("user_id,role,active,welfare_officer").eq("user_id",user.id).maybeSingle()).then(({data,error})=>{if(!alive)return;if(error){setStaff(null);setStaffCheckError(true);}else{setStaff(data as Staff|null);setStaffCheckError(false);}setCheckedStaffUserId(user.id);}).catch(()=>{if(!alive)return;setStaff(null);setStaffCheckError(true);setCheckedStaffUserId(user.id);});return()=>{alive=false}},[client,user]);
+ useEffect(()=>{if(!client||!user){setStaff(null);setCheckedStaffUserId(null);setStaffCheckError(false);return;}let alive=true;setStaffCheckError(false);Promise.resolve(client.from("staff_members").select("user_id,role,active,welfare_officer").eq("user_id",user.id).maybeSingle()).then(async ({data,error})=>{if(!alive)return;
+ if(!error&&!data?.active&&mode!=="new_password"){
+  const accepted=await client.rpc("star_organisation_portal",{p_action:"accept",p_data:{}});
+  if(!alive)return;
+  if(!accepted.error){const workspace=await client.rpc("star_organisation_portal",{p_action:"workspace",p_data:{}});if(!alive)return;if(!workspace.error&&Array.isArray(workspace.data?.organisations)&&workspace.data.organisations.length){window.location.replace("/school-club-portal?mode=login");return;}}
+ }
+ if(error){setStaff(null);setStaffCheckError(true);}else{setStaff(data as Staff|null);setStaffCheckError(false);}setCheckedStaffUserId(user.id);}).catch(()=>{if(!alive)return;setStaff(null);setStaffCheckError(true);setCheckedStaffUserId(user.id);});return()=>{alive=false}},[client,user,mode]);
  async function submit(e:React.FormEvent){e.preventDefault();if(!client)return;setBusy(true);setError("");setNotice("");
  try{
  if(mode==="login"){const {error}=await client.auth.signInWithPassword({email:email.trim().toLowerCase(),password});if(error)throw error;}
