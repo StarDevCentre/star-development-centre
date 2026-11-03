@@ -258,3 +258,9 @@
  .home-header .home-header-badge-ptw{width:52px;height:34px}
  .home-header .home-header-badge-sasp{width:76px;height:34px}
 }
+
+/* Scale the full STAR artwork with its container, including all lettering. */
+@media(max-width:700px){
+ .home-header .home-logo{height:70px}
+ .home-header .home-logo>img{width:140%;height:auto;max-width:none}
+}
