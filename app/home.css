@@ -232,29 +232,29 @@
 /* Add meaningful H1 context for assistive technology and search without changing the branded hero. */
 .home-hero h1 .home-seo-context{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
-/* Keep SASP's wide original artwork legible beside the existing badges. */
+/* Partner artwork keeps its original proportions in one row on every screen. */
 .home-header .home-header-badge-sasp{width:144px;height:52px}
+.home-header .home-header-badge-ptw{width:104px;height:64px}
 @media(max-width:1400px) and (min-width:1001px){.home-header .home-desktop-nav{display:none}}
 @media(max-width:700px){
- .home-header .home-nav{height:auto;min-height:114px}
+ .home-header .home-nav{height:auto;min-height:80px;gap:8px}
+ .home-header .home-logo{width:112px}
  .home-header .home-expanded-menu{top:100%}
- .home-header-badges{display:grid;grid-template-columns:repeat(2,54px);gap:4px 6px;padding-block:8px}
- .home-header .home-header-badge-sasp{grid-column:1 / -1;width:114px;height:40px}
+ .home-header-badges{display:flex;flex-wrap:nowrap;align-items:center;gap:6px;padding-block:0}
+ .home-header .home-header-badge-ptw{width:68px;height:40px}
+ .home-header .home-header-badge-sasp{width:96px;height:40px}
+ .home-header .home-menu{width:32px}
 }
-@media(max-width:360px){
- .home-header-badges{grid-template-columns:repeat(2,48px);column-gap:5px}
- .home-header .home-header-badge-sasp{width:101px;height:36px}
+@media(max-width:380px){
+ .home-header .home-nav{gap:6px;min-height:76px}
+ .home-header .home-logo{width:96px}
+ .home-header-badges{gap:5px}
+ .home-header .home-header-badge-ptw{width:60px;height:36px}
+ .home-header .home-header-badge-sasp{width:84px;height:36px}
 }
-
-/* Official Play Their Way artwork retains its original wide proportions. */
-.home-header .home-header-badge-ptw{width:104px;height:64px}
-@media(max-width:700px){
- .home-header-badges{grid-template-columns:72px 54px}
- .home-header .home-header-badge-ptw{width:72px;height:54px}
- .home-header .home-header-badge-sasp{width:132px}
-}
-@media(max-width:360px){
- .home-header-badges{grid-template-columns:60px 48px}
- .home-header .home-header-badge-ptw{width:60px;height:48px}
- .home-header .home-header-badge-sasp{width:113px}
+@media(max-width:340px){
+ .home-header .home-logo{width:92px}
+ .home-header-badges{gap:4px}
+ .home-header .home-header-badge-ptw{width:52px;height:34px}
+ .home-header .home-header-badge-sasp{width:76px;height:34px}
 }
