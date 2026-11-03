@@ -1,0 +1,2 @@
+alter table public.star_organisation_referrals drop constraint star_organisation_referrals_age_band_check;
+alter table public.star_organisation_referrals add constraint star_organisation_referrals_age_band_check check (age_band in ('5–7','8–10','11–13','14–16','17–18') or age_band ~ '^(5|6|7|8|9|1[0-8])$');
