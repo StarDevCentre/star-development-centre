@@ -8,13 +8,54 @@ import {organisationCall,services,orgDate,type Organisation,type SharedPlayer,ty
 import {organisationResources} from '../lib/organisationResources';
 import {Field,TextField,PortalForm,ReferralFields,ReferralList,RequestList,useOrganisationData} from './OrganisationPortalShared';
 export function OrganisationPortal(){
- const client=supabaseBrowser;const[user,setUser]=useState<User|null>(null),[ready,setReady]=useState(false),[mode,setMode]=useState('login'),[busy,setBusy]=useState(false),[error,setError]=useState(''),[notice,setNotice]=useState('');
- useEffect(()=>{if(!client){setReady(true);return}let alive=true,revision=0;client.auth.getUser().then(({data})=>{if(alive&&revision===0)setUser(data.user)}).finally(()=>{if(alive)setReady(true)});const{data:{subscription}}=client.auth.onAuthStateChange((event,session)=>{revision++;if(alive){setUser(session?.user||null);setReady(true);setError('');setNotice('');if(event==='PASSWORD_RECOVERY')setMode('update')}});return()=>{alive=false;subscription.unsubscribe()}},[client]);
+ const client=supabaseBrowser;
+ const[user,setUser]=useState<User|null>(null),[ready,setReady]=useState(false),[mode,setMode]=useState('register'),[busy,setBusy]=useState(false),[error,setError]=useState(''),[notice,setNotice]=useState('');
+ const[email,setEmail]=useState(''),[password,setPassword]=useState(''),[showPassword,setShowPassword]=useState(false),[resendSeconds,setResendSeconds]=useState(0);
+ useEffect(()=>{const requested=new URLSearchParams(window.location.search).get('mode');if(requested==='login'||requested==='reset')setMode(requested);},[]);
+ useEffect(()=>{if(resendSeconds<=0)return;const timer=window.setTimeout(()=>setResendSeconds(v=>v-1),1000);return()=>window.clearTimeout(timer)},[resendSeconds]);
+ useEffect(()=>{if(!client){setReady(true);return}let alive=true,revision=0;client.auth.getUser().then(({data})=>{if(alive&&revision===0)setUser(data.user)}).catch(()=>{if(alive)setError('We could not check your account. Refresh and try again.')}).finally(()=>{if(alive)setReady(true)});const{data:{subscription}}=client.auth.onAuthStateChange((event,session)=>{revision++;if(alive){setUser(session?.user||null);setReady(true);if(event==='PASSWORD_RECOVERY'){setMode('update');setError('');setNotice('')}}});return()=>{alive=false;subscription.unsubscribe()}},[client]);
+ const confirmationUrl=()=>window.location.origin+'/school-club-portal?mode=login';
+ function authError(cause:unknown){
+  const code=typeof cause==='object'&&cause!==null&&'code' in cause?String(cause.code):'';
+  if(code==='over_email_send_rate_limit'){setResendSeconds(60);return 'Account emails are temporarily unavailable because the email service has reached its sending limit. If you already received a confirmation email, use that link. Otherwise wait before requesting another email, or contact STAR. Your invitation has not been used.'}
+  if(code==='over_request_rate_limit')return 'Too many attempts. Please wait a few minutes and try again.';
+  if(code==='email_not_confirmed'){setMode('confirm');return 'Please confirm your email before signing in. Check your inbox and junk folder, or request another confirmation below.'}
+  if(code==='invalid_credentials')return 'The email or password was not recognised. If you already have a STAR account, use its existing password or choose Forgot password.';
+  if(code==='weak_password')return 'Choose a stronger password of at least 12 characters.';
+  if(code==='user_already_exists'||code==='email_exists')return 'This email already has a STAR account. Choose Already have an account? Sign in, or reset your password.';
+  return 'We could not complete this request. Check your connection and try again. If it continues, contact STAR.';
+ }
+ async function resendConfirmation(){if(!client||busy||resendSeconds)return;setBusy(true);setError('');setNotice('');try{const{error}=await client.auth.resend({type:'signup',email:email.trim().toLowerCase(),options:{emailRedirectTo:confirmationUrl()}});if(error)throw error;setResendSeconds(60);setNotice('If confirmation is needed, a new email is on its way. Check your inbox and junk folder.')}catch(cause){setError(authError(cause))}finally{setBusy(false)}}
+ async function submit(e:React.FormEvent<HTMLFormElement>){
+  e.preventDefault();if(!client||busy)return;setBusy(true);setError('');setNotice('');
+  try{
+   const address=email.trim().toLowerCase();
+   if(mode==='register'){
+    const result=await client.auth.signUp({email:address,password,options:{emailRedirectTo:confirmationUrl()}});
+    if(result.error)throw result.error;setPassword('');setShowPassword(false);
+    if(result.data.session){setUser(result.data.session.user)}else{setMode('confirm');setResendSeconds(60);setNotice('Check your inbox and junk folder for the confirmation link. If you already have a confirmed STAR account, sign in with your existing password.')}
+   }else if(mode==='reset'){
+    const{error}=await client.auth.resetPasswordForEmail(address,{redirectTo:confirmationUrl()});if(error)throw error;setNotice('If this account is registered, password recovery instructions have been sent. Check your inbox and junk folder.');
+   }else if(mode==='update'){
+    const{error}=await client.auth.updateUser({password});if(error)throw error;setPassword('');setShowPassword(false);setMode('login');setNotice('Your password has been updated.');
+   }else{
+    const{error}=await client.auth.signInWithPassword({email:address,password});if(error)throw error;setPassword('');
+   }
+  }catch(cause){setError(authError(cause))}finally{setBusy(false)}
+ }
+ function changeMode(next:string){setMode(next);setPassword('');setShowPassword(false);setError('');setNotice('')}
  if(!ready)return <p role="status">Checking your account…</p>;
  if(!client)return <p>Portal sign-in is currently unavailable. Please contact STAR.</p>;
  if(user&&mode!=='update')return <OrganisationAccess key={user.id} onSignOut={()=>void client.auth.signOut()} email={user.email||''}/>;
- return <section className="org-card org-auth"><p className="org-eyebrow">INVITATION ONLY</p><h2>{mode==='register'?'Activate your invited account':mode==='reset'?'Reset your password':mode==='update'?'Choose a new password':'School & club sign in'}</h2><p>Use the email address invited by STAR. Each staff member has their own account.</p><form className="org-form" onSubmit={async e=>{e.preventDefault();if(busy)return;const f=new FormData(e.currentTarget),email=String(f.get('email')||''),password=String(f.get('password')||'');setBusy(true);setError('');setNotice('');try{let result;if(mode==='register')result=await client.auth.signUp({email,password,options:{emailRedirectTo:window.location.origin+'/school-club-portal'}});else if(mode==='reset')result=await client.auth.resetPasswordForEmail(email,{redirectTo:window.location.origin+'/school-club-portal'});else if(mode==='update')result=await client.auth.updateUser({password});else result=await client.auth.signInWithPassword({email,password});if(result.error)throw result.error;if(mode==='register')setNotice('Check your inbox to confirm your email, then sign in here. Only a current STAR invitation grants portal access.');if(mode==='reset')setNotice('If this account is registered, password recovery instructions have been sent.');setMode('login')}catch{setError('We could not complete this request. Check your details and try again.')}finally{setBusy(false)}}}><fieldset disabled={busy}>{mode!=='update'&&<Field label="Invited email address" name="email" type="email" maxLength={254}/>} {mode!=='reset'&&<label>Password<input name="password" type="password" required minLength={mode==='login'?1:12} autoComplete={mode==='login'?'current-password':'new-password'}/></label>}<button className="org-primary">{busy?'Please wait…':mode==='register'?'Create invited account':mode==='reset'?'Send password reset':mode==='update'?'Save password':'Sign in'}</button></fieldset></form><div className="org-buttons">{['login','register','reset'].filter(x=>x!==mode).map(x=><button type="button" className="org-text" key={x} onClick={()=>{setMode(x);setError('');setNotice('')}}>{x==='login'?'Back to sign in':x==='register'?'First time? Activate your invitation':'Forgot password?'}</button>)}</div>{error&&<p role="alert" className="org-error">{error}</p>}{notice&&<p role="status">{notice}</p>}</section>;
+ return <section className="org-card org-auth"><p className="org-eyebrow">INVITATION ONLY</p><h2>{mode==='register'?'Activate your invited account':mode==='confirm'?'Confirm your email':mode==='reset'?'Reset your password':mode==='update'?'Choose a new password':'School & club sign in'}</h2><p>Use the email address invited by STAR. Each staff member has their own account.</p>
+ {mode==='confirm'?<><p>Open the confirmation link sent to <strong>{email}</strong>, then return here to sign in. Your organisation invitation is accepted after your email is verified.</p><button type="button" className="org-secondary" disabled={busy||resendSeconds>0} onClick={()=>void resendConfirmation()}>{busy?'Please wait…':resendSeconds>0?'Resend available in '+resendSeconds+'s':'Resend confirmation email'}</button></>:
+ <form className="org-form" onSubmit={submit}><fieldset disabled={busy}>
+ {mode!=='update'&&<label>Invited email address<input name="email" type="email" required maxLength={254} autoComplete="email" autoCapitalize="none" spellCheck={false} value={email} onChange={e=>setEmail(e.target.value)}/></label>}
+ {mode!=='reset'&&<label>Password<input name="password" type={showPassword?'text':'password'} required minLength={mode==='login'?1:12} autoComplete={mode==='login'?'current-password':'new-password'} value={password} onChange={e=>setPassword(e.target.value)}/><button type="button" className="org-text" aria-pressed={showPassword} onClick={()=>setShowPassword(v=>!v)}>{showPassword?'Hide password':'Show password'}</button>{mode!=='login'&&<span className="org-hint">Use at least 12 characters.</span>}</label>}
+ <button className="org-primary" type="submit">{busy?'Please wait…':mode==='register'?'Create invited account':mode==='reset'?'Send password reset':mode==='update'?'Save password':'Sign in'}</button></fieldset></form>}
+ <div className="org-buttons">{mode!=='update'&&['login','register','reset'].filter(x=>x!==mode).map(x=><button type="button" className="org-text" key={x} onClick={()=>changeMode(x)}>{x==='login'?'Already have an account? Sign in':x==='register'?'Activate an invitation':'Forgot password?'}</button>)}</div>{error&&<p role="alert" className="org-error">{error}</p>}{notice&&<p role="status">{notice}</p>}</section>;
 }
+
 function OrganisationAccess({onSignOut,email}:{onSignOut:()=>void;email:string}){
  const[state,setState]=useState<{organisations:Organisation[]}|null>(null),[error,setError]=useState(''),[selected,setSelected]=useState(''),[version,setVersion]=useState(0);
  useEffect(()=>{let alive=true;setState(null);organisationCall('accept').then(()=>organisationCall<{organisations:Organisation[]}>('workspace')).then(data=>{if(alive){setState(data);setSelected(v=>data.organisations.some(o=>o.id===v)?v:data.organisations[0]?.id||'')}}).catch(e=>{if(alive)setError(e.message)});return()=>{alive=false}},[version]);
