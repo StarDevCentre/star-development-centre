@@ -47,11 +47,11 @@
 .home-header-badges{display:flex;align-items:center;gap:8px;flex-shrink:0}
 .home-header-badge{display:block;position:relative;overflow:hidden;width:62px;height:62px;flex-shrink:0;border-radius:7px;background:#f5f4f0;box-shadow:0 0 0 1px #d9cba550}
 .home-header-badge img{display:block;width:100%;height:100%;object-fit:contain;filter:none;transform:none}
-.home-header-badge-caa img{padding:3px}
+.home-header-badge-ptw img{padding:3px}
 .home-header-badge-autism img{position:absolute;width:100%;height:150%;max-width:none;top:-24%;left:0;object-fit:fill}
 .home-header .home-nav{gap:22px}
 @media(max-width:1100px) and (min-width:701px){.home-header .home-nav{gap:16px}.home-header-badge{width:52px;height:52px}}
-@media(max-width:700px){.home-header .home-nav{gap:10px}.home-header .home-logo{margin-right:auto;width:124px}.home-header-badges{gap:6px}.home-header-badge{width:46px;height:46px;border-radius:5px}.home-header .home-menu{width:36px;flex-shrink:0}.home-header-badge-caa img{padding:2px}}
+@media(max-width:700px){.home-header .home-nav{gap:10px}.home-header .home-logo{margin-right:auto;width:124px}.home-header-badges{gap:6px}.home-header-badge{width:46px;height:46px;border-radius:5px}.home-header .home-menu{width:36px;flex-shrink:0}.home-header-badge-ptw img{padding:2px}}
 @media(max-width:360px){.home-header .home-nav{gap:8px}.home-header .home-logo{width:108px}.home-header-badge{width:42px;height:42px}.home-header-badges{gap:5px}}
 
 /* Original STAR artwork on a white header; clip only its surrounding margins. */
@@ -74,7 +74,7 @@
 
 /* Larger supporting logos within the existing 96px / 68px navigation row. */
 .home-header .home-header-badge{width:72px;height:72px;background:transparent;overflow:visible}
-.home-header .home-header-badge-caa img{padding:0}
+.home-header .home-header-badge-ptw img{padding:0}
 .home-header .home-header-badge-autism img{position:static;inset:auto;width:100%;height:100%;max-width:100%;object-fit:contain}
 @media(max-width:1100px) and (min-width:701px){.home-header .home-header-badge{width:62px;height:62px}}
 @media(max-width:700px){.home-header .home-header-badge{width:54px;height:54px}}
@@ -244,4 +244,17 @@
 @media(max-width:360px){
  .home-header-badges{grid-template-columns:repeat(2,48px);column-gap:5px}
  .home-header .home-header-badge-sasp{width:101px;height:36px}
+}
+
+/* Official Play Their Way artwork retains its original wide proportions. */
+.home-header .home-header-badge-ptw{width:104px;height:64px}
+@media(max-width:700px){
+ .home-header-badges{grid-template-columns:72px 54px}
+ .home-header .home-header-badge-ptw{width:72px;height:54px}
+ .home-header .home-header-badge-sasp{width:132px}
+}
+@media(max-width:360px){
+ .home-header-badges{grid-template-columns:60px 48px}
+ .home-header .home-header-badge-ptw{width:60px;height:48px}
+ .home-header .home-header-badge-sasp{width:113px}
 }
