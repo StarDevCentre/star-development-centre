@@ -1,5 +1,5 @@
 import type {NextConfig} from 'next';
-const privatePaths=['/school-club-portal/:path*','/parent-portal/:path*','/player-portal/:path*','/staff/:path*','/onboarding/:path*','/api/:path*','/share/:path*'];
+const privatePaths=['/refer/:path*','/school-club-portal/:path*','/parent-portal/:path*','/player-portal/:path*','/staff/:path*','/onboarding/:path*','/api/:path*','/share/:path*'];
 const config:NextConfig={
   images:{
     formats:['image/avif','image/webp'],
@@ -15,4 +15,5 @@ const config:NextConfig={
   },
 };
 export default config;
+
 
