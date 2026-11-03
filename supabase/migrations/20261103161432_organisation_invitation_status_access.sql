@@ -1,0 +1,1 @@
+grant usage on schema star_private to service_role;

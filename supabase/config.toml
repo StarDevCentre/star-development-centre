@@ -3,3 +3,8 @@
 # It does not accept browser JWTs as authority to send notifications.
 verify_jwt = false
 entrypoint = "./functions/player-push-worker/index.ts"
+
+[functions.organisation-invitation]
+# Auth.getUser validates the bearer token; the database requires verified STAR management.
+verify_jwt = false
+entrypoint = "./functions/organisation-invitation/index.ts"

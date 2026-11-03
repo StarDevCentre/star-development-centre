@@ -38,8 +38,12 @@ Free, invitation-only, co-branded organisation portal. Primary outcome: referral
 
 ## Remaining batches
 
-Inbox and email alerts/invitations; calendar scheduling and recurrence; richer coaching resources and private adaptations; shared goals/progress; teams/year groups; dashboard action/session prioritisation; complete session-based reporting and portal/resource activity metrics.
+Inbox and email alerts; calendar scheduling and recurrence; richer coaching resources and private adaptations; shared goals/progress; teams/year groups; dashboard action/session prioritisation; complete session-based reporting and portal/resource activity metrics.
 
 ## Validation
 
 TypeScript; production build; existing parent-account checks; rollback-only original organisation/consent checks and new referral permissions/assignment/deadline/alert/concurrency/milestone checks. Exported poster/social artwork rendered with the actual STAR logo. No real referral, email, invitation or player records created for testing; no browser/usability tests.
+ 
+## Invitation batch
+
+Individual emailed staff invitations, resend controls, delivery-attempt/acceptance tracking and native Auth password setup are now delivered. See [individual-invitations.md](individual-invitations.md) for operations and validation.

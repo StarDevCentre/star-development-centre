@@ -46,7 +46,7 @@ select set_config('request.jwt.claim.sub',(select id::text from portal_test_ctx 
 select public.star_organisation_portal('publish_update',jsonb_build_object('link_id',(select id from portal_test_ctx where key='link'),'feedback','Synthetic selected session feedback','suggested_support','Give time to scan'));
 do $$ declare created uuid; begin
  created:=(public.star_organisation_portal('create_organisation',jsonb_build_object('name','Synthetic additional school','kind','school'))->>'id')::uuid;
- perform public.star_organisation_portal('invite',jsonb_build_object('organisation_id',created,'name','Synthetic invited teacher','email','synthetic-invite@example.invalid'));
+ perform public.star_prepare_organisation_invitation(jsonb_build_object('organisation_id',created,'name','Synthetic invited teacher','email','synthetic-invite@example.invalid'));
  perform public.star_organisation_portal('link_player',jsonb_build_object('organisation_id',created,'player_id',(select id from portal_test_ctx where key='player')));
  perform public.star_organisation_portal('manage');
 end $$;

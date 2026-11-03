@@ -9,11 +9,12 @@ import {organisationResources} from '../lib/organisationResources';
 import {Field,TextField,PortalForm,ReferralFields,ReferralList,RequestList,useOrganisationData} from './OrganisationPortalShared';
 export function OrganisationPortal(){
  const client=supabaseBrowser;
- const[user,setUser]=useState<User|null>(null),[ready,setReady]=useState(false),[mode,setMode]=useState('register'),[busy,setBusy]=useState(false),[error,setError]=useState(''),[notice,setNotice]=useState('');
+ const[user,setUser]=useState<User|null>(null),[ready,setReady]=useState(false),[mode,setMode]=useState('login'),[busy,setBusy]=useState(false),[error,setError]=useState(''),[notice,setNotice]=useState('');
  const[email,setEmail]=useState(''),[password,setPassword]=useState(''),[showPassword,setShowPassword]=useState(false),[resendSeconds,setResendSeconds]=useState(0);
- useEffect(()=>{const requested=new URLSearchParams(window.location.search).get('mode');if(requested==='login'||requested==='reset')setMode(requested);},[]);
+ useEffect(()=>{const requested=new URLSearchParams(window.location.search).get('mode');if(requested==='register'||requested==='login'||requested==='reset')setMode(requested);const hash=new URLSearchParams(window.location.hash.slice(1));if(hash.get('error')){setError('This email link has expired or has already been used. Sign in with your password, or ask STAR to resend your unused invitation.');window.history.replaceState(null,'',window.location.pathname+'?mode=login')}},[]);
  useEffect(()=>{if(resendSeconds<=0)return;const timer=window.setTimeout(()=>setResendSeconds(v=>v-1),1000);return()=>window.clearTimeout(timer)},[resendSeconds]);
- useEffect(()=>{if(!client){setReady(true);return}let alive=true,revision=0;client.auth.getUser().then(({data})=>{if(alive&&revision===0)setUser(data.user)}).catch(()=>{if(alive)setError('We could not check your account. Refresh and try again.')}).finally(()=>{if(alive)setReady(true)});const{data:{subscription}}=client.auth.onAuthStateChange((event,session)=>{revision++;if(alive){setUser(session?.user||null);setReady(true);if(event==='PASSWORD_RECOVERY'){setMode('update');setError('');setNotice('')}}});return()=>{alive=false;subscription.unsubscribe()}},[client]);
+ // This user-editable flag controls password-setup presentation only; the server verifies organisation permissions.
+ useEffect(()=>{if(!client){setReady(true);return}let alive=true,revision=0;client.auth.getUser().then(({data})=>{if(alive&&revision===0){setUser(data.user);if(data.user?.user_metadata?.organisation_password_setup===true)setMode('update')}}).catch(()=>{if(alive)setError('We could not check your account. Refresh and try again.')}).finally(()=>{if(alive)setReady(true)});const{data:{subscription}}=client.auth.onAuthStateChange((event,session)=>{revision++;if(alive){setUser(session?.user||null);setReady(true);if(event==='PASSWORD_RECOVERY'||session?.user.user_metadata?.organisation_password_setup===true){setMode('update');setError('');setNotice('')}}});return()=>{alive=false;subscription.unsubscribe()}},[client]);
  const confirmationUrl=()=>window.location.origin+'/school-club-portal?mode=login';
  function authError(cause:unknown){
   const code=typeof cause==='object'&&cause!==null&&'code' in cause?String(cause.code):'';
@@ -37,7 +38,7 @@ export function OrganisationPortal(){
    }else if(mode==='reset'){
     const{error}=await client.auth.resetPasswordForEmail(address,{redirectTo:confirmationUrl()});if(error)throw error;setNotice('If this account is registered, password recovery instructions have been sent. Check your inbox and junk folder.');
    }else if(mode==='update'){
-    const{error}=await client.auth.updateUser({password});if(error)throw error;setPassword('');setShowPassword(false);setMode('login');setNotice('Your password has been updated.');
+    const{error}=await client.auth.updateUser({password,data:{organisation_password_setup:false}});if(error)throw error;setPassword('');setShowPassword(false);setMode('login');setNotice('Your password has been updated.');
    }else{
     const{error}=await client.auth.signInWithPassword({email:address,password});if(error)throw error;setPassword('');
    }
@@ -47,7 +48,7 @@ export function OrganisationPortal(){
  if(!ready)return <p role="status">Checking your account…</p>;
  if(!client)return <p>Portal sign-in is currently unavailable. Please contact STAR.</p>;
  if(user&&mode!=='update')return <OrganisationAccess key={user.id} onSignOut={()=>void client.auth.signOut()} email={user.email||''}/>;
- return <section className="org-card org-auth"><p className="org-eyebrow">INVITATION ONLY</p><h2>{mode==='register'?'Activate your invited account':mode==='confirm'?'Confirm your email':mode==='reset'?'Reset your password':mode==='update'?'Choose a new password':'School & club sign in'}</h2><p>Use the email address invited by STAR. Each staff member has their own account.</p>
+ return <section className="org-card org-auth"><p className="org-eyebrow">INVITATION ONLY</p><h2>{mode==='register'?'Activate your invited account':mode==='confirm'?'Confirm your email':mode==='reset'?'Reset your password':mode==='update'?'Choose your password':'School & club sign in'}</h2><p>{mode==='update'?'Your email link has verified your address. Choose a password to continue into your organisation.':'Use the email address invited by STAR. New invitees should open their personal invitation email. Each staff member has their own account.'}</p>
  {mode==='confirm'?<><p>Open the confirmation link sent to <strong>{email}</strong>, then return here to sign in. Your organisation invitation is accepted after your email is verified.</p><button type="button" className="org-secondary" disabled={busy||resendSeconds>0} onClick={()=>void resendConfirmation()}>{busy?'Please wait…':resendSeconds>0?'Resend available in '+resendSeconds+'s':'Resend confirmation email'}</button></>:
  <form className="org-form" onSubmit={submit}><fieldset disabled={busy}>
  {mode!=='update'&&<label>Invited email address<input name="email" type="email" required maxLength={254} autoComplete="email" autoCapitalize="none" spellCheck={false} value={email} onChange={e=>setEmail(e.target.value)}/></label>}
