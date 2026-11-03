@@ -1,0 +1,3 @@
+import {OrganisationPortal} from '../../components/OrganisationPortal';
+export const metadata={title:'School & Club Portal',description:'Private school and club connections with STAR Development Centre.',robots:{index:false,follow:false}};
+export default function Page(){return <div className="org-page"><div className="org-page-heading"><a href="/" aria-label="STAR home"><img src="/images/star-colour-transparent.webp" alt="STAR Development Centre" width="240" height="120"/></a><p className="org-eyebrow">BELIEVE. DEVELOP. ACHIEVE.</p><h1>Her school. Her club.<br/><em>One connected journey.</em></h1><p>Referrals, coaching and shared player development, together with STAR.</p></div><div className="org-content"><OrganisationPortal/></div></div>}
