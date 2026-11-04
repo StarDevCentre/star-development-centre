@@ -7,7 +7,8 @@ Schools and clubs can add non-STAR names to teams and year groups in **Teams, ye
 - Each entry stores only a name and its organisation/group associations.
 - Names can belong to several teams or year groups. Staff can rename them, remove a group assignment, or delete a name from all groups in that organisation.
 - Adding an entry does not create an account, invite a parent, create a STAR player record, or search for or link a matching STAR player.
-- In the school/club portal, selecting a register name opens the existing referral form with that name prefilled. The same action is available under Manage register names. Referral details stay in the referral flow; submitting requires the existing parent-permission confirmation and does not create or link a player account. The register entry remains name-only.
+- Group registers show only assigned players in a compact alphabetical list, with one name per row. Selecting a register name opens a native modal with Refer to STAR, Remove from group, Rename and Delete name. Delete requires a second confirmation and clearly removes the name from every group. All register names is collapsed by default and uses the same popup. Add players and Group settings are collapsed; unassigned names and parent-approved STAR players are chosen from selectors instead of appearing in every group list. Linked STAR players can be removed from a group without deleting their STAR connection.
+- Selecting Refer to STAR in the popup opens the existing referral form with the name prefilled. Referral details stay in the referral flow; submitting requires the existing parent-permission confirmation and does not create or link a player account. The register entry remains name-only.
 - Duplicate names are allowed because different children may have the same name.
 - Register entries have no sign-in, goals, progress, portal access, or other player features.
 
