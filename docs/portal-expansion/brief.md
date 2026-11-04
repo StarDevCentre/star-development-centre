@@ -47,3 +47,8 @@ TypeScript; production build; existing parent-account checks; rollback-only orig
 ## Invitation batch
 
 Individual emailed staff invitations, resend controls, delivery-attempt/acceptance tracking and native Auth password setup are now delivered. See [individual-invitations.md](individual-invitations.md) for operations and validation.
+
+
+## Inbox batch shipped — 4 November 2026
+
+Individual email invitations and the organisation inbox/email alert batch are complete. Staff Inbox has Families and Schools & clubs tabs; organisation Overview and Staff Home show personal unread summaries. New selected feedback, observations and referral/request updates create contextual conversation events. Generic production emails use the durable queue and minute worker. Parent consent, live membership and STAR management permissions are checked on each inbox operation and before delivery. No historic notification backfill. See `organisation-inbox.md` for operation, validation and rollback. Calendar scheduling is the next separate batch.

@@ -47,6 +47,17 @@ reset role;
 select pg_temp.ok((select count(*)=1 from star_private.org_messages where sender_id=(select id from inbox_ctx where key='member') and kind='session_request'),'new session request appears in inbox');
 select pg_temp.ok((select count(*)=1 from star_private.org_messages where sender_id=(select id from inbox_ctx where key='member') and kind='observation'),'observation appears in inbox');
 select pg_temp.ok(not exists(select 1 from star_private.org_deliveries where recipient_id in (select id from inbox_ctx where key in ('other','unverified','coach'))),'no wrong-organisation, unverified or coach recipients');
+-- Claim tokens, backoff, stale-finisher denial and exhausted-lease recovery.
+create temporary table inbox_claims(payload jsonb);
+insert into inbox_claims select public.star_organisation_email_worker((select decrypted_secret from vault.decrypted_secrets where name='organisation_email_worker_secret'),'claim');
+select pg_temp.ok((select jsonb_array_length(payload)>0 from inbox_claims),'worker can claim due alerts');
+select pg_temp.ok((select count(*)=jsonb_array_length((select payload from inbox_claims)) from star_private.org_deliveries where status='sending' and lease_until>now()),'claimed jobs have active token leases');
+select public.star_organisation_email_worker((select decrypted_secret from vault.decrypted_secrets where name='organisation_email_worker_secret'),'finish',jsonb_build_object('id',payload->0->>'id','claim_token',payload->0->>'claim_token','status','retry')) from inbox_claims;
+select pg_temp.ok((select d.status='pending' and d.available_at>now() and d.claim_token is null and d.attempts=1 from star_private.org_deliveries d where d.id=((select payload from inbox_claims)->0->>'id')::uuid),'transient delivery backs off without a live lease');
+select pg_temp.ok((select public.star_organisation_email_worker((select decrypted_secret from vault.decrypted_secrets where name='organisation_email_worker_secret'),'finish',jsonb_build_object('id',payload->0->>'id','claim_token',payload->0->>'claim_token','status','sent')) is null from inbox_claims),'stale finisher cannot mark retried delivery sent');
+update star_private.org_deliveries set status='sending',attempts=8,lease_until=now()-interval '1 second' where id=((select payload from inbox_claims)->0->>'id')::uuid;
+select public.star_organisation_email_worker((select decrypted_secret from vault.decrypted_secrets where name='organisation_email_worker_secret'),'claim');
+select pg_temp.ok((select status='failed' and claim_token is null from star_private.org_deliveries where id=((select payload from inbox_claims)->0->>'id')::uuid),'exhausted abandoned claim becomes failed');
 -- Exercise worker leases/check/finish against synthetic jobs only, without contacting mail provider.
 update star_private.org_deliveries set status='sending',claim_token=gen_random_uuid(),lease_until=now()+interval '5 minutes' where recipient_id=(select id from inbox_ctx where key='member');
 select pg_temp.ok((select public.star_organisation_email_worker((select decrypted_secret from vault.decrypted_secrets where name='organisation_email_worker_secret'),'check',jsonb_build_object('id',d.id,'claim_token',d.claim_token))->>'email'='inbox-test-'||(select id::text from inbox_ctx where key='member')||'@example.invalid' from star_private.org_deliveries d join star_private.org_messages m on m.id=d.message_id where d.recipient_id=(select id from inbox_ctx where key='member') and m.kind='shared_feedback'),'worker resolves live recipient');
