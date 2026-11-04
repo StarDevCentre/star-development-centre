@@ -1,0 +1,9 @@
+# Organisation promotion artwork
+
+The school/club promotion toolkit exports organisation-led 1080-square social PNGs and A4-ratio 1080 × 1527 portrait SVG posters. Saved organisation names, logos and colours remain dynamic. STAR is the supporting football development partner. Artwork reuses the approved public `star-home-cinematic.webp` photograph and the actual `star-colour-transparent.webp` logo. Images are embedded as PNG data URLs, including in the downloadable SVG, so printing does not depend on external assets.
+
+The CTA is “Book a free assessment”. Supporting text makes clear that scanning sends a request through the verified parent referral flow and STAR confirms the time and venue. The free 30-minute assessment matches the existing first-session offer; ongoing coaching is separate. Captions, newsletter and parent email copy and the organisation referral landing page use the same offer. The QR retains the organisation-specific attribution URL; no booking is automatically created.
+
+Headlines use outlined Barlow Condensed 900 glyphs, avoiding installed-font or SVG-image font-loading differences. `lib/organisationArtworkFont.json` derives from the repository's `public/fonts/barlow-condensed-900-latin.woff2`, copyright 2017 The Barlow Project Authors, licensed under `public/fonts/barlow-condensed-OFL.txt`. Regenerate from the repository root with `python scripts/export-organisation-artwork-font.py` (fonttools and brotli). Body and organisation name text use Arial/sans-serif, with bounded header wrapping for long/unbroken names. The outline data is loaded only when exporting artwork.
+
+Validation: TypeScript and production build; actual SVG export renders for square and A4; QR decoding at full and half width; header variants with and without a logo and long names. No browser/usability tests or database changes.
