@@ -41,3 +41,6 @@
  .org-workspace .org-metrics>div{padding:12px}
  .org-workspace .org-tabs{margin:18px 0;padding:8px}
 }
+
+/* Brand identity text must beat staff/card heading colours in embedded previews too. */
+.org-brand .org-brand-identity :is(h2,p){color:var(--organisation-on-colour,#fff)}
