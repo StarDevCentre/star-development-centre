@@ -11,12 +11,13 @@ const StaffHome=dynamic(()=>import("./StaffHome").then(m=>m.StaffHome),{loading:
 const StaffMediaGallery=dynamic(()=>import("./StaffMediaGallery").then(m=>m.StaffMediaGallery),{loading:()=> <p role="status">Loading…</p>});
 const StaffCoachingProfile=dynamic(()=>import("./StaffCoachingProfile").then(m=>m.StaffCoachingProfile),{loading:()=> <p role="status">Loading…</p>});
 const StaffPlayers=dynamic(()=>import("./StaffPlayers").then(m=>m.StaffPlayers),{loading:()=> <p role="status">Loading…</p>});
+import {OrganisationInboxSummary} from "./OrganisationInboxSummary";
 import {FamilyUnreadBadge} from "./FamilyUnreadBadge";
 const BadgeAwards=dynamic(()=>import("./BadgeAwards").then(m=>m.BadgeAwards),{loading:()=> <p role="status">Loading…</p>});
 const StaffPlayerSpaceHub=dynamic(()=>import("./StaffPlayerSpaceHub").then(m=>m.StaffPlayerSpaceHub),{loading:()=> <p role="status">Loading…</p>});
 const PlayerTrainingHub=dynamic(()=>import("./PlayerTrainingHub").then(m=>m.PlayerTrainingHub),{loading:()=> <p role="status">Loading…</p>});
 const SessionChangeRequests=dynamic(()=>import("./SessionChangeRequests").then(m=>m.SessionChangeRequests),{loading:()=> <p role="status">Loading…</p>});
-const FamilyCommunications=dynamic(()=>import("./FamilyCommunications").then(m=>m.FamilyCommunications),{loading:()=> <p role="status">Loading…</p>});
+const StaffInbox=dynamic(()=>import("./StaffInbox").then(m=>m.StaffInbox),{loading:()=> <p role="status">Loading…</p>});
 const AdmissionsManagement=dynamic(()=>import("./AdmissionsManagement").then(m=>m.AdmissionsManagement),{loading:()=> <p role="status">Loading…</p>});
 const FamilyPublishing=dynamic(()=>import("./FamilyPublishing").then(m=>m.FamilyPublishing),{loading:()=> <p role="status">Loading…</p>});
 const FamilyAccessAdmin=dynamic(()=>import("./FamilyAccessAdmin").then(m=>m.FamilyAccessAdmin),{loading:()=> <p role="status">Loading…</p>});
@@ -32,10 +33,11 @@ export function StaffWorkspace({userId,role,onSignOut}:{userId:string;role:Staff
  const{section,visited,goTo}=useStaffNavigation(role);const[menuOpen,setMenuOpen]=useState(false),[hubPlayerId,setHubPlayerId]=useState(""),[badgePlayerId,setBadgePlayerId]=useState(""),[rosterPlayerId,setRosterPlayerId]=useState(""),[sessionId,setSessionId]=useState(""),[rosterRequest,setRosterRequest]=useState(0),[hubRequest,setHubRequest]=useState(0),[badgeRequest,setBadgeRequest]=useState(0),[coachingTarget,setCoachingTarget]=useState<{playerId:string;sessionId:string;revision:number}|null>(null);
  const [profilePlayerId,setProfilePlayerId]=useState(""),[profileRequest,setProfileRequest]=useState(0),[publishingPlayerId,setPublishingPlayerId]=useState(""),[publishingRequest,setPublishingRequest]=useState(0);
  const [contextPlayer,setContextPlayer]=useState("");
+ const[inboxTarget,setInboxTarget]=useState<{tab:string;revision:number}>({tab:"families",revision:0});
  const [planRequest,setPlanRequest]=useState<{id:string;revision:number}|null>(null);
  const [actionTarget,setActionTarget]=useState<{area:StaffSection;id:string;revision:number}|null>(null);
  const canManage=staffCanManage(role),allowed=staffSections(role);
- function navigate(area:StaffSection,playerId?:string,targetSessionId?:string){if(area==="attendance")area="workspace";if(!allowed.some(i=>i.id===area))return;if(playerId&&!["onboarding","sessionRequests"].includes(area))setContextPlayer(playerId);if(playerId){if(area==="onboarding"||area==="sessionRequests")setActionTarget(v=>({area,id:playerId,revision:(v?.revision||0)+1}));if(area==="coachingProfiles"){setProfilePlayerId(playerId);setProfileRequest(n=>n+1)}if(area==="familyPublishing"){setPublishingPlayerId(playerId);setPublishingRequest(n=>n+1)}if(area==="records")setCoachingTarget(previous=>({playerId,sessionId:targetSessionId||"",revision:(previous?.revision||0)+1}));if(area==="idps"){setHubPlayerId(playerId);setHubRequest(n=>n+1)}if(area==="badges"){setBadgePlayerId(playerId);setBadgeRequest(n=>n+1)}if(area==="players"){setRosterPlayerId(playerId);setRosterRequest(n=>n+1)}}if(area==="workspace"&&targetSessionId)setSessionId(targetSessionId);goTo(area);}
+ function navigate(area:StaffSection,playerId?:string,targetSessionId?:string){if(area==="communications")setInboxTarget(v=>({tab:targetSessionId==="organisations"?"organisations":"families",revision:v.revision+1}));if(area==="attendance")area="workspace";if(!allowed.some(i=>i.id===area))return;if(playerId&&!["onboarding","sessionRequests"].includes(area))setContextPlayer(playerId);if(playerId){if(area==="onboarding"||area==="sessionRequests")setActionTarget(v=>({area,id:playerId,revision:(v?.revision||0)+1}));if(area==="coachingProfiles"){setProfilePlayerId(playerId);setProfileRequest(n=>n+1)}if(area==="familyPublishing"){setPublishingPlayerId(playerId);setPublishingRequest(n=>n+1)}if(area==="records")setCoachingTarget(previous=>({playerId,sessionId:targetSessionId||"",revision:(previous?.revision||0)+1}));if(area==="idps"){setHubPlayerId(playerId);setHubRequest(n=>n+1)}if(area==="badges"){setBadgePlayerId(playerId);setBadgeRequest(n=>n+1)}if(area==="players"){setRosterPlayerId(playerId);setRosterRequest(n=>n+1)}}if(area==="workspace"&&targetSessionId)setSessionId(targetSessionId);goTo(area);}
  function panel(id:StaffSection){switch(id){
   case "organisations":return canManage?<StaffOrganisations/>:null;
   case "overview":return <StaffHome active={section==="overview"&&!menuOpen} canManage={canManage} onNavigate={navigate}/>;
@@ -51,7 +53,7 @@ export function StaffWorkspace({userId,role,onSignOut}:{userId:string;role:Staff
   case "badges":return <BadgeAwards key={(badgePlayerId||"all")+":"+badgeRequest} userId={userId} initialPlayerId={badgePlayerId}/>;
   case "trainingHub":return <PlayerTrainingHub userId={userId} role="staff" initialPlayerId={contextPlayer}/>;
   case "playerSpace":return <StaffPlayerSpaceHub userId={userId} canManage={canManage} initialPlayerId={contextPlayer}/>;
-  case "communications":return canManage?<FamilyCommunications userId={userId} role="staff" initialPlayerId={contextPlayer} active={section==="communications"&&!menuOpen}/>:null;
+  case "communications":return canManage?<StaffInbox userId={userId} target={inboxTarget} initialPlayerId={contextPlayer} active={section==="communications"&&!menuOpen}/>:null;
   case "sessionRequests":return canManage?<SessionChangeRequests userId={userId} role="staff" onCompleteSchedule={player=>navigate("familyPublishing",player)} onOpenCalendar={()=>navigate("sessions")} initialRequestId={actionTarget?.area==="sessionRequests"?actionTarget.id:undefined} selectionRequest={actionTarget?.revision}/>:null;
   case "onboarding":return canManage?<StaffOnboarding initialIntakeId={actionTarget?.area==="onboarding"?actionTarget.id:undefined} selectionRequest={actionTarget?.revision}/>:null;
   case "admissions":return canManage?<AdmissionsManagement userId={userId}/>:null;
@@ -61,8 +63,9 @@ export function StaffWorkspace({userId,role,onSignOut}:{userId:string;role:Staff
   case "analytics":return canManage?<SessionAnalytics/>:null;
   case "administration":return role==="owner"?<StaffAdmin ownerId={userId}/>:null;
  }}
- return <StaffAppShell role={role} section={section} onNavigate={navigate} onSignOut={onSignOut} onMenuChange={setMenuOpen} badges={canManage?{communications:<FamilyUnreadBadge userId={userId} role="staff"/>}:{}}>{contextPlayer&&<StaffPlayerContext playerId={contextPlayer} canManage={canManage} onNavigate={navigate} onClear={()=>setContextPlayer("")}/>} {visited.filter(id=>allowed.some(i=>i.id===id)).map(id=><section key={id} className="staff-tool-panel" hidden={section!==id} aria-label={allowed.find(i=>i.id===id)?.label}>{panel(id)}</section>)}</StaffAppShell>;
+ return <StaffAppShell role={role} section={section} onNavigate={navigate} onSignOut={onSignOut} onMenuChange={setMenuOpen} badges={canManage?{communications:<><FamilyUnreadBadge userId={userId} role="staff"/><OrganisationInboxSummary badge/></>}:{}}>{contextPlayer&&<StaffPlayerContext playerId={contextPlayer} canManage={canManage} onNavigate={navigate} onClear={()=>setContextPlayer("")}/>} {visited.filter(id=>allowed.some(i=>i.id===id)).map(id=><section key={id} className="staff-tool-panel" hidden={section!==id} aria-label={allowed.find(i=>i.id===id)?.label}>{panel(id)}</section>)}</StaffAppShell>;
 }
+
 
 
 
