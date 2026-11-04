@@ -1,0 +1,10 @@
+'use client';
+import {useEffect,useState} from 'react';
+import {scheduleCall,type OrganisationScheduleData} from '../lib/organisationSchedule';
+import {ukDateTime} from '../lib/sessionOperations';
+export function OrganisationUpcoming({organisationId='',manager=false,onOpen,active=true}:{organisationId?:string;manager?:boolean;onOpen:()=>void;active?:boolean}){
+ const[data,setData]=useState<OrganisationScheduleData|null>(null),[error,setError]=useState(false);
+ useEffect(()=>{if(!active)return;let alive=true;const refresh=()=>{if(document.visibilityState!=='visible')return;scheduleCall<OrganisationScheduleData>('list',{organisation_id:organisationId||undefined}).then(value=>{if(alive){setData(value);setError(false)}}).catch(()=>{if(alive){setData(null);setError(true)}})};refresh();const timer=window.setInterval(refresh,60000);window.addEventListener('star:organisation-schedule-updated',refresh);window.addEventListener('focus',refresh);return()=>{alive=false;clearInterval(timer);window.removeEventListener('star:organisation-schedule-updated',refresh);window.removeEventListener('focus',refresh)}},[organisationId,active]);
+ const pending=data?.changes.filter(c=>c.status==='pending')||[];
+ return <section className="org-card org-upcoming"><p className="org-eyebrow">{manager?'ORGANISATION COACHING':'COMING UP'}</p><h3>Upcoming coaching sessions</h3>{error?<p>We could not check the schedule. Open it to try again.</p>:!data?<p role="status">Checking the schedule…</p>:<>{pending.length>0&&<p><strong>{pending.length} session request{pending.length===1?'':'s'} {manager?'need your review':'awaiting STAR'}</strong></p>}{data.sessions.length?data.sessions.slice(0,3).map(s=><div className="org-response" key={s.id}><strong>{s.title}</strong>{!organisationId&&<p>{s.organisation_name}</p>}<p>{ukDateTime(s.starts_at)} · {s.venue}<br/>Coach: {s.coach_name}</p></div>):<p>No upcoming organisation sessions.</p>}<p className="org-hint">{data.delivered} coaching sessions marked delivered.</p></>}<button type="button" className="org-primary" onClick={onOpen}>Open coaching schedule →</button></section>;
+}

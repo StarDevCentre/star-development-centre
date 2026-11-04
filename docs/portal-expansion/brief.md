@@ -38,7 +38,7 @@ Free, invitation-only, co-branded organisation portal. Primary outcome: referral
 
 ## Remaining batches
 
-Inbox and email alerts; calendar scheduling and recurrence; richer coaching resources and private adaptations; shared goals/progress; teams/year groups; dashboard action/session prioritisation; complete session-based reporting and portal/resource activity metrics.
+Richer coaching resources and private adaptations; shared goals/progress; teams/year groups; dashboard action/session prioritisation; complete session-based reporting and portal/resource activity metrics.
 
 ## Validation
 
@@ -52,3 +52,8 @@ Individual emailed staff invitations, resend controls, delivery-attempt/acceptan
 ## Inbox batch shipped — 4 November 2026
 
 Individual email invitations and the organisation inbox/email alert batch are complete. Staff Inbox has Families and Schools & clubs tabs; organisation Overview and Staff Home show personal unread summaries. New selected feedback, observations and referral/request updates create contextual conversation events. Generic production emails use the durable queue and minute worker. Parent consent, live membership and STAR management permissions are checked on each inbox operation and before delivery. No historic notification backfill. See `organisation-inbox.md` for operation, validation and rollback. Calendar scheduling is the next separate batch.
+
+
+## Scheduling batch shipped — 4 November 2026
+
+Confirmed organisation sessions now enter STAR's training calendar with an assigned coach. Weekly blocks support explicit holiday exclusions and UK clock changes. Organisation and staff dashboards show upcoming sessions; organisations request individual date changes/cancellations for STAR review. Personal unread inbox/email notifications cover confirmations, requests and arrangement changes. Delivered-session totals count sessions marked delivered. Individual occurrences can be edited/cancelled; bulk block editing, external calendar subscriptions and team/year-group rosters remain later work. See `organisation-scheduling.md` for operations, limits and validation.

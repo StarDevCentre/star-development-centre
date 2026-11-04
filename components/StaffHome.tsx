@@ -1,4 +1,5 @@
 "use client";
+import {OrganisationUpcoming} from './OrganisationUpcoming';
 import {OrganisationInboxSummary} from "./OrganisationInboxSummary";
 import {OrganisationReferralTasks} from "./OrganisationReferralTasks";
 import {useEffect,useRef,useState} from "react";
@@ -14,8 +15,8 @@ export function StaffHome({onNavigate,canManage,active=true}:{onNavigate:(area:S
  useEffect(()=>{if(!active||!db)return;let alive=true;async function load(){setLoading(true);setError("");try{
   const now=new Date().toISOString(),since=new Date(Date.now()-30*86400000).toISOString();
   const [sessions,recent,players,goals,observations,applications,unread,actionResult]=await Promise.all([
-   db!.from("training_sessions").select("id,title,programme,starts_at,ends_at,venue").gt("ends_at",now).order("starts_at").limit(60),
-   db!.from("training_sessions").select("id,title,programme,starts_at,ends_at,venue").gte("ends_at",since).lte("ends_at",now).order("starts_at",{ascending:false}).limit(40),
+   db!.from("training_sessions").select("id,title,programme,starts_at,ends_at,venue").is("cancelled_at",null).gt("ends_at",now).order("starts_at").limit(60),
+   db!.from("training_sessions").select("id,title,programme,starts_at,ends_at,venue").is("cancelled_at",null).gte("ends_at",since).lte("ends_at",now).order("starts_at",{ascending:false}).limit(40),
    db!.from("coaching_players").select("id,first_name,last_name,programme").order("first_name"),
    db!.from("coaching_development_goals").select("id,player_id,goal,status").eq("status","working_on").order("created_at",{ascending:false}).limit(100),
    db!.from("coaching_observations").select("id,player_id,next_action,recorded_at").not("next_action","is",null).order("recorded_at",{ascending:false}).limit(12),
@@ -29,7 +30,7 @@ export function StaffHome({onNavigate,canManage,active=true}:{onNavigate:(area:S
  }catch{if(alive)setError("Couldn’t refresh your coaching day. Please try again.")}finally{if(alive)setLoading(false)}}
  void load();const focus=()=>{if(Date.now()-last.current>30000)setAttempt(n=>n+1)};window.addEventListener("focus",focus);return()=>{alive=false;window.removeEventListener("focus",focus)};
  },[active,canManage,attempt]);
- return <>{canManage&&<div className="org-embedded"><OrganisationInboxSummary onOpen={()=>onNavigate("communications",undefined,"organisations")}/></div>}<OrganisationReferralTasks canManage={canManage} onOpen={()=>onNavigate("organisations")}/><div className="staff-home-toolbar"><p>{staffDate(new Date().toISOString(),{weekday:"long",day:"numeric",month:"long"})}</p><button type="button" disabled={loading} onClick={()=>setAttempt(n=>n+1)}>{loading?"Refreshing…":"Refresh ↻"}</button></div>{error&&<p className="staff-inline-error" role="alert">{error} {data&&"The previous overview is shown below."}</p>}{!data?(loading?<p role="status">Loading your coaching day…</p>:<p>Use Refresh to load your overview.</p>):<StaffOverview data={data} canManage={canManage} onNavigate={onNavigate} now={clock} actionData={actionData} actionError={actionError} loading={loading}/>}</>;
+ return <><div className="org-embedded"><OrganisationUpcoming manager={canManage} active={active} onOpen={()=>onNavigate(canManage?'organisations':'sessions',undefined,canManage?'Schedule':undefined)}/></div>{canManage&&<div className="org-embedded"><OrganisationInboxSummary onOpen={()=>onNavigate("communications",undefined,"organisations")}/></div>}<OrganisationReferralTasks canManage={canManage} onOpen={()=>onNavigate("organisations")}/><div className="staff-home-toolbar"><p>{staffDate(new Date().toISOString(),{weekday:"long",day:"numeric",month:"long"})}</p><button type="button" disabled={loading} onClick={()=>setAttempt(n=>n+1)}>{loading?"Refreshing…":"Refresh ↻"}</button></div>{error&&<p className="staff-inline-error" role="alert">{error} {data&&"The previous overview is shown below."}</p>}{!data?(loading?<p role="status">Loading your coaching day…</p>:<p>Use Refresh to load your overview.</p>):<StaffOverview data={data} canManage={canManage} onNavigate={onNavigate} now={clock} actionData={actionData} actionError={actionError} loading={loading}/>}</>;
 }
 export function StaffOverview({data,canManage,onNavigate,now=Date.now(),actionData=null,actionError=false,loading=false}:{actionData?:StaffActionData|null;actionError?:boolean;loading?:boolean;data:StaffOverviewData;canManage:boolean;onNavigate:(area:StaffSection,playerId?:string,sessionId?:string)=>void;now?:number}){
  const{upcoming,incomplete,activeGoals}=staffOverview(data.sessions,data.recent,data.players,data.attendance,data.goals,now,data.participants||[]);const next=upcoming[0];const name=(id:string)=>{const p=data.players.find(p=>p.id===id);return p?[p.first_name,p.last_name].join(" "):"Player"};const actions=data.observations.filter(o=>o.next_action?.trim()&&data.players.some(p=>p.id===o.player_id)).slice(0,3);
