@@ -2,6 +2,7 @@
 import {useEffect,useState} from 'react';
 import dynamic from "next/dynamic";
 const OrganisationSchedule=dynamic(()=>import("./OrganisationSchedule").then(m=>m.OrganisationSchedule),{loading:()=> <p role="status">Loading coaching schedule…</p>});
+import {OrganisationDevelopment} from './OrganisationDevelopment';
 import {OrganisationUpcoming} from './OrganisationUpcoming';
 import {OrganisationInbox} from './OrganisationInbox';
 import {OrganisationInboxSummary} from './OrganisationInboxSummary';
@@ -70,8 +71,9 @@ function OrganisationAccess({onSignOut,email}:{onSignOut:()=>void;email:string})
 }
 function OrganisationWorkspace({org}:{org:Organisation}){
  const{data,error,loading,refresh}=useOrganisationData<{players:SharedPlayer[];referrals:Referral[];requests:SessionRequest[];observations:Observation[];summary:OrganisationSummary}>('organisation',{organisation_id:org.id});
- const[tab,setTab]=useState(()=>typeof window!=='undefined'&&new URLSearchParams(window.location.search).get('inbox')==='1'?'Inbox':'Overview'),[search,setSearch]=useState(''),[category,setCategory]=useState('All');const tabs=['Overview','Inbox','Coaching schedule','Referrals','Players','Session requests','Resources','Promote STAR'];
+ const[tab,setTab]=useState(()=>typeof window!=='undefined'&&new URLSearchParams(window.location.search).get('inbox')==='1'?'Inbox':'Overview'),[search,setSearch]=useState(''),[category,setCategory]=useState('All');const tabs=['Overview','Inbox','Coaching schedule','Referrals','Players','Teams & progress','Session requests','Resources','Promote STAR'];
  return <div className="org-workspace" style={organisationTheme(org.brand_colour)}><OrganisationBrand org={org}/><div className="org-buttons"><button className="org-secondary" onClick={refresh} disabled={loading}>{loading?'Refreshing…':'Refresh organisation'}</button></div><nav className="org-tabs" aria-label="School and club portal">{tabs.map(t=><button key={t} aria-current={t===tab?'page':undefined} onClick={()=>setTab(t)}>{t}</button>)}</nav>{error&&<p className="org-error" role="alert">{error}</p>}{!data&&loading&&<p role="status">Loading your organisation…</p>}{data&&<>
+ {tab==='Teams & progress'&&<OrganisationDevelopment key={org.id} organisationId={org.id}/>}
  {tab==='Promote STAR'&&<OrganisationPromotion org={org}/>}
  {tab==='Coaching schedule'&&<OrganisationSchedule organisationId={org.id}/>}
  {tab==='Inbox'&&<OrganisationInbox organisationId={org.id}/>}

@@ -1,0 +1,81 @@
+-- Synthetic accounts and records only. Every fixture is rolled back.
+begin;
+create temporary table portal_test_ctx(key text primary key,id uuid not null default gen_random_uuid());
+insert into portal_test_ctx(key) values ('manager'),('member'),('other_member'),('parent'),('other_parent'),('unverified'),('expired'),('org'),('other_org'),('player'),('other_player'),('link'),('session');
+grant select on portal_test_ctx to authenticated,anon;
+insert into auth.users(id,email,email_confirmed_at,is_anonymous) select id,'portal-check-'||id||'@example.invalid',case when key='unverified' then null else now() end,false from portal_test_ctx where key in ('manager','member','other_member','parent','other_parent','unverified','expired');
+insert into public.staff_members(user_id,role,active) select id,'manager',true from portal_test_ctx where key='manager';
+insert into public.guardian_profiles(user_id,display_name) select id,'Portal check parent' from portal_test_ctx where key in ('parent','other_parent');
+insert into public.coaching_players(id,first_name,last_name,programme,consent_confirmed,consent_recorded_by,created_by)
+select id,'Synthetic','Portal Check','Assessment',true,(select id from portal_test_ctx where key='manager'),(select id from portal_test_ctx where key='manager') from portal_test_ctx where key in ('player','other_player');
+insert into public.guardian_player_links(guardian_id,player_id,approved_by) values ((select id from portal_test_ctx where key='parent'),(select id from portal_test_ctx where key='player'),(select id from portal_test_ctx where key='manager'));
+insert into public.guardian_player_links(guardian_id,player_id,approved_by) values ((select id from portal_test_ctx where key='other_parent'),(select id from portal_test_ctx where key='other_player'),(select id from portal_test_ctx where key='manager'));
+insert into public.star_organisations(id,name,kind,created_by) select id,'Synthetic '||key,case when key='org' then 'school' else 'club' end,(select id from portal_test_ctx where key='manager') from portal_test_ctx where key in ('org','other_org');
+insert into public.star_organisation_members(organisation_id,email,display_name,invited_by,expires_at)
+select (select id from portal_test_ctx where key=case when t.key='other_member' then 'other_org' else 'org' end),'portal-check-'||t.id||'@example.invalid','Synthetic staff',(select id from portal_test_ctx where key='manager'),case when t.key='expired' then now()-interval '1 day' else now()+interval '1 day' end from portal_test_ctx t where t.key in ('member','other_member','unverified','expired');
+insert into public.star_organisation_players(id,organisation_id,player_id,created_by) values((select id from portal_test_ctx where key='link'),(select id from portal_test_ctx where key='org'),(select id from portal_test_ctx where key='player'),(select id from portal_test_ctx where key='manager'));
+insert into public.coaching_development_goals(player_id,goal,created_by) values((select id from portal_test_ctx where key='player'),'Scan before receiving',(select id from portal_test_ctx where key='manager'));
+insert into public.training_sessions(id,title,programme,starts_at,ends_at,venue,created_by) values((select id from portal_test_ctx where key='session'),'Synthetic session','Other',now()-interval '1 day',now()-interval '23 hours','Test venue',(select id from portal_test_ctx where key='manager'));
+insert into public.training_session_participants(session_id,player_id) values((select id from portal_test_ctx where key='session'),(select id from portal_test_ctx where key='player'));
+insert into public.training_attendance(session_id,player_id,status,recorded_by) values((select id from portal_test_ctx where key='session'),(select id from portal_test_ctx where key='player'),'present',(select id from portal_test_ctx where key='manager'));
+
+create function pg_temp.check_ok(ok boolean) returns void language plpgsql as $$begin if ok is distinct from true then raise exception 'Development check failed';end if;end$$;
+create function pg_temp.denied(a text,d jsonb) returns void language plpgsql as $$begin begin perform public.star_organisation_development(a,d);exception when others then return;end;raise exception 'Unexpected permission for %',a;end$$;
+set local role authenticated;
+select set_config('request.jwt.claim.sub',(select id::text from portal_test_ctx where key='member'),true);
+select public.star_organisation_portal('accept');
+do $$declare base jsonb:=jsonb_build_object('organisation_id',(select id from portal_test_ctx where key='org'));w jsonb;g uuid;l uuid:=(select id from portal_test_ctx where key='link');begin
+ w:=public.star_organisation_development('workspace',base);perform pg_temp.check_ok(jsonb_array_length(w->'players')=0);
+ perform public.star_organisation_development('create_group',base||'{"name":"Synthetic Year 8","kind":"year_group"}');
+ w:=public.star_organisation_development('workspace',base);g:=(w->'groups'->0->>'id')::uuid;
+ perform pg_temp.denied('membership',base||jsonb_build_object('group_id',g,'link_id',l,'assigned',true));
+ perform pg_temp.denied('suggest_goal',base||jsonb_build_object('link_id',l,'goal','Scan before receiving the pass'));
+end$$;
+select set_config('request.jwt.claim.sub',(select id::text from portal_test_ctx where key='parent'),true);
+select public.star_organisation_portal('consent',jsonb_build_object('id',(select id from portal_test_ctx where key='link'),'approve',true));
+select set_config('request.jwt.claim.sub',(select id::text from portal_test_ctx where key='member'),true);
+do $$declare base jsonb:=jsonb_build_object('organisation_id',(select id from portal_test_ctx where key='org'),'link_id',(select id from portal_test_ctx where key='link'));w jsonb;g uuid;s uuid;d uuid;begin
+ w:=public.star_organisation_development('workspace',base);perform pg_temp.check_ok(jsonb_array_length(w->'players')=1);g:=(w->'groups'->0->>'id')::uuid;d:=(w->'players'->0->'goals'->0->>'id')::uuid;
+ perform public.star_organisation_development('membership',base||jsonb_build_object('group_id',g,'assigned',true));
+ perform public.star_organisation_development('rename_group',base||jsonb_build_object('group_id',g,'name','Synthetic U13'));
+ perform public.star_organisation_development('suggest_goal',base||'{"goal":"Scan before receiving the pass"}');
+ w:=public.star_organisation_development('workspace',base);s:=(w->'suggestions'->0->>'id')::uuid;
+ perform pg_temp.check_ok(jsonb_array_length(w->'memberships')=1);
+ perform pg_temp.denied('review_goal',base||jsonb_build_object('goal_id',s,'revision',1,'status','approved'));
+ perform pg_temp.denied('progress',base||jsonb_build_object('goal_id',s,'note','Tried looking before receiving today'));
+ perform public.star_organisation_development('progress',base||jsonb_build_object('idp_goal_id',d,'note','Looked over her shoulder in training'));
+ perform set_config('request.jwt.claim.sub',(select id::text from portal_test_ctx where key='manager'),true);
+ perform public.star_organisation_development('review_goal',base||jsonb_build_object('goal_id',s,'revision',1,'status','approved','response','Use this in passing practice'));
+ perform pg_temp.denied('review_goal',base||jsonb_build_object('goal_id',s,'revision',1,'status','completed'));
+ perform set_config('request.jwt.claim.sub',(select id::text from portal_test_ctx where key='member'),true);
+ perform public.star_organisation_development('progress',base||jsonb_build_object('goal_id',s,'note','Used scanning before receiving a pass'));
+ w:=public.star_organisation_development('workspace',base);perform pg_temp.check_ok(jsonb_array_length(w->'progress')=2);
+ perform public.star_organisation_development('membership',base||jsonb_build_object('group_id',g,'assigned',false));
+ perform pg_temp.check_ok(jsonb_array_length(public.star_organisation_development('workspace',base)->'memberships')=0);
+ perform public.star_organisation_development('archive_group',base||jsonb_build_object('group_id',g));
+ perform pg_temp.check_ok(jsonb_array_length(public.star_organisation_development('workspace',base)->'groups')=0);
+ perform set_config('request.jwt.claim.sub',(select id::text from portal_test_ctx where key='other_member'),true);perform public.star_organisation_portal('accept');
+ perform pg_temp.denied('workspace',base);perform pg_temp.denied('progress',base||jsonb_build_object('goal_id',s,'note','Cross organisation must not write'));
+ perform set_config('request.jwt.claim.sub',(select id::text from portal_test_ctx where key='parent'),true);
+ perform public.star_organisation_portal('consent',jsonb_build_object('id',(select id from portal_test_ctx where key='link'),'approve',false));
+ perform set_config('request.jwt.claim.sub',(select id::text from portal_test_ctx where key='member'),true);
+ w:=public.star_organisation_development('workspace',base);perform pg_temp.check_ok(jsonb_array_length(w->'players')=0 and jsonb_array_length(w->'suggestions')=0 and jsonb_array_length(w->'progress')=0);
+ perform pg_temp.denied('progress',base||jsonb_build_object('goal_id',s,'note','Revoked consent must not write'));
+ perform set_config('request.jwt.claim.sub',(select id::text from portal_test_ctx where key='unverified'),true);perform pg_temp.denied('workspace',base);
+end$$;
+reset role;
+do $$begin if has_table_privilege('authenticated','star_private.org_groups','select') or has_table_privilege('anon','star_private.org_goal_progress','insert') or has_function_privilege('anon','public.star_organisation_development(text,jsonb)','execute') then raise exception 'Unexpected direct access';end if;end$$;
+select set_config('request.jwt.claim.sub','',true);
+update public.star_organisation_players set approved_by=(select id from portal_test_ctx where key='parent'),approved_at=now() where id=(select id from portal_test_ctx where key='link');
+update public.coaching_development_goals set status='achieved' where player_id=(select id from portal_test_ctx where key='player');
+set local role authenticated;
+select set_config('request.jwt.claim.sub',(select id::text from portal_test_ctx where key='member'),true);
+do $$declare b jsonb:=jsonb_build_object('organisation_id',(select id from portal_test_ctx where key='org'),'link_id',(select id from portal_test_ctx where key='link'));w jsonb;begin
+ w:=public.star_organisation_development('workspace',b);
+ perform pg_temp.check_ok(w->'players'->0->'goals'->0->>'status'='achieved');
+ perform pg_temp.check_ok(jsonb_array_length(w->'progress')=2);
+ perform pg_temp.denied('progress',b||jsonb_build_object('idp_goal_id',w->'players'->0->'goals'->0->>'id','note','Do not add to an achieved STAR goal'));
+end$$;
+reset role;
+select 'Development access, consent, groups, approvals, history and progress checks passed'  as result;
+rollback;
