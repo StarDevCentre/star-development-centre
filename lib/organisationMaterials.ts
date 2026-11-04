@@ -6,8 +6,12 @@ export function organisationCopy(org:OrganisationBrandData){const url=referralLi
  'Newsletter':{body:`Girls’ football development with STAR\n\n${org.name} is working with STAR Development Centre, our Football Development Partner, to help girls aged 5–18 in Somerset build confidence and develop their game. Book a free, 30-minute assessment: parents and carers can send a request through ${url}. Sign in or create a parent account to share her interests and goals. STAR will contact you to agree the assessment arrangements. Any ongoing coaching costs are confirmed separately.`},
  'Social caption':{body:`Her next step in football ⚽\n\n${org.name} is working with STAR Development Centre as our Football Development Partner. Personalised girls’ football coaching for ages 5–18 in Somerset, built around confidence, enjoyment and her game.\n\nParents and carers: book a free, 30-minute assessment. Send your request at ${url}\n\nSTAR will confirm the assessment time and venue. Any ongoing coaching costs are confirmed separately.\n\n#GirlsFootball #SomersetFootball #STARDevelopmentCentre`}
  }}
-/** Self-contained artwork: embedded photography/logos and outlined headline lettering. */
-export async function organisationMaterialSvg(org:OrganisationBrandData,format:'poster'|'social',starLogo:string,orgLogo:string,photo:string){
+/** Independent artwork formats; the caller embeds the appropriate photo or illustration. */
+export async function organisationMaterialSvg(org:OrganisationBrandData,format:'poster'|'social',starLogo:string,orgLogo:string,artwork:string){
+ if(format==='poster'){const {organisationPosterSvg}=await import('./organisationPoster');return organisationPosterSvg(org,starLogo,orgLogo,artwork)}
+ return organisationSocialSvg(org,format,starLogo,orgLogo,artwork);
+}
+async function organisationSocialSvg(org:OrganisationBrandData,format:'poster'|'social',starLogo:string,orgLogo:string,photo:string){
  const tall=format==='poster',height=tall?1527:1080,heroTop=200,heroBottom=tall?1060:700;
  const {default:font}=await import('./organisationArtworkFont.json');
  const glyphs=font.glyphs as Record<string,{d:string;w:number}>;
