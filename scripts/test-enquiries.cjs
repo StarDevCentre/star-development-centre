@@ -24,7 +24,7 @@ test('programme and age-group choices survive the enquiry link and can be safely
  assert.deepEqual(initialEnquirySelection(new URLSearchParams('programme=prestige&age=14&session=sparks-5-7')),{programme:'prestige',age:'14',session:''});
  assert.deepEqual(initialEnquirySelection(new URLSearchParams('programme=unknown&age=99&session=unknown')),{programme:'',age:'',session:''});
  assert.equal(initialEnquirySelection(new URLSearchParams('programme=sparks&age=9&session=sparks-5-7')).session,'');
- const text=enquiryText(valid);assert.match(text,/STAR Sparks/);assert.match(text,/Group: Ages 5–7 · Monday · 4pm/);assert.match(text,/Player age: 6/);
+ const text=enquiryText(valid);assert.match(text,/STAR Sparks/);assert.match(text,/Group: Ages 5–7 · Monday · 3:45–4:45pm/);assert.match(text,/Player age: 6/);
  assert.match(enquiryText({...valid,programme:'one-to-one',session:''}),/One to One Coaching/);
  assert.equal(enquiryResponseTime,'We normally reply within 12 hours, but please allow up to 48 hours.');
 });
@@ -62,9 +62,10 @@ test('confirmed enquiries use the fixed STAR address and retain the selected gro
  await configured(async()=>{
   let calls=0;global.fetch=async(url,options)=>{
    calls++;assert.equal(url,'https://api.resend.com/emails');assert.ok(options.signal);
-   const body=JSON.parse(options.body);assert.deepEqual(body.to,['coachdmp7@gmail.com']);assert.equal(body.reply_to,valid.email);assert.match(body.text,/STAR Sparks/);assert.match(body.text,/Group: Ages 5–7 · Monday · 4pm/);assert.match(body.text,/Consent to contact: Yes/);
+   const body=JSON.parse(options.body);assert.deepEqual(body.to,['coachdmp7@gmail.com']);assert.equal(body.reply_to,valid.email);assert.match(body.text,/STAR Sparks/);assert.match(body.text,/Group: Ages 5–7 · Monday · 3:45–4:45pm/);assert.match(body.text,/Consent to contact: Yes/);
    return Response.json({id:'mock-receipt'});
   };
   const response=await POST(request({...valid,to:'attacker@example.com'}));assert.equal(response.status,200);assert.equal(enquiryWasReceived(response.ok,await response.json()),true);assert.equal(calls,1);assert.equal(response.headers.get('Cache-Control'),'no-store');
  });
 });
+

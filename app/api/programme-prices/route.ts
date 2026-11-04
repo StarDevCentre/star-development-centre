@@ -6,7 +6,7 @@ const reply=(body:unknown,status=200)=>Response.json(body,{status,headers});
 
 // Keep prices in this server route, out of public page data and browser bundles.
 const prices=[
- {slug:"sparks",title:"STAR Sparks",price:"£5",unit:"per 45-minute session",options:["Pay as you go."]},
+ {slug:"sparks",title:"STAR Sparks",price:"£5",unit:"per 60-minute session",options:["Pay as you go."]},
  {slug:"development",title:"Development Groups",price:"£5",unit:"per 45-minute session",options:["Pay as you go."]},
  {slug:"flyers",title:"STAR Flyers",price:"£375",unit:"for 16 × 60-minute sessions",options:["£375 paid upfront.","Three payments totalling £380. The schedule is agreed with STAR."]},
  {slug:"prestige",title:"STAR Prestige",price:"£800",unit:"for the 24-week programme",options:["£800 paid upfront.","3 × £280 — £840 total.","6 × £150 — £900 total."]},
@@ -27,4 +27,5 @@ export async function GET(request:Request){
   return reply({prices});
  }catch{return reply({error:"Prices are temporarily unavailable. Please try again."},503);}
 }
+
 

@@ -18,7 +18,7 @@ export const siteDirectory:DirectoryEntry[] = [
       keywords:(p.slug==='one-to-one'?'individual private ad hoc 1 to 1 1-1 1:1':p.slug==='season-support'?'match observation club visit':p.slug)+' age '+Array.from({length:14},(_,i)=>i+5).filter(age=>programmeForAge(p.slug,age)).join(' '),
       body:[p.detail,...(d?[d.intro,d.fit,...d.includes,d.duration,d.format,d.schedule,d.note]:[])].join(' ')};
   }),
-  ...groupSessions.map(g=>({href:'/programmes#'+g.id,title:g.title+' · ages '+g.minAge+'–'+g.maxAge,description:g.schedule+' · 45 minutes. '+g.focus,category:'Programmes' as const,keywords:'group timetable schedule after school age '+Array.from({length:g.maxAge-g.minAge+1},(_,i)=>g.minAge+i).join(' ')})),
+  ...groupSessions.map(g=>({href:'/programmes#'+g.id,title:g.title+' · ages '+g.minAge+'–'+g.maxAge,description:g.schedule+(g.slug==='sparks'?' · 60 minutes. ':' · 45 minutes. ')+g.focus,category:'Programmes' as const,keywords:'group timetable schedule after school age '+Array.from({length:g.maxAge-g.minAge+1},(_,i)=>g.minAge+i).join(' ')})),
   {href:'/#parent-support',title:'For parents: support and common questions',description:'Coaching feedback, confidence, balancing football with school and preparing for a first session.',category:'Help & accounts',keywords:'mum dad family FAQ questions school nervous beginner venue kit'},
   {href:'/#home-members-pack',title:'The STAR members’ pack',description:'Training top, bag, bottle and practical extras. Flyers and Prestige on joining; One to One Coaching after five sessions.',category:'Help & accounts',keywords:'kit shirt socks bands stickers notebook gifts uniform'},
   {href:'/inclusion',title:'Autism friendly coaching and individual support',description:'Talk to STAR about autism, ADHD, sensory needs, communication preferences and what helps her learn.',category:'Help & accounts',keywords:'neurodivergent neurodiversity autistic inclusive inclusion additional needs SEN SEND'},
@@ -31,3 +31,4 @@ export const siteDirectory:DirectoryEntry[] = [
   ...hubArticles.map(a=>({href:'/articles/'+a.slug,title:a.title,description:a.summary,category:'Football guides' as const,keywords:a.category,
     body:[a.intro,...a.sections.flatMap(s=>[s.title,...s.paragraphs]),a.practice,...a.takeaways].join(' ')}))
 ];
+

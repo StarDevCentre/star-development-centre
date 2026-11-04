@@ -1,5 +1,5 @@
 export const programmes=[
-{slug:"sparks",title:"STAR Sparks",age:"AGES 5–10",summary:"A joyful introduction to football, movement, technique and confidence.",detail:"Monday · Ages 5–7 at 4pm / Ages 8–10 at 5pm",index:"01"},
+{slug:"sparks",title:"STAR Sparks",age:"AGES 5–10",summary:"A joyful introduction to football, movement, technique and confidence.",detail:"Monday · 3:45–4:45pm · Separate ages 5–7 and 8–10 groups, maximum 10 each",index:"01"},
 {slug:"development",title:"Development Groups",age:"AGES 11–16",summary:"Small-group coaching to sharpen technique, decisions and game understanding.",detail:"Tuesday · Ages 11–13 at 4pm / Ages 14–16 at 5pm",index:"02"},
 {slug:"flyers",title:"STAR Flyers",age:"AGES 7–10",summary:"Structured one-to-one development with individual goals and progress reviews.",detail:"16 weekly sessions · 60 minutes each",index:"03"},
 {slug:"prestige",title:"STAR Prestige",age:"AGES 11–18",summary:"Sustained individual development shaped around the player’s confidence and ambitions.",detail:"24 weekly sessions · 90 minutes each",index:"04"},
@@ -23,4 +23,5 @@ export function playerAge(dateOfBirth:string,today=new Date()){
  if(today.getUTCMonth()<birth.getUTCMonth()||(today.getUTCMonth()===birth.getUTCMonth()&&today.getUTCDate()<birth.getUTCDate()))age--;
  return age;
 }
+
 

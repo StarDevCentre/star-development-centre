@@ -2,8 +2,8 @@ import {programmes, programmeForAge} from "./siteData";
 
 export const playerAges = Array.from({length: 14}, (_, i) => i + 5);
 export const groupSessions = [
-  {id: "sparks-5-7", slug: "sparks", title: "STAR Sparks", minAge: 5, maxAge: 7, schedule: "Monday · 4pm", focus: "Discover football through movement, simple games and plenty of time on the ball."},
-  {id: "sparks-8-10", slug: "sparks", title: "STAR Sparks", minAge: 8, maxAge: 10, schedule: "Monday · 5pm", focus: "Build ball skills, confidence and teamwork through enjoyable football challenges."},
+  {id: "sparks-5-7", slug: "sparks", title: "STAR Sparks", minAge: 5, maxAge: 7, schedule: "Monday · 3:45–4:45pm", focus: "Discover football through movement, simple games and plenty of time on the ball."},
+  {id: "sparks-8-10", slug: "sparks", title: "STAR Sparks", minAge: 8, maxAge: 10, schedule: "Monday · 3:45–4:45pm", focus: "Build ball skills, confidence and teamwork through enjoyable football challenges."},
   {id: "development-11-13", slug: "development", title: "Development Group", minAge: 11, maxAge: 13, schedule: "Tuesday · 4pm", focus: "Practise technique, awareness and decisions with other girls at a similar stage."},
   {id: "development-14-16", slug: "development", title: "Development Group", minAge: 14, maxAge: 16, schedule: "Tuesday · 5pm", focus: "Develop technique and game understanding through realistic football situations."}
 ];
@@ -73,3 +73,4 @@ export function programmeEnquiryHref(slug = "", age?: number, sessionId?: string
 export function programmeSignInReturn(value: unknown) {
   return value === "programmes" ? "/programmes#compare" as const : value === "finder" ? "/find-your-programme" as const : undefined;
 }
+

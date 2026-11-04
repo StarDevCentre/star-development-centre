@@ -1,0 +1,67 @@
+begin;
+do $$
+declare manager uuid:=gen_random_uuid(); coach2 uuid:=gen_random_uuid(); parent uuid:=gen_random_uuid(); stranger uuid:=gen_random_uuid(); orguser uuid:=gen_random_uuid(); org uuid:=gen_random_uuid(); child uuid:=gen_random_uuid(); other uuid:=gen_random_uuid();
+ monday date:=date '2027-02-01'; sid uuid; oid uuid; v jsonb; payload jsonb; d jsonb; rejected boolean; i integer; extra_child uuid; before_count integer;
+begin
+ insert into auth.users(id,email,email_confirmed_at,is_anonymous) values
+ (manager,manager::text||'@example.invalid',now(),false),(coach2,coach2::text||'@example.invalid',now(),false),(parent,parent::text||'@example.invalid',now(),false),(stranger,stranger::text||'@example.invalid',now(),false),(orguser,orguser::text||'@example.invalid',now(),false);
+ insert into public.staff_members(user_id,role,active) values(manager,'owner',true),(coach2,'coach',true);
+ perform set_config('request.jwt.claim.sub',manager::text,true);
+ insert into public.guardian_profiles(user_id,display_name) values(parent,'Synthetic parent'),(stranger,'Synthetic stranger');
+ insert into public.coaching_players(id,first_name,last_name,programme,consent_confirmed,consent_recorded_by,created_by) values(child,'Synthetic','Child','Sparks',true,manager,manager),(other,'Synthetic','Other','Sparks',true,manager,manager);
+ insert into public.guardian_player_links(guardian_id,player_id,approved_by) values(parent,child,manager),(stranger,other,manager);
+ insert into public.player_intakes(creator_id,guardian_id,first_name,last_name,date_of_birth,portal_player_id) values(parent,parent,'Synthetic','Child','2020-06-01',child),(stranger,stranger,'Synthetic','Other','2017-06-01',other);
+ insert into public.star_organisations(id,name,kind,created_by) values(org,'Synthetic school','school',manager);
+ insert into public.star_organisation_members(organisation_id,email,display_name,user_id,accepted_at,invited_by) values(org,orguser::text||'@example.invalid','Synthetic member',orguser,now(),manager);
+ perform public.star_direct_booking('coach',jsonb_build_object('coach_id',manager,'coach_name','Synthetic coach','venue','Synthetic training venue','enabled',true,'services',jsonb_build_array('school_taster','school_workshop','assessment','one_to_one')));
+ perform public.star_direct_booking('coach',jsonb_build_object('coach_id',coach2,'coach_name','Second coach','venue','Synthetic training venue','enabled',true,'services',jsonb_build_array('school_taster')));
+ perform public.star_direct_booking('publish',jsonb_build_object('service_id','sparks_5_7','coach_id',manager,'second_coach_id',coach2,'date',monday,'venue','Shared synthetic venue'));
+ assert (select count(*)=2 and min(capacity)=10 and max(capacity)=10 from star_private.booking_sessions where pair_id is not null),'Sparks publishes two independently capped groups';
+ assert (select count(distinct starts_at)=1 and count(distinct venue)=1 from public.training_sessions where id in(select session_id from star_private.booking_sessions where pair_id is not null)),'Sparks same start and venue';
+ select session_id into sid from star_private.booking_sessions where service_id='sparks_5_7';
+ perform set_config('request.jwt.claim.sub',parent::text,true);
+ v:=public.star_direct_booking('availability',jsonb_build_object('player_id',child,'service_id','sparks_5_7','date',monday));assert jsonb_array_length(v->'slots')=1,'Parent sees eligible released age group';
+ payload:=jsonb_build_object('client_id',gen_random_uuid(),'player_id',child,'service_id','sparks_5_7','session_id',sid);
+ v:=public.star_direct_booking('book',payload);assert (v->>'confirmed')::boolean,'Parent booking confirms';oid:=(v->>'order_id')::uuid;
+ assert (select count(*)=1 from public.family_session_schedule where player_id=child and source_session_id=sid),'Family receives shared session';
+ v:=public.star_direct_booking('book',payload);assert (v->>'reused')::boolean,'Retry is idempotent';
+ rejected:=false;begin perform public.star_direct_booking('catalogue',jsonb_build_object('player_id',other));exception when others then rejected:=true;end;assert rejected,'Other family inaccessible';
+ rejected:=false;begin perform public.star_direct_booking('manage');exception when others then rejected:=true;end;assert rejected,'Parent cannot manage availability';
+ -- Fill only the younger group and reject an eleventh place.
+ for i in 2..11 loop
+  extra_child:=gen_random_uuid();
+  insert into public.coaching_players(id,first_name,last_name,programme,consent_confirmed,consent_recorded_by,created_by) values(extra_child,'Synthetic','Capacity '||i,'Sparks',true,manager,manager);
+  insert into public.guardian_player_links(guardian_id,player_id,approved_by) values(parent,extra_child,manager);
+  insert into public.player_intakes(creator_id,guardian_id,first_name,last_name,date_of_birth,portal_player_id) values(parent,parent,'Synthetic','Capacity '||i,'2020-06-01',extra_child);
+  rejected:=false;
+  begin perform public.star_direct_booking('book',jsonb_build_object('client_id',gen_random_uuid(),'player_id',extra_child,'service_id','sparks_5_7','session_id',sid));exception when others then rejected:=true;end;
+  assert rejected=(i=11),'Exactly ten places are permitted';
+ end loop;
+ assert (select count(*)=10 from star_private.booking_places where session_id=sid and cancelled_at is null),'Group remains capped at ten';
+ assert (select count(*)=0 from star_private.booking_places p join star_private.booking_sessions b on b.session_id=p.session_id where b.service_id='sparks_8_10'),'Older group capacity is independent';
+ perform set_config('request.jwt.claim.sub',stranger::text,true);
+ rejected:=false;begin perform public.star_direct_booking('book',jsonb_build_object('client_id',gen_random_uuid(),'player_id',other,'service_id','sparks_5_7','session_id',sid));exception when others then rejected:=true;end;assert rejected,'Wrong age blocked';
+ perform set_config('request.jwt.claim.sub',orguser::text,true);
+ d:='[]';for i in 0..9 loop d:=d||jsonb_build_array((monday+i*7)::text||'T10:00');end loop;
+ payload:=jsonb_build_object('client_id',gen_random_uuid(),'organisation_id',org,'service_id','school_taster','dates',d,'venue','Synthetic school facilities','players',12,'facilities',true);
+ v:=public.star_direct_booking('book',payload);assert (v->>'total_pence')::integer=34000 and (v->>'discount_percent')::integer=15,'Ten-session block gets 15 percent';
+ assert (select count(*)=10 from star_private.booking_places where order_id=(v->>'order_id')::uuid),'All dates commit together';
+ assert not star_private.booking_free((select b.coach_id from star_private.booking_places p join star_private.booking_sessions b on b.session_id=p.session_id where p.order_id=(v->>'order_id')::uuid limit 1),star_private.org_uk_time(monday::text||'T11:15'),star_private.org_uk_time(monday::text||'T12:15')),'Travel gap blocks 11:15 after 11:00';
+ rejected:=false;begin perform public.star_direct_booking('book',jsonb_build_object('client_id',gen_random_uuid(),'organisation_id',org,'service_id','school_workshop','dates',jsonb_build_array('2027-03-03T10:00'),'venue','Synthetic school','players',9,'facilities',true));exception when others then rejected:=true;end;assert rejected,'Workshop maximum 8 enforced';
+ before_count:=(select count(*) from star_private.booking_orders);
+ rejected:=false;begin perform public.star_direct_booking('book',jsonb_build_object('client_id',gen_random_uuid(),'organisation_id',org,'service_id','school_taster','dates',jsonb_build_array('2027-02-02T10:00','2027-02-03T16:30'),'venue','Synthetic school','players',10,'facilities',true));exception when others then rejected:=true;end;assert rejected,'Whole block rejects if one date is unavailable';
+ assert (select count(*)=before_count from star_private.booking_orders),'Failed block leaves no order';
+ assert not star_private.booking_open(star_private.org_uk_time('2027-02-03T16:30'),star_private.org_uk_time('2027-02-03T17:30')),'Wednesday closes at 17:00';
+ assert not star_private.booking_open(star_private.org_uk_time('2027-02-06T15:30'),star_private.org_uk_time('2027-02-06T16:30')),'Saturday closes at 16:00';
+ assert not star_private.booking_open(star_private.org_uk_time('2027-02-07T10:00'),star_private.org_uk_time('2027-02-07T11:00')),'Sunday closed';
+ assert star_private.org_uk_time('2027-07-05T15:45')='2027-07-05T14:45Z'::timestamptz,'Summer uses British Summer Time';
+ update public.star_organisation_members set active=false where organisation_id=org;
+ rejected:=false;begin perform public.star_direct_booking('catalogue',jsonb_build_object('organisation_id',org));exception when others then rejected:=true;end;assert rejected,'Revoked organisation access denied';
+ perform set_config('request.jwt.claim.sub',manager::text,true);
+ perform public.star_direct_booking('close',jsonb_build_object('session_id',sid));
+ assert not exists(select 1 from public.family_session_schedule where source_session_id=sid),'Confirmed cancellation removes family session';
+ assert (select cancelled_at is not null from public.training_sessions where id=sid),'Calendar history retained as cancelled';
+ assert not has_function_privilege('anon','public.star_direct_booking(text,jsonb)','execute'),'Anonymous calls denied';
+ assert not has_table_privilege('authenticated','star_private.booking_orders','select'),'Private orders inaccessible directly';
+end $$;
+rollback;
