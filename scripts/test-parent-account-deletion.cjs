@@ -49,7 +49,7 @@ const settle=()=>new Promise(resolve=>setImmediate(resolve));
  const h=harness({supabase,user:{id:"parent-test",email:"parent@test.invalid"},navigate:u=>{navigated=u}});
  const open=element(h,n=>n.type==="button"&&words(n)==="Delete account…");
  open.props.onClick();await settle();h.render();
- assert.match(words(h.tree),/Connected child logins to delete: 2/);
+ assert.match(words(h.tree),/Connected child logins to delete:\s+2/);
  input(h,"Confirm your sign-in email","parent@test.invalid");
  input(h,"Current password","correct-password");
  input(h,"Type DELETE to confirm","DELETE");
