@@ -49,8 +49,8 @@ export function ParentAccountDeletion({supabase,user}:{supabase:SupabaseClient;u
   <p>You can permanently close your STAR parent account from here.</p>
   {!open?<button type="button" className="parent-delete-open" onClick={()=>void preview()}>Delete account…</button>:
    <div className="parent-delete-confirm">
-    <p><strong>This is permanent and cannot be undone.</strong> Your parent sign-in and any exclusively linked child logins will be deleted. Family account links and personal registration information will be removed.</p>
-    <p>STAR may need to keep certain coaching, booking or safeguarding records where required. Child coaching records are not necessarily the same as child login accounts. Accounts shared with another guardian require assistance so no other family loses access.</p>
+    <p><strong>This is permanent and cannot be undone.</strong> Your parent sign-in and any exclusively linked child sign-ins will be permanently closed and cannot be restored. Parent account details, private account preferences and unfinished application drafts will be erased. STAR may retain submitted enrolment or coaching records where required.</p>
+    <p>This irreversible account closure permanently disables the logins; a non-login authentication reference may remain to preserve required coaching, booking and safeguarding records. A child coaching profile is separate from a child login. Accounts shared with another guardian require assistance so no other family loses access.</p>
     {loading?<p role="status">Checking linked child accounts…</p>:plan?.ok?<p className="parent-delete-count" role="status">Connected child logins to delete: <strong>{plan.child_count??0}</strong>. Linked player profiles: <strong>{plan.linked_player_count??0}</strong>.</p>:null}
     {error&&<p className="parent-delete-error" role="alert">{error}</p>}
     {plan?.ok&&<form onSubmit={remove}>
@@ -58,7 +58,7 @@ export function ParentAccountDeletion({supabase,user}:{supabase:SupabaseClient;u
      <label>Current password<input type="password" autoComplete="current-password" required disabled={busy} value={password} onChange={e=>setPassword(e.target.value)} /></label>
      <label>Type DELETE to confirm<input type="text" autoComplete="off" required disabled={busy} value={confirmation} onChange={e=>setConfirmation(e.target.value)} /></label>
      <div className="parent-delete-actions">
-      <button type="submit" className="parent-delete-submit" disabled={busy||confirmation!=="DELETE"||!password||email.trim().toLowerCase()!==user.email?.toLowerCase()}>{busy?"Deleting your account…":"Permanently delete my account"}</button>
+      <button type="submit" className="parent-delete-submit" disabled={busy||confirmation!=="DELETE"||!password||email.trim().toLowerCase()!==user.email?.toLowerCase()}>{busy?"Deleting your account…":"Permanently close and delete my account"}</button>
       <button type="button" disabled={busy} onClick={cancel}>Cancel</button>
      </div>
     </form>}
