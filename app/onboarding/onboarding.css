@@ -11,3 +11,20 @@
 .intake-page .intake-photo-request input[type=file]{max-width:100%;min-width:0;padding:12px;font-size:14px}
 .intake-page .intake-photo img{width:min(100%,190px);height:260px;object-fit:contain;object-position:center;background:#e9e7df}
 @media(max-width:720px){.intake-page .intake-photo-request{padding:18px}.intake-page .intake-photo-request h3{font-size:24px}}
+
+/* Keep the onboarding introduction compact so the player form appears sooner. */
+.intake-brand img{width:140px}
+.intake-intro{max-width:760px;padding:18px 0 22px}
+.intake-intro h1{font-size:clamp(2rem,4.5vw,3.4rem);line-height:1.05;margin:8px 0 10px}
+.intake-intro>p:last-child{font-size:1rem;line-height:1.45;margin:0;max-width:600px}
+.intake-intro>p:first-child{margin:0}
+@media(max-width:720px){
+ .intake-page{padding-top:10px}
+ .intake-brand img{width:100px}
+ .intake-brand>a:last-child{font-size:.8rem}
+ .intake-intro{padding:12px 0 16px}
+ .intake-intro h1{font-size:clamp(1.9rem,8vw,2.5rem);margin:6px 0 8px;line-height:1.04}
+ .intake-intro>p:last-child{font-size:.92rem;line-height:1.4}
+ .intake-account{gap:8px;margin-bottom:14px}
+ .intake-account>div{gap:12px;flex-wrap:wrap}
+}
