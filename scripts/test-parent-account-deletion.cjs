@@ -56,7 +56,7 @@ const settle=()=>new Promise(resolve=>setImmediate(resolve));
  input(h,"Confirm your sign-in email","parent@test.invalid");
  input(h,"Current password","correct-password");
  input(h,"Type DELETE to confirm","DELETE");
- const button=element(h,n=>n.type==="button"&&words(n)==="Permanently delete my account");
+ const button=element(h,n=>n.type==="button"&&words(n)==="Permanently close and delete my account");
  assert.equal(button.props.disabled,false);
  await element(h,n=>n.type==="form").props.onSubmit({preventDefault(){}});
  await settle();h.render();
