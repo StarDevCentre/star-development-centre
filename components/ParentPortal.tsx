@@ -48,6 +48,9 @@ export function ParentPortal({initialMode="login",initialProgramme:requestedProg
  const linksReady=ownFamily.loaded;
  const [showPassword,setShowPassword]=useState(false),[resendSeconds,setResendSeconds]=useState(0),[adultConfirmed,setAdultConfirmed]=useState(false);
  const [intakeSubmitted,setIntakeSubmitted]=useState(false);
+ const [deletedNotice,setDeletedNotice]=useState(false);
+ useEffect(()=>{setDeletedNotice(new URLSearchParams(window.location.search).get("deleted")==="1")},[]);
+
  const [showRegistration,setShowRegistration]=useState(false),[recentRegistration,setRecentRegistration]=useState<string|null>(null);
  const [busy,setBusy]=useState(false),[notice,setNotice]=useState(""),[error,setError]=useState("");
  useEffect(()=>{if(resendSeconds<=0)return;const timer=window.setTimeout(()=>setResendSeconds(n=>n-1),1000);return()=>window.clearTimeout(timer)},[resendSeconds]);
@@ -164,6 +167,8 @@ export function ParentPortal({initialMode="login",initialProgramme:requestedProg
  if(usingDashboard)return <div className="parent-member parent-new-member">{error&&<p className="star-portal-error" role="alert">{error}</p>}{notice&&<p className="star-portal-notice" role="status">{notice}</p>}{memberExperience}</div>;
  return <div className={usingDashboard?"star-portal parent-member":!user?"star-portal parent-auth-"+mode:"star-portal"} id="parent-account">
  <div className="star-portal-main" id="parent-form-start">
+ {!user&&deletedNotice&&<p className="star-portal-notice" role="status">Your STAR parent account and exclusively linked child sign-ins have been permanently closed. Any records STAR must retain are explained in our privacy policy.</p>}
+
  {error&&<p className="star-portal-error" role="alert">{error}</p>}{notice&&<p className="star-portal-notice" role="status">{notice}</p>}
  {(!user||mode==="update")?<>
  {mode==="confirm"?<div className="parent-email-check"><span className="parent-mail-icon" aria-hidden="true">✉</span><p className="parent-eyebrow">STEP 2 / CHECK YOUR INBOX</p><h2>Confirm your email.</h2><p>We’ve requested a confirmation email for <strong>{email}</strong>. Follow the link to continue to your player’s registration.</p><ol><li>Open the confirmation email.</li><li>Select the confirmation link.</li><li>Return here to add your parent and player details.</li></ol><p className="parent-form-hint">Check your junk folder if it hasn’t arrived. If you already have an account, sign in below.</p><button className="parent-primary" type="button" disabled={busy||resendSeconds>0} onClick={resendConfirmation}>{resendSeconds>0?`Resend available in ${resendSeconds}s`:"Resend confirmation email"}</button><div className="star-portal-switch"><button type="button" onClick={()=>changeMode("login")}>Continue to sign in →</button><button type="button" onClick={()=>changeMode("signup")}>Use a different email</button></div></div>:<>
