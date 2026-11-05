@@ -32,3 +32,16 @@ body:has(.staff-app)>.site-header,body:has(.staff-app)>.home-header,body:has(.st
 .staff-app-dock{background:#091d39;border-top:2px solid #b48a35}
 .staff-app-dock button[aria-current=page]{color:#e8c77d;background:#203b59}
 @media(max-width:760px){.staff-app-page-heading{border-radius:14px;padding:17px 18px;margin-bottom:16px}.staff-app .staff-app-page-heading h2{font-size:24px}}
+
+/* Coaching-day command dashboard */
+.staff-command-summary{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:20px;align-items:center;padding:23px;border-radius:18px;background:#fff;border:1px solid #dce4eb;box-shadow:0 8px 25px #09203a0d;margin-bottom:20px}
+.staff-command-intro span{font-size:10px;letter-spacing:.12em;font-weight:800;color:#a77e32}
+.staff-app .staff-command-intro h3{font-size:24px;margin:4px 0;color:#091d39}
+.staff-command-intro p{margin:0;color:#596d82;font-size:13px}
+.staff-command-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.staff-app .staff-command-stats button{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;min-height:94px;padding:15px;border:1px solid #dce4eb;border-radius:13px;background:#f5f7fa;text-align:left}
+.staff-command-stats strong{font-size:30px;line-height:1.1;color:#091d39}
+.staff-command-stats span{font-size:11px;color:#596d82;line-height:1.35;margin-top:6px}
+.staff-app .staff-command-stats button:hover{border-color:#b48a35;background:#fffaf0}
+.staff-app .staff-action-list{border-radius:18px;box-shadow:0 8px 25px #09203a0d}
+@media(max-width:760px){.staff-command-summary{grid-template-columns:1fr;padding:16px;gap:15px}.staff-app .staff-command-intro h3{font-size:21px}.staff-command-stats{gap:7px}.staff-app .staff-command-stats button{min-height:78px;padding:10px}.staff-command-stats strong{font-size:25px}.staff-command-stats span{font-size:10px}}
