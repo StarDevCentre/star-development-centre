@@ -62,3 +62,11 @@ body:has(.staff-app)>.site-header,body:has(.staff-app)>.home-header,body:has(.st
 .staff-player-workspace-heading p{margin:3px 0;color:#596d82}
 @media(max-width:760px){.staff-app .staff-roster-cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.staff-app .staff-player-card{padding:12px;min-height:196px}.staff-app .staff-player-card-details strong{font-size:14px}.staff-app .staff-player-card .staff-player-avatar{width:43px;height:43px;flex-basis:43px;font-size:15px}}
 @media(max-width:360px){.staff-app .staff-roster-cards{grid-template-columns:1fr}}
+
+/* Session workflow: attendance progress and quick filtering */
+.staff-app .star-workflow-progress{height:9px;border-radius:999px;overflow:hidden;background:#dce5ed;margin:14px 0}
+.staff-app .star-workflow-progress>span{display:block;height:100%;border-radius:999px;background:#b48a35;transition:width .2s ease}
+.staff-app .star-workflow-quickbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 15px;margin:14px 0;border:1px solid #dce4eb;background:#f5f7fa;border-radius:12px}
+.staff-app .star-workflow-quickbar strong{font-size:13px;color:#102b49}
+.staff-app .star-workflow-quickbar button[aria-pressed=true]{background:#091d39;color:#fff;border-color:#091d39}
+@media(max-width:520px){.staff-app .star-workflow-quickbar{align-items:stretch;flex-direction:column}.staff-app .star-workflow-quickbar button{width:100%}}
