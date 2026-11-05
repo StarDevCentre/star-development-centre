@@ -14,11 +14,14 @@ function checkContract(){
  assert.match(backend,/caller\.auth\.getUser\(\)/,"Validate JWT with Auth, not client claims");
  assert.match(backend,/signInWithPassword/,"Reauthenticate before deletion");
  assert.match(backend,/verified\.user\?\.id!==user\.id/,"Password must belong to the same account");
- assert.match(backend,/admin\.auth\.admin\.deleteUser\(childId\)/);
- assert.match(backend,/admin\.auth\.admin\.deleteUser\(user\.id\)/);
- assert(backend.indexOf("deleteUser(childId)")<backend.indexOf("deleteUser(user.id)"),"Child identity deletion must be checked before parent identity removal");
+ assert.match(backend,/admin\.auth\.admin\.deleteUser\(childId,true\)/);
+ assert.match(backend,/admin\.auth\.admin\.deleteUser\(user\.id,true\)/);
+ assert(backend.indexOf("deleteUser(childId,true)")<backend.indexOf("deleteUser(user.id,true)"),"Child identity deletion must be checked before parent identity removal");
  assert.match(sql,/grant execute on function public\.star_family_account_deletion_plan\(uuid\) to service_role/);
  assert.match(sql,/revoke all on function public\.star_family_account_deletion_cleanup\(uuid\) from public,anon,authenticated/);
+ assert.match(sql,/player account.*deletion|player logins cannot initiate/i,"Block child-initiated deletion");
+ assert.match(sql,/delete from public.guardian_profiles where user_id=p_guardian/,"Erase parent profile");
+ assert(!sql.includes("set %I=null"),"Never null out required audit references");
  assert.match(sql,/child login is shared/i,"Shared child logins must be protected");
  assert.match(sql,/guardian_id<>p_guardian/);
 }
