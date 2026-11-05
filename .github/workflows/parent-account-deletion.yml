@@ -1,0 +1,27 @@
+name: Parent account deletion checks
+on:
+  pull_request:
+    paths:
+      - "components/ParentAccountDeletion.tsx"
+      - "components/ParentPortal.tsx"
+      - "components/parent-account-deletion.css"
+      - "scripts/test-parent-account-deletion.cjs"
+      - "supabase/functions/delete-family-account/index.ts"
+      - "supabase/migrations/*parent_family_account_deletion.sql"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npx tsc --noEmit
+      - run: node scripts/test-parent-account.cjs
+      - run: node scripts/test-parent-account-deletion.cjs
