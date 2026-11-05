@@ -52,6 +52,15 @@ Deno.serve(async(req:Request)=>{
   const {data:verified,error:passwordError}=await passwordClient.auth.signInWithPassword({email:user.email,password:body.password});
   if(passwordError||verified.user?.id!==user.id)return reply(403,{ok:false,error:"Password could not be verified. Nothing has been deleted."});
 
+  // If a child account was linked or shared while the parent entered their
+  // password, abort before removing any files or records.
+  const {data:latest,error:latestError}=await admin.rpc("star_family_account_deletion_plan",{p_guardian:user.id});
+  if(latestError||!Array.isArray(latest?.child_ids))
+   return reply(409,{ok:false,error:"Family links changed or could not be checked. Start the deletion review again."});
+  const ids=(v:unknown[])=>JSON.stringify([...new Set(v)].sort());
+  if(ids(latest.child_ids)!==ids(plan.child_ids))
+   return reply(409,{ok:false,error:"The linked child accounts changed. Review the account deletion details again."});
+
   // Remove account-owned objects before deleting Auth identities: Supabase Auth
   // refuses to delete accounts while they still own Storage objects.
   const groups=new Map<string,string[]>();
