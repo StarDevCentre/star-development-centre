@@ -24,6 +24,12 @@ begin
     raise exception 'Account not found.';
   end if;
   -- Business users must be handled separately to avoid orphaning STAR organisations.
+  -- This endpoint is parent-only. Child identities cannot close themselves through it.
+  if exists(select 1 from public.player_account_links where user_id=p_guardian)
+    or exists(select 1 from public.player_intakes where player_user_id=p_guardian)
+    or exists(select 1 from public.player_account_invites where player_user_id=p_guardian) then
+    raise exception 'Player logins cannot initiate family account deletion.';
+  end if;
   if exists(select 1 from public.staff_members where user_id=p_guardian)
     or exists(select 1 from public.star_organisation_members where user_id=p_guardian)
     or exists(select 1 from public.star_organisations where created_by=p_guardian) then
@@ -38,6 +44,10 @@ begin
     union
     select i.player_user_id as user_id
       from public.player_intakes i where i.guardian_id=p_guardian
+    union
+    select invite.player_user_id as user_id
+      from public.player_account_invites invite
+      where invite.guardian_id=p_guardian
     union
     select child_id as user_id
       from star_private.family_account_deletion_jobs job
@@ -62,6 +72,12 @@ begin
   ) or exists (
     select 1 from public.player_intakes i
     where i.player_user_id=any(v_children) and i.guardian_id is distinct from p_guardian
+  ) then
+    raise exception 'A child login is shared with another family. Contact STAR to arrange safe deletion.';
+  end if;
+  if exists (
+    select 1 from public.player_account_invites inv
+    where inv.player_user_id=any(v_children) and inv.guardian_id<>p_guardian
   ) then
     raise exception 'A child login is shared with another family. Contact STAR to arrange safe deletion.';
   end if;
