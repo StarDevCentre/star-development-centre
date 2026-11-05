@@ -1,6 +1,16 @@
 -- Parent-initiated account deletion. Service-role only; never grant to browser roles.
 -- The Edge Function verifies the existing JWT and reauthenticates with the password.
 -- Retain staff coaching/booking/safeguarding history, detached from deleted logins.
+-- Keep the child identities available if a network failure interrupts an admin deletion.
+-- The row disappears automatically when the parent Auth identity is finally removed.
+create table if not exists star_private.family_account_deletion_jobs (
+  guardian_id uuid primary key references auth.users(id) on delete cascade,
+  child_ids uuid[] not null default '{}'::uuid[],
+  created_at timestamptz not null default now()
+);
+alter table star_private.family_account_deletion_jobs enable row level security;
+revoke all on star_private.family_account_deletion_jobs from public,anon,authenticated;
+
 create or replace function public.star_family_account_deletion_plan(p_guardian uuid)
 returns jsonb language plpgsql security definer set search_path='' as $$
 declare
@@ -28,7 +38,14 @@ begin
     union
     select i.player_user_id as user_id
       from public.player_intakes i where i.guardian_id=p_guardian
-  ) u where u.user_id is not null and u.user_id<>p_guardian;
+    union
+    select child_id as user_id
+      from star_private.family_account_deletion_jobs job
+      cross join lateral unnest(job.child_ids) child_id
+      where job.guardian_id=p_guardian
+  ) u
+  join auth.users existing on existing.id=u.user_id
+  where u.user_id is not null and u.user_id<>p_guardian;
   -- Never delete an identity whose player is also linked to another guardian.
   if exists (
     select 1 from public.player_account_links pal
@@ -88,6 +105,16 @@ begin
   ) then
     raise exception 'Account files still need to be removed. Retry deletion.';
   end if;
+  -- Store the identities BEFORE removing family links. Retries must still be
+  -- able to delete child logins if one admin API request fails.
+  insert into star_private.family_account_deletion_jobs(guardian_id,child_ids)
+    values(p_guardian,v_child_ids)
+    on conflict (guardian_id) do update
+      set child_ids=array(
+        select distinct x from unnest(
+          star_private.family_account_deletion_jobs.child_ids || excluded.child_ids
+        ) x
+      );
   -- Delete parent-owned private interactions and family links.
   delete from public.family_messages where guardian_id=p_guardian;
   delete from public.family_session_requests where guardian_id=p_guardian;
