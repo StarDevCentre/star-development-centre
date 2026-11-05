@@ -17,17 +17,17 @@ const fullIntakeSections:{title:string;description:string;fields:IntakeField[]}[
  {title:'Consent choices',description:'Choose each separately. Declining photography or promotional use does not prevent participation. A parent / guardian confirms these choices when submitting the form.',fields:[
  {key:'coaching_media',label:'Photographs/video for private coaching feedback',type:'select',options:['Yes','No'],required:true},{key:'public_photos',label:'Photographs on STAR’s public website, social media or printed materials',type:'select',options:['Yes','No'],required:true},{key:'public_video',label:'Video on STAR’s public website or social media',type:'select',options:['Yes','No'],required:true},{key:'public_name',label:'First name alongside approved promotional images',type:'select',options:['Yes','No'],required:true},{key:'consent_notes',label:'Restrictions or questions about consent (optional)',type:'textarea'}]},
  {title:'Assessment availability',description:'Your introduction and assessment lasts 30 minutes and is FREE. Requesting it does not book a time or commit you to a paid programme.',fields:[
- {key:'availability',label:'Suitable days and times',type:'textarea',required:true},{key:'assessment_questions',label:'Questions or anything to discuss at the introduction',type:'textarea'}]}
+ {key:'availability',label:'Suitable days and times (optional)',type:'textarea'},{key:'assessment_questions',label:'Questions or anything to discuss at the introduction',type:'textarea'}]}
 ];
 // Only information needed to arrange safe assessment is compulsory. Enrolment extras can wait.
-const essential=new Set(['contact_name','relationship','contact_phone','contact_email','emergency_name','emergency_relationship','emergency_phone','support','medical','medical_details','allergies','medication','injuries','emergency_plan','coaching_media','public_photos','public_video','public_name','availability']);
+const essential=new Set(['contact_name','relationship','contact_phone','contact_email','emergency_name','emergency_relationship','emergency_phone','support','medical','medical_details','allergies','medication','injuries','emergency_plan','coaching_media','public_photos','public_video','public_name']);
 const fields=(...indexes:number[])=>indexes.flatMap(i=>fullIntakeSections[i].fields).map(f=>({...f,required:essential.has(f.key)}));
 export const intakeSections=[
  {title:'Player and family contacts',description:'Start with her name, date of birth and the contacts we need for safe participation. Please also add a recent head-to-toe photograph for private identification. The photograph and address details are optional for the assessment.',fields:fields(0)},
  {title:'Safe and comfortable coaching',description:'Tell us about support, health and emergency arrangements before she takes part. “None known” or “Discuss privately” are welcome where appropriate.',fields:fields(3,4)},
  {title:'Her football — optional',description:'Share what you already know, or continue and talk this through at her introduction. Every football question here is optional.',fields:fields(1,2)},
  {title:'Your separate consent choices',description:fullIntakeSections[6].description,fields:fields(6)},
- {title:'Availability and optional extras',description:'Tell us when you are available for the FREE 30-minute assessment. Kit sizes are optional and can wait until enrolment.',fields:fields(7,5)}
+ {title:'Availability and optional extras',description:'If you already know suitable days and times for the FREE 30-minute assessment, share them here. STAR can arrange this with you later. Kit sizes are optional until enrolment.',fields:fields(7,5)}
 ];
 export function visibleField(f:IntakeField,d:Record<string,string>){return !f.when||d[f.when.key]===f.when.value;}
 export function intakeMissing(p:Intake){const missing:string[]=[];if(!p.first_name.trim())missing.push('Player first name');if(!p.last_name.trim())missing.push('Player last name');if(!p.date_of_birth)missing.push('Date of birth');for(const s of intakeSections)for(const f of s.fields)if(f.required&&visibleField(f,p.details)&&!p.details[f.key]?.trim())missing.push(f.label);return missing;}
