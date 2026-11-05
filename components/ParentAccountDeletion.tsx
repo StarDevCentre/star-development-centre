@@ -38,6 +38,14 @@ export function ParentAccountDeletion({supabase,user}:{supabase:SupabaseClient;u
    if(error)throw new Error(await failureMessage(error));
    if(!data?.ok||!data.deleted)throw new Error(data?.error||"Account deletion was not confirmed.");
    setPassword("");
+   // Delete saved Player Space preferences for this family on this device.
+   try{
+    const prefix="star-parent-space-v1:"+encodeURIComponent(user.id)+":";
+    for(let i=window.localStorage.length-1;i>=0;i--){
+     const key=window.localStorage.key(i);
+     if(key?.startsWith(prefix))window.localStorage.removeItem(key);
+    }
+   }catch{}
    // The Auth identity no longer exists; clear the browser's local session too.
    try{await supabase.auth.signOut({scope:"local"});}catch{}
    window.location.replace("/parent-portal?deleted=1");
