@@ -3,7 +3,7 @@ const fs=require("node:fs"),path=require("node:path"),vm=require("node:vm"),ts=r
 const root=path.join(__dirname,"..");
 const source=fs.readFileSync(path.join(root,"components/ParentAccountDeletion.tsx"),"utf8");
 const backend=fs.readFileSync(path.join(root,"supabase/functions/delete-family-account/index.ts"),"utf8");
-const sql=fs.readFileSync(path.join(root,"supabase/migrations/20261105180000_parent_family_account_deletion.sql"),"utf8");
+const sql=fs.readFileSync(path.join(root,"supabase/migrations/20261105181543_parent_family_account_deletion.sql"),"utf8");
 const portal=fs.readFileSync(path.join(root,"components/ParentPortal.tsx"),"utf8");
 function checkContract(){
  assert.match(portal,/<ParentAccountDeletion supabase=\{supabase\} user=\{user\}/,"Parent account settings must offer deletion without requiring a saved profile");
