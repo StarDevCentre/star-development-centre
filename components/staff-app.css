@@ -15,3 +15,20 @@ body:has(.staff-app)>.site-header,body:has(.staff-app)>.home-header,body:has(.st
 
 /* Staff daily actions: explicit labels and counts; colour is never the only cue. */
 .staff-action-list{margin:18px 0;padding:20px;border:1px solid var(--staff-line);border-radius:16px;background:#fff}.staff-action-list>p{font-size:12px;color:var(--staff-muted);line-height:1.65}.staff-action-list .staff-card-heading>span{font-size:11px;color:var(--staff-muted)}.staff-action-filters{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}.staff-app .staff-action-filters button{font-size:11px;min-height:44px;padding:9px 12px;background:#f3f6fa;border:1px solid #ced8e3}.staff-app .staff-action-filters button[aria-pressed=true]{background:#17334f;color:white;border-color:#17334f}.staff-action-filters b{margin-left:5px}.staff-action-list ul{list-style:none;margin:0;padding:0}.staff-app .staff-action-list li>button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;text-align:left;border:0;border-top:1px solid #e2e8ee;border-radius:0;background:none;padding:15px 0;min-height:44px}.staff-action-list li>button>span:first-child{display:grid;gap:5px;min-width:0}.staff-action-list strong{font-size:14px;overflow-wrap:anywhere}.staff-action-list li small{font-size:11px;font-weight:400;color:var(--staff-muted)}.staff-action-list li span span{font-size:12px;font-weight:400;line-height:1.5}.staff-action-list .staff-action-note{border-top:1px solid #e2e8ee;padding-top:12px;margin-bottom:0;font-size:11px}.staff-action-clear{padding:15px;background:#f3f6fa;border-radius:9px}@media(max-width:760px){.staff-action-list{padding:17px}.staff-action-filters{gap:6px}.staff-app .staff-action-filters button{flex:1 1 45%;font-size:11px}.staff-action-list .staff-card-heading{gap:8px}}
+
+/* STAR Performance Centre visual refresh */
+.staff-app{--staff-navy:#091d39;--staff-muted:#596d82;--staff-line:#dce4eb}
+.staff-app-layout,.staff-app-content{background:#f4f6f8}
+.staff-app-header{background:#091d39;color:#fff;border-bottom:2px solid #b48a35}
+.staff-app-brand span{color:#d9bd7e}
+.staff-app-brand strong{color:#fff}
+.staff-app-sidebar{background:#0c2341;color:#e9eff6}
+.staff-app-sidebar .staff-menu-group>p{color:#d9bd7e}
+.staff-app-sidebar .staff-menu-group button{color:#e6edf6;background:transparent}
+.staff-app-sidebar .staff-menu-group button[aria-current=page]{background:#294564;color:#fff;border-left:3px solid #d2ad5b}
+.staff-app-page-heading{background:linear-gradient(125deg,#091d39,#193b5e);border-radius:18px;padding:24px 28px;margin-bottom:22px}
+.staff-app .staff-app-page-heading h2{color:#fff}
+.staff-app-page-heading p{color:#d9bd7e}
+.staff-app-dock{background:#091d39;border-top:2px solid #b48a35}
+.staff-app-dock button[aria-current=page]{color:#e8c77d;background:#203b59}
+@media(max-width:760px){.staff-app-page-heading{border-radius:14px;padding:17px 18px;margin-bottom:16px}.staff-app .staff-app-page-heading h2{font-size:24px}}
