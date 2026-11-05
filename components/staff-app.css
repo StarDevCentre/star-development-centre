@@ -45,3 +45,20 @@ body:has(.staff-app)>.site-header,body:has(.staff-app)>.home-header,body:has(.st
 .staff-app .staff-command-stats button:hover{border-color:#b48a35;background:#fffaf0}
 .staff-app .staff-action-list{border-radius:18px;box-shadow:0 8px 25px #09203a0d}
 @media(max-width:760px){.staff-command-summary{grid-template-columns:1fr;padding:16px;gap:15px}.staff-app .staff-command-intro h3{font-size:21px}.staff-command-stats{gap:7px}.staff-app .staff-command-stats button{min-height:78px;padding:10px}.staff-command-stats strong{font-size:25px}.staff-command-stats span{font-size:10px}}
+
+/* Player workspace cards: roster and profile */
+.staff-app .staff-roster-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:14px;align-items:stretch}
+.staff-app .staff-player-card{display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:12px;min-height:210px;padding:19px;border:1px solid #dbe4ee;border-radius:17px;background:#fff;box-shadow:0 6px 20px #091d390c}
+.staff-app .staff-player-card:hover{border-color:#b48a35;background:#fffcf5}
+.staff-app .staff-player-card .staff-player-avatar{width:52px;height:52px;flex:0 0 52px;font-size:18px}
+.staff-player-card-details{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.staff-app .staff-player-card-label{font-size:10px;letter-spacing:.11em;font-weight:800;color:#a47c35}
+.staff-app .staff-player-card-details strong{font-size:17px;color:#102b49}
+.staff-app .staff-player-card-details small{color:#596d82}
+.staff-player-card-goals{font-size:12px;color:#526a80}
+.staff-player-card-open{margin-top:auto;color:#234b70;font-size:12px;font-weight:800}
+.staff-player-workspace-heading{margin:14px 0 10px}
+.staff-player-workspace-heading span{font-size:10px;letter-spacing:.12em;color:#a47c35;font-weight:800}
+.staff-player-workspace-heading p{margin:3px 0;color:#596d82}
+@media(max-width:760px){.staff-app .staff-roster-cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.staff-app .staff-player-card{padding:12px;min-height:196px}.staff-app .staff-player-card-details strong{font-size:14px}.staff-app .staff-player-card .staff-player-avatar{width:43px;height:43px;flex-basis:43px;font-size:15px}}
+@media(max-width:360px){.staff-app .staff-roster-cards{grid-template-columns:1fr}}
