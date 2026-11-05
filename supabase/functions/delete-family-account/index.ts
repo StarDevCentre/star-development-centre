@@ -71,11 +71,13 @@ Deno.serve(async(req:Request)=>{
   if(cleanupError||!Array.isArray(cleaned?.child_ids)){
    return reply(503,{ok:false,error:"We could not safely finish the data cleanup. Your login remains active. Contact STAR for help."});
   }
+  // Irreversible soft deletion closes the login while retaining anonymised Auth IDs
+  // needed by STAR's non-null historical coaching and safeguarding audit fields.
   for(const childId of cleaned.child_ids as string[]){
-   const {error}=await admin.auth.admin.deleteUser(childId);
+   const {error}=await admin.auth.admin.deleteUser(childId,true);
    if(error)return reply(503,{ok:false,error:"Some child account deletion steps could not be completed. Please contact STAR before retrying."});
   }
-  const {error:parentError}=await admin.auth.admin.deleteUser(user.id);
+  const {error:parentError}=await admin.auth.admin.deleteUser(user.id,true);
   if(parentError)return reply(503,{ok:false,error:"Your parent login could not be removed. Please contact STAR so we can complete the request."});
   return reply(200,{ok:true,deleted:true});
  }catch{
