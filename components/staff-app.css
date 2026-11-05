@@ -70,3 +70,43 @@ body:has(.staff-app)>.site-header,body:has(.staff-app)>.home-header,body:has(.st
 .staff-app .star-workflow-quickbar strong{font-size:13px;color:#102b49}
 .staff-app .star-workflow-quickbar button[aria-pressed=true]{background:#091d39;color:#fff;border-color:#091d39}
 @media(max-width:520px){.staff-app .star-workflow-quickbar{align-items:stretch;flex-direction:column}.staff-app .star-workflow-quickbar button{width:100%}}
+
+
+/* Unified staff schedule: organisation, group, individual and assessment bookings. */
+.staff-48h{border:1px solid #d7e0eb;border-radius:18px;background:#fff;padding:20px 22px;margin:0 0 20px;box-shadow:0 8px 25px #09203a0b;color:#102442;min-width:0}
+.staff-48h-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:18px}
+.staff-48h-eyebrow{font-weight:800;letter-spacing:.15em;font-size:10px;color:#a77e32;margin:0 0 7px}
+.staff-app .staff-48h-heading h3{font-size:24px;font-weight:780;color:#091d39;margin:0 0 8px}
+.staff-48h-heading p:not(.staff-48h-eyebrow){color:#5c7185;font-size:12px;line-height:1.5;margin:0;max-width:520px}
+.staff-48h-total{display:flex;flex-direction:column;justify-content:center;align-items:center;background:#102442;color:#fff;border-radius:13px;padding:10px 14px;min-width:76px}
+.staff-48h-total strong{font-size:28px;line-height:1.15;color:#fff}
+.staff-48h-total span{font-size:11px;color:#e5d3a6}
+.staff-48h-actions{display:flex;flex-wrap:wrap;gap:9px;margin:16px 0}
+.staff-app .staff-48h-actions button{min-height:37px;border-radius:9px;padding:8px 12px;background:#f3f6fa;color:#153855;font-size:12px;font-weight:700;border:1px solid #d5dfeb}
+.staff-app .staff-48h-actions button:last-child{background:#102442;color:#fff;border-color:#102442}
+.staff-app .staff-48h-actions button:disabled{opacity:.6;cursor:wait}
+.staff-48h-day{padding-top:9px}
+.staff-48h-day h4{margin:0 0 9px;font-size:12px;letter-spacing:.02em;color:#38566e}
+.staff-app .staff-48h-session{display:flex;align-items:center;gap:14px;width:100%;padding:13px 10px;margin:0 0 8px;text-align:left;background:#f6f8fb;border:1px solid #e0e7ee;border-left:4px solid #c6a157;border-radius:12px;min-width:0;color:#102442}
+.staff-app .staff-48h-session:hover{border-color:#c6a157;background:#fffaf0}
+.staff-48h-time{display:grid;gap:4px;flex:0 0 73px;align-content:center;font-size:15px;font-weight:800;color:#102442;font-variant-numeric:tabular-nums}
+.staff-48h-time small{font-size:11px;font-weight:500;color:#687e92}
+.staff-48h-info{display:grid;gap:4px;flex:1;min-width:0}
+.staff-48h-info strong{font-size:14px;line-height:1.3;overflow-wrap:anywhere}
+.staff-48h-info small{font-size:11px;line-height:1.4;color:#526c84}
+.staff-48h-venue{font-size:11px;color:#4a6279;overflow-wrap:anywhere}
+.staff-48h-go{font-size:11px;white-space:nowrap;font-weight:700;color:#536f87;text-align:right}
+.staff-48h-empty{padding:16px;border-radius:11px;background:#f7f9fc;color:#637a90;font-size:13px;margin:8px 0}
+.staff-48h-footnote,.staff-48h-subtle{font-size:11px;color:#6a7e91;margin:12px 0 0;line-height:1.4}
+@media(max-width:700px){
+ .staff-48h{padding:15px 13px;margin-bottom:17px}
+ .staff-48h-heading{gap:8px}
+ .staff-app .staff-48h-heading h3{font-size:20px}
+ .staff-48h-total{min-width:59px;padding:10px}
+ .staff-48h-total strong{font-size:24px}
+ .staff-app .staff-48h-session{gap:9px;padding:11px 8px}
+ .staff-48h-time{flex-basis:60px;font-size:13px}
+ .staff-48h-go{font-size:10px}
+ .staff-48h-info strong{font-size:13px}
+ .staff-48h-info small{font-size:10px}
+}
