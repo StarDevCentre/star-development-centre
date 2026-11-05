@@ -107,7 +107,6 @@ declare
   v_plan jsonb;
   v_child_ids uuid[];
   v_all uuid[];
-  ref record;
 begin
   -- Serialise concurrent deletion attempts against the authenticated account.
   perform 1 from auth.users where id=p_guardian for update;
@@ -138,24 +137,31 @@ begin
   delete from public.player_account_invites where guardian_id=p_guardian;
   delete from public.guardian_player_links where guardian_id=p_guardian;
   delete from public.player_account_links where user_id=any(v_child_ids);
-  -- Other application tables contain historical references to the account.
-  -- Preserve coaching, attendance, invoices and audit records, but remove ID ties.
-  -- FK references configured NO ACTION are currently nullable; fail closed if this changes.
-  for ref in
-    select c.conrelid::regclass as relation, a.attname as column_name, a.attnotnull as required
-    from pg_constraint c
-    join pg_attribute a on a.attrelid=c.conrelid and a.attnum=c.conkey[1]
-    join pg_namespace n on n.oid=(select relnamespace from pg_class where oid=c.conrelid)
-    where c.contype='f' and c.confrelid='auth.users'::regclass
-      and c.confdeltype='a' and cardinality(c.conkey)=1
-      and n.nspname in ('public','star_private')
-  loop
-    if ref.required then
-      raise exception 'Account deletion requires a staff review of database references.';
-    end if;
-    execute format('update %s set %I=null where %I=any($1)',ref.relation,ref.column_name,ref.column_name)
-      using v_all;
-  end loop;
+  -- Supabase Auth soft-deletes preserve the auth.users ID for historical
+  -- references (many STAR author fields are NOT NULL). The login is permanently
+  -- disabled, while necessary coaching, booking and safeguarding history remains.
+  -- Erase parent-specific account preferences, notifications and drafts.
+  delete from public.guardian_profiles where user_id=p_guardian;
+  delete from public.parent_notifications where user_id=p_guardian;
+  delete from public.parent_push_preferences where user_id=p_guardian;
+  delete from public.parent_push_subscriptions where user_id=p_guardian;
+  delete from public.player_award_receipts where guardian_id=p_guardian;
+  delete from public.player_notification_reads where user_id=any(v_all);
+  delete from public.player_push_preferences where user_id=any(v_child_ids);
+  delete from public.player_push_subscriptions where user_id=any(v_child_ids);
+  delete from public.player_space_onboarding where user_id=any(v_all);
+  -- Historical submitted registrations, coaching notes and approved onboarding
+  -- may have legal or safeguarding retention requirements. Erase drafts only.
+  delete from public.player_registrations r
+    where r.guardian_id=p_guardian and r.status='draft';
+  delete from public.player_intakes i
+    where i.creator_id=any(v_all) and i.completed_at is null
+      and not exists (
+        select 1 from public.guardian_player_links gl
+        where gl.onboarding_intake_id=i.id
+      );
+  -- No broad nulling of NOT NULL staff/audit foreign keys or destruction of
+  -- shared coaching profiles. Deleting these rows would corrupt STAR records.
   return jsonb_build_object('child_ids',to_jsonb(v_child_ids));
 end $$;
 
