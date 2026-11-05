@@ -1,0 +1,171 @@
+-- Parent-initiated account deletion. Service-role only; never grant to browser roles.
+-- The Edge Function verifies the existing JWT and reauthenticates with the password.
+-- Retain staff coaching/booking/safeguarding history, detached from deleted logins.
+-- Keep the child identities available if a network failure interrupts an admin deletion.
+-- The row disappears automatically when the parent Auth identity is finally removed.
+create table if not exists star_private.family_account_deletion_jobs (
+  guardian_id uuid primary key references auth.users(id) on delete cascade,
+  child_ids uuid[] not null default '{}'::uuid[],
+  created_at timestamptz not null default now()
+);
+alter table star_private.family_account_deletion_jobs enable row level security;
+revoke all on star_private.family_account_deletion_jobs from public,anon,authenticated;
+
+create or replace function public.star_family_account_deletion_plan(p_guardian uuid)
+returns jsonb language plpgsql security definer set search_path='' as $$
+declare
+  v_children uuid[] := array[]::uuid[];
+  v_all uuid[];
+  v_all_text text[];
+  v_files jsonb := '[]'::jsonb;
+  v_linked_players integer := 0;
+begin
+  if p_guardian is null or not exists(select 1 from auth.users where id=p_guardian) then
+    raise exception 'Account not found.';
+  end if;
+  -- Business users must be handled separately to avoid orphaning STAR organisations.
+  -- This endpoint is parent-only. Child identities cannot close themselves through it.
+  if exists(select 1 from public.player_account_links where user_id=p_guardian)
+    or exists(select 1 from public.player_intakes where player_user_id=p_guardian)
+    or exists(select 1 from public.player_account_invites where player_user_id=p_guardian) then
+    raise exception 'Player logins cannot initiate family account deletion.';
+  end if;
+  if exists(select 1 from public.staff_members where user_id=p_guardian)
+    or exists(select 1 from public.star_organisation_members where user_id=p_guardian)
+    or exists(select 1 from public.star_organisations where created_by=p_guardian) then
+    raise exception 'Accounts also used for staff or organisation access require STAR assistance.';
+  end if;
+  select count(*) into v_linked_players from public.guardian_player_links where guardian_id=p_guardian;
+  select coalesce(array_agg(distinct u.user_id),array[]::uuid[]) into v_children from (
+    select pal.user_id
+      from public.player_account_links pal
+      join public.guardian_player_links gl on gl.player_id=pal.player_id
+      where gl.guardian_id=p_guardian
+    union
+    select i.player_user_id as user_id
+      from public.player_intakes i where i.guardian_id=p_guardian
+    union
+    select invite.player_user_id as user_id
+      from public.player_account_invites invite
+      where invite.guardian_id=p_guardian
+    union
+    select child_id as user_id
+      from star_private.family_account_deletion_jobs job
+      cross join lateral unnest(job.child_ids) child_id
+      where job.guardian_id=p_guardian
+  ) u
+  join auth.users existing on existing.id=u.user_id
+  where u.user_id is not null and u.user_id<>p_guardian;
+  -- Never delete an identity whose player is also linked to another guardian.
+  if exists (
+    select 1 from public.player_account_links pal
+    join public.guardian_player_links gl on gl.player_id=pal.player_id
+    where pal.user_id=any(v_children) and gl.guardian_id<>p_guardian
+  ) or exists (
+    select 1 from public.player_intakes i
+    join public.guardian_player_links gl on gl.player_id=i.portal_player_id
+    where i.player_user_id=any(v_children) and gl.guardian_id<>p_guardian
+  ) or exists (
+    select 1 from public.player_account_links pal
+    where pal.user_id=any(v_children)
+      and not exists(select 1 from public.guardian_player_links gl where gl.player_id=pal.player_id and gl.guardian_id=p_guardian)
+  ) or exists (
+    select 1 from public.player_intakes i
+    where i.player_user_id=any(v_children) and i.guardian_id is distinct from p_guardian
+  ) then
+    raise exception 'A child login is shared with another family. Contact STAR to arrange safe deletion.';
+  end if;
+  if exists (
+    select 1 from public.player_account_invites inv
+    where inv.player_user_id=any(v_children) and inv.guardian_id<>p_guardian
+  ) then
+    raise exception 'A child login is shared with another family. Contact STAR to arrange safe deletion.';
+  end if;
+  if exists(select 1 from public.guardian_profiles where user_id=any(v_children))
+    or exists(select 1 from public.staff_members where user_id=any(v_children))
+    or exists(select 1 from public.star_organisation_members where user_id=any(v_children))
+    or exists(select 1 from public.star_organisations where created_by=any(v_children)) then
+    raise exception 'A linked child login has another account role. Contact STAR for safe deletion.';
+  end if;
+  v_all := array_append(v_children,p_guardian);
+  v_all_text := array(select x::text from unnest(v_all) x);
+  select coalesce(jsonb_agg(jsonb_build_object('bucket',o.bucket_id,'name',o.name)),'[]'::jsonb)
+    into v_files from storage.objects o
+    where (o.owner=any(v_all) or o.owner_id=any(v_all_text))
+      and o.bucket_id is not null and o.name is not null;
+  return jsonb_build_object(
+    'child_ids',to_jsonb(v_children),
+    'child_count',cardinality(v_children),
+    'linked_player_count',v_linked_players,
+    'files',v_files
+  );
+end $$;
+
+create or replace function public.star_family_account_deletion_cleanup(p_guardian uuid)
+returns jsonb language plpgsql security definer set search_path='' as $$
+declare
+  v_plan jsonb;
+  v_child_ids uuid[];
+  v_all uuid[];
+begin
+  -- Serialise concurrent deletion attempts against the authenticated account.
+  perform 1 from auth.users where id=p_guardian for update;
+  v_plan := public.star_family_account_deletion_plan(p_guardian);
+  v_child_ids := array(select jsonb_array_elements_text(v_plan->'child_ids')::uuid);
+  v_all := array_append(v_child_ids,p_guardian);
+  if exists(
+    select 1 from storage.objects
+    where owner=any(v_all)
+       or owner_id=any(array(select x::text from unnest(v_all) x))
+  ) then
+    raise exception 'Account files still need to be removed. Retry deletion.';
+  end if;
+  -- Store the identities BEFORE removing family links. Retries must still be
+  -- able to delete child logins if one admin API request fails.
+  insert into star_private.family_account_deletion_jobs(guardian_id,child_ids)
+    values(p_guardian,v_child_ids)
+    on conflict (guardian_id) do update
+      set child_ids=array(
+        select distinct x from unnest(
+          star_private.family_account_deletion_jobs.child_ids || excluded.child_ids
+        ) x
+      );
+  -- Delete parent-owned private interactions and family links.
+  delete from public.family_messages where guardian_id=p_guardian;
+  delete from public.family_session_requests where guardian_id=p_guardian;
+  delete from public.player_training_diary where guardian_id=p_guardian;
+  delete from public.player_account_invites where guardian_id=p_guardian;
+  delete from public.guardian_player_links where guardian_id=p_guardian;
+  delete from public.player_account_links where user_id=any(v_child_ids);
+  -- Supabase Auth soft-deletes preserve the auth.users ID for historical
+  -- references (many STAR author fields are NOT NULL). The login is permanently
+  -- disabled, while necessary coaching, booking and safeguarding history remains.
+  -- Erase parent-specific account preferences, notifications and drafts.
+  delete from public.guardian_profiles where user_id=p_guardian;
+  delete from public.parent_notifications where user_id=p_guardian;
+  delete from public.parent_push_preferences where user_id=p_guardian;
+  delete from public.parent_push_subscriptions where user_id=p_guardian;
+  delete from public.player_award_receipts where guardian_id=p_guardian;
+  delete from public.player_notification_reads where user_id=any(v_all);
+  delete from public.player_push_preferences where user_id=any(v_child_ids);
+  delete from public.player_push_subscriptions where user_id=any(v_child_ids);
+  delete from public.player_space_onboarding where user_id=any(v_all);
+  -- Historical submitted registrations, coaching notes and approved onboarding
+  -- may have legal or safeguarding retention requirements. Erase drafts only.
+  delete from public.player_registrations r
+    where r.guardian_id=p_guardian and r.status='draft';
+  delete from public.player_intakes i
+    where i.creator_id=any(v_all) and i.completed_at is null
+      and not exists (
+        select 1 from public.guardian_player_links gl
+        where gl.onboarding_intake_id=i.id
+      );
+  -- No broad nulling of NOT NULL staff/audit foreign keys or destruction of
+  -- shared coaching profiles. Deleting these rows would corrupt STAR records.
+  return jsonb_build_object('child_ids',to_jsonb(v_child_ids));
+end $$;
+
+revoke all on function public.star_family_account_deletion_plan(uuid) from public,anon,authenticated;
+revoke all on function public.star_family_account_deletion_cleanup(uuid) from public,anon,authenticated;
+grant execute on function public.star_family_account_deletion_plan(uuid) to service_role;
+grant execute on function public.star_family_account_deletion_cleanup(uuid) to service_role;

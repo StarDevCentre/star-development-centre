@@ -1,0 +1,19 @@
+.parent-delete-account{margin:28px 0 0;padding:22px;border:1px solid #e8d7d4;border-radius:18px;background:#fffaf9;color:#253449;max-width:100%;box-sizing:border-box}
+.parent-delete-account h3{margin:0 0 8px;color:#7c292b;font:700 20px/1.3 "DM Sans",sans-serif}
+.parent-delete-account p{line-height:1.65;margin:0 0 14px;font-size:14px}
+.parent-delete-open,.parent-delete-submit{min-height:44px;max-width:100%;padding:10px 16px;border:1px solid #9d3739;border-radius:10px;background:#fff;color:#982d2f;cursor:pointer;font:700 14px/1.3 "DM Sans",sans-serif}
+.parent-delete-submit{background:#982d2f;color:white}
+.parent-delete-open:hover,.parent-delete-open:focus-visible{background:#fff0ed}
+.parent-delete-submit:hover:not(:disabled){background:#802528}
+.parent-delete-confirm{margin-top:14px;padding-top:16px;border-top:1px solid #eadbd8}
+.parent-delete-count{padding:12px;border-radius:9px;background:#f6eeee}
+.parent-delete-error{padding:12px;border-left:3px solid #982d2f;background:#fff0ee;color:#852326}
+.parent-delete-account form{display:grid;gap:13px;margin-top:16px}
+.parent-delete-account label{display:grid;gap:6px;font-weight:650;font-size:14px}
+.parent-delete-account input{box-sizing:border-box;width:100%;max-width:100%;min-height:46px;padding:10px 12px;border:1px solid #bdc9d6;border-radius:9px;background:white;color:#142940;font:inherit}
+.parent-delete-account input:focus-visible,.parent-delete-account button:focus-visible{outline:3px solid #2b6cb0;outline-offset:2px}
+.parent-delete-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:6px}
+.parent-delete-actions button{min-height:44px;padding:9px 15px;border-radius:10px;font-weight:650}
+.parent-delete-actions button[type="button"]{border:1px solid #aeb9c5;background:#fff;color:#24415c}
+.parent-delete-account button:disabled{opacity:.55;cursor:not-allowed}
+@media(max-width:480px){.parent-delete-account{padding:17px}.parent-delete-actions{display:grid}.parent-delete-actions button{width:100%}}
