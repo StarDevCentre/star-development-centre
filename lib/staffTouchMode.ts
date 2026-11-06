@@ -13,7 +13,8 @@ export function staffTouchMode(input:StaffTouchModeInput){
  const installed=input.standalone||input.fullscreen||input.iosStandalone;
  const physicalWidth=Math.min(input.screenWidth,input.screenHeight);
  const touch=input.coarsePointer||input.touchPoints>0;
- const installedTouch=installed&&touch&&physicalWidth>0&&physicalWidth<=1100;
+ // Keep larger touchscreen laptops/desktop installations in the desktop shell.
+ const installedTouch=installed&&touch&&physicalWidth>0&&physicalWidth<=900;
  return {
   installedTouch,
   virtualDesktopViewport:installedTouch&&input.viewportWidth>Math.max(780,physicalWidth*1.35)
