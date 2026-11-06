@@ -42,7 +42,7 @@ export function StaffWorkspace({userId,role,onSignOut}:{userId:string;role:Staff
  function panel(id:StaffSection){switch(id){
   case "organisations":return canManage?<StaffOrganisations target={organisationTarget}/>:null;
   case "overview":return <StaffHome active={section==="overview"&&!menuOpen} canManage={canManage} onNavigate={navigate}/>;
-  case "workspace":return <SessionAttendance userId={userId} initialSessionId={sessionId} onSessionChange={setSessionId} onCoachPlayer={(player,session)=>navigate("records",player,session)} onPlayerDevelopment={player=>navigate("idps",player)}/>;
+  case "workspace":return <SessionAttendance userId={userId} initialSessionId={sessionId} onSessionChange={setSessionId} onCoachPlayer={(player,session)=>navigate("records",player,session)} onPlayerDevelopment={player=>navigate("idps",player)} onReturnToCalendar={()=>navigate("sessions")} onOpenPlan={planId=>{if(planId)setPlanRequest(v=>({id:planId,revision:(v?.revision||0)+1}));navigate("sessionBuilder")}}/>;
   case "gallery":return <StaffMediaGallery userId={userId} canManage={canManage} initialPlayerId={contextPlayer}/>;
   case "coachingProfiles":return <StaffCoachingProfile key={userId} userId={userId} canManage={canManage} initialPlayerId={profilePlayerId} selectionRequest={profileRequest} onNavigate={navigate}/>;
   case "players":return <StaffPlayers userId={userId} canManage={canManage} initialPlayerId={rosterPlayerId} selectionRequest={rosterRequest} onNote={id=>navigate("records",id)} onDevelopment={id=>navigate("idps",id)} onBadge={id=>navigate("badges",id)} onPositions={id=>navigate("coachingProfiles",id)}/>;
