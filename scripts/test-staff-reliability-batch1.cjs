@@ -52,7 +52,7 @@ test('attendance results from an older selection or a closed panel cannot replac
 });
 test('attendance writes retain an explicit failure path and require a confirmed changed record',()=>{
  const source=read('components/SessionAttendance.tsx');
- assert.match(source,/\.upsert\(\{session_id:selectedAtStart,player_id,status,recorded_by:userId/);
+ assert.match(source,/\.upsert\(\{session_id:selectedAtStart,player_id:playerId,status,recorded_by:userId/);
  assert.match(source,/onConflict:"session_id,player_id"/);
  assert.match(source,/if\(error\|\|!saved\?\.length\)/);
  assert.match(source,/Attendance not saved/);
