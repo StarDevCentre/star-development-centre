@@ -588,3 +588,70 @@ body:has(.staff-app){background:#080c14}
  .staff-app .org-tabs{gap:5px}
  .staff-app .org-tabs>button{font-size:11px;padding:10px 12px}
 }
+
+
+/* Batch 5 — finishing pass across specialist coaching/family workspaces. */
+.staff-app :is(.staff-coaching,.star-training-hub,.star-coaching-records,.star-idp,.star-pathways,.star-badge-workspace,.star-admissions,.star-session-requests,.staff-media,.star-staff-admin){color:#e7f0fc}
+.staff-app :is(.staff-coaching,.star-training-hub,.star-coaching-records,.star-idp,.star-pathways,.star-badge-workspace,.star-admissions,.star-session-requests,.staff-media) :is(h2,h3,h4,h5){color:#f3f7ff}
+.staff-app :is(.staff-coaching,.star-training-hub,.star-coaching-records,.star-idp,.star-pathways,.star-badge-workspace,.star-admissions,.star-session-requests,.staff-media)>p{color:#a9bcd0}
+.staff-app :is(.staff-coaching-hero,.staff-coaching-player,.staff-coaching-grid>div,.staff-position-form,.staff-position-preview,.ssb-panel,.ssb-practice-card,.ssb-session-details,.ssb-timeline,.star-hub-hero,.star-hub-panel,.star-idp-tile,.star-record-item,.star-training-list article,.star-training-forms,.star-badge-fieldset,.star-badge-picker,.star-badge-option,.star-badge-selection,.star-admissions-list,.star-admissions-detail,.star-admissions-enrol,.star-session-request-list,.star-session-decision,.star-portal-form,.star-family-confirm,.media-card,.media-upload,.media-cleanup,.star-training-entry,.star-training-pre){
+ background:#152234!important;color:#eaf1fc;border-color:#34475e!important;box-shadow:none;
+}
+.staff-app :is(.staff-coaching-hero,.staff-coaching-grid,.staff-position-form,.ssb-panel,.ssb-practice-card,.star-hub-panel,.star-idp-tile,.star-record-item,.star-admissions-list,.star-admissions-detail,.star-admissions-enrol,.star-badge-selection,.media-card,.star-session-decision) :is(h2,h3,h4,h5,strong){color:#f3f7ff}
+.staff-app :is(.staff-coaching-hero,.staff-position-form,.ssb-panel,.ssb-practice-card,.star-hub-panel,.star-record-item,.star-admissions-detail,.star-badge-selection,.media-card,.star-session-decision) :is(p,small,span,li,dd,dt){color:#c3d1e3}
+.staff-app :is(.staff-coaching-card-heading,.staff-position-status,.ssb-eyebrow,.ssb-detail-meta,.star-hub-hint,.star-training-hub .star-hub-hint,.star-badge-workspace .kicker){color:#dbbd87}
+.staff-app :is(.staff-coaching-tools,.staff-hub-actions,.star-hub-actions,.star-session-actions,.ssb-actions,.media-actions){display:flex;flex-wrap:wrap;gap:8px}
+.staff-app .staff-coaching .staff-position-form{border-radius:15px;padding:17px}
+.staff-app .staff-coaching .staff-coaching-hero{border:1px solid #384d64;border-radius:17px;padding:18px}
+.staff-app .staff-coaching .staff-coaching-player{background:linear-gradient(115deg,#24324c,#18283c)!important;border-radius:15px}
+.staff-app .staff-coaching .staff-position-pitch{border-radius:13px;overflow:hidden}
+.staff-app .star-training-forms{padding:16px;border-radius:14px}
+.staff-app .star-training-forms :is(label,p){color:#d9e5f4}
+.staff-app .star-training-list{display:grid;gap:12px}
+.staff-app .star-training-list article{border:1px solid #334761;border-radius:13px;padding:15px}
+.staff-app .star-training-list article :is(strong,h4,h5){color:#f5f7fd}
+.staff-app .star-training-list article :is(p,small,span){color:#afc3d8}
+.staff-app .star-record-item{border-radius:12px;padding:14px}
+.staff-app .star-hub-hero{background:linear-gradient(120deg,#1f314b,#1c2536)!important;border:1px solid #41546b;border-radius:17px;padding:17px}
+.staff-app .star-hub-avatar{background:#32465c;color:#e7c68c}
+.staff-app .star-hub-metrics{display:grid;gap:10px}
+.staff-app .star-hub-metrics>div{background:#182b40;border:1px solid #3a4e66;border-radius:12px;padding:13px}
+.staff-app .star-hub-metrics :is(strong,span){color:#eaf2fb}
+.staff-app .star-hub-tabs{display:flex;gap:7px;overflow-x:auto;padding-bottom:11px;scrollbar-width:thin}
+.staff-app .star-hub-tabs button{flex:none;background:#1d2d43;border:1px solid #3d506b;color:#d7e3f3}
+.staff-app .star-hub-tabs button[aria-pressed=true]{background:#d9b576;color:#131e2a;border-color:#d9b576}
+.staff-app .star-hub-panel{border-radius:15px;padding:17px}
+.staff-app .star-idp-tile{border-radius:13px;padding:14px}
+.staff-app .star-idp-tile .star-idp-score{color:#e8c585}
+.staff-app .star-badge-results{display:grid;gap:10px}
+.staff-app .star-badge-option[aria-pressed=true],.staff-app .star-badge-option[aria-selected=true]{border-color:#d9b576!important;background:#2b3444!important}
+.staff-app .star-badge-submit{background:#d9b576;color:#111927;border-color:#d9b576}
+.staff-app .star-admissions-grid{display:grid;gap:14px}
+.staff-app .star-admissions-list,.staff-app .star-admissions-detail{border-radius:16px;padding:17px}
+.staff-app .star-admissions-list :is(button,a){border-radius:10px}
+.staff-app .star-session-request-list{border:1px solid #35465d;border-radius:14px;padding:15px}
+.staff-app .star-session-decision{border-radius:12px;padding:15px}
+.staff-app .star-staff-admin-item{background:#182638!important}
+.staff-app .media-grid{display:grid;gap:14px}
+.staff-app .media-card{border-radius:15px;overflow:hidden}
+.staff-app .media-caption{padding:12px;color:#dce7f5}
+.staff-app .media-permission{border:1px solid #42596a;background:#1a2b3f;color:#c5ddef;border-radius:11px;padding:12px}
+.staff-app .media-alert,.staff-app .star-portal-error{color:#ffd0d6;background:#42232d;border:1px solid #80525b;border-radius:11px;padding:12px}
+.staff-app .media-notice,.staff-app .star-portal-notice{color:#c3e4de;background:#173538;border:1px solid #3e6e69;border-radius:11px;padding:12px}
+.staff-app .ssb-panel{border-radius:15px}
+.staff-app .ssb-practice-card{border-radius:14px}
+.staff-app .ssb-tabs{display:flex;gap:7px;overflow-x:auto;padding-bottom:11px;scrollbar-width:thin}
+.staff-app .ssb-tabs button[aria-pressed=true],.staff-app .ssb-tabs button[aria-current=page]{background:#d6b577;color:#111926;border-color:#d6b577}
+.staff-app .ssb-card-grid{display:grid;gap:13px}
+.staff-app .ssb-privacy-note{background:#1b3442;color:#c6dced;border:1px solid #3a5869;border-radius:11px}
+.staff-app :is(.ssb-panel,.star-hub-panel,.star-training-forms,.star-staff-admin-item) :is(input,select,textarea){background:#101b2b;color:#f3f7ff;border-color:#465b76}
+.staff-app :is(.star-training-hub,.star-coaching-records,.star-idp,.star-pathways,.star-staff-admin,.star-badge-workspace,.star-admissions,.star-session-requests) :is(button[type=submit],button.star-portal-primary){background:#d7b476;color:#111b29;border:1px solid #d7b476;font-weight:800}
+@media(max-width:760px){
+ .staff-app .star-hub-panel{padding:13px}
+ .staff-app .star-hub-hero{padding:14px}
+ .staff-app .star-training-forms{padding:12px}
+ .staff-app .ssb-panel{padding:13px}
+ .staff-app .star-admissions-list,.staff-app .star-admissions-detail{padding:13px}
+ .staff-app .staff-coaching .staff-coaching-hero{padding:13px}
+ .staff-app .star-hub-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
