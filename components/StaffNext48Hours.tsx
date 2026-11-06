@@ -96,10 +96,12 @@ export function StaffNext48Hours({active=true,onNavigate}:{active?:boolean;onNav
        const linked=people[s.id]||[];
        const players=linked.filter(p=>p.player_name).map(p=>p.player_name+(p.player_age===null?'':` (${p.player_age})`));
        const organisation=linked.find(p=>p.organisation)?.organisation;
+       const kind=category(s);
+       const descriptor=[kind,...(players.length&&kind.toLowerCase()!==s.title.toLowerCase()?[s.title]:[]),...(organisation?[organisation]:[])].join(' · ');
        const running=Date.parse(s.starts_at)<=now&&Date.parse(s.ends_at)>now;
        return <button key={s.id} type="button" className="staff-48h-session" onClick={()=>onNavigate('workspace',undefined,s.id)}>
         <span className="staff-48h-time">{timeLabel(s.starts_at)}<small>to {timeLabel(s.ends_at)}</small></span>
-        <span className="staff-48h-info"><strong>{players.length?players.join(', '):s.title}</strong><small>{category(s)}{players.length?' · '+s.title:''}{organisation?' · '+organisation:''}</small><span className="staff-48h-venue">{s.venue||'Venue to confirm'}</span></span>
+        <span className="staff-48h-info"><strong>{players.length?players.join(', '):s.title}</strong><small>{descriptor}</small><span className="staff-48h-venue">{s.venue||'Venue to confirm'}</span></span>
         <span className="staff-48h-go">{running?'In progress':'View ↗'}</span>
        </button>;
      })}
