@@ -25,16 +25,16 @@ test('combined queue deduplicates intakes, sorts oldest first and links exact re
  assert.equal(actions.length,2);assert.equal(actions[0].targetId,'r');assert.equal(actions[0].area,'sessionRequests');assert.equal(actions[0].name,'Demo Player');assert.equal(actions[1].targetId,'a');
  assert.equal(buildStaffActions([],requests,[])[0].name,'Player');
 });
-function mockDb(failure){const calls=[];let intakes=0;return {calls,from(table){const key=table==='player_intakes'?(intakes++===0?'assessments':'onboarding'):table;const result={data:key==='assessments'?[base]:key==='onboarding'?[]:key==='family_session_requests'?[{id:'r',player_id:'p',request_type:'absence',created_at:base.created_at}]:[{id:'p',first_name:'Demo',last_name:'Player'}],count:key==='assessments'?123:key==='family_session_requests'?1:0,error:key===failure?{message:'Denied'}:null};const q={then(resolve,reject){return Promise.resolve(result).then(resolve,reject)}};for(const method of ['select','eq','in','or','order','limit'])q[method]=(...args)=>{calls.push({key,method,args});return q};return q}}}
+function mockDb(failure){const calls=[];let intakes=0;return {calls,from(table){const key=table==='player_intakes'?(['assessments','outcomes','onboarding'][intakes++]||'onboarding'):table;const result={data:key==='assessments'?[base]:key==='onboarding'?[]:key==='family_session_requests'?[{id:'r',player_id:'p',request_type:'absence',created_at:base.created_at}]:[{id:'p',first_name:'Demo',last_name:'Player'}],count:key==='assessments'?123:key==='family_session_requests'?1:0,error:key===failure?{message:'Denied'}:null};const q={then(resolve,reject){return Promise.resolve(result).then(resolve,reject)}};for(const method of ['select','eq','lte','in','or','order','limit'])q[method]=(...args)=>{calls.push({key,method,args});return q};return q}}}
 test('read queries are bounded and retain exact counts beyond the display limit',async()=>{
  const db=mockDb();const result=await loadStaffActions(db);assert.equal(result.counts.assessments,123);assert.equal(result.items.length,2);
- assert.equal(db.calls.filter(c=>c.method==='limit'&&c.args[0]===100).length,3);
+ assert.equal(db.calls.filter(c=>c.method==='limit'&&c.args[0]===100).length,4);
  assert.ok(db.calls.some(c=>c.key==='family_session_requests'&&c.method==='eq'&&c.args[0]==='status'&&c.args[1]==='pending'));
  assert.ok(db.calls.some(c=>c.key==='onboarding'&&c.method==='or'&&c.args[0]==='completed_at.is.null,guardian_reviewed_at.is.null'));
  assert.doesNotMatch(actionIntakeSelect,/details|photo|date_of_birth|contact_email|contact_phone/);
 });
 test('permission and query failures cannot become an empty success',async()=>{
- for(const key of ['assessments','onboarding','family_session_requests','coaching_players'])await assert.rejects(()=>loadStaffActions(mockDb(key)),/unavailable/);
+ for(const key of ['assessments','outcomes','onboarding','family_session_requests','coaching_players'])await assert.rejects(()=>loadStaffActions(mockDb(key)),/unavailable/);
 });
 
 const React=require('react');
@@ -51,4 +51,12 @@ test('staff overview hides the action list from coaching-only roles',()=>{
 test('unavailable actions show an error, never an all-clear result',()=>{
  const html=renderToStaticMarkup(React.createElement(StaffActionList,{data:null,error:true,loading:false,onNavigate:()=>{}}));
  assert.match(html,/role="alert"/);assert.doesNotMatch(html,/No outstanding items/);
+});
+
+test('past confirmed assessment appears as a manual outcome follow-up, not a booking change',()=>{
+ const finished={...base,assessment_status:'confirmed',assessment_starts_at:'2026-11-01T12:00:00Z'};
+ const action=intakeAction(finished);
+ assert.equal(action?.category,'assessments');assert.match(action.task,/Review assessment outcome/);
+ assert.equal(intakeAction({...finished,assessment_status:'completed'}),null);
+ assert.equal(intakeAction({...finished,assessment_starts_at:'2099-11-01T12:00:00Z'}),null);
 });

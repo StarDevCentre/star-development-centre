@@ -11,10 +11,10 @@ export function FamilyCommunications({userId,role,active=true,initialPlayerId=""
  const [thread,setThread]=useState(""),[body,setBody]=useState(""),[kind,setKind]=useState("message"),[busy,setBusy]=useState(false),[loading,setLoading]=useState(true),[error,setError]=useState(""),[notice,setNotice]=useState("");
  const contextApplied=useRef("");
  useEffect(()=>{if(initialPlayerId&&contextApplied.current!==initialPlayerId){const match=links.find(l=>l.player_id===initialPlayerId);if(match){contextApplied.current=initialPlayerId;setThread(match.guardian_id+":"+match.player_id);setBody("");}}},[initialPlayerId,links]);
- const refresh=useCallback(async()=>{if(!db)return;setError("");const linkQuery=db.from("guardian_player_links").select("guardian_id,player_id");if(role==="guardian")linkQuery.eq("guardian_id",userId);const l=await linkQuery;if(l.error){setError("Unable to load approved family conversations.");setLoading(false);return;}const allowed=(l.data||[]) as Link[];const playerIds=[...new Set(allowed.map(x=>x.player_id))],guardianIds=[...new Set(allowed.map(x=>x.guardian_id))];if(!allowed.length){setLinks([]);setPlayers([]);setGuardians([]);setMessages([]);setLoading(false);return;}
+ const refresh=useCallback(async()=>{if(!db){setLoading(false);setError("Family messaging is unavailable.");return;}setError("");try{const linkQuery=db.from("guardian_player_links").select("guardian_id,player_id");if(role==="guardian")linkQuery.eq("guardian_id",userId);const l=await linkQuery;if(l.error){setError("Unable to load approved family conversations.");setLoading(false);return;}const allowed=(l.data||[]) as Link[];const playerIds=[...new Set(allowed.map(x=>x.player_id))],guardianIds=[...new Set(allowed.map(x=>x.guardian_id))];if(!allowed.length){setLinks([]);setPlayers([]);setGuardians([]);setMessages([]);setLoading(false);return;}
  const queries=[db.from("coaching_players").select("id,first_name,last_name").in("id",playerIds),db.from("family_messages").select("id,guardian_id,player_id,sender_id,sender_role,kind,body,created_at,read_at").in("player_id",playerIds).order("created_at",{ascending:true}).limit(500)];
  const [p,m]=await Promise.all(queries);const g=role==="staff"?await db.from("guardian_profiles").select("user_id,display_name").in("user_id",guardianIds):null;
- if(p.error||m.error||g?.error)setError("Unable to load family communication records.");else{setLinks(allowed);setPlayers((p.data||[]) as Player[]);setMessages((m.data||[]) as Message[]);setGuardians((g?.data||[]) as Guardian[])}setLoading(false)},[db,role,userId]);
+ if(p.error||m.error||g?.error)setError("Unable to load family communication records.");else{setLinks(allowed);setPlayers((p.data||[]) as Player[]);setMessages((m.data||[]) as Message[]);setGuardians((g?.data||[]) as Guardian[])}}catch{setError("Unable to refresh family conversations. Check your connection and try again.");}finally{setLoading(false)}},[db,role,userId]);
  useEffect(()=>{if(active)void refresh()},[refresh,active]);
  useEffect(()=>{if(!active)return;const timer=window.setInterval(()=>{void refresh()},60000);return()=>window.clearInterval(timer)},[refresh,active]);
  const selected=links.find(l=>l.guardian_id+":"+l.player_id===thread);
@@ -22,7 +22,20 @@ export function FamilyCommunications({userId,role,active=true,initialPlayerId=""
  const unread=messages.filter(m=>m.read_at===null&&m.sender_role!==role);
  const current=selected?messages.filter(m=>m.guardian_id===selected.guardian_id&&m.player_id===selected.player_id):[];
  useEffect(()=>{if(!db||!selected||!active)return;const unreadIds=current.filter(m=>m.read_at===null&&m.sender_role!==role).map(m=>m.id);if(!unreadIds.length)return;let cancelled=false;(async()=>{const {error}=await db.from("family_messages").update({read_at:new Date().toISOString()}).in("id",unreadIds);if(!cancelled){if(error)setError("Could not mark messages as read.");else{setMessages(prev=>prev.map(m=>unreadIds.includes(m.id)?{...m,read_at:new Date().toISOString()}:m));window.dispatchEvent(new Event("star:family-messages-updated"))}}})();return()=>{cancelled=true}},[db,thread,role,messages,selected,active]);
- async function send(e:React.FormEvent){e.preventDefault();if(!db||!selected||!available.has(thread)||!body.trim())return;setBusy(true);setError("");setNotice("");const {error:saveError}=await db.from("family_messages").insert({guardian_id:selected.guardian_id,player_id:selected.player_id,sender_id:userId,sender_role:role,kind,body:body.trim()});if(saveError)setError("Message could not be sent: "+saveError.message);else{setBody("");setNotice("Message saved in the family communication record.");await refresh();window.dispatchEvent(new Event("star:family-messages-updated"))}setBusy(false)}
+ async function send(e:React.FormEvent){
+  e.preventDefault();
+  if(!db||busy||!selected||!available.has(thread)||!body.trim())return;
+  setBusy(true);setError("");setNotice("");
+  try{
+   const {error:saveError}=await db.from("family_messages").insert({guardian_id:selected.guardian_id,player_id:selected.player_id,sender_id:userId,sender_role:role,kind,body:body.trim()});
+   if(saveError)throw saveError;
+   setBody("");setNotice("Message saved in the family communication record.");
+   await refresh();
+   window.dispatchEvent(new Event("star:family-messages-updated"));
+  }catch(e){
+   setError("Message could not be sent: "+(e instanceof Error?e.message:"Check your connection and retry. Your message draft is preserved."));
+  }finally{setBusy(false);}
+ }
  return <section id="star-family-messages" className="star-family-comms"><h3>{role==="staff"?"Family communication centre":"Messages with STAR"}</h3><p>{role==="guardian"?"Talk to STAR about her coaching, sessions or a development review.":"Secure messages between verified guardians and authorised STAR managers. Conversations are stored in the family record. New messages appear as unread here and on your dashboard."}</p>
  {error&&<p role="alert" className="star-portal-error">{error}</p>}{notice&&<p role="status">{notice}</p>}
  <p role="status"><strong>{unread.length?unread.length+" unread message"+(unread.length===1?"":"s"):"No unread messages"}</strong> <button type="button" onClick={()=>void refresh()}>Check now</button></p>

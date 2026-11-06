@@ -1,0 +1,60 @@
+/* STAR staff family operations – scoped; the existing navy shell and public onboarding styles stay unchanged. */
+.staff-app .staff-family-ops{min-width:0;max-width:100%;color:#e9f0fa}
+.staff-app .staff-family-ops-head{padding:16px 18px;margin-bottom:13px;background:linear-gradient(115deg,#182943,#111e31);border:1px solid #354963;border-radius:15px}
+.staff-app .staff-family-ops-head .kicker{color:#e0bd82;font-size:10px;letter-spacing:.12em}
+.staff-app .staff-family-ops-head h2{margin:6px 0;color:#f5f8fd;font-size:24px;line-height:1.2}
+.staff-app .staff-family-ops-head p{color:#bdd0e2;margin:5px 0 0;font-size:12px;line-height:1.55}
+.staff-app .staff-family-ops-tabs{display:flex;align-items:stretch;gap:7px;margin:0 0 17px;padding:7px;border-radius:12px;background:#102037;border:1px solid #354963;overflow-x:auto;max-width:100%}
+.staff-app .staff-family-ops-tabs button{flex:1 0 auto;min-width:130px;min-height:44px;border:1px solid transparent;border-radius:9px;background:#21324a;color:#d4e1ef;padding:10px 12px;font-size:12px;font-weight:750}
+.staff-app .staff-family-ops-tabs button[aria-current=page]{background:#d8b577;border-color:#d8b577;color:#182332}
+.staff-app .staff-family-ops-tabs button:focus-visible,.staff-app .staff-family-pipeline button:focus-visible,.staff-app .staff-family-context-actions button:focus-visible{outline:3px solid #8bd5ef;outline-offset:2px}
+.staff-app .staff-family-ops-panel{min-width:0;max-width:100%}
+.staff-app .staff-family-ops-hint{margin:0 0 13px;padding:11px 13px;background:#1a2b40;border:1px solid #385068;border-radius:10px;font-size:12px;color:#c9d8e7;line-height:1.6}
+.staff-app .staff-family-pipeline{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:15px 0 19px}
+.staff-app .staff-family-pipeline button{display:flex;flex-direction:column;gap:5px;align-items:flex-start;min-width:0;min-height:94px;padding:14px 13px;border:1px solid #3c526c;border-radius:12px;background:#1a2d42;color:#f0f5fc;text-align:left;white-space:normal}
+.staff-app .staff-family-pipeline button[aria-pressed=true]{background:#313b4c;border-color:#d9b67a;box-shadow:inset 3px 0 #d9b67a}
+.staff-app .staff-family-pipeline button strong{display:block;font-weight:850;font-size:25px;line-height:1;color:#e8c98d}
+.staff-app .staff-family-pipeline button span{display:block;font-weight:750;font-size:12px;color:#f5f7fd}
+.staff-app .staff-family-pipeline button small{display:block;font-size:10px;color:#b9cade;line-height:1.45}
+.staff-app .staff-family-priority{display:inline-block;padding:3px 6px;border-radius:5px;border:1px solid #5d718e;background:#24364d;color:#e4efff;font-weight:800}
+.staff-app .staff-family-priority.due{background:#51333b;color:#ffe4d6;border-color:#b67f77}
+.staff-app .staff-family-priority.waiting{background:#2f3846;color:#cfdbeb;border-color:#52677e}
+.staff-app .staff-family-stage-track{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;margin:14px 0}
+.staff-app .staff-family-stage-track>div{min-width:0;display:flex;flex-direction:column;gap:5px;align-items:center;justify-content:flex-start;padding:9px 4px;background:#1d3045;border:1px solid #344d66;border-radius:10px}
+.staff-app .staff-family-stage-track>div[data-progress=current]{border-color:#d8b577;background:#3b3540}
+.staff-app .staff-family-stage-track>div[data-progress=past]{border-color:#567a6b;background:#1d3940}
+.staff-app .staff-family-stage-track>div>span{display:grid;place-items:center;width:23px;height:23px;flex:0 0 23px;border-radius:50%;border:1px solid #879bb4;color:#e3eefb;font-size:11px;font-weight:900}
+.staff-app .staff-family-stage-track>div[data-progress=current]>span{background:#d8b577;border-color:#d8b577;color:#172233}
+.staff-app .staff-family-stage-track>div small{text-align:center;color:#c6d4e5;font-size:10px;line-height:1.4}
+.staff-app .staff-family-next-action{padding:15px;margin:14px 0;border:1px solid #52677f;border-radius:12px;background:#1b3043}
+.staff-app .staff-family-next-action.due{border-color:#a67972;background:#382d35}
+.staff-app .staff-family-next-action.waiting{background:#293345}
+.staff-app .staff-family-next-action .kicker{display:block;color:#dfbc80;letter-spacing:.09em;font-size:10px;font-weight:850}
+.staff-app .staff-family-next-action h4{margin:5px 0;color:#f4f7fd;font-weight:850;font-size:18px}
+.staff-app .staff-family-next-action p{margin:5px 0 9px;font-size:12px;line-height:1.6;color:#d3e0ed}
+.staff-app .staff-family-next-action>small{display:block;font-size:11px;line-height:1.5;color:#c3d6eb}
+.staff-app .staff-family-context-actions{display:flex;gap:8px;flex-wrap:wrap;margin:13px 0 7px}
+.staff-app .staff-family-context-actions button{flex:1 1 150px;min-height:43px;padding:9px 12px;background:#d8b577;border:1px solid #d8b577;border-radius:9px;color:#192333;font-size:12px;font-weight:800}
+.staff-app .staff-family-context-actions button+button{background:#23384c;border-color:#597088;color:#f3f6fd}
+.staff-app .intake-staff .intake-profile-row small{line-height:1.7}
+.staff-app .staff-family-ops .intake-staff .intake-actions{gap:10px}
+@media(max-width:900px){
+ .staff-app .staff-family-pipeline{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:760px){
+ .staff-app .staff-family-ops-head{padding:13px}
+ .staff-app .staff-family-ops-tabs{gap:5px;padding:5px}
+ .staff-app .staff-family-ops-tabs button{min-width:138px;font-size:11px}
+ .staff-app .staff-family-pipeline{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+ .staff-app .staff-family-pipeline button{min-height:87px;padding:11px 10px}
+ .staff-app .staff-family-next-action{padding:12px}
+ .staff-app .staff-family-stage-track>div{padding:8px 2px}
+ .staff-app .staff-family-stage-track>div small{font-size:9px}
+}
+.staff-app--installed-touch .staff-family-pipeline{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.staff-app--installed-touch .intake-staff-layout{display:block!important;grid-template-columns:minmax(0,1fr)!important}
+.staff-app--installed-touch .intake-card{padding:13px!important}
+.staff-app--installed-touch .staff-family-ops-head{padding:13px}
+.staff-app--installed-touch .staff-family-ops-tabs button{min-width:145px}
+.staff-app--installed-touch .staff-family-pipeline button{padding:11px 9px}
+.staff-app--installed-touch .staff-family-next-action{padding:12px}

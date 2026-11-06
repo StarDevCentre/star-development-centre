@@ -6,7 +6,7 @@ export type StaffActionData=Awaited<ReturnType<typeof loadStaffActions>>;
 type Priority="high"|"follow_up"|"waiting";
 function priorityOf(action:StaffAction):Priority{
  if(action.category==="onboarding"||/Parent completion or review|Awaiting family|Awaiting parent/i.test(action.task))return "waiting";
- if(action.category==="sessions")return "high";
+ if(action.category==="sessions"||action.category==="assessments"&&/overdue|Review assessment outcome/i.test(action.task))return "high";
  return "follow_up";
 }
 const priorityOrder:Record<Priority,number>={high:0,follow_up:1,waiting:2};

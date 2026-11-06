@@ -5,7 +5,7 @@ import {useState} from "react";
 import {StaffAppShell} from "./StaffAppShell";
 import {useStaffNavigation} from "./useStaffNavigation";
 import {staffCanManage,staffSections,type StaffRole,type StaffSection} from "../lib/staffApp";
-const StaffOnboarding=dynamic(()=>import("./StaffOnboarding").then(m=>m.StaffOnboarding),{loading:()=> <p role="status">Loading…</p>});
+const StaffFamilyOperations=dynamic(()=>import("./StaffFamilyOperations").then(m=>m.StaffFamilyOperations),{loading:()=> <p role="status">Loading family operations…</p>});
 const StaffOrganisations=dynamic(()=>import("./StaffOrganisations").then(m=>m.StaffOrganisations),{loading:()=> <p role="status">Loading…</p>});
 const StaffHome=dynamic(()=>import("./StaffHome").then(m=>m.StaffHome),{loading:()=> <p role="status">Loading…</p>});
 const StaffMediaGallery=dynamic(()=>import("./StaffMediaGallery").then(m=>m.StaffMediaGallery),{loading:()=> <p role="status">Loading…</p>});
@@ -56,7 +56,7 @@ export function StaffWorkspace({userId,role,onSignOut}:{userId:string;role:Staff
   case "playerSpace":return <StaffPlayerSpaceHub userId={userId} canManage={canManage} initialPlayerId={contextPlayer}/>;
   case "communications":return canManage?<StaffInbox userId={userId} target={inboxTarget} initialPlayerId={contextPlayer} active={section==="communications"&&!menuOpen}/>:null;
   case "sessionRequests":return canManage?<SessionChangeRequests userId={userId} role="staff" onCompleteSchedule={player=>navigate("familyPublishing",player)} onOpenCalendar={()=>navigate("sessions")} initialRequestId={actionTarget?.area==="sessionRequests"?actionTarget.id:undefined} selectionRequest={actionTarget?.revision}/>:null;
-  case "onboarding":return canManage?<StaffOnboarding initialIntakeId={actionTarget?.area==="onboarding"?actionTarget.id:undefined} selectionRequest={actionTarget?.revision}/>:null;
+  case "onboarding":return canManage?<StaffFamilyOperations userId={userId} active={section==="onboarding"&&!menuOpen} initialIntakeId={actionTarget?.area==="onboarding"?actionTarget.id:undefined} selectionRequest={actionTarget?.revision} onOpenCalendar={()=>navigate("sessions")}/>:null;
   case "admissions":return canManage?<AdmissionsManagement userId={userId}/>:null;
   case "familyPublishing":return canManage?<FamilyPublishing userId={userId} initialPlayerId={publishingPlayerId} selectionRequest={publishingRequest}/>:null;
   case "families":return canManage?<FamilyAccessAdmin userId={userId}/>:null;
