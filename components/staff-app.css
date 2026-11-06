@@ -655,3 +655,103 @@ body:has(.staff-app){background:#080c14}
  .staff-app .staff-coaching .staff-coaching-hero{padding:13px}
  .staff-app .star-hub-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
+
+
+/* Critical mobile layout repair (2026-11-06)
+   Keep these responsive shell rules AFTER the desktop design overrides.
+   The desktop grid and display:flex sidebar were previously declared after
+   the original mobile breakpoint and overrode it on phone screens. */
+@media (max-width: 760px) {
+  body:has(.staff-app) { overflow-x: clip; }
+  .staff-page-section:has(.staff-app) {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .staff-page-section:has(.staff-app) > .container {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .staff-app {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    overflow: clip;
+    border: 0;
+    border-radius: 0;
+  }
+  .staff-app .staff-app-layout {
+    display: block;
+    grid-template-columns: none;
+    width: 100%;
+    max-width: 100%;
+    overflow: visible;
+    border: 0;
+  }
+  .staff-app .staff-app-sidebar {
+    display: none;
+  }
+  .staff-app .staff-app-content {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 18px 14px calc(112px + env(safe-area-inset-bottom));
+    overflow-wrap: break-word;
+  }
+  .staff-app .staff-app-header {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .staff-app .staff-app-page-heading {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .staff-app .staff-app-page-heading h2 {
+    width: 100%;
+    max-width: 100%;
+    font-size: clamp(21px, 5.8vw, 27px);
+    line-height: 1.2;
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: none;
+  }
+  .staff-app .staff-app-page-heading > p,
+  .staff-app .staff-page-subtitle {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: normal;
+  }
+  .staff-app .staff-tool-panel,
+  .staff-app .staff-48h,
+  .staff-app .staff-dashboard-worklist,
+  .staff-app .staff-home,
+  .staff-app .staff-action-list {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+  .staff-app .staff-app-dock {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .staff-app .staff-app-sheet {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+  }
+}
