@@ -1,5 +1,6 @@
 "use client";
-import {useCallback,useEffect,useState} from "react";
+import {useCallback,useEffect,useRef,useState} from "react";
+import {createRequestSequence} from "../lib/staffRequestSequence";
 import type {SupabaseClient} from "@supabase/supabase-js";
 import {supabaseBrowser} from "../lib/supabaseBrowser";
 type Player={id:string;first_name:string;last_name:string;programme:string};
@@ -10,17 +11,106 @@ type Status=typeof statuses[number];
 const labels:Record<Status,string>={present:"Present",absent:"Absent",late:"Late",excused:"Excused"};
 export function SessionAttendance({userId,onCoachPlayer,onPlayerDevelopment,onSessionChange,initialSessionId="",client=supabaseBrowser}:{client?:SupabaseClient|null;userId:string;onCoachPlayer?:(playerId:string,sessionId:string)=>void;onPlayerDevelopment?:(playerId:string)=>void;onSessionChange?:(sessionId:string)=>void;initialSessionId?:string}){
  const db=client;
+ const loadSequence=useRef(createRequestSequence());
+ const selectedSessionRef=useRef(initialSessionId);
  const [sessions,setSessions]=useState<Session[]>([]),[players,setPlayers]=useState<Player[]>([]),[records,setRecords]=useState<Attendance[]>([]),[sessionId,setSessionId]=useState(initialSessionId),[message,setMessage]=useState(""),[busyId,setBusyId]=useState(""),[loading,setLoading]=useState(true),[search,setSearch]=useState("");
  const [workspaceTab,setWorkspaceTab]=useState<"overview"|"attendance"|"coaching">("overview");
  const [onlyUnmarked,setOnlyUnmarked]=useState(false);const [participants,setParticipants]=useState<{session_id:string;player_id:string}[]>([]),[adding,setAdding]=useState(""),[history,setHistory]=useState(false),[page,setPage]=useState(0),[hasMore,setHasMore]=useState(false);
- const refresh=useCallback(async()=>{if(!db)return;setLoading(true);let sessionQuery=db.from("training_sessions").select("id,title,starts_at,ends_at,venue,programme").is("cancelled_at",null);sessionQuery=history?sessionQuery.lt("ends_at",new Date().toISOString()):sessionQuery.gte("ends_at",new Date().toISOString());const [a,b,c,d]=await Promise.all([sessionQuery.order("starts_at",{ascending:!history}).order("id").range(page*30,page*30+30),db.from("coaching_players").select("id,first_name,last_name,programme").order("first_name"),sessionId?db.from("training_attendance").select("session_id,player_id,status").eq("session_id",sessionId):Promise.resolve({data:[],error:null}),sessionId?db.from("training_session_participants").select("session_id,player_id").eq("session_id",sessionId):Promise.resolve({data:[],error:null})]);if(a.error||b.error||c.error||d.error)setMessage("Unable to load attendance records. Check staff access.");else{setHasMore((a.data?.length||0)>30);let list=(a.data?.slice(0,30)||[]) as Session[];if(sessionId&&!list.some(s=>s.id===sessionId)){const target=await db.from("training_sessions").select("id,title,starts_at,ends_at,venue,programme").is("cancelled_at",null).eq("id",sessionId).maybeSingle();if(target.data)list=[target.data,...list];}setSessions(list);setPlayers((b.data||[]) as Player[]);setRecords((c.data||[]) as Attendance[]);setParticipants(d.data||[]);}setLoading(false)},[db,sessionId,history,page]);
- useEffect(()=>{void refresh()},[refresh]);
- useEffect(()=>{if(initialSessionId)setSessionId(initialSessionId)},[initialSessionId]);
- async function record(playerId:string,status:Status){if(!db||!sessionId||busyId)return;setBusyId(playerId);setMessage("");const previous=records.find(r=>r.session_id===sessionId&&r.player_id===playerId);setRecords(old=>[...old.filter(r=>!(r.session_id===sessionId&&r.player_id===playerId)),{session_id:sessionId,player_id:playerId,status}]);const {data:saved,error}=await db.from("training_attendance").upsert({session_id:sessionId,player_id:playerId,status,recorded_by:userId,recorded_at:new Date().toISOString()},{onConflict:"session_id,player_id"}).select("session_id");if(error||!saved?.length){setRecords(old=>[...old.filter(r=>!(r.session_id===sessionId&&r.player_id===playerId)),...(previous?[previous]:[])]);setMessage("Attendance not saved: "+(error?.message||"No record was changed. Refresh and retry."))}if(!error&&saved?.length)setMessage("Attendance saved.");setBusyId("")}
- async function changeRoster(playerId:string,remove=false){if(!db||!sessionId||busyId)return;if(remove&&!window.confirm("Remove this player from the session roster? Shared bookings must be removed first; attendance history is retained."))return;setBusyId(playerId);const r=remove?await db.from("training_session_participants").delete().eq("session_id",sessionId).eq("player_id",playerId).select("player_id"):await db.from("training_session_participants").insert({session_id:sessionId,player_id:playerId,added_by:userId}).select("player_id");if(r.error||!r.data?.length)setMessage(r.error?.message||"Roster was not changed. Refresh and try again.");else{setMessage(remove?"Player removed from roster.":"Player added to this session. Share the booking separately when ready.");setAdding("");await refresh()}setBusyId("")}
+ const refresh=useCallback(async()=>{
+  const request=loadSequence.current.next();
+  if(!db){
+   if(loadSequence.current.isCurrent(request)){
+    setMessage("Session connection unavailable. Refresh or sign in again.");
+    setLoading(false);
+   }
+   return;
+  }
+  setLoading(true);
+  try{
+   const now=new Date().toISOString();
+   let sessionQuery=db.from("training_sessions")
+    .select("id,title,starts_at,ends_at,venue,programme").is("cancelled_at",null);
+   sessionQuery=history?sessionQuery.lt("ends_at",now):sessionQuery.gte("ends_at",now);
+   const [a,b,c,d]=await Promise.all([
+    sessionQuery.order("starts_at",{ascending:!history}).order("id").range(page*30,page*30+30),
+    db.from("coaching_players").select("id,first_name,last_name,programme").order("first_name"),
+    sessionId?db.from("training_attendance").select("session_id,player_id,status").eq("session_id",sessionId):Promise.resolve({data:[],error:null}),
+    sessionId?db.from("training_session_participants").select("session_id,player_id").eq("session_id",sessionId):Promise.resolve({data:[],error:null})
+   ]);
+   if(!loadSequence.current.isCurrent(request))return;
+   if(a.error||b.error||c.error||d.error){
+    setMessage("Unable to load attendance records. Check staff access or try again.");
+    setSessions([]);setPlayers([]);setRecords([]);setParticipants([]);
+    return;
+   }
+   setHasMore((a.data?.length||0)>30);
+   let list=(a.data?.slice(0,30)||[]) as Session[];
+   if(sessionId&&!list.some(s=>s.id===sessionId)){
+    const target=await db.from("training_sessions")
+     .select("id,title,starts_at,ends_at,venue,programme")
+     .is("cancelled_at",null).eq("id",sessionId).maybeSingle();
+    if(!loadSequence.current.isCurrent(request))return;
+    if(target.error)throw target.error;
+    if(target.data)list=[target.data,...list];
+   }
+   if(!loadSequence.current.isCurrent(request))return;
+   setSessions(list);
+   setPlayers((b.data||[]) as Player[]);
+   setRecords((c.data||[]) as Attendance[]);
+   setParticipants(d.data||[]);
+  }catch{
+   if(loadSequence.current.isCurrent(request)){
+    setMessage("Unable to refresh this session. Check your connection and try again.");
+    setSessions([]);setPlayers([]);setRecords([]);setParticipants([]);
+   }
+  }finally{
+   if(loadSequence.current.isCurrent(request))setLoading(false);
+  }
+ },[db,sessionId,history,page]);
+ useEffect(()=>{void refresh();return()=>{loadSequence.current.invalidate();}},[refresh]);
+ useEffect(()=>{if(initialSessionId){selectedSessionRef.current=initialSessionId;setSessionId(initialSessionId)}},[initialSessionId]);
+ async function record(playerId:string,status:Status){
+  if(!db||!sessionId||busyId)return;
+  const selectedAtStart=sessionId;
+  setBusyId(playerId);setMessage("");
+  const previous=records.find(r=>r.session_id===selectedAtStart&&r.player_id===playerId);
+  setRecords(old=>[...old.filter(r=>!(r.session_id===selectedAtStart&&r.player_id===playerId)),{session_id:selectedAtStart,player_id:playerId,status}]);
+  try{
+   const {data:saved,error}=await db.from("training_attendance")
+    .upsert({session_id:selectedAtStart,player_id:playerId,status,recorded_by:userId,recorded_at:new Date().toISOString()},{onConflict:"session_id,player_id"}).select("session_id");
+   if(selectedSessionRef.current!==selectedAtStart)return;
+   if(error||!saved?.length){
+    setRecords(old=>[...old.filter(r=>!(r.session_id===selectedAtStart&&r.player_id===playerId)),...(previous?[previous]:[])]);
+    setMessage("Attendance not saved: "+(error?.message||"No record was changed. Refresh and retry."));
+   }else setMessage("Attendance saved.");
+  }catch{
+   if(selectedSessionRef.current===selectedAtStart){
+    setRecords(old=>[...old.filter(r=>!(r.session_id===selectedAtStart&&r.player_id===playerId)),...(previous?[previous]:[])]);
+    setMessage("Attendance not saved. Check your connection and retry.");
+   }
+  }finally{setBusyId("");}
+ }
+ async function changeRoster(playerId:string,remove=false){
+  if(!db||!sessionId||busyId)return;
+  if(remove&&!window.confirm("Remove this player from the session roster? Shared bookings must be removed first; attendance history is retained."))return;
+  const selectedAtStart=sessionId;
+  setBusyId(playerId);
+  try{
+   const result=remove?await db.from("training_session_participants").delete().eq("session_id",selectedAtStart).eq("player_id",playerId).select("player_id"):
+    await db.from("training_session_participants").insert({session_id:selectedAtStart,player_id:playerId,added_by:userId}).select("player_id");
+   if(selectedSessionRef.current!==selectedAtStart)return;
+   if(result.error||!result.data?.length)setMessage(result.error?.message||"Roster was not changed. Refresh and try again.");
+   else{
+    setMessage(remove?"Player removed from roster.":"Player added to this session. Share the booking separately when ready.");
+    setAdding("");
+    await refresh();
+   }
+  }catch{if(selectedSessionRef.current===selectedAtStart)setMessage("Roster was not changed. Check your connection and try again.");}
+  finally{setBusyId("");}
+ }
  const selected=sessions.find(s=>s.id===sessionId);const roster=players.filter(p=>participants.some(r=>r.session_id===sessionId&&r.player_id===p.id));const visible=roster.filter(p=>(p.first_name+" "+p.last_name).toLowerCase().includes(search.toLowerCase())&&(!onlyUnmarked||!records.some(r=>r.session_id===sessionId&&r.player_id===p.id&&statuses.includes(r.status as Status))));const sessionRecords=records.filter(r=>r.session_id===sessionId);const counts={present:0,absent:0,late:0,excused:0,unmarked:0};for(const p of roster){const r=sessionRecords.find(x=>x.player_id===p.id);if(r&&statuses.includes(r.status as Status))counts[r.status as Status]++;else counts.unmarked++}
  return <section className="star-training star-attendance-workflow"><span className="kicker">SESSION WORKSPACE</span><h3>Attendance & quick coaching</h3><p>Choose a session, tap once to mark attendance, then open coaching notes for an individual player. Changes save immediately. Only authorised staff can view or update records.</p>{message&&<p role="alert">{message}</p>}
- <div className="star-session-actions"><button aria-pressed={!history} onClick={()=>{setHistory(false);setPage(0)}}>Upcoming</button><button aria-pressed={history} onClick={()=>{setHistory(true);setPage(0)}}>History</button><button disabled={page===0||loading} onClick={()=>setPage(p=>p-1)}>Previous dates</button><button disabled={!hasMore||loading} onClick={()=>setPage(p=>p+1)}>More dates</button></div><label className="star-attendance-select">Training session<select value={sessionId} onChange={e=>{setSessionId(e.target.value);setWorkspaceTab("overview");onSessionChange?.(e.target.value);setSearch("");setOnlyUnmarked(false);setMessage("")}}><option value="">Select a session…</option>{sessions.map(s=><option key={s.id} value={s.id}>{new Date(s.starts_at).toLocaleDateString("en-GB",{timeZone:"Europe/London"})} · {s.title}</option>)}</select></label>
+ <div className="star-session-actions"><button aria-pressed={!history} onClick={()=>{setHistory(false);setPage(0)}}>Upcoming</button><button aria-pressed={history} onClick={()=>{setHistory(true);setPage(0)}}>History</button><button disabled={page===0||loading} onClick={()=>setPage(p=>p-1)}>Previous dates</button><button disabled={!hasMore||loading} onClick={()=>setPage(p=>p+1)}>More dates</button></div><label className="star-attendance-select">Training session<select value={sessionId} onChange={e=>{selectedSessionRef.current=e.target.value;setSessionId(e.target.value);setWorkspaceTab("overview");onSessionChange?.(e.target.value);setSearch("");setOnlyUnmarked(false);setMessage("")}}><option value="">Select a session…</option>{sessions.map(s=><option key={s.id} value={s.id}>{new Date(s.starts_at).toLocaleDateString("en-GB",{timeZone:"Europe/London"})} · {s.title}</option>)}</select></label>
  {loading?<p>Loading attendance…</p>:selected?<><div className="star-workflow-session"><div><span className="kicker">{selected.programme}</span><h4>{selected.title}</h4><p>{new Date(selected.starts_at).toLocaleString("en-GB",{dateStyle:"full",timeStyle:"short",timeZone:"Europe/London"})}</p></div><div className="star-workflow-total"><strong>{roster.length-counts.unmarked}/{roster.length}</strong><span>Marked</span></div></div>
 
  <div className="star-workflow-tabs" role="tablist" aria-label="Session workspace">
