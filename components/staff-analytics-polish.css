@@ -1,0 +1,73 @@
+/* Batch 6: accessible, inspectable analytics and staff keyboard navigation.
+   Scoped to the staff app; existing navy background, logo and layouts remain. */
+.staff-app .staff-skip-link{
+ position:absolute;top:-120px;left:14px;z-index:250;max-width:calc(100vw - 28px);
+ display:inline-flex;align-items:center;justify-content:center;min-height:47px;padding:10px 15px;
+ border:2px solid #e5c489;border-radius:10px;background:#f4e7d0;color:#14243b;
+ font-size:14px;font-weight:850;text-decoration:none;
+}
+.staff-app .staff-skip-link:focus-visible{top:9px;outline:3px solid #78c9f0;outline-offset:2px}
+.staff-app .staff-app-content:focus{outline:none}
+.staff-app .staff-app-content:focus-visible{outline:2px solid #d7b476;outline-offset:-3px}
+.staff-app .staff-analytics-v2{min-width:0}
+.staff-app .staff-analytics-header{
+ display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:13px;margin:0 0 16px;
+}
+.staff-app .staff-analytics-header>div{flex:1 1 250px;min-width:0}
+.staff-app .staff-analytics-header .kicker{display:block;color:#deb978;font-size:10px;letter-spacing:.11em}
+.staff-app .staff-analytics-header h3{margin:6px 0 8px;color:#f5f8fe;font-size:25px;line-height:1.3}
+.staff-app .staff-analytics-header p{margin:0;color:#becfe1;line-height:1.65;font-size:12px}
+.staff-app .staff-analytics-header button{min-height:45px;min-width:150px;background:#d7b779;color:#182534;border:1px solid #d7b779;font-size:13px;font-weight:800}
+.staff-app .staff-analytics-header button:disabled{opacity:.64;cursor:wait}
+.staff-app .staff-analytics-v2 .star-analytics-filters{margin:0 0 13px}
+.staff-app .staff-analytics-v2 .star-analytics-filters label{color:#e9f2fb;font-size:12px}
+.staff-app .staff-analytics-v2 .star-analytics-filters select{min-height:48px;font-size:16px}
+.staff-app .staff-analytics-caption{margin:0 0 14px;color:#c3d3e7;font-size:11px;line-height:1.6}
+.staff-app .staff-analytics-feedback,.staff-app .staff-analytics-error{
+ margin:14px 0;padding:13px 14px;border-radius:11px;line-height:1.65;font-size:12px;
+}
+.staff-app .staff-analytics-feedback{background:#1b2f44;border:1px solid #536a80;color:#e1edfa}
+.staff-app .staff-analytics-error{background:#3c2d37;border:1px solid #a47580;color:#ffe8ea}
+.staff-app .staff-analytics-error button{min-height:42px;margin:8px 0 0;border:1px solid #ddc48a;background:#e1c58d;color:#1b2737}
+.staff-app .staff-analytics-register-status{
+ border:1px solid #515f75;border-radius:12px;background:#202f42;padding:14px 16px;margin:12px 0 17px;
+}
+.staff-app .staff-analytics-register-status strong{color:#f5d39b;font-size:14px}
+.staff-app .staff-analytics-register-status p{margin:7px 0 0;color:#d3dfed;font-size:12px;line-height:1.6}
+.staff-app .staff-analytics-v2 .star-analytics-coverage{margin:11px 0}
+.staff-app .staff-analytics-v2 .star-analytics-coverage>div:first-child{
+ display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:7px;
+}
+.staff-app .staff-analytics-v2 .star-family-progress-track{height:10px;min-height:10px}
+.staff-app .staff-analytics-v2 .star-analytics-item{
+ display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:7px 10px;
+}
+.staff-app .staff-analytics-v2 .star-analytics-item>span{text-align:right}
+.staff-app .staff-analytics-v2 .star-analytics-item small{display:block;line-height:1.5}
+.staff-app .staff-analytics-methodology{
+ border-top:1px solid #465971;margin:17px 0 0;padding:14px 0 0;
+ font-size:11px;line-height:1.7;color:#c0d1e5;
+}
+.staff-app .staff-analytics-v2 :is(button,select):focus-visible{
+ outline:3px solid #8bd1ee;outline-offset:3px;
+}
+.staff-app--installed-touch .staff-analytics-header{gap:10px}
+.staff-app--installed-touch .staff-analytics-header button{width:100%}
+.staff-app--installed-touch .staff-analytics-v2 .star-analytics-metrics{
+ grid-template-columns:repeat(2,minmax(0,1fr))!important;
+}
+.staff-app--installed-touch .staff-analytics-v2 .star-analytics-metrics>div{min-height:100px;padding:12px}
+.staff-app--installed-touch .staff-analytics-v2 .star-analytics-metrics strong{font-size:25px}
+.staff-app--installed-touch .staff-analytics-v2 .star-analytics-grid{
+ grid-template-columns:minmax(0,1fr)!important;
+}
+@media(max-width:760px){
+ .staff-app .staff-analytics-v2 .star-analytics-grid{grid-template-columns:minmax(0,1fr)}
+ .staff-app .staff-analytics-v2 .star-analytics-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .staff-app .staff-analytics-header button{flex:1 1 120px}
+}
+@media(prefers-reduced-motion:reduce){
+ .staff-app .staff-analytics-v2 *, .staff-app .staff-skip-link{
+  animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important;
+ }
+}

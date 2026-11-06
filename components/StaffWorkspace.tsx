@@ -61,7 +61,7 @@ export function StaffWorkspace({userId,role,onSignOut}:{userId:string;role:Staff
   case "familyPublishing":return canManage?<FamilyPublishing userId={userId} initialPlayerId={publishingPlayerId} selectionRequest={publishingRequest}/>:null;
   case "families":return canManage?<FamilyAccessAdmin userId={userId}/>:null;
   case "pathways":return canManage?<PlayerPathways userId={userId}/>:null;
-  case "analytics":return canManage?<SessionAnalytics/>:null;
+  case "analytics":return canManage?<SessionAnalytics active={section==="analytics"&&!menuOpen}/>:null;
   case "administration":return role==="owner"?<StaffAdmin ownerId={userId}/>:null;
  }}
  return <StaffAppShell role={role} section={section} onNavigate={navigate} onSignOut={onSignOut} onMenuChange={setMenuOpen} badges={canManage?{communications:<><FamilyUnreadBadge userId={userId} role="staff"/><OrganisationInboxSummary badge/></>}:{}}>{contextPlayer&&<StaffPlayerContext playerId={contextPlayer} canManage={canManage} onNavigate={navigate} onClear={()=>setContextPlayer("")}/>} {visited.filter(id=>allowed.some(i=>i.id===id)).map(id=><section key={id} className="staff-tool-panel" hidden={section!==id} aria-label={allowed.find(i=>i.id===id)?.label}>{panel(id)}</section>)}</StaffAppShell>;
