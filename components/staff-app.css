@@ -368,3 +368,97 @@ body:has(.staff-app){background:#080c14}
  .staff-app .staff-home-actions-panel .staff-home-shortcuts button span{font-size:10px}
  .staff-app .staff-home-card{padding:15px 16px}
 }
+
+
+/* Batch 3 — session workspace: overview, attendance, player-coaching tabs. */
+.staff-app .star-attendance-workflow{color:#eaf1fb}
+.staff-app .star-attendance-workflow>h3{font-size:25px;margin:7px 0 9px}
+.staff-app .star-attendance-workflow>p{color:#a8b9cf;font-size:12px;line-height:1.6}
+.staff-app .star-session-actions{display:flex;flex-wrap:wrap;gap:9px}
+.staff-app .star-session-actions button{background:#1a2a3e;border-color:#344761;color:#d5e2f3}
+.staff-app .star-session-actions button[aria-pressed=true]{background:#d7b376;border-color:#d7b376;color:#172031}
+.staff-app .star-attendance-select{max-width:650px}
+.staff-app .star-workflow-session{background:linear-gradient(110deg,#1a2e47,#1b283b);border:1px solid #3b4b65;border-radius:15px;padding:17px 21px;color:#f3f7ff}
+.staff-app .star-workflow-session h4,.staff-app .star-workflow-session strong{color:#f2f6ff}
+.staff-app .star-workflow-session p,.staff-app .star-workflow-session span{color:#b7c9db}
+.staff-app .star-workflow-total{border-color:#4c5363;background:#28354a;border-radius:12px}
+.staff-app .star-workflow-tabs{display:flex;gap:6px;align-items:center;border-bottom:1px solid #344257;margin:16px 0 18px;padding-bottom:8px;overflow-x:auto;scrollbar-width:thin}
+.staff-app .star-workflow-tabs button{border-radius:10px;padding:10px 15px;white-space:nowrap;flex:1;min-height:44px;border:1px solid transparent;background:#141f30;color:#b6c5d7;font-size:12px}
+.staff-app .star-workflow-tabs button[aria-selected=true]{background:#d3ac6d;color:#131b29;border-color:#d3ac6d;box-shadow:0 6px 18px #a57c4830}
+.staff-app .star-workflow-tabs button:hover:not([aria-selected=true]){background:#22324b;color:#fff}
+.staff-app .star-workflow-overview,.staff-app .star-workflow-coaching-tab{background:#101b2a;border:1px solid #2e3e53;border-radius:16px;padding:20px}
+.staff-workflow-overview-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.staff-app .star-workflow-overview-head .kicker{color:#dcba7f}
+.staff-app .star-workflow-overview-head h4{font-size:22px;margin:5px 0}
+.staff-app .star-workflow-overview-head p{color:#a3b4c8;font-size:12px;margin:0}
+.staff-workflow-overview-time{flex:none;font-size:12px;font-weight:800;color:#d7bd89;background:#2c2b35;padding:8px 10px;border:1px solid #65533f;border-radius:10px}
+.staff-workflow-overview-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:23px 0}
+.staff-workflow-overview-metrics>div{display:grid;gap:7px;background:#1b293b;border:1px solid #34445c;border-radius:12px;padding:16px}
+.staff-app .star-workflow-overview-metrics strong{font-size:24px;line-height:1;color:#f4f8fc}
+.staff-workflow-overview-metrics span{font-size:11px;color:#a9b8cd}
+.staff-workflow-overview-venue{display:grid;gap:5px;padding:13px 15px;background:#172839;border-radius:11px}
+.staff-workflow-overview-venue strong{font-size:11px;color:#d6b776;text-transform:uppercase;letter-spacing:.09em}
+.staff-workflow-overview-venue span{font-size:14px;color:#eef3f8}
+.staff-workflow-overview-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.staff-app .star-workflow-overview-actions button{background:#d5ad72;color:#111b29;border-color:#d5ad72;font-weight:800}
+.staff-app .star-workflow-overview-actions button+button{background:#25384b;color:#edf3fb;border-color:#43516a}
+.staff-app .star-workflow-attendance-tab{display:grid;gap:13px}
+.staff-app .star-workflow-stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.staff-app .star-workflow-stat{background:#1a293b;border:1px solid #33435a;border-radius:10px;min-width:0}
+.staff-app .star-workflow-stat strong{color:#f1f6ff}
+.staff-app .star-workflow-stat span{color:#c0ccda}
+.staff-app .star-workflow-quickbar{background:#182638!important;border-color:#34445c!important}
+.staff-app .star-workflow-quickbar strong{color:#eaf1fd}
+.staff-app .star-workflow-roster{display:grid;gap:12px}
+.staff-app .star-workflow-player{background:#151f30;border:1px solid #32425b;border-radius:13px;padding:16px}
+.staff-app .star-workflow-player h5{color:#f0f5fd}
+.staff-app .star-workflow-status{color:#a8bad0}
+.staff-app .star-workflow-options{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-top:12px}
+.staff-app .star-workflow-options button{min-height:42px;background:#233248;color:#e9effb;border-color:#42536a;font-size:11px}
+.staff-app .star-workflow-options button[aria-pressed=true]{background:#e4c17c;color:#17202c;border-color:#e4c17c;font-weight:850}
+.staff-app .star-workflow-coach{background:#253d54;color:#dceaff;border-color:#4a6074}
+.staff-app .star-workflow-coaching-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px;margin-top:15px}
+.staff-app .star-workflow-coaching-player{display:flex;flex-direction:column;justify-content:space-between;gap:16px;padding:16px;background:#1b293c;border:1px solid #34465e;border-radius:12px}
+.staff-workflow-coaching-player>div:first-child{display:grid;gap:4px}
+.staff-app .star-workflow-coaching-player strong{font-size:15px;color:#f1f5fc}
+.staff-workflow-coaching-player span{font-size:11px;color:#a8bcd2}
+.staff-workflow-coaching-player>div:last-child{display:flex;flex-wrap:wrap;gap:8px}
+.staff-app .star-workflow-coaching-player button{font-size:11px;background:#283d55;color:#f2f5f9;border-color:#485e78}
+.staff-app .star-hub-panel{background:#172538;color:#dce8f8;border:1px solid #344962;border-radius:12px;padding:12px 15px;margin:12px 0}
+.staff-app .star-hub-panel summary{font-size:13px;font-weight:850;color:#e7f0ff}
+.staff-app .star-workflow-empty{background:#162336;border:1px solid #334a61;border-radius:14px;padding:23px;color:#d9e5f3}
+.staff-app .star-workflow-empty h4{color:#f4f7fb}
+.staff-app .star-workflow-empty p{color:#adbed1}
+/* Make current player-card grid the default high-density roster view on large screens. */
+.staff-app .staff-roster-cards{grid-template-columns:repeat(auto-fill,minmax(min(100%,245px),1fr));gap:12px}
+.staff-app .staff-player-card{min-height:205px;border-radius:15px;padding:17px;gap:10px}
+.staff-app .staff-player-card-details strong{font-size:16px;font-weight:820}
+.staff-app .staff-player-card .staff-player-avatar{background:#2c2940;border-color:#65546b;color:#eccc89}
+.staff-app .staff-player-card-goals{font-size:12px;line-height:1.55}
+.staff-app .staff-player-profile{background:linear-gradient(115deg,#202d43,#15253a);border-color:#415168}
+.staff-app .staff-player-profile .staff-player-avatar{width:60px;height:60px;flex-basis:60px}
+.staff-app .staff-player-workspace-heading span{color:#dbb674}
+.staff-app .staff-roster-filters{background:#111b2a;border:1px solid #2e3d52;border-radius:13px;padding:15px;margin-bottom:14px}
+.staff-app .staff-roster-toolbar{background:#111a28;border:1px solid #28394c;padding:12px 15px;border-radius:12px;margin-bottom:14px}
+.staff-app .staff-roster-toolbar button{color:#dbc086}
+@media(max-width:900px){
+ .staff-workflow-overview-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:760px){
+ .staff-app .star-workflow-tabs{gap:4px;margin:12px 0}
+ .staff-app .star-workflow-tabs button{font-size:11px;padding:9px 8px}
+ .staff-app .star-workflow-overview,.staff-app .star-workflow-coaching-tab{padding:15px 12px}
+ .staff-workflow-overview-head{flex-wrap:wrap}
+ .staff-workflow-overview-metrics{gap:7px;margin:15px 0}
+ .staff-workflow-overview-metrics>div{padding:12px}
+ .staff-app .star-workflow-overview-metrics strong{font-size:21px}
+ .staff-workflow-overview-metrics span{font-size:10px}
+ .staff-app .star-workflow-stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .staff-app .star-workflow-options{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .staff-app .star-workflow-player{padding:12px}
+ .staff-app .staff-roster-cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .staff-app .staff-player-card{min-height:188px;padding:12px}
+ .staff-app .staff-player-card-details strong{font-size:14px}
+ .staff-app .staff-roster-filters{padding:12px}
+}
+@media(max-width:370px){.staff-app .staff-roster-cards{grid-template-columns:1fr}}
