@@ -12,7 +12,7 @@ const label=(d:string)=>new Date(d+'T12:00Z').toLocaleDateString('en-GB',{weekda
 const minute=(s:string)=>{const v=ukDateTimeInput(s).slice(11).split(':').map(Number);return v[0]*60+v[1]};
 const phoneHref=(phone:string)=>/^[+0-9() .-]{6,40}$/.test(phone)?'tel:'+phone.replace(/[^+0-9]/g,''):null;
 const displayAge=(p:BookingPerson)=>Number.isInteger(p.player_age)&&p.player_age!==null&&p.player_age>=0&&p.player_age<=120?` · ${p.player_age} years old`:'';
-export function StaffCalendar({revision=0,onEdit,onAdd}:{revision?:number;onEdit:(s:Entry)=>void;onAdd:(date:string)=>void}){
+export function StaffCalendar({revision=0,onEdit,onAdd,onOpenWorkspace}:{revision?:number;onEdit:(s:Entry)=>void;onAdd:(date:string)=>void;onOpenWorkspace?:(sessionId:string)=>void}){
  const scroll=useRef<HTMLDivElement>(null);
  const[date,setDate]=useState(today),[view,setView]=useState<'day'|'week'|'month'>('week'),[entries,setEntries]=useState<Entry[]>([]),[error,setError]=useState(''),[loading,setLoading]=useState(true),[selected,setSelected]=useState<Entry|null>(null);
  const [contacts,setContacts]=useState<Record<string,BookingPerson[]>>({}),[contactsLoading,setContactsLoading]=useState(false),[contactsError,setContactsError]=useState('');
@@ -68,7 +68,7 @@ export function StaffCalendar({revision=0,onEdit,onAdd}:{revision?:number;onEdit
   </article>):!loading&&<p>No sessions scheduled for this date.</p>}
  </section>
  <button type="button" onClick={()=>onAdd(date)}>Schedule a session on {label(date)}</button>
- {selected&&<CalendarDetails entry={selected} people={contacts[selected.id]||[]} contactsLoading={contactsLoading} contactsError={contactsError} onClose={()=>setSelected(null)} onEdit={()=>{onEdit(selected);setSelected(null)}}/>}</section>
+ {selected&&<CalendarDetails entry={selected} people={contacts[selected.id]||[]} contactsLoading={contactsLoading} contactsError={contactsError} onClose={()=>setSelected(null)} onEdit={()=>{onEdit(selected);setSelected(null)}} onOpenWorkspace={onOpenWorkspace?()=>{onOpenWorkspace(selected.id);setSelected(null)}:undefined}/>}</section>
 }
 function placeEvents(items:Entry[]){const result=new Map<string,{lane:number;columns:number}>();let group:Entry[]=[],until='';const flush=()=>{const ends:string[]=[];for(const s of group){let lane=ends.findIndex(e=>e<=s.starts_at);if(lane<0)lane=ends.length;ends[lane]=s.ends_at;result.set(s.id,{lane,columns:0})}for(const s of group)result.get(s.id)!.columns=ends.length;group=[];};for(const s of [...items].sort((a,b)=>a.starts_at.localeCompare(b.starts_at))){if(group.length&&s.starts_at>=until)flush();group.push(s);until=group.length===1?s.ends_at:until>s.ends_at?until:s.ends_at;}flush();return result;}
 
@@ -82,7 +82,7 @@ function CalendarPeople({people}:{people:BookingPerson[]}){
   {p.details&&<p><strong>Booking focus:</strong> {p.details}</p>}
  </div>)}</div>;
 }
-function CalendarDetails({entry:s,onClose,onEdit,people,contactsLoading,contactsError}:{entry:Entry;onClose:()=>void;onEdit:()=>void;people:BookingPerson[];contactsLoading:boolean;contactsError:string}){
+function CalendarDetails({entry:s,onClose,onEdit,onOpenWorkspace,people,contactsLoading,contactsError}:{entry:Entry;onClose:()=>void;onEdit:()=>void;onOpenWorkspace?:()=>void;people:BookingPerson[];contactsLoading:boolean;contactsError:string}){
  const isAssessment=s.title==='FREE assessment';
  const ref=useRef<HTMLDialogElement>(null);
  useEffect(()=>{ref.current?.showModal();return()=>ref.current?.close()},[]);
@@ -94,6 +94,7 @@ function CalendarDetails({entry:s,onClose,onEdit,people,contactsLoading,contacts
   <div className="calendar-bookings"><h4>Player & family contacts</h4>
    {contactsLoading?<p role="status">Checking player and guardian details…</p>:contactsError?<p role="alert">{contactsError}</p>:people.length?<CalendarPeople people={people}/>:<p>No linked player or guardian contact is recorded for this session.</p>}
   </div>
+  {onOpenWorkspace&&<button type="button" className="calendar-open-workspace" onClick={onOpenWorkspace}>Open coaching workspace →</button>}
   {isAssessment?<p>To change this assessment, open <strong>Onboarding & free assessments</strong> in the staff portal. Its time and venue are kept in sync with this calendar.</p>:<><p>Released direct bookings are managed under Booking management. Organisation sessions are managed under Schools & clubs.</p><button type="button" onClick={onEdit}>Open session controls</button></>}
  </dialog>;
 }

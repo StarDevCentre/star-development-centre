@@ -46,3 +46,13 @@ test('four-stage navigation remains within the existing staff workspace',()=>{
  assert.match(source,/SessionWrapUp/);
  assert.match(source,/aria-current=\{workspaceTab===step\.id\?"step":undefined\}/);
 });
+
+test('calendar sessions can open the coaching workspace without editing bookings',()=>{
+ const calendar=read('components/StaffCalendar.tsx');
+ const planner=read('components/TrainingPlanner.tsx');
+ const workspace=read('components/StaffWorkspace.tsx');
+ assert.match(calendar,/onOpenWorkspace\?\:\(sessionId:string\)=>void/);
+ assert.match(calendar,/Open coaching workspace →/);
+ assert.match(planner,/<StaffCalendar revision=\{calendarRevision\} onOpenWorkspace=\{onOpenWorkspace\}/);
+ assert.match(workspace,/onOpenWorkspace=\{id=>navigate\("workspace",undefined,id\)\}/);
+});
