@@ -312,3 +312,59 @@ body:has(.staff-app){background:#080c14}
  .staff-app :is(h2,h3,h4,p){color:#111!important}
  .staff-app-page-heading{background:#fff!important;border:0}
 }
+
+
+/* Batch 2 — dense coaching command centre, priority/action panels, fast one-tap tools. */
+.staff-dashboard-worklist{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.85fr);gap:15px;align-items:stretch;margin:0 0 19px}
+.staff-dashboard-action-primary,.staff-dashboard-action-secondary{min-width:0}
+.staff-dashboard-action-secondary{display:grid;grid-template-rows:auto 1fr;gap:15px}
+.staff-app .staff-dashboard-action-primary .staff-action-list{height:100%;margin:0;padding:20px}
+.staff-app .staff-dashboard-action-primary .staff-action-list .staff-card-heading{align-items:center}
+.staff-dashboard-action-primary .staff-card-heading h3:before{content:"";display:inline-block;width:8px;height:8px;margin-right:9px;border-radius:50%;background:#d5af70;box-shadow:0 0 0 4px #d5af7022}
+.staff-app .staff-dashboard-action-secondary .staff-home-queue{margin:0;padding:17px 20px 7px;border-radius:15px}
+.staff-app .staff-dashboard-action-secondary .org-card{margin:0;height:100%;padding:17px 20px}
+.staff-dashboard-action-secondary .org-embedded{min-width:0}
+.staff-app .staff-home-queue button{padding:12px 0}
+.staff-app .staff-dashboard-worklist .staff-action-filters button{padding:7px 9px;min-height:34px;font-size:10px}
+.staff-app .staff-dashboard-worklist .staff-action-list li>button{padding:11px 4px;min-height:50px}
+.staff-app .staff-dashboard-worklist .staff-action-list>p{font-size:11px;line-height:1.5}
+.staff-app .staff-dashboard-worklist .org-card .org-primary{width:100%;margin-top:12px}
+.staff-app .staff-next-session{padding:20px 24px;margin-bottom:17px;border-radius:16px}
+.staff-app .staff-next-session h3{font-size:23px;line-height:1.25;margin-bottom:4px}
+.staff-app .staff-next-session button{margin-top:12px;max-width:320px}
+.staff-app .staff-next-session .staff-card-eyebrow{margin-bottom:7px}
+.staff-home-actions-panel{background:#111a28;border:1px solid #29374c;border-radius:16px;padding:18px 20px;margin:0 0 18px}
+.staff-home-actions-panel>.staff-card-heading{margin-bottom:12px}
+.staff-home-actions-panel>.staff-card-heading h3{font-size:15px}
+.staff-home-actions-panel>.staff-card-heading span{color:#a5b5c9;font-size:11px}
+.staff-app .staff-home-actions-panel .staff-home-shortcuts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:0}
+.staff-app .staff-home-actions-panel .staff-home-shortcuts button{min-height:100px;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;gap:8px;background:#1a2839;border:1px solid #34455a;border-radius:12px;padding:13px}
+.staff-app .staff-home-actions-panel .staff-home-shortcuts button:first-child{background:linear-gradient(135deg,#3a2c33,#283445);border-color:#70573e}
+.staff-app .staff-home-actions-panel .staff-home-shortcuts button strong{color:#eef4fc;font-size:13px}
+.staff-app .staff-home-actions-panel .staff-home-shortcuts button span{color:#c6ad77;font-size:11px}
+.staff-app .staff-home-actions-panel .staff-home-shortcuts button:hover{background:#273b50;border-color:#d1b078}
+.staff-app .staff-home-columns{margin-bottom:16px}
+.staff-app .staff-home-card{padding:19px 21px}
+.staff-app .staff-home-card .staff-session-row:hover,.staff-app .staff-home-card .staff-priority-row:hover{background:#1c2939}
+.staff-app .staff-attendance-summary{padding:3px 15px;border:1px solid #2d394d;border-radius:14px;background:#101b2a}
+.staff-app .staff-attendance-summary summary{color:#dbe6f3}
+@media(max-width:1150px){
+ .staff-dashboard-worklist{grid-template-columns:minmax(0,1fr)}
+ .staff-dashboard-action-secondary{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto}
+ .staff-app .staff-home-actions-panel .staff-home-shortcuts{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:760px){
+ .staff-dashboard-worklist{gap:12px;margin-bottom:16px}
+ .staff-dashboard-action-secondary{grid-template-columns:1fr;gap:12px}
+ .staff-app .staff-dashboard-action-primary .staff-action-list{padding:15px}
+ .staff-app .staff-dashboard-action-secondary .staff-home-queue{padding:15px 15px 5px}
+ .staff-app .staff-next-session{padding:17px;margin-bottom:14px}
+ .staff-app .staff-next-session h3{font-size:20px}
+ .staff-app .staff-next-session button{max-width:none}
+ .staff-home-actions-panel{padding:15px 13px;margin-bottom:14px}
+ .staff-app .staff-home-actions-panel .staff-home-shortcuts{gap:8px}
+ .staff-app .staff-home-actions-panel .staff-home-shortcuts button{min-height:92px;padding:11px}
+ .staff-app .staff-home-actions-panel .staff-home-shortcuts button strong{font-size:12px}
+ .staff-app .staff-home-actions-panel .staff-home-shortcuts button span{font-size:10px}
+ .staff-app .staff-home-card{padding:15px 16px}
+}

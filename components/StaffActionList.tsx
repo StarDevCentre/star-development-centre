@@ -7,7 +7,7 @@ export function StaffActionList({data,error,loading,onNavigate}:{data:StaffActio
  const [filter,setFilter]=useState('all'),[limit,setLimit]=useState(8);
  const categories=[{id:'assessments',label:'Assessment follow-ups'},{id:'onboarding',label:'Awaiting family onboarding'},{id:'sessions',label:'Session changes'}] as const;
  const items=data?.items.filter(i=>filter==='all'||i.category===filter)||[];
- return <section className="staff-action-list" aria-label="Staff action list" aria-busy={loading}>
+ return <section id="staff-action-centre" className="staff-action-list" aria-label="Staff action list" aria-busy={loading}>
   <div className="staff-card-heading"><h3>Action centre</h3><span>Oldest outstanding first</span></div>
   <p>One place for assessment follow-ups, family onboarding and session changes. Select an action to open its existing workspace.</p>
   {error?<p role="alert">Couldn’t refresh the action list. Use Refresh above to try again.</p>:!data?<p role="status">{loading?'Loading actions…':'Use Refresh above to load actions.'}</p>:<>
