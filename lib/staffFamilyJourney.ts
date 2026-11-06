@@ -16,7 +16,7 @@ const validDate=(value:string|null):number|null=>{
  return Number.isFinite(ms)?ms:null;
 };
 export function assessmentJourney(p:JourneyIntake,now=Date.now()):JourneyAction{
- const waiting={!p.completed_at||!p.guardian_reviewed_at);
+ const waiting=(!p.completed_at||!p.guardian_reviewed_at);
  const requested=validDate(p.assessment_requested_at);
  const overdueContact=requested!==null&&now-requested>=assessmentContactHours*3600000;
  const dueAt=requested!==null?new Date(requested+assessmentContactHours*3600000).toISOString():null;
