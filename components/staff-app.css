@@ -462,3 +462,129 @@ body:has(.staff-app){background:#080c14}
  .staff-app .staff-roster-filters{padding:12px}
 }
 @media(max-width:370px){.staff-app .staff-roster-cards{grid-template-columns:1fr}}
+
+
+/* Batch 4 — protected inbox, assessments, organisations, analytics and triaged actions. */
+.staff-app .staff-action-list .staff-card-heading{align-items:center}
+.staff-app .staff-action-priority-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:15px 0 12px}
+.staff-app .staff-action-priority-summary>div{display:grid;gap:5px;padding:12px;background:#1d2c3f;border:1px solid #354761;border-radius:12px}
+.staff-app .staff-action-priority-summary strong{color:#f0f6ff;font-size:23px;line-height:1;font-weight:850}
+.staff-app .staff-action-priority-summary span{color:#a9bbcf;font-size:10px}
+.staff-app .staff-action-priority-summary>div:first-child{border-left:3px solid #eaaf8c}
+.staff-app .staff-action-priority-summary>div:nth-child(2){border-left:3px solid #e2c17e}
+.staff-app .staff-action-priority-summary>div:last-child{border-left:3px solid #95adc4}
+.staff-app .staff-priority-indicator{display:inline-block;font-size:10px;letter-spacing:.015em;font-weight:850;padding:3px 8px;border-radius:7px;background:#27364a;color:#dce6f4}
+.staff-app .staff-priority-indicator.high{background:#50313a;color:#ffd6c8;border:1px solid #9e5b55}
+.staff-app .staff-priority-indicator.follow_up{background:#42392b;color:#f6dfaa;border:1px solid #82704a}
+.staff-app .staff-priority-indicator.waiting{background:#25394a;color:#b7d1e7;border:1px solid #496178}
+.staff-app .staff-action-list li>button{border-left:3px solid transparent;padding-left:10px}
+.staff-app .staff-action-list li>button:has(.staff-priority-indicator.high){border-left-color:#dba388;background:#221f29}
+.staff-app .staff-action-list li>button:has(.staff-priority-indicator.follow_up){border-left-color:#caa667}
+.staff-app .staff-action-list li>button:has(.staff-priority-indicator.waiting){border-left-color:#647f9e}
+/* Staff inbox: two deliberate conversation surfaces, not a plain form. */
+.staff-app .org-tabs{display:flex;flex-wrap:nowrap;gap:8px;overflow-x:auto;padding:0 0 12px;margin:4px 0 16px;border-bottom:1px solid #334258;scrollbar-width:thin}
+.staff-app .org-tabs>button{flex:none;background:#192739;border:1px solid #344960;color:#b9cbe1;border-radius:10px;min-height:42px;font-weight:750;font-size:12px}
+.staff-app .org-tabs>button[aria-current=page]{color:#191f2d;background:#d8b776;border-color:#d8b776;box-shadow:0 4px 20px #d6b36b1c}
+.staff-app .star-family-comms{background:#111b29;border:1px solid #304055;border-radius:16px;padding:22px}
+.staff-app .star-family-comms>h3{color:#f4f7fc;font-size:22px}
+.staff-app .star-family-comms>p{color:#9eafc5;font-size:12px}
+.staff-app .star-family-comms>p[role=status]{background:#1a2a3e;border:1px solid #344b64;border-radius:12px;padding:10px 13px}
+.staff-app .star-family-comms>p[role=status] strong{color:#f5f7fb}
+.staff-app .star-family-comms .star-family-thread{background:#0c1420;border:1px solid #2e4157;border-radius:14px;padding:14px;min-height:160px}
+.staff-app .star-family-comms .star-family-message{background:#1b2a3c;color:#e9f1fc;border:1px solid #34465f;border-radius:12px;padding:12px;margin-bottom:10px;max-width:min(100%,85%)}
+.staff-app .star-family-comms .star-family-message[data-own=true]{margin-left:auto;background:#2a3542;border-color:#756249}
+.staff-app .star-family-comms .star-family-message :is(p,strong,small){color:#e6eef8}
+.staff-app .star-family-comms .star-family-message small{font-size:10px;color:#9db4c9}
+.staff-app .star-family-comms .star-family-message-form{background:#172438;border:1px solid #35455a;border-radius:13px;padding:15px;margin-top:15px}
+.staff-app .star-family-comms .star-family-message-form button[type=submit]{background:#dbb777;border-color:#dbb777;color:#111b28;font-weight:850}
+.staff-app .org-inbox{background:#101b2a;border:1px solid #304056;padding:18px;border-radius:16px}
+.staff-app .org-inbox .org-row h3{font-size:21px;color:#f2f5fc}
+.staff-app .org-inbox>p,.staff-app .org-inbox .org-hint{color:#a7bbd1}
+.staff-app .org-inbox-layout{display:grid;grid-template-columns:minmax(240px,.7fr) minmax(0,1.3fr);gap:13px}
+.staff-app .org-inbox-layout .org-card{border-radius:13px}
+.staff-app .org-thread-choice{display:flex;justify-content:space-between;gap:8px;background:#1b2a40;color:#e4efff;border:1px solid #32455e;border-radius:10px;padding:11px;text-align:left;width:100%;margin-bottom:7px}
+.staff-app .org-thread-choice[aria-current=true]{background:#293b52;border-color:#c6a36d}
+.staff-app .org-inbox .org-message{background:#1a293a;border-radius:11px;border:1px solid #37485e;color:#e9f1fc}
+.staff-app .org-inbox :is(.org-inbox-message,.org-inbox-thread,.org-inbox-compose){background:#172539;color:#e9f1fc;border-color:#33475b}
+/* Operational portal tabs, referral tracking and forms. */
+.staff-app .org-embedded{color:#e7f1fa}
+.staff-app .org-embedded>p{color:#a3b6cb}
+.staff-app .org-picker{max-width:640px;background:#111c2c;border:1px solid #32455b;border-radius:12px;padding:12px}
+.staff-app .org-columns{gap:14px}
+.staff-app .org-columns>.org-card,.staff-app .org-stack>.org-card{border-radius:16px;padding:18px}
+.staff-app .org-row h3{color:#ecf4fc}
+.staff-app .org-card :is(p,li,dd,span,small){color:#d0deed}
+.staff-app .org-card .org-eyebrow,.staff-app .org-eyebrow{color:#d4b574}
+.staff-app .org-status{border:1px solid #596f83;background:#22374a;color:#e8f2ff;border-radius:999px;font-size:11px;padding:4px 9px}
+.staff-app .org-overdue{border-color:#93565d!important}
+.staff-app .org-deadline-overdue{color:#fac7ba!important;font-weight:800}
+.staff-app .org-form,.staff-app .org-portal-form{background:#182537;border-radius:12px;padding:14px;border:1px solid #37455d}
+.staff-app .org-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px}
+.staff-app .org-metrics>div{padding:13px;border:1px solid #384b62;background:#1a293b;border-radius:11px}
+.staff-app .org-metrics dt{color:#a6bacf;font-size:11px}
+.staff-app .org-metrics dd{color:#f4f7fd;font-size:22px;font-weight:800;margin:0}
+/* Family onboarding and the free-assessment pipeline. */
+.staff-app .intake-staff{color:#eaf1fb}
+.staff-app .intake-staff>h3{font-size:24px;color:#f4f7fb}
+.staff-app .intake-staff>p{color:#aebfd2;font-size:12px}
+.staff-app .intake-staff-layout{gap:14px}
+.staff-app .intake-profile-row{border-radius:13px;min-height:70px;text-align:left;background:#182638!important;color:#eaf2fb}
+.staff-app .intake-profile-row[aria-pressed=true]{border-color:#d4ac71!important;background:#2a3244!important;box-shadow:inset 3px 0 #d4ac71}
+.staff-app .intake-profile-row strong{color:#f3f7fc;font-size:14px}
+.staff-app .intake-profile-row small{color:#adc0d5!important;font-size:11px}
+.staff-app .intake-card{border-radius:16px;padding:19px}
+.staff-app .intake-card h3,.staff-app .intake-card h4{color:#f5f8fe}
+.staff-app .intake-card :is(p,dd,dt,span){color:#d7e5f3}
+.staff-app .intake-card details{border-top:1px solid #33465e;padding:11px 0}
+.staff-app .intake-card details summary{color:#d7be8b;font-weight:800}
+.staff-app .intake-card form{background:#1a2a3c;border:1px solid #354963;padding:16px;border-radius:12px}
+.staff-app .intake-card form button{background:#d8b675;border-color:#d8b675;color:#131d2b;font-weight:850}
+.staff-app .intake-actions{display:flex;align-items:end;flex-wrap:wrap;gap:12px}
+.staff-app .intake-actions label{min-width:min(100%,230px)}
+.staff-app .intake-actions>button{background:#263d55;color:#f2f7fc;border-color:#46617b}
+.staff-app .intake-notice{background:#163a3c;color:#c7e3df;border:1px solid #3c6a68;padding:10px;border-radius:10px}
+.staff-app .intake-error{background:#3e2732;border:1px solid #805263;color:#ffdce0;padding:10px;border-radius:10px}
+/* Data-rich analytics: strong visual hierarchy and responsive metrics. */
+.staff-app .star-analytics{color:#e9f1fc}
+.staff-app .star-analytics>h3{font-size:25px;color:#f6f8ff;margin:4px 0}
+.staff-app .star-analytics>p{font-size:12px;color:#a3b4ca}
+.staff-app .star-analytics-filters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;background:#121f2f;border:1px solid #30455c;border-radius:14px;padding:16px}
+.staff-app .star-analytics-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0}
+.staff-app .star-analytics-metrics>div{display:grid;align-content:space-between;gap:12px;min-height:115px;background:linear-gradient(145deg,#1e2c3d,#182437);border:1px solid #334a63;border-radius:14px;padding:17px}
+.staff-app .star-analytics-metrics strong{font-size:clamp(23px,3vw,36px);color:#f7f9ff;line-height:1.1;font-weight:850}
+.staff-app .star-analytics-metrics span{font-size:11px;color:#b4c5da;line-height:1.5}
+.staff-app .star-analytics-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.staff-app .star-analytics-grid>.star-hub-panel{margin:0;background:#141f30;border:1px solid #30435a;border-radius:14px;padding:17px}
+.staff-app .star-analytics-grid h4{font-size:16px;color:#f2f7fd}
+.staff-app .star-analytics-grid :is(p,span,small,.star-hub-hint){color:#aabed2;font-size:12px}
+.staff-app .star-analytics-item{display:flex;justify-content:space-between;gap:8px;align-items:center;border-bottom:1px solid #34455a;padding:11px 0}
+.staff-app .star-analytics-item strong,.staff-app .star-analytics-coverage strong{color:#e9f1fa}
+.staff-app .star-family-progress-track{background:#26364a;border-radius:999px;overflow:hidden}
+.staff-app .star-family-progress-track>div{background:linear-gradient(90deg,#d5ad6d,#97d9ca);height:100%;border-radius:999px}
+/* Staff admin is intentionally separate from owner capabilities. */
+.staff-app .star-staff-admin{color:#e8effb}
+.staff-app .star-staff-admin h3,.staff-app .star-staff-admin h4{color:#f4f7fd}
+.staff-app .star-staff-admin>p{color:#aec0d5}
+.staff-app .star-staff-admin-list{display:grid;gap:10px}
+.staff-app .star-staff-admin-item{background:#192638;border:1px solid #36485c;padding:16px;border-radius:12px}
+.staff-app .star-staff-admin-item :is(strong,span,small){color:#edf3fd}
+@media(max-width:1050px){
+ .staff-app .star-analytics-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .staff-app .org-inbox-layout{grid-template-columns:1fr}
+}
+@media(max-width:760px){
+ .staff-app .staff-action-priority-summary>div{padding:10px}
+ .staff-app .staff-action-priority-summary strong{font-size:21px}
+ .staff-app .staff-action-priority-summary span{font-size:9px}
+ .staff-app .star-family-comms,.staff-app .org-inbox{padding:13px;border-radius:14px}
+ .staff-app .star-family-comms .star-family-message{max-width:94%}
+ .staff-app .star-analytics-filters{padding:11px;gap:8px}
+ .staff-app .star-analytics-metrics{gap:8px}
+ .staff-app .star-analytics-metrics>div{padding:12px;min-height:97px}
+ .staff-app .star-analytics-metrics strong{font-size:25px}
+ .staff-app .star-analytics-metrics span{font-size:10px}
+ .staff-app .star-analytics-grid{grid-template-columns:1fr}
+ .staff-app .intake-card{padding:14px}
+ .staff-app .org-tabs{gap:5px}
+ .staff-app .org-tabs>button{font-size:11px;padding:10px 12px}
+}
