@@ -755,3 +755,74 @@ body:has(.staff-app){background:#080c14}
     max-width: 100%;
   }
 }
+
+
+/* Installed touch-PWA only: native-feeling phone shell, independent of browser layouts.
+   These rules intentionally win at ANY virtual viewport width (Chrome desktop-mode may force 980px). */
+.staff-app.staff-app--installed-touch{width:100%;max-width:100%;min-width:0;min-height:100dvh;margin:0;border:0;border-radius:0;overflow:visible;background:#080e19;box-shadow:none;color:#eaf1fc}
+body:has(.staff-app--installed-touch){background:#080e19;overflow-x:clip}
+body:has(.staff-app--installed-touch) .staff-page-section{width:100%;max-width:100%;padding:0;margin:0;background:#080e19}
+body:has(.staff-app--installed-touch) .staff-page-section>.container{width:100%;max-width:100%;margin:0;padding:0}
+.staff-app--installed-touch .staff-app-header{display:flex;position:sticky;top:0;z-index:60;width:100%;max-width:100%;height:65px;min-height:65px;box-sizing:border-box;align-items:center;gap:9px;padding:9px 13px;background:#0c1524;border:0;border-bottom:1px solid #304057;border-radius:0;box-shadow:0 6px 20px #03081080}
+.staff-app--installed-touch .staff-app-logo{width:60px;flex:0 0 60px}
+.staff-app--installed-touch .staff-app-brand{flex:1;min-width:0;padding-left:10px;border-left:1px solid #384761}
+.staff-app--installed-touch .staff-app-brand span{font-size:7px;letter-spacing:.11em;line-height:1.3;white-space:normal;color:#d9be8a}
+.staff-app--installed-touch .staff-app-brand strong{font-size:15px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#f5f8ff}
+.staff-app--installed-touch .staff-app-role{display:none}
+.staff-app--installed-touch .staff-app-menu-button{flex:0 0 42px;width:42px;height:42px;padding:9px!important;border-radius:12px;background:#1d2b40}
+.staff-app--installed-touch .staff-app-layout{display:block!important;grid-template-columns:none!important;width:100%;max-width:100%;min-width:0;border:0!important;border-radius:0;overflow:visible;background:#080e19}
+.staff-app--installed-touch .staff-app-sidebar{display:none!important}
+.staff-app--installed-touch .staff-app-content{display:block!important;width:100%;max-width:100%;min-width:0;box-sizing:border-box;min-height:calc(100dvh - 65px);padding:14px 13px calc(98px + env(safe-area-inset-bottom));background:#080e19;overflow-wrap:break-word}
+.staff-app--installed-touch .staff-app-page-heading{display:flex;flex-direction:column;align-items:flex-start;width:100%;max-width:100%;min-width:0;box-sizing:border-box;min-height:85px;margin:0 0 14px;padding:16px 15px;border:1px solid #364561;border-radius:15px;background:linear-gradient(115deg,#18253d,#112338)}
+.staff-app--installed-touch .staff-app-page-heading>p{font-size:8px;line-height:1.4;letter-spacing:.1em;margin:0 0 6px;overflow-wrap:normal;word-break:normal}
+.staff-app--installed-touch .staff-app-page-heading h2{width:100%;max-width:100%;font-size:25px!important;font-weight:850;line-height:1.17;letter-spacing:-.035em;word-break:normal;overflow-wrap:normal;hyphens:none}
+.staff-app--installed-touch .staff-page-subtitle{font-size:11px;line-height:1.4;margin-top:7px;color:#b6c5d6}
+.staff-app--installed-touch .staff-tool-panel{min-width:0;max-width:100%;overflow-wrap:break-word}
+.staff-app--installed-touch .staff-app-dock{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;width:100%;max-width:100%;box-sizing:border-box;position:fixed;left:0;right:0;bottom:0;z-index:70;gap:3px;padding:7px 7px max(9px,env(safe-area-inset-bottom));background:#0d1828f5;border-top:1px solid #43506a;box-shadow:0 -10px 30px #03070fc7}
+.staff-app--installed-touch .staff-app-dock[hidden]{display:none!important}
+.staff-app--installed-touch .staff-app-dock>button{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:53px;gap:3px;padding:5px 1px;font-size:10px;line-height:1.2;color:#aabbd2;border:1px solid transparent;border-radius:12px;background:transparent}
+.staff-app--installed-touch .staff-app-dock>button svg{width:21px;height:21px}
+.staff-app--installed-touch .staff-app-dock>button[aria-current=page]{background:#27364e;color:#f0d293;border:1px solid #64563f}
+.staff-app--installed-touch .staff-app-sheet{position:fixed;bottom:0;left:0;right:0;width:100%;max-width:100%;max-height:85dvh;margin:auto 0 0;padding:20px 16px max(22px,env(safe-area-inset-bottom));overflow-y:auto;border:1px solid #465574;border-radius:20px 20px 0 0;background:#111e30;color:#f1f7ff}
+.staff-app--installed-touch .staff-command-summary{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:14px;min-width:0;padding:16px}
+.staff-app--installed-touch .staff-command-stats{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:7px}
+.staff-app--installed-touch .staff-command-stats>button{min-width:0;padding:10px 7px}
+.staff-app--installed-touch .staff-command-stats strong{font-size:24px}
+.staff-app--installed-touch .staff-command-stats span{font-size:10px}
+.staff-app--installed-touch .staff-dashboard-worklist{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:12px;min-width:0}
+.staff-app--installed-touch .staff-dashboard-action-secondary{display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:auto;gap:12px}
+.staff-app--installed-touch .staff-home-columns{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:12px}
+.staff-app--installed-touch .staff-home-actions-panel .staff-home-shortcuts{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px}
+.staff-app--installed-touch .staff-48h{width:100%;max-width:100%;min-width:0;box-sizing:border-box;padding:16px 13px;margin:0 0 14px;border-radius:15px}
+.staff-app--installed-touch .staff-48h-heading{gap:10px;align-items:flex-start}
+.staff-app--installed-touch .staff-48h-heading h3{font-size:22px}
+.staff-app--installed-touch .staff-48h-total{min-width:58px;padding:8px}
+.staff-app--installed-touch .staff-48h-total strong{font-size:24px}
+.staff-app--installed-touch .staff-48h-actions{gap:7px;margin:13px 0}
+.staff-app--installed-touch .staff-48h-actions button{flex:1 1 130px;min-height:43px;padding:9px 10px}
+.staff-app--installed-touch .staff-48h-session{display:flex;width:100%;gap:8px;padding:12px 9px;align-items:center}
+.staff-app--installed-touch .staff-48h-time{flex:0 0 57px;font-size:13px}
+.staff-app--installed-touch .staff-48h-time small{font-size:10px}
+.staff-app--installed-touch .staff-48h-info strong{font-size:13px}
+.staff-app--installed-touch .staff-48h-info small{font-size:11px}
+.staff-app--installed-touch .staff-48h-go{font-size:10px}
+.staff-app--installed-touch .staff-home-actions-panel{padding:14px 12px}
+.staff-app--installed-touch .staff-home-actions-panel .staff-home-shortcuts button{min-height:90px;padding:12px}
+.staff-app--installed-touch .staff-home-card,.staff-app--installed-touch .staff-action-list{padding:15px 13px}
+.staff-app--installed-touch .staff-action-priority-summary{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px}
+.staff-app--installed-touch .staff-action-priority-summary>div{padding:9px 7px}
+.staff-app--installed-touch .staff-action-priority-summary strong{font-size:21px}
+.staff-app--installed-touch .staff-roster-cards{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px}
+.staff-app--installed-touch .staff-roster-filters,.staff-app--installed-touch .staff-form-grid{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:10px}
+.staff-app--installed-touch .star-analytics-metrics{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px}
+.staff-app--installed-touch .star-analytics-grid,.staff-app--installed-touch .star-analytics-filters,.staff-app--installed-touch .org-inbox-layout{grid-template-columns:minmax(0,1fr)!important}
+.staff-app--installed-touch .star-workflow-stats{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+.staff-app--installed-touch .star-workflow-options{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.staff-app--installed-touch .staff-pwa-viewport-notice{display:block;padding:12px 14px;margin:0 0 14px;border-radius:11px;border:1px solid #866b46;background:#383126;color:#f1deb7;font-size:12px;line-height:1.55}
+.staff-app--installed-touch .staff-pwa-viewport-notice strong{display:block;color:#ffdfa2}
+@media(max-width:390px){
+ .staff-app--installed-touch .staff-app-content{padding-left:10px;padding-right:10px}
+ .staff-app--installed-touch .staff-app-brand strong{font-size:13px}
+ .staff-app--installed-touch .staff-app-page-heading h2{font-size:22px!important}
+ .staff-app--installed-touch .staff-roster-cards{grid-template-columns:minmax(0,1fr)!important}
+}
