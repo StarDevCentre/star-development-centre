@@ -110,3 +110,205 @@ body:has(.staff-app)>.site-header,body:has(.staff-app)>.home-header,body:has(.st
  .staff-48h-info strong{font-size:13px}
  .staff-48h-info small{font-size:10px}
 }
+
+
+/* STAR Performance Centre 2.0 — dark-first desktop/mobile design system.
+   Presentation-only. Existing staff access, routes and data actions remain unchanged. */
+body:has(.staff-app){background:#080c14}
+.staff-page-section:has(.staff-app){padding-top:10px}
+.staff-page-section:has(.staff-app)>.container{max-width:1660px;width:min(100%,calc(100% - 28px))}
+.staff-app{
+ --staff-navy:#f1f5fd;--staff-muted:#9baac0;--staff-line:#293449;
+ --sp-bg:#080d16;--sp-sidebar:#0b111c;--sp-card:#111a28;--sp-card2:#172233;
+ --sp-stroke:#263246;--sp-gold:#dbb774;--sp-text:#eaf0fa;--sp-muted:#9aaac1;
+ background:var(--sp-bg);color:var(--sp-text);border:1px solid #222d40;border-radius:20px;
+ box-shadow:0 26px 85px #02050952;overflow:hidden;letter-spacing:.005em;
+}
+.staff-app :is(h2,h3,h4,h5){color:var(--sp-text)}
+.staff-app :is(button,input,textarea,select,summary,a):focus-visible{outline:3px solid #dfb967;outline-offset:3px}
+.staff-app :is(input,textarea,select){background:#111b29;color:#f0f5ff;border-color:#34445a;color-scheme:dark}
+.staff-app :is(input,textarea)::placeholder{color:#8b9bb0}
+.staff-app button{border-color:#344256;background:#192536;color:#e7eef9}
+.staff-app button:hover:not(:disabled){border-color:#d5b06a}
+.staff-app a{color:#dfbd7a}
+.staff-app :is(.staff-inline-error,[role=alert]){overflow-wrap:anywhere}
+.staff-app .staff-inline-error{background:#381c2a;border-color:#7b4251;color:#ffe1e7}
+.staff-app .staff-inline-notice{background:#162c3d;border-color:#385d79;color:#d3edff}
+.staff-app .staff-quiet{color:var(--sp-muted)}
+.staff-app-header{height:80px;min-height:80px;padding:12px 24px;background:#0d1523;border:0;border-bottom:1px solid #29354a;border-radius:0;gap:16px}
+.staff-app-logo{width:83px}
+.staff-app-brand{border-color:#3c4660;padding-left:19px}
+.staff-app-brand span{color:var(--sp-gold);font-weight:850;font-size:9px}
+.staff-app-brand strong{font-size:19px;color:#f6f8ff;font-weight:800;letter-spacing:-.035em}
+.staff-app-role{color:#e4c995;background:#282333;border:1px solid #54442f;font-weight:800}
+.staff-app-header .staff-app-menu-button{background:#152031;border:1px solid #344057;color:#dfe7f1}
+.staff-app-header .staff-app-menu-button:hover{background:#223248}
+.staff-app-layout{display:grid;grid-template-columns:246px minmax(0,1fr);background:#080d16;border:0;border-radius:0;overflow:visible;align-items:stretch}
+.staff-app-sidebar{padding:26px 15px 18px;background:#0b121e;border:0;border-right:1px solid #273244;color:#e7eef9;display:flex;flex-direction:column;gap:14px}
+.staff-sidebar-brand{display:flex;align-items:center;gap:12px;padding:3px 9px 17px;border-bottom:1px solid #263144}
+.staff-brand-star{display:grid;place-items:center;color:#dfb567;background:#342732;font-size:26px;width:40px;height:40px;border:1px solid #5c4551;border-radius:12px}
+.staff-sidebar-brand>span:last-child{display:grid;gap:1px}
+.staff-sidebar-brand strong{font-size:17px;font-weight:900;letter-spacing:.04em;color:#f7f9ff}
+.staff-sidebar-brand small{font-size:8px;letter-spacing:.11em;color:#aab6c8;font-weight:800}
+.staff-sidebar-label{font-size:10px;font-weight:800;letter-spacing:.15em;color:#8290a7;margin:4px 12px 0!important}
+.staff-main-navigation{display:grid;gap:5px}
+.staff-app .staff-main-navigation>button{display:flex;align-items:center;gap:12px;width:100%;padding:11px 12px;min-height:46px;border:1px solid transparent;border-radius:11px;text-align:left;font-weight:700;color:#b7c4d7;background:transparent}
+.staff-main-navigation>button svg{width:20px;height:20px;flex:none;stroke-width:1.8}
+.staff-app .staff-main-navigation>button:hover{background:#19263a;color:#fff}
+.staff-app .staff-main-navigation>button[aria-current=page]{background:#1f2c40;color:#fff;border:1px solid #3c465b;box-shadow:inset 3px 0 #dbb774}
+.staff-main-navigation>button .star-unread-badge{margin-left:auto}
+.staff-sidebar-extras{margin-top:5px;border-top:1px solid #263144;padding-top:13px}
+.staff-sidebar-extras>summary{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;list-style:none;border-radius:9px;color:#b2bfd3;font-weight:800;font-size:12px;cursor:pointer}
+.staff-sidebar-extras>summary::-webkit-details-marker{display:none}
+.staff-sidebar-extras>summary:hover{background:#172338}
+.staff-sidebar-extras[open]>summary span{transform:rotate(180deg)}
+.staff-sidebar-extras nav{max-height:360px;overflow:auto;padding:8px 0 5px;scrollbar-color:#40516a transparent}
+.staff-app-sidebar .staff-menu-group{margin:0 0 14px}
+.staff-app-sidebar .staff-menu-group>p{color:#d2b16d;font-size:9px}
+.staff-app .staff-app-sidebar .staff-menu-group>button{min-height:36px;padding:7px 10px;font-size:11px;color:#c4d0de}
+.staff-app .staff-app-sidebar .staff-menu-group>button[aria-current=page]{background:#233047;color:#fff;border-color:#42546d}
+.staff-sidebar-footer{margin-top:auto;padding-top:24px}
+.staff-sidebar-status{display:flex;align-items:center;gap:8px;color:#91a3b9;font-size:9px;font-weight:800;letter-spacing:.12em;padding:8px}
+.staff-live-dot{display:inline-block;vertical-align:middle;width:7px;height:7px;flex:none;border-radius:50%;background:#8fd5b7;box-shadow:0 0 0 3px #8fd5b721;margin-right:7px}
+.staff-app .staff-sign-out{background:#152030;border-color:#2c3d52;color:#d7e0ed;border-radius:10px;font-weight:700}
+.staff-app-content{background:radial-gradient(ellipse 90% 32% at 100% -6%,#1e2841 0%,transparent 70%),#080d16;padding:28px 29px 40px;min-height:calc(100dvh - 100px)}
+.staff-app-page-heading{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;background:linear-gradient(115deg,#17233b,#122038 65%,#112b39);border:1px solid #30405c;box-shadow:inset 0 0 0 1px #ffffff05,0 18px 45px #0306092e;border-radius:18px;padding:23px 25px;margin-bottom:21px;min-height:109px}
+.staff-app-page-heading:before{content:"";position:absolute}
+.staff-app-page-heading>p{color:#cfb77a;font-size:10px;letter-spacing:.14em;margin:0 0 6px}
+.staff-app-page-heading h2{font-size:clamp(23px,2.4vw,33px);font-weight:850;line-height:1.17;color:#f4f7ff;margin:0}
+.staff-page-subtitle{font-size:12px;color:#a9bad0;margin-top:7px}
+.staff-app .staff-home-toolbar p{color:#9aacc4}
+.staff-app .staff-home-toolbar button{color:#dfbd7a}
+.staff-app .staff-command-summary{background:#111a2a;border-color:#2b3a50;box-shadow:0 11px 30px #01040a35}
+.staff-app .staff-command-intro h3{color:#f0f5ff}
+.staff-app .staff-command-intro span{color:#dcb773}
+.staff-app .staff-command-intro p{color:#9fb0c7}
+.staff-app .staff-command-stats button{background:#192535;border-color:#344157;color:#e9f0fc}
+.staff-app .staff-command-stats strong{color:#f3f7ff}
+.staff-app .staff-command-stats span{color:#a0b2c7}
+.staff-app .staff-command-stats button:hover{background:#25334a;border-color:#c6a05a}
+.staff-app :is(.staff-home-card,.staff-home-queue,.staff-action-list,.staff-player-goals,.staff-player-profile,.staff-player-add,.staff-roster-row,.staff-player-card,.staff-48h,.staff-attendance-summary){background:var(--sp-card);border-color:var(--sp-stroke);color:var(--sp-text);box-shadow:none}
+.staff-app .staff-48h{background:linear-gradient(135deg,#121f32,#111927 65%);border-color:#39465b;border-top:2px solid #c19a59}
+.staff-app .staff-48h-eyebrow{color:#dbb774}
+.staff-app .staff-48h-heading h3{color:#f4f7ff;font-weight:850}
+.staff-app .staff-48h-heading p:not(.staff-48h-eyebrow){color:#9baec8}
+.staff-app .staff-48h-total{background:#2a3040;border-color:#50506d;box-shadow:inset 0 0 0 1px #655442}
+.staff-app .staff-48h-total strong{color:#f5f7fa}
+.staff-app .staff-48h-total span{color:#dfc88f}
+.staff-app .staff-48h-actions button{background:#223047;border-color:#3a4c66;color:#e6effa}
+.staff-app .staff-48h-actions button:last-child{background:#d1ac6d;border-color:#d1ac6d;color:#141923}
+.staff-app .staff-48h-actions button:last-child:hover{background:#f1cf89}
+.staff-app .staff-48h-day h4{color:#c3d0e2}
+.staff-app .staff-48h-session{background:#182538;border-color:#344258;border-left-color:#cba765;color:#edf4ff}
+.staff-app .staff-48h-session:hover{background:#24334a;border-color:#d3aa60}
+.staff-app .staff-48h-time{color:#f4f7ff}
+.staff-app :is(.staff-48h-time small,.staff-48h-info small,.staff-48h-venue,.staff-48h-go,.staff-48h-footnote,.staff-48h-subtle){color:#aab9cd}
+.staff-app .staff-48h-empty{background:#1a2939;color:#a6b5ca}
+.staff-app .staff-next-session{background:linear-gradient(110deg,#263753,#17344c);border:1px solid #3c5571}
+.staff-app .staff-next-session h3{color:#fff}
+.staff-app .staff-next-session button{background:#ddbc7e;border-color:#ddbc7e;color:#111927}
+.staff-app .staff-card-heading h3,.staff-app .staff-home-queue h3{color:#f4f7ff}
+.staff-app .staff-home-queue>button,.staff-app .staff-session-row,.staff-app .staff-priority-row{border-color:#2b384a;color:#e8effb}
+.staff-app .staff-home-queue strong,.staff-app .staff-session-row strong,.staff-app .staff-priority-row strong{color:#ecf4fe}
+.staff-app :is(.staff-home-queue small,.staff-session-row small,.staff-priority-row span,.staff-priority-row small){color:#9dafc7}
+.staff-app .staff-home-queue b{background:#2b3440;border-color:#65533b;color:#e8c98c}
+.staff-app .staff-home-shortcuts button{background:#1b2738;border-color:#324157;color:#e9eff9}
+.staff-app .staff-home-shortcuts strong{color:#f2f7ff}
+.staff-app .staff-home-shortcuts span{color:#9fb0c7}
+.staff-app .staff-action-list{background:#131d2c}
+.staff-app .staff-action-list>p{color:#9eb0c7}
+.staff-app .staff-action-list li>button{border-color:#324153;color:#eaf1fb}
+.staff-app .staff-action-list li>button:hover{background:#1d2a3e}
+.staff-app .staff-action-list li small,.staff-app .staff-action-list .staff-card-heading>span{color:#9aacc4}
+.staff-app .staff-action-clear{background:#1c3040;color:#c6dfdc}
+.staff-app .staff-action-list .staff-action-note{border-color:#334052}
+.staff-app .staff-action-filters button{background:#1c2a3d;border-color:#34455d;color:#c5d3e4}
+.staff-app .staff-action-filters button[aria-pressed=true]{background:#d2b174;border-color:#d2b174;color:#101923}
+.staff-app .staff-session-day{background:#1f2b40;border-color:#3b4c60}
+.staff-app .staff-session-day strong{color:#f3f6fb}
+.staff-app .staff-player-avatar{background:#2a374a;border-color:#465671;color:#f2d391}
+.staff-app .staff-player-card:hover,.staff-app .staff-roster-row:hover{border-color:#c49a5e;background:#19283a}
+.staff-app .staff-player-card-details strong,.staff-app .staff-player-profile h3{color:#f2f6ff}
+.staff-app .staff-player-card-details small,.staff-app .staff-player-card-goals,.staff-app .staff-player-workspace-heading p{color:#aab9cd}
+.staff-app .staff-player-card-open,.staff-app .staff-player-card-label,.staff-app .staff-player-workspace-heading span{color:#deb978}
+.staff-app .staff-roster-row small,.staff-app .staff-roster-results{color:#9dafc5}
+.staff-app .staff-player-goals h3{color:#f3f7fe}
+.staff-app .staff-goal-row{border-color:#2c394c}
+.staff-app .staff-goal-row p{color:#c8d5e7}
+.staff-app .staff-goal-row button{background:#21344a;border-color:#364962;color:#edf5fc}
+.staff-app .staff-player-actions button{background:#22374c;border-color:#43556d;color:#eef5ff}
+.staff-app .staff-player-actions button:first-child{background:#c49b5f;border-color:#c49b5f;color:#111926}
+.staff-app .staff-player-profile .staff-player-avatar{background:#3a2d38;border-color:#745a56;color:#f3cc80}
+.staff-app .staff-action-list :is(p,small){line-height:1.5}
+.staff-app-sheet{background:#101a29;border:1px solid #3a4a62;color:#eaf1fb}
+.staff-app .staff-sheet-heading h2{color:#f5f7ff}
+.staff-app .staff-sheet-heading p{color:#d7b77b}
+.staff-app .staff-app-sheet .staff-menu-group>p{color:#d8b574}
+.staff-app .staff-app-sheet .staff-menu-group>button{background:#182637;border-color:#30445c;color:#e9f0fa}
+.staff-app .staff-app-sheet .staff-menu-group>button[aria-current=page]{background:#263c55;color:#f5f8ff;border-color:#c7a365}
+.staff-app .staff-sheet-heading>button{background:#24354a;color:#fff;border-color:#46546c}
+.staff-app .staff-app-dock{background:#0c1523eF;border-top:1px solid #37435a;box-shadow:0 -12px 45px #040711aa}
+.staff-app .staff-app-dock>button{color:#a2b4ce}
+.staff-app .staff-app-dock>button[aria-current=page]{background:#26364c;color:#f1cf84;border:1px solid #635238}
+.staff-app .staff-app-dock>button[aria-current=page]:after{background:#dbb774}
+/* Component-level dark surfaces: the underlying operations stay unchanged. */
+.staff-app :is(.org-card,.star-training-form,.star-training-list article,.staff-roster-list article,.star-family-thread,.star-admissions-grid article,.intake-card,.intake-profile-row,.star-workflow-session,.star-workflow-player-card,.star-workflow-player-head,.star-idp-grid>article,.star-hub-card,.star-workflow-quickbar,.staff-roster-cards .staff-player-card){
+ background:#151f2e!important;border-color:#324157!important;color:#eaf0f9;
+}
+.staff-app :is(.org-card,.intake-card,.star-training-list article) :is(h2,h3,h4,dt,strong){color:#f1f6ff}
+.staff-app :is(.org-hint,.org-eyebrow,.intake-eyebrow,.star-training>p,.star-admissions>p,.staff-roster-toolbar p){color:#a4b5ce}
+.staff-app :is(.intake-profile-row,.star-workflow-quickbar) :is(strong,small,span){color:#e5edf9}
+.staff-app .org-card .org-primary{background:#d7b477;color:#101722;border-color:#d7b477}
+.staff-app .org-card .org-secondary{background:#24354a;color:#f2f7ff;border-color:#465772}
+.staff-app .star-workflow-quickbar button[aria-pressed=true]{background:#cda569;border-color:#cda569;color:#131b28}
+.staff-app .star-workflow-progress{background:#293a50}
+.staff-app .star-workflow-progress>span{background:#e0b96e}
+.staff-app .staff-calendar{background:#131d2a;color:#eff3fc;border-color:#34425a}
+.staff-app .staff-calendar :is(h3,h4,p,strong){color:#f1f4fd}
+.staff-app .staff-calendar :is(.calendar-day-heading,.calendar-time-heading,.calendar-hours){background:#1a2738;color:#cad8ec;border-color:#3c4a60}
+.staff-app .staff-calendar .calendar-day{background:repeating-linear-gradient(to bottom,#111c2b 0,#111c2b 23px,#28354a 23px,#28354a 24px);border-color:#38465a}
+.staff-app .staff-calendar .calendar-closed{background:repeating-linear-gradient(135deg,#1c293a99 0,#1c293a99 5px,#0d162499 5px,#0d162499 6px)}
+.staff-app .calendar-agenda,.staff-app .calendar-agenda-entry,.staff-app .calendar-person,.staff-app .calendar-dialog{background:#142033;color:#edf4ff;border-color:#34455b}
+.staff-app .calendar-agenda-title,.staff-app .calendar-booking{background:#1b2b3d;color:#e9f0fa;border-color:#35465d}
+.staff-app .calendar-agenda :is(h4,strong,p),.staff-app .calendar-dialog :is(h3,h4,strong,p){color:#eef4fc}
+.staff-app .calendar-person :is(p,strong){color:#e9f2fc}
+.staff-app .calendar-person a{color:#edd28e}
+.staff-app .calendar-month>div{background:#121e2c;border-color:#35435b}
+.staff-app .calendar-month>strong{color:#dce6f4}
+.staff-app .staff-calendar .calendar-month-event{background:#283c55;border-color:#43536c;color:#eef2f8}
+.staff-app .staff-calendar .calendar-event{background:#2a4462;border-left-color:#d7b470}
+.staff-app .calendar-dialog::backdrop{background:#030710cc}
+.staff-app .staff-home-card,.staff-app .staff-home-queue{border-radius:16px}
+@media(min-width:1060px){
+ .staff-app-layout{grid-template-columns:250px minmax(0,1fr)}
+ .staff-app-sidebar{position:sticky;top:0;max-height:calc(100dvh - 5px);overflow-y:auto}
+ .staff-app-content{padding:29px 35px 45px}
+}
+@media(max-width:760px){
+ body:has(.staff-app){background:#090e18}
+ .staff-page-section:has(.staff-app)>.container{width:100%;max-width:none}
+ .staff-app{border:0;border-radius:0;box-shadow:none}
+ .staff-app-header{height:74px;min-height:74px;padding:11px 15px;padding-top:max(11px,env(safe-area-inset-top));background:#0c1523}
+ .staff-app-logo{width:73px}
+ .staff-app-brand{padding-left:13px}
+ .staff-app-brand strong{font-size:16px}
+ .staff-app-brand span{font-size:8px}
+ .staff-app-layout,.staff-app-content{background:#080d16}
+ .staff-app-content{padding:17px 14px calc(108px + env(safe-area-inset-bottom));min-height:calc(100dvh - 74px)}
+ .staff-app-page-heading{padding:19px 17px;min-height:98px;border-radius:15px;margin-bottom:16px}
+ .staff-app-page-heading h2{font-size:24px}
+ .staff-app-page-heading>p{font-size:8px}
+ .staff-page-subtitle{font-size:11px}
+ .staff-app-dock{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));padding:7px 8px max(8px,env(safe-area-inset-bottom));gap:4px}
+ .staff-app .staff-app-dock>button{min-height:56px;font-size:10px;gap:4px}
+ .staff-app-dock svg{width:20px;height:20px}
+ .staff-app-sheet{background:#111b29;border-radius:21px 21px 0 0;border-color:#354761}
+ .staff-app .staff-home-card,.staff-app .staff-action-list{padding:15px}
+ .staff-app .staff-48h{padding:16px 14px;border-radius:15px}
+ .staff-app .staff-48h-heading h3{font-size:23px}
+}
+@media print{
+ .staff-app,.staff-app-content{background:#fff!important;color:#111!important}
+ .staff-app :is(h2,h3,h4,p){color:#111!important}
+ .staff-app-page-heading{background:#fff!important;border:0}
+}
