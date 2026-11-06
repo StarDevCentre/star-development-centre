@@ -27,7 +27,7 @@ export function StaffOnboarding({initialIntakeId,selectionRequest,onOpenInbox,on
     .order('created_at',{ascending:true}).limit(500);
    if(req!==loadRequest.current)return;
    if(result.error)throw result.error;
-   setRows((result.data||[]) as Request[]);
+   setRows((result.data||[]) as unknown as Request[]);
    setClock(Date.now());
   }catch{if(req===loadRequest.current)setError('Could not load assessment requests. Check your connection and retry.');}
   finally{if(req===loadRequest.current)setLoading(false);}
