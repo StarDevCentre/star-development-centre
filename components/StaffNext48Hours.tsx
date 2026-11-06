@@ -41,7 +41,9 @@ export function StaffNext48Hours({active=true,onNavigate}:{active?:boolean;onNav
   const timer=window.setInterval(refresh,60000);
   window.addEventListener('focus',refresh);
   window.addEventListener('star:organisation-schedule-updated',refresh);
-  return()=>{window.clearInterval(timer);window.removeEventListener('focus',refresh);window.removeEventListener('star:organisation-schedule-updated',refresh);};
+  window.addEventListener('star:staff-refresh',refresh);
+  return()=>{window.clearInterval(timer);window.removeEventListener('focus',refresh);window.removeEventListener('star:organisation-schedule-updated',refresh);
+   window.removeEventListener('star:staff-refresh',refresh);};
  },[active]);
  useEffect(()=>{
   if(!active)return;

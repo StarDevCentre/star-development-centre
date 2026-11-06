@@ -858,3 +858,87 @@ body:has(.staff-app--installed-touch) .staff-page-section>.container{width:100%;
     flex-basis:80px;width:80px;height:49px;
   }
 }
+
+
+/* Batch 5 — installed staff PWA ergonomics. Only PWA layout changes; keep
+   desktop structure and the existing STAR navy / gold brand colours. */
+.staff-app .staff-connection-banner{
+ display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 14px;
+ padding:11px 13px;border:1px solid #907a55;border-radius:12px;
+ background:#332e29;color:#f4e4c5;font-size:12px;line-height:1.5;
+}
+.staff-app .staff-connection-banner>span:nth-child(2){flex:1 1 190px}
+.staff-app .staff-connection-banner .staff-connection-dot{
+ flex:0 0 9px;width:9px;height:9px;border-radius:50%;
+ background:#e6ae65;box-shadow:0 0 0 3px #e6ae6530;
+}
+.staff-app .staff-connection-banner button{
+ min-height:42px;padding:8px 12px;border-color:#e0b977;
+ background:#dbb97b;color:#182536;font-weight:850;
+}
+.staff-app--installed-touch .staff-home-dashboard{
+ display:flex;flex-direction:column;min-width:0;
+}
+/* Putting the next appointment first matters more on a phone than a long
+   summary of all 48 hours. Preserve the original desktop order. */
+.staff-app--installed-touch .staff-home-dashboard>.staff-home{
+ display:flex;flex-direction:column;order:0;min-width:0;
+}
+.staff-app--installed-touch .staff-home-dashboard>.staff-48h{order:1}
+.staff-app--installed-touch .staff-home-dashboard>.staff-home-toolbar{order:2}
+.staff-app--installed-touch .staff-home>.staff-next-session{order:0}
+.staff-app--installed-touch .staff-home>.staff-home-actions-panel{order:1}
+.staff-app--installed-touch .staff-home>.staff-command-summary{order:2}
+.staff-app--installed-touch .staff-home>.staff-dashboard-worklist{order:3}
+.staff-app--installed-touch .staff-home>.staff-home-columns{order:4}
+.staff-app--installed-touch .staff-home>.staff-attendance-summary{order:5}
+.staff-app--installed-touch .staff-home-dashboard>.staff-home .staff-next-session{
+ margin-bottom:11px;border:1px solid #64543e;
+}
+.staff-app--installed-touch .staff-home-dashboard>.staff-home .staff-next-session button{
+ width:100%;max-width:none;min-height:48px;
+}
+.staff-app--installed-touch .staff-home-dashboard .staff-home-actions-panel{
+ margin-bottom:13px;
+}
+.staff-app--installed-touch .staff-home-dashboard .staff-home-actions-panel .staff-home-shortcuts button{
+ min-height:67px;padding:11px 9px;
+}
+.staff-app--installed-touch .staff-home-dashboard .staff-command-summary{
+ padding:12px;margin-bottom:13px;
+}
+.staff-app--installed-touch .staff-home-dashboard .staff-command-intro h3{font-size:20px}
+.staff-app--installed-touch .staff-home-dashboard .staff-48h{
+ margin:1px 0 13px;
+}
+.staff-app--installed-touch :is(input:not([type=checkbox]):not([type=radio]):not([type=hidden]),select,textarea){
+ font-size:16px;max-width:100%;box-sizing:border-box;
+}
+.staff-app--installed-touch :is(button,summary,a,select,input[type=date],input[type=datetime-local]){
+ touch-action:manipulation;
+}
+.staff-app--installed-touch .staff-app-dock>button{
+ min-height:56px;padding:8px 2px;
+}
+.staff-app--installed-touch .staff-app-sheet{
+ overscroll-behavior:contain;
+}
+.staff-app--installed-touch .staff-app-sheet .staff-menu-group>button{
+ min-height:46px;
+}
+.staff-app--installed-touch .staff-app-sheet .staff-sheet-heading>button{
+ min-height:44px;min-width:44px;
+}
+.staff-app--installed-touch .staff-app-content :is(h2,h3,h4,section,details){
+ scroll-margin-top:82px;
+}
+.staff-app--installed-touch .staff-app-content :is(.staff-app-page-heading,.staff-home,.staff-48h){
+ overflow-wrap:normal;word-break:normal;
+}
+@media(prefers-reduced-motion:reduce){
+ .staff-app--installed-touch :is(*, *::before, *::after){
+  scroll-behavior:auto!important;
+  transition-duration:.01ms!important;
+  animation-duration:.01ms!important;
+ }
+}
