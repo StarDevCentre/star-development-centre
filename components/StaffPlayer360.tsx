@@ -23,12 +23,12 @@ const summary=(value:string,max=260)=>value.length>max?value.slice(0,max).trimEn
 const name=(player:StaffPlayer)=>player.first_name+" "+player.last_name;
 
 type Props={
- player:StaffPlayer;client:SupabaseClient|null;canManage:boolean;goals:StaffGoal[];developmentControls:ReactNode;
+ player:StaffPlayer;client:SupabaseClient|null;canManage:boolean;ownerPreview?:boolean;goals:StaffGoal[];developmentControls:ReactNode;
  onNote?:(id:string)=>void;onDevelopment?:(id:string)=>void;onBadge?:(id:string)=>void;onPositions?:(id:string)=>void;
  onOpenSession?:(id:string)=>void;onPlayerSpace?:(id:string)=>void;onTrainingHub?:(id:string)=>void;
  onFamilyInbox?:(id:string)=>void;onShareWithFamily?:(id:string)=>void;
 };
-export function StaffPlayer360({player,client,canManage,goals,developmentControls,onNote,onDevelopment,onBadge,onPositions,onOpenSession,onPlayerSpace,onTrainingHub,onFamilyInbox,onShareWithFamily}:Props){
+export function StaffPlayer360({player,client,canManage,ownerPreview=false,goals,developmentControls,onNote,onDevelopment,onBadge,onPositions,onOpenSession,onPlayerSpace,onTrainingHub,onFamilyInbox,onShareWithFamily}:Props){
  const [tab,setTab]=useState<Tab>("overview"),[snapshot,setSnapshot]=useState<Snapshot>(empty),[loading,setLoading]=useState(true),[attempt,setAttempt]=useState(0);
  const tabs:{id:Tab;label:string}[]=[{id:"overview",label:"Overview"},{id:"development",label:"Development"},{id:"sessions",label:"Sessions"},{id:"coaching",label:"Coaching"},{id:"achievements",label:"Achievements"},...(canManage?[{id:"family" as Tab,label:"Family & sharing"}]:[])];
  useEffect(()=>{
@@ -95,6 +95,7 @@ export function StaffPlayer360({player,client,canManage,goals,developmentControl
    <button type="button" onClick={()=>setAttempt(n=>n+1)} disabled={loading} className="staff360-refresh">{loading?"Refreshing…":"Refresh profile ↻"}</button>
   </header>
   <div className="staff360-tools" aria-label="Player shortcuts">
+    {ownerPreview&&<button type="button" onClick={()=>window.location.assign("/staff/player-preview?player="+encodeURIComponent(player.id))}>View as player · Read only ↗</button>}
    {onNote&&<button type="button" onClick={()=>onNote(player.id)}>Add coaching note ↗</button>}
    {onDevelopment&&<button type="button" onClick={()=>onDevelopment(player.id)}>Full development plan ↗</button>}
    {onPositions&&<button type="button" onClick={()=>onPositions(player.id)}>Positions & family view ↗</button>}
