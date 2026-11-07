@@ -3,9 +3,9 @@ import {createContext, useContext, type ReactNode} from "react";
 
 type Price = {slug: string; title: string; price: string; unit: string; options: string[]};
 const prices: Price[] = [
-  {slug:"sparks",title:"STAR Sparks",price:"£5",unit:"per 45-minute session",options:["Pay as you go."]},
+  {slug:"sparks",title:"STAR Sparks",price:"£5",unit:"per 60-minute session",options:["Pay as you go."]},
   {slug:"development",title:"Development Groups",price:"£5",unit:"per 45-minute session",options:["Pay as you go."]},
-  {slug:"one-to-one",title:"One to One Coaching",price:"£35",unit:"per 60-minute session",options:["Pay per session. No full programme commitment."]},
+  {slug:"one-to-one",title:"One to One Coaching",price:"£40",unit:"per 60-minute session",options:["Pay per session. No full programme commitment."]},
   {slug:"flyers",title:"STAR Flyers",price:"£375",unit:"upfront · 16 weeks",options:["Or three payments totalling £380."]},
   {slug:"prestige",title:"STAR Prestige",price:"£800",unit:"upfront · 24 weeks",options:["Or 3 payments of £280 (£840 total).","Or 6 payments of £150 (£900 total)."]},
   {slug:"season-support",title:"Player Season Support",price:"£25",unit:"per visit",options:["Family or club may pay. Visits arranged individually."]}
