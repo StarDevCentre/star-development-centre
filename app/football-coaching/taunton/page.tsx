@@ -49,7 +49,7 @@ export default function TauntonFootballCoaching(){
           <p className="local-kicker">STAR DEVELOPMENT CENTRE · SOMERSET</p>
           <h1 id="taunton-title">FOOTBALL COACHING<br/>IN <em>TAUNTON.</em><span> BUILT FOR GIRLS.</span></h1>
           <p className="local-hero-lead">Personal football coaching for girls aged 5–18, from their first experience with the ball to focused development alongside club football.</p>
-          <p>At STAR, the player's confidence, enjoyment and goals come first. We work with families across the Taunton area to find coaching that suits her age, experience and ambitions.</p>
+          <p>Coaching starts with her confidence, enjoyment and goals.</p>
           <div className="local-actions"><Link className="local-button local-button-red" href="/register">Book a free 30-minute assessment <span aria-hidden="true">→</span></Link><a className="local-button local-button-outline" href="#coaching-options">Explore coaching options</a></div>
           <p className="local-small">The assessment is free, with no obligation to join. STAR confirms its date and venue after the request.</p>
         </div>
@@ -62,7 +62,7 @@ export default function TauntonFootballCoaching(){
         <p className="local-kicker">ONE PLAYER. HER OWN WAY FORWARD.</p>
         <h2 id="taunton-coaching-title">Football coaching that<br/><span>starts with her.</span></h2>
         <div className="local-split">
-          <div><p>Looking for football coaching in Taunton that recognises the individual, not just the team? STAR welcomes girls who are new to football, building confidence, playing grassroots matches or ready for more targeted practice. We listen first, then choose suitable activities and realistic next steps.</p><p>Our lead service is <strong>One to One Coaching for ages 11–18</strong>. Each 60-minute session gives one player the space to practise skills, explore decisions and ask questions. We might work on her first touch, protecting the ball, movement, passing or a situation from her own matches. The focus comes from her game—not a generic session script.</p><p>You can book individual sessions without committing to a full programme. For younger players, STAR Flyers offers a structured individual option, while Prestige provides a longer development journey for ages 11–18, with an individual plan, progress reports and regular reviews.</p></div>
+          <div><p>STAR welcomes Taunton girls who are new to football, building confidence, playing grassroots matches or ready for more targeted practice. We listen first and plan realistic next steps.</p><p>Our lead service is <strong>One to One Coaching for ages 11–18</strong>. Each 60-minute session gives one player the space to practise skills, explore decisions and ask questions. We might work on her first touch, protecting the ball, movement, passing or a situation from her own matches. The focus comes from her game—not a generic session script.</p><p>Flexible sessions require no full programme commitment. Flyers offers younger players structured development; Prestige provides longer-term plans, progress reports and reviews.</p></div>
           <aside className="local-spotlight"><span className="local-spotlight-label">FEATURED · AGES 11–18</span><h3>One to One Coaching.</h3><p>60 minutes, tailored to her football and what she wants to improve.</p><strong>£40 <small>per session</small></strong><Link href="/programmes#one-to-one">Explore individual coaching <span aria-hidden="true">→</span></Link></aside>
         </div>
       </div>
@@ -74,7 +74,7 @@ export default function TauntonFootballCoaching(){
         <div className="local-timetable" role="list">
           {timetable.map(s=><div className="local-time-row" role="listitem" key={s.day+s.time}><strong>{s.day}</strong><span>{s.time}</span><div><b>{s.name}</b><small>{s.ages}</small></div></div>)}
         </div>
-        <div className="local-venue-note"><strong>Important: these are STAR's published programme times, not confirmed Taunton bookings.</strong><p>We have not published a fixed Taunton venue or confirmed that every group runs in this town. Ask STAR which dates, venues and places are actually available. For one-to-one sessions and free assessments, we agree the date, playing surface, meeting point and suitable footwear individually before you attend.</p></div>
+        <div className="local-venue-note"><strong>Important: these are STAR's published programme times, not confirmed Taunton bookings.</strong><p>Taunton venues and group availability are not yet confirmed. Ask STAR about available dates. For individual sessions and assessments, we agree the venue, surface and meeting point before attendance.</p></div>
       </div>
     </section>
 
@@ -89,7 +89,7 @@ export default function TauntonFootballCoaching(){
 
     <section className="local-section local-area" aria-labelledby="taunton-area-title">
       <div className="local-container local-area-grid">
-        <div><p className="local-kicker">LOCAL TO TAUNTON</p><h2 id="taunton-area-title">Coaching for families<br/><span>across the area.</span></h2><p>We welcome enquiries from Taunton and nearby communities including Staplegrove, Bishop's Hull, Galmington, Trull, Norton Fitzwarren and Monkton Heathfield. Tell us where you're travelling from so we can discuss a practical arrangement.</p><p>STAR does not operate a public walk-in training site. We confirm the venue for an agreed session rather than advertising an unverified address. Parents can ask about the playing surface, access, travel and watching arrangements before booking.</p><Link href="/where-we-coach">See all areas we coach <span aria-hidden="true">→</span></Link></div>
+        <div><p className="local-kicker">LOCAL TO TAUNTON</p><h2 id="taunton-area-title">Coaching for families<br/><span>across the area.</span></h2><p>We welcome enquiries from Taunton and nearby communities including Staplegrove, Bishop's Hull, Galmington, Trull, Norton Fitzwarren and Monkton Heathfield. Tell us where you're travelling from so we can discuss a practical arrangement.</p><p>There is no public walk-in venue. We confirm each agreed location and practical access arrangements before attendance.</p><Link href="/where-we-coach">See all areas we coach <span aria-hidden="true">→</span></Link></div>
         <div className="local-area-panel"><p className="local-kicker">NEED A STARTING POINT?</p><h3>Meet your coach.<br/>Try some football.</h3><p>Our free 30-minute assessment is a relaxed introduction for your daughter. We'll find out what she enjoys, see how she approaches simple football activities and talk with you about the right next step.</p><Link className="local-button local-button-red" href="/register">Book her free assessment <span aria-hidden="true">→</span></Link><Link className="local-quiet-link" href="/first-session">What happens at the first session?</Link></div>
       </div>
     </section>
