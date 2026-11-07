@@ -33,10 +33,10 @@ STAR Development Centre is an independent girls' football development service in
 
 ## Programmes — confirm prices before publishing changes
 These are business requirements provided in earlier planning; check with the owner before changing public pricing.
-- STAR Sparks ages 5–10: £5 per 45-minute group session, pay-as-you-go.
+- STAR Sparks ages 5–10: £5 per 60-minute group session, pay-as-you-go.
 - Group coaching ages 11–16: £5 per 45-minute group session.
 - Flyers ages 7–10: 16 weekly one-hour individual sessions; £375 upfront or £380 total across three payments.
-- One to One Coaching ages 11–18: £35 per one-hour session.
+- One to One Coaching ages 11–18: £40 per one-hour session.
 - Prestige ages 11–18: 24 weeks, typically weekly 90-minute individual sessions; £800 upfront, 3 × £280 or 6 × £150.
 - Player Season Support: £25 per visit, with agreed observations and coaching support.
 - Ages 17–18: individual coaching only.
