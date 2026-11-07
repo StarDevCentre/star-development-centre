@@ -46,7 +46,7 @@
 .local-page .local-schedule h2{color:#fff}
 .local-page .local-schedule h2 span{color:var(--local-gold)}
 .local-page .local-schedule .local-kicker{color:#e4c77e}
-.local-page .local-heading-row{display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:end;margin-bottom:25px}
+.local-page .local-heading-row{display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:flex-end;margin-bottom:25px}
 .local-page .local-heading-row>p{color:#c7d4e3;font-size:15px}
 .local-page .local-timetable{border-top:1px solid #d9c28477}
 .local-page .local-time-row{display:grid;grid-template-columns:140px 230px 1fr;gap:20px;align-items:center;border-bottom:1px solid #d9c2843d;padding:21px 10px}
@@ -65,7 +65,7 @@
 .local-page .local-fee-age{font-size:11px;font-weight:850;letter-spacing:.12em;color:#a41b30;margin:0 0 10px}
 .local-page .local-fee h3{font-size:29px;color:#0b223e;margin:0 0 9px}
 .local-page .local-fee>div>p:not(.local-fee-age){font-size:14px;color:#526176;margin:0 0 15px}
-.local-page .local-fee-bottom{display:flex;align-items:end;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid #d5dfeb;padding-top:14px;margin-top:10px}
+.local-page .local-fee-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid #d5dfeb;padding-top:14px;margin-top:10px}
 .local-page .local-fee-bottom strong{font-family:"Barlow Condensed",Impact,sans-serif;color:#0b223e;font-size:35px}
 .local-page .local-fee-bottom a{color:#a41b30;font-size:12px;font-weight:800;text-underline-offset:4px}
 .local-page .local-fee-note{font-size:13px;color:#546174;margin:21px 0 0}
