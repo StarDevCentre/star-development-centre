@@ -25,7 +25,7 @@ export default function WhereWeCoach(){return <main className="star-home">
 <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(min(100%,270px),1fr))",gap:20,marginTop:32}}>
 {locations.map(place=><article id={place.id} key={place.id} style={{border:"1px solid #d8dfe7",borderRadius:16,padding:"28px",background:"#fff",color:"#0b203c"}}>
 <p style={{fontSize:12,fontWeight:800,letterSpacing:2,color:"#a17a19",margin:"0 0 12px"}}>SOMERSET</p>
-<h3 style={{fontSize:29,margin:"0 0 12px"}}>{place.name}</h3><p style={{lineHeight:1.7}}>{place.text}</p><Link href="/contact" style={{fontWeight:700,color:"#a21b2c"}}>Ask about coaching in {place.name} →</Link></article>)}
+<h3 style={{fontSize:29,margin:"0 0 12px"}}>{place.name}</h3><p style={{lineHeight:1.7}}>{place.text}</p><Link href={place.id==="taunton"?"/football-coaching/taunton":"/contact"} style={{fontWeight:700,color:"#a21b2c"}}>{place.id==="taunton"?"Explore football coaching in Taunton":"Ask about coaching in "+place.name} →</Link></article>)}
 </div></div></section>
 <section className="home-section" style={{background:"#eef2f6",padding:"clamp(44px,6vw,76px) 0"}}><div className="home-width">
 <p className="home-eyebrow">FIND HER NEXT STEP</p><h2 style={{fontSize:"clamp(30px,4vw,48px)",margin:"12px 0 18px"}}>Coaching that fits her.</h2>
