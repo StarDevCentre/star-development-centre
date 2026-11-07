@@ -70,7 +70,8 @@ test('a validated sign-in can read prices without registering or accessing famil
     const response=await get(request('Bearer signed-in-token'));assert.equal(response.status,200);
     const {prices}=await response.json();assert.equal(prices.length,6);
     assert.equal(prices.find(p=>p.slug==='one-to-one').title,'One to One Coaching');
-    assert.equal(prices.find(p=>p.slug==='one-to-one').price,'£40');
+    assert.equal(prices.find(p=>p.slug==='one-to-one').price,'£35');
+    assert.ok(prices.find(p=>p.slug==='one-to-one').options.some(option=>option.includes('£40')&&option.includes('Bridgwater')));
     assert.equal(prices.find(p=>p.slug==='flyers').price,'£375');
     assert.ok(prices.find(p=>p.slug==='prestige').options.includes('3 × £280 — £840 total.'));
     assert.match(response.headers.get('Cache-Control'),/private.*no-store/);

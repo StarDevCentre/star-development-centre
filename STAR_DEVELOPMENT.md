@@ -36,11 +36,18 @@ These are business requirements provided in earlier planning; check with the own
 - STAR Sparks ages 5–10: £5 per 60-minute group session, pay-as-you-go.
 - Group coaching ages 11–16: £5 per 45-minute group session.
 - Flyers ages 7–10: 16 weekly one-hour individual sessions; £375 upfront or £380 total across three payments.
-- One to One Coaching ages 11–18: £40 per one-hour session.
+- One to One Coaching ages 11–18: £35 per one-hour session in Taunton and Wellington; £40 per one-hour session in Bridgwater.
 - Prestige ages 11–18: 24 weeks, typically weekly 90-minute individual sessions; £800 upfront, 3 × £280 or 6 × £150.
 - Player Season Support: £25 per visit, with agreed observations and coaching support.
 - Ages 17–18: individual coaching only.
 - Do not imply external academy endorsement or guarantee trials/pathway outcomes.
+
+## Local Taunton coaching page — owner confirmation, 7 November 2026
+- Review-only draft PR #51 creates `/football-coaching/taunton`. Do not merge or deploy it to production without explicit approval.
+- STAR Sparks: Monday 15:45–16:45 at Galmington Park / Galmington Playing Fields, Musgrove Road, Taunton, TA1 5LB, separate 5–7 and 8–10 groups.
+- Development Groups: Tuesday 16:00 (ages 11–13) and 17:00 (ages 14–16), each 45 minutes, using either Staplegrove Youth Football Club Ground, Corkscrew Lane, Taunton TA2 6EE or YMCA Floodlit Pitch, Lisieux Way, Taunton TA1 2LB. Confirm which venue with each session.
+- Free 30-minute assessments and one-to-one coaching: time and venue arranged individually, not walk-in. “Book a free 30-minute assessment” on public pages leads to the existing parent registration and assessment-request journey, not an instant confirmed booking.
+- **Production booking-price discrepancy to resolve before merging**: `star_private.booking_services` currently stores `one_to_one.price_pence=4000` regardless of town. Updating this page and marketing/API price descriptions does not update the authenticated booking fee. Agree and implement location-specific booking price enforcement, and test Taunton/Wellington £35 vs Bridgwater £40, before allowing any production release of the corrected regional pricing.
 
 ## Programmes page and finder
 - One to One Coaching is the lead service and its consistent public name. Keep the agreed website design; the audience includes players and families.

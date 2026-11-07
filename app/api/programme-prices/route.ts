@@ -10,7 +10,7 @@ const prices=[
  {slug:"development",title:"Development Groups",price:"£5",unit:"per 45-minute session",options:["Pay as you go."]},
  {slug:"flyers",title:"STAR Flyers",price:"£375",unit:"for 16 × 60-minute sessions",options:["£375 paid upfront.","Three payments totalling £380. The schedule is agreed with STAR."]},
  {slug:"prestige",title:"STAR Prestige",price:"£800",unit:"for the 24-week programme",options:["£800 paid upfront.","3 × £280 — £840 total.","6 × £150 — £900 total."]},
- {slug:"one-to-one",title:"One to One Coaching",price:"£40",unit:"per 60-minute session",options:["Pay after the session."]},
+ {slug:"one-to-one",title:"One to One Coaching",price:"£35",unit:"per 60-minute session · Taunton and Wellington",options:["£40 per 60-minute session in Bridgwater.","Pay after the session."]},
  {slug:"season-support",title:"Player Season Support",price:"£25",unit:"per visit",options:["Visit arrangements are agreed with STAR."]}
 ];
 
