@@ -62,7 +62,7 @@ export default function TauntonFootballCoaching(){
         <p className="local-kicker">ONE PLAYER. HER OWN WAY FORWARD.</p>
         <h2 id="taunton-coaching-title">Football coaching that<br/><span>starts with her.</span></h2>
         <div className="local-split">
-          <div><p>STAR welcomes Taunton girls who are new to football, building confidence, playing grassroots matches or ready for more targeted practice. We listen first and plan realistic next steps.</p><p>Our lead service is <strong>One to One Coaching for ages 11–18</strong>. Each 60-minute session gives one player the space to practise skills, explore decisions and ask questions. We might work on her first touch, protecting the ball, movement, passing or a situation from her own matches. The focus comes from her game—not a generic session script.</p><p>Flexible sessions require no full programme commitment. Flyers offers younger players structured development; Prestige provides longer-term plans, progress reports and reviews.</p></div>
+          <div><p>STAR welcomes beginners and club players alike. We listen first and plan realistic next steps.</p><p>Our lead service is <strong>One to One Coaching for ages 11–18</strong>. Every 60-minute session focuses on her game: first touch, movement, passing, defending or specific match situations, with space to ask questions and explore decisions.</p><p>Flexible sessions require no full programme commitment. Flyers offers younger players structured development; Prestige provides longer-term plans, progress reports and reviews.</p></div>
           <aside className="local-spotlight"><span className="local-spotlight-label">FEATURED · AGES 11–18</span><h3>One to One Coaching.</h3><p>60 minutes, tailored to her football and what she wants to improve.</p><strong>£35 <small>per session in Taunton</small></strong><Link href="/programmes#one-to-one">Explore individual coaching <span aria-hidden="true">→</span></Link></aside>
         </div>
       </div>
@@ -70,7 +70,7 @@ export default function TauntonFootballCoaching(){
 
     <section className="local-section local-schedule" aria-labelledby="taunton-sessions-title">
       <div className="local-container">
-        <div className="local-heading-row"><div><p className="local-kicker">GROUP COACHING</p><h2 id="taunton-sessions-title">Group coaching<br/><span>in Taunton.</span></h2></div><p>Group coaching gives girls time on the ball with other players of a similar age. STAR Sparks introduces ages 5–10 to football through enjoyable activities; Development Groups support ages 11–16 with technique and decisions.</p></div>
+        <div className="local-heading-row"><div><p className="local-kicker">GROUP COACHING</p><h2 id="taunton-sessions-title">Group coaching<br/><span>in Taunton.</span></h2></div><p>Sparks introduces girls aged 5–10 to football; Development Groups help girls aged 11–16 improve technique and decisions alongside other players.</p></div>
         <div className="local-timetable" role="list">
           {timetable.map(s=><div className="local-time-row" role="listitem" key={s.day+s.time}><strong>{s.day}</strong><span>{s.time}</span><div><b>{s.name}</b><small>{s.ages}</small><small className="local-session-venue">{s.venue}</small></div></div>)}
         </div>
@@ -79,7 +79,7 @@ export default function TauntonFootballCoaching(){
           <article className="local-venue-card"><h3>Staplegrove Youth Ground</h3><p>Staplegrove Youth Football Club, Corkscrew Lane, Taunton, TA2 6EE</p><span>Development Groups · Tuesday option</span></article>
           <article className="local-venue-card"><h3>YMCA Floodlit Pitch</h3><p>YMCA Taunton, Lisieux Way, Taunton, TA1 2LB</p><span>Development Groups · Tuesday option</span></article>
         </div>
-        <div className="local-venue-note"><strong>Know where to go before you travel.</strong><p>STAR Sparks runs on Mondays at Galmington Park. Tuesday Development Groups use either Staplegrove Youth Ground on Corkscrew Lane or the YMCA floodlit pitch, with your actual venue confirmed for each session. Dates and places depend on availability. Individual coaching and assessments have their times and venues arranged with the family.</p></div>
+        <div className="local-venue-note"><strong>Know where to go before you travel.</strong><p>Sparks meets at Galmington Park. Tuesday Development Groups use Corkscrew Lane or YMCA, with the specific venue confirmed for each session. Places depend on availability; individual coaching and assessments are arranged separately.</p></div>
       </div>
     </section>
 
@@ -94,15 +94,15 @@ export default function TauntonFootballCoaching(){
 
     <section className="local-section local-area" aria-labelledby="taunton-area-title">
       <div className="local-container local-area-grid">
-        <div><p className="local-kicker">LOCAL TO TAUNTON</p><h2 id="taunton-area-title">Coaching for families<br/><span>across the area.</span></h2><p>We welcome enquiries from Taunton and nearby communities including Staplegrove, Bishop's Hull, Galmington, Trull, Norton Fitzwarren and Monkton Heathfield. Tell us where you're travelling from so we can discuss a practical arrangement.</p><p>Group locations are listed above; appointments and venue access are confirmed before attendance. Individual coaching and assessments are arranged around each family.</p><Link href="/where-we-coach">See all areas we coach <span aria-hidden="true">→</span></Link></div>
-        <div className="local-area-panel"><p className="local-kicker">NEED A STARTING POINT?</p><h3>Meet your coach.<br/>Try some football.</h3><p>Our free 30-minute assessment is a relaxed introduction for your daughter. We'll find out what she enjoys, see how she approaches simple football activities and talk with you about the right next step.</p><Link className="local-button local-button-red" href="/register">Book her free assessment <span aria-hidden="true">→</span></Link><Link className="local-quiet-link" href="/first-session">What happens at the first session?</Link></div>
+        <div><p className="local-kicker">LOCAL TO TAUNTON</p><h2 id="taunton-area-title">Coaching for families<br/><span>across the area.</span></h2><p>We welcome families from Taunton, Staplegrove, Bishop's Hull, Galmington, Trull, Norton Fitzwarren and Monkton Heathfield. Tell us where you're travelling from.</p><p>Group locations are listed above; appointments and venue access are confirmed before attendance. Individual coaching and assessments are arranged around each family.</p><Link href="/where-we-coach">See all areas we coach <span aria-hidden="true">→</span></Link></div>
+        <div className="local-area-panel"><p className="local-kicker">NEED A STARTING POINT?</p><h3>Meet your coach.<br/>Try some football.</h3><p>The free 30-minute assessment introduces your daughter to the coach through suitable football activities. We'll discuss her next step with you.</p><Link className="local-button local-button-red" href="/register">Book her free assessment <span aria-hidden="true">→</span></Link><Link className="local-quiet-link" href="/first-session">What happens at the first session?</Link></div>
       </div>
     </section>
 
     <section className="local-section local-faq" aria-labelledby="taunton-faq-title">
       <div className="local-container local-faq-grid"><div><p className="local-kicker">PARENTS' QUESTIONS</p><h2 id="taunton-faq-title">Good to know<br/><span>before you start.</span></h2></div><div>
         <details><summary>Does my daughter need to play for a team?</summary><p>No. Beginners are welcome, as are girls who already play for a club. Coaching can complement—not replace—her existing team football.</p></details>
-        <details><summary>Can you support an autistic or neurodivergent player?</summary><p>Yes. We discuss communication, sensory preferences and practical adjustments with each family, and involve the player in choosing what works for her. <Link href="/inclusion">Read about inclusion at STAR.</Link></p></details>
+        <details><summary>Can you support an autistic or neurodivergent player?</summary><p>Yes. We discuss communication, sensory needs and useful adjustments, and listen to the player. <Link href="/inclusion">Read about inclusion at STAR.</Link></p></details>
         <details><summary>Where exactly will coaching take place in Taunton?</summary><p>Sparks takes place at Galmington Park. Tuesday Development Groups use either Corkscrew Lane or YMCA; STAR confirms which venue when the session is arranged. For individual coaching and assessments, we agree a suitable location with you. <Link href="/contact">Ask about current availability.</Link></p></details>
         <details><summary>How do I book the free assessment?</summary><p><Link href="/register">Start with a parent account</Link>, complete her player details and send the assessment request. STAR then agrees the date and venue with you. It is free and does not enrol her in a paid programme.</p></details>
       </div></div>
