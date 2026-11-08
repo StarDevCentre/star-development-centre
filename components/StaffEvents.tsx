@@ -24,7 +24,7 @@ export function StaffEvents(){
   setLoading(false);
  },[client]);
  useEffect(()=>{void refresh()},[refresh]);
- const change=<K extends keyof Editor>(key:K,value:Editor[K])=>setForm(current=>({...current,[key]:value}));
+ function change<K extends keyof Editor>(key:K,value:Editor[K]){setForm(current=>({...current,[key]:value}));}
  function startNew(){setForm(blank());setEditing(true);setError("");setNotice("");}
  function edit(event:StarEvent){setForm(toEditor(event));setEditing(true);setError("");setNotice("");}
  async function save(e:FormEvent){
