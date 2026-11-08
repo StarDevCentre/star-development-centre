@@ -5,6 +5,7 @@ export const siteName='STAR Development Centre';
 export const isPreview=!!process.env.VERCEL_ENV&&process.env.VERCEL_ENV!=='production';
 export const privateRobots={index:false,follow:false,noarchive:true};
 export const publicPages=[
+ {path:'/events',id:'events',title:'Girls’ Football Events & Camps in Somerset',description:'Discover STAR girls’ football camps, skills clinics, open days, tournaments and community events in Taunton, Bridgwater and Wellington.',category:'EVENTS, CAMPS & SPECIAL EXPERIENCES'},
  {path:'/partnerships',id:'partnerships',title:'Our Partnerships | Girls’ Football in Somerset',description:'Meet STAR’s partners and supporting organisations: SASP, Play Their Way, Her Game Too and Autism Friendly Coaching. Propose a new partnership with STAR.',category:'TOGETHER FOR HER FOOTBALL'},
  {path:'/first-session',id:'first-session',title:'First Girls’ Football Assessment in Somerset',description:'What to expect at a free 30-minute STAR girls’ football assessment in Somerset, including what to bring, meeting the coach and discussing next steps.',category:'HER FIRST STEP. CHOSEN TOGETHER.'},
  {path:'/site-index',id:'site-index',title:'Site Index: Explore STAR',description:'Browse STAR coaching programmes, football guides, practical support and account links in one place.',category:'FIND YOUR WAY AT STAR'},
