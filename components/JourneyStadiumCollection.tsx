@@ -2,6 +2,7 @@
 import Image from "next/image";
 import {useEffect,useRef,useState} from "react";
 import "./player-collections.css";
+import "./journey-stadiums.css";
 export const journeyStadiums=[
 {id:"wembley",name:"Wembley Stadium",location:"London, England",fact:"Wembley hosted the UEFA Women's EURO 2022 final.",level:15},
 {id:"emirates",name:"Emirates Stadium",location:"London, England",fact:"Arsenal Women play major home fixtures at the Emirates Stadium.",level:30},
