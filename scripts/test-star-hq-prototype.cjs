@@ -51,7 +51,12 @@ test("animated NPCs have predictable positions",()=>{
 });
 test("owner preview is server-authorised and cannot read real player records",()=>{
  const access=read("app/api/star-hq/preview-access/route.ts");
- assert.match(access,/auth\.getUser\(token\)/);
+ assert.match(access,/authClient\.auth\.getUser\(token\)/);
+ // Regression: accessToken creates a database-only client; auth.getUser must
+ // run on a separate auth-enabled instance, otherwise every owner gets a 403.
+ assert.match(access,/const authClient=createClient\(url,key,\{auth:/);
+ assert.match(access,/const db=createClient\(url,key,\{auth:[^\n]*accessToken:/);
+ assert.ok(access.indexOf("authClient.auth.getUser(token)") < access.indexOf("const db=createClient(url,key"));
  assert.match(access,/from\("staff_members"\)/);
  assert.match(access,/eq\("role","owner"\)/);
  assert.match(access,/eq\("active",true\)/);
