@@ -12,7 +12,8 @@ export function passingLaneOpen(s:MatchState,from:Position,to:Position,clearance
 function update(s:MatchState,moves:Record<string,Position>,ball:Position,possessor:string,outcome:DecisionOutcome):MatchState{return{players:s.players.map(p=>({...p,position:moves[p.id]??p.position})),ball,possessor,phase:(s.phase+1) as MatchState["phase"],history:[...s.history,outcome]}}
 export function applyDecision(s:MatchState,choice:0|1):MatchState{
 if(s.phase>=3)throw Error("Scenario finished");
-const p=s.phase,actor=p===0?"7":s.possessor,from=player(s,actor).position,ballFrom=s.ball;
+const p=s.phase,actor=p===0?"7":s.possessor,ballFrom=s.ball;
+let from=player(s,actor).position;
 let to=from,ballTo=ballFrom,recipient=s.possessor,action:DecisionOutcome["action"],feedback="",successful=false,moves:Record<string,Position>={};
 if(p===0){
 action=choice===0?"wide":"inside";
