@@ -28,3 +28,13 @@ jobs:
         run: npx tsc --noEmit
       - name: Existing project regression checks and Next.js build
         run: npm run build
+      - name: Smoke test licensed 3D models through the production server
+        run: |
+          ./node_modules/.bin/next start -p 8137 > /tmp/star-hq-server.log 2>&1 &
+          server_pid=$!
+          trap 'kill $server_pid || true' EXIT
+          for attempt in $(seq 1 25); do
+            if curl --silent --fail -o /dev/null http://127.0.0.1:8137/; then break; fi
+            sleep 1
+          done
+          node scripts/smoke-star-hq-v2-assets.mjs
