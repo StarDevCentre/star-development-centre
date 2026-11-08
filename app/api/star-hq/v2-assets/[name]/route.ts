@@ -11,13 +11,13 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 const sourceOrigin = "https://models.codelove.in";
 const files: Record<string,string> = {
-  "player.glb": "/models/female-adult-03.glb",
-  "mia.glb": "/models/business-female-01.glb",
-  "coach.glb": "/models/female-adult-05.glb",
-  "academy-player-a.glb": "/models/female-child-01.glb",
-  "academy-player-b.glb": "/models/female-child-02.glb",
+  "player.glb": "/models/sports-female-01.glb",
+  "mia.glb": "/models/sports-female-02.glb",
+  "coach.glb": "/models/sports-female-02.glb",
+  "academy-player-a.glb": "/models/sports-female-01.glb",
+  "academy-player-b.glb": "/models/sports-female-02.glb",
   "parent.glb": "/models/male-adult-02.glb",
-  "admin.glb": "/models/business-male-01.glb",
+  "admin.glb": "/models/sports-male-01.glb",
   "female-idle.glb": "/animations/f_idle_neutral_01.glb",
   "female-look.glb": "/animations/f_idle_look_around_01.glb",
   "female-talk.glb": "/animations/f_gestic_talk_neutral_01.glb",

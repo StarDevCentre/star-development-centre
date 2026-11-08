@@ -24,7 +24,7 @@ test("fictional fixture and collision bounds are deterministic",()=>{
 });
 test("Mia and locked facilities have real interaction targets",()=>{
  const d=loadDemo();
- assert.equal(d.nearestInteraction({x:.5,z:-2.8}).id,"mia");
+ assert.equal(d.nearestInteraction({x:2.45,z:-2.9}).id,"mia");
  assert.equal(d.nearestInteraction({x:-8,z:.55}).id,"changing");
  assert.equal(d.nearestInteraction({x:8,z:-2.65}).id,"trophies");
  assert.equal(d.nearestInteraction({x:8,z:2.1}).id,"pitches");

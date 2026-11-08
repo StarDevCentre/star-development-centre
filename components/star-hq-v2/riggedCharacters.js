@@ -2,6 +2,8 @@
 import * as THREE from "three";
 import {GLTFLoader} from "three/addons/loaders/GLTFLoader.js";
 import {MeshoptDecoder} from "three/addons/libs/meshopt_decoder.module.js";
+import {clone as cloneSkinnedHierarchy} from "three/addons/utils/SkeletonUtils.js";
+import {styleAcademyCharacter} from "../star-hq-v3/academyAppearance";
 
 const URL_ROOT="/api/star-hq/v2-assets/";
 const ACTORS=[
@@ -31,33 +33,16 @@ function badgeTexture(){
  tex.colorSpace=THREE.SRGBColorSpace;return tex;
 }
 function addBadge(root,texture){
- const badge=new THREE.Mesh(new THREE.PlaneGeometry(.22,.15),new THREE.MeshBasicMaterial({
+ const badge=new THREE.Mesh(new THREE.PlaneGeometry(.14,.09),new THREE.MeshBasicMaterial({
   map:texture,transparent:true,side:THREE.DoubleSide,depthWrite:false,toneMapped:false
  }));
  badge.name="STAR kit badge — preview";
- badge.position.set(0,1.29,.235);root.add(badge);
+ badge.position.set(0,1.28,.155);root.add(badge);
  return badge;
-}
-function toneHair(avatar,id){
- // Rocketbox avatar transparency material is typically the hair/eyelash atlas.
- // A modest tint preserves texture detail; no wholesale re-colouring of skin.
- const tint=id==="player"?0xf8d99b:id==="mia"?0x9d6650:null;
- if(!tint)return;
- avatar.traverse(obj=>{
-  if(!obj.isMesh||!obj.material)return;
-  const materials=Array.isArray(obj.material)?obj.material:[obj.material];
-  const copies=materials.map(material=>{
-   const m=material.clone();
-   if(m.name.toLowerCase().includes("opacity")&&m.color)m.color.lerp(new THREE.Color(tint),.60);
-   if(m.roughness!==undefined)m.roughness=Math.min(.98,Math.max(.52,m.roughness));
-   return m;
-  });
-  obj.material=Array.isArray(obj.material)?copies:copies[0];
- });
 }
 function setupModel(gltf,id,height,logo){
  const pivot=new THREE.Group();pivot.name="STAR HQ v2 actor: "+id;
- const meshRoot=gltf.scene;
+ const meshRoot=cloneSkinnedHierarchy(gltf.scene);
  meshRoot.updateMatrixWorld(true);
  const bounds=new THREE.Box3().setFromObject(meshRoot);
  const size=bounds.getSize(new THREE.Vector3());
@@ -72,10 +57,11 @@ function setupModel(gltf,id,height,logo){
    obj.receiveShadow=true;
   }
  });
- toneHair(meshRoot,id);
+ styleAcademyCharacter(meshRoot,id);
  pivot.add(meshRoot);
  pivot.add(makeShadow());
- if(id==="player"||id==="mia")addBadge(pivot,logo);
+ // Small badge aligned close to the shirt surface, not floating off the torso.
+ if(id==="player"||id==="mia"||id==="coach")addBadge(pivot,logo);
  return pivot;
 }
 function animationAction(mixer,clip){

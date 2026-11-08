@@ -5,6 +5,7 @@ on:
     branches:
       - feature/star-hq-reception-prototype
       - feature/star-hq-v2-visual-rebuild
+      - feature/star-hq-v3-academy-art
   workflow_dispatch:
 
 permissions:
@@ -23,7 +24,7 @@ jobs:
           cache: npm
       - run: npm ci
       - name: STAR HQ isolated prototype tests
-        run: node --test scripts/test-star-hq-prototype.cjs scripts/test-star-hq-v2.cjs
+        run: node --test scripts/test-star-hq-prototype.cjs scripts/test-star-hq-v2.cjs scripts/test-star-hq-v3.cjs
       - name: TypeScript check
         run: npx tsc --noEmit
       - name: Existing project regression checks and Next.js build

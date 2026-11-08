@@ -8,7 +8,7 @@ export type DemoNPC = {
 export const SAMPLE_PLAYER = Object.freeze({ firstName: "Alex", shirtName: "ALEX", shirtNumber: 10 });
 export const ROOM = { halfWidth: 9, halfDepth: 6, ceiling: 4.2 } as const;
 export const START: Point = { x: 0, z: 4.05 };
-export const MIA: Point = { x: 0.55, z: -4.65 };
+export const MIA: Point = { x: 2.45, z: -3.36 };
 export const DOORS: ReadonlyArray<{id: DoorId; label: string; x: number; z: number}> = [
   { id: "changing", label: "Changing rooms", x: -8.2, z: 0.55 },
   { id: "trophies", label: "Trophy gallery", x: 8.2, z: -2.65 },
@@ -22,7 +22,8 @@ export const DIALOGUE = [
 ] as const;
 
 const obstacles = [
-  { left: -2.75, right: 2.75, near: -5.45, far: -3.1 }, // desk
+  { left: -3.25, right: 1.40, near: -5.35, far: -3.60 }, // main desk
+  { left: 2.0, right: 3.35, near: -5.1, far: -3.98 }, // welcome console behind Mia
   { left: -8.25, right: -5.05, near: -2.2, far: -0.95 }, // lounge sofa
   { left: -7.6, right: -5.7, near: -0.6, far: 0.45 }, // table
   { left: -8.65, right: -7.65, near: -4.95, far: -3.95 }, // planter
@@ -43,7 +44,7 @@ export function moveWithCollisions(origin: Point, dx: number, dz: number): Point
   return { x, z };
 }
 export function nearestInteraction(point: Point): { kind: "mia" | "door"; label: string; id: string } | null {
-  if (distance(point, {x: 0.7, z: -2.75}) < 2.05) {
+  if (distance(point, {x: 2.4, z: -3.16}) < 1.8) {
     return { kind: "mia", label: "Talk to Mia", id: "mia" };
   }
   for (const door of DOORS) {
@@ -70,12 +71,12 @@ export function daylight(date: Date): {light: number; stage: "day" | "dusk" | "n
 }
 type Path = { id: DemoNPC["id"]; kind: DemoNPC["kind"]; points: Point[]; pace: number; phase: number; pause: number };
 export const NPC_PATHS: ReadonlyArray<Path> = [
-  { id: "mia", kind: "receptionist", points: [{x: 0.55,z:-4.65}], pace: 0, phase: 0, pause: 1 },
-  { id: "coach", kind: "coach", points: [{x:4.15,z:-4.4},{x:3.1,z:-0.8},{x:5.2,z:2.1},{x:3.1,z:-0.8}], pace:0.63,phase:0,pause:1 },
+  { id: "mia", kind: "receptionist", points: [MIA], pace: 0, phase: 0, pause: 1 },
+  { id: "coach", kind: "coach", points: [{x:5.55,z:-3.7},{x:5.2,z:-0.8},{x:5.5,z:2.1},{x:5.2,z:-0.8}], pace:0.63,phase:0,pause:1 },
   { id: "player-a", kind: "player", points: [{x:-3.7,z:4.8},{x:-3.9,z:2.45},{x:-6.1,z:2.4},{x:-6.5,z:3.5}], pace:0.75,phase:4,pause:0.6 },
   { id: "player-b", kind: "player", points: [{x:2.35,z:4.7},{x:3.6,z:2.5},{x:4.2,z:0.8},{x:3.3,z:2.3}], pace:0.72,phase:1,pause:0.7 },
   { id: "parent", kind: "parent", points: [{x:-5.1,z:-3.3},{x:-4.15,z:1.5},{x:-5.1,z:-3.3}], pace:0.40,phase:7,pause:3 },
-  { id: "admin", kind: "admin", points: [{x:2.7,z:-3.15},{x:4.6,z:-1.0},{x:3.9,z:3.4},{x:2.7,z:-3.15}], pace:0.54,phase:2,pause:1.5 }
+  { id: "admin", kind: "admin", points: [{x:4.3,z:-3.4},{x:6.35,z:-1.0},{x:3.9,z:3.4},{x:4.3,z:-3.4}], pace:0.54,phase:2,pause:1.5 }
 ];
 export function npcAtTime(path: Path, elapsed: number): DemoNPC {
   if (path.points.length === 1 || path.pace <= 0) {

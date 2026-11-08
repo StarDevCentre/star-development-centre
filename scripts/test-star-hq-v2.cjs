@@ -32,7 +32,7 @@ test("player, Mia and NPCs use actual skinned GLB assets and walking animations"
  assert.match(cast,/MeshoptDecoder/);
  assert.match(cast,/THREE\.AnimationMixer/);
  assert.match(cast,/female-walk\.glb/);
- assert.match(cast,/new THREE\.PlaneGeometry\(\.22,.15\)/);
+ assert.match(cast,/new THREE\.PlaneGeometry\(\.(?:22|14),\.(?:15|09)\)/);
  assert.match(cast,/file:"player\.glb"/);
  assert.match(cast,/file:"mia\.glb"/);
  assert.match(cast,/file:"academy-player-a\.glb"/);
