@@ -1,36 +1,41 @@
 "use client";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import {useCallback,useEffect,useState} from "react";
+import {useCallback,useEffect,useRef,useState} from "react";
 import {supabaseBrowser} from "../../lib/supabaseBrowser";
 const StarHQExperience=dynamic(()=>import("./StarHQExperience").then(m=>m.StarHQExperience),{ssr:false,loading:()=> <div className="hq-gate-card"><p>Preparing STAR HQ graphics…</p></div>});
 type Status="checking"|"allowed"|"denied"|"error";
 export function StarHQOwnerGate(){
  const [status,setStatus]=useState<Status>("checking");
+ const verifyRevision=useRef(0);
  const check=useCallback(async()=>{
+  const revision=++verifyRevision.current;
   setStatus("checking");
   const db=supabaseBrowser;
   if(!db){setStatus("error");return;}
   try{
    const {data:{session}}=await db.auth.getSession();
+   if(revision!==verifyRevision.current)return;
    if(!session?.access_token){setStatus("denied");return;}
    const r=await fetch("/api/star-hq/preview-access",{method:"POST",
     headers:{Authorization:"Bearer "+session.access_token},
     cache:"no-store",credentials:"same-origin"});
+   if(revision!==verifyRevision.current)return;
    if(r.status===401||r.status===403){setStatus("denied");return;}
    if(!r.ok){setStatus("error");return;}
    const result=await r.json() as {allowed?:boolean};
+   if(revision!==verifyRevision.current)return;
    setStatus(result.allowed===true?"allowed":"denied");
-  }catch{setStatus("error");}
+  }catch{if(revision===verifyRevision.current)setStatus("error");}
  },[]);
  useEffect(()=>{
   void check();
   const db=supabaseBrowser;
   const sub=db?.auth.onAuthStateChange((event)=>{
-   if(event==="SIGNED_OUT"){setStatus("denied");return;}
+   if(event==="SIGNED_OUT"){verifyRevision.current++;setStatus("denied");return;}
    if(event==="SIGNED_IN"||event==="USER_UPDATED")void check();
   });
-  return ()=>sub?.data.subscription.unsubscribe();
+  return ()=>{verifyRevision.current++;sub?.data.subscription.unsubscribe();};
  },[check]);
  // Recheck active owner membership on focus after returning to the tab.
  useEffect(()=>{
