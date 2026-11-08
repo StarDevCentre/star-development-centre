@@ -216,8 +216,14 @@ export class StarHQRenderer {
   for(const side of [-1,1]){
    part("cylinder",side*.13,.49,0,.18,.78,.18,pants,animation*side);
    part("sphere",side*.13,.11,.105,.16,.10,.27,"#151a21");
-   part("cylinder",side*.38,1.07,0,.16,.63,.15,top,animation*side*.55);
-   part("sphere",side*.38,.72,.01,.09,.11,.09,skin);
+   if(mia){
+    // Mia's bent arms rest above the reception desk; hands make small typing/checking motions.
+    part("cylinder",side*.32,1.30,.24,.145,.48,.14,top,-.58);
+    part("sphere",side*.23,1.50+Math.sin(phase*4.4+side)*.018,.50,.093,.065,.11,skin);
+   }else{
+    part("cylinder",side*.38,1.07,0,.16,.63,.15,top,animation*side*.55);
+    part("sphere",side*.38,.72,.01,.09,.11,.09,skin);
+   }
   }
   part("cylinder",0,1.51,0,.13,.15,.13,skin);
   part("sphere",0,1.79,0,.234,.273,.22,skin);
@@ -228,8 +234,9 @@ export class StarHQRenderer {
    part("sphere",0,1.94,-.255,.12,.12,.13,hair);
    part("sphere",0,1.82,-.30,.10,.15,.11,hair);
   }
-  part("sphere",-.090,1.82,.205,.028,.028,.018,"#242525");
-  part("sphere",.090,1.82,.205,.028,.028,.018,"#242525");
+  const blink=Math.sin(phase*.82+1.6)>.993?.005:.028;
+  part("sphere",-.090,1.82,.205,.028,blink,.018,"#242525");
+  part("sphere",.090,1.82,.205,.028,blink,.018,"#242525");
   part("sphere",0,1.70,.232,.067,.016,.015,"#b86d68");
   if(mia||isPlayer)part("box",0,1.28,.185,.20,.115,.008,"#ffffff",0,"star");
  }
