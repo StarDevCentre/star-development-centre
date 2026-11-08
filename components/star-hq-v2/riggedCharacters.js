@@ -96,7 +96,17 @@ export async function loadHumanCast(scene){
  const gltfs=new Map(files);
  const clips={};
  for(const [key,info] of Object.entries(CLIPS)){
-  const animation=gltfs.get(info.file)?.animations?.[0]||null;
+  const source=gltfs.get(info.file)?.animations?.[0]||null;
+  // The walk clips contain root-translation tracks intended for animation
+  // preview. Locomotion is already handled by the collision-aware controller;
+  // remove horizontal root travel so the rendered body cannot drift away from
+  // its collision capsule or pass through a wall.
+  const animation=source?.clone()||null;
+  for(const track of animation?.tracks||[]){
+   if(!/^Bip01\\.position$/.test(track.name))continue;
+   const x=track.values[0],z=track.values[2];
+   for(let i=0;i<track.values.length;i+=3){track.values[i]=x;track.values[i+2]=z;}
+  }
   clips[key]=animation;
  }
  const actors=new Map();
