@@ -2,7 +2,8 @@
 import Link from "next/link";
 import {useCallback,useEffect,useRef,useState} from "react";
 import {DIALOGUE, NPC_PATHS, SAMPLE_PLAYER, START, londonHour, moveWithCollisions, nearestInteraction, npcAtTime} from "../../lib/starHQ/demoWorld";
-import {StarHQRenderer, type HQPlayer} from "./StarHQRenderer";
+import type {HQPlayer} from "./StarHQRenderer";
+import {StarHQRenderer} from "../star-hq-v2/StarHQRenderer";
 
 type Nearby={kind:"mia"|"door";label:string;id:string}|null;
 type DialogState={mode:"menu"|"reply";reply?:string}|null;
@@ -29,7 +30,7 @@ export function StarHQExperience(){
  const [music,setMusic]=useState(false);
  const [sound,setSound]=useState(false);
  const [time,setTime]=useState(()=>londonHour(new Date()).label);
- const [quality,setQuality]=useState("auto");
+ const [settings,setSettings]=useState(false);
  const [joystick,setJoystick]=useState({x:0,y:0});
  function tone(freq:number,duration:number,volume:number){
   const ctx=ctxRef.current;if(!ctx)return;
@@ -80,10 +81,17 @@ export function StarHQExperience(){
 
  useEffect(()=>{
   const canvas=canvasRef.current;if(!canvas)return;
-  let renderer:StarHQRenderer;
-  try{renderer=new StarHQRenderer(canvas);setStatus("ready");}
-  catch(err){setError(err instanceof Error?err.message:"Could not initialise 3D graphics.");setStatus("error");return;}
   let running=true,frameId=0,last=performance.now(),elapsed=0,lastUpdate=0;
+  let renderer:StarHQRenderer;
+  try{
+   renderer=new StarHQRenderer(canvas);
+   void renderer.readyPromise.then(()=>{if(running)setStatus("ready");}).catch(err=>{
+    if(running){setError(err instanceof Error?err.message:"Could not load licensed 3D character assets.");setStatus("error");}
+   });
+  }catch(err){
+   setError(err instanceof Error?err.message:"Could not initialise 3D graphics.");
+   setStatus("error");return;
+  }
   const run=(now:number)=>{
    if(!running)return;
    frameId=requestAnimationFrame(run);
@@ -118,7 +126,7 @@ export function StarHQExperience(){
    const near=nearestInteraction(player);
    if(near?.id!==nearbyRef.current?.id){nearbyRef.current=near;setNearby(near);setNotice("");}
    if(now-lastUpdate>1400){lastUpdate=now;setTime(londonHour(new Date()).label);}
-   renderer.render({player,yaw:yawRef.current,date:new Date(),npcs:NPC_PATHS.map(p=>npcAtTime(p,elapsed))});
+   renderer.render({player,yaw:yawRef.current,date:new Date(),talking:!!dialogRef.current,npcs:NPC_PATHS.map(p=>npcAtTime(p,elapsed))});
   };
   frameId=requestAnimationFrame(run);
   return ()=>{running=false;cancelAnimationFrame(frameId);renderer.dispose();};
@@ -155,14 +163,16 @@ export function StarHQExperience(){
   <canvas ref={canvasRef} className="hq-canvas" aria-label="Interactive three-dimensional STAR football academy reception"
    onPointerDown={pointerDown} onPointerMove={pointerMove} onPointerUp={pointerEnd} onPointerCancel={pointerEnd}/>
   <header className="hq-hud-header">
-   <div className="hq-hud-brand"><strong>STAR HQ</strong><span>OWNER PROTOTYPE · FICTIONAL PLAYER</span></div>
-   <div className="hq-time">{time}</div>
-   <Link href="/staff" className="hq-exit">Exit HQ</Link>
+   <div className="hq-hud-brand"><strong>STAR <em>HQ</em></strong><span>PRIVATE v2 PREVIEW</span></div>
+   <div className="hq-header-actions"><span className="hq-time">{time}</span>
+    <button className="hq-settings-toggle" type="button" onClick={()=>setSettings(v=>!v)} aria-expanded={settings} aria-label="Open HQ settings">Settings</button>
+    <Link href="/staff" className="hq-exit">Exit</Link>
+   </div>
   </header>
-  {status==="loading"&&<div className="hq-overlay-center" role="status">Building your 3D academy…</div>}
+  {status==="loading"&&<div className="hq-overlay-center" role="status"><strong>Preparing STAR HQ v2</strong><p>Loading realistic academy models and animations…</p></div>}
   {status==="error"&&<div className="hq-overlay-center" role="alert"><strong>3D graphics unavailable</strong><p>{error}</p><Link href="/staff">Return to Staff Portal</Link></div>}
   {status==="ready"&&<>
-   <div className="hq-character-name">Playing as <strong>{SAMPLE_PLAYER.firstName}</strong> · Test player only</div>
+   <div className="hq-character-name">Private test · <strong>{SAMPLE_PLAYER.firstName}</strong></div>
    {!dialog&&nearby&&<button className="hq-talk-prompt" type="button" onClick={openInteraction}>{nearby.label} <kbd>E</kbd></button>}
    {notice&&<div className="hq-notice" role="status">{notice}<button type="button" onClick={()=>setNotice("")} aria-label="Dismiss notice">×</button></div>}
    <div className="hq-controls-area">
@@ -175,11 +185,13 @@ export function StarHQExperience(){
      <button type="button" onClick={()=>setHelp(v=>!v)} aria-expanded={help}>Controls</button>
     </div>
    </div>
-   <div className="hq-side-tools">
-    <button type="button" aria-pressed={sound} onClick={toggleSound}>Sounds: {sound?"On":"Off"}</button>
+   {settings&&<div className="hq-side-tools" role="group" aria-label="STAR HQ settings">
+    <p>HQ Settings</p>
+    <button type="button" aria-pressed={sound} onClick={toggleSound}>Environment sounds: {sound?"On":"Off"}</button>
     <button type="button" aria-pressed={music} onClick={toggleMusic}>Music: {music?"On":"Off"}</button>
-    <button type="button" onClick={reset}>Restart</button>
-   </div>
+    <button type="button" onClick={()=>{reset();setSettings(false);}}>Restart walk</button>
+    <button type="button" onClick={()=>setSettings(false)}>Close</button>
+   </div>}
    {help&&<div className="hq-help" role="dialog" aria-label="STAR HQ controls">
     <button type="button" className="hq-close" onClick={()=>setHelp(false)} aria-label="Close controls">×</button>
     <h2>How to explore</h2><p>Walk with WASD or arrow keys. Drag the view to move the camera. On mobile, use the joystick and swipe the right side of the 3D view. Approach Mia and press E or tap Interact. Exit at any time.</p>
