@@ -73,8 +73,36 @@ function tintHairMaterials(meshRoot,id){
   const changed=materials.map(source=>{
    const cloned=source.clone();
    if(/opacity|hair/i.test(source.name||"")){
-    cloned.color?.set(tint);
-    cloned.emissive?.copy(tint).multiplyScalar(id==="player"?.13:.035);
+    cloned.color?.set(0xffffff);
+    // The source hair atlas is dark, so multiplying by a blonde colour alone
+    // leaves the hair brunette. Recolour *the actual alpha-preserving texture*
+    // to light golden strands while keeping the original mesh/hairstyle.
+    if(id==="player"&&source.map?.image){
+     try{
+      const image=source.map.image;
+      const canvas=document.createElement("canvas");
+      canvas.width=image.width||1024;canvas.height=image.height||1024;
+      const context=canvas.getContext("2d",{willReadFrequently:true});
+      context.drawImage(image,0,0,canvas.width,canvas.height);
+      const data=context.getImageData(0,0,canvas.width,canvas.height);
+      for(let i=0;i<data.data.length;i+=4){
+       if(data.data[i+3]===0)continue;
+       const luminance=(data.data[i]*.22+data.data[i+1]*.69+data.data[i+2]*.09);
+       data.data[i]=Math.min(250,145+luminance*.57);
+       data.data[i+1]=Math.min(231,109+luminance*.50);
+       data.data[i+2]=Math.min(174,55+luminance*.39);
+      }
+      context.putImageData(data,0,0);
+      const golden=new THREE.CanvasTexture(canvas);
+      golden.colorSpace=THREE.SRGBColorSpace;
+      golden.flipY=source.map.flipY;
+      cloned.map=golden;
+     }catch{
+      // Unsupported ImageBitmap readback: keep original hair atlas.
+      cloned.color?.set(tint);
+     }
+    }else cloned.color?.set(tint);
+    cloned.emissive?.copy(tint).multiplyScalar(id==="player"?.04:.015);
     cloned.roughness=.88;
    }
    return cloned;
@@ -140,9 +168,14 @@ export function styleAcademyCharacter(meshRoot,id){
    if(jersey)mesh.parent.add(jersey);
   }
   if(isFootballer){
-   const shorts=fittedMesh(mesh,[.38,.54,.29],THEME.short,.010);
+   const shorts=fittedMesh(mesh,[.43,.56,.29],THEME.short,.012);
    if(shorts)mesh.parent.add(shorts);
-   const socks=fittedMesh(mesh,[.085,.33,.25],THEME.sock,.010);
+   // Mask original long trousers over the knees with a skinned skin-toned
+   // fabric section, so the resulting outline reads as football shorts.
+   // We keep this isolated to the fictional test player; no face/arm tint.
+   const legs=fittedMesh(mesh,[.28,.43,.25],0xd0a17e,.013);
+   if(legs)mesh.parent.add(legs);
+   const socks=fittedMesh(mesh,[.09,.28,.25],THEME.sock,.014);
    if(socks)mesh.parent.add(socks);
   }
   if(id==="mia"){
