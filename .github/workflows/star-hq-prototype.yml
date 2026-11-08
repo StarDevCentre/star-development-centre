@@ -1,0 +1,29 @@
+name: STAR HQ isolated prototype verification
+
+on:
+  push:
+    branches:
+      - feature/star-hq-reception-prototype
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Static checks and production build (no deploy)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: STAR HQ isolated prototype tests
+        run: node --test scripts/test-star-hq-prototype.cjs
+      - name: TypeScript check
+        run: npx tsc --noEmit
+      - name: Existing project regression checks and Next.js build
+        run: npm run build
