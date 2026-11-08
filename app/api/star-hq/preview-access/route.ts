@@ -15,9 +15,13 @@ export async function POST(request:Request){
  const key=process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
  if(!url||!key)return response({allowed:false},503);
  try{
-  const db=createClient(url,key,{auth:{autoRefreshToken:false,persistSession:false},accessToken:async()=>token});
-  const {data:userInfo,error:authError}=await db.auth.getUser(token);
+  // When Supabase is configured with accessToken, supabase.auth is intentionally
+  // unavailable. Verify the user's own Supabase session using a plain auth client
+  // first, then make the owner-membership query with that verified JWT.
+  const authClient=createClient(url,key,{auth:{autoRefreshToken:false,persistSession:false,detectSessionInUrl:false}});
+  const {data:userInfo,error:authError}=await authClient.auth.getUser(token);
   if(authError||!userInfo.user||userInfo.user.is_anonymous)return response({allowed:false},401);
+  const db=createClient(url,key,{auth:{autoRefreshToken:false,persistSession:false,detectSessionInUrl:false},accessToken:async()=>token});
   const {data:owner,error:ownerError}=await db.from("staff_members").select("user_id")
    .eq("user_id",userInfo.user.id).eq("role","owner").eq("active",true).maybeSingle();
   if(ownerError||!owner)return response({allowed:false},403);
