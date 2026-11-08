@@ -143,6 +143,42 @@ function addCeiling(scene){
   }
  }
 }
+
+/** Academy-specific, original architectural detail without unlicensed footage. */
+function academyDetails(parent){
+ const dark=mat(0x12243b,.42,.22),gold=pct(0xcbac74,.37,.45);
+ const wood=mat(0x876d56,.61),glass=new THREE.MeshPhysicalMaterial({
+  color:0xd2e5ef,roughness:.10,transparent:true,opacity:.24,depthWrite:false
+ });
+ // A tall illuminated wayfinding plinth, well outside the walking axis.
+ block(parent,6.9,.75,-3.78,1.04,1.52,.44,dark,.07);
+ block(parent,6.9,1.52,-3.53,.96,.045,.14,gold,.015);
+ showScreen(parent,6.9,1.04,-3.50,.83,.94,"STAR HQ","WELCOME");
+ // Exhibition cabinets with club honours; no fabricated real-world trophies.
+ for(const [x,z] of [[-7.65,3.2],[-6.15,3.2]]){
+  block(parent,x,.85,z,1.20,1.60,.55,wood,.06);
+  block(parent,x,1.78,z,1.27,.07,.65,gold,.025);
+  block(parent,x,.98,z+.30,1.11,1.44,.018,glass,.01);
+  const base=cylinder(parent,x,1.08,z,.24,.27,.085,gold,20);
+  const figurine=new THREE.Mesh(new THREE.ConeGeometry(.14,.48,8),gold);
+  figurine.position.set(x,1.34,z);parent.add(figurine);
+ }
+ // Slatted acoustic feature panel, grouped rather than repeated on every wall.
+ for(let i=0;i<23;i++)block(parent,-8.86,2.22,-4.85+i*.23,.05,3.53,.085,wood,.013);
+ // Waiting area: oak-side tables, floor lamps and framed women's football
+ // inspiration (original content, not unlicensed photos/broadcast graphics).
+ for(const [x,z] of [[-4.5,-1.65],[-4.6,2.85]]){
+  cylinder(parent,x,.36,z,.31,.28,.055,pct(0xc8ac86,.45),21);
+  cylinder(parent,x,.17,z,.055,.09,.31,mat(0x58636a,.4,.5),11);
+ }
+ const frame=block(parent,-8.84,2.54,3.38,.11,1.31,1.75,gold,.03);
+ frame.rotation.y=Math.PI/2;
+ // Distinct low seating along the side rather than an empty stage floor.
+ block(parent,5.60,.29,4.32,2.05,.52,.62,mat(0x4b607a,.76),.19);
+ block(parent,5.60,.64,4.60,2.10,.52,.20,mat(0x4b607a,.76),.08);
+ // Premium navigation strip directing the eye to reception.
+ for(const x of [-2.8,2.8])block(parent,x,.014,1.65,.036,.008,2.15,gold,.01);
+}
 export function createReception(scene){
  const group=new THREE.Group();group.name="STAR HQ v2 · Luxury reception";scene.add(group);
  const stoneTex=makeSurface("stone"),woodTex=makeSurface("wood");
@@ -168,33 +204,50 @@ export function createReception(scene){
  for(const z of [-5.9,-3.8,-1.7,.4,2.5,4.6,5.9])block(group,9.02,2.08,z,.11,3.2,.13,dark,.01);
  block(group,9.02,2.10,0,.036,2.50,12.05,glass,.01);
  addCeiling(group);
- // The desk: curved edges and multiple contrasting architectural layers.
- block(group,0,.68,-4.22,5.08,1.33,1.33,timber,.23);
- block(group,0,.77,-3.55,4.78,.99,.16,dark,.06);
- block(group,0,1.37,-4.22,5.37,.15,1.59,stone,.10);
- block(group,0,.75,-3.43,4.28,.055,.07,new THREE.MeshBasicMaterial({color:0xe5b66b}),.02);
- for(const x of [-2.1,-1.7,-1.3,-.9,-.5,-.1,.3,.7,1.1,1.5,1.9])
-  block(group,x,.78,-3.46,.036,.87,.07,brass,.012);
- // Full-height STAR identity on a dark but correctly facing feature plane.
- const logoFrame=block(group,0,2.66,-5.71,4.23,2.44,.12,dark,.09);
- block(group,0,3.92,-5.64,4.37,.055,.11,new THREE.MeshBasicMaterial({color:0xf1d18b}),.025);
+ // Reception v3: a lower architectural counter to reveal the receptionist's
+ // torso, with a walk-up side position rather than a character buried in the desk.
+ const deskX=-.96;
+ block(group,deskX,.56,-4.29,4.03,1.10,1.32,timber,.19);
+ block(group,deskX,.68,-3.62,3.90,.85,.16,dark,.08);
+ block(group,deskX,1.145,-4.29,4.30,.13,1.50,stone,.09);
+ block(group,deskX,.66,-3.53,3.82,.040,.06,new THREE.MeshBasicMaterial({color:0xd8b577}),.016);
+ for(const x of [-2.58,-2.18,-1.78,-1.38,-.98,-.58,-.18,.22,.62])
+  block(group,x,.62,-3.55,.029,.75,.06,brass,.010);
+ // Receptionist Mia stands on the lobby-facing side of the accessible
+ // welcome counter so she is visible from head to foot, not hidden.
+ block(group,2.55,.45,-4.64,1.24,.87,.67,timber,.11);
+ block(group,2.55,.92,-4.64,1.40,.075,.78,stone,.065);
+ block(group,2.55,.51,-4.27,1.12,.62,.05,dark,.035);
+ block(group,2.55,.50,-4.235,.87,.018,.06,brass,.012);
+ // Reception sign and STAR brand: deliberately sized to FIT the feature wall.
+ const logoFrame=block(group,-1.05,2.76,-5.71,3.15,2.13,.12,dark,.095);
+ block(group,-1.05,3.88,-5.64,3.25,.045,.10,new THREE.MeshBasicMaterial({color:0xd9ba7b}),.02);
  const logoTexture=new THREE.TextureLoader().load("/images/star-colour-transparent.webp",tex=>{
-  const ratio=(tex.image?.width||900)/(tex.image?.height||550);
-  logoMesh.scale.x=Math.min(3.65,2.02*ratio);
+  const ratio=(tex.image?.width||800)/(tex.image?.height||520);
+  logoMesh.scale.x=Math.min(2.53,1.23*ratio);
  });
  logoTexture.colorSpace=THREE.SRGBColorSpace;
  const logoMesh=new THREE.Mesh(new THREE.PlaneGeometry(1,1),
   new THREE.MeshBasicMaterial({map:logoTexture,transparent:true,side:THREE.DoubleSide,depthWrite:false,toneMapped:false}));
- logoMesh.position.set(0,2.69,-5.625);logoMesh.scale.set(3.45,2.02,1);group.add(logoMesh);
- // Desk computer and subtle workstation items.
- block(group,.98,1.50,-4.70,.85,.75,.085,mat(0x1b2632,.48,.14),.04);
- block(group,.98,1.56,-4.62,.72,.59,.02,mat(0x2e4655,.39),.01);
- cylinder(group,.98,1.13,-4.45,.055,.11,.16,mat(0x5b6368,.36,.5),14);
- block(group,-1.30,1.50,-4.22,.61,.08,.38,mat(0xc7c5bf,.83),.02);
+ logoMesh.position.set(-1.05,2.80,-5.63);logoMesh.scale.set(2.30,1.23,1);
+ group.add(logoMesh);
+ // Workstation is on main desk; Mia has her own lower welcome point.
+ block(group,-.92,1.53,-4.67,.78,.72,.07,mat(0x1b2737,.45,.15),.04);
+ block(group,-.92,1.55,-4.63,.67,.59,.019,mat(0x2c4559,.42),.015);
+ cylinder(group,-.92,1.20,-4.46,.07,.13,.16,mat(0x646a6b,.35,.46),16);
+ block(group,-2.1,1.25,-4.25,.47,.05,.33,mat(0xe2dbd1,.85),.02);
+ const deskFlower=mat(0x2c6452,.75),vase=pct(0xb8b6b0,.38);
+ cylinder(group,3.0,1.06,-4.85,.105,.082,.27,vase,18);
+ for(let n=0;n<4;n++){
+  const petal=new THREE.Mesh(new THREE.SphereGeometry(.105,10,7),deskFlower);
+  petal.position.set(3.0+Math.sin(n*1.6)*.1,1.25, -4.85+Math.cos(n*1.6)*.1);
+  group.add(petal);
+ }
  // Screens use original inspirational content pending licensed highlights.
  showScreen(group,-6.10,2.64,-5.71,2.85,1.27,"WOMEN'S FOOTBALL","BELIEVE IN YOUR GAME");
  showScreen(group,6.15,2.64,-5.71,2.85,1.27,"YOUR GAME","YOUR FUTURE");
  seating(group);
+ academyDetails(group);
  for(const [x,z] of [[-8.15,-4.40],[6.38,4.72],[5.82,-4.38]])plant(group,x,z);
  door(group,-1,.55,"Changing Rooms");
  door(group,1,-2.65,"Trophy Gallery");
