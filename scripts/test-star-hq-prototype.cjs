@@ -88,6 +88,6 @@ test("3D graphics, movement, NPC conversations and accessibility are implemented
  assert.match(experience,/role="dialog"/);
  assert.match(experience,/onPointerMove/);
  assert.match(experience,/Music:/);
- assert.match(experience,/Sounds:/);
+ assert.match(experience,/(?:Sounds:|Environment sounds:)/);
  assert.match(experience,/Return to Staff Portal|Exit HQ/);
 });
