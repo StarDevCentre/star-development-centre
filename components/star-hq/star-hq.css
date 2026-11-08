@@ -73,3 +73,51 @@
  .hq-help{right:10px;bottom:152px}
 }
 @media(prefers-reduced-motion:reduce){.hq-outer *{animation:none!important;transition:none!important}}
+
+
+/* STAR HQ v2: premium minimal HUD, designed for mobile landscape/portrait */
+.hq-hud-header{z-index:8;align-items:center;min-height:74px;padding:12px clamp(14px,2.3vw,28px);gap:15px;background:linear-gradient(180deg,rgba(6,16,31,.93),rgba(8,21,40,.70) 72%,rgba(8,21,40,0))}
+.hq-hud-brand strong{font-size:clamp(22px,3vw,33px);letter-spacing:.03em;color:#fff;font-weight:900;line-height:1}
+.hq-hud-brand em{font-style:normal;color:#ddbd7d}
+.hq-hud-brand span{font-size:9px;letter-spacing:.16em;color:#dbbf80;margin-top:5px}
+.hq-header-actions{pointer-events:auto;display:flex;align-items:center;gap:9px}
+.hq-time{font-variant-numeric:tabular-nums;min-height:36px;padding:10px 13px;margin:0;border-radius:10px;background:rgba(11,29,51,.73);border:1px solid rgba(201,164,107,.4);font-size:12px;color:#f5eee2}
+.hq-settings-toggle{border:1px solid rgba(212,190,150,.50);color:#ecede9;background:rgba(16,38,63,.85);border-radius:9px;padding:9px 12px;min-height:37px;font-size:12px;font-weight:650}
+.hq-exit{min-height:37px;border-radius:9px;padding:9px 15px;background:#ccaa6e;color:#10203a;border:1px solid #e7cd97;box-shadow:0 6px 16px #0004}
+.hq-character-name{top:81px;left:15px;padding:7px 11px;background:rgba(10,26,46,.72);border-color:rgba(218,189,128,.38);font-size:11px;letter-spacing:.01em;backdrop-filter:blur(6px)}
+.hq-side-tools{z-index:10;position:absolute;top:82px;right:15px;max-width:min(300px,calc(100vw - 30px));width:270px;display:grid;grid-template-columns:1fr;gap:8px;padding:15px;border:1px solid rgba(222,191,134,.68);background:rgba(12,29,50,.96);border-radius:15px;box-shadow:0 12px 35px #0008;backdrop-filter:blur(13px)}
+.hq-side-tools p{color:#e4cb94;margin:0 0 3px;font-weight:800;font-size:12px;letter-spacing:.10em;text-transform:uppercase}
+.hq-side-tools button{background:#1c3655;border:1px solid #70839c;color:#f8fafc;text-align:left;min-height:42px;padding:11px 13px;font-size:12px;box-shadow:none}
+.hq-side-tools button[aria-pressed=true]{background:#d1b277;color:#10213b}
+.hq-controls-area{left:clamp(16px,2vw,30px);right:clamp(16px,2vw,30px);bottom:clamp(17px,2.2vw,30px)}
+.hq-talk-prompt{background:rgba(12,31,53,.91);border-color:#d7bd83;border-radius:9px;font-size:13px;box-shadow:0 4px 18px #0008}
+.hq-control-buttons button{background:rgba(14,35,58,.89);border:1px solid rgba(208,199,178,.60);font-size:12px;backdrop-filter:blur(7px)}
+.hq-control-buttons .hq-interact{background:#cdaa71;color:#10213b}
+.hq-stick{border:2px solid rgba(245,236,217,.62);background:rgba(12,37,60,.40);box-shadow:inset 0 0 32px #06132966,0 6px 20px #0005}
+.hq-stick-inner{width:53px;height:53px;left:calc(50% - 26.5px);top:calc(50% - 26.5px);background:rgba(235,238,235,.80);border-color:#f8e6bc;box-shadow:0 6px 22px #0007}
+.hq-dialogue{background:linear-gradient(138deg,#0f2138,#152e48);border-color:#d2b47d;box-shadow:0 21px 65px #000b;backdrop-filter:blur(13px)}
+.hq-dialogue-options button{background:#233e5a;border-color:#617a94;border-radius:8px}
+.hq-dialogue-options button:focus-visible{outline:3px solid #f5cf81}
+.hq-person-badge{background:#d1b179}
+.hq-overlay-center{background:rgba(10,25,45,.94);border:1px solid #ccb17c;box-shadow:0 18px 60px #000a;min-width:min(310px,88vw)}
+.hq-overlay-center p{font-size:13px;color:#dce5ed;line-height:1.5}
+@media(max-width:640px){
+ .hq-hud-header{min-height:61px;padding:10px 12px;align-items:center}
+ .hq-hud-brand strong{font-size:23px}
+ .hq-hud-brand span{font-size:7px;margin-top:4px}
+ .hq-header-actions{gap:5px}
+ .hq-time{font-size:10px;min-height:32px;padding:8px 7px}
+ .hq-settings-toggle{min-height:32px;font-size:10px;padding:8px 7px}
+ .hq-exit{min-height:32px;font-size:10px;padding:8px 11px}
+ .hq-character-name{top:69px;left:12px;font-size:10px;max-width:175px}
+ .hq-side-tools{top:65px;right:10px;width:230px;max-width:calc(100vw - 20px)}
+ .hq-stick{width:106px;height:106px}
+ .hq-control-buttons button{padding:10px 12px;min-height:43px}
+ .hq-notice{bottom:135px}
+ .hq-talk-prompt{top:60%;font-size:12px;padding:10px 14px}
+}
+@media(max-width:360px){
+ .hq-hud-brand strong{font-size:20px}
+ .hq-time{font-size:9px}
+ .hq-hud-brand span{letter-spacing:.07em}
+}
