@@ -1,0 +1,16 @@
+/* STAR Journey Stadium Collection: scoped mobile improvements over Boot Locker */
+.ps-boot-view[aria-label="The Journey stadium collection"] .ps-boot-cubby>img{height:210px;object-fit:contain}
+.ps-boot-view[aria-label="The Journey stadium collection"] .ps-boot-cubby{min-height:360px}
+.ps-boot-view[aria-label="The Journey stadium collection"] .ps-boot-cubby:focus-visible{outline:3px solid #f5c64d;outline-offset:4px}
+@media(max-width:760px){
+.ps-boot-view[aria-label="The Journey stadium collection"] .ps-boot-locker{grid-template-columns:repeat(2,minmax(0,1fr));padding:12px;gap:12px}
+.ps-boot-view[aria-label="The Journey stadium collection"] .ps-boot-cubby{padding:44px 9px 16px;min-height:290px}
+.ps-boot-view[aria-label="The Journey stadium collection"] .ps-boot-cubby>img{height:150px;margin-bottom:18px}
+.ps-boot-view[aria-label="The Journey stadium collection"] .ps-boot-cubby>strong{font-size:13px}
+.ps-boot-view[aria-label="The Journey stadium collection"] .ps-boot-status{font-size:9px;right:5px;top:8px}
+.ps-boot-view[aria-label="The Journey stadium collection"] .ps-cubby-number{left:8px;top:10px;font-size:14px}
+}
+@media(max-width:380px){
+.ps-boot-view[aria-label="The Journey stadium collection"] .ps-boot-locker{grid-template-columns:1fr}
+.ps-boot-view[aria-label="The Journey stadium collection"] .ps-boot-cubby>img{height:200px}
+}
