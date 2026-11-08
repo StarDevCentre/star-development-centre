@@ -8,7 +8,13 @@ const origin=process.env.STAR_HQ_SMOKE_ORIGIN||"http://127.0.0.1:8137";
 const cases=[
  {name:"player.glb",expect:"skins"},
  {name:"mia.glb",expect:"skins"},
- {name:"female-walk.glb",expect:"animations"}
+ {name:"coach.glb",expect:"skins"},
+ {name:"academy-player-a.glb",expect:"skins"},
+ {name:"academy-player-b.glb",expect:"skins"},
+ {name:"parent.glb",expect:"skins"},
+ {name:"admin.glb",expect:"skins"},
+ {name:"female-walk.glb",expect:"animations"},
+ {name:"female-idle.glb",expect:"animations"}
 ];
 for(const {name,expect} of cases){
  const response=await fetch(origin+"/api/star-hq/v2-assets/"+name,{signal:AbortSignal.timeout(30000)});
