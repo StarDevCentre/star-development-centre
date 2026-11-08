@@ -103,7 +103,7 @@ export async function loadHumanCast(scene){
   // its collision capsule or pass through a wall.
   const animation=source?.clone()||null;
   for(const track of animation?.tracks||[]){
-   if(!/^Bip01\\.position$/.test(track.name))continue;
+   if(!/^Bip01\.position$/.test(track.name))continue;
    const x=track.values[0],z=track.values[2];
    for(let i=0;i<track.values.length;i+=3){track.values[i]=x;track.values[i+2]=z;}
   }
