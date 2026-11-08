@@ -28,7 +28,7 @@ test("Mia and locked facilities have real interaction targets",()=>{
  assert.equal(d.nearestInteraction({x:-8,z:.55}).id,"changing");
  assert.equal(d.nearestInteraction({x:8,z:-2.65}).id,"trophies");
  assert.equal(d.nearestInteraction({x:8,z:2.1}).id,"pitches");
- assert.equal(d.nearestInteraction({x:0,z:4}).id,undefined);
+ assert.equal(d.nearestInteraction({x:0,z:4}),null);
  assert.ok(d.DIALOGUE.length>=4);
 });
 test("UK clock uses timezone and respects GMT/BST",()=>{
