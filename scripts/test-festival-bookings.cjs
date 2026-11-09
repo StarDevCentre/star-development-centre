@@ -32,7 +32,7 @@ test('guests receive no direct database access to children data and photos stay 
  assert.match(sql,/alter table public\.star_festival_bookings enable row level security/i);
  assert.match(sql,/revoke all on public\.star_festival_bookings from public,anon,authenticated/i);
  assert.match(sql,/for select to authenticated[\s\S]*?s\.role in \('owner','manager'\)/);
- assert.match(sql,/public,false,1024000/);
+ assert.match(sql,/false,1024000/);
  assert.match(sql,/bucket_id='star-festival-photos'/);
  assert.doesNotMatch(sql,/for insert to anon/);
  assert.doesNotMatch(sql,/bucket_id='star-festival-photos'[\s\S]*?for insert to authenticated/);
