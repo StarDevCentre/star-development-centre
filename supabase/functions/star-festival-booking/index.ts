@@ -4,7 +4,6 @@ import {createClient} from "npm:@supabase/supabase-js@2.76.1";
 // Deploy with verify_jwt=false, configure allowed origin + Cloudflare Turnstile,
 // and set STAR_FESTIVAL_BOOKINGS_OPEN=true only after venue/staffing approval.
 const slug="christmas-football-festival-2026";
-const eventDay="2026-12-21";
 const capacity=36;
 const earlyBirdLimit=12;
 const bucket="star-festival-photos";
@@ -85,8 +84,8 @@ Deno.serve(async req=>{
   emergency_name:read(fd,"emergencyName",160),emergency_relationship:read(fd,"emergencyRelationship",80),
   emergency_phone:read(fd,"emergencyPhone",40),
   medical_status:read(fd,"medicalStatus",20),
-  medical_conditions:read(fd,"medicalConditions",1200),allergies:read(fd,"allergies",800),
-  medication:read(fd,"medication",800),emergency_plan:read(fd,"emergencyPlan",1200),
+  medical_conditions:fd.has("medicalConditions")?read(fd,"medicalConditions",1200):"",allergies:fd.has("allergies")?read(fd,"allergies",800):"",
+  medication:fd.has("medication")?read(fd,"medication",800):"",emergency_plan:fd.has("emergencyPlan")?read(fd,"emergencyPlan",1200):"",
   support_notes:read(fd,"supportNotes",800)
  };
  const filled=(value:string|null|undefined,n=2)=>typeof value==="string"&&value.length>=n;
