@@ -1,0 +1,30 @@
+.star-staff-festival{padding-top:36px;margin-top:35px;border-top:2px solid #d6dfeb}
+.star-staff-festival-head{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;margin-bottom:18px}
+.star-staff-festival-head h3{font:900 clamp(27px,4vw,40px)/1.05 "Barlow Condensed",Impact,sans-serif;margin:6px 0;color:#0b213d}
+.star-staff-festival-head p{font-size:13px;line-height:1.65;max-width:740px;color:#4b5d76}
+.star-staff-festival-head button,.star-staff-festival-row button,.star-staff-festival-detail button{border:1px solid #bac7d8;border-radius:5px;padding:10px 13px;background:#fff;color:#0d2c52;font-size:12px;font-weight:800;cursor:pointer}
+.star-staff-festival-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:20px}
+.star-staff-festival-stats strong{padding:18px;background:#e8edf5;border-radius:7px;font-size:29px;color:#092344}
+.star-staff-festival-stats span{display:block;font-size:12px;color:#455d7b;font-weight:600}
+.star-staff-festival-table{display:grid;gap:10px}
+.star-staff-festival-row{display:flex;align-items:center;justify-content:space-between;gap:15px;background:#fff;border:1px solid #d9e1ec;border-radius:7px;padding:14px}
+.star-staff-festival-row strong{display:block;font-size:16px;color:#0a203c}
+.star-staff-festival-row small{display:block;color:#56657b;font-size:12px;line-height:1.5;margin-top:5px}
+.star-staff-festival-row>div:last-child{display:flex;gap:13px;align-items:center}
+.star-staff-festival-status{text-transform:capitalize;font-weight:800;font-size:11px;border-radius:4px;padding:6px 9px;background:#f4e9d6;color:#7f5416}
+.star-staff-festival-status.confirmed{background:#ddf2e3;color:#165d36}
+.star-staff-festival-status.cancelled{background:#ffe0e0;color:#8e2530}
+.star-staff-festival-detail{margin-top:23px;background:#fff;border:2px solid #c2cfe0;border-radius:9px;padding:24px}
+.star-staff-festival-detail-head{display:flex;align-items:center;justify-content:space-between;gap:18px}
+.star-staff-festival-detail h4{font:900 28px "Barlow Condensed",Impact,sans-serif;margin:0 0 18px}
+.star-staff-festival-detail dl{display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr);gap:12px 20px;margin:0}
+.star-staff-festival-detail dt{font-weight:800;color:#546681;font-size:12px}
+.star-staff-festival-detail dd{margin:0;color:#0b213d;font-size:14px;line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere}
+.star-staff-festival-detail dd a{text-decoration:underline}
+.star-staff-festival-photo{display:block;max-width:160px;width:100%;border-radius:8px;margin-bottom:20px;border:1px solid #cad5e0}
+.star-staff-festival-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.star-staff-festival-actions button:first-child{background:#176d40;color:#fff;border-color:#176d40}
+.star-staff-festival-actions button.cancel{border-color:#b91c32;color:#b91c32}
+.star-staff-festival-actions button:disabled{opacity:.5;cursor:not-allowed}
+.star-staff-festival-detail>p{font-size:12px;line-height:1.6;color:#53647a;margin-top:18px}
+@media(max-width:720px){.star-staff-festival-row,.star-staff-festival-head,.star-staff-festival-detail-head{align-items:stretch;flex-direction:column}.star-staff-festival-stats{grid-template-columns:1fr 1fr}.star-staff-festival-detail dl{grid-template-columns:1fr;gap:4px}.star-staff-festival-detail dt:not(:first-child){margin-top:13px}.star-staff-festival-row>div:last-child{justify-content:space-between}}
