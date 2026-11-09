@@ -17,7 +17,7 @@ function EventCard({event}:{event:StarEvent}){
    <dl className="star-event-facts">
     <div><dt>Date and time</dt><dd>{eventDate(event.starts_at)} · {eventTime(event.starts_at)}</dd></div>
     <div><dt>Where</dt><dd>{event.venue_name}</dd></div>
-    <div><dt>Who and price</dt><dd>{eventAge(event.minimum_age,event.maximum_age)} · {eventPrice(event.price_pence)}</dd></div>
+    <div><dt>Who and price</dt><dd>{eventAge(event.minimum_age,event.maximum_age)} · {event.slug==="christmas-football-festival-2026"?"£10 early bird / £15 standard":eventPrice(event.price_pence)}</dd></div>
    </dl>
    <Link className="star-event-card-link" href={`/events/${event.slug}`}>View event details <span aria-hidden="true">↗</span></Link>
   </div>
