@@ -75,3 +75,11 @@
 @media(max-width:1000px){.star-events-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.star-events-hero-inner{grid-template-columns:1fr .65fr}.star-events-about-inner{gap:28px}}
 @media(max-width:720px){.star-events-page .home-width{width:min(100% - 36px,1320px)}.star-events-hero-inner{grid-template-columns:1fr;padding-block:55px}.star-events-hero-graphic{display:none}.star-events-hero h1{font-size:clamp(56px,13vw,84px)}.star-events-actions{flex-direction:column;align-items:stretch}.star-events-button{width:100%}.star-events-content{padding-block:55px}.star-events-heading{align-items:flex-start;flex-direction:column}.star-events-grid{grid-template-columns:1fr}.star-events-about-inner,.star-event-detail{grid-template-columns:1fr}.star-events-about{padding-block:60px}.star-events-about-action{padding:25px}.star-event-detail{padding-block:45px;gap:25px}}
 @media(prefers-reduced-motion:reduce){.star-event-card{transition:none}}
+
+/* Christmas event feature */
+.star-christmas-detail-head{display:flex;align-items:center;gap:40px;justify-content:space-between}
+.star-christmas-detail-head>div{flex:1;min-width:0}
+.star-christmas-detail-logo{display:block;width:min(30%,250px);height:auto;object-fit:contain;flex-shrink:0;filter:drop-shadow(0 12px 18px #0004)}
+.star-event-detail-sidebar .star-event-detail-pending{background:#fff5df;color:#6d4613;padding:14px;line-height:1.6;border-radius:4px;margin-top:20px;font-weight:700}
+.star-event-card-art img[src$="star-christmas-festival.svg"]{object-fit:contain;padding:12px;background:#091c37}
+@media(max-width:720px){.star-christmas-detail-head{flex-direction:column-reverse;align-items:flex-start;gap:24px}.star-christmas-detail-logo{width:160px;max-width:50%}}
