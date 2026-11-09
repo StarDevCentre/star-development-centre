@@ -26,7 +26,7 @@ export default async function EventDetail({params}:Props){
  <section className="star-events-hero"><div className="home-width star-events-hero-inner"><div>
   <Link className="star-event-detail-return" href="/events">← All STAR events</Link>
   <p className="star-events-eyebrow">{event.category}{cancelled?" / CANCELLED":""}</p>
-  <div className="star-christmas-detail-head"><div><h1>{event.title}</h1><p className="star-events-hero-lead">{event.summary}</p></div>{event.slug==="christmas-football-festival-2026"&&<img src="/events/star-christmas-festival.svg" alt="STAR Christmas Football Festival emblem" className="star-christmas-detail-logo"/>}</div>
+  <div className="star-christmas-detail-head"><div><h1>{event.title}</h1><p className="star-events-hero-lead">{event.summary}</p></div>{event.slug==="christmas-football-festival-2026"&&<img src="/events/star-christmas-festival.png" alt="STAR Christmas Football Festival emblem" className="star-christmas-detail-logo"/>}</div>
  </div></div></section>
  <section className="star-event-detail home-width" aria-labelledby="event-about">
   <div><p className="star-events-eyebrow">ALL THE DETAILS</p><h2 id="event-about">About this event.</h2><p>{event.description}</p><h2 style={{marginTop:40}}>Before you arrive.</h2><p>Check the date, venue, age guidance and joining information before you travel. If your daughter has any individual or accessibility needs, please get in touch so we can discuss them with you.</p><Link className="star-event-card-link" href="/contact">Questions? Contact STAR <span aria-hidden="true">↗</span></Link></div>
