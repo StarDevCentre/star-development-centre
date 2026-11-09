@@ -1,5 +1,6 @@
 "use client";
 import {useCallback,useEffect,useState,type FormEvent} from "react";
+import {StaffFestivalBookings} from "./StaffFestivalBookings";
 import {supabaseBrowser} from "../lib/supabaseBrowser";
 import {eventCategories,eventDate,eventTime,type EventCategory,type StarEvent} from "../lib/starEvents";
 import "./staff-events.css";
@@ -77,5 +78,6 @@ export function StaffEvents(){
    <div className="star-staff-event-actions"><button type="submit" disabled={busy}>{busy?"Saving…":form.status==="published"?"Save & publish":"Save event"}</button>{form.status==="draft"&&form.id&&<button type="button" disabled={busy} className="star-staff-event-delete" onClick={()=>void deleteDraft()}>Delete draft</button>}</div>
   </form>}
   {loading?<p role="status">Loading events…</p>:<div className="star-staff-event-list">{events.length?events.map(event=><article key={event.id} className="star-staff-event-item"><div><span className="star-staff-event-status">{event.status}</span><h4>{event.title}</h4><p>{eventDate(event.starts_at)} · {eventTime(event.starts_at)} · {event.venue_name}</p></div><div><button type="button" onClick={()=>edit(event)}>Edit</button>{event.status!=="draft"&&<a href={`/events/${event.slug}`} target="_blank" rel="noopener noreferrer">View ↗</a>}</div></article>):<div className="star-staff-event-none">No events have been created. Choose <strong>New event</strong> to start with a private draft.</div>}</div>}
+  <StaffFestivalBookings/>
  </div>;
 }
