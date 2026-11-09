@@ -81,5 +81,5 @@
 .star-christmas-detail-head>div{flex:1;min-width:0}
 .star-christmas-detail-logo{display:block;width:min(30%,250px);height:auto;object-fit:contain;flex-shrink:0;filter:drop-shadow(0 12px 18px #0004)}
 .star-event-detail-sidebar .star-event-detail-pending{background:#fff5df;color:#6d4613;padding:14px;line-height:1.6;border-radius:4px;margin-top:20px;font-weight:700}
-.star-event-card-art img[src$="star-christmas-festival.svg"]{object-fit:contain;padding:12px;background:#091c37}
+.star-event-card-art img[src$="star-christmas-festival.png"]{object-fit:contain;padding:12px;background:#091c37}
 @media(max-width:720px){.star-christmas-detail-head{flex-direction:column-reverse;align-items:flex-start;gap:24px}.star-christmas-detail-logo{width:160px;max-width:50%}}
