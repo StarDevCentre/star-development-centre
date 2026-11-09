@@ -19,7 +19,7 @@ const christmasFestival:StarEvent={
   category:"Community events",starts_at:"2026-12-19T10:00:00Z",ends_at:"2026-12-19T13:00:00Z",
   venue_name:"Staplegrove Youth Ground, Corkscrew Lane (proposed)",venue_address:"Corkscrew Lane, Staplegrove, Taunton, Somerset",
   minimum_age:5,maximum_age:16,price_pence:1500,capacity:36,registration_url:null,
-  image_url:"/events/star-christmas-festival.svg",status:"published"
+  image_url:"/events/star-christmas-festival.png",status:"published"
 };
 
 export const londonDate=(date:string,options:Intl.DateTimeFormatOptions)=>
