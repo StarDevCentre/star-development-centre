@@ -7,7 +7,7 @@ function EventCard({event}:{event:StarEvent}){
  const cancelled=event.status==="cancelled";
  return <article className="star-event-card">
   <div className="star-event-card-art">
-   {event.image_url?.startsWith("https://")?<img src={event.image_url} alt="" loading="lazy"/>:<div className="star-event-art-mark" aria-hidden="true"><span>★</span><small>STAR EVENTS</small></div>}
+   {(event.image_url?.startsWith("https://")||event.image_url?.startsWith("/events/"))?<img src={event.image_url} alt="" loading="lazy"/>:<div className="star-event-art-mark" aria-hidden="true"><span>★</span><small>STAR EVENTS</small></div>}
    <div className="star-event-date-stamp"><strong>{new Date(event.starts_at).toLocaleDateString("en-GB",{day:"2-digit",timeZone:"Europe/London"})}</strong><span>{new Date(event.starts_at).toLocaleDateString("en-GB",{month:"short",timeZone:"Europe/London"}).toUpperCase()}</span></div>
   </div>
   <div className="star-event-card-content">
