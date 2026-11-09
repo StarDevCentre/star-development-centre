@@ -6,6 +6,7 @@ import {StaffAppShell} from "./StaffAppShell";
 import {useStaffNavigation} from "./useStaffNavigation";
 import {staffCanManage,staffSections,type StaffRole,type StaffSection} from "../lib/staffApp";
 const StaffFamilyOperations=dynamic(()=>import("./StaffFamilyOperations").then(m=>m.StaffFamilyOperations),{loading:()=> <p role="status">Loading family operations…</p>});
+const StaffEvents=dynamic(()=>import("./StaffEvents").then(m=>m.StaffEvents),{loading:()=> <p role="status">Loading events manager…</p>});
 const StaffOrganisations=dynamic(()=>import("./StaffOrganisations").then(m=>m.StaffOrganisations),{loading:()=> <p role="status">Loading…</p>});
 const StaffHome=dynamic(()=>import("./StaffHome").then(m=>m.StaffHome),{loading:()=> <p role="status">Loading…</p>});
 const StaffMediaGallery=dynamic(()=>import("./StaffMediaGallery").then(m=>m.StaffMediaGallery),{loading:()=> <p role="status">Loading…</p>});
@@ -40,6 +41,7 @@ export function StaffWorkspace({userId,role,onSignOut}:{userId:string;role:Staff
  const canManage=staffCanManage(role),allowed=staffSections(role);
  function navigate(area:StaffSection,playerId?:string,targetSessionId?:string){if(area==='organisations'&&targetSessionId==='Schedule')setOrganisationTarget(v=>({id:'',tab:'Coaching schedule',revision:v.revision+1}));if(area==="communications")setInboxTarget(v=>({tab:targetSessionId==="organisations"?"organisations":"families",revision:v.revision+1}));if(area==="attendance")area="workspace";if(!allowed.some(i=>i.id===area))return;if(playerId&&!["onboarding","sessionRequests"].includes(area))setContextPlayer(playerId);if(playerId){if(area==="onboarding"||area==="sessionRequests")setActionTarget(v=>({area,id:playerId,revision:(v?.revision||0)+1}));if(area==="coachingProfiles"){setProfilePlayerId(playerId);setProfileRequest(n=>n+1)}if(area==="familyPublishing"){setPublishingPlayerId(playerId);setPublishingRequest(n=>n+1)}if(area==="records")setCoachingTarget(previous=>({playerId,sessionId:targetSessionId||"",revision:(previous?.revision||0)+1}));if(area==="idps"){setHubPlayerId(playerId);setHubRequest(n=>n+1)}if(area==="badges"){setBadgePlayerId(playerId);setBadgeRequest(n=>n+1)}if(area==="players"){setRosterPlayerId(playerId);setRosterRequest(n=>n+1)}}if(area==="workspace"&&targetSessionId)setSessionId(targetSessionId);goTo(area);}
  function panel(id:StaffSection){switch(id){
+  case "events":return canManage?<StaffEvents/>:null;
   case "organisations":return canManage?<StaffOrganisations target={organisationTarget}/>:null;
   case "overview":return <StaffHome active={section==="overview"&&!menuOpen} canManage={canManage} onNavigate={navigate}/>;
   case "workspace":return <SessionAttendance userId={userId} initialSessionId={sessionId} onSessionChange={setSessionId} onCoachPlayer={(player,session)=>navigate("records",player,session)} onPlayerDevelopment={player=>navigate("idps",player)} onReturnToCalendar={()=>navigate("sessions")} onOpenPlan={planId=>{setPlanRequest(v=>planId?{id:planId,revision:(v?.revision||0)+1}:null);navigate("sessionBuilder")}}/>;

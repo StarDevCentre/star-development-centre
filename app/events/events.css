@@ -1,0 +1,85 @@
+.star-events-page{background:#f5f7fa;color:#071a35;overflow:hidden}
+.star-events-page h1,.star-events-page h2,.star-events-page h3{font-family:"Barlow Condensed",Impact,sans-serif;font-weight:800;letter-spacing:-.015em}
+.star-events-page a:focus-visible,.star-events-page button:focus-visible{outline:3px solid #dcae39;outline-offset:4px}
+.star-events-eyebrow{font-size:11px;font-weight:900;letter-spacing:.19em;text-transform:uppercase;color:#b01d34;line-height:1.5;margin:0 0 16px}
+.star-events-hero{background:radial-gradient(circle at 85% 30%,#22456a 0,#081e3a 50%,#06132a 100%);border-bottom:5px solid #df1f38;color:#fff}
+.star-events-hero-inner{min-height:510px;display:grid;grid-template-columns:1.3fr .8fr;align-items:center;gap:30px;padding-block:70px;position:relative}
+.star-events-hero-copy{position:relative;z-index:1}
+.star-events-hero .star-events-eyebrow{color:#f5c64d}
+.star-events-hero h1{font-size:clamp(64px,8vw,120px);line-height:.85;margin:0 0 30px}
+.star-events-hero h1 span{color:#f5c64d}
+.star-events-hero-lead{font-size:clamp(16px,1.8vw,20px);line-height:1.6;max-width:660px;color:#e4eaf2;margin:0 0 28px}
+.star-events-actions{display:flex;flex-wrap:wrap;gap:12px}
+.star-events-button{display:inline-flex;align-items:center;justify-content:space-between;gap:26px;padding:15px 23px;min-height:53px;border:1px solid #8090a4;border-radius:4px;font-weight:800;font-size:13px}
+.star-events-button-red{background:#df1f38;border-color:#df1f38;color:white}.star-events-button-red:hover{background:#bd1b31}
+.star-events-button-ghost{background:#ffffff0d;color:white}.star-events-button-ghost:hover{border-color:#f5c64d}
+.star-events-hero-graphic{position:relative;min-height:340px;display:grid;place-items:center;isolation:isolate}
+.star-events-hero-graphic:before{content:"";position:absolute;width:min(100%,425px);aspect-ratio:1;border:1px solid #f5c64d32;border-radius:50%;box-shadow:0 0 0 45px #f5c64d09,0 0 0 92px #fff3;opacity:.5}
+.star-events-pitch-circle{position:absolute;width:270px;height:270px;border:1px solid #8aa3bf66;border-radius:50%}
+.star-events-pitch-circle:before,.star-events-pitch-circle:after{content:"";position:absolute;background:#8aa3bf55}
+.star-events-pitch-circle:before{width:1px;height:100%;left:50%}.star-events-pitch-circle:after{height:1px;width:100%;top:50%}
+.star-events-hero-star{font-size:190px;color:#f5c64d;line-height:1;filter:drop-shadow(0 13px 30px #040d2299);transform:rotate(-12deg)}
+.star-events-hero-graphic>span{position:absolute;bottom:5px;font-size:10px;font-weight:900;letter-spacing:.34em;color:#d6e1f0}
+.star-events-content{padding-block:80px 92px}
+.star-events-heading{display:flex;align-items:end;justify-content:space-between;gap:28px;margin-bottom:32px}
+.star-events-heading h2,.star-events-past h2,.star-events-about h2{font-size:clamp(42px,5vw,70px);line-height:1;margin:0 0 18px}
+.star-events-heading h2 span,.star-events-about h2 span{color:#b91c32}
+.star-events-heading p:not(.star-events-eyebrow),.star-events-past p:not(.star-events-eyebrow){max-width:650px;color:#526078;font-size:15px;line-height:1.65;margin:0}
+.star-events-count{white-space:nowrap;font-size:12px;font-weight:800;letter-spacing:.06em;color:#59657a;padding:9px 13px;border:1px solid #d9dfe8;border-radius:40px}
+.star-event-filter{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:29px}
+.star-event-filter button{border:1px solid #cad3df;border-radius:4px;background:white;color:#071a35;padding:11px 16px;font-weight:800;font-size:12px}
+.star-event-filter button[aria-pressed="true"]{background:#071a35;color:white;border-color:#071a35}
+.star-events-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.star-event-card{background:white;border:1px solid #dce3ec;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;min-width:0;transition:transform .2s,box-shadow .2s}
+.star-event-card:hover{transform:translateY(-3px);box-shadow:0 16px 32px #071a351a}
+.star-event-card-art{position:relative;min-height:165px;background:linear-gradient(130deg,#102e5b,#081930 80%);overflow:hidden}
+.star-event-card-art:before{content:"";position:absolute;inset:17px;border:1px solid #f5c64d44}
+.star-event-card-art img{display:block;width:100%;height:195px;object-fit:cover}
+.star-event-art-mark{display:flex;align-items:center;justify-content:center;flex-direction:column;color:#f5c64d;height:195px}
+.star-event-art-mark span{font-size:90px;line-height:1}.star-event-art-mark small{font-size:10px;font-weight:900;letter-spacing:.25em}
+.star-event-date-stamp{position:absolute;top:13px;left:13px;width:65px;min-height:76px;background:white;color:#091c37;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:5px;box-shadow:0 4px 15px #0004}
+.star-event-date-stamp strong{font:800 35px/.95 "Barlow Condensed",Impact,sans-serif}.star-event-date-stamp span{font-size:12px;font-weight:900;letter-spacing:.1em}
+.star-event-card-content{padding:26px;display:flex;flex-direction:column;flex:1}
+.star-event-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}.star-event-tags span{background:#f0f3f7;color:#7c2436;border-radius:3px;padding:6px 9px;font-size:10px;letter-spacing:.08em;font-weight:900;text-transform:uppercase}.star-event-tags .star-event-cancelled{background:#fee2e2;color:#991b1b}
+.star-event-card h3{font-size:clamp(27px,2.7vw,34px);line-height:1.04;margin:0 0 12px}.star-event-card h3 a:hover{color:#b91c32}
+.star-event-description{font-size:13px;line-height:1.65;color:#526078;margin:0 0 20px}
+.star-event-facts{margin:auto 0 22px;padding-top:15px;border-top:1px solid #e3e8ef}.star-event-facts>div{margin:9px 0}.star-event-facts dt{font-size:10px;text-transform:uppercase;letter-spacing:.08em;font-weight:900;color:#77849a}.star-event-facts dd{margin:3px 0 0;font-size:13px;line-height:1.5;font-weight:700}
+.star-event-card-link{display:flex;justify-content:space-between;gap:15px;border-top:1px solid #e3e8ef;padding-top:16px;color:#a41c31;font-weight:900;font-size:13px}
+.star-events-empty{text-align:center;background:white;border:1px solid #dbe3ec;border-radius:12px;padding:clamp(35px,5vw,75px) 20px}
+.star-events-empty-symbol{font-size:64px;color:#d1b35b;line-height:1}
+.star-events-empty h3{font-size:clamp(30px,4vw,44px);margin:14px 0}
+.star-events-empty p{max-width:600px;margin:0 auto 22px;line-height:1.7;color:#526078}
+.star-events-empty a{font-weight:900;color:#a41c31;text-decoration:underline;text-underline-offset:5px}
+.star-events-past{border-top:1px solid #d5dce6;padding-top:48px;margin-top:70px}
+.star-events-past-toggle{margin:28px 0 32px;background:#091c37;border:0;color:#fff;border-radius:4px;padding:14px 20px;font-weight:800}
+.star-events-past-toggle span{margin-left:22px;font-size:20px}
+.star-events-about{background:#061a35;color:#fff;padding:82px 0}
+.star-events-about-inner{display:grid;grid-template-columns:1.4fr .8fr;gap:70px;align-items:center}
+.star-events-about .star-events-eyebrow{color:#f5c64d}
+.star-events-about p:not(.star-events-eyebrow){color:#dae2ed;line-height:1.75;max-width:720px}
+.star-events-about-action{border:1px solid #455b78;padding:34px;background:#ffffff08}
+.star-events-about-action strong{display:block;font:900 clamp(43px,5vw,69px)/.98 "Barlow Condensed",Impact,sans-serif}
+.star-events-about-action strong span{color:#f5c64d}
+.star-events-about-action a{display:inline-flex;justify-content:space-between;gap:18px;background:#df1f38;padding:16px;color:white;font-size:13px;font-weight:800;margin-top:24px}
+.star-event-detail-page .star-event-detail-return{display:inline-block;font-size:13px;font-weight:800;margin-bottom:28px;color:#f5c64d}
+.star-event-detail-page .star-events-hero-inner{min-height:360px;grid-template-columns:1fr;padding-block:65px}
+.star-event-detail-page .star-events-hero h1{font-size:clamp(45px,6vw,78px);max-width:920px;line-height:.97}
+.star-event-detail{padding-block:66px;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(250px,.7fr);gap:55px}
+.star-event-detail h2{font-size:43px;margin:0 0 20px}.star-event-detail p{line-height:1.8;color:#4f5d73;white-space:pre-line}
+.star-event-detail-sidebar{background:white;border:1px solid #dbe3ec;padding:27px;border-radius:10px;align-self:start}
+.star-event-detail-sidebar dl{margin:0}.star-event-detail-sidebar dt{font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:900;color:#64748b;margin:22px 0 5px}.star-event-detail-sidebar dt:first-child{margin-top:0}.star-event-detail-sidebar dd{margin:0;font-size:14px;font-weight:700;line-height:1.5}
+.star-event-detail-sidebar a{display:block;text-align:center;background:#df1f38;color:white;margin-top:25px;padding:16px;font-size:13px;font-weight:800;border-radius:3px}
+.star-event-detail-sidebar .star-event-detail-cancelled{background:#fee2e2;color:#991b1b;padding:14px;line-height:1.6;border-radius:4px;margin-top:20px;font-weight:800}
+.star-event-detail-sidebar small{display:block;margin-top:12px;color:#65728a;line-height:1.5}
+.star-event-detail-page .star-events-about{padding-block:50px}
+@media(max-width:1000px){.star-events-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.star-events-hero-inner{grid-template-columns:1fr .65fr}.star-events-about-inner{gap:28px}}
+@media(max-width:720px){.star-events-page .home-width{width:min(100% - 36px,1320px)}.star-events-hero-inner{grid-template-columns:1fr;padding-block:55px}.star-events-hero-graphic{display:none}.star-events-hero h1{font-size:clamp(56px,13vw,84px)}.star-events-actions{flex-direction:column;align-items:stretch}.star-events-button{width:100%}.star-events-content{padding-block:55px}.star-events-heading{align-items:flex-start;flex-direction:column}.star-events-grid{grid-template-columns:1fr}.star-events-about-inner,.star-event-detail{grid-template-columns:1fr}.star-events-about{padding-block:60px}.star-events-about-action{padding:25px}.star-event-detail{padding-block:45px;gap:25px}}
+@media(prefers-reduced-motion:reduce){.star-event-card{transition:none}}
+
+/* Christmas event feature */
+.star-christmas-detail-head{display:flex;align-items:center;gap:40px;justify-content:space-between}
+.star-christmas-detail-head>div{flex:1;min-width:0}
+.star-christmas-detail-logo{display:block;width:min(30%,250px);height:auto;object-fit:contain;flex-shrink:0;filter:drop-shadow(0 12px 18px #0004)}
+.star-event-detail-sidebar .star-event-detail-pending{background:#fff5df;color:#6d4613;padding:14px;line-height:1.6;border-radius:4px;margin-top:20px;font-weight:700}
+.star-event-card-art img[src$="star-christmas-festival.png"]{object-fit:contain;padding:12px;background:#091c37}
+@media(max-width:720px){.star-christmas-detail-head{flex-direction:column-reverse;align-items:flex-start;gap:24px}.star-christmas-detail-logo{width:160px;max-width:50%}}

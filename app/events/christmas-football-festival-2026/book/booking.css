@@ -1,0 +1,39 @@
+.star-festival-booking-hero{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(160px,.55fr);gap:45px;align-items:center;padding-block:58px}
+.star-festival-booking-page .star-events-hero h1{font-size:clamp(48px,8vw,91px);line-height:.98}
+.star-festival-booking-page .star-events-hero h1 span{color:#f4c64e}
+.star-festival-booking-logo{display:block;width:100%;max-width:280px;margin-inline:auto;object-fit:contain}
+.star-festival-booking-shell{padding-block:55px 85px}
+.star-festival-booking{max-width:920px;margin:0 auto}
+.star-festival-booking-intro h2,.star-festival-receipt h2{font-size:clamp(32px,5vw,49px);margin:0 0 14px}
+.star-festival-booking-intro p,.star-festival-receipt p{color:#42546d;line-height:1.75}
+.star-festival-booking-intro{margin-bottom:22px}
+.star-festival-availability{padding:15px 19px;margin-bottom:25px;background:#fff4de;border-left:5px solid #c89026;border-radius:5px;color:#573e13;font-size:14px;font-weight:800;line-height:1.65}
+.star-festival-booking-form{display:grid;gap:22px}
+.star-festival-booking-form fieldset{min-width:0;margin:0;padding:clamp(18px,3vw,30px);border:1px solid #d5dfeb;border-radius:10px;background:white}
+.star-festival-booking-form fieldset:disabled{opacity:.73}
+.star-festival-booking-form legend{display:block;font:900 27px/1.2 "Barlow Condensed",Impact,sans-serif;color:#091c38;padding:0 9px}
+.star-festival-booking-form fieldset>p{line-height:1.65;color:#52647a;font-size:13px;margin:4px 0 20px}
+.star-festival-field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:16px 0 6px}
+.star-festival-booking-form label{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;font-size:13px;font-weight:800;color:#233a57}
+.star-festival-booking-form input:not([type=checkbox]),.star-festival-booking-form select,.star-festival-booking-form textarea{width:100%;min-width:0;border:1px solid #b6c6da;border-radius:5px;background:#fff;color:#0b1b36;padding:12px 13px;font:500 15px/1.4 Arial,sans-serif}
+.star-festival-booking-form input[type=file]{font-size:13px}
+.star-festival-booking-form textarea{resize:vertical}
+.star-festival-booking-form label small{font-size:12px;font-weight:500;line-height:1.6;color:#5c6980}
+.star-festival-wide{grid-column:1/-1}
+.star-festival-checks{display:grid;gap:15px}
+.star-festival-checks label{display:flex;flex-direction:row;align-items:start;gap:11px;font-weight:500;line-height:1.5;margin:0}
+.star-festival-checks input{flex-shrink:0;width:19px;height:19px;margin-top:1px;accent-color:#ba1c34}
+.star-festival-checks a,.star-festival-booking-help a{color:#9d1b31;text-decoration:underline}
+.star-festival-captcha{margin:22px 0}
+.star-festival-error{padding:14px;background:#fde8e8;color:#951a2b;border-radius:4px;font-weight:800}
+.star-festival-booking-form button{width:100%;border:0;border-radius:4px;background:#d91f39;color:#fff;cursor:pointer;min-height:54px;padding:14px 21px;font-weight:900;font-size:15px}
+.star-festival-booking-form button:disabled{background:#8d99a9;cursor:not-allowed}
+.star-festival-small{font-size:12px!important;color:#526178!important;line-height:1.7!important;margin-top:16px!important}
+.star-festival-booking-help{text-align:center;color:#4e6076;line-height:1.6;margin-top:26px}
+.star-festival-trap{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+.star-festival-receipt{border:1px solid #cbdccf;border-top:6px solid #2a7d52;border-radius:10px;background:#fff;padding:clamp(22px,4vw,45px);max-width:740px;margin:0 auto}
+.star-festival-receipt dl{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:25px 0}
+.star-festival-receipt dt{color:#64758a;font-size:11px;text-transform:uppercase;font-weight:800;letter-spacing:.06em}
+.star-festival-receipt dd{font-weight:900;color:#0b1d39;font-size:18px;margin:4px 0 0}
+.star-festival-receipt a{color:#a31c30;text-decoration:underline;font-weight:800}
+@media(max-width:700px){.star-festival-booking-hero{grid-template-columns:1fr;gap:12px}.star-festival-booking-logo{width:145px;margin-left:0}.star-festival-field-grid{grid-template-columns:1fr}.star-festival-wide{grid-column:auto}.star-festival-booking-shell{padding-block:35px 60px}.star-festival-receipt dl{grid-template-columns:1fr}.star-festival-booking-page .star-events-hero h1{font-size:54px}}
