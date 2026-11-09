@@ -26,7 +26,7 @@ export default async function EventDetail({params}:Props){
  <section className="star-events-hero"><div className="home-width star-events-hero-inner"><div>
   <Link className="star-event-detail-return" href="/events">← All STAR events</Link>
   <p className="star-events-eyebrow">{event.category}{cancelled?" / CANCELLED":""}</p>
-  <h1>{event.title}</h1><p className="star-events-hero-lead">{event.summary}</p>
+  <div className="star-christmas-detail-head"><div><h1>{event.title}</h1><p className="star-events-hero-lead">{event.summary}</p></div>{event.slug==="christmas-football-festival-2026"&&<img src="/events/star-christmas-festival.svg" alt="STAR Christmas Football Festival emblem" className="star-christmas-detail-logo"/>}</div>
  </div></div></section>
  <section className="star-event-detail home-width" aria-labelledby="event-about">
   <div><p className="star-events-eyebrow">ALL THE DETAILS</p><h2 id="event-about">About this event.</h2><p>{event.description}</p><h2 style={{marginTop:40}}>Before you arrive.</h2><p>Check the date, venue, age guidance and joining information before you travel. If your daughter has any individual or accessibility needs, please get in touch so we can discuss them with you.</p><Link className="star-event-card-link" href="/contact">Questions? Contact STAR <span aria-hidden="true">↗</span></Link></div>
@@ -35,10 +35,10 @@ export default async function EventDetail({params}:Props){
    <dt>Time (UK)</dt><dd>{eventTime(event.starts_at)}–{eventTime(event.ends_at)}</dd>
    <dt>Venue</dt><dd>{event.venue_name}{event.venue_address&&<><br/>{event.venue_address}</>}</dd>
    <dt>Age group</dt><dd>{eventAge(event.minimum_age,event.maximum_age)}</dd>
-   <dt>Price</dt><dd>{eventPrice(event.price_pence)}</dd>
+   <dt>Price</dt><dd>{event.slug==="christmas-football-festival-2026"?"£10 early bird / £15 standard":eventPrice(event.price_pence)}</dd>
    {event.capacity!==null&&<><dt>Event capacity</dt><dd>Up to {event.capacity} participants</dd></>}
   </dl>
-  {cancelled?<p role="status" className="star-event-detail-cancelled">This event has been cancelled. Please contact STAR with any questions.</p>:finished?<p role="status" className="star-event-detail-cancelled">This event has finished.</p>:<><a href={bookUrl||emailLink} target={bookUrl?"_blank":undefined} rel={bookUrl?"noopener noreferrer":undefined}>{bookUrl?"Register for this event ↗":"Enquire about this event ↗"}</a><small>{bookUrl?"Registration is handled through the linked booking page.":"Enquiries are not confirmed bookings. STAR will explain availability and joining arrangements."}</small></>}
+  {event.slug==="christmas-football-festival-2026"?<p role="status" className="star-event-detail-pending">Registration is not yet open. The date and venue are proposed and will be confirmed before booking begins.</p>:cancelled?<p role="status" className="star-event-detail-cancelled">This event has been cancelled. Please contact STAR with any questions.</p>:finished?<p role="status" className="star-event-detail-cancelled">This event has finished.</p>:<><a href={bookUrl||emailLink} target={bookUrl?"_blank":undefined} rel={bookUrl?"noopener noreferrer":undefined}>{bookUrl?"Register for this event ↗":"Enquire about this event ↗"}</a><small>{bookUrl?"Registration is handled through the linked booking page.":"Enquiries are not confirmed bookings. STAR will explain availability and joining arrangements."}</small></>}
   </aside>
  </section>
  <section className="star-events-about"><div className="home-width"><p className="star-events-eyebrow">KEEP PLAYING. KEEP DEVELOPING.</p><h2>Explore <span>STAR coaching.</span></h2><p>Events are just one way to experience STAR. Our regular development programmes offer more opportunities throughout the year.</p><Link className="star-events-button star-events-button-red" href="/programmes">See our programmes ↗</Link></div></section>
