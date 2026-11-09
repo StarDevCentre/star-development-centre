@@ -10,6 +10,18 @@ export type StarEvent={
   image_url:string|null;status:"draft"|"published"|"cancelled";
 };
 
+
+const christmasFestival:StarEvent={
+  id:"star-christmas-football-festival-2026",slug:"christmas-football-festival-2026",
+  title:"STAR Christmas Football Festival 2026",
+  summary:"Three hours of festive football, skills challenges, mini matches and awards for girls aged 5–16. £10 early bird / £15 standard. Date and venue are provisional; registration is not yet open.",
+  description:"Join STAR Development Centre for a football-focused Christmas festival for girls aged 5–16. Enjoy the Reindeer Dribbling Dash, Santa's Target Shooting, Elf Express Passing, the STAR Christmas Cup, a festive penalty challenge and certificates and awards.\n\nThe proposed programme runs from 10:00am to 1:00pm, with age-group activities for 5–7, 8–11 and 12–16 year olds. There are up to 36 places, subject to final venue and staffing checks.\n\nTickets are planned at £10 early bird and £15 standard. Registration is not yet open. Saturday 19 December and Staplegrove Youth Ground, Corkscrew Lane, are proposed details awaiting final confirmation. Please check back for booking information.",
+  category:"Community events",starts_at:"2026-12-19T10:00:00Z",ends_at:"2026-12-19T13:00:00Z",
+  venue_name:"Staplegrove Youth Ground, Corkscrew Lane (proposed)",venue_address:"Corkscrew Lane, Staplegrove, Taunton, Somerset",
+  minimum_age:5,maximum_age:16,price_pence:1500,capacity:36,registration_url:null,
+  image_url:"/events/star-christmas-festival.svg",status:"published"
+};
+
 export const londonDate=(date:string,options:Intl.DateTimeFormatOptions)=>
   new Intl.DateTimeFormat("en-GB",{...options,timeZone:"Europe/London"}).format(new Date(date));
 
@@ -33,13 +45,15 @@ function publicClient(){
 }
 const columns="id,slug,title,summary,description,category,starts_at,ends_at,venue_name,venue_address,minimum_age,maximum_age,price_pence,capacity,registration_url,image_url,status";
 export async function getPublicEvents():Promise<StarEvent[]>{
-  const db=publicClient();if(!db)return [];
+  const db=publicClient();if(!db)return [christmasFestival];
   const {data,error}=await db.from("star_events").select(columns).in("status",["published","cancelled"]).order("starts_at",{ascending:true}).limit(200);
-  if(error){console.error("STAR events could not be fetched:",error.code);return [];}
-  return (data||[]) as unknown as StarEvent[];
+  if(error){console.error("STAR events could not be fetched:",error.code);return [christmasFestival];}
+  const items=(data||[]) as unknown as StarEvent[];
+  return [christmasFestival,...items.filter(event=>event.slug!==christmasFestival.slug)].sort((a,b)=>a.starts_at.localeCompare(b.starts_at));
 }
 export async function getPublicEvent(slug:string):Promise<StarEvent|null>{
   if(!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug))return null;
+  if(slug===christmasFestival.slug)return christmasFestival;
   const db=publicClient();if(!db)return null;
   const {data,error}=await db.from("star_events").select(columns).eq("slug",slug).in("status",["published","cancelled"]).maybeSingle();
   if(error){console.error("STAR event could not be fetched:",error.code);return null;}
