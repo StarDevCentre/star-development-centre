@@ -284,5 +284,73 @@
         ]
       }
     ]
+  },
+  {
+    "id": 35,
+    "number": "SE05",
+    "artwork": {
+      "slug": "bath-ladies-afc-se05",
+      "front": "STAR Football History special edition SE05. Bath Ladies AFC. Old Trafford, 1921. Illustrated reconstruction of players in hockey-style kit beside a packed terrace.",
+      "back": "Bath Ladies AFC. 24 names in silver. In June 1922, the club presented a silver case to Alfred Edward Manns. It carries the names of 24 players and officials. Illustrated reconstruction inspired by the case featured by the National Football Museum."
+    },
+    "name": "Bath Ladies AFC",
+    "subtitle": "From Bath to a packed Old Trafford",
+    "era": "1920s · Bath, Somerset",
+    "story": "In 1921, Bath Ladies AFC played Dick, Kerr Ladies of Preston at Old Trafford. The National Football Museum estimates that between 25,000 and 30,000 people watched. Between 1920 and 1921 Bath played at least ten games and raised more than £3,000 for post-war charities.\n\nDorothy Harrison served as captain and vice-captain at different times. Her sisters Edie, Mabel and Audley played alongside her. The team's distinctive hockey-style kit appears in surviving photographs, including pictures from their match against Plymouth.\n\nIn June 1922, the players and officials presented their honorary secretary and treasurer, Alfred Edward Manns, with a silver case. Its reverse carries 24 names. The engraving preserves the names of people who helped make the team possible.",
+    "facts": [
+      "Old Trafford · Bath played Dick, Kerr Ladies in 1921.",
+      "25,000–30,000 · Estimated crowd at Old Trafford.",
+      "Dorothy Harrison · Played alongside three of her sisters.",
+      "24 names · Engraved on the silver case presented in 1922."
+    ],
+    "source": "https://nationalfootballmuseum.com/stories/bath-ladies-case/",
+    "furtherReading": [
+      {
+        "label": "The Grecian Archive · Early women’s football in Bath",
+        "url": "https://grecianarchive.exeter.ac.uk/items/show/19782"
+      }
+    ],
+    "questions": [
+      {
+        "prompt": "Where did Bath play Dick, Kerr Ladies?",
+        "options": [
+          "Wembley",
+          "Old Trafford",
+          "Villa Park"
+        ]
+      },
+      {
+        "prompt": "Which team did Bath face in that match?",
+        "options": [
+          "Dick, Kerr Ladies",
+          "Plymouth Ladies",
+          "Frome Town Ladies"
+        ]
+      },
+      {
+        "prompt": "Why did Bath play charity matches?",
+        "options": [
+          "To fund a new stadium",
+          "To buy a trophy",
+          "To raise money for post-war charities"
+        ]
+      },
+      {
+        "prompt": "Which player served as captain and vice-captain?",
+        "options": [
+          "Dorothy Harrison",
+          "Alfred Edward Manns",
+          "Beryl Manns"
+        ]
+      },
+      {
+        "prompt": "How many names are on the back of the silver case?",
+        "options": [
+          "11",
+          "24",
+          "30"
+        ]
+      }
+    ]
   }
 ]
