@@ -58,80 +58,114 @@
 .ps-history-sparks form label{padding:.55rem .75rem;border:1px solid #7187a5;border-radius:.7rem;margin-top:.5rem;background:#1b3153}
 .ps-history-sparks form label:has(input:checked){border-color:#ffdf8e;background:#2c4370}
 
+/* Edition colours are shared by the foil edge and the title panel. */
 .ps-history-coral {
-  --sparks-ink:#431732;
-  --sparks-bright:#ff977e;
-  --sparks-glow:#ffd2a0;
-  --sparks-rim:#c34969;
+  --sparks-ink:#451638;
+  --sparks-bright:#ff997f;
+  --sparks-glow:#ffdeac;
+  --sparks-rim:#de517a;
 }
 .ps-history-teal {
-  --sparks-ink:#083c46;
-  --sparks-bright:#76e1c3;
-  --sparks-glow:#e2f8a9;
-  --sparks-rim:#188b91;
+  --sparks-ink:#093c4b;
+  --sparks-bright:#73e6cf;
+  --sparks-glow:#e9ffbe;
+  --sparks-rim:#278db1;
 }
 .ps-history-violet {
-  --sparks-ink:#311855;
-  --sparks-bright:#be9aff;
-  --sparks-glow:#ffc8ed;
-  --sparks-rim:#8052c6;
+  --sparks-ink:#31185b;
+  --sparks-bright:#c4a5ff;
+  --sparks-glow:#ffcdf1;
+  --sparks-rim:#8154df;
 }
 
 .ps-history-sparks .ps-history-face {min-width:0}
 
 .ps-sparks-card {
+  --sparks-navy:#0d1937;
   position:relative;
   display:flex;
   flex-direction:column;
-  gap:.65rem;
   height:100%;
-  padding:clamp(.6rem,2.5vw,.9rem);
-  border:2px solid var(--sparks-glow);
-  border-radius:1.5rem;
+  padding:.45rem;
+  border:1px solid var(--sparks-glow);
+  border-radius:1.3rem;
   overflow:hidden;
-  color:var(--sparks-ink);
+  color:var(--sparks-navy);
   text-align:left;
   background:
-    radial-gradient(circle, #fff9 1px, transparent 1.5px) 0 0 / 9px 9px,
-    linear-gradient(144deg,var(--sparks-glow),var(--sparks-bright) 43%,var(--sparks-glow) 72%,var(--sparks-bright));
-  box-shadow:inset 0 0 0 3px var(--sparks-rim),0 5px 0 var(--sparks-rim),0 13px 24px #0005;
+    repeating-linear-gradient(122deg,#fff3 0 1px,transparent 1px 5px),
+    linear-gradient(125deg,var(--sparks-glow) 0%,var(--sparks-rim) 19%,var(--sparks-bright) 40%,#fff8dc 48%,var(--sparks-rim) 62%,var(--sparks-bright) 82%,var(--sparks-glow) 100%);
+  box-shadow:inset 0 0 0 1px #fff7,0 3px 0 var(--sparks-rim),0 12px 25px #0007;
 }
 .ps-sparks-card-header {
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:.3rem;
-  min-height:2rem;
-}
-.ps-sparks-card-brand,.ps-sparks-card-number {
-  display:inline-flex;
-  align-items:center;
-  gap:.36em;
-  border-radius:2rem;
-  font-size:clamp(.75rem,3.2vw,1rem);
-  font-weight:900;
-  line-height:1;
+  gap:.4rem;
+  padding:.42rem .55rem;
+  border-radius:.8rem .8rem 0 0;
+  background:
+    radial-gradient(circle,#fff3 1px,transparent 1.5px) right top / 7px 7px,
+    linear-gradient(112deg,var(--sparks-navy) 44%,var(--sparks-ink));
+  color:#fff;
 }
 .ps-sparks-card-brand {
-  padding:.48em .68em;
-  background:var(--sparks-ink);
-  color:#fff9e8;
-  box-shadow:0 2px 0 #fff9;
+  display:flex;
+  align-items:center;
+  gap:.55rem;
+  min-width:0;
 }
-.ps-sparks-card-brand svg {width:1em;height:1em;color:#ffe395}
+.ps-sparks-card .ps-sparks-card-logo {
+  display:block;
+  width:clamp(2.7rem,13.4vw,3.85rem);
+  height:auto;
+  flex:none;
+  border:1px solid #f8db8a;
+  border-radius:.65rem;
+  background:#fff;
+  box-shadow:0 2px 0 #0005;
+}
+.ps-sparks-card-wordmark {
+  display:grid;
+  gap:.08rem;
+}
+.ps-sparks-card .ps-sparks-card-wordmark strong {
+  color:var(--sparks-glow);
+  font-family:'Barlow Condensed','DM Sans',sans-serif;
+  font-size:clamp(1.65rem,8vw,2.65rem);
+  font-weight:900;
+  font-style:italic;
+  line-height:.86;
+  letter-spacing:.025em;
+  text-transform:uppercase;
+}
+.ps-sparks-card-wordmark span {
+  margin-top:.22rem;
+  color:#fff;
+  font-size:.65rem;
+  font-weight:800;
+  line-height:1.15;
+}
 .ps-sparks-card-number {
-  padding:.42em .65em;
-  border:1px solid var(--sparks-ink);
-  background:#fff9e8;
-  font-variant-numeric:tabular-nums;
+  display:grid;
+  justify-items:center;
+  gap:.05rem;
+  flex:none;
+  min-width:3rem;
+  padding:.3rem .4rem;
+  border:1px solid #fff3ba;
+  border-radius:.5rem;
+  color:#17223c;
+  background:linear-gradient(152deg,#fff7d0,#f5c75e);
+  line-height:1;
 }
+.ps-sparks-card-number span {font-size:.62rem;font-weight:800}
+.ps-sparks-card .ps-sparks-card-number strong {font-size:.98rem;font-weight:900;font-variant-numeric:tabular-nums}
 .ps-sparks-card-art {
   display:block;
   overflow:hidden;
-  border:2px solid var(--sparks-ink);
-  border-radius:1rem;
+  margin-block:2px;
   background:var(--sparks-paper);
-  box-shadow:0 0 0 2px #fff9e8;
 }
 .ps-sparks-card .ps-sparks-card-art img,
 .ps-sparks-card .ps-sparks-card-story-title img {
@@ -143,18 +177,24 @@
 }
 .ps-sparks-card-nameplate {
   position:relative;
-  z-index:1;
   display:block;
-  margin:-1.35rem .45rem 0;
-  padding:.75rem 2.55rem .75rem .85rem;
-  border:2px solid var(--sparks-ink);
-  border-radius:.8rem;
-  background:#fff9e8;
-  box-shadow:0 3px 0 var(--sparks-ink);
+  isolation:isolate;
+  padding:.7rem 1rem .8rem;
+  overflow:hidden;
+  color:var(--sparks-ink);
+  background:linear-gradient(112deg,var(--sparks-glow) 22%,var(--sparks-bright));
+}
+.ps-sparks-card-nameplate::after {
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:0 0 0 64%;
+  background:repeating-linear-gradient(124deg,transparent 0 9px,#fff8 9px 11px,transparent 11px 17px,#fff5 17px 21px);
+  mask-image:linear-gradient(90deg,transparent,#000);
 }
 .ps-sparks-card-name {
   display:block;
-  font-size:clamp(1.5rem,6.5vw,2.35rem);
+  font-size:clamp(1.55rem,6.8vw,2.5rem);
   font-weight:900;
   line-height:1.03;
   letter-spacing:-.035em;
@@ -162,45 +202,38 @@
 }
 .ps-sparks-card-subtitle {
   display:block;
-  margin-top:.3rem;
+  margin-top:.25rem;
   font-size:clamp(.9rem,3.5vw,1.06rem);
-  font-weight:700;
+  font-weight:750;
   line-height:1.25;
 }
-.ps-sparks-card-sticker {
-  position:absolute;
-  right:-.3rem;
-  top:-.8rem;
-  display:grid;
-  place-items:center;
-  width:2.75rem;
-  aspect-ratio:1;
-  border:2px solid var(--sparks-ink);
-  border-radius:36%;
-  transform:rotate(12deg);
-  background:#ffe395;
-  box-shadow:0 0 0 2px #fff9e8;
-}
-.ps-sparks-card-sticker svg {width:60%;height:60%}
 .ps-sparks-card-set {
   display:flex;
   justify-content:center;
   align-items:center;
-  gap:.4rem;
-  margin-top:auto;
-  padding:.32rem .3rem .08rem;
-  font-size:clamp(.74rem,3vw,.95rem);
-  font-weight:900;
+  gap:.55rem;
+  flex:1;
+  min-height:2rem;
+  padding:.4rem .35rem;
+  border-radius:0 0 .8rem .8rem;
+  color:#fff8e6;
+  background:var(--sparks-navy);
+  font-size:clamp(.72rem,2.9vw,.91rem);
+  font-weight:800;
   text-align:center;
+  line-height:1.2;
 }
-.ps-sparks-card-set svg {width:.78em;height:.78em;flex:none}
+.ps-sparks-card-set svg {width:.86em;height:.86em;flex:none;color:var(--sparks-bright)}
 
 .ps-sparks-card-story-title {
   display:grid;
   grid-template-columns:clamp(2.5rem,12vw,4rem) minmax(0,1fr);
   align-items:center;
   gap:.65rem;
-  padding:.2rem;
+  margin-top:2px;
+  padding:.7rem;
+  color:var(--sparks-ink);
+  background:linear-gradient(120deg,var(--sparks-glow),var(--sparks-bright));
 }
 .ps-sparks-card-story-title .ps-sparks-card-name {
   font-size:clamp(1.35rem,5.7vw,2rem);
@@ -214,11 +247,10 @@
 .ps-sparks-card-reading {
   flex:1;
   padding:clamp(.8rem,3.3vw,1.15rem);
-  border:2px solid var(--sparks-ink);
-  border-radius:1rem;
+  margin-block:2px;
   background:#fffaf0;
-  box-shadow:0 3px 0 var(--sparks-ink);
 }
+.ps-sparks-card-back .ps-sparks-card-set {flex:none}
 .ps-sparks-card-story-label {
   display:inline-block;
   margin-bottom:.65rem;
@@ -252,19 +284,23 @@
 }
 .ps-sparks-collection-card:hover .ps-sparks-card {border-color:#fff9e8}
 .ps-sparks-card.ps-sparks-card-mini {
-  gap:.36rem;
-  padding:.4rem;
-  border-radius:.9rem;
-  color:var(--sparks-ink);
+  padding:.25rem;
+  border-radius:.85rem;
+  color:var(--sparks-navy);
 }
-.ps-sparks-card-mini .ps-sparks-card-header {min-height:1.5rem}
-.ps-sparks-card-mini .ps-sparks-card-brand,
-.ps-sparks-card-mini .ps-sparks-card-number {font-size:.68rem}
-.ps-sparks-card-mini .ps-sparks-card-art {border-radius:.55rem}
+.ps-sparks-card-mini .ps-sparks-card-header {
+  gap:.2rem;
+  padding:.24rem;
+  border-radius:.55rem .55rem 0 0;
+}
+.ps-sparks-card-mini .ps-sparks-card-brand {gap:.2rem}
+.ps-sparks-card-mini .ps-sparks-card-logo {width:clamp(1.35rem,6.5vw,2rem);border-radius:.3rem}
+.ps-sparks-card-mini .ps-sparks-card-wordmark strong {font-size:clamp(.8rem,3.65vw,1.25rem)}
+.ps-sparks-card-mini .ps-sparks-card-number {min-width:0;padding:.18rem .23rem;border-radius:.26rem}
+.ps-sparks-card-mini .ps-sparks-card-number strong {font-size:.68rem}
 .ps-sparks-card-mini .ps-sparks-card-nameplate {
   flex:1;
-  margin:-.68rem .12rem .12rem;
   padding:.4rem .42rem;
-  border-radius:.5rem;
+  border-radius:0 0 .55rem .55rem;
 }
 .ps-sparks-card-mini .ps-sparks-card-name {font-size:clamp(.95rem,3.8vw,1.2rem)}

@@ -24,8 +24,17 @@ export function SparksHistoryCard({card, face, number, setName, compact = false}
 
   return <Surface className={`ps-sparks-card ps-sparks-card-${face}${compact?" ps-sparks-card-mini":""}`} aria-hidden={compact||undefined}>
     <span className="ps-sparks-card-header">
-      <span className="ps-sparks-card-brand"><Spark/> STAR Sparks</span>
-      <span className="ps-sparks-card-number">{number}</span>
+      <span className="ps-sparks-card-brand">
+        <Image className="ps-sparks-card-logo" src="/star-icon.png" width={96} height={96} alt="STAR Development Centre" unoptimized/>
+        <span className="ps-sparks-card-wordmark">
+          <strong>Sparks</strong>
+          {!compact && <span>Football history</span>}
+        </span>
+      </span>
+      <span className="ps-sparks-card-number">
+        {!compact && <span>Card</span>}
+        <strong>{number}</strong>
+      </span>
     </span>
 
     {face==="front" ? <>
@@ -35,7 +44,6 @@ export function SparksHistoryCard({card, face, number, setName, compact = false}
       <span className="ps-sparks-card-nameplate">
         <strong className="ps-sparks-card-name">{card.name}</strong>
         {!compact && <span className="ps-sparks-card-subtitle">{card.subtitle}</span>}
-        {!compact && <span className="ps-sparks-card-sticker" aria-hidden="true"><Spark/></span>}
       </span>
     </> : <>
       <div className="ps-sparks-card-story-title">
@@ -51,7 +59,7 @@ export function SparksHistoryCard({card, face, number, setName, compact = false}
       </div>
     </>}
 
-    {!compact && <span className="ps-sparks-card-set"><Spark/>{setName}</span>}
+    {!compact && <span className="ps-sparks-card-set"><Spark/>{setName}<Spark/></span>}
   </Surface>;
 }
 
