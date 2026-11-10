@@ -220,7 +220,7 @@ export function PlayerFootballHistory({playerId, preview}: {playerId:string; pre
               </button>
             </li>;
             return <li key={card.id}><button type="button" onClick={() => open(card,view==="stories"?"story":"card")}>
-              {card.id===afghanistanCardId ? <AfghanistanHistoryArt sizes="(max-width: 550px) 43vw, 208px"/>
+              {card.id===afghanistanCardId ? <AfghanistanHistoryCard face="front" sizes="(max-width: 550px) 43vw, 208px"/>
                 : junior ? <SparksHistoryArt id={card.id} sizes="(max-width: 600px) 43vw, 210px"/>
                 : view==="collection" && <Image src={cardImage(card.id,"front")} width={576} height={768} sizes="(max-width: 600px) 43vw, 210px" alt=""/>}
               <span className="ps-history-kicker">{cardNumber(card.id)} · {earned?"Collected":"Story"}</span>
