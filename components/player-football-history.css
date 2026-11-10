@@ -45,3 +45,24 @@
 .ps-history-story{max-width:65ch;line-height:1.7;margin:1rem 0 1.4rem}
 .ps-history-story p+p{margin-top:1rem}
 .ps-history-sources{display:grid;justify-items:start;gap:.5rem;margin:1rem 0 1.25rem}
+.ps-history-sparks{--history-metal:#fff3bd}
+.ps-history-sparks .ps-history-hero{background:radial-gradient(ellipse at 90% 0%,#463582,transparent 58%),linear-gradient(130deg,#123d60,#102240);border-color:#bdacf4}
+.ps-history-coral{--history-metal:#ffc2a3;--sparks-accent:#f9b08b;--sparks-paper:#fff0dd}
+.ps-history-teal{--history-metal:#a4f5e9;--sparks-accent:#86dfd1;--sparks-paper:#e2fff7}
+.ps-history-violet{--history-metal:#dfd2ff;--sparks-accent:#d1baff;--sparks-paper:#f3eaff}
+.ps-history-sparks .ps-history-set,.ps-history-sparks .ps-history-detail{border-color:var(--history-metal)}
+.ps-history-sparks .ps-history-grid button{background:#1a3154;border-color:var(--history-metal);border-radius:1rem}
+.ps-history-sparks .ps-history-story{font-size:clamp(1.12rem,3vw,1.35rem);line-height:1.65;max-width:48ch}
+.ps-sparks-story-art{width:min(100%,260px);margin:.8rem 0 1rem}
+.ps-sparks-story-art img{width:100%;height:auto;border-radius:1rem;border:2px solid var(--sparks-accent)}
+.ps-history-sparks form label{padding:.55rem .75rem;border:1px solid #7187a5;border-radius:.7rem;margin-top:.5rem;background:#1b3153}
+.ps-history-sparks form label:has(input:checked){border-color:#ffdf8e;background:#2c4370}
+.ps-sparks-card{height:100%;color:#102640;background:var(--sparks-paper);border:4px solid var(--sparks-accent);border-radius:1.2rem;overflow:hidden;box-shadow:0 12px 28px #0006;text-align:left;display:flex;flex-direction:column}
+.ps-sparks-card-header,.ps-sparks-card-footer{background:#142b51;color:#fff8e5;padding:.65rem .9rem;font-size:.85rem;font-weight:900;letter-spacing:.06em}
+.ps-sparks-card-header{display:flex;justify-content:space-between;gap:.75rem}
+.ps-sparks-card-footer{text-align:center;margin-top:auto}
+.ps-sparks-card .ps-sparks-card-copy{padding:.9rem 1rem}
+.ps-sparks-card .ps-sparks-card-copy strong{display:block;font-size:clamp(1.35rem,4vw,1.9rem);line-height:1.1;margin-bottom:.45rem}
+.ps-sparks-card .ps-sparks-card-copy p{line-height:1.5}
+.ps-sparks-card .ps-sparks-card-copy p:first-of-type{font-weight:700}
+.ps-sparks-card img{width:100%;height:auto;border-radius:0;box-shadow:none}
