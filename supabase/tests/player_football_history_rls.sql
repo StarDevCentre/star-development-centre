@@ -72,7 +72,8 @@ declare older uuid:=(select value::uuid from history_test where key='core');
  younger uuid:=(select value::uuid from history_test where key='junior');
  unknown_age uuid:=(select value::uuid from history_test where key='missing_dob');
  right_answers integer[]:=(select answers from history_keys where card_id=101);
- special_answers integer[]:=(select answers from history_keys where card_id=31);
+ special_card smallint;
+ special_answers integer[];
 begin
  if public.football_history_edition(older) <> 'trailblazers'
   or public.football_history_edition(younger) <> 'sparks'
@@ -89,12 +90,15 @@ begin
   perform public.submit_football_history_quiz(unknown_age,101::smallint,right_answers);
   raise exception 'Unknown date of birth received award';
  exception when insufficient_privilege then null;end;
- begin
-  perform public.submit_football_history_quiz(younger,31::smallint,special_answers);
-  raise exception 'Younger player received a special edition';
- exception when insufficient_privilege then null;end;
- if (public.submit_football_history_quiz(older,31::smallint,special_answers)).earned_at is null then
-  raise exception 'Special edition was not earned';end if;
+ foreach special_card in array array[31,32]::smallint[] loop
+  select answers into special_answers from history_keys where card_id=special_card;
+  begin
+   perform public.submit_football_history_quiz(younger,special_card,special_answers);
+   raise exception 'Younger player received special edition %',special_card;
+  exception when insufficient_privilege then null;end;
+  if (public.submit_football_history_quiz(older,special_card,special_answers)).earned_at is null then
+   raise exception 'Special edition % was not earned',special_card;end if;
+ end loop;
  if (public.submit_football_history_quiz(younger,101::smallint,right_answers)).earned_at is null then
   raise exception 'Sparks card was not earned';end if;
  if exists(select 1 from public.player_history_progress where player_id=younger and card_id=1) then

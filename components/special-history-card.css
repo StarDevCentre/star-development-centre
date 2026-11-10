@@ -2,11 +2,11 @@
   --history-metal:#e8d5af;
   border-color:#a69776;
 }
-.ps-history-special .ps-afghanistan-story-preview {
+.ps-history-special .ps-special-story-preview {
   width:min(100%,15rem);
   margin:0 0 1rem;
 }
-.ps-history-special .ps-afghanistan-story-preview img {
+.ps-history-special .ps-special-story-preview img {
   display:block;
   width:100%;
   height:auto;

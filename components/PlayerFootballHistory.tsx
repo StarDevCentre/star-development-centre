@@ -5,13 +5,12 @@ import Image from "next/image";
 import trailblazers from "../lib/content/football-history.json";
 import sparks from "../lib/content/football-history-sparks.json";
 import specials from "../lib/content/football-history-specials.json";
-import {AfghanistanHistoryArt,AfghanistanHistoryCard} from "./AfghanistanHistoryCard";
+import {SpecialHistoryCard} from "./SpecialHistoryCard";
 import {SparksHistoryArt,SparksHistoryCard,SparksReadAloud} from "./SparksHistoryCard";
 import {supabaseBrowser} from "../lib/supabaseBrowser";
 import "./player-football-history.css";
 
-const afghanistanCardId = 31;
-const olderCards = [...trailblazers,...specials];
+const olderCards:Card[] = [...trailblazers,...specials];
 const trailblazerSets = [
   {name:"The Pioneers", metal:"Bronze"},
   {name:"Legends of the World Game", metal:"Silver"},
@@ -24,9 +23,9 @@ const sparksSets = [
   {name:"Big Match Moments",metal:"Violet"},
 ] as const;
 const isSparks = (id:number) => id >= 101;
-const cardNumber = (id:number) => id===afghanistanCardId ? "SE01" : isSparks(id) ? `S${String(id-100).padStart(2,"0")}` : String(id).padStart(3,"0");
+const cardNumber = (id:number) => specials.find(card => card.id===id)?.number ?? (isSparks(id) ? `S${String(id-100).padStart(2,"0")}` : String(id).padStart(3,"0"));
 const cardImage = (id:number, side:"front"|"back") => `/player-space/history/${cardNumber(id)}-${side}.webp`;
-type Card = (typeof olderCards)[number] | (typeof sparks)[number];
+type Card = (typeof trailblazers)[number] | (typeof sparks)[number] | (typeof specials)[number];
 type Edition = "sparks"|"trailblazers"|"unknown"|"under-five";
 type Progress = {card_id:number; score:number; retry_at:string|null; earned_at:string|null};
 
@@ -142,7 +141,7 @@ export function PlayerFootballHistory({playerId, preview}: {playerId:string; pre
           <div className="ps-history-viewer">
             <div className="ps-history-flip" data-side={side}>
               {(["front","back"] as const).map(face => <div key={face} className={`ps-history-face ps-history-face-${face}`} aria-hidden={side!==face}>
-                {selected.id===afghanistanCardId ? <AfghanistanHistoryCard face={face}/>
+                {"artwork" in selected ? <SpecialHistoryCard artwork={selected.artwork} face={face}/>
                   : junior ? <SparksHistoryCard card={selected} face={face} number={cardNumber(selected.id)} setName={tier.name}/> : <Image src={cardImage(selected.id,face)} width={576} height={768} sizes="(max-width: 560px) 88vw, 420px" alt={`${selected.name} collector card, ${face} side`}/>}
               </div>)}
             </div>
@@ -173,7 +172,7 @@ export function PlayerFootballHistory({playerId, preview}: {playerId:string; pre
           </div>
         </form> : <>
           <p className="ps-history-era">{selected.subtitle}{"era" in selected && ` · ${selected.era}`}</p>
-          {selected.id===afghanistanCardId && <div className="ps-afghanistan-story-preview"><AfghanistanHistoryArt sizes="240px"/></div>}
+          {"artwork" in selected && <div className="ps-special-story-preview"><SpecialHistoryCard artwork={selected.artwork} face="front" sizes="240px"/></div>}
           {junior && <div className="ps-sparks-story-art"><SparksHistoryArt id={selected.id} sizes="(max-width: 480px) 80vw, 260px"/></div>}
           {junior && <SparksReadAloud text={selected.story} label="Read this story to me"/>}
           <div className="ps-history-story">
@@ -220,7 +219,7 @@ export function PlayerFootballHistory({playerId, preview}: {playerId:string; pre
               </button>
             </li>;
             return <li key={card.id}><button type="button" onClick={() => open(card,view==="stories"?"story":"card")}>
-              {card.id===afghanistanCardId ? <AfghanistanHistoryCard face="front" sizes="(max-width: 550px) 43vw, 208px"/>
+              {"artwork" in card ? <SpecialHistoryCard artwork={card.artwork} face="front" sizes="(max-width: 550px) 43vw, 208px" decorative/>
                 : junior ? <SparksHistoryArt id={card.id} sizes="(max-width: 600px) 43vw, 210px"/>
                 : view==="collection" && <Image src={cardImage(card.id,"front")} width={576} height={768} sizes="(max-width: 600px) 43vw, 210px" alt=""/>}
               <span className="ps-history-kicker">{cardNumber(card.id)} · {earned?"Collected":"Story"}</span>

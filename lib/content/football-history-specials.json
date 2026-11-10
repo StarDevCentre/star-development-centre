@@ -1,6 +1,12 @@
 [
   {
     "id": 31,
+    "number": "SE01",
+    "artwork": {
+      "slug": "afghanistan-se01",
+      "front": "STAR Development Centre special edition SE01. Afghanistan Women’s National Team. Football in exile. Illustrated portrait of five Afghan women footballers.",
+      "back": "STAR Development Centre special edition SE01. Football in exile. 2021. After the Taliban returned to power, players were evacuated from Afghanistan. 2022. The team returned to football in Melbourne. 2026. A FIFA rule change opened the way to official international matches."
+    },
     "name": "Afghanistan Women’s National Team",
     "subtitle": "Football in exile",
     "era": "2021–2026",
@@ -21,6 +27,77 @@
       {"prompt": "Where did players begin training together again in 2022?", "options": ["London", "Toronto", "Melbourne"]},
       {"prompt": "What was the name of the team that played at the FIFA series in Morocco in 2025?", "options": ["Afghan Women United", "Melbourne City", "Afghanistan Youth XI"]},
       {"prompt": "What did FIFA’s 2026 rule change make possible?", "options": ["A new domestic league in Afghanistan", "Afghan women representing their country in official international matches", "Automatic entry to the Women’s World Cup"]}
+    ]
+  },
+  {
+    "id": 32,
+    "number": "SE02",
+    "artwork": {
+      "slug": "north-korea-se02",
+      "front": "STAR Development Centre special edition SE02. North Korea Women’s National Team. DPR Korea. Three footballers in red kits framed by colourful painted eaves, mountains and lotus flowers.",
+      "back": "STAR Development Centre special edition SE02. DPR Korea. 2001, 2003 and 2008. AFC Women’s Asian Cup champions. 2007. Women’s World Cup quarter-finalists. 2026. Qualified for the 2027 Women’s World Cup."
+    },
+    "name": "North Korea Women’s National Team",
+    "subtitle": "Three Asian titles and a World Cup return",
+    "era": "2001–2026",
+    "story": "North Korea’s senior women’s team competes internationally as DPR Korea. It won the AFC Women’s Asian Cup in 2001, 2003 and 2008. The team’s best FIFA Women’s World Cup finish came in 2007 in China. A 2–0 win over Nigeria helped it reach the quarter-finals.\n\nIn March 2026, DPR Korea faced Chinese Taipei in a World Cup qualifying play-off on Australia’s Gold Coast. Hong Song Ok scored three goals in a 4–0 win that secured a place at Brazil 2027. It will be the team’s first Women’s World Cup since Germany 2011.",
+    "facts": [
+      "2001, 2003 and 2008 · AFC Women’s Asian Cup champions.",
+      "2007 · FIFA Women’s World Cup quarter-finalists.",
+      "2026 · Beat Chinese Taipei 4–0 to qualify for Brazil 2027."
+    ],
+    "source": "https://www.the-afc.com/en/east/dpr_korea.html",
+    "furtherReading": [
+      {
+        "label": "FIFA Women’s World Cup team history",
+        "url": "https://www.fifa.com/en/tournaments/womens/womensworldcup/brazil-2027/articles/dpr-korea-team-profile-history"
+      },
+      {
+        "label": "AFC report on qualification for Brazil 2027",
+        "url": "https://www.the-afc.com/en/national/afc_womens_asian_cup.html/news/dpr-korea-confirm-ticket-to-global-showpiece"
+      }
+    ],
+    "questions": [
+      {
+        "prompt": "What name does North Korea’s team compete under internationally?",
+        "options": [
+          "Korea Republic",
+          "DPR Korea",
+          "Chinese Taipei"
+        ]
+      },
+      {
+        "prompt": "Which three years did the team win the AFC Women’s Asian Cup?",
+        "options": [
+          "1999, 2007 and 2011",
+          "2002, 2006 and 2014",
+          "2001, 2003 and 2008"
+        ]
+      },
+      {
+        "prompt": "How far did the team get at the 2007 Women’s World Cup?",
+        "options": [
+          "Quarter-finals",
+          "Semi-finals",
+          "Final"
+        ]
+      },
+      {
+        "prompt": "Who did DPR Korea beat in the play-off to qualify for Brazil 2027?",
+        "options": [
+          "Japan",
+          "Chinese Taipei",
+          "Australia"
+        ]
+      },
+      {
+        "prompt": "Which player scored a hat-trick in that play-off?",
+        "options": [
+          "Marta",
+          "Sam Kerr",
+          "Hong Song Ok"
+        ]
+      }
     ]
   }
 ]
