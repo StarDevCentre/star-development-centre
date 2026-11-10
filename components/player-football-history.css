@@ -42,3 +42,6 @@
 .ps-history-flip[data-side=back] .ps-history-face-front{transform:rotateY(180deg)}
 .ps-history-flip[data-side=back] .ps-history-face-back{transform:rotateY(0deg)}
 @media(prefers-reduced-motion:reduce){.ps-history-face{transition:none}}
+.ps-history-story{max-width:65ch;line-height:1.7;margin:1rem 0 1.4rem}
+.ps-history-story p+p{margin-top:1rem}
+.ps-history-sources{display:grid;justify-items:start;gap:.5rem;margin:1rem 0 1.25rem}

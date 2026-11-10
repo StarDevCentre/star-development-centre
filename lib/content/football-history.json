@@ -4,7 +4,7 @@
     "name": "Lily Parr",
     "subtitle": "Powerful left foot",
     "era": "1905–1978 · England",
-    "story": "Parr became one of the biggest names in football with Dick, Kerr Ladies. She drew crowds with her powerful left-footed shooting and kept playing after the FA restricted access to affiliated grounds.",
+    "story": "On Boxing Day 1920, Lily Parr was part of the Dick, Kerr Ladies side that played St Helens Ladies at Goodison Park. The ground belonged to Everton, one of the established men’s clubs. Records disagree over how many people got inside, with estimates ranging from roughly 46,000 to 53,000. Even the lower figure tells us how big a draw the match was.\n\nParr grew up in St Helens and became a star with a team based around a Preston factory. She could strike the ball with unusual power using her left foot. She was also part of a side with different kinds of talent. Alice Kell captained it and Florrie Redford was a prolific forward. The club’s fundraising matches helped build the audience that saw Parr play.\n\nThe FA’s December 1921 decision cut women’s teams off from affiliated grounds. Parr continued playing. That matters because a timeline that stops at the ban would miss a substantial part of her career. In 2002, the National Football Museum made her the first woman inducted into its Hall of Fame. The large gap between the Goodison match and that recognition shows how long the public record took to catch up with what spectators had seen.",
     "facts": [
       "Dick, Kerr Ladies star",
       "Played at Goodison Park in 1920",
@@ -13,44 +13,50 @@
     "source": "https://nationalfootballmuseum.com/halloffame/lily-parr/",
     "questions": [
       {
-        "prompt": "Which team made Parr famous?",
+        "prompt": "Which sequence matches Parr’s story?",
         "options": [
-          "British Ladies’ Football Club",
-          "Blyth Spartans",
-          "Dick, Kerr Ladies"
+          "FA restriction → Goodison match → Hall of Fame induction",
+          "Goodison match → Hall of Fame induction → FA restriction",
+          "Goodison match → FA restriction → Hall of Fame induction"
         ]
       },
       {
-        "prompt": "Which foot was she famous for shooting with?",
+        "prompt": "Which pairing correctly separates Parr’s hometown from her team’s base?",
         "options": [
-          "Left",
-          "Right",
-          "Neither"
+          "St Helens and Preston",
+          "Preston and St Helens",
+          "Liverpool and Preston"
         ]
       },
       {
-        "prompt": "Which ground did she play at in 1920?",
+        "prompt": "Which pair describes two different roles in the same team?",
         "options": [
-          "The Rose Bowl",
-          "Wembley",
-          "Goodison Park"
+          "Redford captained and Kell was the featured left-footed shooter",
+          "Kell and Redford both captained St Helens at Goodison",
+          "Kell captained and Redford was a prolific forward"
         ]
       },
       {
-        "prompt": "What did she do after the FA restricted access to affiliated grounds?",
+        "prompt": "How should you describe attendance at Parr’s Goodison match?",
         "options": [
-          "Kept playing",
-          "Switched to refereeing",
-          "Retired immediately"
+          "Sources differ but even the lower estimate is around 46,000",
+          "All sources give an exact 53,000",
+          "The lower estimate refers to a different fixture"
         ]
       },
       {
-        "prompt": "When was she inducted into the National Football Museum Hall of Fame?",
+        "prompt": "What shows that the ban and the end of Parr’s career were separate events?",
         "options": [
-          "1920",
-          "2002",
-          "1972"
+          "She was inducted during the ban",
+          "She played on after affiliated grounds were closed to women",
+          "She switched from playing to captaining Everton in 1921"
         ]
+      }
+    ],
+    "furtherReading": [
+      {
+        "label": "National Football Museum · The 1921 FA minute book",
+        "url": "https://nationalfootballmuseum.com/items/the-fa-minute-book-1921/"
       }
     ]
   },
@@ -59,7 +65,7 @@
     "name": "Nettie Honeyball",
     "subtitle": "Victorian club organiser",
     "era": "1890s · England",
-    "story": "Playing under the name Nettie Honeyball, she helped organise and captain the British Ladies’ Football Club. Her public appeals for players helped bring women’s football to a wider audience. Her identity remains uncertain.",
+    "story": "In February 1895, an illustrated journal called The Sketch published a photograph captioned with the name Nettie Honeyball. It identified her as captain of the British Ladies’ Football Club. That image gives historians evidence that she appeared in public under that name and held a leadership role. It does not settle what name she was given at birth.\n\nHoneyball helped recruit women and organise a club at a time when playing publicly could draw ridicule. Recruitment was part of building the team. The club needed enough players to train and field sides, and it needed the public to know there was a match to watch. In March, its North and South sides played at Crouch End. Honeyball captained North, which won 7–1.\n\nThe two pieces of evidence tell different parts of the story. The magazine shows how the club and its captain were presented to the public. The match record shows what the club managed to put on. Suggestions about Honeyball’s real identity remain unconfirmed, so her work can be described with much more confidence than her private life. Her role is a reminder that a pioneering player often had to organise football before she could play it.",
     "facts": [
       "British Ladies’ Football Club captain",
       "Featured in The Sketch in 1895",
@@ -68,44 +74,50 @@
     "source": "https://nationalfootballmuseum.com/stories/object-of-the-week-nettie-honeyball-photograph/",
     "questions": [
       {
-        "prompt": "Which club did Honeyball help organise?",
+        "prompt": "What can the February magazine photograph establish most securely?",
         "options": [
-          "Dick, Kerr Ladies",
-          "Blyth Spartans",
-          "British Ladies’ Football Club"
+          "Honeyball’s legal name and birthplace",
+          "The score of the March match",
+          "The public name and captaincy it records"
         ]
       },
       {
-        "prompt": "What role did she hold on the team?",
+        "prompt": "Which sequence places the magazine item and the fixture correctly?",
         "options": [
-          "Captain",
-          "Physiotherapist",
-          "Referee"
+          "The Sketch photograph appeared before the Crouch End match",
+          "The Crouch End match came before the photograph",
+          "Both belong to the same March match report"
         ]
       },
       {
-        "prompt": "What did she publicly ask for?",
+        "prompt": "Which result and captaincy go together?",
         "options": [
-          "Players to join",
-          "A different football",
-          "New referees"
+          "Honeyball’s North side won 7–1",
+          "Honeyball’s South side won 7–1",
+          "Honeyball’s North side lost 7–1"
         ]
       },
       {
-        "prompt": "Which publication featured her in 1895?",
+        "prompt": "What problem did recruitment help the club solve?",
         "options": [
-          "Match of the Day",
-          "The Football Pink",
-          "The Sketch"
+          "Finding a national team to play an official international",
+          "Restoring access to grounds lost in 1921",
+          "Finding enough players to train and field sides"
         ]
       },
       {
-        "prompt": "What do we know about Honeyball’s true identity?",
+        "prompt": "Which account best reflects the quality of the evidence?",
         "options": [
-          "It was confirmed as Lily Parr",
-          "It was confirmed as Emma Clarke",
-          "It remains uncertain"
+          "Her birth identity is more certain than her captaincy",
+          "The uncertain birth name makes the fixture result uncertain",
+          "Her organising role is better established than her birth identity"
         ]
+      }
+    ],
+    "furtherReading": [
+      {
+        "label": "FIFA · The 1895 match at Crouch End",
+        "url": "https://inside.fifa.com/news/the-women-s-game-s-organised-origins-2569439"
       }
     ]
   },
@@ -114,7 +126,7 @@
     "name": "Emma Clarke",
     "subtitle": "Victorian trailblazer",
     "era": "1890s · England",
-    "story": "Clarke played for the British Ladies’ Football Club during the Victorian era, when women who took to the pitch faced public ridicule. She is widely recognised as a pioneering Black footballer in Britain.",
+    "story": "Emma Clarke played for the British Ladies’ Football Club during the Victorian era. The club organised its landmark North versus South fixture at Crouch End in 1895, when women were still an unusual sight in organised public football. The local historical society places Clarke on the South side. Nettie Honeyball, another figure in the collection, led North.\n\nClarke is remembered as a pioneering Black footballer in Britain. The surviving coverage is much better at telling us about the event than at giving us a season-by-season account of an individual player. A report can name a team and record a score without saying who trained regularly, what they did between matches or what position they usually played. That imbalance helps explain why her story is often told through a few documented appearances and later research.\n\nIn 2019 a blue plaque honouring Clarke was unveiled at Campsbourne School in north London. A girls’ football tournament was launched in her name at the same time. The plaque gives her a visible place in local history. The tournament gives young players a way to encounter that history while playing the game themselves. Both forms of recognition came more than a century after the 1895 fixture.",
     "facts": [
       "Played for the British Ladies’ Football Club",
       "Associated with the landmark 1895 fixture",
@@ -123,44 +135,50 @@
     "source": "https://thepfa.com/news/2019/12/4/emma-clarke-tribute",
     "questions": [
       {
-        "prompt": "Which club did Emma Clarke play for?",
+        "prompt": "How were Clarke and Honeyball linked at Crouch End?",
         "options": [
-          "British Ladies’ Football Club",
-          "Blyth Spartans",
-          "Arsenal"
+          "They were on opposing sides of the same club fixture",
+          "They were both on the North side",
+          "They represented two different national teams"
         ]
       },
       {
-        "prompt": "In which era did she play?",
+        "prompt": "What does the story say surviving match coverage can tell us more readily?",
         "options": [
-          "Modern WSL era",
-          "Victorian",
-          "1970s"
+          "How each player trained throughout the year",
+          "Who played and what happened at the event",
+          "How Clarke felt after every match"
         ]
       },
       {
-        "prompt": "What year was the landmark fixture associated with Clarke?",
+        "prompt": "Which pair best describes the two 2019 tributes?",
         "options": [
-          "1972",
-          "1895",
-          "1921"
+          "A plaque and a national-team debut",
+          "A permanent plaque and a girls’ tournament",
+          "A girls’ tournament and a new Victorian match report"
         ]
       },
       {
-        "prompt": "How is Clarke remembered in British football?",
+        "prompt": "Which order fits the dates in Clarke’s story?",
         "options": [
-          "As England’s first Olympic coach",
-          "As a World Cup referee",
-          "As a pioneering Black footballer"
+          "Public commemoration → Victorian fixture",
+          "Victorian fixture and plaque unveiling in the same decade",
+          "Victorian fixture → much later public commemoration"
         ]
       },
       {
-        "prompt": "How was she honoured in 2019?",
+        "prompt": "Why does the story avoid giving a complete account of Clarke’s playing career?",
         "options": [
-          "With a blue plaque",
-          "With a national cap",
-          "With a Golden Boot"
+          "Individual records are patchier than the surviving records of the fixture",
+          "The North–South fixture was never covered",
+          "Historians have detailed training records but no match evidence"
         ]
+      }
+    ],
+    "furtherReading": [
+      {
+        "label": "Hornsey Historical Society · The 1895 teams",
+        "url": "https://hornseyhistorical.org.uk/1895-womens-football-makes-its-official-debut-in-hornsey/"
       }
     ]
   },
@@ -169,7 +187,7 @@
     "name": "Alice Kell",
     "subtitle": "Dick, Kerr captain",
     "era": "1920s · England",
-    "story": "Kell captained Dick, Kerr Ladies as they became one of the biggest draws in British football. The Preston works team played charity matches and helped build an audience for international women’s fixtures.",
+    "story": "Alice Kell captained Dick, Kerr Ladies, the team that grew out of a Preston engineering works. During the First World War, women working in factories formed teams and found opponents through other workplaces and communities. The Preston side carried that momentum into the years after the war. Its charity matches brought in paying spectators and helped make the team known well beyond its factory.\n\nThe team had players remembered for spectacular goals, including Lily Parr and Florrie Redford. Kell’s place in its history was different. She was the captain, a role that meant leading a side whose success depended on defenders, forwards and organisers working together. In 1920 the team played against a touring French side. Fixtures like those helped turn an audience for local works football into an audience for international women’s matches.\n\nKell’s story also explains why team records are worth reading alongside goalscoring records. A list of scorers might tell you who finished a chance, but it would say little about who captained the side or how matches came to be staged. In the space of a few years, this factory team went from playing locally to drawing crowds and hosting opponents from overseas. Kell led the side through that change.",
     "facts": [
       "Captained Dick, Kerr Ladies",
       "Led the Preston factory side",
@@ -178,44 +196,50 @@
     "source": "https://nationalfootballmuseum.com/items/the-lily-parr-statue/",
     "questions": [
       {
-        "prompt": "Which team did Alice Kell captain?",
+        "prompt": "Which description captures Kell’s contribution most precisely?",
         "options": [
-          "Blyth Spartans Ladies",
-          "Dick, Kerr Ladies",
-          "Arsenal"
+          "She was the touring French team’s leading forward",
+          "She captained the Preston works team as its audience grew",
+          "She organised the 1895 North versus South fixture"
         ]
       },
       {
-        "prompt": "Where was her team based?",
+        "prompt": "What links the factory background to the later charity matches?",
         "options": [
-          "Preston",
-          "Blyth",
-          "London"
+          "Workplace teams gave women a way to organise and find opponents",
+          "The FA created a national factory league after the 1921 decision",
+          "The charity matches were organised solely for national teams"
         ]
       },
       {
-        "prompt": "What were many of the team’s matches played for?",
+        "prompt": "What made the French fixtures a different step for the team?",
         "options": [
-          "Charity",
-          "Olympic medals",
-          "World Cup qualifying"
+          "They brought in opponents from overseas",
+          "They were the first matches connected with a factory",
+          "They made Kell the club’s first recorded scorer"
         ]
       },
       {
-        "prompt": "What kind of fixtures did the team help popularise?",
+        "prompt": "Why would a goals list give an incomplete picture of Kell’s impact?",
         "options": [
-          "Indoor five-a-side only",
-          "School-only matches",
-          "International women’s fixtures"
+          "It would record team leadership but omit the result",
+          "It would list overseas matches but exclude local matches",
+          "It would miss the captaincy that helped define her role"
         ]
       },
       {
-        "prompt": "Which decade features in Kell’s story?",
+        "prompt": "Which timeline matches the team Kell led?",
         "options": [
-          "1920s",
-          "1990s",
-          "1970s"
+          "Wartime workplace football → growing post-war crowds and overseas opponents",
+          "Overseas opponents → wartime formation → first local football",
+          "National league football → factory matches → wartime recruitment"
         ]
+      }
+    ],
+    "furtherReading": [
+      {
+        "label": "National Football Museum · Dick, Kerr Ladies and charity football",
+        "url": "https://nationalfootballmuseum.com/stories/women-footballers-supported-striking-miners/"
       }
     ]
   },
@@ -224,7 +248,7 @@
     "name": "Florrie Redford",
     "subtitle": "Prolific Preston forward",
     "era": "1920s · England",
-    "story": "Redford worked for Dick, Kerr & Co. during the First World War and became a prolific forward for its football team. Her scoring helped the Preston side become one of the best-known teams of its era.",
+    "story": "Florrie Redford worked for Dick, Kerr & Co. in Preston during the First World War. The factory was an entry point into organised football at a time when it could be difficult for a woman to find a team. Redford became one of the best-known scorers for Dick, Kerr Ladies, with 1921 remembered as a particularly productive year for her.\n\nThe Preston side became associated with big charity fixtures and touring opponents. Redford played alongside Lily Parr and captain Alice Kell. Their roles help explain how the team worked. A forward can finish an attack only if the side gets the ball into dangerous areas. A captain’s contribution may run through the whole match even when her name never appears among the scorers.\n\nRedford’s peak scoring year also helps put the FA decision in context. Women’s matches were drawing attention while players such as Redford were building reputations. In December 1921 the FA told affiliated clubs to stop providing grounds for women’s matches. The restriction came in the same year as the scoring season for which Redford is particularly remembered. It changed where teams could play at a moment when their football was already attracting crowds.",
     "facts": [
       "Played for Dick, Kerr Ladies",
       "A leading scorer in 1921",
@@ -233,53 +257,54 @@
     "source": "https://nationalfootballmuseum.com/items/the-lily-parr-statue/",
     "questions": [
       {
-        "prompt": "Which company did Redford work for during the First World War?",
+        "prompt": "What did Dick, Kerr & Co. represent in Redford’s story?",
         "options": [
-          "The Football Association",
-          "Dick, Kerr & Co.",
-          "Everton FC"
+          "Her team’s main French opponent and a later sponsor",
+          "Both her wartime workplace and the roots of her team",
+          "The governing body that restricted women’s grounds"
         ]
       },
       {
-        "prompt": "Where was her team based?",
+        "prompt": "Which two developments belong to the same year?",
         "options": [
-          "Blyth",
-          "London",
-          "Preston"
+          "The factory team’s wartime origins and the FA lifting the restriction",
+          "Redford’s standout scoring season and the first official England international",
+          "Redford’s standout scoring season and the FA grounds decision"
         ]
       },
       {
-        "prompt": "What was her role on the pitch?",
+        "prompt": "Which teammate is identified as captain in Redford’s story?",
         "options": [
-          "Referee",
-          "Forward",
-          "Goalkeeper"
+          "Lily Parr",
+          "Alice Kell",
+          "Bella Reay"
         ]
       },
       {
-        "prompt": "In which year was she a leading scorer for the team?",
+        "prompt": "What does the account suggest was happening when the restriction arrived?",
         "options": [
-          "1991",
-          "1921",
-          "1971"
+          "Public crowds developed only after grounds were reopened",
+          "Redford and other players were already building public reputations",
+          "The team had shifted from charity games to a national professional league"
         ]
       },
       {
-        "prompt": "Which pair played alongside her?",
+        "prompt": "What distinction does the story draw between roles on the same side?",
         "options": [
-          "Mia Hamm and Michelle Akers",
-          "Marta and Formiga",
-          "Lily Parr and Alice Kell"
+          "A forward leads the club while the captain records the scores",
+          "Captaincy mattered only when the captain also scored",
+          "A forward finishes chances while captaincy can shape play throughout"
         ]
       }
-    ]
+    ],
+    "furtherReading": []
   },
   {
     "id": 6,
     "name": "Bella Reay",
     "subtitle": "Blyth’s goalscorer",
     "era": "1917–1919 · England",
-    "story": "Reay worked in a munitions factory during the First World War and led the line for Blyth Spartans Ladies. Blyth’s local records credit her with 133 goals in a single season.",
+    "story": "Bella Reay worked in a munitions factory during the First World War and played centre-forward for Blyth Spartans Ladies. Factory teams gave women in towns such as Blyth somewhere to play and an identity that spectators could recognise. Tournaments between those teams created local rivalries and a reason for supporters to follow results.\n\nThe Munitionettes’ Cup was one such competition in north-east England. Blyth won it in 1918, beating Bolckow Vaughan 5–0 in the final replay. Reay scored three of the five goals. The two matches tell us something a trophy photograph cannot. Blyth had to play the final again after a draw, and Reay’s hat-trick came in that second game. Her club also credits her with 133 goals in a single season. That is a season tally, a separate piece of evidence from the goals in the cup replay.\n\nModern supporters can see a plaque in Reay’s honour at Croft Park, the Blyth Spartans ground. The plaque ties the player to a place people still visit for football. Her story also widens the map of wartime women’s football. Preston’s Dick, Kerr Ladies are well known, and Blyth’s cup run shows how strong organised football had become elsewhere.",
     "facts": [
       "Blyth Spartans centre-forward",
       "Played during the wartime boom",
@@ -288,44 +313,50 @@
     "source": "https://blythspartans.com/news/news-plaque-unveiled-for-spartans-legend/",
     "questions": [
       {
-        "prompt": "Which club did Bella Reay lead the line for?",
+        "prompt": "Which account correctly distinguishes the final and replay?",
         "options": [
-          "British Ladies’ Football Club",
-          "Blyth Spartans Ladies",
-          "Dick, Kerr Ladies"
+          "Blyth won the first game 5–0 and drew the replay",
+          "A draw led to a replay in which Blyth won 5–0",
+          "The final was decided in one match with no replay"
         ]
       },
       {
-        "prompt": "Which position did Reay play?",
+        "prompt": "What does the number 133 refer to?",
         "options": [
-          "Centre-forward",
-          "Centre-back",
-          "Goalkeeper"
+          "A season tally credited to Reay by her club",
+          "Reay’s total in the cup final and its replay",
+          "The number of teams in the cup"
         ]
       },
       {
-        "prompt": "What was her wartime job?",
+        "prompt": "Who did Blyth defeat in the replay and what did Reay contribute?",
         "options": [
-          "PE teacher",
-          "Munitions factory worker",
-          "Sports reporter"
+          "Bolckow Vaughan, with five goals from Reay",
+          "Bolckow Vaughan, with three goals from Reay",
+          "Dick, Kerr Ladies, with three goals from Reay"
         ]
       },
       {
-        "prompt": "How many goals do local records credit her with in one season?",
+        "prompt": "What makes Croft Park relevant to this story?",
         "options": [
-          "233",
-          "133",
-          "33"
+          "It is the factory where she worked during the war",
+          "It is the Blyth Spartans ground where she is commemorated",
+          "It is where she joined the Preston team"
         ]
       },
       {
-        "prompt": "Where is she commemorated?",
+        "prompt": "How does Reay’s story widen the picture of wartime football?",
         "options": [
-          "Goodison Park",
-          "Croft Park",
-          "Wembley"
+          "It shows that the Munitionettes’ Cup was exclusively for Preston teams",
+          "It shows that successful factory football also developed in north-east England",
+          "It shows that factory teams only began after the war"
         ]
+      }
+    ],
+    "furtherReading": [
+      {
+        "label": "Blyth Town Council · The Munitionettes’ Cup",
+        "url": "https://www.blythtowncouncil.gov.uk/widescope/resources/news_docs/blyth-spartans-women-talk-2.pdf"
       }
     ]
   },
@@ -334,7 +365,7 @@
     "name": "Rose Reilly",
     "subtitle": "Scotland to Italy",
     "era": "1970s–1980s · Scotland / Italy",
-    "story": "Reilly left Scotland to pursue a football career abroad and found success in Italy. She competed in Italian club football and represented Italy at the 1984 Mundialito, when an official FIFA Women’s World Cup was still years away.",
+    "story": "Rose Reilly played for Scotland in the 1972 match against England at Ravenscraig. She was still a teenager when she left to make a living from football abroad. Her move took her first to Reims in France, then to Italy, where she played for clubs including AC Milan. The route matters because she had already played internationally for Scotland before her Italian club career took off.\n\nThe Scottish Football Museum credits her with eight Italian league titles and two Serie A Golden Boots. That combination reflects achievements over several seasons. The Golden Boots recognise individual scoring, while the league titles belong to the teams she played in. Reilly also represented Italy in the 1984 Mundialito, which Italy won. That invitational tournament took place years before FIFA launched its first Women’s World Cup in 1991.\n\nReilly’s career is a reminder that the history of women’s international football includes competitions with different organisers and different status. A player could be a professional club footballer and play in a major international tournament before the modern World Cup existed. Her place in the Scottish Football Hall of Fame reflects a career that began in Scotland and had a substantial second chapter on the continent.",
     "facts": [
       "Played professionally abroad",
       "Represented Italy at the Mundialito",
@@ -343,53 +374,54 @@
     "source": "https://scottishfootballmuseum.org.uk/exhibitions/hall-of-fame/rose-reilly/",
     "questions": [
       {
-        "prompt": "Which country did Rose Reilly leave to pursue her career abroad?",
+        "prompt": "Which order matches Reilly’s route abroad?",
         "options": [
-          "Canada",
-          "Scotland",
-          "Brazil"
+          "Scotland → Italy → France",
+          "Scotland → France → Italy",
+          "France → Scotland → Italy"
         ]
       },
       {
-        "prompt": "Where did she find success in club football?",
+        "prompt": "What had she already done before her Italian club career?",
         "options": [
-          "Japan",
-          "Italy",
-          "Germany"
+          "Won the Mundialito for Italy",
+          "Played internationally for Scotland",
+          "Played in the first FIFA Women’s World Cup"
         ]
       },
       {
-        "prompt": "Which country did she represent at the Mundialito?",
+        "prompt": "What is the distinction between her Italian league titles and Golden Boots?",
         "options": [
-          "Norway",
-          "Italy",
-          "China PR"
+          "The Boots were team trophies and the titles recognised scoring",
+          "The titles were team achievements and the Boots recognised scoring",
+          "Both were awards from the Mundialito"
         ]
       },
       {
-        "prompt": "When was the Mundialito mentioned in her story?",
+        "prompt": "How does the 1984 Mundialito fit into the World Cup timeline?",
         "options": [
-          "2022",
-          "1984",
-          "1996"
+          "It was the first FIFA Women’s World Cup",
+          "Italy won it before the first FIFA Women’s World Cup",
+          "It followed the first FIFA Women’s World Cup"
         ]
       },
       {
-        "prompt": "Which Hall of Fame inducted her?",
+        "prompt": "Which description accounts for her two international connections?",
         "options": [
-          "Scottish Football Hall of Fame",
-          "US Olympic Hall of Fame",
-          "English Cricket Hall of Fame"
+          "She played for Scotland and later represented Italy at the Mundialito",
+          "She played for Italy in 1972 and for Scotland in the Mundialito",
+          "She represented France at both events"
         ]
       }
-    ]
+    ],
+    "furtherReading": []
   },
   {
     "id": 8,
     "name": "Joan Whalley",
     "subtitle": "Preston’s teenage debutant",
     "era": "1937–1940s · England",
-    "story": "Whalley took a day off school to make her Dick, Kerr Ladies debut aged 15. She later represented an England XI against Scotland, during the years when the FA’s restrictions were still in force.",
+    "story": "In May 1937 Joan Whalley took a day off school to play her first match for Dick, Kerr Ladies. She was fifteen. The game at Roundhay Park in Leeds marked the coronation of George VI. Her debut came well after the FA’s 1921 restriction on affiliated grounds, which makes the venue and occasion an important part of the story. The team still found events at which it could play.\n\nWhalley was later selected for a 1946 England XI fixture against Scotland. An XI is a team of eleven. In this case it was a representative side, distinct from the official England women’s international team that first played in 1972. Keeping those two fixtures separate lets us recognise the women who represented their countries informally before official recognition arrived.\n\nAfter her playing years, Whalley appeared in a national Nike advertising campaign in 1996. By then almost sixty years had passed since her debut. That campaign put an early player in front of a new audience during the same year women’s football joined the Olympic programme. Her career connects the period when teams played wherever they could get a game with the period when the sport was receiving a much bigger public platform.",
     "facts": [
       "Dick, Kerr Ladies debut in 1937",
       "Selected for an England XI in 1946",
@@ -398,44 +430,50 @@
     "source": "https://nationalfootballmuseum.com/halloffame/joan-whalley/",
     "questions": [
       {
-        "prompt": "How old was Whalley on her Dick, Kerr Ladies debut?",
+        "prompt": "What made Whalley’s debut particularly revealing about the FA restriction?",
         "options": [
-          "21",
-          "15",
-          "30"
+          "It was played before the restriction came in",
+          "A team could still find a venue and play years after 1921",
+          "It was the match at which the FA restored affiliated grounds"
         ]
       },
       {
-        "prompt": "What did she take a day off from to make her debut?",
+        "prompt": "Which details go together in the account of her debut?",
         "options": [
-          "Factory work",
-          "School",
-          "Coaching"
+          "Age fifteen, a national-team debut and an Olympic tournament",
+          "Age fifteen, a day off school and a coronation fixture",
+          "A cup final replay, a day off school and a national advertising shoot"
         ]
       },
       {
-        "prompt": "When did she debut for Dick, Kerr Ladies?",
+        "prompt": "How does her 1946 fixture differ from England’s 1972 match?",
         "options": [
-          "1972",
-          "1920",
-          "1937"
+          "It was the first official international and 1972 was a club match",
+          "It was an Olympic qualifier and 1972 was a World Cup qualifier",
+          "It was an England XI representative fixture rather than the first official international"
         ]
       },
       {
-        "prompt": "Who did the England XI she was selected for play in 1946?",
+        "prompt": "What happened in the same year as Whalley’s advertising campaign?",
         "options": [
-          "Scotland",
-          "Brazil",
-          "Italy"
+          "Women’s football joined the Olympic programme",
+          "England Women played their first official international",
+          "The FA first withdrew affiliated grounds"
         ]
       },
       {
-        "prompt": "Which brand featured her in a national campaign in 1996?",
+        "prompt": "Which order follows Whalley’s story?",
         "options": [
-          "Puma",
-          "Adidas",
-          "Nike"
+          "England XI fixture → Dick, Kerr debut → Nike campaign",
+          "Dick, Kerr debut → Nike campaign → England XI fixture",
+          "Dick, Kerr debut → England XI fixture → Nike campaign"
         ]
+      }
+    ],
+    "furtherReading": [
+      {
+        "label": "National Football Museum · Whalley’s debut and advertising campaign",
+        "url": "https://nationalfootballmuseum.com/stories/joan-whalley-nike/"
       }
     ]
   },
@@ -444,7 +482,7 @@
     "name": "Patricia Gregory",
     "subtitle": "Builder of the women’s game",
     "era": "1969 onward · England",
-    "story": "Gregory helped found the Women’s Football Association in 1969. The association gave teams a national organising body and helped rebuild the game after decades of restrictions. The FA had restricted access to affiliated grounds for decades.",
+    "story": "In the late 1960s, women’s football in England had teams but little national infrastructure of its own. Patricia Gregory helped set up the Women’s Football Association in 1969. The new association gave clubs a way to work together, organise national competition and create a structure for an England side. It was formed before the FA lifted its restriction on affiliated grounds.\n\nGregory’s role becomes clearer if you look at England’s official international debut. In 1972 she and Elsie Cook, her counterpart on the Scottish side, worked together on practical details such as travel and finding a venue. Those jobs rarely feature in a match summary, which usually starts with the players and the score. They were part of what made it possible to field the teams in the first place.\n\nThe events came close together but each achieved something different. In 1969, clubs got a national organising body. In 1971, the grounds restriction was lifted. In 1972, England played Scotland in Greenock. Seeing Gregory across that timeline helps explain why the National Football Museum inducted an organiser into its Hall of Fame. Building the conditions for players to compete can have a lasting effect even when the organiser’s name is absent from the team sheet.",
     "facts": [
       "Co-founded the WFA",
       "Helped organise the women’s game nationally",
@@ -453,44 +491,50 @@
     "source": "https://nationalfootballmuseum.com/news/patricia-gregory/",
     "questions": [
       {
-        "prompt": "Which organisation did Patricia Gregory help found?",
+        "prompt": "Which order correctly follows the three milestones?",
         "options": [
-          "FIFA",
-          "UEFA",
-          "Women’s Football Association"
+          "Grounds restriction lifted → Greenock international → WFA formed",
+          "Greenock international → WFA formed → grounds restriction lifted",
+          "WFA formed → grounds restriction lifted → Greenock international"
         ]
       },
       {
-        "prompt": "When was the WFA founded?",
+        "prompt": "What did the WFA provide that reopening grounds alone did not?",
         "options": [
-          "1991",
-          "1921",
-          "1969"
+          "Permission from the Scottish FA to use every ground",
+          "The rules for the first FIFA Women’s World Cup",
+          "A structure for clubs, competitions and a national team"
         ]
       },
       {
-        "prompt": "What did the WFA provide for teams?",
+        "prompt": "Who worked with Gregory on the Scottish side of the 1972 fixture?",
         "options": [
-          "A World Cup winner’s medal",
-          "A new set of boots",
-          "A national organising body"
+          "Carol Thomas",
+          "Alice Kell",
+          "Elsie Cook"
         ]
       },
       {
-        "prompt": "What had affected the women’s game for decades before the WFA?",
+        "prompt": "What kind of work connected Gregory to that fixture?",
         "options": [
-          "Restrictions on access to grounds",
-          "A ban on goalkeepers",
-          "A shortage of international rules"
+          "Organising practical matters such as travel and a venue",
+          "Scoring England’s opening goal",
+          "Captaining Scotland on the pitch"
         ]
       },
       {
-        "prompt": "Which museum inducted Gregory into its Hall of Fame?",
+        "prompt": "What does Gregory’s induction recognise in this account?",
         "options": [
-          "Scottish Football Museum",
-          "National Football Museum",
-          "Olympic Museum"
+          "A scoring record in the first official match",
+          "The work of building the system that made competition possible",
+          "A professional club career in Italy"
         ]
+      }
+    ],
+    "furtherReading": [
+      {
+        "label": "Scottish Football Museum · Organising the first international",
+        "url": "https://scottishfootballmuseum.org.uk/news/first-womens-international-match-1972/"
       }
     ]
   },
@@ -499,7 +543,7 @@
     "name": "Carol Thomas",
     "subtitle": "England’s captain",
     "era": "1974–1985 · England",
-    "story": "Thomas made her England debut aged 19 and became the team’s second captain. She led England to the 1984 European final and was the first Lioness to reach 50 appearances.",
+    "story": "Carol Thomas made her England debut in 1974, aged nineteen, only two years after the team’s first official international. She became England’s second captain, following Sheila Parker. That made her part of the team’s first generation of leaders, while the national side was still building a regular programme of matches and tournaments.\n\nIn 1984 Thomas led England to the final of the first European competition for women’s national teams. Unlike the single-match Wembley final of 2022, the 1984 final was played over two legs against Sweden. Sweden won the first game 1–0. England won the return by the same score. Because the combined score was 1–1, Sweden and England went to penalties, and Sweden took the title.\n\nThomas was the first England woman to win fifty caps. A cap records an appearance for the national team, so that milestone reflects how often she played rather than how many goals she scored. Her story is easy to miss if you look only at lists of winners. England lost the 1984 final, but getting to that final and producing a player who reached fifty appearances were milestones for a national team that had played its first official fixture a little over a decade earlier.",
     "facts": [
       "England debut in 1974",
       "First England woman to 50 caps",
@@ -508,44 +552,50 @@
     "source": "https://nationalfootballmuseum.com/halloffame/carol-thomas/",
     "questions": [
       {
-        "prompt": "How old was Thomas at her England debut?",
+        "prompt": "Which sequence follows Thomas’s England career?",
         "options": [
-          "19",
-          "15",
-          "25"
+          "Debut → succeeded Sheila Parker as captain → led England in the 1984 final",
+          "Captained England → made her debut → succeeded Sheila Parker",
+          "Led England in 1984 → made her debut → succeeded Sheila Parker"
         ]
       },
       {
-        "prompt": "When did she make her England debut?",
+        "prompt": "Why did the 1984 final go to penalties?",
         "options": [
-          "1991",
-          "1921",
-          "1974"
+          "Both legs ended 1–1",
+          "Sweden won both legs 1–0",
+          "Each team won one leg 1–0"
         ]
       },
       {
-        "prompt": "Which milestone did she reach first for England Women?",
+        "prompt": "How did the 1984 final format differ from England’s 2022 final?",
         "options": [
-          "200 caps",
-          "50 caps",
-          "100 goals"
+          "One match against Sweden versus two legs at Wembley",
+          "Two legs against Sweden versus one match at Wembley",
+          "Both used two legs but only 2022 used penalties"
         ]
       },
       {
-        "prompt": "Which final did she lead England to?",
+        "prompt": "What does Thomas’s fifty-cap milestone count?",
         "options": [
-          "1991 World Cup final",
-          "1996 Olympic final",
-          "1984 European final"
+          "Matches won as captain",
+          "International goals",
+          "Senior national-team appearances"
         ]
       },
       {
-        "prompt": "What was her place in the sequence of England Women captains?",
+        "prompt": "How close was Thomas’s debut to England’s first official match?",
         "options": [
-          "Tenth",
-          "First",
-          "Second"
+          "About two years earlier",
+          "About a decade later",
+          "About two years later"
         ]
+      }
+    ],
+    "furtherReading": [
+      {
+        "label": "England Football · Senior team results archive",
+        "url": "https://www.englandfootball.com/england/womens-senior-team/legacy"
       }
     ]
   },
@@ -554,7 +604,7 @@
     "name": "Mia Hamm",
     "subtitle": "US attacking icon",
     "era": "1991–2004 highlights · USA",
-    "story": "Hamm helped the United States win two World Cups and two Olympic gold medals. She could create chances for others as well as finish them, and FIFA named her its first Women’s World Player of the Year.",
+    "story": "Mia Hamm was nineteen and the youngest player in the United States squad at the first Women’s World Cup in 1991. She played all six matches and scored twice in the group stage. Michelle Akers scored both American goals in the final against Norway. Their contributions came at different points in the same campaign, which is one reason to follow a tournament from the opening games rather than starting with the final.\n\nHamm was a forward who could both finish and create. A runner can make space for a teammate by pulling a defender away, or use the same movement to get on the end of a pass. Hamm’s 158 international goals show how often she finished moves. Her ability to bring others into the game helps explain why her value was wider than that number.\n\nShe won Olympic gold in 1996, then a second World Cup at home in 1999. FIFA named her its women’s world player of the year in 2001 and 2002, before she won another Olympic gold in 2004. Looking at that sequence shows two kinds of recognition. The medals depended on the US team winning tournaments. The FIFA awards recognised her performances as an individual within and beyond that team.",
     "facts": [
       "World Cup winner in 1991 and 1999",
       "Olympic gold in 1996 and 2004",
@@ -563,44 +613,50 @@
     "source": "https://fifa.com/en/the-best-fifa-football-awards/2025/articles/all-award-winners-history",
     "questions": [
       {
-        "prompt": "Which country did Hamm represent?",
+        "prompt": "Which statement separates Hamm’s 1991 contribution from Akers’s?",
         "options": [
-          "United States",
-          "Germany",
-          "Canada"
+          "Hamm scored twice in the group stage and Akers scored twice in the final",
+          "Hamm scored twice in the final and Akers scored twice in the group stage",
+          "Both scored once in the final"
         ]
       },
       {
-        "prompt": "Which two World Cups did she win?",
+        "prompt": "Which milestone came between the 1991 and 1999 World Cup wins?",
         "options": [
-          "1995 and 2003",
-          "1991 and 1999",
-          "2007 and 2011"
+          "The second FIFA world player award",
+          "The 1996 Olympic gold",
+          "The 2004 Olympic gold"
         ]
       },
       {
-        "prompt": "Which two Olympics brought her gold?",
+        "prompt": "Which honours did Hamm receive after the 1999 title and before her final Olympic gold?",
         "options": [
-          "2000 and 2008",
-          "1996 and 2004",
-          "2008 and 2012"
+          "Two further World Cup titles",
+          "Two FIFA women’s world player awards",
+          "Her first two Olympic medals"
         ]
       },
       {
-        "prompt": "What attacking contribution did she make besides finishing?",
+        "prompt": "Which movement illustrates the contribution the goal tally misses?",
         "options": [
-          "Officiating matches",
-          "Creating chances for teammates",
-          "Taking throw-ins only"
+          "A finish that adds one to her own goal total",
+          "A run that draws a defender away and frees a teammate",
+          "A run onto a pass followed by a goal of her own"
         ]
       },
       {
-        "prompt": "In which years did she win FIFA’s world player award?",
+        "prompt": "Which statement best describes Hamm’s role at the first World Cup?",
         "options": [
-          "2003 and 2004",
-          "2001 and 2002",
-          "2009 and 2010"
+          "She was the youngest but only entered in the final",
+          "She was the youngest in the squad and played every match",
+          "She appeared in every group game but did not play later"
         ]
+      }
+    ],
+    "furtherReading": [
+      {
+        "label": "Society for American Soccer History · Mia Hamm’s career",
+        "url": "https://www.ussoccerhistory.org/national-soccer-hall-of-fame-biographies/national-soccer-hall-of-fame-player-biographies/mia-hamm/"
       }
     ]
   },
@@ -609,7 +665,7 @@
     "name": "Marta",
     "subtitle": "Brazil’s creative icon",
     "era": "2003–2023 World Cups · Brazil",
-    "story": "Marta Vieira da Silva dazzled with her dribbling and ability to change direction. In 2007 she led Brazil to its first Women’s World Cup final and took both the tournament’s top player and top scorer awards.",
+    "story": "Brazil’s 2007 World Cup semi-final against the United States gave Marta space to show several sides of her game in one match. She scored twice in a 4–0 win. On her second goal she used a quick piece of skill to escape pressure, then accelerated towards goal and finished. The change of speed mattered because beating the first defender only gave her a brief opening before the next challenge.\n\nThe win took Brazil to its first Women’s World Cup final. Germany beat Brazil 2–0 there, so Marta’s tournament ended with a runners-up medal. She still received the Golden Boot as leading scorer and the Golden Ball as the outstanding player. Those two awards answer different questions. One measures who scored the most. The other recognises performances across the tournament.\n\nMarta went on to score seventeen goals across her Women’s World Cup appearances. The 2007 semi-final shows why the best way to understand that record is to look at the attacks themselves. Some goals come from arriving where the ball is going. In this example, a turn under pressure and the acceleration afterwards opened a route that had been closed moments earlier.",
     "facts": [
       "Six FIFA world player awards",
       "2007 World Cup Golden Ball and Golden Boot",
@@ -618,44 +674,50 @@
     "source": "https://fifa.com/en/the-best-fifa-football-awards/2025/articles/all-award-winners-history",
     "questions": [
       {
-        "prompt": "Which country does Marta represent?",
+        "prompt": "Which pairing correctly matches Brazil’s two knockout results?",
         "options": [
-          "Spain",
-          "Brazil",
-          "Japan"
+          "2–0 win against Germany, then 4–0 loss to the USA",
+          "4–0 win against the USA, then 2–0 loss to Germany",
+          "4–0 win against Germany, then 2–0 loss to the USA"
         ]
       },
       {
-        "prompt": "What skill made her especially hard to defend against?",
+        "prompt": "Why was the acceleration after Marta’s turn important?",
         "options": [
-          "Saving penalties",
-          "Taking long throw-ins",
-          "Dribbling and changing direction"
+          "It gave the first defender time to recover",
+          "It forced Brazil to restart the attack from midfield",
+          "It let her use the space before another defender could close it"
         ]
       },
       {
-        "prompt": "When did she help Brazil reach its first Women’s World Cup final?",
+        "prompt": "Which 2007 honours can sit together without contradiction?",
         "options": [
-          "2023",
-          "1991",
-          "2007"
+          "Tournament winner, Golden Ball and Golden Boot",
+          "Tournament runner-up, Golden Boot and Golden Glove",
+          "Tournament runner-up, Golden Ball and Golden Boot"
         ]
       },
       {
-        "prompt": "Which awards did she win at the 2007 World Cup?",
+        "prompt": "Which award would tell you most directly who scored the most goals in 2007?",
         "options": [
-          "Golden Glove and Golden Boot",
-          "Golden Glove and Fair Play",
-          "Golden Ball and Golden Boot"
+          "Golden Ball",
+          "Runners-up medal",
+          "Golden Boot"
         ]
       },
       {
-        "prompt": "How many Women’s World Cup goals are listed in her story?",
+        "prompt": "How should Marta’s seventeen goals be understood?",
         "options": [
-          "17",
-          "7",
-          "27"
+          "A total across editions of the Women’s World Cup",
+          "Her tally at the 2007 tournament alone",
+          "Her goals across the semi-final and final of 2007"
         ]
+      }
+    ],
+    "furtherReading": [
+      {
+        "label": "FIFA · Marta’s 2007 semi-final",
+        "url": "https://inside.fifa.com/tournaments/womens/womensworldcup/china2007/news/marta-provides-a-masterclass-2860869"
       }
     ]
   },
@@ -664,7 +726,7 @@
     "name": "Michelle Akers",
     "subtitle": "First World Cup Golden Boot",
     "era": "1991–1999 highlights · USA",
-    "story": "Akers scored ten goals at the inaugural FIFA Women’s World Cup, including both US goals in the final. By 1999 she was helping the US win another title from a deeper midfield role.",
+    "story": "Michelle Akers ended the first Women’s World Cup with ten goals in six matches. Five came in a single quarter-final against Chinese Taipei. The final against Norway was closer. Akers scored the opening goal and later the winner in a 2–1 victory. That means half of her tournament total came in one game, but two goals in a different match decided the title.\n\nEight years later, the United States won the World Cup again. By 1999 Akers was contributing from a deeper midfield position. A centre-forward generally looks to threaten the goal and finish attacks. A deeper midfielder spends more time contesting the ball, supporting teammates and connecting play. Akers could affect a winning team from both areas of the pitch.\n\nPutting the two tournaments side by side changes what you look for when judging her career. At the first edition, the goals tell a large part of the story. In 1999 a match report that counted only her goals would miss much of what she did. Her place in the history of the United States team comes from starring in different roles as the team won two titles.",
     "facts": [
       "Ten goals at China 1991",
       "Scored both goals in the 1991 final",
@@ -673,44 +735,50 @@
     "source": "https://archives.fifa.com/fifa_womens_world_cup",
     "questions": [
       {
-        "prompt": "Which country did Akers represent?",
+        "prompt": "Which breakdown correctly separates two parts of Akers’s 1991 total?",
         "options": [
-          "United States",
-          "Canada",
-          "Norway"
+          "Five goals in the quarter-final and two in the final",
+          "Two goals in the quarter-final and five in the final",
+          "Five goals in the semi-final and two in the final"
         ]
       },
       {
-        "prompt": "How many goals did she score at the inaugural World Cup?",
+        "prompt": "Which statement explains the final score in 1991?",
         "options": [
-          "15",
-          "5",
-          "10"
+          "Akers and Hamm scored one each in a 2–1 win",
+          "Akers scored once in a 2–0 win",
+          "Akers scored both American goals in a 2–1 win"
         ]
       },
       {
-        "prompt": "How many US goals did she score in the 1991 final?",
+        "prompt": "How did Akers’s role change between the title wins?",
         "options": [
-          "None",
-          "One goal",
-          "Both goals"
+          "From deeper midfield to leading the line",
+          "From forward to centre-back",
+          "From a scoring threat up front to a deeper midfield role"
         ]
       },
       {
-        "prompt": "Where was the inaugural World Cup held?",
+        "prompt": "What should a reader look for in 1999 to understand her role?",
         "options": [
-          "Sweden",
-          "China PR",
-          "France"
+          "How many of Norway’s goals she saved",
+          "How she contested possession and connected play",
+          "How she matched the five goals from her 1991 quarter-final"
         ]
       },
       {
-        "prompt": "Where did Akers play as she helped win the 1999 title?",
+        "prompt": "What proportion of her 1991 tournament goals came against Chinese Taipei?",
         "options": [
-          "In goal",
-          "At right-back",
-          "In a deeper midfield role"
+          "One third",
+          "Two thirds",
+          "Half"
         ]
+      }
+    ],
+    "furtherReading": [
+      {
+        "label": "FBref · The 1991 quarter-final match record",
+        "url": "https://fbref.com/en/matches/4a6901f4/United-States-Chinese-Taipei-November-24-1991-Womens-World-Cup"
       }
     ]
   },
@@ -719,7 +787,7 @@
     "name": "Birgit Prinz",
     "subtitle": "Germany’s leading striker",
     "era": "2003–2007 highlights · Germany",
-    "story": "Prinz led Germany’s attack in back-to-back World Cup wins. Her movement and finishing earned her three consecutive FIFA Women’s World Player of the Year awards.",
+    "story": "Birgit Prinz led the line as Germany won back-to-back Women’s World Cups in 2003 and 2007. At the first of those editions she scored seven goals. Germany beat Sweden 2–1 in the final, which was decided by Nia Künzer’s golden goal. Under that rule, the first goal in extra time immediately ended the game. Prinz was the competition’s leading scorer and won the Golden Ball, although it was her teammate who delivered the decisive finish.\n\nFour years later Germany faced Brazil in Shanghai. Prinz scored the opening goal in a 2–0 win. Germany went through the whole 2007 tournament without conceding. That defensive record adds context to the way the final was won. Prinz’s goal gave her side the lead and the team’s defensive work helped make sure it never lost it.\n\nFIFA also named Prinz its women’s world player of the year in 2003, 2004 and 2005. Those were three annual awards in succession, separate from Germany’s two World Cup wins four years apart. Together they show her effect on individual matches, her level across multiple seasons and the different ways a forward can shape a championship team.",
     "facts": [
       "World Cup winner in 2003 and 2007",
       "2003 World Cup Golden Boot",
@@ -728,44 +796,50 @@
     "source": "https://fifa.com/en/the-best-fifa-football-awards/2025/articles/all-award-winners-history",
     "questions": [
       {
-        "prompt": "Which country did Prinz lead in attack?",
+        "prompt": "Which player scored the goal that ended the 2003 final?",
         "options": [
-          "United States",
-          "Japan",
-          "Germany"
+          "Birgit Prinz",
+          "Marta",
+          "Nia Künzer"
         ]
       },
       {
-        "prompt": "Which two World Cups did she win?",
+        "prompt": "Which comparison correctly matches Germany’s two finals?",
         "options": [
-          "1991 and 1999",
-          "2003 and 2007",
-          "2011 and 2015"
+          "2003 was a 2–0 win over Brazil and 2007 a golden-goal win over Sweden",
+          "2003 was a golden-goal win over Sweden and 2007 a 2–0 win over Brazil",
+          "Both finals were settled by a golden goal"
         ]
       },
       {
-        "prompt": "Which award did Prinz win at the 2003 World Cup?",
+        "prompt": "Why did the 2003 match stop as soon as the extra-time goal was scored?",
         "options": [
-          "Golden Boot",
-          "Fair Play team award",
-          "Golden Glove"
+          "The golden-goal rule made the first extra-time goal decisive",
+          "The goal took Germany two clear on aggregate",
+          "The goal was the last kick in a penalty shootout"
         ]
       },
       {
-        "prompt": "How many consecutive FIFA world player awards did she win?",
+        "prompt": "Which pair describes the 2007 final and tournament together?",
         "options": [
-          "Two",
-          "Four",
-          "Three"
+          "Prinz scored the golden goal and Germany conceded once in the final",
+          "Prinz scored only in the shootout and Germany conceded twice in the final",
+          "Prinz opened the scoring and Germany kept a clean sheet throughout the tournament"
         ]
       },
       {
-        "prompt": "Which on-pitch qualities are highlighted in her story?",
+        "prompt": "How do her annual awards fit between the two World Cup wins?",
         "options": [
-          "Movement and finishing",
-          "Throw-ins and refereeing",
-          "Goalkeeping and catching"
+          "They ran from 2003 to 2005, ending before the second title",
+          "They ran from 2005 to 2007, ending with the second title",
+          "They all came after the second title"
         ]
+      }
+    ],
+    "furtherReading": [
+      {
+        "label": "UEFA · Women’s World Cup final results",
+        "url": "https://www.uefa.com/news-media/news/0223-0e160835dc19-2bdb9a41e548-1000--us-win-women-s-world-cup-at-a-glance/"
       }
     ]
   },
@@ -774,7 +848,7 @@
     "name": "Sun Wen",
     "subtitle": "China’s 1999 star",
     "era": "1999 World Cup · China PR",
-    "story": "Sun Wen inspired China’s run to the 1999 final. She scored seven goals, shared the tournament scoring award with Brazil’s Sissi and was named its best player.",
+    "story": "Sun Wen helped China PR reach the 1999 Women’s World Cup final. The team showed what it could do in attack by beating Norway 5–0 in the semi-final. Sun scored twice in that match. In the final, China and the United States played for 120 minutes without a goal. The contrast between the two rounds shows how much the demands of a match can change in only a few days.\n\nThe final went to penalties. Sun converted her kick, but the United States won the shootout 5–4. A converted shootout kick helps a team win the tie, but it does not change the 0–0 score or count as a goal in the tournament scoring table. Sun finished with seven tournament goals and shared top-scorer honours with Brazil’s Sissi.\n\nShe also won the Golden Ball. That was a separate award for the tournament’s outstanding player and it could go to someone on either side of the final. China finished as runner-up, Sun finished level with Sissi on goals and Sun took the individual player award. Those are three different outcomes from one tournament. They help tell a fuller story than the identity of the champion alone.",
     "facts": [
       "1999 World Cup runner-up",
       "1999 Golden Ball",
@@ -783,44 +857,50 @@
     "source": "https://ussoccer.com/history/us-soccer-as-host/1999-fifa-womens-world-cup",
     "questions": [
       {
-        "prompt": "Which team did Sun Wen help reach the 1999 final?",
+        "prompt": "Which contrast describes China’s last two matches?",
         "options": [
-          "China PR",
-          "Japan",
-          "United States"
+          "Five goals against Norway, then no goals in open play or extra time against the USA",
+          "No goals against Norway, then five against the USA before penalties",
+          "Five goals in both games before penalties"
         ]
       },
       {
-        "prompt": "How many goals did she score at the 1999 World Cup?",
+        "prompt": "How should Sun’s successful final shootout kick be recorded?",
         "options": [
-          "Seven",
-          "Five",
-          "Ten"
+          "As a shootout conversion separate from her seven tournament goals",
+          "As her eighth goal in the tournament scoring table",
+          "As China’s only goal in a 1–0 final"
         ]
       },
       {
-        "prompt": "What award recognised her as the tournament’s best player?",
+        "prompt": "Which award outcome did Sun share with Sissi?",
         "options": [
-          "Golden Ball",
-          "Golden Glove",
-          "Fair Play award"
+          "Top-scorer honours",
+          "Golden Ball honours",
+          "A runners-up medal"
         ]
       },
       {
-        "prompt": "Who shared the Golden Boot with her?",
+        "prompt": "Which sequence describes China’s run at the end of the tournament?",
         "options": [
-          "Sissi",
-          "Mia Hamm",
-          "Marta"
+          "Beat Norway, drew with the USA after extra time, lost the shootout",
+          "Drew with Norway, won that shootout, lost to the USA in normal time",
+          "Beat the USA in the semi-final, then lost to Norway on penalties"
         ]
       },
       {
-        "prompt": "How did her team finish at the 1999 World Cup?",
+        "prompt": "What does Sun’s Golden Ball illustrate about the award?",
         "options": [
-          "Champion",
-          "Third",
-          "Runner-up"
+          "The award goes jointly to the leading scorers",
+          "Only players on the winning side are eligible",
+          "The outstanding player can come from the runners-up"
         ]
+      }
+    ],
+    "furtherReading": [
+      {
+        "label": "FIFA Museum · China’s run to the 1999 final",
+        "url": "https://www.fifamuseum.com/en/explore/fifamuseumplus/blog/One-step-away-China-"
       }
     ]
   },
@@ -829,7 +909,7 @@
     "name": "Homare Sawa",
     "subtitle": "Japan’s world champion",
     "era": "1995–2015 World Cups · Japan",
-    "story": "Sawa captained Japan to its first Women’s World Cup title in 2011. Her late equaliser in extra time forced penalties against the United States, and Japan won the shootout.",
+    "story": "Japan fell behind twice to the United States in the 2011 Women’s World Cup final. Alex Morgan opened the scoring in normal time and Aya Miyama equalised. Abby Wambach then headed the United States back in front in extra time. Japan needed another goal late in the match to give itself a chance of winning.\n\nThat goal came from captain Homare Sawa. She met a corner near the front of goal and redirected it towards the net. By changing the angle of a ball that was already travelling across the goalmouth, she gave the defence little time to react. The match finished 2–2 and Japan won the shootout, securing its first title.\n\nSawa received both the Golden Boot and the Golden Ball. The first recognised her five tournament goals. The second recognised her performances across the competition. Her late finish stands out because of what it changed in the final, but she had already been creating chances and contributing in midfield. She went on to appear at a sixth World Cup. Reading the final as a sequence of goals gives each of Japan’s equalisers its proper place and shows why one player’s most famous moment still depended on the work of the rest of the side.",
     "facts": [
       "2011 World Cup winner",
       "2011 Golden Ball and Golden Boot",
@@ -838,44 +918,50 @@
     "source": "https://jfa.jp/eng/about_jfa/fwwc2023/history.html",
     "questions": [
       {
-        "prompt": "Which country did Sawa captain?",
+        "prompt": "Which order matches the goals in the final?",
         "options": [
-          "Japan",
-          "China PR",
-          "Germany"
+          "Morgan → Miyama → Wambach → Sawa",
+          "Morgan → Sawa → Wambach → Miyama",
+          "Wambach → Miyama → Morgan → Sawa"
         ]
       },
       {
-        "prompt": "When did she lead her side to a World Cup title?",
+        "prompt": "Which deficit did Sawa’s goal erase?",
         "options": [
-          "2011",
-          "2023",
-          "1999"
+          "The US lead created by Wambach in extra time",
+          "The US lead created by Morgan in normal time",
+          "A two-goal lead built during the shootout"
         ]
       },
       {
-        "prompt": "Who were Japan’s opponents in the 2011 final?",
+        "prompt": "What made the finish from the corner effective?",
         "options": [
-          "United States",
-          "England",
-          "Norway"
+          "She redirected a moving ball before the defence could adjust",
+          "She stopped the ball and waited for the defence to recover",
+          "She waited for a rebound from a penalty"
         ]
       },
       {
-        "prompt": "What did Sawa’s extra-time equaliser force?",
+        "prompt": "Which statement distinguishes the goal from the title-winning act?",
         "options": [
-          "A penalty shootout",
-          "A second group stage",
-          "A replay"
+          "It forced penalties, and Japan won the shootout",
+          "It immediately ended the match under the golden-goal rule",
+          "It was the final kick of the shootout"
         ]
       },
       {
-        "prompt": "How many World Cups did she play at?",
+        "prompt": "Which pair describes Sawa’s 2011 individual honours?",
         "options": [
-          "Eight",
-          "Six",
-          "Three"
+          "Golden Ball for five goals and Golden Boot for her tournament performances",
+          "Golden Boot for five goals and Golden Ball for her tournament performances",
+          "Golden Glove and Golden Boot for her work in the final"
         ]
+      }
+    ],
+    "furtherReading": [
+      {
+        "label": "UEFA · The 2011 final",
+        "url": "https://www.uefa.com/news-media/news/01f3-0e12400bb1ef-de625f00c64c-1000--japan-stun-us-from-the-spot-to-take-global-title/"
       }
     ]
   },
@@ -884,7 +970,7 @@
     "name": "Kelly Smith",
     "subtitle": "Lionesses and Arsenal great",
     "era": "1995–2014 · England",
-    "story": "Smith brought skill and invention to England’s attack across two decades. She scored in the 2009 EURO final and represented Great Britain at the London Olympics in 2012.",
+    "story": "Kelly Smith’s 117 appearances and 46 goals for England span a period when the national team became more familiar to supporters. She played in two World Cups and four European Championships. A cap records an appearance, even if a player does not score. Reading her caps alongside her goals tells you both how often England called on her and how regularly she found the net.\n\nOne of her goals came in the 2009 European final. Germany had taken a two-goal lead. England pulled one back before the break, then Smith scored England’s second in the second half. Germany eventually won 6–2. Smith’s goal kept her side in the game at that point. It can matter in the story of the final even though it did not turn the match into a win.\n\nSmith also represented Great Britain at the London Olympics in 2012. That is a separate team identity from England, which she represented at European Championships and World Cups. Keeping the names straight matters when reading a player’s record. Her 46 England goals describe what she did in an England shirt, while her Olympic appearance is part of a wider international career.",
     "facts": [
       "117 England appearances",
       "46 England goals",
@@ -893,44 +979,50 @@
     "source": "https://thefa.com/news/2015/feb/03/kelly-smith-announces-international-retirement",
     "questions": [
       {
-        "prompt": "Which country did Kelly Smith represent at senior level?",
+        "prompt": "Which statement separates her caps and goals accurately?",
         "options": [
-          "Germany",
-          "England",
-          "Canada"
+          "117 England goals in 46 appearances",
+          "117 England appearances, with 46 England goals",
+          "46 England appearances and 117 Great Britain appearances"
         ]
       },
       {
-        "prompt": "How many England appearances did she make?",
+        "prompt": "What did Smith’s goal in the 2009 final do?",
         "options": [
-          "17",
-          "170",
-          "117"
+          "It gave England the lead in a match England won",
+          "It was England’s only goal and came before half-time",
+          "It was England’s second goal in a match Germany eventually won"
         ]
       },
       {
-        "prompt": "How many England goals did she score?",
+        "prompt": "Which national-team names match the competitions she played in?",
         "options": [
-          "46",
-          "26",
-          "66"
+          "England at the EURO and Great Britain at London 2012",
+          "Great Britain at the EURO and England at London 2012",
+          "England at both the EURO and London 2012"
         ]
       },
       {
-        "prompt": "Which EURO final did Smith score in?",
+        "prompt": "Which milestone came first?",
         "options": [
-          "2022",
-          "2009",
-          "2017"
+          "Smith appeared for Great Britain at London 2012",
+          "Smith scored in a European final",
+          "Smith retired from international football"
         ]
       },
       {
-        "prompt": "Which team did she represent at the 2012 Olympics?",
+        "prompt": "Which statement best explains why the 2009 goal is still worth studying?",
         "options": [
-          "United States",
-          "Japan",
-          "Great Britain"
+          "It earned England the title despite Germany’s six goals",
+          "It was decisive because it counted twice in the aggregate score",
+          "It changed England’s position in the match without changing who eventually won"
         ]
+      }
+    ],
+    "furtherReading": [
+      {
+        "label": "UEFA · The 2009 European final",
+        "url": "https://www.uefa.com/news-media/news/01dd-0e11bd351399-94ff69782a7a-1000--six-goal-germany-reign-supreme/"
       }
     ]
   },
@@ -939,7 +1031,7 @@
     "name": "Abby Wambach",
     "subtitle": "Aerial goalscoring great",
     "era": "2004–2015 highlights · USA",
-    "story": "Wambach became known for her heading and her ability to score late goals. Her stoppage-time header against Brazil kept the United States in the 2011 World Cup, and she lifted the trophy four years later.",
+    "story": "The United States were close to going out of the 2011 World Cup in their quarter-final against Brazil. They trailed 2–1 deep into extra time. Megan Rapinoe delivered a long cross from the left and Abby Wambach met it with a header at the back post. The equaliser took the game to penalties, which the United States won.\n\nIt is easy to remember only the leap. The timing of the run and the relationship between passer and forward matter just as much. A cross has to arrive where the attacker can reach it before the defender or goalkeeper. Wambach’s movement put her at the far side of the goalmouth when Rapinoe delivered. The header changed the outcome of the tie, even though it did not end the game by itself.\n\nWambach scored with her head again in the final against Japan, putting the United States in front in extra time. Japan equalised and won on penalties. The two matches are a useful contrast. A decisive-looking header can create a new opportunity without settling a result. Wambach was named FIFA’s women’s world player of the year in 2012 and won the World Cup with the United States in 2015.",
     "facts": [
       "Olympic gold in 2004 and 2012",
       "2012 FIFA Women’s World Player of the Year",
@@ -948,44 +1040,50 @@
     "source": "https://fifa.com/en/the-best-fifa-football-awards/2025/articles/all-award-winners-history",
     "questions": [
       {
-        "prompt": "What was Wambach especially known for?",
+        "prompt": "Which detail explains how the quarter-final equaliser was created?",
         "options": [
-          "Heading and late goals",
-          "Saving penalties",
-          "Long throw-ins"
+          "Rapinoe crossed from the left and Wambach arrived at the back post",
+          "Wambach crossed from the left and Rapinoe arrived at the back post",
+          "Rapinoe took a penalty after Wambach won a foul"
         ]
       },
       {
-        "prompt": "Which team did she score a late header against at the 2011 World Cup?",
+        "prompt": "What did Wambach’s header against Brazil actually decide?",
         "options": [
-          "Italy",
-          "England",
-          "Brazil"
+          "It put the USA 3–2 ahead immediately",
+          "It won the shootout on its final kick",
+          "It levelled the match and forced a shootout"
         ]
       },
       {
-        "prompt": "When did she win the World Cup?",
+        "prompt": "How did the US shootout outcomes differ in the two matches?",
         "options": [
-          "2011",
-          "2003",
-          "2015"
+          "They lost against Brazil and won against Japan",
+          "They won both shootouts",
+          "They won against Brazil and lost against Japan"
         ]
       },
       {
-        "prompt": "Which two Olympics brought her gold?",
+        "prompt": "What was the scoreboard effect of her two extra-time headers?",
         "options": [
-          "2004 and 2012",
-          "1996 and 2000",
-          "2008 and 2016"
+          "An equaliser against Brazil and a lead against Japan",
+          "A lead against Brazil and an equaliser against Japan",
+          "Equalisers in both matches"
         ]
       },
       {
-        "prompt": "When was she named FIFA Women’s World Player of the Year?",
+        "prompt": "Which order fits her later milestones?",
         "options": [
-          "2012",
-          "2022",
-          "2002"
+          "2011 Brazil header → FIFA annual award → 2015 World Cup title",
+          "FIFA annual award → 2015 title → Brazil header",
+          "2015 title → Brazil header → FIFA annual award"
         ]
+      }
+    ],
+    "furtherReading": [
+      {
+        "label": "FIFA · Wambach’s 2011 equaliser",
+        "url": "https://inside.fifa.com/womens-football/news/10-july-2011-goal-for-the-ages"
       }
     ]
   },
@@ -994,7 +1092,7 @@
     "name": "Christine Sinclair",
     "subtitle": "Canada’s captain and scorer",
     "era": "2003–2023 World Cups · Canada",
-    "story": "Sinclair scored 190 senior international goals for Canada. She played in six World Cups and helped Canada claim Olympic gold at Tokyo 2020, a tournament played in 2021.",
+    "story": "Christine Sinclair scored 190 senior international goals for Canada. Those goals include matches outside the World Cup. Her six appearances at different World Cup editions tell a separate story about how long she stayed at international level. Both figures matter, but each answers a different question. One measures scoring across her senior career. The other tells you how many times she appeared at the biggest global tournament.\n\nCanada won Olympic bronze at London 2012 and Rio 2016 before winning gold at Tokyo 2020. The Tokyo tournament kept its original name even though it was played in 2021. Canada met Sweden in the final and the score was 1–1 after extra time. Canada then won on penalties. Looking only at the name of the Games or the final match score would miss part of what happened.\n\nSinclair’s career is a good example of how a team’s results can change across several generations of a squad. She scored at a remarkable rate, but Olympic gold still depended on the team defending, equalising and handling a shootout. The medal sequence shows that Canada repeatedly reached the podium before it finished on top.",
     "facts": [
       "190 senior international goals",
       "Six World Cup appearances",
@@ -1003,44 +1101,50 @@
     "source": "https://fifa.com/fr/tournaments/womens/womensworldcup/articles/joueuses-au-plus-grand-nombre-de-participations",
     "questions": [
       {
-        "prompt": "Which country did Sinclair represent?",
+        "prompt": "Which order matches Canada’s medal run?",
         "options": [
-          "Canada",
-          "Germany",
-          "United States"
+          "London bronze → Rio bronze → Tokyo gold",
+          "London gold → Rio bronze → Tokyo bronze",
+          "London bronze → Rio gold → Tokyo bronze"
         ]
       },
       {
-        "prompt": "How many senior international goals did she score?",
+        "prompt": "Which dates describe the Tokyo tournament correctly?",
         "options": [
-          "90",
-          "190",
-          "109"
+          "It was called Tokyo 2021 and played in 2020",
+          "It was called Tokyo 2020 and played in 2021",
+          "It was called Tokyo 2020 and played in 2019"
         ]
       },
       {
-        "prompt": "How many World Cups did she play at?",
+        "prompt": "How did Canada win the final despite the match ending 1–1?",
         "options": [
-          "Six",
-          "Two",
-          "Four"
+          "Canada beat Sweden in the shootout",
+          "Canada beat Sweden on aggregate",
+          "The draw was overturned after a replay"
         ]
       },
       {
-        "prompt": "At which Olympics did Canada win gold with Sinclair?",
+        "prompt": "What does 190 count in Sinclair’s story?",
         "options": [
-          "Atlanta 1996",
-          "Tokyo 2020",
-          "London 2012"
+          "Goals scored only at the Women’s World Cup",
+          "Senior international goals across competitions and matches",
+          "Goals scored only at the Olympic Games"
         ]
       },
       {
-        "prompt": "In what calendar year was that Olympic tournament played?",
+        "prompt": "What does the figure six measure in this account?",
         "options": [
-          "2023",
-          "2021",
-          "2019"
+          "Olympic Games at which Sinclair won medals",
+          "Different Women’s World Cup editions in which Sinclair played",
+          "World Cups Canada won with Sinclair"
         ]
+      }
+    ],
+    "furtherReading": [
+      {
+        "label": "Canada Soccer · Three consecutive Olympic medals",
+        "url": "https://news.canadasoccer.com/risehigher-canada-wins-historic-gold-medal-at-the-tokyo-2020-olympic-games"
       }
     ]
   },
@@ -1049,7 +1153,7 @@
     "name": "Formiga",
     "subtitle": "Seven World Cups",
     "era": "1995–2019 World Cups · Brazil",
-    "story": "Miraildes Maciel Mota, known as Formiga, patrolled Brazil’s midfield across four decades. Her first World Cup came in 1995 and her seventh in 2019.",
+    "story": "Formiga played at her first Women’s World Cup in 1995 and at her seventh in 2019. She was a midfielder, a role that can include breaking up an opponent’s attack, offering a passing option and helping the ball travel from defence to the forwards. A midfielder may have a strong match without appearing in the list of scorers. Tournament appearances are one way to see how long Formiga kept contributing in that role.\n\nShe also played in seven Olympic football tournaments. That run began when women’s football made its Olympic debut at Atlanta 1996 and reached Tokyo 2020, which was played in 2021. The World Cup and Olympic runs therefore had different starting years and different finishing points. Both reached seven editions, but they describe different competitions.\n\nBrazil reached the 2007 World Cup final after beating the United States in the semi-final. Germany won the final, leaving Brazil with a runners-up finish. That result belongs inside Formiga’s much longer career rather than at its end. Her story links the early years of both international tournaments with their modern editions, and shows why longevity is a distinct achievement from winning a particular final.",
     "facts": [
       "Seven Women’s World Cups",
       "Seven Olympic tournaments",
@@ -1058,53 +1162,54 @@
     "source": "https://fifa.com/fr/tournaments/womens/womensworldcup/articles/joueuses-au-plus-grand-nombre-de-participations",
     "questions": [
       {
-        "prompt": "Which country did Formiga represent?",
+        "prompt": "Which pair correctly identifies the start of each run?",
         "options": [
-          "Spain",
-          "Brazil",
-          "Norway"
+          "1996 World Cup and 1995 Olympics",
+          "1995 World Cup and 1996 Olympics",
+          "1995 World Cup and 2000 Olympics"
         ]
       },
       {
-        "prompt": "What part of the pitch was her usual home?",
+        "prompt": "Which of her two seven-edition runs finished later?",
         "options": [
-          "Midfield",
-          "Goal",
-          "Centre-forward"
+          "The Olympics, with Tokyo played in 2021",
+          "The World Cup, with the 2019 edition",
+          "They both finished in 2019"
         ]
       },
       {
-        "prompt": "When did she play in her first World Cup?",
+        "prompt": "Where did Brazil’s 2007 result fit into Formiga’s World Cup career?",
         "options": [
-          "1995",
-          "2003",
-          "1991"
+          "Between her first and seventh tournaments",
+          "At her first tournament appearance",
+          "At her seventh and final appearance"
         ]
       },
       {
-        "prompt": "When did she play in her seventh World Cup?",
+        "prompt": "Which result describes the last two rounds for Brazil in 2007?",
         "options": [
-          "2019",
-          "2023",
-          "2015"
+          "Beat the United States in the semi-final and lost to Germany in the final",
+          "Beat Germany in the semi-final and lost to the United States in the final",
+          "Lost to Germany in the semi-final and beat the United States for bronze"
         ]
       },
       {
-        "prompt": "How did Brazil finish at the 2007 World Cup?",
+        "prompt": "Which contribution fits her role even if she did not score?",
         "options": [
-          "Champion",
-          "Runner-up",
-          "Third"
+          "Recording every goal from the touchline",
+          "Winning back the ball and linking defence with attack",
+          "Staying between the posts to protect the goal"
         ]
       }
-    ]
+    ],
+    "furtherReading": []
   },
   {
     "id": 21,
     "name": "1895 Women’s Football Match",
     "subtitle": "A Victorian landmark",
     "era": "23 March 1895 · London",
-    "story": "The British Ladies’ Football Club staged a North versus South match at Crouch End. Earlier women’s matches had already taken place, but this organised fixture drew widespread press attention.",
+    "story": "On 23 March 1895 the British Ladies’ Football Club put on a public match at Crouch End Athletic Ground in north London. It fielded two sides, North and South. These were sides from the club, rather than two national teams. Nettie Honeyball captained North and her team won 7–1. Emma Clarke is associated with the South side in local historical accounts.\n\nThe match attracted a large crowd and coverage in the press. That coverage is one reason we can still reconstruct the fixture. Some spectators struggled to see because much of the crowd stood at pitch level. As a record of the day, the reports show both an appetite for seeing women play and the limits of a ground that was trying to accommodate that interest.\n\nWomen had already played public matches in the 1880s. What makes Crouch End a landmark is that an organised club staged a well-documented fixture and brought the game to a bigger audience. Calling it the first time women played would erase earlier events. Calling it an ordinary match would miss why the club’s organisation and the surviving record matter. The result, the venue and the press coverage each tell us something different about how the game was taking shape.",
     "facts": [
       "Crouch End, London",
       "North beat South 7–1",
@@ -1113,44 +1218,50 @@
     "source": "https://inside.fifa.com/news/the-women-s-game-s-organised-origins-2569439",
     "questions": [
       {
-        "prompt": "Where was the 1895 fixture played?",
+        "prompt": "What did North and South represent at Crouch End?",
         "options": [
-          "Greenock, Scotland",
-          "Crouch End, London",
-          "Goodison Park, Liverpool"
+          "Two national teams",
+          "Two sides fielded by the same club",
+          "Two factory clubs playing a cup final"
         ]
       },
       {
-        "prompt": "Which sides played?",
+        "prompt": "What makes the fixture a landmark even though earlier matches took place?",
         "options": [
-          "East and West",
-          "North and South",
-          "England and Scotland"
+          "It was the first match women had ever played in public",
+          "An organised club staged a well-documented game that reached a large audience",
+          "It was the first official England–Scotland international"
         ]
       },
       {
-        "prompt": "What was the result?",
+        "prompt": "Which result and leadership pairing is correct?",
         "options": [
-          "North won 7–1",
-          "A 1–1 draw",
-          "South won 7–1"
+          "North won 7–1 and Honeyball captained North",
+          "South won 7–1 and Honeyball captained South",
+          "North won 7–1 and Honeyball captained South"
         ]
       },
       {
-        "prompt": "Which club organised the match?",
+        "prompt": "Why is the crowd’s difficulty seeing relevant to the history?",
         "options": [
-          "Blyth Spartans",
-          "Dick, Kerr Ladies",
-          "British Ladies’ Football Club"
+          "It establishes that few spectators attended",
+          "It explains why the match record gives no result",
+          "It helps explain the practical limits of the ground despite strong interest"
         ]
       },
       {
-        "prompt": "Had women’s football matches been played before this fixture?",
+        "prompt": "What can the match score tell us that the crowd coverage cannot?",
         "options": [
-          "Only after 1921",
-          "No, this was the first ever",
-          "Yes"
+          "Whether there were public matches in the 1880s",
+          "How much of the pitch spectators could see",
+          "Which side won and by what margin"
         ]
+      }
+    ],
+    "furtherReading": [
+      {
+        "label": "Hornsey Historical Society · The local account",
+        "url": "https://hornseyhistorical.org.uk/1895-womens-football-makes-its-official-debut-in-hornsey/"
       }
     ]
   },
@@ -1159,7 +1270,7 @@
     "name": "Goodison Park 1920",
     "subtitle": "Boxing Day crowds",
     "era": "26 December 1920 · Liverpool",
-    "story": "Dick, Kerr Ladies met St Helens Ladies at Everton’s ground in a charity match. The huge crowd showed how popular women’s football had become, although surviving attendance estimates differ.",
+    "story": "On Boxing Day 1920, Dick, Kerr Ladies played St Helens Ladies at Goodison Park in Liverpool. Goodison was Everton’s ground, so the match gave the two women’s teams access to the terraces of an established men’s club. It was a charity fixture, and Dick, Kerr Ladies won 4–0. The size of the audience made it a landmark regardless of the score.\n\nThe exact crowd is harder to establish. The National Football Museum gives a lower estimate of about 46,000 and notes reports of up to 53,000. Other accounts use the higher number. Both are evidence of a very large turnout. Using the range is more accurate than treating one number as if it had been confirmed by a modern attendance system.\n\nThe match took place less than a year before the FA asked its affiliated clubs to stop making grounds available for women’s matches. Goodison shows what that access had made possible. An established ground could bring players, spectators and fundraising together on a much larger scale. Teams could still play elsewhere after the restriction, but a match of this kind depended on facilities and space that were harder to secure.",
     "facts": [
       "Played on Boxing Day",
       "Dick, Kerr Ladies beat St Helens Ladies",
@@ -1168,44 +1279,50 @@
     "source": "https://nationalfootballmuseum.com/items/the-fa-minute-book-1921/",
     "questions": [
       {
-        "prompt": "On which holiday was the match played?",
+        "prompt": "Which details correctly describe the fixture?",
         "options": [
-          "Easter Monday",
-          "New Year’s Day",
-          "Boxing Day"
+          "St Helens beat Dick, Kerr 4–0 in a charity game at Everton’s ground",
+          "Dick, Kerr beat Everton 4–0 in a cup match at St Helens",
+          "Dick, Kerr beat St Helens 4–0 in a charity game at Everton’s ground"
         ]
       },
       {
-        "prompt": "Which men’s club called Goodison Park home?",
+        "prompt": "Which caption treats the attendance evidence most carefully?",
         "options": [
-          "Arsenal",
-          "Everton",
-          "Chelsea"
+          "Official records agree on exactly 53,000",
+          "Estimates range from about 46,000 to 53,000",
+          "The crowd was under 46,000 in every account"
         ]
       },
       {
-        "prompt": "Who played against Dick, Kerr Ladies?",
+        "prompt": "What did access to Goodison offer beyond a pitch?",
         "options": [
-          "England Women",
-          "Blyth Spartans Ladies",
-          "St Helens Ladies"
+          "A national league system for the two clubs",
+          "Automatic entry to international competition",
+          "Terraces that could accommodate a large paying audience for fundraising"
         ]
       },
       {
-        "prompt": "Why was the match organised?",
+        "prompt": "Where does the match sit relative to the FA restriction?",
         "options": [
-          "To raise money for charity",
-          "To qualify for the Olympics",
-          "To decide a World Cup winner"
+          "It came less than a year before the restriction",
+          "It took place after the 1921 restriction began",
+          "It took place just after affiliated grounds reopened"
         ]
       },
       {
-        "prompt": "What crowd range do surviving estimates suggest?",
+        "prompt": "Which claim about popularity does the crowd evidence support?",
         "options": [
-          "Roughly 4,600 to 5,300",
-          "Roughly 460 to 530",
-          "Roughly 46,000 to 53,000"
+          "Women’s matches began attracting large audiences only in 1971",
+          "The 1921 decision followed a steady collapse in attendance",
+          "Women’s matches could already draw large audiences before 1921"
         ]
+      }
+    ],
+    "furtherReading": [
+      {
+        "label": "BFI · Goodison and the years that followed",
+        "url": "https://www.bfi.org.uk/features/forgotten-history-womens-football"
       }
     ]
   },
@@ -1214,7 +1331,7 @@
     "name": "1921 FA Ban",
     "subtitle": "Grounds closed to women",
     "era": "5 December 1921 · England",
-    "story": "The FA asked affiliated clubs to refuse their grounds for women’s matches. Teams continued to play elsewhere, but losing access to many established grounds made it harder to organise games and draw crowds.",
+    "story": "In December 1921 the Football Association told affiliated clubs in England to stop offering their grounds for women’s football. The decision was recorded in the FA’s minute book. The document tells us which institution acted and what it asked affiliated clubs to do. It also records the assumptions made about women’s suitability for football at the time.\n\nThe restriction arrived after the game had drawn sizeable crowds. The Boxing Day fixture at Goodison Park in 1920 is one example. That makes the idea that nobody wanted to see women play hard to square with the evidence. A decision about access can change who gets to play in front of a large audience even when there are players and spectators ready to take part.\n\nThe rule covered the grounds of affiliated clubs. Women continued to play at other venues, so there was football between 1921 and the reopening of affiliated grounds. What changed was access to well-equipped pitches and the audiences those grounds could hold. That reduced opportunities to stage major fixtures and raise money. The distinction matters when you read the word ban in a headline. The restriction damaged the game while leaving players and organisers looking for other ways to keep it going.",
     "facts": [
       "Decision by the English FA",
       "Applied to affiliated grounds",
@@ -1223,53 +1340,54 @@
     "source": "https://nationalfootballmuseum.com/items/the-fa-minute-book-1921/",
     "questions": [
       {
-        "prompt": "When did the English FA make its decision?",
+        "prompt": "What can the FA minute book establish directly?",
         "options": [
-          "5 December 1921",
-          "26 December 1920",
-          "18 November 1972"
+          "Which body made the grounds decision and what it asked clubs to do",
+          "The total number of women who stopped playing",
+          "The attendance at every match affected by the decision"
         ]
       },
       {
-        "prompt": "Which organisation made the decision?",
+        "prompt": "Which activity did the decision target?",
         "options": [
-          "The Women’s Football Association",
-          "FIFA",
-          "The English FA"
+          "All women playing football in any public space",
+          "Women travelling abroad to play",
+          "Affiliated clubs making their grounds available for women’s matches"
         ]
       },
       {
-        "prompt": "Which grounds were affected?",
+        "prompt": "Why does the 1920 Goodison game matter to this story?",
         "options": [
-          "All parks worldwide",
-          "FA-affiliated grounds",
-          "Only Wembley"
+          "It shows that the restriction was lifted in 1920",
+          "It shows that large crowds existed before access was restricted",
+          "It was the first game organised after affiliated grounds closed"
         ]
       },
       {
-        "prompt": "Did women’s teams continue playing elsewhere?",
+        "prompt": "What explains how some matches continued?",
         "options": [
-          "No, every team stopped",
-          "Only in the Olympics",
-          "Yes"
+          "The FA made an exception for all charity fixtures",
+          "The restriction applied only to international matches",
+          "Teams used venues outside the affiliated grounds network"
         ]
       },
       {
-        "prompt": "What became harder as a result?",
+        "prompt": "Which effect follows most directly from losing access to major grounds?",
         "options": [
-          "Organising matches and drawing crowds",
-          "Choosing shirt numbers",
-          "Learning the offside rule"
+          "It became harder to stage matches with large crowds and raise money",
+          "Teams stopped being able to play any form of football",
+          "Teams gained a national competition to replace local games"
         ]
       }
-    ]
+    ],
+    "furtherReading": []
   },
   {
     "id": 24,
     "name": "Ban Lifted 1971",
     "subtitle": "Grounds reopen",
     "era": "1971 · England",
-    "story": "The FA reversed the restriction that had kept women’s matches off affiliated grounds. The Women’s Football Association had already formed in 1969 and was building competitions and a national team.",
+    "story": "The Women’s Football Association was founded in 1969. It brought clubs together and built a framework for competitions at a time when the FA’s 1921 restriction still affected access to established grounds. The new organisation and the change to the FA rule were related, but they solved different problems. Clubs needed places to play and they also needed a way to organise the game.\n\nThe FA’s own historical account separates two dates. In January 1970 the FA Council voted to rescind its 1921 resolution. In June 1971 the formal rule amendment went through at the FA’s annual general meeting. That amendment opened affiliated grounds to women’s matches and allowed registered referees to officiate. The two dates sometimes appear to contradict each other when they are quoted without the stages of the process.\n\nOnce the rules changed, organisers still had to build fixtures and national teams. England’s official women’s side played its first match in 1972, against Scotland. Putting the three developments side by side shows what each one made possible. The WFA helped clubs work together, the amendment removed a formal obstacle, and the international put the new national side on the pitch.",
     "facts": [
       "The restriction dated back to 1921",
       "WFA formed in 1969",
@@ -1278,53 +1396,54 @@
     "source": "https://thefa.com/womens-girls-football/heritage/kicking-down-barriers",
     "questions": [
       {
-        "prompt": "In which year was the restriction lifted?",
+        "prompt": "What happened in 1970 and what followed in 1971?",
         "options": [
-          "1991",
-          "1921",
-          "1971"
+          "The rule amendment passed, then the Council voted to restore the restriction",
+          "The WFA was founded, then England played its first official match",
+          "The FA Council voted to rescind the resolution, then the formal rule amendment passed"
         ]
       },
       {
-        "prompt": "In which year did the restriction begin?",
+        "prompt": "What changed alongside access to affiliated grounds?",
         "options": [
-          "1921",
-          "1972",
-          "1895"
+          "Registered referees could officiate at women’s matches",
+          "The first FIFA Women’s World Cup was launched",
+          "England was automatically given an Olympic place"
         ]
       },
       {
-        "prompt": "When did the Women’s Football Association form?",
+        "prompt": "Which event happened before both stages of the FA rule change?",
         "options": [
-          "1969",
-          "1989",
-          "1979"
+          "The WFA was founded",
+          "England played Scotland in Greenock",
+          "England reached the 1984 European final"
         ]
       },
       {
-        "prompt": "What access did women regain?",
+        "prompt": "Why can both 1970 and 1971 appear in accounts of the ban ending?",
         "options": [
-          "World Cup final tickets",
-          "FA-affiliated grounds",
-          "Only private gardens"
+          "They describe two separate bans on the same grounds",
+          "They describe the decision and the formal rule change respectively",
+          "They are two possible dates for the first official international"
         ]
       },
       {
-        "prompt": "What was the WFA building at the time?",
+        "prompt": "Which distinction describes the WFA and the amendment?",
         "options": [
-          "A men’s professional league",
-          "Competitions and a national team",
-          "A new Olympic stadium"
+          "The WFA amended the FA rule, while the amendment organised the national side",
+          "The WFA helped organise clubs, while the amendment removed a barrier to grounds",
+          "Both developments concerned only the appointment of referees"
         ]
       }
-    ]
+    ],
+    "furtherReading": []
   },
   {
     "id": 25,
     "name": "England’s First Official International",
     "subtitle": "Scotland v England",
     "era": "18 November 1972 · Greenock",
-    "story": "England’s official women’s team began with an away match against Scotland. England came from two goals down at Ravenscraig Stadium to win 3–2.",
+    "story": "On 18 November 1972 England travelled to Ravenscraig Stadium in Greenock to play Scotland. It was the first match for the official England women’s national side. Earlier teams had played under names such as an England XI, but their status was different. The Women’s Football Association had helped build the structure that made this official fixture possible.\n\nScotland led 2–0, with Mary Carr and Rose Reilly on the scoresheet. Sylvia Gore then scored England’s first official goal. Lynda Hale equalised and Jeannie Allott scored the winner, turning a two-goal deficit into a 3–2 England victory. The order matters because England’s first goal, its equaliser and its winner were three distinct moments, scored by three different players.\n\nThere was another difference between the teams’ circumstances. England had recently lifted its grounds restriction, while the Scottish association still restricted use of its own affiliated grounds. The Scottish Football Museum explains why Ravenscraig was used in that context. A match report gives the result and the scorers. Looking at the venue and the work of the organisers shows what it took to get both national sides on the pitch.",
     "facts": [
       "Played in Greenock, Scotland",
       "England won 3–2",
@@ -1333,44 +1452,50 @@
     "source": "https://scottishfootballmuseum.org.uk/news/first-womens-international-match-1972/",
     "questions": [
       {
-        "prompt": "Which team did England play in its first official women’s international?",
+        "prompt": "Which order matches England’s comeback?",
         "options": [
-          "Germany",
-          "Norway",
-          "Scotland"
+          "Hale → Gore → Allott",
+          "Gore → Allott → Hale",
+          "Gore → Hale → Allott"
         ]
       },
       {
-        "prompt": "Where was the match played?",
+        "prompt": "Which players gave Scotland its two-goal lead?",
         "options": [
-          "Pasadena",
-          "Wembley",
-          "Greenock"
+          "Sylvia Gore and Rose Reilly",
+          "Mary Carr and Jeannie Allott",
+          "Mary Carr and Rose Reilly"
         ]
       },
       {
-        "prompt": "What was the final score?",
+        "prompt": "Which description distinguishes this match from earlier England XI fixtures?",
         "options": [
-          "A 2–2 draw",
-          "Scotland won 3–2",
-          "England won 3–2"
+          "It was the first match any team called England had played",
+          "It was the first England fixture in a FIFA Women’s World Cup",
+          "It was the first match of the official England women’s national side"
         ]
       },
       {
-        "prompt": "Who scored England’s first official goal?",
+        "prompt": "Why does the choice of venue matter to the story?",
         "options": [
-          "Kelly Smith",
-          "Carol Thomas",
-          "Sylvia Gore"
+          "England’s restriction still applied to all Scottish stadiums",
+          "The World Cup required both sides to play at a neutral venue",
+          "Scotland’s association still restricted its affiliated grounds"
         ]
       },
       {
-        "prompt": "How many goals behind were England before coming back?",
+        "prompt": "What was the match position immediately after Gore scored?",
         "options": [
-          "Two",
-          "Three",
-          "One"
+          "Scotland still led 2–1",
+          "England had drawn level at 2–2",
+          "England led 3–2"
         ]
+      }
+    ],
+    "furtherReading": [
+      {
+        "label": "England Football · Patricia Gregory’s history of the team",
+        "url": "https://www.englandfootball.com/england/womens-senior-team/Legacy/History"
       }
     ]
   },
@@ -1379,7 +1504,7 @@
     "name": "First FIFA Women’s World Cup",
     "subtitle": "China hosts the first edition",
     "era": "November 1991 · China PR",
-    "story": "Twelve teams took part in FIFA’s first women’s world championship. The United States beat Norway 2–1 in Guangzhou with two goals from Michelle Akers.",
+    "story": "In November 1991, China hosted the first women’s world championship organised by FIFA. It brought together twelve national teams. Earlier invitational tournaments had already given women experience of international competition. The new event put a tournament organised by world football’s governing body on the calendar, and it became the first edition in the FIFA Women’s World Cup record.\n\nThe United States and Norway met in the final in Guangzhou. Michelle Akers scored both US goals in a 2–1 win, finishing the competition with ten goals. She was the leading scorer, while the Golden Ball for the tournament’s outstanding player went to her teammate Carin Jennings. That distinction shows why match-winning goals and overall performance can be recognised separately.\n\nThe format also looked different from the modern World Cup. Twelve teams meant a much smaller field than the thirty-two that competed in 2023. That change is a way to trace the tournament’s growth across editions. It also puts the 1991 title into context. The United States won the first tournament in a series that would grow in size and reach, building on international football that women were already playing.",
     "facts": [
       "Twelve teams took part",
       "United States beat Norway 2–1",
@@ -1388,44 +1513,50 @@
     "source": "https://archives.fifa.com/fifa_womens_world_cup",
     "questions": [
       {
-        "prompt": "Which country hosted the first FIFA Women’s World Cup?",
+        "prompt": "What distinguishes this tournament from the earlier invitational events?",
         "options": [
-          "China PR",
-          "Sweden",
-          "United States"
+          "It was the first women’s world championship organised by FIFA",
+          "It was the first international women’s football ever played",
+          "It was the first women’s Olympic football tournament"
         ]
       },
       {
-        "prompt": "How many teams took part?",
+        "prompt": "Which pair correctly matches the two individual honours?",
         "options": [
-          "Eight",
-          "Twelve",
-          "Thirty-two"
+          "Jennings led the scoring and Akers won the Golden Ball",
+          "Akers led the scoring and Jennings won the Golden Ball",
+          "Akers took both honours"
         ]
       },
       {
-        "prompt": "Which team won the final?",
+        "prompt": "Which final details go together?",
         "options": [
-          "Norway",
-          "United States",
-          "Japan"
+          "Guangzhou, a 2–1 US win over China and both goals from Jennings",
+          "Guangzhou, a 2–1 US win over Norway and both goals from Akers",
+          "Pasadena, a 2–1 US win over Norway and both goals from Akers"
         ]
       },
       {
-        "prompt": "Where was the final played?",
+        "prompt": "How did the field in 1991 compare with 2023?",
         "options": [
-          "Guangzhou",
-          "Sydney",
-          "London"
+          "It had twelve teams compared with thirty-two",
+          "It had thirty-two teams compared with twelve",
+          "Both had twelve teams"
         ]
       },
       {
-        "prompt": "Who scored both goals for the winning team in the final?",
+        "prompt": "What did Akers’s two goals in the final add to her record?",
         "options": [
-          "Sun Wen",
-          "Michelle Akers",
-          "Mia Hamm"
+          "They were scored after the match in a penalty shootout",
+          "They formed part of her ten goals for the tournament",
+          "They brought her tournament total to two"
         ]
+      }
+    ],
+    "furtherReading": [
+      {
+        "label": "FIFA · Golden Ball winners",
+        "url": "https://inside.fifa.com/tournaments/womens/womensworldcup/france2019/news/adidas-golden-ball-award-x6327"
       }
     ]
   },
@@ -1434,7 +1565,7 @@
     "name": "Women’s Football at the Olympics",
     "subtitle": "Olympic debut",
     "era": "July–August 1996 · USA",
-    "story": "Women’s football joined the Olympic programme at Atlanta 1996. Eight teams competed, and the host nation defeated China 2–1 for gold in Athens, Georgia.",
+    "story": "Women’s football joined the Olympic programme at Atlanta 1996. Eight national teams entered the first tournament, five years after FIFA had staged its first Women’s World Cup. The competitions were separate. A team could win a World Cup in one year and enter the Olympics later for a different title and medal.\n\nThe United States and China PR met in the final at Sanford Stadium in Athens, Georgia. Atlanta was the name of the Games, but events were held at venues beyond the host city. Shannon MacMillan put the US ahead, Sun Wen levelled for China and Tiffeny Milbrett scored the winner. The United States took gold with a 2–1 victory, China took silver and Norway won bronze.\n\nThree years later the United States and China met again in the final of a different competition, the 1999 World Cup. That match finished 0–0 after extra time and the United States won the shootout. The repeated pairing is a good reason to read the tournament name alongside the teams and the score. The 1996 final was settled by a goal in normal play, and the 1999 final by penalties.",
     "facts": [
       "Eight national teams",
       "USA gold and China silver",
@@ -1443,44 +1574,50 @@
     "source": "https://fifa.com/en/tournaments/olympicgames/paris2024/articles/medal-winners-womens-tournament",
     "questions": [
       {
-        "prompt": "When did women’s football join the Olympic programme?",
+        "prompt": "Which sequence matches the 1996 final’s scorers?",
         "options": [
-          "Atlanta 1996",
-          "Sydney 2000",
-          "London 2012"
+          "MacMillan → Sun Wen → Milbrett",
+          "Sun Wen → MacMillan → Milbrett",
+          "Milbrett → Sun Wen → MacMillan"
         ]
       },
       {
-        "prompt": "How many teams played in the first Olympic tournament?",
+        "prompt": "How were the 1996 and 1999 finals between these teams settled?",
         "options": [
-          "Twelve",
-          "Eight",
-          "Sixteen"
+          "Penalties in 1996, a goal in normal play in 1999",
+          "A goal in normal play in 1996, penalties in 1999",
+          "Both went to penalties after 0–0 draws"
         ]
       },
       {
-        "prompt": "Which country won gold?",
+        "prompt": "Why can Athens appear in the record of the Atlanta final?",
         "options": [
-          "Norway",
-          "United States",
-          "China PR"
+          "The final was moved to Athens, Greece",
+          "Athens, Georgia hosted the match as part of the Atlanta Games",
+          "Athens was the host name of the 1999 World Cup"
         ]
       },
       {
-        "prompt": "Where was the gold-medal match played?",
+        "prompt": "Which event came first?",
         "options": [
-          "Pasadena, California",
-          "Sydney, Australia",
-          "Athens, Georgia"
+          "Women’s Olympic football debut",
+          "The 1999 final between the same two teams",
+          "FIFA’s first Women’s World Cup"
         ]
       },
       {
-        "prompt": "Which country won bronze?",
+        "prompt": "Which medal order matches the first Olympic tournament?",
         "options": [
-          "United States",
-          "China PR",
-          "Norway"
+          "United States, Norway, China PR",
+          "China PR, United States, Norway",
+          "United States, China PR, Norway"
         ]
+      }
+    ],
+    "furtherReading": [
+      {
+        "label": "DFB · The Olympic final match record",
+        "url": "https://datencenter.dfb.de/en/data-center/olympic-games-1379/1996-in-atlanta/final/2066909"
       }
     ]
   },
@@ -1489,7 +1626,7 @@
     "name": "1999 World Cup Final",
     "subtitle": "The Rose Bowl shootout",
     "era": "10 July 1999 · Pasadena",
-    "story": "The USA and China played 120 minutes without a goal. Brandi Chastain converted the deciding penalty to give the hosts the title in front of 90,125 people at the Rose Bowl.",
+    "story": "On 10 July 1999, the United States and China PR played the Women’s World Cup final in front of more than 90,000 spectators at the Rose Bowl in Pasadena. The teams could not be separated in normal time or extra time. That left a 0–0 match score and a penalty shootout to decide the champion.\n\nBriana Scurry saved China’s third kick, taken by Liu Ying. Every US player who took a penalty scored. Brandi Chastain struck the fifth American kick and sealed a 5–4 shootout win. Her celebration became the best-known image of the final. The shot was decisive because of the earlier kicks and the save that gave the United States the chance to win with its fifth.\n\nChina’s Sun Wen won the Golden Ball as the tournament’s outstanding player. The final is often remembered from the point of view of the hosts, but that award shows how much China contributed to the competition. It also helps separate three records of the same day. The result after extra time was a draw, the United States won the shootout, and the player award went to someone on the other side.",
     "facts": [
       "0–0 after extra time",
       "USA won the shootout 5–4",
@@ -1498,44 +1635,50 @@
     "source": "https://ussoccer.com/history/us-soccer-as-host/1999-fifa-womens-world-cup",
     "questions": [
       {
-        "prompt": "Which sides contested the 1999 final?",
+        "prompt": "Which sequence explains how the shootout was won?",
         "options": [
-          "USA and Norway",
-          "USA and China PR",
-          "England and Germany"
+          "Chastain converted the third US kick and Scurry then saved the last",
+          "Scurry saved a kick and Chastain converted the fifth US penalty",
+          "Scurry saved in extra time and Chastain scored before penalties"
         ]
       },
       {
-        "prompt": "What was the score after extra time?",
+        "prompt": "Which line records the two scores correctly?",
         "options": [
-          "2–2",
-          "1–1",
-          "0–0"
+          "5–4 after extra time, then 0–0 on penalties",
+          "0–0 after extra time, then 5–4 to China on penalties",
+          "0–0 after extra time, then 5–4 to the United States on penalties"
         ]
       },
       {
-        "prompt": "Who scored the deciding penalty?",
+        "prompt": "Why was the fifth US kick decisive?",
         "options": [
-          "Mia Hamm",
-          "Sun Wen",
-          "Brandi Chastain"
+          "Both teams had converted every earlier kick",
+          "It was the first penalty taken in sudden death",
+          "China had missed one and the US had converted all its earlier kicks"
         ]
       },
       {
-        "prompt": "Where was the final played?",
+        "prompt": "Which individual honour went to a player from the losing side?",
         "options": [
-          "Goodison Park",
-          "Wembley",
-          "The Rose Bowl"
+          "Briana Scurry’s Golden Ball",
+          "Brandi Chastain’s Golden Boot",
+          "Sun Wen’s Golden Ball"
         ]
       },
       {
-        "prompt": "What was the shootout score?",
+        "prompt": "Which description matches the venue and audience?",
         "options": [
-          "6–5 to the USA",
-          "4–3 to China",
-          "5–4 to the USA"
+          "Sanford Stadium in Athens held just over 90,000 spectators",
+          "Wembley in London held just over 90,000 spectators",
+          "The Rose Bowl in Pasadena held just over 90,000 spectators"
         ]
+      }
+    ],
+    "furtherReading": [
+      {
+        "label": "FIFA · The final and the penalty shootout",
+        "url": "https://inside.fifa.com/tournaments/womens/womensworldcup/usa1999/news/mo-3003-usa-v-chn-1999-wwc-3069388"
       }
     ]
   },
@@ -1544,7 +1687,7 @@
     "name": "England Win EURO 2022",
     "subtitle": "The Lionesses at Wembley",
     "era": "31 July 2022 · London",
-    "story": "Ella Toone chipped England ahead and Lina Magull equalised for Germany. Chloe Kelly then turned in the winner in extra time, securing England’s first Women’s EURO title.",
+    "story": "On 31 July 2022 England faced Germany at Wembley in front of 87,192 spectators. Germany had already won the European championship eight times. England were chasing their first. The score was still 0–0 at half-time, so neither side had a lead to protect when the teams returned.\n\nElla Toone came on as a substitute. She ran onto Keira Walsh’s pass behind Germany’s defence and lifted the ball over the advancing goalkeeper. Lina Magull equalised for Germany, which meant the match ended 1–1 in normal time. England’s opening goal had created an advantage, but the equaliser meant they would have to create another one.\n\nChloe Kelly, also a substitute, scored from close range after a corner in extra time. England won 2–1. Both England goals came from players who started on the bench, but the chances were different. Toone used the space behind the defence and the goalkeeper’s position. Kelly reacted to a loose ball close to goal. Following the two moves helps explain how England solved different problems within the same final.",
     "facts": [
       "England 2–1 Germany after extra time",
       "87,192 spectators at Wembley",
@@ -1553,53 +1696,54 @@
     "source": "https://englandfootball.com/england/womens-senior-team/fixtures-results/2022/england-germany-match-page-uefa-womens-euro-2022-final-831-july-2022",
     "questions": [
       {
-        "prompt": "Who did England beat in the 2022 final?",
+        "prompt": "What was the order of the scorers?",
         "options": [
-          "Norway",
-          "Spain",
-          "Germany"
+          "Toone → Kelly → Magull",
+          "Magull → Toone → Kelly",
+          "Toone → Magull → Kelly"
         ]
       },
       {
-        "prompt": "Who opened the scoring for England?",
+        "prompt": "What did Walsh’s pass make possible for Toone?",
         "options": [
-          "Ella Toone",
-          "Lina Magull",
-          "Chloe Kelly"
+          "A run behind Germany’s defence and a lob over the goalkeeper",
+          "A close-range finish after a corner",
+          "A penalty after a challenge in the area"
         ]
       },
       {
-        "prompt": "Who equalised for Germany?",
+        "prompt": "Why did the match go to extra time?",
         "options": [
-          "Chloe Kelly",
-          "Lina Magull",
-          "Ella Toone"
+          "Kelly’s winner left it 2–2 after normal time",
+          "Magull’s equaliser left it 1–1 after normal time",
+          "Neither side scored before extra time"
         ]
       },
       {
-        "prompt": "Who scored the extra-time winner?",
+        "prompt": "What did England’s two scorers have in common?",
         "options": [
-          "Kelly Smith",
-          "Ella Toone",
-          "Chloe Kelly"
+          "Both scored from corners",
+          "Both scored after normal time",
+          "Both started the match on the bench"
         ]
       },
       {
-        "prompt": "Which stadium hosted the final?",
+        "prompt": "How did the winning chance differ from England’s opening goal?",
         "options": [
-          "Goodison Park",
-          "Wembley",
-          "The Rose Bowl"
+          "It came from a through pass rather than a loose ball after a corner",
+          "It came from a loose ball after a corner rather than a run onto a through pass",
+          "It was a shootout kick rather than a chance in open play"
         ]
       }
-    ]
+    ],
+    "furtherReading": []
   },
   {
     "id": 30,
     "name": "2023 Women’s World Cup",
     "subtitle": "Spain’s first title",
     "era": "July–August 2023 · Australia / New Zealand",
-    "story": "Australia and New Zealand co-hosted the first 32-team Women’s World Cup. Spain won its first title in Sydney, with Olga Carmona scoring the only goal against England.",
+    "story": "Australia and New Zealand co-hosted the 2023 Women’s World Cup, the first edition with thirty-two teams. Spain reached the knockout rounds after losing 4–0 to Japan in its final group game. A group-stage defeat can be damaging without ending a campaign. The knockout rounds offered Spain a fresh match and a different problem to solve each time.\n\nSpain beat Switzerland, then needed extra time to beat the Netherlands. In the semi-final against Sweden, Olga Carmona scored late to make it 2–1. England came through the other half of the draw, beating co-hosts Australia 3–1 in its semi-final. That set up a final in Sydney between England, the European champions, and a Spain side seeking its first senior Women’s World Cup title.\n\nCarmona scored the only goal in the final, a first-half strike that gave Spain a 1–0 win. Her goals against Sweden and England had different match contexts. One broke a late deadlock and the other gave Spain a lead to defend for much of the final. Read alongside the loss to Japan, the title shows why one group result cannot tell you how the whole tournament will finish.",
     "facts": [
       "First edition with 32 teams",
       "Spain won the final 1–0",
@@ -1608,44 +1752,50 @@
     "source": "https://uefa.com/womenseuropeanqualifiers/news/027a-166817b8be17-9e0082e122cd-1000--spain-win-2023-women-s-world-cup/",
     "questions": [
       {
-        "prompt": "Which countries hosted together?",
+        "prompt": "Which sequence follows Spain’s campaign?",
         "options": [
-          "England and Germany",
-          "Australia and New Zealand",
-          "Spain and Portugal"
+          "Group loss to England → extra-time win over Japan → final win over the Netherlands",
+          "Group loss to Japan → extra-time win over the Netherlands → final win over England",
+          "Group win over Japan → extra-time loss to the Netherlands → final win over England"
         ]
       },
       {
-        "prompt": "How many teams competed?",
+        "prompt": "How did Carmona’s two decisive goals differ?",
         "options": [
-          "24",
-          "32",
-          "16"
+          "A first-half winner against Sweden and a late winner against England",
+          "A late winner against Sweden and a first-half winner against England",
+          "Two goals scored in extra time"
         ]
       },
       {
-        "prompt": "Which country won its first title?",
+        "prompt": "Which co-host did England beat and at what stage?",
         "options": [
-          "Spain",
-          "England",
-          "Australia"
+          "Australia in the semi-final",
+          "New Zealand in the semi-final",
+          "Australia in the quarter-final"
         ]
       },
       {
-        "prompt": "Who scored the only goal in the final?",
+        "prompt": "What did Spain’s result against Japan mean for its chances?",
         "options": [
-          "Chloe Kelly",
-          "Ella Toone",
-          "Olga Carmona"
+          "Spain was knocked out and re-entered as a co-host",
+          "Spain lost in the semi-final but went through on aggregate",
+          "Spain lost a group match but still had a route through the knockouts"
         ]
       },
       {
-        "prompt": "Where was the final played?",
+        "prompt": "Which statement connects the tournament format and outcome accurately?",
         "options": [
-          "Auckland",
-          "Wellington",
-          "Sydney"
+          "The first 24-team edition produced England’s first title",
+          "The first 32-team edition produced Japan’s first title",
+          "The first 32-team edition produced Spain’s first title"
         ]
+      }
+    ],
+    "furtherReading": [
+      {
+        "label": "UEFA · Spain’s results from group stage to final",
+        "url": "https://www.uefa.com/news-media/news/0283-1876f3d5e72e-ab17ccc76e64-1000--spain-win-the-2023-women-s-world-cup-fixtures-results-squ/"
       }
     ]
   }

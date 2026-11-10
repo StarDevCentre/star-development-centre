@@ -130,10 +130,15 @@ export function PlayerFootballHistory({playerId, preview}: {playerId:string; pre
           </div>
         </form> : <>
           <p className="ps-history-era">{selected.subtitle} · {selected.era}</p>
-          <p>{selected.story}</p>
+          <div className="ps-history-story">
+            {selected.story.split("\n\n").map(paragraph => <p key={paragraph}>{paragraph}</p>)}
+          </div>
           <h3>Key facts</h3>
           <ul>{selected.facts.map(fact => <li key={fact}>{fact}</li>)}</ul>
-          <p><a href={selected.source} target="_blank" rel="noreferrer">Historical source ↗</a></p>
+          <div className="ps-history-sources">
+            <a href={selected.source} target="_blank" rel="noreferrer">Historical source ↗</a>
+            {selected.furtherReading.map(({url,label}) => <a key={url} href={url} target="_blank" rel="noreferrer">{label} ↗</a>)}
+          </div>
           {active?.earned_at ? <button type="button" className="ps-history-primary" onClick={() => {setMode("card");setSide("front");}}>View my card</button>
             : preview ? <p>Sign in to your own Player Space to take the quiz and earn this card.</p>
             : remaining > 0 ? <p className="ps-history-notice">Retry in <time>{Math.floor(remaining/60)}:{String(remaining%60).padStart(2,"0")}</time>. You can explore another story while you wait.</p>
