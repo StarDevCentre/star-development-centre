@@ -212,5 +212,77 @@
         ]
       }
     ]
+  },
+  {
+    "id": 34,
+    "number": "SE04",
+    "artwork": {
+      "slug": "robbins-gloving-factory-ladies-se04",
+      "front": "STAR Football History special edition. Robbins Gloving Factory Ladies, Yeovil, Somerset, circa 1936. Illustrated reconstruction of women playing in period football kits, framed by stitched leather and a robin.",
+      "back": "Robbins Gloving Factory Ladies, Yeovil, Somerset, circa 1936. From factory to football. Glove factory workers in Alexandra Road played for a cup-winning team. Look closely at the shirts and you’ll see a robin. Illustrated reconstruction based on the South Somerset Heritage Collection team photograph."
+    },
+    "name": "Robbins Gloving Factory Ladies",
+    "subtitle": "From the glove factory to the football pitch",
+    "era": "c. 1936 · Yeovil, Somerset",
+    "story": "Look closely at the surviving team photograph and you can see a small robin on the players’ shirts. Some hold trophies and one holds a football. Somerset Council lists the photograph under 1936, while the Community Heritage Access Centre dates it to around the mid-1930s.\n\nSeveral of the women worked at Edwin ‘Tink’ Robbins’ glove factory on Alexandra Road in Yeovil. The South Somerset Heritage Collection records that Edwin organised games and that the team won a cup. The Community Heritage Access Centre identifies him in the back row of the photograph.\n\nThe club’s bird is the detail that makes this team instantly recognisable. It links the women’s football shirts to the name of the factory where they worked. The surviving sources used here leave the name of the cup and the final score open.",
+    "facts": [
+      "Yeovil · The glove factory stood on Alexandra Road.",
+      "Mid-1930s · Somerset Council lists the team photograph under 1936.",
+      "A robin · The bird appears on the team’s shirts.",
+      "Cup winners · The heritage collection records that the team won a cup."
+    ],
+    "source": "https://chacyeovil.wordpress.com/2018/01/15/a-game-of-two-halves/",
+    "furtherReading": [
+      {
+        "label": "South Somerset Heritage Collection · Football 1936",
+        "url": "https://www.somerset.gov.uk/community-leisure-and-tourism/south-somerset-heritage-collection/"
+      },
+      {
+        "label": "South Somerset Heritage calendar · September and October",
+        "url": "https://www.visitsouthsomerset.com/SiteAssets/Files/SC-Heritage_calendar_A4_2024_web.pdf"
+      }
+    ],
+    "questions": [
+      {
+        "prompt": "In which Somerset town was the Robbins factory?",
+        "options": [
+          "Chard",
+          "Yeovil",
+          "Taunton"
+        ]
+      },
+      {
+        "prompt": "What did the factory make?",
+        "options": [
+          "Gloves",
+          "Bicycles",
+          "Ceramics"
+        ]
+      },
+      {
+        "prompt": "Which bird appears on the team’s shirts?",
+        "options": [
+          "Swallow",
+          "Wren",
+          "Robin"
+        ]
+      },
+      {
+        "prompt": "Who organised games for the team?",
+        "options": [
+          "Edwin ‘Tink’ Robbins",
+          "The Mayor of Yeovil",
+          "A visiting international player"
+        ]
+      },
+      {
+        "prompt": "How does the heritage collection describe the team’s achievement?",
+        "options": [
+          "They won a league title",
+          "They won a cup",
+          "They won an international tournament"
+        ]
+      }
+    ]
   }
 ]
