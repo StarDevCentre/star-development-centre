@@ -18,15 +18,56 @@
     ],
     "source": "https://www.fifpro.org/en/articles/2021/08/group-evacuation-of-women-football-players-and-athletes-from-afghanistan",
     "furtherReading": [
-      {"label": "Melbourne Victory on the team’s return to football", "url": "https://melbournevictory.com.au/news/melbourne-victory-to-support-afghan-womens-national-teams-return-to-football-in-victoria/"},
-      {"label": "FIFA on the 2026 rule change", "url": "https://inside.fifa.com/organisation/media-releases/afc-afghan-women-official-matches-landmark-governance-reform"}
+      {
+        "label": "Melbourne Victory on the team’s return to football",
+        "url": "https://melbournevictory.com.au/news/melbourne-victory-to-support-afghan-womens-national-teams-return-to-football-in-victoria/"
+      },
+      {
+        "label": "FIFA on the 2026 rule change",
+        "url": "https://inside.fifa.com/organisation/media-releases/afc-afghan-women-official-matches-landmark-governance-reform"
+      }
     ],
     "questions": [
-      {"prompt": "In which year were players evacuated from Afghanistan?", "options": ["2019", "2021", "2023"]},
-      {"prompt": "Which former captain helped players find a way to safety?", "options": ["Khalida Popal", "Marta", "Christine Sinclair"]},
-      {"prompt": "Where did players begin training together again in 2022?", "options": ["London", "Toronto", "Melbourne"]},
-      {"prompt": "What was the name of the team that played at the FIFA series in Morocco in 2025?", "options": ["Afghan Women United", "Melbourne City", "Afghanistan Youth XI"]},
-      {"prompt": "What did FIFA’s 2026 rule change make possible?", "options": ["A new domestic league in Afghanistan", "Afghan women representing their country in official international matches", "Automatic entry to the Women’s World Cup"]}
+      {
+        "prompt": "In which year were players evacuated from Afghanistan?",
+        "options": [
+          "2019",
+          "2021",
+          "2023"
+        ]
+      },
+      {
+        "prompt": "Which former captain helped players find a way to safety?",
+        "options": [
+          "Khalida Popal",
+          "Marta",
+          "Christine Sinclair"
+        ]
+      },
+      {
+        "prompt": "Where did players begin training together again in 2022?",
+        "options": [
+          "London",
+          "Toronto",
+          "Melbourne"
+        ]
+      },
+      {
+        "prompt": "What was the name of the team that played at the FIFA series in Morocco in 2025?",
+        "options": [
+          "Afghan Women United",
+          "Melbourne City",
+          "Afghanistan Youth XI"
+        ]
+      },
+      {
+        "prompt": "What did FIFA’s 2026 rule change make possible?",
+        "options": [
+          "A new domestic league in Afghanistan",
+          "Afghan women representing their country in official international matches",
+          "Automatic entry to the Women’s World Cup"
+        ]
+      }
     ]
   },
   {
@@ -96,6 +137,78 @@
           "Marta",
           "Sam Kerr",
           "Hong Song Ok"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 33,
+    "number": "SE03",
+    "artwork": {
+      "slug": "margaret-flett-holm-se03",
+      "front": "STAR Development Centre special edition SE03. Margaret Flett of Holm Ladies, Orkney, photographed in 1947 aged approximately 14. Heritage-gold illustrated card featuring her quartered football kit and the 1947 team behind her.",
+      "back": "STAR Development Centre special edition SE03. Holm Ladies Football Team, Holm in Orkney, 1947. Eleven known players from a surviving team photograph. A recollection of a match with Kirkwall Ladies survives."
+    },
+    "name": "Margaret Flett & Holm Ladies",
+    "subtitle": "A girl from Orkney's forgotten football team",
+    "era": "1947 · Orkney, Scotland",
+    "story": "In 1947, eleven women and girls from Holm in Orkney posed together for a photograph. They wore striking dark-and-light football shirts, some with skirts and others with shorts. Behind them stood old cars; in the front row, the woman in the middle held a ball marked “HOLM LADIES 1947”. The photograph gives us a rare glimpse of local women's football in the years after the Second World War.\n\nKneeling at the far left of the front row was Margaret Flett. She is believed to have been about fourteen years old. She is remembered as a very fast, agile player, although surviving match records do not allow us to measure her performances or reconstruct her playing career. In the photograph she faces the camera in her quartered shirt and dark shorts: a young footballer who belonged to a team.\n\nWe know the names of the other players because people who recognised the photograph helped identify them. The back row is recorded as Elaine Crowther, Sally Peterson, Elma Kirkness, Lil Anderson, Janet Mair and Violet Flett. Alongside Margaret in the front row were Margaret Buchan, Madge Garriock, Elsie Buchan and Vera Garriock. Their names are an important part of the team's surviving history. Despite sharing a surname, we cannot confirm whether Margaret and Violet Flett were related.\n\nOne contributor to the Orkney Image Library remembered Kirkwall Ladies visiting Holm and winning 10–0. This is a community recollection, not a verified contemporary match report. We do not yet know how many matches Holm played, how long the team lasted, or what Margaret did later in life.\n\nThe mystery is part of why this card matters. Football history is not only about famous internationals and trophies. It also belongs to the girls who pulled on a shirt and played for their local community, even when few people wrote down their achievements. Margaret and her teammates deserve to be remembered.",
+    "facts": [
+      "1947 · A surviving photograph records the Holm Ladies Football Team in Orkney.",
+      "Margaret Flett · Identified at the far left of the front row; believed to be about fourteen.",
+      "11 players · Their names were identified through local archive contributions.",
+      "Kirkwall match · A 10–0 score survives as an unverified community recollection."
+    ],
+    "source": "https://photos.orkneycommunities.co.uk/picture/number4639.asp",
+    "furtherReading": [
+      {
+        "label": "Orkney Image Library · Holm Ladies Football Team (1947)",
+        "url": "https://photos.orkneycommunities.co.uk/picture/number4639.asp"
+      },
+      {
+        "label": "Orkney Image Library · Holm Youth Club (1946)",
+        "url": "https://photos.orkneycommunities.co.uk/picture/number5589.asp"
+      }
+    ],
+    "questions": [
+      {
+        "prompt": "Where was the Holm Ladies football team based?",
+        "options": [
+          "Stromness, Orkney",
+          "Holm, Shetland",
+          "Holm, Orkney"
+        ]
+      },
+      {
+        "prompt": "In which year was the surviving team photograph taken?",
+        "options": [
+          "1937",
+          "1947",
+          "1957"
+        ]
+      },
+      {
+        "prompt": "Where is Margaret Flett in the photograph?",
+        "options": [
+          "Far left of the front row",
+          "In the centre of the back row",
+          "Far right of the front row"
+        ]
+      },
+      {
+        "prompt": "Which other player in the photograph was named Flett?",
+        "options": [
+          "Elsie Flett",
+          "Violet Flett",
+          "Madge Flett"
+        ]
+      },
+      {
+        "prompt": "How should we describe the reported 10–0 match with Kirkwall Ladies?",
+        "options": [
+          "A fully verified match report",
+          "A confirmed national cup result",
+          "A community recollection that has not been independently verified"
         ]
       }
     ]
