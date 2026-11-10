@@ -1,0 +1,26 @@
+[
+  {
+    "id": 31,
+    "name": "Afghanistan Women’s National Team",
+    "subtitle": "Football in exile",
+    "era": "2021–2026",
+    "story": "In August 2021, the Taliban returned to power in Afghanistan. Women and girls lost the freedom to play organised football. Members of the Afghanistan women’s national team were among the footballers and other athletes evacuated to Australia. Former captain Khalida Popal helped players find a way to safety.\n\nIn 2022, players began training together again in Melbourne. Melbourne Victory supported their return to the pitch, and the team entered local competition in Victoria. Playing together helped them keep their team and their Afghan identity alive while they rebuilt their lives.\n\nIn 2025, Afghan Women United brought together Afghan footballers living outside the country. They played at a FIFA series in Morocco. In April 2026, FIFA changed its rules to allow Afghan women to represent their country in official international matches. This followed years of advocacy by players and their supporters.",
+    "facts": [
+      "2021 · Afghan footballers and other athletes were evacuated as the Taliban returned to power.",
+      "2022 · Players trained together again in Melbourne with Melbourne Victory’s support.",
+      "2026 · FIFA changed its rules to make official international representation possible."
+    ],
+    "source": "https://www.fifpro.org/en/articles/2021/08/group-evacuation-of-women-football-players-and-athletes-from-afghanistan",
+    "furtherReading": [
+      {"label": "Melbourne Victory on the team’s return to football", "url": "https://melbournevictory.com.au/news/melbourne-victory-to-support-afghan-womens-national-teams-return-to-football-in-victoria/"},
+      {"label": "FIFA on the 2026 rule change", "url": "https://inside.fifa.com/organisation/media-releases/afc-afghan-women-official-matches-landmark-governance-reform"}
+    ],
+    "questions": [
+      {"prompt": "In which year were players evacuated from Afghanistan?", "options": ["2019", "2021", "2023"]},
+      {"prompt": "Which former captain helped players find a way to safety?", "options": ["Khalida Popal", "Marta", "Christine Sinclair"]},
+      {"prompt": "Where did players begin training together again in 2022?", "options": ["London", "Toronto", "Melbourne"]},
+      {"prompt": "What was the name of the team that played at the FIFA series in Morocco in 2025?", "options": ["Afghan Women United", "Melbourne City", "Afghanistan Youth XI"]},
+      {"prompt": "What did FIFA’s 2026 rule change make possible?", "options": ["A new domestic league in Afghanistan", "Afghan women representing their country in official international matches", "Automatic entry to the Women’s World Cup"]}
+    ]
+  }
+]

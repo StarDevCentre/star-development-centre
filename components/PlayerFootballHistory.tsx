@@ -4,14 +4,19 @@ import {useEffect, useRef, useState, type FormEvent} from "react";
 import Image from "next/image";
 import trailblazers from "../lib/content/football-history.json";
 import sparks from "../lib/content/football-history-sparks.json";
+import specials from "../lib/content/football-history-specials.json";
+import {AfghanistanHistoryArt,AfghanistanHistoryCard} from "./AfghanistanHistoryCard";
 import {SparksHistoryArt,SparksHistoryCard,SparksReadAloud} from "./SparksHistoryCard";
 import {supabaseBrowser} from "../lib/supabaseBrowser";
 import "./player-football-history.css";
 
+const afghanistanCardId = 31;
+const olderCards = [...trailblazers,...specials];
 const trailblazerSets = [
   {name:"The Pioneers", metal:"Bronze"},
   {name:"Legends of the World Game", metal:"Silver"},
   {name:"Moments That Changed the Game", metal:"Gold"},
+  {name:"Special editions", metal:"Special"},
 ] as const;
 const sparksSets = [
   {name:"First Football Heroes",metal:"Coral"},
@@ -19,9 +24,9 @@ const sparksSets = [
   {name:"Big Match Moments",metal:"Violet"},
 ] as const;
 const isSparks = (id:number) => id >= 101;
-const cardNumber = (id:number) => isSparks(id) ? `S${String(id-100).padStart(2,"0")}` : String(id).padStart(3,"0");
+const cardNumber = (id:number) => id===afghanistanCardId ? "SE01" : isSparks(id) ? `S${String(id-100).padStart(2,"0")}` : String(id).padStart(3,"0");
 const cardImage = (id:number, side:"front"|"back") => `/player-space/history/${cardNumber(id)}-${side}.webp`;
-type Card = (typeof trailblazers)[number] | (typeof sparks)[number];
+type Card = (typeof olderCards)[number] | (typeof sparks)[number];
 type Edition = "sparks"|"trailblazers"|"unknown"|"under-five";
 type Progress = {card_id:number; score:number; retry_at:string|null; earned_at:string|null};
 
@@ -118,9 +123,10 @@ export function PlayerFootballHistory({playerId, preview}: {playerId:string; pre
   </section>;
 
   const junior = edition==="sparks" || view==="keepsakes";
-  const cards:Card[] = junior ? sparks : trailblazers;
+  const cards:Card[] = junior ? sparks : preview ? trailblazers : olderCards;
   const sets = junior ? sparksSets : trailblazerSets;
-  const collected = cards.filter(card => progress[card.id]?.earned_at).length;
+  const collected = (junior ? sparks : trailblazers).filter(card => progress[card.id]?.earned_at).length;
+  const hasAnyCard = cards.some(card => progress[card.id]?.earned_at);
   const hasKeepsakes = edition==="trailblazers" && sparks.some(card => progress[card.id]?.earned_at);
   const tier = selected ? sets[Math.floor(((junior ? selected.id-100 : selected.id)-1)/10)] : null;
   return <section className={`ps-history${junior?" ps-history-sparks":""}`} aria-labelledby="ps-history-title">
@@ -136,7 +142,8 @@ export function PlayerFootballHistory({playerId, preview}: {playerId:string; pre
           <div className="ps-history-viewer">
             <div className="ps-history-flip" data-side={side}>
               {(["front","back"] as const).map(face => <div key={face} className={`ps-history-face ps-history-face-${face}`} aria-hidden={side!==face}>
-                {junior ? <SparksHistoryCard card={selected} face={face} number={cardNumber(selected.id)} setName={tier.name}/> : <Image src={cardImage(selected.id,face)} width={576} height={768} sizes="(max-width: 560px) 88vw, 420px" alt={`${selected.name} collector card, ${face} side`}/>}
+                {selected.id===afghanistanCardId ? <AfghanistanHistoryCard face={face}/>
+                  : junior ? <SparksHistoryCard card={selected} face={face} number={cardNumber(selected.id)} setName={tier.name}/> : <Image src={cardImage(selected.id,face)} width={576} height={768} sizes="(max-width: 560px) 88vw, 420px" alt={`${selected.name} collector card, ${face} side`}/>}
               </div>)}
             </div>
             <div className="ps-history-controls" role="group" aria-label="Card side">
@@ -166,6 +173,7 @@ export function PlayerFootballHistory({playerId, preview}: {playerId:string; pre
           </div>
         </form> : <>
           <p className="ps-history-era">{selected.subtitle}{"era" in selected && ` · ${selected.era}`}</p>
+          {selected.id===afghanistanCardId && <div className="ps-afghanistan-story-preview"><AfghanistanHistoryArt sizes="240px"/></div>}
           {junior && <div className="ps-sparks-story-art"><SparksHistoryArt id={selected.id} sizes="(max-width: 480px) 80vw, 260px"/></div>}
           {junior && <SparksReadAloud text={selected.story} label="Read this story to me"/>}
           <div className="ps-history-story">
@@ -197,13 +205,13 @@ export function PlayerFootballHistory({playerId, preview}: {playerId:string; pre
         <button type="button" aria-pressed={view==="collection"} onClick={() => setView("collection")}>My collection</button>
         {hasKeepsakes && <button type="button" aria-pressed={view==="keepsakes"} onClick={() => setView("keepsakes")}>My Sparks cards</button>}
       </div>
-      {view==="collection" && load==="ready" && !collected && <p className="ps-history-notice">Your collection is empty. Explore a story and score 5 out of 5 to earn your first card.</p>}
+      {view==="collection" && load==="ready" && !hasAnyCard && <p className="ps-history-notice">Your collection is empty. Explore a story and score 5 out of 5 to earn your first card.</p>}
       {sets.map(({name,metal},index) => {
         const group=cards.slice(index*10,index*10+10);
         const owned=group.filter(card => progress[card.id]?.earned_at);
         const shown=view==="stories"?group:owned;
         return shown.length>0 && <section key={name} className={`ps-history-set ps-history-${metal.toLowerCase()}`}>
-          <div className="ps-history-set-title"><h3>{name}</h3><span>{metal} · {owned.length}/10</span></div>
+          <div className="ps-history-set-title"><h3>{name}</h3><span>{metal==="Special" ? `${owned.length}/${group.length} collected` : `${metal} · ${owned.length}/${group.length}`}</span></div>
           <ul className="ps-history-grid">{shown.map(card => {
             const earned=Boolean(progress[card.id]?.earned_at);
             if (junior && view!=="stories") return <li key={card.id}>
@@ -212,7 +220,8 @@ export function PlayerFootballHistory({playerId, preview}: {playerId:string; pre
               </button>
             </li>;
             return <li key={card.id}><button type="button" onClick={() => open(card,view==="stories"?"story":"card")}>
-              {junior ? <SparksHistoryArt id={card.id} sizes="(max-width: 600px) 43vw, 210px"/>
+              {card.id===afghanistanCardId ? <AfghanistanHistoryArt sizes="(max-width: 550px) 43vw, 208px"/>
+                : junior ? <SparksHistoryArt id={card.id} sizes="(max-width: 600px) 43vw, 210px"/>
                 : view==="collection" && <Image src={cardImage(card.id,"front")} width={576} height={768} sizes="(max-width: 600px) 43vw, 210px" alt=""/>}
               <span className="ps-history-kicker">{cardNumber(card.id)} · {earned?"Collected":"Story"}</span>
               <strong>{card.name}</strong>
