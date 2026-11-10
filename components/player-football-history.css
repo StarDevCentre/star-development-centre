@@ -57,12 +57,214 @@
 .ps-sparks-story-art img{width:100%;height:auto;border-radius:1rem;border:2px solid var(--sparks-accent)}
 .ps-history-sparks form label{padding:.55rem .75rem;border:1px solid #7187a5;border-radius:.7rem;margin-top:.5rem;background:#1b3153}
 .ps-history-sparks form label:has(input:checked){border-color:#ffdf8e;background:#2c4370}
-.ps-sparks-card{height:100%;color:#102640;background:var(--sparks-paper);border:4px solid var(--sparks-accent);border-radius:1.2rem;overflow:hidden;box-shadow:0 12px 28px #0006;text-align:left;display:flex;flex-direction:column}
-.ps-sparks-card-header,.ps-sparks-card-footer{background:#142b51;color:#fff8e5;padding:.65rem .9rem;font-size:.85rem;font-weight:900;letter-spacing:.06em}
-.ps-sparks-card-header{display:flex;justify-content:space-between;gap:.75rem}
-.ps-sparks-card-footer{text-align:center;margin-top:auto}
-.ps-sparks-card .ps-sparks-card-copy{padding:.9rem 1rem}
-.ps-sparks-card .ps-sparks-card-copy strong{display:block;font-size:clamp(1.35rem,4vw,1.9rem);line-height:1.1;margin-bottom:.45rem}
-.ps-sparks-card .ps-sparks-card-copy p{line-height:1.5}
-.ps-sparks-card .ps-sparks-card-copy p:first-of-type{font-weight:700}
-.ps-sparks-card img{width:100%;height:auto;border-radius:0;box-shadow:none}
+
+.ps-history-coral {
+  --sparks-ink:#431732;
+  --sparks-bright:#ff977e;
+  --sparks-glow:#ffd2a0;
+  --sparks-rim:#c34969;
+}
+.ps-history-teal {
+  --sparks-ink:#083c46;
+  --sparks-bright:#76e1c3;
+  --sparks-glow:#e2f8a9;
+  --sparks-rim:#188b91;
+}
+.ps-history-violet {
+  --sparks-ink:#311855;
+  --sparks-bright:#be9aff;
+  --sparks-glow:#ffc8ed;
+  --sparks-rim:#8052c6;
+}
+
+.ps-history-sparks .ps-history-face {min-width:0}
+
+.ps-sparks-card {
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  gap:.65rem;
+  height:100%;
+  padding:clamp(.6rem,2.5vw,.9rem);
+  border:2px solid var(--sparks-glow);
+  border-radius:1.5rem;
+  overflow:hidden;
+  color:var(--sparks-ink);
+  text-align:left;
+  background:
+    radial-gradient(circle, #fff9 1px, transparent 1.5px) 0 0 / 9px 9px,
+    linear-gradient(144deg,var(--sparks-glow),var(--sparks-bright) 43%,var(--sparks-glow) 72%,var(--sparks-bright));
+  box-shadow:inset 0 0 0 3px var(--sparks-rim),0 5px 0 var(--sparks-rim),0 13px 24px #0005;
+}
+.ps-sparks-card-header {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:.3rem;
+  min-height:2rem;
+}
+.ps-sparks-card-brand,.ps-sparks-card-number {
+  display:inline-flex;
+  align-items:center;
+  gap:.36em;
+  border-radius:2rem;
+  font-size:clamp(.75rem,3.2vw,1rem);
+  font-weight:900;
+  line-height:1;
+}
+.ps-sparks-card-brand {
+  padding:.48em .68em;
+  background:var(--sparks-ink);
+  color:#fff9e8;
+  box-shadow:0 2px 0 #fff9;
+}
+.ps-sparks-card-brand svg {width:1em;height:1em;color:#ffe395}
+.ps-sparks-card-number {
+  padding:.42em .65em;
+  border:1px solid var(--sparks-ink);
+  background:#fff9e8;
+  font-variant-numeric:tabular-nums;
+}
+.ps-sparks-card-art {
+  display:block;
+  overflow:hidden;
+  border:2px solid var(--sparks-ink);
+  border-radius:1rem;
+  background:var(--sparks-paper);
+  box-shadow:0 0 0 2px #fff9e8;
+}
+.ps-sparks-card .ps-sparks-card-art img,
+.ps-sparks-card .ps-sparks-card-story-title img {
+  display:block;
+  width:100%;
+  height:auto;
+  border-radius:0;
+  box-shadow:none;
+}
+.ps-sparks-card-nameplate {
+  position:relative;
+  z-index:1;
+  display:block;
+  margin:-1.35rem .45rem 0;
+  padding:.75rem 2.55rem .75rem .85rem;
+  border:2px solid var(--sparks-ink);
+  border-radius:.8rem;
+  background:#fff9e8;
+  box-shadow:0 3px 0 var(--sparks-ink);
+}
+.ps-sparks-card-name {
+  display:block;
+  font-size:clamp(1.5rem,6.5vw,2.35rem);
+  font-weight:900;
+  line-height:1.03;
+  letter-spacing:-.035em;
+  overflow-wrap:anywhere;
+}
+.ps-sparks-card-subtitle {
+  display:block;
+  margin-top:.3rem;
+  font-size:clamp(.9rem,3.5vw,1.06rem);
+  font-weight:700;
+  line-height:1.25;
+}
+.ps-sparks-card-sticker {
+  position:absolute;
+  right:-.3rem;
+  top:-.8rem;
+  display:grid;
+  place-items:center;
+  width:2.75rem;
+  aspect-ratio:1;
+  border:2px solid var(--sparks-ink);
+  border-radius:36%;
+  transform:rotate(12deg);
+  background:#ffe395;
+  box-shadow:0 0 0 2px #fff9e8;
+}
+.ps-sparks-card-sticker svg {width:60%;height:60%}
+.ps-sparks-card-set {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:.4rem;
+  margin-top:auto;
+  padding:.32rem .3rem .08rem;
+  font-size:clamp(.74rem,3vw,.95rem);
+  font-weight:900;
+  text-align:center;
+}
+.ps-sparks-card-set svg {width:.78em;height:.78em;flex:none}
+
+.ps-sparks-card-story-title {
+  display:grid;
+  grid-template-columns:clamp(2.5rem,12vw,4rem) minmax(0,1fr);
+  align-items:center;
+  gap:.65rem;
+  padding:.2rem;
+}
+.ps-sparks-card-story-title .ps-sparks-card-name {
+  font-size:clamp(1.35rem,5.7vw,2rem);
+}
+.ps-sparks-card .ps-sparks-card-story-title img {
+  border:2px solid var(--sparks-ink);
+  border-radius:.7rem;
+  box-shadow:0 0 0 2px #fff9e8;
+  transform:rotate(-4deg);
+}
+.ps-sparks-card-reading {
+  flex:1;
+  padding:clamp(.8rem,3.3vw,1.15rem);
+  border:2px solid var(--sparks-ink);
+  border-radius:1rem;
+  background:#fffaf0;
+  box-shadow:0 3px 0 var(--sparks-ink);
+}
+.ps-sparks-card-story-label {
+  display:inline-block;
+  margin-bottom:.65rem;
+  padding:.18rem .58rem;
+  border-radius:.35rem;
+  background:var(--sparks-glow);
+  font-size:.9rem;
+}
+.ps-history .ps-sparks-card-reading p {
+  margin:0;
+  color:#172640;
+  font-size:clamp(1rem,3.8vw,1.125rem);
+  line-height:1.5;
+}
+.ps-history .ps-sparks-card-reading p+p {margin-top:.65rem}
+
+.ps-history-sparks .ps-history-viewer .ps-history-controls {margin-top:1.25rem}
+.ps-history-sparks .ps-history-viewer .ps-history-controls button {border-radius:2rem}
+.ps-history-sparks .ps-history-viewer .ps-history-controls button[aria-pressed=true] {
+  background:var(--sparks-glow);
+  border-color:var(--sparks-glow);
+  color:var(--sparks-ink);
+}
+
+.ps-history-sparks .ps-history-grid button.ps-sparks-collection-card {
+  display:block;
+  padding:0;
+  border:0;
+  border-radius:.9rem;
+  background:transparent;
+}
+.ps-sparks-collection-card:hover .ps-sparks-card {border-color:#fff9e8}
+.ps-sparks-card.ps-sparks-card-mini {
+  gap:.36rem;
+  padding:.4rem;
+  border-radius:.9rem;
+  color:var(--sparks-ink);
+}
+.ps-sparks-card-mini .ps-sparks-card-header {min-height:1.5rem}
+.ps-sparks-card-mini .ps-sparks-card-brand,
+.ps-sparks-card-mini .ps-sparks-card-number {font-size:.68rem}
+.ps-sparks-card-mini .ps-sparks-card-art {border-radius:.55rem}
+.ps-sparks-card-mini .ps-sparks-card-nameplate {
+  flex:1;
+  margin:-.68rem .12rem .12rem;
+  padding:.4rem .42rem;
+  border-radius:.5rem;
+}
+.ps-sparks-card-mini .ps-sparks-card-name {font-size:clamp(.95rem,3.8vw,1.2rem)}

@@ -136,12 +136,12 @@ export function PlayerFootballHistory({playerId, preview}: {playerId:string; pre
           <div className="ps-history-viewer">
             <div className="ps-history-flip" data-side={side}>
               {(["front","back"] as const).map(face => <div key={face} className={`ps-history-face ps-history-face-${face}`} aria-hidden={side!==face}>
-                {junior ? <SparksHistoryCard card={selected} face={face}/> : <Image src={cardImage(selected.id,face)} width={576} height={768} sizes="(max-width: 560px) 88vw, 420px" alt={`${selected.name} collector card, ${face} side`}/>}
+                {junior ? <SparksHistoryCard card={selected} face={face} number={cardNumber(selected.id)} setName={tier.name}/> : <Image src={cardImage(selected.id,face)} width={576} height={768} sizes="(max-width: 560px) 88vw, 420px" alt={`${selected.name} collector card, ${face} side`}/>}
               </div>)}
             </div>
             <div className="ps-history-controls" role="group" aria-label="Card side">
-              <button type="button" aria-pressed={side==="front"} onClick={() => setSide("front")}>Front</button>
-              <button type="button" aria-pressed={side==="back"} onClick={() => setSide("back")}>Back</button>
+              <button type="button" aria-pressed={side==="front"} onClick={() => setSide("front")}>{junior?"Card front":"Front"}</button>
+              <button type="button" aria-pressed={side==="back"} onClick={() => setSide("back")}>{junior?"Story side":"Back"}</button>
             </div>
           </div>
           <button type="button" className="ps-history-back" onClick={() => {setMode("story");setResult(null);}}>Read the story in text</button>
@@ -206,6 +206,11 @@ export function PlayerFootballHistory({playerId, preview}: {playerId:string; pre
           <div className="ps-history-set-title"><h3>{name}</h3><span>{metal} · {owned.length}/10</span></div>
           <ul className="ps-history-grid">{shown.map(card => {
             const earned=Boolean(progress[card.id]?.earned_at);
+            if (junior && view!=="stories") return <li key={card.id}>
+              <button type="button" className="ps-sparks-collection-card" aria-label={`View ${card.name} card`} onClick={() => open(card,"card")}>
+                <SparksHistoryCard card={card} face="front" number={cardNumber(card.id)} setName={name} compact/>
+              </button>
+            </li>;
             return <li key={card.id}><button type="button" onClick={() => open(card,view==="stories"?"story":"card")}>
               {junior ? <SparksHistoryArt id={card.id} sizes="(max-width: 600px) 43vw, 210px"/>
                 : view==="collection" && <Image src={cardImage(card.id,"front")} width={576} height={768} sizes="(max-width: 600px) 43vw, 210px" alt=""/>}
