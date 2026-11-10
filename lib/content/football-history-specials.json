@@ -352,5 +352,68 @@
         ]
       }
     ]
+  },
+  {
+    "id": 36,
+    "number": "SE06",
+    "artwork": {
+      "slug": "keynsham-super-strikers-se06",
+      "front": "STAR Football History special edition SE06. Keynsham Super Strikers, founded 1993. Illustrated reconstruction of girls playing football in green and white.",
+      "back": "From Super Strikers to Keynsham Town Ladies. In 1993, girls from Chandag Primary started the Super Strikers and played under-11 six-a-side football. In 1998/99 the team became Keynsham Town Ladies and joined the South West Women’s League. Illustrated reconstruction."
+    },
+    "name": "Keynsham Super Strikers",
+    "subtitle": "The schoolgirls who started a club",
+    "era": "1993–99 · Keynsham",
+    "story": "In 1993, girls from Chandag Primary asked Barrie Newton to help them start a football team. They called themselves the Super Strikers and played in a local under-11 six-a-side league.\n\nThey played six-a-side for about three years. As more players joined, the team started playing occasional eleven-a-side friendlies. Local telecommunications company Protel sponsored the club, which took the name Protel Super Strikers and adopted a green-and-white kit during this period.\n\nIn 1998/99 the team took the name Keynsham Town Ladies FC, entered Division Two of the South West Women’s League and finished third. The front illustrates the early story with imagined players and uses green and white as a nod to the kit adopted later.",
+    "facts": [
+      "1993 · Girls from Chandag Primary founded the Super Strikers.",
+      "Under-11 · They started in a local six-a-side league.",
+      "Protel · A local sponsor gave the team its second name.",
+      "1998/99 · Keynsham Town Ladies finished third in Division Two."
+    ],
+    "source": "https://ktlfc.com/Pages/History.htm",
+    "furtherReading": [],
+    "questions": [
+      {
+        "prompt": "Which school did the founders attend?",
+        "options": [
+          "Chandag Primary",
+          "St John’s Primary",
+          "Castle Primary"
+        ]
+      },
+      {
+        "prompt": "When did the Super Strikers start?",
+        "options": [
+          "1983",
+          "1993",
+          "2003"
+        ]
+      },
+      {
+        "prompt": "How many players were on each side in their first league?",
+        "options": [
+          "Five",
+          "Eleven",
+          "Six"
+        ]
+      },
+      {
+        "prompt": "Which name did the team adopt in 1998/99?",
+        "options": [
+          "Keynsham Town Ladies",
+          "Somerset Super Strikers",
+          "Keynsham Rovers"
+        ]
+      },
+      {
+        "prompt": "Where did they finish in Division Two in 1998/99?",
+        "options": [
+          "First",
+          "Third",
+          "Fifth"
+        ]
+      }
+    ]
   }
 ]
