@@ -358,13 +358,13 @@
     "number": "SE06",
     "artwork": {
       "slug": "keynsham-super-strikers-se06",
-      "front": "STAR Football History special edition SE06. Keynsham Super Strikers, founded 1993. Illustrated reconstruction of girls playing football in green and white.",
-      "back": "From Super Strikers to Keynsham Town Ladies. In 1993, girls from Chandag Primary started the Super Strikers and played under-11 six-a-side football. In 1998/99 the team became Keynsham Town Ladies and joined the South West Women’s League. Illustrated reconstruction."
+      "front": "STAR Somerset Football Heritage card. Keynsham Town Ladies FC, established 1993 as the Super Strikers. Illustrated players in green-and-white hoops, with an indoor court behind them.",
+      "back": "Somerset Football Heritage. The Super Strikers. An illustrated indoor six-a-side court and a timeline from the Super Strikers in 1993 to Keynsham Town Ladies FC in 1998/99."
     },
     "name": "Keynsham Super Strikers",
     "subtitle": "The schoolgirls who started a club",
     "era": "1993–99 · Keynsham",
-    "story": "In 1993, girls from Chandag Primary asked Barrie Newton to help them start a football team. They called themselves the Super Strikers and played in a local under-11 six-a-side league.\n\nThey played six-a-side for about three years. As more players joined, the team started playing occasional eleven-a-side friendlies. Local telecommunications company Protel sponsored the club, which took the name Protel Super Strikers and adopted a green-and-white kit during this period.\n\nIn 1998/99 the team took the name Keynsham Town Ladies FC, entered Division Two of the South West Women’s League and finished third. The front illustrates the early story with imagined players and uses green and white as a nod to the kit adopted later.",
+    "story": "In 1993, a group of girls from Chandag Primary in Keynsham wanted a football team. According to the club’s history, their sports teacher was already busy with the boys’ team and dismissed the idea of girls playing. The girls took their idea to Barrie Newton and asked him to help them start a team. They called themselves the Super Strikers and entered a local under-11 league, playing six-a-side indoors.\n\nFor about three years, six-a-side was their regular game. More players joined, and eventually the club had enough players to arrange occasional eleven-a-side friendlies. That meant trying a different version of the same game. An indoor court puts teammates close together, while a full-size pitch gives players more space to cover and more choices about where to move when they don’t have the ball.\n\nA local telecommunications company, Protel, sponsored the team during those early years. The club became Protel Super Strikers and adopted a Celtic-style green-and-white kit. The hoops on the front of this card are inspired by that later kit. The court on the back takes you back to the team’s first games.\n\nIn 1998/99, the club took the name Keynsham Town Ladies FC, linked up with Keynsham Town’s men’s club and shared its facilities. In their first season in Division Two of the South West Women’s League, they finished third. Just six years earlier, the founders had been schoolgirls asking for help to get a team going. Their first step was small enough to fit on an indoor court. It gave other girls a team to join and, over time, made eleven-a-side football possible.",
     "facts": [
       "1993 · Girls from Chandag Primary founded the Super Strikers.",
       "Under-11 · They started in a local six-a-side league.",
@@ -372,7 +372,12 @@
       "1998/99 · Keynsham Town Ladies finished third in Division Two."
     ],
     "source": "https://ktlfc.com/Pages/History.htm",
-    "furtherReading": [],
+    "furtherReading": [
+      {
+        "label": "AFC Bournemouth · How Keynsham Town Ladies began",
+        "url": "https://www.afcb.co.uk/news/2024/october/05/in-opposition--keynsham-town/"
+      }
+    ],
     "questions": [
       {
         "prompt": "Which school did the founders attend?",
