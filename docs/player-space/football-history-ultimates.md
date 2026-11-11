@@ -18,7 +18,7 @@ Applied `denmark_1971_and_arsenal_2007_ultimate_history_cards` migration. Expand
 
 Front/back PNGs generated using built-in image generation, with the official supplied STAR logo as reference. Optimised WebP exports (Denmark 800×1200; revised Arsenal 1024×1536) in `public/player-space/history/specials`.
 
-Denmark: engraved platinum, Danish red/white and Mexican sunbursts, imagined historical player with the 1970 Azteca panorama as architectural reference. Arsenal (revised): modern scarlet, midnight navy and polished chrome, photorealistic reconstructed adult players celebrating in red/white, four angular achievement tiles. Historical illustrations are not archival photographs or claimed portraits.
+Denmark: engraved platinum, Danish red/white and Mexican sunbursts, imagined historical player with the 1970 Azteca panorama as architectural reference. Arsenal (revised): modern scarlet, midnight navy and polished chrome, photorealistic reconstructed adult players celebrating in the yellow/dark 2007 FA Cup-final kit, four angular achievement tiles. Historical illustrations are not archival photographs or claimed portraits.
 
 Arsenal front prompt: portrait premium collectible, ULTIMATE CHALLENGE UC02, ARSENAL 2007 / THE QUADRUPLE, actual STAR mark, red/white women footballers, North London architecture, four competition medallions, 7 QUESTIONS / 7/7 TO EARN. Back prompt: matching ruby/silver, perfect league record (22 wins, 119 scored, ten conceded, 66 points), Scott’s Swedish goal and 1–0 European aggregate, four major titles and Smith/Ludlow’s FA Cup braces.
 
@@ -31,3 +31,13 @@ Owner requested a modern visual style and improved image quality appropriate to 
 Built-in image generation: front prompt requests sharp photorealistic digital reconstruction, natural adult players celebrating in period red/white clothing, polished scarlet/navy/chrome and angular foil framing, official STAR mark, bold condensed sans-serif title and four competition tiles. Reverse uses matching modern glasslike panels, large 22/22 statistics and the original validated historical copy. No antique filigree, engraving, parchment, serif lettering or claimed archival photography. Exports preserve native generated resolution in high-quality WebP. Original art remains available for rollback.
 
 Validation: catalogue comparison confirms only Arsenal artwork metadata changed; Denmark, both stories and all questions are identical. Both generated faces visually inspected for typography, identity and factual copy.
+
+## Arsenal kit correction · 11 November 2026
+
+Owner requires the actual kit worn in 2007. The illustrated celebration is now tied specifically to the FA Cup final on 7 May 2007: golden yellow Nike shirts, dark anthracite curved shoulder panels and V-neck trim, centrally positioned Arsenal crest, black Fly Emirates sponsor, final embroidery, dark shorts. Reference photograph inspected at full resolution from The FA’s official final archive, with an Arsenal Pictures match photo confirming the shorts and side panels.
+
+Sources: https://www.thefa.com/competitions/the-womens-fa-cup/womens-fa-cup-finals ; reference image https://thefa.shorthandstories.com/a-list-of-all-womens-fa-cup-final-results/assets/U1bEthTcph/2560-arsenal-2007-2560x1440.jpg ; Arsenal Pictures https://www.arsenalpics.com/arsenal-women/arsenal-ladies-v-charlton-fa-cup-final-2006-07/kelly-smith-celebrates-scoring-arsenals-1st-goal-455322.html . Reference photos are used for kit details; the card remains labelled a historical reconstruction.
+
+Built-in image edit: preserve modern v2 card design, typography, six imagined players, poses and lighting; replace only their shirts and shorts to match the authentic 2007 final references, including Nike/crest/sponsor placement and the dark curved shoulder panels. Front exported at native resolution. Versioned slug `arsenal-2007-uc02-kit-v3` refreshes the artwork; back is byte-identical to modern v2. Story, quiz and stored awards are unchanged. No database changes or usability tests.
+
+Final finishing pass adds the red E.ON/FA Cup sleeve patches on exposed right sleeves. Both kit references and the final generated face were inspected visually before export.
