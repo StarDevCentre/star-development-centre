@@ -304,3 +304,10 @@
   border-radius:0 0 .55rem .55rem;
 }
 .ps-sparks-card-mini .ps-sparks-card-name {font-size:clamp(.95rem,3.8vw,1.2rem)}
+
+/* Ultimate editions have a separate shelf and longer sectioned stories. */
+.ps-history-ultimate{--history-metal:#d8e4f7;border-color:#afc2de;background:radial-gradient(ellipse at 95% 0%,#6e1b38 0%,transparent 65%),#101b31}
+.ps-history-story section+section{margin-top:1.7rem}
+.ps-history-story section h3{font-size:1.2rem;line-height:1.35;color:var(--history-metal)}
+.ps-history-story ol{padding-left:1.4rem}
+.ps-history-story li+li{margin-top:.5rem}

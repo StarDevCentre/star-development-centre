@@ -105,6 +105,76 @@ begin
   raise exception 'Sparks incorrectly earned a Trailblazers card';end if;
 end$$;
 reset role;
+-- Seven-question Ultimate tier: validation, cooldown, award and edition isolation.
+set local role authenticated;
+select set_config('request.jwt.claim.sub',(select value from history_test where key='guardian'),true);
+do $$
+declare pid uuid:=(select value::uuid from history_test where key='core');
+ younger uuid:=(select value::uuid from history_test where key='junior');
+ cid smallint; correct integer[]; wrong integer[]; invalid integer[];
+ failed public.player_history_progress;
+begin
+ foreach cid in array array[42,43]::smallint[] loop
+  select answers into correct from history_keys where card_id=cid;
+  begin
+   perform public.submit_football_history_quiz(younger,cid,correct);
+   raise exception 'Younger player received Ultimate %',cid;
+  exception when insufficient_privilege then null;end;
+  begin
+   perform public.submit_football_history_quiz(pid,cid,correct[1:5]);
+   raise exception 'Five answers accepted for Ultimate %',cid;
+  exception when invalid_parameter_value then null;end;
+  begin
+   perform public.submit_football_history_quiz(pid,cid,correct[1:6]);
+   raise exception 'Six answers accepted for Ultimate %',cid;
+  exception when invalid_parameter_value then null;end;
+  invalid:=correct; invalid[7]:=4;
+  begin
+   perform public.submit_football_history_quiz(pid,cid,invalid);
+   raise exception 'Out-of-range answer accepted';
+  exception when invalid_parameter_value then null;end;
+  invalid[7]:=null;
+  begin
+   perform public.submit_football_history_quiz(pid,cid,invalid);
+   raise exception 'Null answer accepted';
+  exception when invalid_parameter_value then null;end;
+  wrong:=correct;wrong[1]:=(wrong[1]+1)%4;
+  failed:=public.submit_football_history_quiz(pid,cid,wrong);
+  if failed.score is distinct from 6 or failed.earned_at is not null
+   or failed.retry_at<now()+interval '19 minutes' then raise exception '6/7 failed to enforce cooldown';end if;
+  if public.submit_football_history_quiz(pid,cid,correct) is distinct from failed then raise exception 'Ultimate cooldown bypassed';end if;
+ end loop;
+ begin
+  perform public.submit_football_history_quiz(pid,3::smallint,array[0,0,0,0,3]);
+  raise exception 'Fourth option accepted for standard card';
+ exception when invalid_parameter_value then null;end;
+end$$;
+reset role;
+update public.player_history_progress set retry_at=now()-interval '1 second'
+ where card_id in (42,43) and player_id=(select value::uuid from history_test where key='core');
+set local role authenticated;
+select set_config('request.jwt.claim.sub',(select value from history_test where key='player'),true);
+do $$
+declare pid uuid:=(select value::uuid from history_test where key='core');
+ cid smallint;correct integer[];earned public.player_history_progress;
+begin
+ foreach cid in array array[42,43]::smallint[] loop
+  select answers into correct from history_keys where card_id=cid;
+  earned:=public.submit_football_history_quiz(pid,cid,correct);
+  if earned.score is distinct from 7 or earned.earned_at is null or earned.retry_at is not null then raise exception '7/7 did not earn Ultimate %',cid;end if;
+  if public.submit_football_history_quiz(pid,cid,array[0,0,0,0,0,0,0]) is distinct from earned then raise exception 'Ultimate replay changed award';end if;
+ end loop;
+end$$;
+select set_config('request.jwt.claim.sub',(select value from history_test where key='other'),true);
+do $$
+begin
+ begin
+  perform public.submit_football_history_quiz((select value::uuid from history_test where key='core'),43::smallint,array[0,0,0,0,0,0,0]);
+  raise exception 'Cross-family Ultimate submission permitted';
+ exception when insufficient_privilege then null;end;
+end$$;
+reset role;
+select set_config('request.jwt.claim.sub',(select value from history_test where key='guardian'),true);
 update public.player_intakes set date_of_birth=((now() at time zone 'Europe/London')::date-interval '11 years')::date
  where portal_player_id=(select value::uuid from history_test where key='junior');
 set local role authenticated;
@@ -130,4 +200,4 @@ begin
 end$$;
 reset role;
 rollback;
-select 'PASS: five-question validation, 4/5 cooldown, expiry, 5/5 award, replay, edition age boundary, special edition award and age restriction, birthday keepsakes and family isolation.' as result;
+select 'PASS: Ultimate seven-question validation, 6/7 cooldown, 7/7 award, replay and family/age isolation; five-question validation, 4/5 cooldown, expiry, 5/5 award, replay, edition age boundary, special edition award and age restriction, birthday keepsakes and family isolation.' as result;

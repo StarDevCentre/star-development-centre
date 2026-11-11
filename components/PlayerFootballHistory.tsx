@@ -5,17 +5,19 @@ import Image from "next/image";
 import trailblazers from "../lib/content/football-history.json";
 import sparks from "../lib/content/football-history-sparks.json";
 import specials from "../lib/content/football-history-specials.json";
+import ultimates from "../lib/content/football-history-ultimates.json";
 import {SpecialHistoryCard} from "./SpecialHistoryCard";
 import {SparksHistoryArt,SparksHistoryCard,SparksReadAloud} from "./SparksHistoryCard";
 import {supabaseBrowser} from "../lib/supabaseBrowser";
 import "./player-football-history.css";
 
-const olderCards:Card[] = [...trailblazers,...specials];
+const olderCards:Card[] = [...trailblazers,...specials,...ultimates];
 const trailblazerSets = [
   {name:"The Pioneers", metal:"Bronze"},
   {name:"Legends of the World Game", metal:"Silver"},
   {name:"Moments That Changed the Game", metal:"Gold"},
   {name:"Special editions", metal:"Special"},
+  {name:"Ultimate Challenges", metal:"Ultimate"},
 ] as const;
 const sparksSets = [
   {name:"First Football Heroes",metal:"Coral"},
@@ -23,9 +25,9 @@ const sparksSets = [
   {name:"Big Match Moments",metal:"Violet"},
 ] as const;
 const isSparks = (id:number) => id >= 101;
-const cardNumber = (id:number) => specials.find(card => card.id===id)?.number ?? (isSparks(id) ? `S${String(id-100).padStart(2,"0")}` : String(id).padStart(3,"0"));
+const cardNumber = (id:number) => [...specials,...ultimates].find(card => card.id===id)?.number ?? (isSparks(id) ? `S${String(id-100).padStart(2,"0")}` : String(id).padStart(3,"0"));
 const cardImage = (id:number, side:"front"|"back") => `/player-space/history/${cardNumber(id)}-${side}.webp`;
-type Card = (typeof trailblazers)[number] | (typeof sparks)[number] | (typeof specials)[number];
+type Card = (typeof trailblazers)[number] | (typeof sparks)[number] | (typeof specials)[number] | (typeof ultimates)[number];
 type Edition = "sparks"|"trailblazers"|"unknown"|"under-five";
 type Progress = {card_id:number; score:number; retry_at:string|null; earned_at:string|null};
 
@@ -94,7 +96,7 @@ export function PlayerFootballHistory({playerId, preview}: {playerId:string; pre
   }
   async function submit(event:FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!selected || !supabaseBrowser || preview || sending.current || (isSparks(selected.id) && question!==4) || choices.filter(Number.isInteger).length !== 5) return;
+    if (!selected || !supabaseBrowser || preview || sending.current || (isSparks(selected.id) && question!==selected.questions.length-1) || choices.filter(Number.isInteger).length !== selected.questions.length) return;
     sending.current=true;setBusy(true);setError("");
     try {
       const {data,error:rpcError} = await supabaseBrowser.rpc("submit_football_history_quiz",{
@@ -127,7 +129,8 @@ export function PlayerFootballHistory({playerId, preview}: {playerId:string; pre
   const collected = (junior ? sparks : trailblazers).filter(card => progress[card.id]?.earned_at).length;
   const hasAnyCard = cards.some(card => progress[card.id]?.earned_at);
   const hasKeepsakes = edition==="trailblazers" && sparks.some(card => progress[card.id]?.earned_at);
-  const tier = selected ? sets[Math.floor(((junior ? selected.id-100 : selected.id)-1)/10)] : null;
+  const questionCount = selected?.questions.length ?? 5;
+  const tier = selected ? sets[junior ? Math.floor((selected.id-101)/10) : ultimates.some(card=>card.id===selected.id) ? 4 : specials.some(card=>card.id===selected.id) ? 3 : Math.floor((selected.id-1)/10)] : null;
   return <section className={`ps-history${junior?" ps-history-sparks":""}`} aria-labelledby="ps-history-title">
     {selected && tier ? <>
       <button type="button" className="ps-history-back" disabled={busy} onClick={close}>← Back to {view==="stories"?"all stories":view==="keepsakes"?"my Sparks cards":"my collection"}</button>
@@ -135,8 +138,8 @@ export function PlayerFootballHistory({playerId, preview}: {playerId:string; pre
         <p className="ps-history-kicker">Card {cardNumber(selected.id)} · {tier.metal} · {tier.name}</p>
         <h2 id="ps-history-title" ref={heading} tabIndex={-1}>{selected.name}</h2>
         {result && <p className="ps-history-notice" role="status">{result.earned_at
-          ? "5 out of 5! Your card has been added to My collection."
-          : `${result.score} out of 5. Read the story again while your quiz resets.`}</p>}
+          ? `${questionCount} out of ${questionCount}! Your card has been added to My collection.`
+          : `${result.score} out of ${questionCount}. Read the story again while your quiz resets.`}</p>}
         {mode==="card" && active?.earned_at ? <>
           <div className="ps-history-viewer">
             <div className="ps-history-flip" data-side={side}>
@@ -152,8 +155,8 @@ export function PlayerFootballHistory({playerId, preview}: {playerId:string; pre
           </div>
           <button type="button" className="ps-history-back" onClick={() => {setMode("story");setResult(null);}}>Read the story in text</button>
         </> : mode==="quiz" ? <form onSubmit={submit}>
-          <p>{junior?"Pick one answer. Get all five right to earn your card.":"Choose one answer for each question. Score 5 out of 5 to earn this card."}</p>
-          {junior && <p className="ps-history-kicker">Question {question+1} of 5</p>}
+          <p>{junior?"Pick one answer. Get all five right to earn your card.":`Choose one answer for each question. Score ${questionCount} out of ${questionCount} to earn this card.`}</p>
+          {junior && <p className="ps-history-kicker">Question {question+1} of {questionCount}</p>}
           {selected.questions.map(({prompt,options},index) => (!junior || index===question) && <fieldset key={prompt} disabled={busy}>
             <legend>{index+1}. {prompt}</legend>
             {junior && <SparksReadAloud text={`${prompt} ${options.join(". ")}`} label="Read this question to me"/>}
@@ -166,8 +169,8 @@ export function PlayerFootballHistory({playerId, preview}: {playerId:string; pre
           {error && <p className="ps-error" role="alert">{error}</p>}
           <div className="ps-history-controls">
             {junior && question>0 && <button type="button" disabled={busy} onClick={() => {setQuestion(n=>n-1);focusHeading();}}>Previous question</button>}
-            {junior && question<4 ? <button type="button" className="ps-history-primary" disabled={!Number.isInteger(choices[question])} onClick={() => {setQuestion(n=>n+1);focusHeading();}}>Next question</button>
-              : <button type="submit" disabled={busy || choices.filter(Number.isInteger).length!==5}>{busy?"Checking…":"Check my answers"}</button>}
+            {junior && question<questionCount-1 ? <button type="button" className="ps-history-primary" disabled={!Number.isInteger(choices[question])} onClick={() => {setQuestion(n=>n+1);focusHeading();}}>Next question</button>
+              : <button type="submit" disabled={busy || choices.filter(Number.isInteger).length!==questionCount}>{busy?"Checking…":"Check my answers"}</button>}
             <button type="button" disabled={busy} onClick={() => {setMode("story");setError("");focusHeading();}}>Read the story again</button>
           </div>
         </form> : <>
@@ -176,7 +179,11 @@ export function PlayerFootballHistory({playerId, preview}: {playerId:string; pre
           {junior && <div className="ps-sparks-story-art"><SparksHistoryArt id={selected.id} sizes="(max-width: 480px) 80vw, 260px"/></div>}
           {junior && <SparksReadAloud text={selected.story} label="Read this story to me"/>}
           <div className="ps-history-story">
-            {selected.story.split("\n\n").map(paragraph => <p key={paragraph}>{paragraph}</p>)}
+            {"sections" in selected ? selected.sections.map(({heading:sectionHeading,text},index) => <section key={sectionHeading} aria-labelledby={`history-section-${index}`}>
+              <h3 id={`history-section-${index}`}>{sectionHeading}</h3>
+              {text.split("\n\n").map(paragraph=><p key={paragraph}>{paragraph}</p>)}
+            </section>) : selected.story.split("\n\n").map(paragraph => <p key={paragraph}>{paragraph}</p>)}
+            {"timeline" in selected && <section aria-label="Story timeline"><h3>Timeline</h3><ol>{selected.timeline.map(item=><li key={item}>{item}</li>)}</ol></section>}
           </div>
           {"facts" in selected && <><h3>Key facts</h3>
           <ul>{selected.facts.map(fact => <li key={fact}>{fact}</li>)}</ul></>}
@@ -187,14 +194,14 @@ export function PlayerFootballHistory({playerId, preview}: {playerId:string; pre
           {active?.earned_at ? <button type="button" className="ps-history-primary" onClick={() => {setMode("card");setSide("front");}}>View my card</button>
             : preview ? <p>Sign in to your own Player Space to take the quiz and earn this card.</p>
             : remaining > 0 ? <p className="ps-history-notice">Retry in <time>{Math.floor(remaining/60)}:{String(remaining%60).padStart(2,"0")}</time>. You can explore another story while you wait.</p>
-            : <button type="button" className="ps-history-primary" disabled={load!=="ready"} onClick={() => {setMode("quiz");if (!junior || result) {setChoices([]);setQuestion(0);}setResult(null);focusHeading();}}>{junior && !result && choices.some(Number.isInteger)?"Continue quiz":"Start the 5-question quiz"}</button>}
+            : <button type="button" className="ps-history-primary" disabled={load!=="ready"} onClick={() => {setMode("quiz");if (!junior || result) {setChoices([]);setQuestion(0);}setResult(null);focusHeading();}}>{junior && !result && choices.some(Number.isInteger)?"Continue quiz":`Start the ${questionCount}-question quiz`}</button>}
         </>}
       </article>
     </> : <>
       <header className="ps-history-hero">
         <p className="ps-history-kicker">{junior?"STAR Sparks · Football history":"Series one · The Trailblazers"}</p>
         <h2 id="ps-history-title" ref={heading} tabIndex={-1}>{junior?"Sparks":"Football history"}<br/><em>collection</em></h2>
-        <p>Read a story. Get all five answers right. Earn its card.</p>
+        <p>Read a story. Answer every question correctly. Earn its card.</p>
         <div className="ps-history-meter"><strong>{collected} / 30 cards collected</strong><progress aria-label="Cards collected" value={collected} max={30}/></div>
       </header>
       {load==="loading" && <p role="status">Loading your collection…</p>}
@@ -204,13 +211,13 @@ export function PlayerFootballHistory({playerId, preview}: {playerId:string; pre
         <button type="button" aria-pressed={view==="collection"} onClick={() => setView("collection")}>My collection</button>
         {hasKeepsakes && <button type="button" aria-pressed={view==="keepsakes"} onClick={() => setView("keepsakes")}>My Sparks cards</button>}
       </div>
-      {view==="collection" && load==="ready" && !hasAnyCard && <p className="ps-history-notice">Your collection is empty. Explore a story and score 5 out of 5 to earn your first card.</p>}
+      {view==="collection" && load==="ready" && !hasAnyCard && <p className="ps-history-notice">Your collection is empty. Explore a story and answer every question correctly to earn your first card.</p>}
       {sets.map(({name,metal},index) => {
-        const group=cards.slice(index*10,index*10+10);
+        const group=junior ? cards.slice(index*10,index*10+10) : index<3 ? cards.filter(card=>card.id>=index*10+1 && card.id<=index*10+10) : index===3 ? cards.filter(card=>specials.some(special=>special.id===card.id)) : cards.filter(card=>ultimates.some(ultimate=>ultimate.id===card.id));
         const owned=group.filter(card => progress[card.id]?.earned_at);
         const shown=view==="stories"?group:owned;
         return shown.length>0 && <section key={name} className={`ps-history-set ps-history-${metal.toLowerCase()}`}>
-          <div className="ps-history-set-title"><h3>{name}</h3><span>{metal==="Special" ? `${owned.length}/${group.length} collected` : `${metal} · ${owned.length}/${group.length}`}</span></div>
+          <div className="ps-history-set-title"><h3>{name}</h3><span>{(metal==="Special" || metal==="Ultimate") ? `${owned.length}/${group.length} collected` : `${metal} · ${owned.length}/${group.length}`}</span></div>
           <ul className="ps-history-grid">{shown.map(card => {
             const earned=Boolean(progress[card.id]?.earned_at);
             if (junior && view!=="stories") return <li key={card.id}>
