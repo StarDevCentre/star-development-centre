@@ -420,5 +420,68 @@
         ]
       }
     ]
+  },
+  {
+    "id": 37,
+    "number": "SE07",
+    "artwork": {
+      "slug": "beryl-pugh-se07",
+      "front": "STAR Somerset Football Heritage special edition SE07. Beryl Pugh, the referee who qualified, 1957. An illustrated reconstruction shows a female referee approaching a school pitch, with an engraved whistle and silver border. The figure is not a verified portrait.",
+      "back": "Beryl Pugh. Somerset, 1957. She passed the test. Schoolteacher Beryl Pugh passed the Somerset FA refereeing test in 1957. She received written confirmation of her result, but not the certificate given to male referees. Laughter at a school match had strengthened her determination to qualify. Illustrated reconstruction of a whistle, examination booklet and letter."
+    },
+    "name": "Beryl Pugh",
+    "subtitle": "The referee who qualified",
+    "era": "1957 · Somerset",
+    "story": "In 1957, schoolteacher Beryl Pugh passed a refereeing test administered by the Somerset FA. She had already taken charge of a school football match when she stood in for the sports master. Some people laughed at seeing a woman referee. Beryl later explained that their reaction made her more determined to qualify and demonstrate that women belonged in football.\n\nShe took the examination and passed. Yet the recognition she received was different from that given to male referees. According to the National Football Museum, Somerset FA supplied written confirmation of her success, but did not give her the certificate that men received.\n\nHer story asks us to look beyond the result of an examination. Passing a test shows that a person has met its requirements. Being treated differently afterwards raises another question. What happens when someone proves their knowledge, but the organisation recognising it still treats them unequally?\n\nFor a referee, preparation matters. Knowing the Laws of the Game helps an official explain decisions, recognise offences and restart play correctly. Players also have a part to play. Listening to an explanation and speaking respectfully can help everyone understand what has happened, even when a decision is disappointing.\n\nBeryl’s experience offers a starting point for thinking about that respect. Imagine arriving at a school game, ready to do a job, and being laughed at before making a decision. What would help you feel welcome? A captain’s greeting, teammates who listen, or an adult who challenges the laughter could all make a difference. This card remembers Beryl’s achievement and invites you to consider how you welcome the next person who steps onto your pitch.",
+    "facts": [
+      "1957 · Passed the Somerset FA refereeing test.",
+      "Schoolteacher · Stood in for the sports master at a school match.",
+      "Written confirmation · Received confirmation of passing, but not the certificate given to men.",
+      "Determination · Laughter strengthened her resolve to qualify."
+    ],
+    "source": "https://nationalfootballmuseum.com/stories/female-referees-england/",
+    "furtherReading": [],
+    "questions": [
+      {
+        "prompt": "What was Beryl Pugh’s job?",
+        "options": [
+          "Schoolteacher",
+          "Factory manager",
+          "Journalist"
+        ]
+      },
+      {
+        "prompt": "When did she pass the Somerset FA refereeing test?",
+        "options": [
+          "1927",
+          "1957",
+          "1987"
+        ]
+      },
+      {
+        "prompt": "What did Somerset FA give her after she passed?",
+        "options": [
+          "A league trophy",
+          "The same certificate given to men",
+          "Written confirmation that she had passed"
+        ]
+      },
+      {
+        "prompt": "How did laughter at a school match affect her?",
+        "options": [
+          "It strengthened her determination to qualify",
+          "It made her abandon football",
+          "It made her change the rules"
+        ]
+      },
+      {
+        "prompt": "Which response would help welcome a referee?",
+        "options": [
+          "Laughing before the match begins",
+          "Listening and speaking respectfully",
+          "Judging their ability by their gender"
+        ]
+      }
+    ]
   }
 ]

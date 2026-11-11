@@ -90,7 +90,7 @@ begin
   perform public.submit_football_history_quiz(unknown_age,101::smallint,right_answers);
   raise exception 'Unknown date of birth received award';
  exception when insufficient_privilege then null;end;
- foreach special_card in array array[31,32,33,34,35,36]::smallint[] loop
+ foreach special_card in array array[31,32,33,34,35,36,37]::smallint[] loop
   select answers into special_answers from history_keys where card_id=special_card;
   begin
    perform public.submit_football_history_quiz(younger,special_card,special_answers);
