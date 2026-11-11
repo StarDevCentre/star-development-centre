@@ -2,17 +2,20 @@
   --history-metal:#e8d5af;
   border-color:#a69776;
 }
-.ps-history-special .ps-special-story-preview {
+.ps-special-story-preview {
   width:min(100%,15rem);
+  max-width:100%;
+  min-width:0;
   margin:0 0 1rem;
 }
-.ps-history-special .ps-special-story-preview img {
+.ps-special-story-preview img {
   display:block;
   width:100%;
+  max-width:100%;
   height:auto;
   border-radius:.35rem;
 }
 .ps-history-special .ps-history-grid img {
   width:min(100%,13rem);
 }
-.ps-history-special .ps-history-face {min-width:0}
+

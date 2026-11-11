@@ -1,4 +1,4 @@
-.ps-history{--history-metal:#efd18c;color:#f7f4ec;display:grid;gap:1rem}
+.ps-history{--history-metal:#efd18c;color:#f7f4ec;display:grid;grid-template-columns:minmax(0,1fr);gap:1rem;min-width:0;width:100%;max-width:100%;box-sizing:border-box;overflow-wrap:anywhere}
 .ps-history-hero,.ps-history-detail,.ps-history-set{background:#0b1a32;border:1px solid #52617a;border-radius:18px;padding:clamp(1rem,3vw,2rem)}
 .ps-history-hero{background:radial-gradient(ellipse at 94% 0%,#663023 0%,transparent 55%),linear-gradient(135deg,#101e39,#091327);border-color:#b38648}
 .ps-history h2,.ps-history h3,.ps-history p{margin:0 0 .75rem}
@@ -311,3 +311,12 @@
 .ps-history-story section h3{font-size:1.2rem;line-height:1.35;color:var(--history-metal)}
 .ps-history-story ol{padding-left:1.4rem}
 .ps-history-story li+li{margin-top:.5rem}
+
+/* Keep intrinsic image and fieldset widths inside the History grid on mobile. */
+.ps-history>*,.ps-history-detail>*,.ps-history-story>*,.ps-history-grid>li,.ps-history-face{min-width:0}
+.ps-history-hero,.ps-history-detail,.ps-history-set{max-width:100%;box-sizing:border-box}
+.ps-history form{width:100%;min-width:0;box-sizing:border-box}
+.ps-history form fieldset{min-inline-size:0;box-sizing:border-box}
+.ps-history form input[type=radio]{flex-shrink:0}
+.ps-history-story{width:100%;box-sizing:border-box}
+.ps-history-sources a{max-width:100%;overflow-wrap:anywhere}
