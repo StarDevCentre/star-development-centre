@@ -16,10 +16,18 @@ Applied `denmark_1971_and_arsenal_2007_ultimate_history_cards` migration. Expand
 
 ## Artwork
 
-Front/back PNGs generated using built-in image generation, with the official supplied STAR logo as reference. Optimised 800×1200 WebP exports in `public/player-space/history/specials`.
+Front/back PNGs generated using built-in image generation, with the official supplied STAR logo as reference. Optimised WebP exports (Denmark 800×1200; revised Arsenal 1024×1536) in `public/player-space/history/specials`.
 
-Denmark: engraved platinum, Danish red/white and Mexican sunbursts, imagined historical player with the 1970 Azteca panorama as architectural reference. Arsenal: ruby enamel and silver engraving, imagined celebratory adult players in red/white, four achievement medallions. Historical illustrations are not archival photographs or claimed portraits.
+Denmark: engraved platinum, Danish red/white and Mexican sunbursts, imagined historical player with the 1970 Azteca panorama as architectural reference. Arsenal (revised): modern scarlet, midnight navy and polished chrome, photorealistic reconstructed adult players celebrating in red/white, four angular achievement tiles. Historical illustrations are not archival photographs or claimed portraits.
 
 Arsenal front prompt: portrait premium collectible, ULTIMATE CHALLENGE UC02, ARSENAL 2007 / THE QUADRUPLE, actual STAR mark, red/white women footballers, North London architecture, four competition medallions, 7 QUESTIONS / 7/7 TO EARN. Back prompt: matching ruby/silver, perfect league record (22 wins, 119 scored, ten conceded, 66 points), Scott’s Swedish goal and 1–0 European aggregate, four major titles and Smith/Ludlow’s FA Cup braces.
 
 Arsenal source caution: the club’s 2006–07 annual report misattributes the FA Cup final’s last two goals. The catalogue follows UEFA’s contemporary match report: Kelly Smith and Jayne Ludlow scored two each. The FA’s league table supplies the final league numbers. Dates of trophy completion and completion of the league programme are distinguished.
+
+## Arsenal artwork revision · 11 November 2026
+
+Owner requested a modern visual style and improved image quality appropriate to 2007. Both faces are replaced through the versioned `arsenal-2007-uc02-modern-v2` slug, avoiding reuse of cached original art. Retain UC02/card 43, the story, all question positions and earned progress. No database change.
+
+Built-in image generation: front prompt requests sharp photorealistic digital reconstruction, natural adult players celebrating in period red/white clothing, polished scarlet/navy/chrome and angular foil framing, official STAR mark, bold condensed sans-serif title and four competition tiles. Reverse uses matching modern glasslike panels, large 22/22 statistics and the original validated historical copy. No antique filigree, engraving, parchment, serif lettering or claimed archival photography. Exports preserve native generated resolution in high-quality WebP. Original art remains available for rollback.
+
+Validation: catalogue comparison confirms only Arsenal artwork metadata changed; Denmark, both stories and all questions are identical. Both generated faces visually inspected for typography, identity and factual copy.
