@@ -691,5 +691,73 @@
         ]
       }
     ]
+  },
+  {
+    "id": 41,
+    "number": "SE11",
+    "name": "SSG 09 Bergisch Gladbach",
+    "subtitle": "The journey to Taiwan",
+    "era": "1981 · West Germany to Taiwan",
+    "artwork": {
+      "slug": "bergisch-gladbach-taiwan-1981-se11",
+      "front": "STAR Football Heritage SE11. Bergisch Gladbach, SSG 09, West Germany. An early 1980s travel-poster illustration with a passenger jet, imagined women footballers in red tracksuits, canvas holdalls, a suitcase and Taipei scenery. Destination Taipei, Taiwan, October 1981. Unbeaten winners of an unofficial world tournament. Illustrated reconstruction.",
+      "back": "SSG 09 Bergisch Gladbach, Taiwan 1981. A matching travel-scrapbook design with paper tickets and football illustrations. The club raised its own travel funds, played nine matches in eleven days unbeaten and contributed eight players to West Germany’s first official women’s international in 1982. Illustrated reconstruction."
+    },
+    "story": "In 1981, an invitation from Taiwan reached the German Football Association. An international women’s tournament was being organised, but West Germany had no official women’s national team. The invitation was passed to SSG 09 Bergisch Gladbach, one of the country’s leading women’s clubs.\n\nAccepting meant more than preparing for matches. The club had to organise and finance the journey itself. Players and supporters raised money through donations, sponsorship and waffle sales at weekly markets. Their work turned a distant invitation into a real opportunity to travel.\n\nFor many players, Taiwan was their first major journey abroad. They encountered unfamiliar surroundings, intense heat and clay playing surfaces. The competition was demanding: nine matches in eleven days. Bergisch Gladbach remained unbeaten and finished ahead of New Zealand and Taiwan to win the tournament.\n\nThe event is often described as an unofficial women’s world championship. It was not a FIFA Women’s World Cup, and the German entrants were a club side. Understanding that distinction helps us recognise their achievement accurately: a group of club footballers had organised an extraordinary trip and succeeded on an international stage.\n\nIn November 1982, West Germany’s new women’s national team played its first official international against Switzerland. Eight players from Bergisch Gladbach’s successful squad took part. When the Taiwan tournament returned in 1984, the organisers invited the defending club champions back, and Bergisch Gladbach won again.\n\nTheir story connects football to the people who make participation possible. Training matters, but so do transport, funding and someone willing to organise an opportunity.\n\nThink of a trip or match you would like to experience. What would need arranging, and who could help you take the first step?",
+    "facts": [
+      "1981 · A club travelled because West Germany had no official women’s national team.",
+      "Fundraising · Donations, sponsors and waffle sales helped finance the trip.",
+      "Taiwan · Unbeaten through nine matches in eleven days.",
+      "1982 · Eight members of the successful squad played in West Germany’s first official women’s international."
+    ],
+    "source": "https://www.fussballmuseum.de/aktuelles/nachrichten/detail/das-wunder-von-taipeh",
+    "furtherReading": [
+      {
+        "label": "Haus der Geschichte NRW · From Bergisch Gladbach to Taiwan",
+        "url": "https://www.hdgnrw.de/ueber-uns/objekt-des-monats/pokal"
+      }
+    ],
+    "questions": [
+      {
+        "prompt": "Why was the invitation passed to Bergisch Gladbach in 1981?",
+        "options": [
+          "West Germany had no official women’s national team",
+          "The tournament was only for goalkeepers",
+          "The men’s national team had already entered"
+        ]
+      },
+      {
+        "prompt": "Where did the team travel for the tournament?",
+        "options": [
+          "France",
+          "Taiwan",
+          "Brazil"
+        ]
+      },
+      {
+        "prompt": "How did the club help pay for the journey?",
+        "options": [
+          "Prize money from a FIFA World Cup",
+          "A free trip provided by the DFB",
+          "Donations, sponsors and fundraising such as waffle sales"
+        ]
+      },
+      {
+        "prompt": "What did Bergisch Gladbach achieve at the tournament?",
+        "options": [
+          "Won it unbeaten after nine matches in eleven days",
+          "Lost every match",
+          "Hosted it in West Germany"
+        ]
+      },
+      {
+        "prompt": "How many players from the successful squad took part in West Germany’s first official women’s international in 1982?",
+        "options": [
+          "Two",
+          "Eight",
+          "Twenty"
+        ]
+      }
+    ]
   }
 ]
