@@ -483,5 +483,73 @@
         ]
       }
     ]
+  },
+  {
+    "id": 38,
+    "number": "SE08",
+    "name": "Yeovil Town Ladies",
+    "subtitle": "Somerset’s 2016 champions",
+    "era": "2016 · Huish Park, Yeovil",
+    "artwork": {
+      "slug": "yeovil-town-ladies-2016-se08",
+      "front": "STAR Somerset Football Heritage special edition SE08. Yeovil Town Ladies, FA WSL 2 champions 2016. An illustrated celebration of women in green-and-white hoops embracing at a football ground, framed in emerald and gold. Imagined players commemorate the team.",
+      "back": "Yeovil Town Ladies. Champions 2016. 6 November, Huish Park. Yeovil Town 3–0 Sheffield. Lucy Quinn opened the scoring, Annie Heatherson headed in the second and Nicola Cousins completed the win. FA WSL 2 title won on goal difference. Illustrated celebration with a football, green-and-white scarf, supporters and floodlights."
+    },
+    "story": "By the end of October 2016, Yeovil Town Ladies had secured something special. A 2–0 victory away to London Bees guaranteed promotion to FA WSL 1, the top division. Kayleigh Green and Nadia Lawrence scored the goals for Jamie Sherwood’s side. Promotion was settled, but the title still had to be won.\n\nOn 6 November, Yeovil welcomed Sheffield to Huish Park for the final league match. Bristol City were also chasing first place. Lucy Quinn gave Yeovil an early advantage, firing in the opening goal after 15 minutes. At half-time, news that Bristol were four goals ahead against Oxford added pressure. Yeovil needed to finish their own job.\n\nAnnie Heatherson responded almost immediately after the restart, heading in a cross from Kayleigh Green. Later, Nicola Cousins sent a ball in from the right that found the bottom corner. The final score was 3–0. Yeovil were FA WSL 2 champions, finishing ahead of Bristol City on goal difference.\n\nCaptain Ellie Curson thanked the supporters and spoke about the pressure the team had discussed at half-time. Her reaction connected the achievement to everyone involved, including players, management and fans. A local Somerset team had earned its place in the top division and completed the season with a league title.\n\nThink about the two stages of that finish. Yeovil first achieved promotion, then returned to compete for the championship. For your own football, you might celebrate reaching one goal and still choose something else to work towards. During a difficult match, focusing on your next pass, movement or challenge can give you a manageable task. Which action helps you concentrate when the score matters?",
+    "facts": [
+      "30 October · A 2–0 win at London Bees secured promotion.",
+      "6 November · Beat Sheffield 3–0 at Huish Park.",
+      "Quinn, Heatherson and Cousins · Scored on the final day.",
+      "FA WSL 2 · Won the 2016 title on goal difference."
+    ],
+    "source": "https://www.thefa.com/news/2016/nov/06/fa-wsl-2-yeovil-town-sheffield-champions",
+    "furtherReading": [
+      {
+        "label": "The FA · Promotion secured at London Bees",
+        "url": "https://www.thefa.com/news/2016/oct/31/fa-wsl-round-up-bristol-city-yeovil-promotion-title-race-kayleigh-green"
+      }
+    ],
+    "questions": [
+      {
+        "prompt": "Which division did Yeovil win in 2016?",
+        "options": [
+          "FA WSL 2",
+          "FA WSL 1",
+          "Somerset County League"
+        ]
+      },
+      {
+        "prompt": "Where did Yeovil play the final league match against Sheffield?",
+        "options": [
+          "Wembley",
+          "Huish Park",
+          "Old Trafford"
+        ]
+      },
+      {
+        "prompt": "What was the final score against Sheffield?",
+        "options": [
+          "1–0",
+          "2–2",
+          "3–0"
+        ]
+      },
+      {
+        "prompt": "Who opened the scoring in that match?",
+        "options": [
+          "Lucy Quinn",
+          "Nicola Cousins",
+          "Nadia Lawrence"
+        ]
+      },
+      {
+        "prompt": "What separated Yeovil and Bristol City in the title race?",
+        "options": [
+          "A penalty shoot-out",
+          "Goal difference",
+          "An extra play-off match"
+        ]
+      }
+    ]
   }
 ]
