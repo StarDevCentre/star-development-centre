@@ -619,5 +619,77 @@
         ]
       }
     ]
+  },
+  {
+    "id": 40,
+    "number": "SE10",
+    "name": "Jamaica’s Reggae Girlz",
+    "subtitle": "A Caribbean first",
+    "era": "2018–2019 · The road to France",
+    "artwork": {
+      "slug": "jamaica-reggae-girlz-2019-se10",
+      "front": "STAR Football Heritage SE10. Reggae Girlz, Jamaica 2018–2019. Yellow, green and black concert-poster-inspired artwork showing imagined Jamaican women footballers celebrating beneath the Jamaican flag. First Caribbean nation to reach a Women’s World Cup. Qualified 17 October 2018 for France 2019. Illustrated celebration.",
+      "back": "Reggae Girlz, the road to France 2019. Jamaica 2–2 Panama, Jamaica won 4–2 on penalties, 17 October 2018. Nicole McClure saved two penalties and Dominique Bond-Flasza scored the decisive kick. Cedella Marley and the Bob Marley Foundation supported the team. Illustrated football, boots and commemorative ticket."
+    },
+    "story": "On 17 October 2018, Jamaica’s Reggae Girlz faced Panama with a place at the following year’s Women’s World Cup at stake. The third-place match at the Concacaf Women’s Championship took place in Frisco, Texas. Neither nation had previously reached the tournament. For Jamaica, success would also make them the first Caribbean country to qualify.\n\nKhadija Shaw headed Jamaica into the lead, but Panama equalised. During extra time, Jody Brown put the Reggae Girlz ahead again. Panama responded once more, leaving the teams level at 2–2. Their chance to reach France 2019 would be decided by penalties.\n\nGoalkeeper Nicole McClure entered the match in the final minute of extra time. In the shoot-out, she saved two Panama attempts. Jamaica converted all four of their kicks, with Dominique Bond-Flasza scoring the decisive penalty. The Reggae Girlz won the shoot-out 4–2 and celebrated a historic qualification.\n\nThat moment had support behind it. Cedella Marley, daughter of musician Bob Marley, had backed the team through the Bob Marley Foundation for several years. The help included funding and raising the team’s public profile. Coach Hue Menzies recognised the sacrifices made by players and staff, and the importance of that backing.\n\nJamaica’s achievement offered girls across the Caribbean a new example of what was possible. It also showed how sporting opportunities depend on practical support, alongside the players’ skill and preparation.\n\nThink about the different contributions in that deciding match: a cross, a header, a substitute goalkeeper’s saves and four successful penalties. Which contribution could you make for your team? Who helps you prepare, travel or keep playing, and how could you recognise their support?",
+    "facts": [
+      "17 October 2018 · Qualified for France 2019.",
+      "Caribbean first · Jamaica were the region’s first Women’s World Cup qualifiers.",
+      "2–2 after extra time · Beat Panama 4–2 on penalties.",
+      "Team support · Cedella Marley backed the Reggae Girlz through the Bob Marley Foundation."
+    ],
+    "source": "https://www.concacaf.com/news/jamaica-becomes-the-first-caribbean-country-to-qualify-to-the-fifa-women-s-world-cup",
+    "furtherReading": [
+      {
+        "label": "FIFA · Historic qualification goes beyond football",
+        "url": "https://inside.fifa.com/tournaments/womens/womensworldcup/france2019/news/reggae-girlz-s-historic-qualification-goes-beyond-football"
+      },
+      {
+        "label": "FIFA · Support behind the Reggae Girlz",
+        "url": "https://inside.fifa.com/tournaments/womens/womensworldcup/france2019/news/reggae-girlz-aim-to-find-their-world-cup-rhythm"
+      }
+    ],
+    "questions": [
+      {
+        "prompt": "Which historic first did Jamaica achieve?",
+        "options": [
+          "First Caribbean nation to qualify for a Women’s World Cup",
+          "First country to host the Women’s World Cup",
+          "First nation to win three Women’s World Cups"
+        ]
+      },
+      {
+        "prompt": "Who were Jamaica’s opponents in the deciding qualification match?",
+        "options": [
+          "Canada",
+          "Panama",
+          "Brazil"
+        ]
+      },
+      {
+        "prompt": "How did Jamaica win after the match finished 2–2?",
+        "options": [
+          "A coin toss",
+          "A replay",
+          "A 4–2 penalty shoot-out victory"
+        ]
+      },
+      {
+        "prompt": "Which goalkeeper saved two penalties in the shoot-out?",
+        "options": [
+          "Nicole McClure",
+          "Jody Brown",
+          "Khadija Shaw"
+        ]
+      },
+      {
+        "prompt": "Who backed the team through the Bob Marley Foundation?",
+        "options": [
+          "Elba Selva",
+          "Cedella Marley",
+          "Mia Hamm"
+        ]
+      }
+    ]
   }
 ]
