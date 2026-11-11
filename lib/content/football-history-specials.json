@@ -551,5 +551,73 @@
         ]
       }
     ]
+  },
+  {
+    "id": 39,
+    "number": "SE09",
+    "name": "Las Pioneras",
+    "subtitle": "Argentina’s pioneers at the Azteca",
+    "era": "1971 · Mexico City",
+    "artwork": {
+      "slug": "argentina-las-pioneras-1971-se09",
+      "front": "STAR Football Heritage SE09. Las Pioneras, Argentina 1971. A 1970s sky-blue, cream and gold illustrated poster, showing Argentina players celebrating before the Estadio Azteca. The stadium follows a 1970 archival panorama. Argentina 4–1 England, 21 August 1971. Elba Selva scored four goals. Unofficial world tournament. Illustrated reconstruction with imagined players.",
+      "back": "Las Pioneras, Argentina, Mexico 1971. A period-inspired illustration of the Azteca, the 4–1 score and three facts about Elba Selva, the independent tournament and Women’s Footballer Day. Old boots, a football and a commemorative ticket complete the design."
+    },
+    "story": "On 21 August 1971, Argentina’s women walked onto the pitch at the Estadio Azteca in Mexico City. Their opponents were England, and the occasion was an international women’s tournament held independently of FIFA. These players would later become known as Las Pioneras: the pioneers.\n\nElba Selva wore number 10. A left-footed player who had loved football since childhood, she had grown up facing the idea that the game belonged to boys. By 1971, she was a mother and a factory worker as well as a footballer. Travelling to Mexico meant making a difficult decision about work and family. Her husband encouraged her to take the opportunity.\n\nThe team’s resources were limited. They arrived without the kit and boots that a modern national squad would expect, receiving help in Mexico. Against England, Selva scored four times. Argentina won 4–1 in one of football’s most famous stadiums. Her goals gave the team a victory that would eventually become a landmark in the country’s sporting memory.\n\nArgentina finished fourth in the tournament. Yet their achievement received little lasting attention at home. Decades later, former goalkeeper Lucila Sandoval helped bring the players together and share their stories. The date of the England match became Argentina’s Women’s Footballer Day.\n\nRemembering this team means looking beyond a score. It means noticing the women who made room for themselves in a sport that offered them little support. Their story also shows why keeping photographs, names and memories matters.\n\nFor your own football, think of someone whose encouragement helps you play. What opportunity would you like to try, and what practical support would make that possible?",
+    "facts": [
+      "21 August 1971 · Argentina beat England 4–1 at the Azteca.",
+      "Elba Selva · Scored all four Argentina goals.",
+      "Independent tournament · Not organised by FIFA; Argentina finished fourth.",
+      "A lasting legacy · 21 August became Argentina’s Women’s Footballer Day."
+    ],
+    "source": "https://www.fifa.com/es/articles/elba-selva-una-estrella-por-descubrir",
+    "furtherReading": [
+      {
+        "label": "Argentina’s sports authority · Elba Selva remembers Mexico",
+        "url": "https://www.argentina.gob.ar/noticias/elba-selva-cuando-recuerdo-el-mundial-me-emociono"
+      }
+    ],
+    "questions": [
+      {
+        "prompt": "Where did Argentina play England on 21 August 1971?",
+        "options": [
+          "Estadio Azteca, Mexico City",
+          "Wembley, London",
+          "La Bombonera, Buenos Aires"
+        ]
+      },
+      {
+        "prompt": "Who scored all four Argentina goals?",
+        "options": [
+          "Marta",
+          "Elba Selva",
+          "Homare Sawa"
+        ]
+      },
+      {
+        "prompt": "What was the final score against England?",
+        "options": [
+          "1–0",
+          "2–2",
+          "4–1"
+        ]
+      },
+      {
+        "prompt": "How was the 1971 tournament organised?",
+        "options": [
+          "Independently of FIFA",
+          "As the Olympic football tournament",
+          "As a FIFA Women’s World Cup"
+        ]
+      },
+      {
+        "prompt": "What does 21 August commemorate in Argentina?",
+        "options": [
+          "The opening of the Azteca",
+          "Women’s Footballer Day",
+          "Argentina’s first men’s World Cup title"
+        ]
+      }
+    ]
   }
 ]
