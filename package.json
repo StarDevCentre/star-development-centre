@@ -7,7 +7,7 @@
     "build": "npm run test:player-invitations && npm run test:staff-reliability && node scripts/build-public-search.cjs && next build",
     "start": "next start",
     "test:push": "node scripts/test-player-push.cjs",
-    "test:staff-reliability": "node --test scripts/test-session-details-editor.cjs scripts/test-owner-player-space-preview.cjs scripts/test-staff-analytics-batch6.cjs scripts/test-staff-pwa-batch5.cjs scripts/test-staff-family-operations.cjs scripts/test-staff-player-360.cjs scripts/test-staff-session-flow.cjs scripts/test-staff-reliability-batch1.cjs scripts/test-session-reliability.cjs scripts/test-staff-actions.cjs",
+    "test:staff-reliability": "node --test scripts/test-history-catalogue.cjs scripts/test-session-details-editor.cjs scripts/test-owner-player-space-preview.cjs scripts/test-staff-analytics-batch6.cjs scripts/test-staff-pwa-batch5.cjs scripts/test-staff-family-operations.cjs scripts/test-staff-player-360.cjs scripts/test-staff-session-flow.cjs scripts/test-staff-reliability-batch1.cjs scripts/test-session-reliability.cjs scripts/test-staff-actions.cjs",
     "test:player-invitations": "node --test scripts/test-player-invitations.cjs"
   },
   "dependencies": {

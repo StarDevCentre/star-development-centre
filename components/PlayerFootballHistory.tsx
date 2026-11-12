@@ -124,9 +124,9 @@ export function PlayerFootballHistory({playerId, preview}: {playerId:string; pre
   </section>;
 
   const junior = edition==="sparks" || view==="keepsakes";
-  const cards:Card[] = junior ? sparks : preview ? trailblazers : olderCards;
+  const cards:Card[] = junior ? sparks : olderCards;
   const sets = junior ? sparksSets : trailblazerSets;
-  const collected = (junior ? sparks : trailblazers).filter(card => progress[card.id]?.earned_at).length;
+  const collected = cards.filter(card => progress[card.id]?.earned_at).length;
   const hasAnyCard = cards.some(card => progress[card.id]?.earned_at);
   const hasKeepsakes = edition==="trailblazers" && sparks.some(card => progress[card.id]?.earned_at);
   const questionCount = selected?.questions.length ?? 5;
@@ -202,7 +202,7 @@ export function PlayerFootballHistory({playerId, preview}: {playerId:string; pre
         <p className="ps-history-kicker">{junior?"STAR Sparks · Football history":"Series one · The Trailblazers"}</p>
         <h2 id="ps-history-title" ref={heading} tabIndex={-1}>{junior?"Sparks":"Football history"}<br/><em>collection</em></h2>
         <p>Read a story. Answer every question correctly. Earn its card.</p>
-        <div className="ps-history-meter"><strong>{collected} / 30 cards collected</strong><progress aria-label="Cards collected" value={collected} max={30}/></div>
+        <div className="ps-history-meter"><strong>{collected} / {cards.length} cards collected</strong><progress aria-label="Cards collected" value={collected} max={cards.length}/></div>
       </header>
       {load==="loading" && <p role="status">Loading your collection…</p>}
       {load==="error" && <div className="ps-history-notice" role="alert">Your collection couldn’t load. <button type="button" onClick={() => {setLoad("loading");reload(n => n+1);}}>Try again</button></div>}
