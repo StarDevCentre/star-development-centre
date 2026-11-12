@@ -124,6 +124,6 @@ function CalendarDetails({entry:s,onClose,onEdit,onOpenWorkspace,people,contacts
    {contactsLoading?<p role="status">Checking player and guardian details…</p>:contactsError?<p role="alert">{contactsError}</p>:people.length?<CalendarPeople people={people}/>:<p>No linked player or guardian contact is recorded for this session.</p>}
   </div>
   {onOpenWorkspace&&<button type="button" className="calendar-open-workspace" onClick={onOpenWorkspace}>Open coaching workspace →</button>}
-  {isAssessment?<p>To change this assessment, open <strong>Onboarding & free assessments</strong> in the staff portal. Its time and venue are kept in sync with this calendar.</p>:<><p>Released direct bookings are managed under Booking management. Organisation sessions are managed under Schools & clubs.</p><button type="button" onClick={onEdit}>Open session controls</button></>}
+  {isAssessment?<p>To change this assessment, open <strong>Onboarding & free assessments</strong> in the staff portal. Its time and venue are kept in sync with this calendar.</p>:<><p>Released direct bookings are managed under Booking management. Organisation sessions are managed under Schools & clubs.</p><button type="button" onClick={onEdit}>Edit session details</button></>}
  </dialog>;
 }

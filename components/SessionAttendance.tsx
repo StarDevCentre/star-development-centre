@@ -1,5 +1,6 @@
 "use client";
 import {useCallback,useEffect,useRef,useState} from "react";
+import {SessionDetailsEditor} from "./SessionDetailsEditor";
 import {createRequestSequence} from "../lib/staffRequestSequence";
 import {sessionFlowCounts} from "../lib/staffSessionFlow";
 import {SessionPreparation,SessionCoachingNotes,SessionWrapUp} from "./StaffSessionFlow";
@@ -11,8 +12,9 @@ type Attendance={session_id:string;player_id:string;status:string};
 const statuses=["present","absent","late","excused"] as const;
 type Status=typeof statuses[number];
 const labels:Record<Status,string>={present:"Present",absent:"Absent",late:"Late",excused:"Excused"};
-export function SessionAttendance({userId,onCoachPlayer,onPlayerDevelopment,onSessionChange,onReturnToCalendar,onOpenPlan,initialSessionId="",client=supabaseBrowser}:{client?:SupabaseClient|null;userId:string;onCoachPlayer?:(playerId:string,sessionId:string)=>void;onPlayerDevelopment?:(playerId:string)=>void;onSessionChange?:(sessionId:string)=>void;onReturnToCalendar?:()=>void;onOpenPlan?:(planId?:string)=>void;initialSessionId?:string}){
+export function SessionAttendance({userId,onCoachPlayer,onPlayerDevelopment,onSessionChange,onReturnToCalendar,onOpenPlan,initialSessionId="",client=supabaseBrowser,canManage=false,onAssessment,onOrganisation}:{canManage?:boolean;onAssessment?:()=>void;onOrganisation?:(id:string)=>void;client?:SupabaseClient|null;userId:string;onCoachPlayer?:(playerId:string,sessionId:string)=>void;onPlayerDevelopment?:(playerId:string)=>void;onSessionChange?:(sessionId:string)=>void;onReturnToCalendar?:()=>void;onOpenPlan?:(planId?:string)=>void;initialSessionId?:string}){
  const db=client;
+ const [editingDetails,setEditingDetails]=useState(false);
  const loadSequence=useRef(createRequestSequence());
  const selectedSessionRef=useRef(initialSessionId);
  const [sessions,setSessions]=useState<Session[]>([]),[players,setPlayers]=useState<Player[]>([]),[records,setRecords]=useState<Attendance[]>([]),[sessionId,setSessionId]=useState(initialSessionId),[message,setMessage]=useState(""),[busyId,setBusyId]=useState(""),[loading,setLoading]=useState(true),[search,setSearch]=useState("");
@@ -70,6 +72,7 @@ export function SessionAttendance({userId,onCoachPlayer,onPlayerDevelopment,onSe
   }
  },[db,sessionId,history,page]);
  useEffect(()=>{void refresh();return()=>{loadSequence.current.invalidate();}},[refresh]);
+ useEffect(()=>{const reload=()=>void refresh();window.addEventListener("star:staff-refresh",reload);return()=>window.removeEventListener("star:staff-refresh",reload);},[refresh]);
  useEffect(()=>{if(initialSessionId){selectedSessionRef.current=initialSessionId;setSessionId(initialSessionId)}},[initialSessionId]);
  async function record(playerId:string,status:Status){
   if(!db||!sessionId||busyId)return;
@@ -117,9 +120,11 @@ export function SessionAttendance({userId,onCoachPlayer,onPlayerDevelopment,onSe
  const visible=roster.filter(p=>(p.first_name+" "+p.last_name).toLowerCase().includes(search.toLowerCase())&&(!onlyUnmarked||!sessionRecords.some(r=>r.player_id===p.id&&statuses.includes(r.status as Status))));
 
  return <section className="star-training star-attendance-workflow"><span className="kicker">SESSION WORKSPACE</span><h3>Coach the full session</h3><p>Prepare, record attendance, capture coaching observations and review the session in one workspace. Records are saved using STAR’s existing staff permissions.</p>{message&&<p role="alert">{message}</p>}
- <div className="star-session-actions"><button aria-pressed={!history} onClick={()=>{setHistory(false);setPage(0)}}>Upcoming</button><button aria-pressed={history} onClick={()=>{setHistory(true);setPage(0)}}>History</button><button disabled={page===0||loading} onClick={()=>setPage(p=>p-1)}>Previous dates</button><button disabled={!hasMore||loading} onClick={()=>setPage(p=>p+1)}>More dates</button></div><label className="star-attendance-select">Training session<select value={sessionId} onChange={e=>{selectedSessionRef.current=e.target.value;setSessionId(e.target.value);setWorkspaceTab("overview");onSessionChange?.(e.target.value);setSearch("");setOnlyUnmarked(false);setMessage("")}}><option value="">Select a session…</option>{sessions.map(s=><option key={s.id} value={s.id}>{new Date(s.starts_at).toLocaleDateString("en-GB",{timeZone:"Europe/London"})} · {s.title}</option>)}</select></label>
+ <div className="star-session-actions"><button aria-pressed={!history} onClick={()=>{setHistory(false);setPage(0)}}>Upcoming</button><button aria-pressed={history} onClick={()=>{setHistory(true);setPage(0)}}>History</button><button disabled={page===0||loading} onClick={()=>setPage(p=>p-1)}>Previous dates</button><button disabled={!hasMore||loading} onClick={()=>setPage(p=>p+1)}>More dates</button></div><label className="star-attendance-select">Training session<select value={sessionId} onChange={e=>{selectedSessionRef.current=e.target.value;setSessionId(e.target.value);setEditingDetails(false);setWorkspaceTab("overview");onSessionChange?.(e.target.value);setSearch("");setOnlyUnmarked(false);setMessage("")}}><option value="">Select a session…</option>{sessions.map(s=><option key={s.id} value={s.id}>{new Date(s.starts_at).toLocaleDateString("en-GB",{timeZone:"Europe/London"})} · {s.title}</option>)}</select></label>
  {loading?<p>Loading attendance…</p>:selected?<><div className="star-workflow-session"><div><span className="kicker">{selected.programme}</span><h4>{selected.title}</h4><p>{new Date(selected.starts_at).toLocaleString("en-GB",{dateStyle:"full",timeStyle:"short",timeZone:"Europe/London"})}</p></div><div className="star-workflow-total"><strong>{roster.length-counts.unmarked}/{roster.length}</strong><span>Marked</span></div></div>
 
+ {canManage&&!editingDetails&&<div className="star-session-actions"><button type="button" disabled={!!busyId} aria-expanded={editingDetails} onClick={()=>setEditingDetails(v=>!v)}>Edit session details</button></div>}
+ {canManage&&editingDetails&&<SessionDetailsEditor key={selected.id} client={db} sessionId={selected.id} onClose={()=>setEditingDetails(false)} onSaved={()=>{setEditingDetails(false);setMessage("Session details updated. Linked family bookings now use the new details.");void refresh();}} onAssessment={()=>onAssessment?.()} onOrganisation={id=>onOrganisation?.(id)}/>}
  <div className="star-flow-session-progress"><span>Session progress · <strong>{counts.marked}/{counts.total}</strong> attendance marks entered</span><span>{!counts.total?'Check roster':counts.ready?'Register checked':counts.unmarked+' to mark'}</span></div>
  <nav className="star-flow-steps" aria-label="Session workflow">
   {([{id:"overview",label:"Prepare"},{id:"attendance",label:"Attendance"},{id:"coaching",label:"Coaching"},{id:"wrapup",label:"Review"}] as const).map((step,i)=><button key={step.id} type="button" aria-current={workspaceTab===step.id?"step":undefined} disabled={!!busyId||loading} onClick={()=>setWorkspaceTab(step.id)}><span className="star-flow-step-number">{i+1}</span><span>{step.label}</span></button>)}
