@@ -114,7 +114,7 @@ declare pid uuid:=(select value::uuid from history_test where key='core');
  cid smallint; correct integer[]; wrong integer[]; invalid integer[];
  failed public.player_history_progress;
 begin
- foreach cid in array array[42,43,44,45,46,47]::smallint[] loop
+ foreach cid in array array[42,43,44,45,46,47,48,49]::smallint[] loop
   select answers into correct from history_keys where card_id=cid;
   begin
    perform public.submit_football_history_quiz(younger,cid,correct);
@@ -151,14 +151,14 @@ begin
 end$$;
 reset role;
 update public.player_history_progress set retry_at=now()-interval '1 second'
- where card_id in (42,43,44,45,46,47) and player_id=(select value::uuid from history_test where key='core');
+ where card_id in (42,43,44,45,46,47,48,49) and player_id=(select value::uuid from history_test where key='core');
 set local role authenticated;
 select set_config('request.jwt.claim.sub',(select value from history_test where key='player'),true);
 do $$
 declare pid uuid:=(select value::uuid from history_test where key='core');
  cid smallint;correct integer[];earned public.player_history_progress;
 begin
- foreach cid in array array[42,43,44,45,46,47]::smallint[] loop
+ foreach cid in array array[42,43,44,45,46,47,48,49]::smallint[] loop
   select answers into correct from history_keys where card_id=cid;
   earned:=public.submit_football_history_quiz(pid,cid,correct);
   if earned.score is distinct from 7 or earned.earned_at is null or earned.retry_at is not null then raise exception '7/7 did not earn Ultimate %',cid;end if;
@@ -169,7 +169,7 @@ select set_config('request.jwt.claim.sub',(select value from history_test where 
 do $$
 begin
  begin
-  perform public.submit_football_history_quiz((select value::uuid from history_test where key='core'),47::smallint,array[0,0,0,0,0,0,0]);
+  perform public.submit_football_history_quiz((select value::uuid from history_test where key='core'),49::smallint,array[0,0,0,0,0,0,0]);
   raise exception 'Cross-family Ultimate submission permitted';
  exception when insufficient_privilege then null;end;
 end$$;
