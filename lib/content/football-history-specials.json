@@ -759,5 +759,77 @@
         ]
       }
     ]
+  },
+  {
+    "id": 50,
+    "number": "SE12",
+    "name": "Manchester Corinthians",
+    "subtitle": "From Fog Lane to the world",
+    "era": "1949 onwards · Manchester and beyond",
+    "artwork": {
+      "slug": "manchester-corinthians-se12",
+      "front": "STAR Football Heritage SE12. Manchester Corinthians, From Fog Lane to the world. A late-1950s travel-poster reconstruction with women footballers in white shirts and red shorts, Manchester rooftops and overseas-travel motifs. Special edition. Illustrated reconstruction.",
+      "back": "Manchester Corinthians Special Edition SE12. A vintage travel-journal design about Percy and Doris Ashley, Fog Lane Park, the unofficial European tournament won in Germany in 1957, and charity tours abroad. Illustrated reconstruction."
+    },
+    "story": "A football team can begin with a simple need: someone wants to play, but there is nowhere suitable for her to go. In 1949, Percy Ashley helped answer that need by forming Manchester Corinthians. His daughter Doris was a talented footballer and profoundly deaf. The team gave her, and other women, people to play alongside and a place in the game.\n\nThis was a difficult time to build a women’s club. The Football Association’s 1921 restriction kept women’s matches off the grounds of its affiliated clubs. It did not mean that women stopped playing football. It meant they had to find opportunities outside much of the established football system. The Corinthians became one of the teams that kept those opportunities alive.\n\nTheir home was Fog Lane Park in Didsbury, Manchester. The surroundings were far removed from the facilities many footballers expect today. Players recalled unheated changing rooms without running water, and even washing in a duck pond after matches. Those memories help us understand the effort involved in turning up, training and playing. A love of football did not make the practical obstacles disappear.\n\nFinding opponents was another challenge. There were relatively few nearby women’s teams. In 1957, Ashley formed a connected side, the Nomads, so that the two teams could play charity matches against each other. Organising a second team created more football and made touring fixtures possible when local competition was limited.\n\nThe same year brought a major achievement in Germany. Manchester Corinthians won an unofficial European tournament, with Manchester City goalkeeper Bert Trautmann helping as an interpreter. Trafford’s heritage account records a 4–0 victory in the Berlin final. This was not a modern UEFA Women’s Champions League title or an official England international. It was an important success earned by women playing beyond the structures that excluded them.\n\nOverseas travel opened a much larger stage. The team’s journeys took them to places including Portugal, the Netherlands, South America, the Caribbean and Morocco. They promoted women’s football while raising money for charity. A surviving shirt associated with Margaret Shepherd records overseas destinations in embroidery: a piece of clothing became a record of where this team had been.\n\nAt home, the women had faced restricted access and modest facilities. Abroad, they showed new audiences the football they could play. Their story reminds us that a sport’s official records do not always capture everyone who helped it grow. Clubs, organisers and players can keep a game alive long before institutions give them proper recognition.\n\nFor a STAR player, there are two questions to take from the Corinthians. Who helped make your opportunity to play possible? And what could you do to help another girl feel that there is a place for her too?",
+    "facts": [
+      "1949 · Percy Ashley formed the team so his daughter Doris could play.",
+      "Fog Lane Park · Their Manchester home had very limited facilities.",
+      "1957 · The Nomads were formed and the Corinthians won an unofficial European tournament in Germany.",
+      "Beyond borders · Overseas tours promoted women’s football and raised funds for charity."
+    ],
+    "source": "https://www.thefa.com/womens-girls-football/heritage/kicking-down-barriers",
+    "furtherReading": [
+      {
+        "label": "Women in Football · Manchester Corinthians and Doris Ashley",
+        "url": "https://www.womeninfootball.co.uk/news/2020/03/07/manchester-corinthians-an-incredible-story-to-share/"
+      },
+      {
+        "label": "Trafford heritage · The surviving Corinthians shirt and 1957 tournament",
+        "url": "https://exploringtraffordsheritage.omeka.net/exhibits/show/traffordwomensfootball/1958-manchester-corinthians-sh"
+      }
+    ],
+    "questions": [
+      {
+        "prompt": "What need helped lead Percy Ashley to form Manchester Corinthians?",
+        "options": [
+          "Manchester needed a new men’s professional club",
+          "His daughter Doris needed a team in which to play",
+          "The FA had asked him to select an official England squad"
+        ]
+      },
+      {
+        "prompt": "What did the 1921 FA restriction mean for teams such as the Corinthians?",
+        "options": [
+          "Women were forbidden from playing football anywhere",
+          "Women could play only outside Britain",
+          "Women’s matches were excluded from FA-affiliated club grounds"
+        ]
+      },
+      {
+        "prompt": "Why was the connected Nomads team formed in 1957?",
+        "options": [
+          "To provide opponents for charity matches when local women’s teams were scarce",
+          "To replace the Corinthians after they stopped playing",
+          "To organise the first official UEFA Women’s Champions League"
+        ]
+      },
+      {
+        "prompt": "Which description accurately explains the Corinthians’ success in Germany in 1957?",
+        "options": [
+          "They won the first FIFA Women’s World Cup",
+          "They won an official England international tournament",
+          "They won an unofficial European tournament, with Bert Trautmann helping as interpreter"
+        ]
+      },
+      {
+        "prompt": "What makes the surviving shirt described in the story a useful piece of evidence?",
+        "options": [
+          "It lists the answers to every match report",
+          "Its embroidery records destinations from the team’s overseas tours",
+          "It proves the club played all its matches at Old Trafford"
+        ]
+      }
+    ]
   }
 ]
