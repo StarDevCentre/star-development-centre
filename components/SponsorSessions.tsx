@@ -5,11 +5,13 @@ import {supabaseBrowser} from "../lib/supabaseBrowser";
 const options=[
  {id:"one-group",title:"One group session",description:"45 minutes of coaching for one girl",amount:5},
  {id:"four-group",title:"Four group sessions",description:"Four chances to train, learn and belong",amount:20},
- {id:"one-individual",title:"One individual session",description:"One hour of dedicated one-to-one coaching",amount:40},
- {id:"two-individual",title:"Two individual sessions",description:"Two hours of individual coaching",amount:80}
+ {id:"one-local",title:"One individual session · Taunton / Wellington",description:"One hour of dedicated one-to-one coaching",amount:35},
+ {id:"one-bridgwater",title:"One individual session · Bridgwater",description:"One hour of dedicated one-to-one coaching",amount:40},
+ {id:"two-local",title:"Two individual sessions · Taunton / Wellington",description:"Two one-hour coaching sessions",amount:70},
+ {id:"two-bridgwater",title:"Two individual sessions · Bridgwater",description:"Two one-hour coaching sessions",amount:80}
 ] as const;
 export function SponsorSessions(){
- const [userEmail,setUserEmail]=useState<string|null>(null),[checking,setChecking]=useState(true),[choice,setChoice]=useState<string>("one-individual"),[busy,setBusy]=useState(false),[success,setSuccess]=useState(false),[error,setError]=useState("");
+ const [userEmail,setUserEmail]=useState<string|null>(null),[checking,setChecking]=useState(true),[choice,setChoice]=useState<string>("one-local"),[busy,setBusy]=useState(false),[success,setSuccess]=useState(false),[error,setError]=useState("");
  useEffect(()=>{let live=true;if(!supabaseBrowser){setChecking(false);return;}void supabaseBrowser.auth.getUser().then(({data,error})=>{if(live){setUserEmail(error?null:data.user?.email||null);setChecking(false);}}).catch(()=>{if(live)setChecking(false)});return()=>{live=false};},[]);
  async function submit(e:FormEvent<HTMLFormElement>){
   e.preventDefault();if(!supabaseBrowser||busy)return;setBusy(true);setError("");
