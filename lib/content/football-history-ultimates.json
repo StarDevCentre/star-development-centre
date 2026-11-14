@@ -1782,9 +1782,9 @@
     "subtitle": "A place on the pitch",
     "era": "1998–2022 · Freetown, Sierra Leone",
     "artwork": {
-      "slug": "flying-stars-uc13",
-      "front": "STAR Ultimate Challenge UC13: Flying Stars. Adult women amputee footballers at Aberdeen beach in a coastal platinum and copper historical illustration.",
-      "back": "Flying Stars UC13 reverse, with STAR branding and milestones in an illustrated coastal collector design."
+      "slug": "flying-stars-uc13-photo-v2",
+      "front": "Flying Stars UC13 front: stylised from the women's team photograph on the Salone Flying Stars website, preserving the five women's poses, clothing and original crop.",
+      "back": "Flying Stars UC13 reverse: the same women's team photograph in a stylised collector design with Kadiatu's timeline."
     },
     "sections": [
       {
@@ -1843,6 +1843,10 @@
       {
         "label": "EAFA · The organised format",
         "url": "https://www.theeafa.org/amputeefootball"
+      },
+      {
+        "label": "Source photograph · Flying Stars women's team",
+        "url": "https://images.squarespace-cdn.com/content/v1/60e22181108d914751a31011/1625499573409-CPD21SGVIHZUNR9UIL6N/299beba5-7704-4ee5-8d68-f190f067bd45.JPG"
       }
     ],
     "questions": [
