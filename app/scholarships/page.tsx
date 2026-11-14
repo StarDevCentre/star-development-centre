@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {ScholarshipApplicationForm} from "../../components/ScholarshipApplicationForm";
 import "./scholarships.css";
 export const metadata={
@@ -15,5 +16,24 @@ export default function ScholarshipsPage(){return <main className="scholarship-p
  <section className="scholarship-hero"><div className="home-width"><p className="scholarship-kicker">STAR ACCESS & OPPORTUNITY</p><h1>HER POTENTIAL.<br/><span>NOT HER BUDGET.</span></h1><p>Every girl deserves the chance to develop her football. If coaching costs are a barrier, we can look at possible financial support together.</p><a href="#apply" className="scholarship-cta">Apply for coaching support <span aria-hidden="true">→</span></a></div></section>
  <section className="home-width scholarship-intro"><div><p className="scholarship-kicker">HOW SUPPORT WORKS</p><h2>A way forward, together.</h2><p>STAR reviews requests privately and may offer donated-session places where confirmed funding and coaching availability allow. We can also point your family towards independent grants. Applying is free; no award or session is guaranteed.</p></div><div className="scholarship-steps"><article><b>01</b><div><h3>Tell us what would help</h3><p>Share your daughter's age, area and the type of coaching she hopes to access. You do not need to upload financial paperwork.</p></div></article><article><b>02</b><div><h3>We review the options</h3><p>STAR checks whether sponsored coaching is available and signposts potential external funding routes.</p></div></article><article><b>03</b><div><h3>Agree the next step</h3><p>If support is possible, we contact you privately about the amount of help, programme, location and availability.</p></div></article></div></section>
  <section className="scholarship-funds" id="funding"><div className="home-width"><p className="scholarship-kicker">INDEPENDENT FUNDING OPPORTUNITIES</p><h2>Where funding might come from.</h2><p className="scholarship-funds-lead">These are separate organisations. Eligibility, deadlines and awards can change. Their listing does not mean they have agreed to pay STAR fees.</p><div className="scholarship-fund-grid">{routes.map((r)=><article key={r.name} className="scholarship-fund"><span className="scholarship-pill">{r.tag}</span><h3>{r.name}</h3><strong>{r.subtitle}</strong><p>{r.details}</p><a target="_blank" rel="noopener noreferrer" href={r.link}>{r.label} ↗</a>{"secondaryLink" in r && <a target="_blank" rel="noopener noreferrer" href={r.secondaryLink}>{r.secondaryLabel} ↗</a>}</article>)}</div><p className="scholarship-note">Looking for elite athlete support? SportsAid and other talent schemes usually have their own nomination and performance criteria. STAR can discuss whether they are relevant, but cannot promise nomination or eligibility.</p></div></section>
+ <section className="scholarship-easyfundraising" aria-labelledby="scholarship-easyfundraising-title">
+  <div className="home-width scholarship-easyfundraising-grid">
+   <div className="scholarship-easyfundraising-content">
+    <Image src="/images/easyfundraising-scholarships-logo.png" alt="easyfundraising" width={900} height={246} sizes="(max-width: 760px) 75vw, 420px" className="scholarship-easyfundraising-logo"/>
+    <p className="scholarship-kicker">FREE FUNDRAISING</p>
+    <h2 id="scholarship-easyfundraising-title">Shop. Support. Make a difference.</h2>
+    <p><strong>Help fund STAR Scholarships without spending a penny extra.</strong></p>
+    <p>STAR Development Centre is registered with easyfundraising. When you shop online with participating retailers, they donate to STAR at no extra cost to you.</p>
+    <p>Every donation helps us provide football coaching opportunities for girls who need financial support.</p>
+    <a className="scholarship-easyfundraising-cta" href="https://www.easyfundraising.org.uk/causes/star-development-centre" target="_blank" rel="noopener noreferrer">Support STAR for free on easyfundraising <span aria-hidden="true">↗</span></a>
+   </div>
+   <div className="scholarship-easyfundraising-code">
+    <a href="https://www.easyfundraising.org.uk/causes/star-development-centre" target="_blank" rel="noopener noreferrer" aria-label="Visit STAR Development Centre on easyfundraising">
+     <Image src="/images/easyfundraising-scholarships-qr.png" alt="Easyfundraising QR code for STAR supporters" width={320} height={320} sizes="(max-width: 760px) 230px, 280px" className="scholarship-easyfundraising-qr"/>
+    </a>
+    <p>Scan the QR code to get started.</p>
+   </div>
+  </div>
+ </section>
  <section className="scholarship-apply home-width" id="apply"><div className="scholarship-apply-copy"><p className="scholarship-kicker">PRIVATE & CONFIDENTIAL</p><h2>Apply for STAR coaching support.</h2><p>Tell us a little about the coaching your daughter would benefit from and what makes the cost difficult. We will consider your request fairly against available places and funding.</p><p>This is a request for support, not an application for a guaranteed grant. STAR may contact you to clarify what would be helpful; please do not include benefit statements, bank details, medical documents or other sensitive paperwork.</p><div className="scholarship-assurance"><strong>No fee to apply</strong><span>Applications are seen by STAR staff who handle support requests. Your circumstances will not be shared with other parents or sponsors.</span></div><p>Want to help another family instead? <Link href="/parent-portal/give">Sponsor a coaching session in the Parent Portal →</Link></p></div><ScholarshipApplicationForm/></section>
  </main>}
