@@ -16,9 +16,11 @@ export async function POST(request:NextRequest){
  if(!token)return reply({error:"Please sign in to your parent account."},401);
  const url=process.env.NEXT_PUBLIC_SUPABASE_URL,key=process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
  if(!url||!key)return reply({error:"Parent accounts are temporarily unavailable."},503);
- const client=createClient(url,key,{auth:{autoRefreshToken:false,persistSession:false}});
+ const client=createClient(url,key,{auth:{autoRefreshToken:false,persistSession:false},global:{headers:{Authorization:"Bearer "+token}}});
  const {data:{user},error:authError}=await client.auth.getUser(token);
- if(authError||!user?.email||user.is_anonymous)return reply({error:"Please sign in to your verified parent account."},401);
+ if(authError||!user?.email||user.is_anonymous)return reply({error:"Please sign in to your parent account."},401);
+ const {data:guardian,error:guardianError}=await client.from("guardian_profiles").select("user_id").eq("user_id",user.id).maybeSingle();
+ if(guardianError||!guardian)return reply({error:"Please finish setting up your parent profile first."},403);
  let data:Record<string,unknown>;try{const body=await request.text();if(Buffer.byteLength(body)>3000)return reply({error:"Invalid request."},413);data=JSON.parse(body);if(!data||typeof data!=="object"||Array.isArray(data))throw Error();}catch{return reply({error:"Invalid request."},400)}
  const choice=typeof data.choice==="string"?data.choice:"",item=amounts[choice];
  if(!item)return reply({error:"Please choose a listed sponsorship option."},400);
