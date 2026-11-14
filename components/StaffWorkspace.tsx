@@ -28,6 +28,7 @@ const SessionAttendance=dynamic(()=>import("./SessionAttendance").then(m=>m.Sess
 const CoachingRecords=dynamic(()=>import("./CoachingRecords").then(m=>m.CoachingRecords),{loading:()=> <p role="status">Loading…</p>});
 const PlayerIDP=dynamic(()=>import("./PlayerIDP").then(m=>m.PlayerIDP),{loading:()=> <p role="status">Loading…</p>});
 const PlayerPathways=dynamic(()=>import("./PlayerPathways").then(m=>m.PlayerPathways),{loading:()=> <p role="status">Loading…</p>});
+const StaffBankPayments=dynamic(()=>import("./StaffBankPayments").then(m=>m.StaffBankPayments),{loading:()=> <p role="status">Loading bank sponsorships…</p>});
 const SessionAnalytics=dynamic(()=>import("./SessionAnalytics").then(m=>m.SessionAnalytics),{loading:()=> <p role="status">Loading…</p>});
 export function StaffWorkspace({userId,role,onSignOut}:{userId:string;role:StaffRole;onSignOut:()=>void}){
  const{section,visited,goTo}=useStaffNavigation(role);const[menuOpen,setMenuOpen]=useState(false),[hubPlayerId,setHubPlayerId]=useState(""),[badgePlayerId,setBadgePlayerId]=useState(""),[rosterPlayerId,setRosterPlayerId]=useState(""),[sessionId,setSessionId]=useState(""),[rosterRequest,setRosterRequest]=useState(0),[hubRequest,setHubRequest]=useState(0),[badgeRequest,setBadgeRequest]=useState(0),[coachingTarget,setCoachingTarget]=useState<{playerId:string;sessionId:string;revision:number}|null>(null);
@@ -62,7 +63,8 @@ export function StaffWorkspace({userId,role,onSignOut}:{userId:string;role:Staff
   case "families":return canManage?<FamilyAccessAdmin userId={userId}/>:null;
   case "pathways":return canManage?<PlayerPathways userId={userId}/>:null;
   case "analytics":return canManage?<SessionAnalytics active={section==="analytics"&&!menuOpen}/>:null;
-  case "administration":return role==="owner"?<StaffAdmin ownerId={userId}/>:null;
+  case "bankSponsorships":return role==="owner"?<StaffBankPayments/>:null;
+   case "administration":return role==="owner"?<StaffAdmin ownerId={userId}/>:null;
  }}
  return <StaffAppShell role={role} section={section} onNavigate={navigate} onSignOut={onSignOut} onMenuChange={setMenuOpen} badges={canManage?{communications:<><FamilyUnreadBadge userId={userId} role="staff"/><OrganisationInboxSummary badge/></>}:{}}>{contextPlayer&&<StaffPlayerContext playerId={contextPlayer} canManage={canManage} onNavigate={navigate} onClear={()=>setContextPlayer("")}/>} {visited.filter(id=>allowed.some(i=>i.id===id)).map(id=><section key={id} className="staff-tool-panel" hidden={section!==id} aria-label={allowed.find(i=>i.id===id)?.label}>{panel(id)}</section>)}</StaffAppShell>;
 }
