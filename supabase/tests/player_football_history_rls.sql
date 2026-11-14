@@ -199,5 +199,56 @@ begin
  exception when insufficient_privilege then null;end;
 end$$;
 reset role;
+-- Prestige stays locked at 0/55 and 54/55, then requires 10/10.
+set local role authenticated;
+select set_config('request.jwt.claim.sub',(select value from history_test where key='player'),true);
+do $$begin
+ begin
+  perform public.submit_football_history_quiz((select value::uuid from history_test where key='core'),56::smallint,array[2,0,3,1,2,0,3,1,2,0]);
+  raise exception 'Prestige prerequisite bypass';
+ exception when insufficient_privilege then null;end;
+end$$;
+reset role;
+insert into public.player_history_progress(player_id,card_id,score,earned_at,retry_at)
+ select (select value::uuid from history_test where key='core'),card_id,cardinality(answers),now(),null
+ from star_private.football_history_answers where card_id between 1 and 54
+ on conflict(player_id,card_id) do update set score=excluded.score,earned_at=excluded.earned_at,retry_at=null;
+delete from public.player_history_progress where player_id=(select value::uuid from history_test where key='core') and card_id=55;
+set local role authenticated;
+do $$begin
+ begin
+  perform public.submit_football_history_quiz((select value::uuid from history_test where key='core'),56::smallint,array[2,0,3,1,2,0,3,1,2,0]);
+  raise exception 'Prestige opened at 54/55';
+ exception when insufficient_privilege then null;end;
+end$$;
+reset role;
+insert into public.player_history_progress(player_id,card_id,score,earned_at,retry_at)
+ values((select value::uuid from history_test where key='core'),55,7,now(),null);
+set local role authenticated;
+do $$declare pid uuid:=(select value::uuid from history_test where key='core');p public.player_history_progress;begin
+ begin
+  perform public.submit_football_history_quiz(pid,56::smallint,array[2,0,3,1,2,0,3,1,2]);
+  raise exception 'Nine answers accepted for Prestige';
+ exception when invalid_parameter_value then null;end;
+ p:=public.submit_football_history_quiz(pid,56::smallint,array[2,0,3,1,2,0,3,1,2,1]);
+ if p.score<>9 or p.earned_at is not null or p.retry_at<now()+interval '19 minutes' then raise exception 'Prestige 9/10 cooldown failed';end if;
+ if public.submit_football_history_quiz(pid,56::smallint,array[2,0,3,1,2,0,3,1,2,0]) is distinct from p then raise exception 'Prestige cooldown bypass';end if;
+end$$;
+reset role;
+update public.player_history_progress set retry_at=now()-interval '1 second' where card_id=56 and player_id=(select value::uuid from history_test where key='core');
+set local role authenticated;
+do $$declare pid uuid:=(select value::uuid from history_test where key='core');p public.player_history_progress;begin
+ p:=public.submit_football_history_quiz(pid,56::smallint,array[2,0,3,1,2,0,3,1,2,0]);
+ if p.score<>10 or p.earned_at is null or p.retry_at is not null then raise exception 'Prestige award failed';end if;
+ if public.submit_football_history_quiz(pid,56::smallint,array[0,0,0,0,0,0,0,0,0,0]) is distinct from p then raise exception 'Prestige replay changed award';end if;
+end$$;
+select set_config('request.jwt.claim.sub',(select value from history_test where key='other'),true);
+do $$begin
+ begin
+  perform public.submit_football_history_quiz((select value::uuid from history_test where key='core'),56::smallint,array[2,0,3,1,2,0,3,1,2,0]);
+  raise exception 'Cross-family Prestige access';
+ exception when insufficient_privilege then null;end;
+end$$;
+reset role;
 rollback;
 select 'PASS: Ultimate seven-question validation, 6/7 cooldown, 7/7 award, replay and family/age isolation; five-question validation, 4/5 cooldown, expiry, 5/5 award, replay, edition age boundary, special edition award and age restriction, birthday keepsakes and family isolation.' as result;

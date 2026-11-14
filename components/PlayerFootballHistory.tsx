@@ -6,18 +6,20 @@ import trailblazers from "../lib/content/football-history.json";
 import sparks from "../lib/content/football-history-sparks.json";
 import specials from "../lib/content/football-history-specials.json";
 import ultimates from "../lib/content/football-history-ultimates.json";
+import prestige from "../lib/content/football-history-prestige.json";
 import {SpecialHistoryCard} from "./SpecialHistoryCard";
 import {SparksHistoryArt,SparksHistoryCard,SparksReadAloud} from "./SparksHistoryCard";
 import {supabaseBrowser} from "../lib/supabaseBrowser";
 import "./player-football-history.css";
 
-const olderCards:Card[] = [...trailblazers,...specials,...ultimates];
+const olderCards:Card[] = [...trailblazers,...specials,...ultimates,...prestige];
 const trailblazerSets = [
   {name:"The Pioneers", metal:"Bronze"},
   {name:"Legends of the World Game", metal:"Silver"},
   {name:"Moments That Changed the Game", metal:"Gold"},
   {name:"Special editions", metal:"Special"},
   {name:"Ultimate Challenges", metal:"Ultimate"},
+  {name:"The Prestige Card", metal:"Prestige"},
 ] as const;
 const sparksSets = [
   {name:"First Football Heroes",metal:"Coral"},
@@ -25,9 +27,9 @@ const sparksSets = [
   {name:"Big Match Moments",metal:"Violet"},
 ] as const;
 const isSparks = (id:number) => id >= 101;
-const cardNumber = (id:number) => [...specials,...ultimates].find(card => card.id===id)?.number ?? (isSparks(id) ? `S${String(id-100).padStart(2,"0")}` : String(id).padStart(3,"0"));
+const cardNumber = (id:number) => [...specials,...ultimates,...prestige].find(card => card.id===id)?.number ?? (isSparks(id) ? `S${String(id-100).padStart(2,"0")}` : String(id).padStart(3,"0"));
 const cardImage = (id:number, side:"front"|"back") => `/player-space/history/${cardNumber(id)}-${side}.webp`;
-type Card = (typeof trailblazers)[number] | (typeof sparks)[number] | (typeof specials)[number] | (typeof ultimates)[number];
+type Card = (typeof trailblazers)[number] | (typeof sparks)[number] | (typeof specials)[number] | (typeof ultimates)[number] | (typeof prestige)[number];
 type Edition = "sparks"|"trailblazers"|"unknown"|"under-five";
 type Progress = {card_id:number; score:number; retry_at:string|null; earned_at:string|null};
 
@@ -88,6 +90,7 @@ export function PlayerFootballHistory({playerId, preview}: {playerId:string; pre
     });
   }
   function open(card:Card, nextMode:"story"|"card") {
+    if ("prerequisites" in card && !preview && !progress[card.id]?.earned_at && !card.prerequisites.every(id=>progress[id]?.earned_at)) return;
     setSelected(card);setMode(nextMode);setSide("front");setChoices([]);setQuestion(0);
     setResult(null);setError("");setNow(Date.now());focusHeading();
   }
@@ -130,7 +133,7 @@ export function PlayerFootballHistory({playerId, preview}: {playerId:string; pre
   const hasAnyCard = cards.some(card => progress[card.id]?.earned_at);
   const hasKeepsakes = edition==="trailblazers" && sparks.some(card => progress[card.id]?.earned_at);
   const questionCount = selected?.questions.length ?? 5;
-  const tier = selected ? sets[junior ? Math.floor((selected.id-101)/10) : ultimates.some(card=>card.id===selected.id) ? 4 : specials.some(card=>card.id===selected.id) ? 3 : Math.floor((selected.id-1)/10)] : null;
+  const tier = selected ? sets[junior ? Math.floor((selected.id-101)/10) : prestige.some(card=>card.id===selected.id) ? 5 : ultimates.some(card=>card.id===selected.id) ? 4 : specials.some(card=>card.id===selected.id) ? 3 : Math.floor((selected.id-1)/10)] : null;
   return <section className={`ps-history${junior?" ps-history-sparks":""}`} aria-labelledby="ps-history-title">
     {selected && tier ? <>
       <button type="button" className="ps-history-back" disabled={busy} onClick={close}>← Back to {view==="stories"?"all stories":view==="keepsakes"?"my Sparks cards":"my collection"}</button>
@@ -213,25 +216,27 @@ export function PlayerFootballHistory({playerId, preview}: {playerId:string; pre
       </div>
       {view==="collection" && load==="ready" && !hasAnyCard && <p className="ps-history-notice">Your collection is empty. Explore a story and answer every question correctly to earn your first card.</p>}
       {sets.map(({name,metal},index) => {
-        const group=junior ? cards.slice(index*10,index*10+10) : index<3 ? cards.filter(card=>card.id>=index*10+1 && card.id<=index*10+10) : index===3 ? cards.filter(card=>specials.some(special=>special.id===card.id)) : cards.filter(card=>ultimates.some(ultimate=>ultimate.id===card.id));
+        const group=junior ? cards.slice(index*10,index*10+10) : index<3 ? cards.filter(card=>card.id>=index*10+1 && card.id<=index*10+10) : index===3 ? cards.filter(card=>specials.some(special=>special.id===card.id)) : index===4 ? cards.filter(card=>ultimates.some(ultimate=>ultimate.id===card.id)) : cards.filter(card=>prestige.some(p=>p.id===card.id));
         const owned=group.filter(card => progress[card.id]?.earned_at);
         const shown=view==="stories"?group:owned;
         return shown.length>0 && <section key={name} className={`ps-history-set ps-history-${metal.toLowerCase()}`}>
-          <div className="ps-history-set-title"><h3>{name}</h3><span>{(metal==="Special" || metal==="Ultimate") ? `${owned.length}/${group.length} collected` : `${metal} · ${owned.length}/${group.length}`}</span></div>
+          <div className="ps-history-set-title"><h3>{name}</h3><span>{(metal==="Special" || metal==="Ultimate" || metal==="Prestige") ? `${owned.length}/${group.length} collected` : `${metal} · ${owned.length}/${group.length}`}</span></div>
           <ul className="ps-history-grid">{shown.map(card => {
             const earned=Boolean(progress[card.id]?.earned_at);
+            const prerequisiteCount="prerequisites" in card ? card.prerequisites.filter(id=>progress[id]?.earned_at).length : 0;
+            const locked="prerequisites" in card && !earned && !preview && prerequisiteCount<card.prerequisites.length;
             if (junior && view!=="stories") return <li key={card.id}>
               <button type="button" className="ps-sparks-collection-card" aria-label={`View ${card.name} card`} onClick={() => open(card,"card")}>
                 <SparksHistoryCard card={card} face="front" number={cardNumber(card.id)} setName={name} compact/>
               </button>
             </li>;
-            return <li key={card.id}><button type="button" onClick={() => open(card,view==="stories"?"story":"card")}>
+            return <li key={card.id}><button type="button" disabled={locked} onClick={() => open(card,view==="stories"?"story":"card")}>
               {"artwork" in card ? <SpecialHistoryCard artwork={card.artwork} face="front" sizes="(max-width: 550px) 43vw, 208px" decorative/>
                 : junior ? <SparksHistoryArt id={card.id} sizes="(max-width: 600px) 43vw, 210px"/>
                 : view==="collection" && <Image src={cardImage(card.id,"front")} width={576} height={768} sizes="(max-width: 600px) 43vw, 210px" alt=""/>}
-              <span className="ps-history-kicker">{cardNumber(card.id)} · {earned?"Collected":"Story"}</span>
+              <span className="ps-history-kicker">{cardNumber(card.id)} · {earned?"Collected":locked?"Locked":"Story"}</span>
               <strong>{card.name}</strong>
-              <span>{view==="stories"?card.subtitle:"View card"} →</span>
+              <span>{locked && "prerequisites" in card ? `Earn every preceding card to open the story and 10-question quiz. ${prerequisiteCount}/${card.prerequisites.length} earned.` : `${view==="stories"?card.subtitle:"View card"} →`}</span>
             </button></li>;
           })}</ul>
         </section>;

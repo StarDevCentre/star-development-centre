@@ -8,6 +8,7 @@ const base=path.resolve('components');
 const regular=require('../lib/content/football-history.json');
 const specials=require('../lib/content/football-history-specials.json');
 const ultimates=require('../lib/content/football-history-ultimates.json');
+const prestige=require('../lib/content/football-history-prestige.json');
 const sparks=require('../lib/content/football-history-sparks.json');
 function render({preview=true,edition='trailblazers',progress={}}={}){
  let state=0;const exports={};
@@ -22,14 +23,24 @@ test('owner preview includes all Special and Ultimate stories',()=>{
  const tree=render();const text=JSON.stringify(tree);
  for(const card of [...specials,...ultimates])assert.ok(text.includes(card.name),card.name+' missing');
  assert.ok(text.includes('Special editions'));assert.ok(text.includes('Ultimate Challenges'));
- const meter=nodes(tree).find(n=>n.type==='progress');assert.equal(meter.props.max,regular.length+specials.length+ultimates.length);
+ const meter=nodes(tree).find(n=>n.type==='progress');assert.equal(meter.props.max,regular.length+specials.length+ultimates.length+prestige.length);
 });
 test('live older collection counts Special and Ultimate awards',()=>{
  const progress=Object.fromEntries([specials[0],ultimates[0]].map(c=>[c.id,{card_id:c.id,earned_at:'2026-11-12',score:c.questions.length,retry_at:null}]));
- const meter=nodes(render({preview:false,progress})).find(n=>n.type==='progress');assert.equal(meter.props.value,2);assert.equal(meter.props.max,regular.length+specials.length+ultimates.length);
+ const meter=nodes(render({preview:false,progress})).find(n=>n.type==='progress');assert.equal(meter.props.value,2);assert.equal(meter.props.max,regular.length+specials.length+ultimates.length+prestige.length);
 });
 test('Sparks catalogue stays limited to the younger edition',()=>{
  const tree=render({preview:false,edition:'sparks'});const text=JSON.stringify(tree);
  assert.ok(!text.includes('Special editions'));assert.ok(!text.includes('Ultimate Challenges'));
  assert.equal(nodes(tree).find(n=>n.type==='progress').props.max,sparks.length);
+});
+
+test('Prestige is locked until every frozen prerequisite is earned',()=>{
+ const button=progress=>nodes(render({preview:false,progress})).find(n=>n.type==='button'&&JSON.stringify(n.props.children).includes('The Game They Couldn’t Stop'));
+ assert.equal(button({}).props.disabled,true);
+ const progress=Object.fromEntries(prestige[0].prerequisites.map(id=>[id,{card_id:id,score:7,earned_at:'2026-11-14',retry_at:null}]));
+ assert.equal(button(progress).props.disabled,false);
+ delete progress[55];assert.equal(button(progress).props.disabled,true);
+ assert.equal(prestige[0].questions.length,10);
+ assert.ok(prestige[0].story.split(/\s+/).length>=1000);
 });
