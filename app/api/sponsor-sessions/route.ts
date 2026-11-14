@@ -4,8 +4,10 @@ export const runtime="nodejs";
 const amounts:Record<string,{title:string;amount:number;units:number;kind:string}>={
  "one-group":{title:"One group session",amount:5,units:1,kind:"group"},
  "four-group":{title:"Four group sessions",amount:20,units:4,kind:"group"},
- "one-individual":{title:"One individual session",amount:40,units:1,kind:"individual"},
- "two-individual":{title:"Two individual sessions",amount:80,units:2,kind:"individual"}
+ "one-local":{title:"One individual session · Taunton / Wellington",amount:35,units:1,kind:"individual"},
+ "one-bridgwater":{title:"One individual session · Bridgwater",amount:40,units:1,kind:"individual"},
+ "two-local":{title:"Two individual sessions · Taunton / Wellington",amount:70,units:2,kind:"individual"},
+ "two-bridgwater":{title:"Two individual sessions · Bridgwater",amount:80,units:2,kind:"individual"}
 };
 const reply=(body:object,status=200)=>NextResponse.json(body,{status,headers:{"Cache-Control":"no-store"}});
 export async function POST(request:NextRequest){
