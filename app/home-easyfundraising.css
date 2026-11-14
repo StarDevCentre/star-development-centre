@@ -1,0 +1,12 @@
+/* Homepage-only easyfundraising cause banner: preserve original supplied artwork. */
+.home-easyfundraising{padding:clamp(44px,6vw,88px) 22px clamp(50px,7vw,96px);background:#eff5f7;color:#0c3850;text-align:center;border-top:1px solid #dce7ec}
+.home-easyfundraising-inner{max-width:1060px;margin:0 auto}
+.home-easyfundraising-eyebrow{margin:0 0 12px;font-size:11px;font-weight:900;letter-spacing:.16em;color:#137c81}
+.home-easyfundraising h2{font-family:"Barlow Condensed",Impact,Arial,sans-serif;font-size:clamp(32px,4.5vw,57px);line-height:1.05;text-transform:uppercase;margin:0 0 17px;color:#0b354e}
+.home-easyfundraising-intro{max-width:760px;margin:0 auto 30px;line-height:1.75;font-size:clamp(14px,1.6vw,17px);color:#39586b}
+.home-easyfundraising-banner{display:block;max-width:1000px;margin:0 auto;overflow:hidden;border-radius:13px;box-shadow:0 14px 40px #0b365020;background:white;transition:transform .2s,box-shadow .2s}
+.home-easyfundraising-banner:hover{transform:translateY(-3px);box-shadow:0 19px 48px #0b36502d}
+.home-easyfundraising-banner:focus-visible{outline:4px solid #076b78;outline-offset:5px}
+.home-easyfundraising-banner picture,.home-easyfundraising-banner img{display:block;width:100%;height:auto}
+@media(max-width:640px){.home-easyfundraising{padding:45px 16px 65px}.home-easyfundraising-intro{margin-bottom:23px}.home-easyfundraising-banner{max-width:480px;border-radius:10px}.home-easyfundraising h2{font-size:clamp(32px,8vw,43px)}}
+@media(prefers-reduced-motion:reduce){.home-easyfundraising-banner{transition:none}.home-easyfundraising-banner:hover{transform:none}}
