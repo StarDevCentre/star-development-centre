@@ -12,7 +12,7 @@
 .ps-history-silver{--history-metal:#d5e4ff}
 .ps-history-gold{--history-metal:#f5d47b}
 .ps-history-prestige{--history-metal:#f8e3a1;background:radial-gradient(ellipse at 95% 0%,#45245d,transparent 65%),linear-gradient(135deg,#13131d,#070b14);border:2px solid #d9c392}
-.ps-history-prestige .ps-history-grid{grid-template-columns:minmax(0,24rem);justify-content:center}
+.ps-history-prestige .ps-history-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,18rem),24rem));justify-content:center}
 .ps-history-prestige .ps-history-grid button{background:#141321;border-color:#d9c392}
 .ps-history-prestige .ps-history-grid button:disabled{opacity:1;border-style:dashed}
 .ps-history-set-title{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap}

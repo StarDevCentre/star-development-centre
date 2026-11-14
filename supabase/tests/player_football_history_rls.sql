@@ -250,5 +250,86 @@ do $$begin
  exception when insufficient_privilege then null;end;
 end$$;
 reset role;
+-- Final Prestige progression: cannot skip a predecessor.
+select set_config('request.jwt.claim.sub',(select value from history_test where key='guardian'),true);
+do $$declare cid smallint;begin
+ for cid in 58..60 loop
+  begin
+   perform public.submit_football_history_quiz((select value::uuid from history_test where key='core'),cid::smallint,(select answers from history_keys where card_id=cid));
+   raise exception 'Skipped Prestige predecessor %',cid;
+  exception when insufficient_privilege then null;end;
+ end loop;
+end$$;
+do $$declare pid uuid:=(select value::uuid from history_test where key='core'); key integer[]:=(select answers from history_keys where card_id=57); bad integer[]; failed public.player_history_progress;begin
+ begin
+  perform public.submit_football_history_quiz(pid,57::smallint,key[1:9]);
+  raise exception 'Accepted nine answers';
+ exception when invalid_parameter_value then null;end;
+ bad:=key;bad[1]:=(bad[1]+1)%4;
+ failed:=public.submit_football_history_quiz(pid,57::smallint,bad);
+ if failed.score<>9 or failed.earned_at is not null or failed.retry_at<now()+interval '19 minutes' then raise exception 'Failure/cooldown incorrect';end if;
+ if public.submit_football_history_quiz(pid,57::smallint,key) is distinct from failed then raise exception 'Cooldown bypass';end if;
+end$$;
+reset role;
+update public.player_history_progress set retry_at=now()-interval '1 second' where card_id=57 and player_id=(select value::uuid from history_test where key='core');
+set local role authenticated;
+do $$declare pid uuid:=(select value::uuid from history_test where key='core'); key integer[]:=(select answers from history_keys where card_id=57); won public.player_history_progress;begin
+ won:=public.submit_football_history_quiz(pid,57::smallint,key);
+ if won.score<>10 or won.earned_at is null or won.retry_at is not null then raise exception 'Award failed';end if;
+ if public.submit_football_history_quiz(pid,57::smallint,array[0,0,0,0,0,0,0,0,0,0]) is distinct from won then raise exception 'Replay changed award';end if;
+end$$;
+do $$declare pid uuid:=(select value::uuid from history_test where key='core'); key integer[]:=(select answers from history_keys where card_id=58); bad integer[]; failed public.player_history_progress;begin
+ begin
+  perform public.submit_football_history_quiz(pid,58::smallint,key[1:9]);
+  raise exception 'Accepted nine answers';
+ exception when invalid_parameter_value then null;end;
+ bad:=key;bad[1]:=(bad[1]+1)%4;
+ failed:=public.submit_football_history_quiz(pid,58::smallint,bad);
+ if failed.score<>9 or failed.earned_at is not null or failed.retry_at<now()+interval '19 minutes' then raise exception 'Failure/cooldown incorrect';end if;
+ if public.submit_football_history_quiz(pid,58::smallint,key) is distinct from failed then raise exception 'Cooldown bypass';end if;
+end$$;
+reset role;
+update public.player_history_progress set retry_at=now()-interval '1 second' where card_id=58 and player_id=(select value::uuid from history_test where key='core');
+set local role authenticated;
+do $$declare pid uuid:=(select value::uuid from history_test where key='core'); key integer[]:=(select answers from history_keys where card_id=58); won public.player_history_progress;begin
+ won:=public.submit_football_history_quiz(pid,58::smallint,key);
+ if won.score<>10 or won.earned_at is null or won.retry_at is not null then raise exception 'Award failed';end if;
+ if public.submit_football_history_quiz(pid,58::smallint,array[0,0,0,0,0,0,0,0,0,0]) is distinct from won then raise exception 'Replay changed award';end if;
+end$$;
+do $$declare pid uuid:=(select value::uuid from history_test where key='core'); key integer[]:=(select answers from history_keys where card_id=59); bad integer[]; failed public.player_history_progress;begin
+ begin
+  perform public.submit_football_history_quiz(pid,59::smallint,key[1:9]);
+  raise exception 'Accepted nine answers';
+ exception when invalid_parameter_value then null;end;
+ bad:=key;bad[1]:=(bad[1]+1)%4;
+ failed:=public.submit_football_history_quiz(pid,59::smallint,bad);
+ if failed.score<>9 or failed.earned_at is not null or failed.retry_at<now()+interval '19 minutes' then raise exception 'Failure/cooldown incorrect';end if;
+ if public.submit_football_history_quiz(pid,59::smallint,key) is distinct from failed then raise exception 'Cooldown bypass';end if;
+end$$;
+reset role;
+update public.player_history_progress set retry_at=now()-interval '1 second' where card_id=59 and player_id=(select value::uuid from history_test where key='core');
+set local role authenticated;
+do $$declare pid uuid:=(select value::uuid from history_test where key='core'); key integer[]:=(select answers from history_keys where card_id=59); won public.player_history_progress;begin
+ won:=public.submit_football_history_quiz(pid,59::smallint,key);
+ if won.score<>10 or won.earned_at is null or won.retry_at is not null then raise exception 'Award failed';end if;
+ if public.submit_football_history_quiz(pid,59::smallint,array[0,0,0,0,0,0,0,0,0,0]) is distinct from won then raise exception 'Replay changed award';end if;
+end$$;
+do $$declare pid uuid:=(select value::uuid from history_test where key='core'); key integer[]:=(select answers from history_keys where card_id=60); bad integer[]; failed public.player_history_progress;begin
+ begin
+  perform public.submit_football_history_quiz(pid,60::smallint,key[1:9]);
+  raise exception 'Accepted nine answers';
+ exception when invalid_parameter_value then null;end;
+ bad:=key;bad[1]:=(bad[1]+1)%4;
+ failed:=public.submit_football_history_quiz(pid,60::smallint,bad);
+ if failed.score<>9 or failed.earned_at is not null or failed.retry_at<now()+interval '19 minutes' then raise exception 'Failure/cooldown incorrect';end if;
+ if public.submit_football_history_quiz(pid,60::smallint,key) is distinct from failed then raise exception 'Cooldown bypass';end if;
+end$$;
+reset role;
+update public.player_history_progress set retry_at=now()-interval '1 second' where card_id=60 and player_id=(select value::uuid from history_test where key='core');
+set local role authenticated;
+do $$declare pid uuid:=(select value::uuid from history_test where key='core'); key integer[]:=(select answers from history_keys where card_id=60); won public.player_history_progress;begin
+ won:=public.submit_football_history_quiz(pid,60::smallint,key);
+ if won.score<>10 or won.earned_at is null or won.retry_at is not null then raise exception 'Award failed';end if;
+ if public.submit_football_history_quiz(pid,60::smallint,array[0,0,0,0,0,0,0,0,0,0]) is distinct from won then raise exception 'Replay changed award';end if;
+end$$;
 rollback;
-select 'PASS: Ultimate seven-question validation, 6/7 cooldown, 7/7 award, replay and family/age isolation; five-question validation, 4/5 cooldown, expiry, 5/5 award, replay, edition age boundary, special edition award and age restriction, birthday keepsakes and family isolation.' as result;

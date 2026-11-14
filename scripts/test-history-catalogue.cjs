@@ -44,3 +44,22 @@ test('Prestige is locked until every frozen prerequisite is earned',()=>{
  assert.equal(prestige[0].questions.length,10);
  assert.ok(prestige[0].story.split(/\s+/).length>=1000);
 });
+
+test('all five Prestige cards preview, and the final four unlock sequentially',()=>{
+ assert.equal(prestige.length,5);
+ const preview=JSON.stringify(render());
+ for(const card of prestige) {
+  assert.ok(preview.includes(card.name));
+  assert.equal(card.questions.length,10);
+  assert.ok(card.story.split(/\s+/).length>=1200);
+  for(const q of card.questions) assert.equal(new Set(q.options).size,4);
+  for(const face of ['front','back']) assert.ok(fs.existsSync(`public/player-space/history/specials/${card.artwork.slug}-${face}.webp`));
+ }
+ for(const card of prestige.slice(1)) {
+  assert.deepEqual(card.prerequisites,[card.id-1]);
+  const find=progress=>nodes(render({preview:false,progress})).find(n=>n.type==='button'&&JSON.stringify(n.props.children).includes(card.name));
+  assert.equal(find({}).props.disabled,true);
+  assert.equal(find({[card.id-1]:{earned_at:'2026-11-14'}}).props.disabled,false);
+  assert.equal(find({[card.id]:{earned_at:'2026-11-14'}}).props.disabled,false);
+ }
+});

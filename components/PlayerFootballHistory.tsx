@@ -19,7 +19,7 @@ const trailblazerSets = [
   {name:"Moments That Changed the Game", metal:"Gold"},
   {name:"Special editions", metal:"Special"},
   {name:"Ultimate Challenges", metal:"Ultimate"},
-  {name:"The Prestige Card", metal:"Prestige"},
+  {name:"The Prestige Collection", metal:"Prestige"},
 ] as const;
 const sparksSets = [
   {name:"First Football Heroes",metal:"Coral"},
@@ -236,7 +236,7 @@ export function PlayerFootballHistory({playerId, preview}: {playerId:string; pre
                 : view==="collection" && <Image src={cardImage(card.id,"front")} width={576} height={768} sizes="(max-width: 600px) 43vw, 210px" alt=""/>}
               <span className="ps-history-kicker">{cardNumber(card.id)} · {earned?"Collected":locked?"Locked":"Story"}</span>
               <strong>{card.name}</strong>
-              <span>{locked && "prerequisites" in card ? `Earn every preceding card to open the story and 10-question quiz. ${prerequisiteCount}/${card.prerequisites.length} earned.` : `${view==="stories"?card.subtitle:"View card"} →`}</span>
+              <span>{locked && "prerequisites" in card ? `${card.prerequisites.length===1 ? `Earn ${cardNumber(card.prerequisites[0])} to unlock` : 'Earn all 55 original cards to unlock'}. Story and 10-question quiz · ${prerequisiteCount}/${card.prerequisites.length} earned.` : `${view==="stories"?card.subtitle:"View card"} →`}</span>
             </button></li>;
           })}</ul>
         </section>;
