@@ -2,9 +2,12 @@ import {extraSquad} from './playerCollectionExpansion';
 import {wslSquadAdditions} from './wslSquadExpansion';
 export type SquadRole='Goalkeeper'|'Defender'|'Midfielder'|'Forward';
 export type SquadFootballer={id:string;name:string;club:string;role:SquadRole;number:number;watch:string;source:string;kit:string};
-// Club memberships checked against official club/WSL sources on 29 October 2026.
+// Original club memberships checked 29 October 2026; Agyemang, Charles and Clinton checked 16 November 2026.
 export const squadRoster:SquadFootballer[]=[
  ...extraSquad,
+ {"id":"michelle-agyemang","name":"Michelle Agyemang","club":"Arsenal","role":"Forward","number":17,"watch":"Watch how she shields the ball, links with a teammate and times her run into the box.","source":"https://www.wslfootball.com/players/michelle-agyemang","kit":"2026/27 home"},
+ {"id":"niamh-charles","name":"Niamh Charles","club":"Manchester City","role":"Defender","number":21,"watch":"Watch when she overlaps to support an attack and how she recovers to track a runner.","source":"https://www.wslfootball.com/players/niamh-charles","kit":"2026/27 home"},
+ {"id":"grace-clinton","name":"Grace Clinton","club":"Manchester City","role":"Midfielder","number":6,"watch":"Watch how she checks her surroundings, receives between opponents and carries the ball forward.","source":"https://www.wslfootball.com/players/grace-clinton","kit":"2026/27 home"},
  {id:'hampton',name:'Hannah Hampton',club:'Chelsea',role:'Goalkeeper',number:24,watch:'Watch her starting position and the way she finds a teammate to play out.',source:'https://www.chelseafc.com/en/teams/profile/hannah-hampton',kit:'2026/27 home goalkeeper'},
  {id:'yamashita',name:'Ayaka Yamashita',club:'Manchester City',role:'Goalkeeper',number:31,watch:'Watch how she gets set before a shot and supports the player on the ball.',source:'https://www.mancity.com/players/ayaka-yamashita',kit:'2026/27 home goalkeeper'},
  {id:'tullis-joyce',name:'Phallon Tullis-Joyce',club:'Manchester United',role:'Goalkeeper',number:91,watch:'Watch how she covers the goal and resets her feet as the ball moves.',source:'https://www.manutd.com/en/teams/womens-team',kit:'2026/27 home goalkeeper'},
@@ -28,7 +31,8 @@ export const squadRoster:SquadFootballer[]=[
  ...wslSquadAdditions
 ];
 export const squadPlayer=(id:string|null|undefined):SquadFootballer|undefined=>id==='my-player'?{id:'my-player',name:'My player',club:'My STAR player',role:'Midfielder',number:0,watch:'Your own custom player.',source:'',kit:'Your chosen'}:squadRoster.find(p=>p.id===id);
-export const squadAsset=(id:string)=>`/player-space/squad/${id}.webp`;
+const pngSquadAssets=new Set(['michelle-agyemang','niamh-charles','grace-clinton']);
+export const squadAsset=(id:string)=>`/player-space/squad/${id}.${pngSquadAssets.has(id)?'png':'webp'}`;
 type SquadSlot={column:number;row:number;span:number;label:string};
 function elevenSlots(lines:string[][]):SquadSlot[]{
  return [{column:5,row:lines.length+1,span:4,label:'Goalkeeper'},...lines.flatMap((line,index)=>line.map((label,i)=>({column:1+i*(12/line.length),row:lines.length-index,span:12/line.length,label})))];
