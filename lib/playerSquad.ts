@@ -25,10 +25,12 @@ export const squadRoster:SquadFootballer[]=[
  {id:'terland',name:'Elisabeth Terland',club:'Manchester United',role:'Forward',number:10,watch:'Watch the timing of her movement into the box and her position for a finish.',source:'https://www.manutd.com/en/teams/womens-team',kit:'2026/27 home'},
  {id:'seike',name:'Kiko Seike',club:'Brighton & Hove Albion',role:'Forward',number:11,watch:'Watch when she carries the ball into space and when she releases a teammate.',source:'https://www.brightonandhovealbion.com/media-article/wft-news-mens-first-team-squad-numbers-confirmed-for-2026-27-season',kit:'2026/27 home'},
  {id:'daly',name:'Rachel Daly',club:'Aston Villa',role:'Forward',number:9,watch:'Watch how she changes her run to find room for a shot or meet a cross.',source:'https://www.wslfootball.com/players/rachel-daly',kit:'2026/27 home'},
+ {id:'michelle-agyemang',name:'Michelle Agyemang',club:'Arsenal',role:'Forward',number:17,watch:'Watch how she times her runs beyond defenders and uses her first touch to set up a finish.',source:'https://www.wslfootball.com/players/michelle-agyemang',kit:'2026/27 home'},
+ {id:'niamh-charles',name:'Niamh Charles',club:'Manchester City',role:'Defender',number:21,watch:'Watch when she moves forward to support an attack and how quickly she recovers her defensive position.',source:'https://www.wslfootball.com/players/niamh-charles',kit:'2026/27 home'},
  ...wslSquadAdditions
 ];
 export const squadPlayer=(id:string|null|undefined):SquadFootballer|undefined=>id==='my-player'?{id:'my-player',name:'My player',club:'My STAR player',role:'Midfielder',number:0,watch:'Your own custom player.',source:'',kit:'Your chosen'}:squadRoster.find(p=>p.id===id);
-export const squadAsset=(id:string)=>`/player-space/squad/${id}.webp`;
+export const squadAsset=(id:string)=>`/player-space/squad/${id}.${id==='michelle-agyemang'||id==='niamh-charles'?'svg':'webp'}`;
 type SquadSlot={column:number;row:number;span:number;label:string};
 function elevenSlots(lines:string[][]):SquadSlot[]{
  return [{column:5,row:lines.length+1,span:4,label:'Goalkeeper'},...lines.flatMap((line,index)=>line.map((label,i)=>({column:1+i*(12/line.length),row:lines.length-index,span:12/line.length,label})))];
