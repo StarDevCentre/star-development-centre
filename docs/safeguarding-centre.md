@@ -10,7 +10,7 @@ Implemented 16 November 2026. Klaxon, push and paid phone services remain deferr
 - Owner/demo previews never load real safeguarding data or submit reports. Guardian views do not mount the private help component. The public sample displays an explicitly disabled report preview.
 
 ## Player help
-- Red-and-gold GET HELP is available above the Player Space content, including Inbox. It provides emergency guidance, independent Childline/NSPCC options and a dedicated private composer.
+- Red-and-gold GET HELP appears only at the bottom of Player Space Home and Inbox, before the footer. Its paper card and handwritten button use the Player Space styling. It provides emergency guidance, independent Childline/NSPCC options and a dedicated private composer.
 - Parent contact starts unticked. A request is recorded; no automatic parent message or case access results. Staff assess safe contact and record a reasoned decision.
 - Reports receive a durable case reference. Retry UUIDs avoid duplicates after an uncertain network response. Unconfirmed messages remain in memory. Private conversations open only when the player opens help and are refreshed on demand.
 - STAR's owner states monitoring is 24/7; this is not an immediate response guarantee. Emergency guidance says not to wait for STAR.
