@@ -1,5 +1,7 @@
 "use client";
 import dynamic from "next/dynamic";
+import {SafeguardingAlert} from './StaffSafeguarding';
+const StaffSafeguarding=dynamic(()=>import('./StaffSafeguarding').then(m=>m.StaffSafeguarding),{loading:()=> <p role="status">Loading safeguarding centre…</p>});
 import {StaffPlayerContext} from "./StaffPlayerContext";
 import {useState} from "react";
 import {StaffAppShell} from "./StaffAppShell";
@@ -41,6 +43,7 @@ export function StaffWorkspace({userId,role,onSignOut}:{userId:string;role:Staff
  const canManage=staffCanManage(role),allowed=staffSections(role);
  function navigate(area:StaffSection,playerId?:string,targetSessionId?:string){if(area==='organisations'&&targetSessionId==='Schedule')setOrganisationTarget(v=>({id:'',tab:'Coaching schedule',revision:v.revision+1}));if(area==="communications")setInboxTarget(v=>({tab:targetSessionId==="organisations"?"organisations":"families",revision:v.revision+1}));if(area==="attendance")area="workspace";if(!allowed.some(i=>i.id===area))return;if(playerId&&!["onboarding","sessionRequests"].includes(area))setContextPlayer(playerId);if(playerId){if(area==="onboarding"||area==="sessionRequests")setActionTarget(v=>({area,id:playerId,revision:(v?.revision||0)+1}));if(area==="coachingProfiles"){setProfilePlayerId(playerId);setProfileRequest(n=>n+1)}if(area==="familyPublishing"){setPublishingPlayerId(playerId);setPublishingRequest(n=>n+1)}if(area==="records")setCoachingTarget(previous=>({playerId,sessionId:targetSessionId||"",revision:(previous?.revision||0)+1}));if(area==="idps"){setHubPlayerId(playerId);setHubRequest(n=>n+1)}if(area==="badges"){setBadgePlayerId(playerId);setBadgeRequest(n=>n+1)}if(area==="players"){setRosterPlayerId(playerId);setRosterRequest(n=>n+1)}}if(area==="workspace"&&targetSessionId)setSessionId(targetSessionId);goTo(area);}
  function panel(id:StaffSection){switch(id){
+  case "safeguarding":return <StaffSafeguarding key={userId} userId={userId} active={section==="safeguarding"&&!menuOpen}/>;
   case "organisations":return canManage?<StaffOrganisations target={organisationTarget}/>:null;
   case "overview":return <StaffHome active={section==="overview"&&!menuOpen} canManage={canManage} onNavigate={navigate}/>;
   case "workspace":return <SessionAttendance canManage={canManage} onAssessment={()=>navigate("onboarding")} onOrganisation={id=>{setOrganisationTarget(v=>({id,tab:"Coaching schedule",revision:v.revision+1}));goTo("organisations")}} userId={userId} initialSessionId={sessionId} onSessionChange={setSessionId} onCoachPlayer={(player,session)=>navigate("records",player,session)} onPlayerDevelopment={player=>navigate("idps",player)} onReturnToCalendar={()=>navigate("sessions")} onOpenPlan={planId=>{setPlanRequest(v=>planId?{id:planId,revision:(v?.revision||0)+1}:null);navigate("sessionBuilder")}}/>;
@@ -66,7 +69,7 @@ export function StaffWorkspace({userId,role,onSignOut}:{userId:string;role:Staff
   case "bankSponsorships":return role==="owner"?<StaffBankPayments/>:null;
    case "administration":return role==="owner"?<StaffAdmin ownerId={userId}/>:null;
  }}
- return <StaffAppShell role={role} section={section} onNavigate={navigate} onSignOut={onSignOut} onMenuChange={setMenuOpen} badges={canManage?{communications:<><FamilyUnreadBadge userId={userId} role="staff"/><OrganisationInboxSummary badge/></>}:{}}>{contextPlayer&&<StaffPlayerContext playerId={contextPlayer} canManage={canManage} onNavigate={navigate} onClear={()=>setContextPlayer("")}/>} {visited.filter(id=>allowed.some(i=>i.id===id)).map(id=><section key={id} className="staff-tool-panel" hidden={section!==id} aria-label={allowed.find(i=>i.id===id)?.label}>{panel(id)}</section>)}</StaffAppShell>;
+ return <StaffAppShell role={role} section={section} onNavigate={navigate} onSignOut={onSignOut} onMenuChange={setMenuOpen} badges={canManage?{communications:<><FamilyUnreadBadge userId={userId} role="staff"/><OrganisationInboxSummary badge/></>}:{}}><SafeguardingAlert key={userId} userId={userId} active={section==="safeguarding"} onOpen={()=>navigate("safeguarding")}/>{contextPlayer&&<StaffPlayerContext playerId={contextPlayer} canManage={canManage} onNavigate={navigate} onClear={()=>setContextPlayer("")}/>} {visited.filter(id=>allowed.some(i=>i.id===id)).map(id=><section key={id} className="staff-tool-panel" hidden={section!==id} aria-label={allowed.find(i=>i.id===id)?.label}>{panel(id)}</section>)}</StaffAppShell>;
 }
 
 

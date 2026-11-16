@@ -1,51 +1,38 @@
-# STAR Safeguarding Centre — implementation brief
+# STAR safeguarding centre
 
-Status: product direction and initial access approved; implementation in progress. Klaxon and Pushover deferred by the owner.
+Implemented 16 November 2026. Klaxon, push and paid phone services remain deferred by the owner.
+
+## Access and confidentiality
+- Staff Portal → Operations → Safeguarding. Every currently active approved owner, manager, coach or assistant coach has access, as explicitly requested. Existing Staff access administration controls membership. Access follows account IDs and live membership, never fixed email addresses.
+- The API checks an existing verified non-anonymous, non-banned identity on every request; a JWT session ID, when supplied, must still exist. Inactive staff, parents and organisation-only accounts cannot read cases, counts or resources. Removing the guardian approval underpinning a player link removes that player account's case access.
+- Dedicated `star_private.safeguarding_*` tables have RLS, explicit deny-direct policies and revoked client grants. `public.star_safeguarding` is an invoker wrapper around a restricted, checked private definer. The definer is necessary to prohibit raw case access and make reads audited and writes append-only through the API.
+- No safeguarding text enters family inboxes, coaching records, public search, notifications, browser storage, or an external messaging service. The player sees only their original report and explicitly shared replies on reports submitted by their current linked player account. Staff-recorded concerns are not published to players.
+- Owner/demo previews never load real safeguarding data or submit reports. Guardian views do not mount the private help component. The public sample displays an explicitly disabled report preview.
 
 ## Player help
-- A STAR red button with gold lettering, labelled “GET HELP”, prominently available in Player Space Inbox and accessible from the main navigation.
-- Opens immediate, reassuring guidance, a secure message composer and independent help options without requiring the player to categorise or prove a concern.
-- Explain emergency help, STAR's monitoring availability and that sending a message does not guarantee an immediate human reply.
-- Provide verified Childline/NSPCC links and telephone options. External contact is the player's choice; never automatically forward disclosures.
-- Parent notification starts unticked. Explain precisely what notification will reveal before submission. Record the player's preference separately from any staff safeguarding decision.
-- Do not notify a parent automatically when a report is submitted. Where requested, a safeguarding lead reviews safe contact before notification; tell the player this clearly.
-- Explain confidentiality honestly: only authorised safeguarding staff can access the report, and information may need to be shared to protect someone. Parents do not acquire case access through their ordinary guardian link.
-- Provide a quick exit to the football home screen, warning that it does not erase browser history. Do not persist disclosure drafts in localStorage, analytics or general coaching records.
-- Show confirmation only after durable server receipt, with a case reference and private follow-up conversation. Retain unsent text on recoverable submission failure.
-- Demo and owner Player Space previews must never load real safeguarding content or submit reports.
+- Red-and-gold GET HELP is available above the Player Space content, including Inbox. It provides emergency guidance, independent Childline/NSPCC options and a dedicated private composer.
+- Parent contact starts unticked. A request is recorded; no automatic parent message or case access results. Staff assess safe contact and record a reasoned decision.
+- Reports receive a durable case reference. Retry UUIDs avoid duplicates after an uncertain network response. Unconfirmed messages remain in memory. Private conversations open only when the player opens help and are refreshed on demand.
+- STAR's owner states monitoring is 24/7; this is not an immediate response guarantee. Emergency guidance says not to wait for STAR.
+- Quick exit closes help, clears in-memory drafts and returns to football. It does not erase history, delete received reports or cancel a message already sending.
+- Independent links checked 16 November 2026: https://www.childline.org.uk/get-support/ and https://www.nspcc.org.uk/about-us/our-services/nspcc-helpline/. Childline phone: 0800 1111. Follow provider pages for current service availability.
 
-## Staff centre
-1. Dashboard: unreviewed reports, assigned cases, due/overdue actions and failed delivery alerts. Sensitive details stay out of ordinary staff dashboard badges.
-2. Intake: player disclosures and staff-recorded concerns; record source, exact words, occurrence/receipt dates, immediate safety actions and people involved. Staff can submit a report without gaining case-reading access.
-3. Case register: search/filter by reference, status, assigned lead, priority and review date. Priority is assigned by a human; no automatic credibility or risk scoring.
-4. Case workspace: original report, immutable chronology, separately labelled factual observations and professional judgement, private player replies, decisions and reasons, tasks and review dates.
-5. Actions/referrals: record actual contact with agencies, recipient, date, reference, information shared and rationale. The system records referrals; it does not claim to have made them or automatically send sensitive disclosures externally.
-6. Parent contact: prominently show the player's preference and any safety concerns; record a reasoned human decision, chosen recipient and what was communicated. Do not copy whole case files into the family inbox.
-7. Closure/reopening: record outcome, rationale, remaining actions and review date; preserve original evidence and the history of decisions. Corrections are appended, not silent overwrites.
-8. Resources: approved reporting procedure, contact directory, response guidance, policy versions and acknowledgement records.
-9. Access administration: named safeguarding leads with explicit grants; case-specific exclusions and an alternative reporting route for concerns about a lead or owner. Ordinary owner/manager status must not automatically override exclusions.
-10. Audit: record case reads, changes, access grants/revocations, exports and sharing decisions. Exports require an explicit action and are audited; no bulk case exports by default.
+## Staff workflow
+- Search/filter the latest 500 cases by reference/name, status, priority, assignee and due review. The case workspace shows the preserved report, parent preference, chronology, actions and access audit.
+- Staff intake records source, exact words, people involved, dates and immediate actions in the original record. Later records distinguish observations, professional judgement, decisions, referrals, parent contact, corrections and player-visible replies.
+- Human decisions set priority, lead, status, review and retention-review dates and legal hold. Revision checks reject stale edits; closure/reopening requires a rationale. Original evidence is never overwritten through the API.
+- Actions have responsible staff, deadlines and recorded completion outcomes. Referrals and contact notes record actual actions, agency/recipient, date/reference, information shared and rationale. Saving a record does not contact anyone.
+- Procedure versions and acknowledgements are recorded separately. No approved STAR policy is invented or pre-seeded. Staff must add the actual approved procedure and contacts.
+- Register/case reads, changes, policy actions and explicit single-case JSON exports are audited. No bulk export or automatic deletion is provided. Retention-review dates prompt human review; no retention period is invented.
 
-## Security and operations
-- Separate private tables and server-checked APIs; no reuse of parent-visible player_space_messages.
-- Validate current identity, active staff status, explicit safeguarding permission and case exclusion on every operation. Revocation takes effect on the next request.
-- Restrict player reads to their own submitted conversation, excluding internal notes, staff identity-sensitive information and other reporters' information.
-- Parent and school/club roles cannot read reports, internal case notes, case counts or safeguarding notifications through existing portal APIs.
-- Staff alerts contain generic text and require sign-in to inspect the centre. Queue receipt, retry and failure visibility are required; never equate queued with delivered.
-- Retention/review schedules and legal holds must be configurable and approved; no invented retention period and no automatic purge in the initial release.
-- Safeguarding access and live alerts remain disabled until the named lead, alternative contact and monitoring arrangements are configured.
-- Required checks: anonymous denial; cross-player isolation; guardian/organisation denial; staff-submit-only scope; explicit lead access; conflict exclusions; revocation; preview isolation; idempotent submissions; immutable chronology; notification privacy; failure/retry handling; TypeScript and production build.
-- Verify database permissions using rollback-only synthetic fixtures. Never create real reports, contact agencies or send test disclosures.
+## Alerts and limitations
+- A generic banner in the signed-in staff workspace polls every 30 seconds and on window focus. Unread state persists in the database; new records, overdue tasks and due reviews remain visible. Failure is shown rather than a false zero count. Quiet hours are not applied.
+- This release has portal alerts only. A closed browser, suspended device or offline session cannot receive these alerts. It does not provide lock-screen push, klaxon, SMS or email delivery, and does not claim any delivery receipt.
+- All active staff have access; per-case exclusions and a separate internal alternative handler are not configured, following the owner's deferral. The player is told internal reporting reaches STAR staff, and independent services remain visible.
+- No automatic agency referral, parent notification, investigation decision, credibility scoring or purge.
 
-## Owner decisions — 16 November 2026
-- Dean and Becky are the current safeguarding team. All active, approved staff accounts may access the centre for now. Authorisation follows immutable account IDs and current active staff membership, never hard-coded email addresses. Pending applicants, suspended accounts, parents and organisation staff have no staff access.
-- Monitoring is 24/7. Safeguarding alerts must not inherit parent quiet hours. This describes monitoring arrangements, not a guarantee of immediate response or delivery.
-- Independent STAR contact is deferred. Always offer verified independent Childline/NSPCC routes and explain that the internal report reaches STAR staff. Do not invent an alternative contact.
-- Requested phone sound: klaxon. Foreground portal sound requires explicit device arming and an audio test. Browser push does not provide a portable guarantee of custom lock-screen sound or bypassing silent/DND. Phone setup must display this limitation.
-- A native alert service such as Pushover can support a siren with repeated emergency-priority alerts and acknowledgement receipts. Any such integration must be explicitly chosen/configured and send generic alert text only, never disclosure contents, child names, case references or identifying URLs.
-
-## Current delivery scope
-The owner deferred the klaxon and Pushover. Build the safeguarding centre with portal alerts; do not add a paid alert dependency. Optional phone delivery can be configured later.
-
-## Implementation checkpoint
-PlayerSafeguardingHelp.tsx supplies the red-and-gold help entry, accessible dialog, immediate independent support, parent-contact preference and explicit receipt/failure states. It requires a dedicated server transport and is not yet mounted or deployed. No reports are collected by this checkpoint. Case storage, staff case management, access tests and alerts remain to be implemented before activation.
+## Validation and rollback
+- `supabase/tests/safeguarding_centre.sql` uses synthetic accounts and full rollback: anonymous/raw-table denial, linked-player/parent/unrelated-account isolation, active/inactive/unverified staff, private reply projection, retries, stale edits, immutable chronology, tasks, export audit and immediate link/staff revocation.
+- TypeScript and production build are required. No browser/usability tests or real test disclosures/messages/referrals.
+- Migrations: `20261116030627_safeguarding_centre.sql`, then `20261116031552_safeguarding_query_aliases.sql`. Keep applied migration history intact.
+- UI rollback: revert this release's Git commit and deploy. Keep private records and migrations; never drop safeguarding data as a rollback. To disable intake immediately, revoke authenticated EXECUTE on `public.star_safeguarding(text,jsonb)`; this also disables centre access until deliberately restored.
