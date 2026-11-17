@@ -30,7 +30,7 @@ export const squadRoster:SquadFootballer[]=[
  ...wslSquadAdditions
 ];
 export const squadPlayer=(id:string|null|undefined):SquadFootballer|undefined=>id==='my-player'?{id:'my-player',name:'My player',club:'My STAR player',role:'Midfielder',number:0,watch:'Your own custom player.',source:'',kit:'Your chosen'}:squadRoster.find(p=>p.id===id);
-export const squadAsset=(id:string)=>`/player-space/squad/${id}.${id==='michelle-agyemang'||id==='niamh-charles'?'png':'webp'}`;
+export const squadAsset=(id:string)=>id==='niamh-charles'?'/player-space/squad/niamh-charles-approved.png':`/player-space/squad/${id}.${id==='michelle-agyemang'||id==='niamh-charles'?'png':'webp'}`;
 type SquadSlot={column:number;row:number;span:number;label:string};
 function elevenSlots(lines:string[][]):SquadSlot[]{
  return [{column:5,row:lines.length+1,span:4,label:'Goalkeeper'},...lines.flatMap((line,index)=>line.map((label,i)=>({column:1+i*(12/line.length),row:lines.length-index,span:12/line.length,label})))];
