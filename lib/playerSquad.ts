@@ -30,10 +30,14 @@ export const squadRoster:SquadFootballer[]=[
  {id:'frida-maanum',name:'Frida Maanum',club:'Arsenal',role:'Midfielder',number:12,watch:'Watch how she finds space between defenders and times her runs towards goal.',source:'https://www.wslfootball.com/players/frida-maanum',kit:'2026/27 home'},
  {id:'mary-fowler',name:'Mary Fowler',club:'Manchester City',role:'Forward',number:8,watch:'Watch how she receives in space and creates a chance for herself or a teammate.',source:'https://www.mancity.com/players/mary-fowler',kit:'2026/27 home'},
  {id:'beth-mead',name:'Beth Mead',club:'Manchester City',role:'Forward',number:7,watch:'Watch how she creates space out wide and chooses when to cross or shoot.',source:'https://www.mancity.com/news/womens/new-man-city-women-signing-beth-mead-squad-number-confirmed-63916854',kit:'2026/27 home'},
+ {"id":"jamie-lee-napier","name":"Jamie-Lee Napier","club":"Crystal Palace","role":"Defender","number":3,"watch":"Watch when she moves forward to offer width and how she recovers when possession changes.","source":"https://www.cpfc.co.uk/teams/women/jamie-lee-napier/","kit":"2026/27 away"},
+ {"id":"caitlin-cosme","name":"Caitlin Cosme","club":"Crystal Palace","role":"Defender","number":12,"watch":"Watch how she tracks runners and stays connected to the defenders beside her.","source":"https://www.cpfc.co.uk/teams/women/caitlin-cosme/","kit":"2026/27 away"},
+ {"id":"lucy-parry","name":"Lucy Parry","club":"Liverpool","role":"Defender","number":2,"watch":"Watch how she offers a passing option out wide and supports the teammate on the ball.","source":"https://www.liverpoolfc.com/teams/womens-team/lucy-parry","kit":"2026/27 home"},
+ {"id":"lily-woodham","name":"Lily Woodham","club":"Liverpool","role":"Defender","number":16,"watch":"Watch when she joins the attack on the left and how she gets back into defensive shape.","source":"https://www.liverpoolfc.com/teams/womens-team/lily-woodham","kit":"2026/27 home"},
  ...wslSquadAdditions
 ];
 export const squadPlayer=(id:string|null|undefined):SquadFootballer|undefined=>id==='my-player'?{id:'my-player',name:'My player',club:'My STAR player',role:'Midfielder',number:0,watch:'Your own custom player.',source:'',kit:'Your chosen'}:squadRoster.find(p=>p.id===id);
-export const squadAsset=(id:string)=>id==='niamh-charles'?'/player-space/squad/niamh-charles-approved.png':`/player-space/squad/${id}.${id==='michelle-agyemang'||id==='niamh-charles'?'png':'webp'}`;
+export const squadAsset=(id:string)=>id==='mia-enderby'?'/player-space/squad/mia-enderby-approved.webp':id==='niamh-charles'?'/player-space/squad/niamh-charles-approved.png':`/player-space/squad/${id}.${id==='michelle-agyemang'||id==='niamh-charles'?'png':'webp'}`;
 type SquadSlot={column:number;row:number;span:number;label:string};
 function elevenSlots(lines:string[][]):SquadSlot[]{
  return [{column:5,row:lines.length+1,span:4,label:'Goalkeeper'},...lines.flatMap((line,index)=>line.map((label,i)=>({column:1+i*(12/line.length),row:lines.length-index,span:12/line.length,label})))];
