@@ -27,6 +27,9 @@ export const squadRoster:SquadFootballer[]=[
  {id:'daly',name:'Rachel Daly',club:'Aston Villa',role:'Forward',number:9,watch:'Watch how she changes her run to find room for a shot or meet a cross.',source:'https://www.wslfootball.com/players/rachel-daly',kit:'2026/27 home'},
  {id:'michelle-agyemang',name:'Michelle Agyemang',club:'Arsenal',role:'Forward',number:17,watch:'Watch how she times her runs beyond defenders and uses her first touch to set up a finish.',source:'https://www.wslfootball.com/players/michelle-agyemang',kit:'2026/27 home'},
  {id:'niamh-charles',name:'Niamh Charles',club:'Manchester City',role:'Defender',number:21,watch:'Watch when she moves forward to support an attack and how quickly she recovers her defensive position.',source:'https://www.wslfootball.com/players/niamh-charles',kit:'2026/27 home'},
+ {id:'frida-maanum',name:'Frida Maanum',club:'Arsenal',role:'Midfielder',number:12,watch:'Watch how she finds space between defenders and times her runs towards goal.',source:'https://www.wslfootball.com/players/frida-maanum',kit:'2026/27 home'},
+ {id:'mary-fowler',name:'Mary Fowler',club:'Manchester City',role:'Forward',number:8,watch:'Watch how she receives in space and creates a chance for herself or a teammate.',source:'https://www.mancity.com/players/mary-fowler',kit:'2026/27 home'},
+ {id:'beth-mead',name:'Beth Mead',club:'Manchester City',role:'Forward',number:7,watch:'Watch how she creates space out wide and chooses when to cross or shoot.',source:'https://www.mancity.com/news/womens/new-man-city-women-signing-beth-mead-squad-number-confirmed-63916854',kit:'2026/27 home'},
  ...wslSquadAdditions
 ];
 export const squadPlayer=(id:string|null|undefined):SquadFootballer|undefined=>id==='my-player'?{id:'my-player',name:'My player',club:'My STAR player',role:'Midfielder',number:0,watch:'Your own custom player.',source:'',kit:'Your chosen'}:squadRoster.find(p=>p.id===id);
