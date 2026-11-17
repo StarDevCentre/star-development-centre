@@ -57,7 +57,7 @@
 .home-reviews-controls {display: flex; gap: 4px; align-items: center; margin-left: auto;}
 .home-reviews-controls button {display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid #d3b67d55; border-radius: 50%; background: transparent; font-family: inherit; font-size: 23px; line-height: 1; color: #f7d590; cursor: pointer; transition: background .2s, color .2s;}
 .home-reviews-controls button:first-child, .home-reviews-controls button:last-child {background: #efd094; color: #0b1a32; border-color: #efd094;}
-.home-reviews-controls .home-reviews-play {font-size: 12px; border: 0; width: 36px;}
+.home-reviews-controls .home-reviews-play {font-size: 12px; border: 0; width: 44px;}
 .home-reviews-controls button:hover {background: #b51c36; color: #fff;}
 .home-reviews button:focus-visible, .home-reviews-track:focus-visible {outline: 3px solid #b9223d; outline-offset: -4px;}
 .home-reviews-footer button:focus-visible {outline-color: #fff;}

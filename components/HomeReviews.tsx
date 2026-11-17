@@ -146,7 +146,7 @@ export function HomeReviews() {
             <span className="home-reviews-hint" aria-hidden="true">SWIPE TO EXPLORE</span>
             <div className="home-reviews-controls" aria-label="Review carousel controls">
               <button type="button" onClick={() => goTo(active - 1)} aria-label="Previous review">←</button>
-              <button className="home-reviews-play" type="button" onClick={() => setPlaying(value => !value)} aria-label={playing ? "Pause automatic reviews" : "Play automatic reviews"} aria-pressed={playing}>{playing ? "Ⅱ" : "▶"}</button>
+              <button className="home-reviews-play" type="button" onClick={() => setPlaying(value => !value)} aria-label={playing ? "Pause automatic reviews" : "Play automatic reviews"} aria-pressed={playing}><svg viewBox="0 0 16 16" width="13" height="13" fill="currentColor" aria-hidden="true">{playing ? <path d="M3 2h4v12H3zm6 0h4v12H9z"/> : <path d="M4 2v12l10-6z"/>}</svg></button>
               <button type="button" onClick={() => goTo(active + 1)} aria-label="Next review">→</button>
             </div>
           </div>
