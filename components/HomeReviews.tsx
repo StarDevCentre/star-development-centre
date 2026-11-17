@@ -3,44 +3,82 @@
 import {useEffect, useRef, useState} from "react";
 import Image from "next/image";
 
-const themes = ["Coaching built around her", "Confidence on match day", "Calmer decisions. Clear progress.", "A place to feel comfortable", "The confidence to speak up", "Support beyond the session", "Learning she wants to come back to", "Growing at her own pace", "Small adjustments. A big difference."];
+const themes = [
+  "Coaching built around her",
+  "Learning through Player Space",
+  "A comfortable place to develop",
+  "Technical work that makes a difference",
+  "A clearer picture on the ball",
+  "Confidence to speak up",
+  "Enjoying every session",
+  "Calmer decisions. Clear progress.",
+  "Support for her club football",
+  "Small adjustments. A big difference.",
+  "Support beyond the session",
+  "First touch and growing confidence",
+  "Growing at her own pace",
+  "Learning she wants to come back to"
+];
 
-const reviews = [
+const reviews: {name: string; quote: string; role?: string}[] = [
   {
     name: "Lisa & Craig",
     quote: "Really pleased with how the sessions have been going. It's nice to have someone actually look at what she needs to work on rather than just doing the same drills every week. She really enjoys going too, which is the main thing for us."
   },
   {
-    name: "Luca & Matilda",
-    quote: "We tried a couple of other places and they just felt a bit generic. STAR’s different. He really watches her and then works on the bits that are holding her back. Her first touch is so much better and she’s more confident in games. Worth the drive for us."
-  },
-  {
-    name: "Bryan",
-    quote: "Honestly didn’t know what to expect but it’s been solid. The one-to-one time has helped her a lot with decision making. She used to panic on the ball a bit and now she’s calmer. Progress reports are useful too so we know what she’s working on. Happy with it so far."
+    name: "Mia, 13",
+    role: "Player",
+    quote: "The sessions are good and I really like the player space as there is games but you are still learning"
   },
   {
     name: "Eloise",
     quote: "My girl is autistic and we were nervous about starting something new. They were really good about it — asked what helps her and just got on with it without making a big deal. She’s settled in well and is actually looking forward to the sessions. That’s a big win!"
   },
   {
+    name: "Kenneth",
+    quote: "My daughter is 15 and was already in the county pathway but felt she needed more detailed technical work. STAR filled that gap properly. The coach identified the small things holding her back and worked on them consistently. She’s now progressed into a regional talent group."
+  },
+  {
+    name: "Leah, 11",
+    role: "Player",
+    quote: "I used to take ages on the ball and lose it a lot. We’ve been working on scanning and receiving properly and it’s starting to click. Still mess up sometimes but less than before. Like that I can ask questions without everyone watching."
+  },
+  {
     name: "James & Harper",
     quote: "Honestly the best thing has been how they treat her as an individual. She’s not the loudest kid and sometimes gets a bit lost in big groups. Here she gets proper attention and it’s helped her confidence loads. She’s even started speaking up more at club."
+  },
+  {
+    name: "Lucy",
+    quote: "Couldn't be happier with STAR!"
+  },
+  {
+    name: "Bryan",
+    quote: "Honestly didn’t know what to expect but it’s been solid. The one-to-one time has helped her a lot with decision making. She used to panic on the ball a bit and now she’s calmer. Progress reports are useful too so we know what she’s working on. Happy with it so far."
+  },
+  {
+    name: "Rosie, 15",
+    role: "Player",
+    quote: "Sessions are solid and it definitely helps me with my club football."
+  },
+  {
+    name: "Roberta",
+    quote: "My daughter is sensitive to certain fabrics and noisy group settings. STAR were practical about it — let her wear her preferred base layer and kept the sessions focused rather than chaotic. She’s more comfortable and actually looking forward to going."
   },
   {
     name: "Luke",
     quote: "She’s been with STAR for about six months. The one-to-one sessions have helped her confidence massively, and she actually looks forward to logging into Player Space to see what she’s working on next. It’s a small thing but it keeps her engaged between sessions. Progress has been gradual but consistent, which is what we wanted."
   },
   {
-    name: "Anonymous",
-    quote: "Player Space is a hit with her — she actually opens it without being asked. Coaching has helped her first touch and she’s less hesitant in games. Solid all round."
+    name: "Luca & Matilda",
+    quote: "We tried a couple of other places and they just felt a bit generic. STAR’s different. He really watches her and then works on the bits that are holding her back. Her first touch is so much better and she’s more confident in games. Worth the drive for us."
   },
   {
     name: "Ella",
     quote: "My daughter is autistic and can find new environments tricky. STAR handled it really well. They checked what helps her and stuck to it. She’s built confidence gradually without being pushed too hard."
   },
   {
-    name: "Roberta",
-    quote: "My daughter is sensitive to certain fabrics and noisy group settings. STAR were practical about it — let her wear her preferred base layer and kept the sessions focused rather than chaotic. She’s more comfortable and actually looking forward to going."
+    name: "Anonymous",
+    quote: "Player Space is a hit with her — she actually opens it without being asked. Coaching has helped her first touch and she’s less hesitant in games. Solid all round."
   }
 ];
 
@@ -87,7 +125,7 @@ export function HomeReviews() {
       <div className="home-width">
         <div className="home-reviews-heading">
           <div>
-            <p className="home-eyebrow">PARENTS & CARERS / THE STAR EXPERIENCE</p>
+            <p className="home-eyebrow">FAMILIES & PLAYERS / THE STAR EXPERIENCE</p>
             <h2 id="home-reviews-title">Their <span>words.</span></h2>
           </div>
           <span className="home-reviews-seal" aria-hidden="true">✦</span>
@@ -97,7 +135,7 @@ export function HomeReviews() {
             className="home-reviews-track"
             role="region"
             aria-roledescription="carousel"
-            aria-label="STAR parent reviews. Swipe horizontally or use the previous and next review buttons."
+            aria-label="STAR family and player reviews. Swipe horizontally or use the previous and next review buttons."
             tabIndex={0}
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
@@ -137,7 +175,7 @@ export function HomeReviews() {
               <blockquote>{review.quote}</blockquote>
               <figcaption>
                 <span aria-hidden="true" className="home-review-avatar">{review.name === "Anonymous" ? "S" : review.name.split(" & ").map(name => name[0]).join("")}</span>
-                <span><strong>{review.name}</strong><small>Parent / carer</small></span>
+                <span><strong>{review.name}</strong><small>{review.role ?? "Parent / carer"}</small></span>
                 <Image className="home-review-signature" src="/images/star-colour-transparent.webp" alt="STAR Development Centre" width={152} height={76} sizes="76px" loading="lazy"/>
               </figcaption>
             </figure>
