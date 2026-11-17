@@ -31,7 +31,7 @@ export const wslSquadAdditions:SquadFootballer[]=[
   "number": 7,
   "watch": "Watch her movement to receive between opponents and her support after passing.",
   "source": "https://www.wslfootball.com/players/missy-kearns",
-  "kit": "2026/27 home"
+  "kit": "2026/27 away"
  },
  {
   "id": "sophie-baggaley",
