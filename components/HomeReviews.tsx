@@ -1,6 +1,7 @@
 "use client";
 
 import {useEffect, useRef, useState} from "react";
+import Image from "next/image";
 
 const themes = ["Coaching built around her", "Confidence on match day", "Calmer decisions. Clear progress.", "A place to feel comfortable", "The confidence to speak up", "Support beyond the session", "Learning she wants to come back to", "Growing at her own pace", "Small adjustments. A big difference."];
 
@@ -137,7 +138,7 @@ export function HomeReviews() {
               <figcaption>
                 <span aria-hidden="true" className="home-review-avatar">{review.name === "Anonymous" ? "S" : review.name.split(" & ").map(name => name[0]).join("")}</span>
                 <span><strong>{review.name}</strong><small>Parent / carer</small></span>
-                <span className="home-review-signature" aria-hidden="true">STAR</span>
+                <Image className="home-review-signature" src="/images/star-colour-transparent.webp" alt="STAR Development Centre" width={152} height={76} sizes="76px" loading="lazy"/>
               </figcaption>
             </figure>
           </div>
@@ -145,9 +146,9 @@ export function HomeReviews() {
             <span className="home-reviews-counter" aria-live={playing ? "off" : "polite"} aria-atomic="true" aria-label={`Review ${active + 1} of ${reviews.length}`}><strong>{String(active + 1).padStart(2, "0")}</strong><span> / {String(reviews.length).padStart(2, "0")}</span></span>
             <span className="home-reviews-hint" aria-hidden="true">SWIPE TO EXPLORE</span>
             <div className="home-reviews-controls" aria-label="Review carousel controls">
-              <button type="button" onClick={() => goTo(active - 1)} aria-label="Previous review">←</button>
+              <button type="button" onClick={() => goTo(active - 1)} aria-label="Previous review"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m14.5 5-7 7 7 7"/></svg></button>
               <button className="home-reviews-play" type="button" onClick={() => setPlaying(value => !value)} aria-label={playing ? "Pause automatic reviews" : "Play automatic reviews"} aria-pressed={playing}><svg viewBox="0 0 16 16" width="13" height="13" fill="currentColor" aria-hidden="true">{playing ? <path d="M3 2h4v12H3zm6 0h4v12H9z"/> : <path d="M4 2v12l10-6z"/>}</svg></button>
-              <button type="button" onClick={() => goTo(active + 1)} aria-label="Next review">→</button>
+              <button type="button" onClick={() => goTo(active + 1)} aria-label="Next review"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m9.5 5 7 7-7 7"/></svg></button>
             </div>
           </div>
           <div className="home-reviews-progress" aria-hidden="true"><span style={{width: `${((active + 1) / reviews.length) * 100}%`}}/></div>
