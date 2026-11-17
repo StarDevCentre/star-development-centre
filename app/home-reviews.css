@@ -6,7 +6,7 @@
   padding: 42px 0;
   color: #fff;
   background: radial-gradient(ellipse at 10% 0%, #ed4050 0, transparent 65%), linear-gradient(115deg, #c21b35, #8e1028);
-  border-block: 1px solid #edbd6b;
+  border-block: 1px solid #c9962d;
   scroll-margin-top: 90px;
 }
 .home-reviews::before {
@@ -28,41 +28,51 @@
   height: 170%;
   transform: rotate(26deg);
   background: #071831;
-  box-shadow: -10px 0 0 #f3d18a, -18px 0 0 #7d1028, -21px 0 0 #f3d18a;
+  box-shadow: -10px 0 0 #dba72f, -18px 0 0 #7d1028, -21px 0 0 #dba72f;
   pointer-events: none;
 }
 .home-reviews > .home-width {position: relative; max-width: 1000px;}
 .home-reviews-heading {display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 20px;}
 .star-home .home-reviews .home-eyebrow {margin: 0 0 7px; font-size: 9px; font-weight: 800; line-height: 1.4; letter-spacing: .16em; color: #fff0d4;}
 .star-home .home-reviews-heading h2 {margin: 0; font-size: clamp(44px, 5.5vw, 66px); line-height: .94; font-weight: 800; letter-spacing: -.015em; text-transform: uppercase; color: #fff;}
-.home-reviews-heading h2 span {color: #f9dca0;}
-.home-reviews-seal {display: grid; place-items: center; width: 62px; height: 62px; flex-shrink: 0; color: #ffdda0; font: 56px/1 Georgia, serif; transform: rotate(-12deg);}
-.home-reviews-stage {position: relative; border: 1px solid #f6da98; border-top: 4px solid #efd091; border-radius: 4px 22px 4px 22px; overflow: hidden; background: #fffbf3; box-shadow: 5px 6px 0 #68152a66, 0 15px 38px #400b2133;}
+.home-reviews-heading h2 span {color: #e9b73b; background: linear-gradient(110deg, #ffe5a0, #e9b73b 55%, #d99a21); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
+.home-reviews-seal {display: grid; place-items: center; width: 62px; height: 62px; flex-shrink: 0; color: #efbd3e; font: 56px/1 Georgia, serif; transform: rotate(-12deg);}
+.home-reviews-stage {position: relative; border: 1px solid #ca982c; border-top: 4px solid #dba72f; border-radius: 4px 22px 4px 22px; overflow: hidden; background: #fffbf3; box-shadow: 5px 6px 0 #68152a66, 0 15px 38px #400b2133;}
 .home-reviews-track {position: relative; touch-action: pan-y pinch-zoom;}
-.home-review-card {position: relative; margin: 0; padding: 26px 32px 22px; color: #101e36; animation: home-review-reveal .2s ease-out;}
+.home-review-card {position: relative; isolation: isolate; margin: 0; padding: 26px 32px 22px; color: #101e36; animation: home-review-reveal .2s ease-out;}
+
+.home-review-card::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 12px;
+  pointer-events: none;
+  opacity: .12;
+  background: center / cover no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 380' fill='none' stroke='%2392703c' stroke-width='1.6'%3E%3Cpath d='M12 12h576v356H12zM300 12v356M12 90h94v200H12m576-200h-94v200h94M12 140h36v100H12m576-100h-36v100h36'/%3E%3Ccircle cx='300' cy='190' r='51'/%3E%3Ccircle cx='300' cy='190' r='2' fill='%2392703c'/%3E%3Cpath d='M106 148a51 51 0 0 1 0 84m388-84a51 51 0 0 0 0 84'/%3E%3C/svg%3E");
+}
 .star-home .home-review-topic {position: relative; z-index: 1; max-width: calc(100% - 35px); margin: 0 0 15px; padding-left: 21px; color: #a21832; font-size: 10px; line-height: 1.45; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;}
 .home-review-topic::before {content: ''; position: absolute; left: 0; top: .45em; width: 12px; height: 3px; background: #b71e38;}
-.home-review-quotation {position: absolute; right: 20px; top: -5px; color: #d9b96d; font: 100px/1 Georgia, serif; pointer-events: none; opacity: .5;}
+.home-review-quotation {position: absolute; right: 20px; top: -5px; color: #bc861b; font: 100px/1 Georgia, serif; pointer-events: none; opacity: .5;}
 .home-review-card blockquote {position: relative; margin: 0 0 20px; font-size: clamp(17px, 1.8vw, 22px); font-weight: 500; line-height: 1.55; letter-spacing: -.015em; color: #12223d;}
 .home-review-card figcaption {display: flex; align-items: center; gap: 11px; border-top: 1px solid #d2bd923f; padding-top: 14px;}
-.home-review-avatar {display: grid; place-items: center; width: 38px; height: 38px; flex-shrink: 0; border: 1px solid #d1ac61; border-radius: 50%; background: #0b1c36; color: #f8dda5; font-size: 11px; font-weight: 700; line-height: 1;}
+.home-review-avatar {display: grid; place-items: center; width: 38px; height: 38px; flex-shrink: 0; border: 1px solid #bf8b24; border-radius: 50%; background: #0b1c36; color: #efc65a; font-size: 11px; font-weight: 700; line-height: 1;}
 .home-review-card figcaption strong {display: block; color: #19253b; font-size: 13px; line-height: 1.3; font-weight: 800;}
 .home-review-card figcaption small {display: block; margin-top: 3px; font-size: 10px; line-height: 1.3; color: #5e6170;}
 .home-review-signature {margin-left: auto; color: #b21c36; font-family: 'Barlow Condensed', Impact, sans-serif; font-style: italic; font-weight: 800; font-size: 27px; letter-spacing: -.035em;}
-.home-reviews-footer {display: flex; align-items: center; gap: 14px; padding: 7px 22px; background: #081a33; color: #f5d798;}
+.home-reviews-footer {display: flex; align-items: center; gap: 14px; padding: 7px 22px; background: radial-gradient(ellipse at 20% 0%, #6284ad44, transparent 65%), linear-gradient(180deg, #314e70 0%, #1b3456 38%, #0d2340 49%, #06172e 51%, #0a203b 100%); color: #efc65a; box-shadow: inset 0 1px 0 #dcecff66, inset 0 -1px 0 #0009;}
 .home-reviews-counter {flex-shrink: 0; font-size: 11px; letter-spacing: .08em; font-variant-numeric: tabular-nums;}
 .home-reviews-counter strong {font-size: 20px; font-weight: 600;}
 .home-reviews-counter > span {color: #b6c0cf;}
 .home-reviews-hint {font-size: 8px; font-weight: 700; letter-spacing: .12em; color: #c3ccda;}
 .home-reviews-controls {display: flex; gap: 4px; align-items: center; margin-left: auto;}
-.home-reviews-controls button {display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid #d3b67d55; border-radius: 50%; background: transparent; font-family: inherit; font-size: 23px; line-height: 1; color: #f7d590; cursor: pointer; transition: background .2s, color .2s;}
-.home-reviews-controls button:first-child, .home-reviews-controls button:last-child {background: #efd094; color: #0b1a32; border-color: #efd094;}
+.home-reviews-controls button {display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid #d3b67d55; border-radius: 50%; background: transparent; font-family: inherit; font-size: 23px; line-height: 1; color: #efc65a; cursor: pointer; transition: background .2s, color .2s;}
+.home-reviews-controls button:first-child, .home-reviews-controls button:last-child {background: linear-gradient(145deg, #ffe3a0 0%, #e7b43a 48%, #c58c1f 100%); color: #0b1a32; border-color: #e3b349; box-shadow: inset 0 1px 1px #fff5cfaa, 0 2px 4px #0004;}
 .home-reviews-controls .home-reviews-play {font-size: 12px; border: 0; width: 44px;}
 .home-reviews-controls button:hover {background: #b51c36; color: #fff;}
 .home-reviews button:focus-visible, .home-reviews-track:focus-visible {outline: 3px solid #b9223d; outline-offset: -4px;}
 .home-reviews-footer button:focus-visible {outline-color: #fff;}
 .home-reviews-progress {height: 3px; background: #263447;}
-.home-reviews-progress span {display: block; height: 100%; background: linear-gradient(90deg, #c29946, #ffe7b2); transition: width .2s;}
+.home-reviews-progress span {display: block; height: 100%; background: linear-gradient(90deg, #af7717, #e6b33d, #ffe1a0); transition: width .2s;}
 @keyframes home-review-reveal {from {opacity: .5; transform: translateX(5px);} to {opacity: 1; transform: translateX(0);}}
 @media (max-width: 700px) {
   .star-home .home-reviews {padding: 24px 0;}
