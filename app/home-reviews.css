@@ -2,7 +2,7 @@
 .star-home .home-reviews {
   position: relative;
   isolation: isolate;
-  overflow: hidden;
+  overflow: clip;
   padding: 42px 0;
   color: #fff;
   background: radial-gradient(ellipse at 10% 0%, #ed4050 0, transparent 65%), linear-gradient(115deg, #c21b35, #8e1028);
