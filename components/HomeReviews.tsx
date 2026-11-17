@@ -2,6 +2,8 @@
 
 import {useEffect, useRef, useState} from "react";
 
+const themes = ["Coaching built around her", "Confidence on match day", "Calmer decisions. Clear progress.", "A place to feel comfortable", "The confidence to speak up", "Support beyond the session", "Learning she wants to come back to", "Growing at her own pace", "Small adjustments. A big difference."];
+
 const reviews = [
   {
     name: "Lisa & Craig",
@@ -112,11 +114,12 @@ export function HomeReviews() {
       <div className="home-width">
         <div className="home-reviews-heading">
           <div>
-            <p className="home-eyebrow">PARENTS & CARERS / THEIR EXPERIENCE</p>
-            <h2 id="home-reviews-title">Her progress.<br/><span>Their words.</span></h2>
+            <p className="home-eyebrow"><span aria-hidden="true">✦</span> THE STAR DIFFERENCE / IN THEIR WORDS</p>
+            <h2 id="home-reviews-title">Small moments.<br/><span>Meaningful progress.</span></h2>
           </div>
           <p>Every player has her own journey. Here’s what families have said about their experiences with STAR.</p>
         </div>
+        <div className="home-reviews-stage">
         <div className="home-reviews-toolbar">
           <span className="home-reviews-counter" aria-label={`Review ${active + 1} of ${reviews.length}`}>
             <strong>{String(active + 1).padStart(2, "0")}</strong> / {String(reviews.length).padStart(2, "0")}
@@ -151,13 +154,18 @@ export function HomeReviews() {
         >
           {reviews.map((review, index) => (
             <figure key={review.name} className="home-review-card" data-review-index={index}>
-              <span className="home-review-quotation" aria-hidden="true">“</span>
-              <blockquote>{review.quote}</blockquote>
-              <figcaption><span aria-hidden="true" className="home-review-line"/><strong>{review.name}</strong></figcaption>
+              <div className="home-review-story">
+                <p className="home-review-topic">{themes[index]}</p>
+                <span className="home-review-quotation" aria-hidden="true">“</span>
+                <blockquote>{review.quote}</blockquote>
+                <figcaption><span aria-hidden="true" className="home-review-avatar">{review.name === "Anonymous" ? "S" : review.name.split(" & ").map(name => name[0]).join("")}</span><span><strong>{review.name}</strong><small>Parent / carer experience</small></span></figcaption>
+              </div>
+              <div className="home-review-art" aria-hidden="true"><span className="home-review-orbit"/><span className="home-review-art-star">✦</span><span className="home-review-art-label">HER GAME.<br/>HER JOURNEY.<br/><em>HER STAR.</em></span><span className="home-review-art-number">{String(index + 1).padStart(2, "0")} / 09</span></div>
             </figure>
           ))}
         </div>
-        <p className="home-reviews-hint">Swipe to explore more experiences <span aria-hidden="true">↔</span></p>
+        <div className="home-reviews-footer"><div className="home-reviews-pagination" aria-label="Choose a review">{reviews.map((review, index) => <button key={review.name} type="button" onClick={() => goTo(index, true)} aria-label={`Read review from ${review.name}`} aria-current={active === index ? "true" : undefined}><span/></button>)}</div><p className="home-reviews-hint">Their experiences. In their own words. <span aria-hidden="true">↔</span></p></div>
+        </div>
       </div>
     </section>
   );
