@@ -1,27 +1,92 @@
-/* Parent voices — STAR editorial spotlight */
-.home-reviews{position:relative;isolation:isolate;overflow:hidden;padding:clamp(64px,7vw,110px) 0;background:radial-gradient(ellipse at 90% 30%,#23487355,transparent 55%),#06142b;color:#fff;border-block:1px solid #d8b66b55}
-.home-reviews::before{content:"“";position:absolute;top:-190px;right:1%;font:800px/1 Georgia,serif;color:#e3c07806;pointer-events:none;z-index:-1}
-.home-reviews::after{content:"";position:absolute;top:0;left:0;width:28%;height:4px;background:linear-gradient(90deg,#bc2039 65%,#f3ce7b 65%);transform:skewX(-35deg);transform-origin:left}
-.home-reviews>.home-width{position:relative}
-.home-reviews-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:48px;margin-bottom:38px}
-.home-reviews .home-eyebrow{color:#e8c681;font-size:10px;letter-spacing:.18em;margin-bottom:20px}.home-reviews .home-eyebrow span{font-size:20px;vertical-align:middle;margin-right:8px}
-.star-home .home-reviews-heading h2{font-size:clamp(52px,6.3vw,88px);line-height:.98;letter-spacing:-.025em;color:#fff;margin:0;font-weight:700}.home-reviews-heading h2 span{background:linear-gradient(100deg,#fff0c7,#dcb267 65%,#f6dfaa);background-clip:text;-webkit-background-clip:text;color:transparent}
-.home-reviews-heading>p{max-width:310px;margin:0 0 4px;color:#b9c9dc;font-size:15px;line-height:1.8}
-.home-reviews-stage{border:1px solid #d9bf8138;background:#0e2340;border-radius:20px;box-shadow:0 30px 65px #0003;overflow:hidden}
-.home-reviews-toolbar{display:flex;justify-content:space-between;align-items:center;padding:18px 30px;border-bottom:1px solid #d6bb7c22;background:#07172b80;gap:16px}
-.home-reviews-counter{font-size:11px;letter-spacing:.17em;color:#9fb2c9;font-variant-numeric:tabular-nums}.home-reviews-counter strong{font-size:23px;color:#f3d49a;font-weight:500;margin-right:7px}
-.home-reviews-controls{display:flex;gap:8px;align-items:center}.home-reviews-controls button{cursor:pointer;min-width:44px;height:44px;display:grid;place-items:center;border:1px solid #bdc9d54a;border-radius:50%;background:transparent;color:#fff;font-size:22px;transition:background .2s,border-color .2s}.home-reviews-controls button:hover{background:#ad2039;border-color:#e5bf76}.home-reviews-controls .home-reviews-play{border-radius:24px;min-width:70px;font-family:inherit;font-size:11px;font-weight:700;letter-spacing:.04em}
-.home-reviews button:focus-visible,.home-reviews-track:focus-visible{outline:3px solid #f1cb7b;outline-offset:-4px}
-.home-reviews-track{display:flex;position:relative;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;overscroll-behavior-x:contain}.home-reviews-track::-webkit-scrollbar{display:none}
-.home-review-card{flex:0 0 100%;min-width:0;display:grid;grid-template-columns:minmax(0,1fr) 28%;margin:0;scroll-snap-align:start;scroll-snap-stop:always;position:relative;background:radial-gradient(ellipse at 0 100%,#2d496545,transparent 70%),#0e2340}
-.home-review-story{padding:clamp(28px,4vw,60px);position:relative;display:flex;flex-direction:column;min-height:440px;min-width:0}.star-home .home-review-topic{font-size:10px;line-height:1.5;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:#ebc581;margin:0 0 30px;padding-left:29px;position:relative}.home-review-topic::before{content:"";position:absolute;left:0;top:6px;width:17px;height:2px;background:#d63a4b}
-.home-review-quotation{position:absolute;top:55px;left:20px;color:#d9bd7b13;font:180px/1 Georgia,serif;pointer-events:none}
-.home-review-card blockquote{position:relative;font-size:clamp(19px,2.05vw,28px);font-weight:450;line-height:1.6;letter-spacing:-.018em;color:#f5f3ee;margin:0 0 32px;flex:1;max-width:800px}
-.home-review-card figcaption{display:flex;align-items:center;gap:14px;font-size:14px}.home-review-card figcaption strong{display:block;color:#f4d59c;font-weight:700}.home-review-card figcaption small{display:block;color:#a9bdd2;font-size:10px;margin-top:4px;letter-spacing:.08em}.home-review-avatar{display:grid;place-items:center;flex:0 0 46px;height:46px;border-radius:50%;background:#e9c78012;border:1px solid #e9c78066;color:#f6dba6;font-size:13px;font-weight:700;letter-spacing:.04em}
-.home-review-art{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:30px;border-left:1px solid #dabd7c22;background:linear-gradient(150deg,#1c3550,#0a1a32);isolation:isolate}.home-review-art::after{content:"";position:absolute;width:100px;height:150%;right:-70px;top:-15%;transform:rotate(24deg);background:linear-gradient(90deg,#c02a3e,#8c152c);z-index:-1;box-shadow:-12px 0 0 #0b1b33,-16px 0 0 #c4a567}
-.home-review-orbit{position:absolute;left:-40%;top:20%;width:150%;aspect-ratio:1;border:1px solid #dfc38322;border-radius:50%;z-index:-1}.home-review-orbit::after{content:"";position:absolute;inset:22px;border:1px solid #dfc38311;border-radius:50%}.home-review-art-star{font-size:72px;line-height:1;color:#e5c17b;margin-bottom:32px;text-shadow:0 8px 30px #e1bf7330}.home-review-art-label{font-family:'Barlow Condensed',Impact,sans-serif;font-size:clamp(30px,3.1vw,45px);font-weight:700;line-height:1.1;color:#a7bad0;letter-spacing:-.01em}.home-review-art-label em{font-style:normal;color:#f1d49b}.home-review-art-number{font-size:10px;letter-spacing:.2em;color:#c7b88f;margin-top:34px}
-.home-reviews-footer{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:14px 30px;border-top:1px solid #d6bb7c22;background:#07172b60}.home-reviews-pagination{display:flex;gap:2px;flex-shrink:0}.home-reviews-pagination button{display:grid;place-items:center;width:26px;height:44px;border:0;background:transparent;cursor:pointer;padding:4px}.home-reviews-pagination button span{width:5px;height:5px;border-radius:50%;background:#71849e;transition:width .25s,background .25s}.home-reviews-pagination button[aria-current=true] span{width:22px;border-radius:3px;background:#edca85}.star-home .home-reviews-hint{margin:0;color:#a9bdd2;font-size:10px;letter-spacing:.025em}.home-reviews-hint span{color:#e9c984;font-size:19px;margin-left:12px;vertical-align:middle}
-@media(min-width:701px) and (max-width:1000px){.home-review-card{grid-template-columns:minmax(0,1fr) 25%}.home-review-art{padding:20px}.home-review-story{min-height:480px}.home-reviews-heading{gap:25px}.home-reviews-heading>p{max-width:230px;font-size:13px}}
-@media(max-width:700px){.home-reviews{padding-block:58px}.home-reviews-heading{display:block;margin-bottom:26px}.star-home .home-reviews-heading h2{font-size:clamp(45px,10vw,66px)}.home-reviews-heading>p{margin:20px 0 0;font-size:13px;max-width:360px}.home-reviews .home-eyebrow{font-size:8px;letter-spacing:.13em}.home-reviews-stage{border-radius:14px}.home-reviews-toolbar{padding:12px 18px}.home-review-card{grid-template-columns:1fr}.home-review-story{padding:27px 23px 28px;min-height:460px}.star-home .home-review-topic{font-size:9px;letter-spacing:.1em;margin-bottom:22px}.home-review-card blockquote{font-size:19px;line-height:1.65;margin-bottom:26px}.home-review-quotation{left:9px;top:58px}.home-review-art{display:none}.home-reviews-footer{padding:7px 13px 13px;flex-direction:column;gap:0}.home-reviews-pagination button{width:27px}.star-home .home-reviews-hint{font-size:9px}.home-review-card figcaption{font-size:13px}}
-@media(max-width:380px){.home-review-story{padding-inline:19px;min-height:525px}.home-review-card blockquote{font-size:18px}.home-reviews-pagination button{width:24px}}
-@media(prefers-reduced-motion:reduce){.home-reviews-track{scroll-behavior:auto}.home-reviews-controls button,.home-reviews-pagination button span{transition:none}}
+/* Compact parent voices: scarlet, ivory and gold. */
+.star-home .home-reviews {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 42px 0;
+  color: #fff;
+  background: radial-gradient(ellipse at 10% 0%, #ed4050 0, transparent 65%), linear-gradient(115deg, #c21b35, #8e1028);
+  border-block: 1px solid #edbd6b;
+  scroll-margin-top: 90px;
+}
+.home-reviews::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: repeating-linear-gradient(120deg, transparent 0 54px, #fff 55px 56px, transparent 57px 115px);
+  opacity: .045;
+  pointer-events: none;
+}
+.home-reviews::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: -30%;
+  right: -130px;
+  width: 230px;
+  height: 170%;
+  transform: rotate(26deg);
+  background: #071831;
+  box-shadow: -10px 0 0 #f3d18a, -18px 0 0 #7d1028, -21px 0 0 #f3d18a;
+  pointer-events: none;
+}
+.home-reviews > .home-width {position: relative; max-width: 1000px;}
+.home-reviews-heading {display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 20px;}
+.star-home .home-reviews .home-eyebrow {margin: 0 0 7px; font-size: 9px; font-weight: 800; line-height: 1.4; letter-spacing: .16em; color: #fff0d4;}
+.star-home .home-reviews-heading h2 {margin: 0; font-size: clamp(44px, 5.5vw, 66px); line-height: .94; font-weight: 800; letter-spacing: -.015em; text-transform: uppercase; color: #fff;}
+.home-reviews-heading h2 span {color: #f9dca0;}
+.home-reviews-seal {display: grid; place-items: center; width: 62px; height: 62px; flex-shrink: 0; color: #ffdda0; font: 56px/1 Georgia, serif; transform: rotate(-12deg);}
+.home-reviews-stage {position: relative; border: 1px solid #f6da98; border-top: 4px solid #efd091; border-radius: 4px 22px 4px 22px; overflow: hidden; background: #fffbf3; box-shadow: 5px 6px 0 #68152a66, 0 15px 38px #400b2133;}
+.home-reviews-track {position: relative; touch-action: pan-y pinch-zoom;}
+.home-review-card {position: relative; margin: 0; padding: 26px 32px 22px; color: #101e36; animation: home-review-reveal .2s ease-out;}
+.star-home .home-review-topic {position: relative; z-index: 1; max-width: calc(100% - 35px); margin: 0 0 15px; padding-left: 21px; color: #a21832; font-size: 10px; line-height: 1.45; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;}
+.home-review-topic::before {content: ''; position: absolute; left: 0; top: .45em; width: 12px; height: 3px; background: #b71e38;}
+.home-review-quotation {position: absolute; right: 20px; top: -5px; color: #d9b96d; font: 100px/1 Georgia, serif; pointer-events: none; opacity: .5;}
+.home-review-card blockquote {position: relative; margin: 0 0 20px; font-size: clamp(17px, 1.8vw, 22px); font-weight: 500; line-height: 1.55; letter-spacing: -.015em; color: #12223d;}
+.home-review-card figcaption {display: flex; align-items: center; gap: 11px; border-top: 1px solid #d2bd923f; padding-top: 14px;}
+.home-review-avatar {display: grid; place-items: center; width: 38px; height: 38px; flex-shrink: 0; border: 1px solid #d1ac61; border-radius: 50%; background: #0b1c36; color: #f8dda5; font-size: 11px; font-weight: 700; line-height: 1;}
+.home-review-card figcaption strong {display: block; color: #19253b; font-size: 13px; line-height: 1.3; font-weight: 800;}
+.home-review-card figcaption small {display: block; margin-top: 3px; font-size: 10px; line-height: 1.3; color: #5e6170;}
+.home-review-signature {margin-left: auto; color: #b21c36; font-family: 'Barlow Condensed', Impact, sans-serif; font-style: italic; font-weight: 800; font-size: 27px; letter-spacing: -.035em;}
+.home-reviews-footer {display: flex; align-items: center; gap: 14px; padding: 7px 22px; background: #081a33; color: #f5d798;}
+.home-reviews-counter {flex-shrink: 0; font-size: 11px; letter-spacing: .08em; font-variant-numeric: tabular-nums;}
+.home-reviews-counter strong {font-size: 20px; font-weight: 600;}
+.home-reviews-counter > span {color: #b6c0cf;}
+.home-reviews-hint {font-size: 8px; font-weight: 700; letter-spacing: .12em; color: #c3ccda;}
+.home-reviews-controls {display: flex; gap: 4px; align-items: center; margin-left: auto;}
+.home-reviews-controls button {display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid #d3b67d55; border-radius: 50%; background: transparent; font-family: inherit; font-size: 23px; line-height: 1; color: #f7d590; cursor: pointer; transition: background .2s, color .2s;}
+.home-reviews-controls button:first-child, .home-reviews-controls button:last-child {background: #efd094; color: #0b1a32; border-color: #efd094;}
+.home-reviews-controls .home-reviews-play {font-size: 12px; border: 0; width: 36px;}
+.home-reviews-controls button:hover {background: #b51c36; color: #fff;}
+.home-reviews button:focus-visible, .home-reviews-track:focus-visible {outline: 3px solid #b9223d; outline-offset: -4px;}
+.home-reviews-footer button:focus-visible {outline-color: #fff;}
+.home-reviews-progress {height: 3px; background: #263447;}
+.home-reviews-progress span {display: block; height: 100%; background: linear-gradient(90deg, #c29946, #ffe7b2); transition: width .2s;}
+@keyframes home-review-reveal {from {opacity: .5; transform: translateX(5px);} to {opacity: 1; transform: translateX(0);}}
+@media (max-width: 700px) {
+  .star-home .home-reviews {padding: 24px 0;}
+  .home-reviews > .home-width {width: calc(100% - 32px);}
+  .home-reviews-heading {margin-bottom: 16px;}
+  .star-home .home-reviews .home-eyebrow {font-size: 8px; letter-spacing: .1em; margin-bottom: 7px;}
+  .star-home .home-reviews-heading h2 {font-size: 43px;}
+  .home-reviews-seal {width: 46px; height: 46px; font-size: 43px;}
+  .home-reviews::after {right: -190px;}
+  .home-review-card {padding: 20px 21px 18px;}
+  .star-home .home-review-topic {font-size: 9px; letter-spacing: .06em; margin-bottom: 12px; max-width: calc(100% - 25px);}
+  .home-review-quotation {right: 13px; top: 0; font-size: 80px;}
+  .home-review-card blockquote {font-size: 16px; line-height: 1.55; margin-bottom: 16px;}
+  .home-review-card figcaption {padding-top: 12px;}
+  .home-reviews-footer {padding: 6px 13px; gap: 9px;}
+  .home-reviews-hint {font-size: 7px; letter-spacing: .08em;}
+}
+@media (max-width: 359px) {
+  .home-review-card {padding-inline: 18px;}
+  .home-review-card blockquote {font-size: 15px;}
+  .star-home .home-reviews-heading h2 {font-size: 40px;}
+  .home-reviews-hint {display: none;}
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-review-card {animation: none;}
+  .home-reviews-controls button, .home-reviews-progress span {transition: none;}
+}

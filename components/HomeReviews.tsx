@@ -44,23 +44,24 @@ const reviews = [
 ];
 
 export function HomeReviews() {
-  const scrollRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
+  const touchStart = useRef<{x: number; y: number} | null>(null);
   const [active, setActive] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [inView, setInView] = useState(false);
   const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);
+  const review = reviews[active];
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const syncMotionPreference = () => setPlaying(!media.matches);
-    syncMotionPreference();
+    const syncMotionPreference = () => {
+      if (media.matches) setPlaying(false);
+    };
     media.addEventListener("change", syncMotionPreference);
-
     const observer = new IntersectionObserver(
       ([entry]) => setInView(entry.isIntersecting),
-      {threshold: 0.15}
+      {threshold: 0.5}
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => {
@@ -69,102 +70,87 @@ export function HomeReviews() {
     };
   }, []);
 
-  function goTo(index: number, pause = false) {
-    const next = (index + reviews.length) % reviews.length;
-    const viewport = scrollRef.current;
-    const first = viewport?.querySelector<HTMLElement>("[data-review-index='0']");
-    const target = viewport?.querySelector<HTMLElement>(`[data-review-index='${next}']`);
-    if (viewport && first && target) {
-      viewport.scrollTo({
-        left: target.offsetLeft - first.offsetLeft,
-        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
-      });
-    }
-    setActive(next);
-    if (pause) setPlaying(false);
-  }
-
-  function syncActive() {
-    const viewport = scrollRef.current;
-    if (!viewport) return;
-    const cards = viewport.querySelectorAll<HTMLElement>("[data-review-index]");
-    const first = cards[0];
-    if (!first) return;
-    const left = viewport.scrollLeft + first.offsetLeft;
-    let closest = 0;
-    let distance = Infinity;
-    cards.forEach((card, index) => {
-      const delta = Math.abs(card.offsetLeft - left);
-      if (delta < distance) {
-        distance = delta;
-        closest = index;
-      }
-    });
-    setActive(current => current === closest ? current : closest);
+  function goTo(index: number) {
+    setActive((index + reviews.length) % reviews.length);
+    setPlaying(false);
   }
 
   useEffect(() => {
     if (!playing || !inView || hovered || focused) return;
-    const timer = window.setInterval(() => goTo(active + 1), 7500);
+    const timer = window.setInterval(() => setActive(current => (current + 1) % reviews.length), 10000);
     return () => window.clearInterval(timer);
-  }, [active, playing, inView, hovered, focused]);
+  }, [playing, inView, hovered, focused]);
 
   return (
-    <section ref={sectionRef} id="home-reviews" className="home-reviews home-section" aria-labelledby="home-reviews-title">
+    <section ref={sectionRef} id="home-reviews" className="home-reviews" aria-labelledby="home-reviews-title">
       <div className="home-width">
         <div className="home-reviews-heading">
           <div>
-            <p className="home-eyebrow"><span aria-hidden="true">✦</span> THE STAR DIFFERENCE / IN THEIR WORDS</p>
-            <h2 id="home-reviews-title">Small moments.<br/><span>Meaningful progress.</span></h2>
+            <p className="home-eyebrow">PARENTS & CARERS / THE STAR EXPERIENCE</p>
+            <h2 id="home-reviews-title">Their <span>words.</span></h2>
           </div>
-          <p>Every player has her own journey. Here’s what families have said about their experiences with STAR.</p>
+          <span className="home-reviews-seal" aria-hidden="true">✦</span>
         </div>
         <div className="home-reviews-stage">
-        <div className="home-reviews-toolbar">
-          <span className="home-reviews-counter" aria-label={`Review ${active + 1} of ${reviews.length}`}>
-            <strong>{String(active + 1).padStart(2, "0")}</strong> / {String(reviews.length).padStart(2, "0")}
-          </span>
-          <div className="home-reviews-controls" aria-label="Review carousel controls">
-            <button type="button" onClick={() => goTo(active - 1, true)} aria-label="Previous review">←</button>
-            <button type="button" onClick={() => goTo(active + 1, true)} aria-label="Next review">→</button>
-            <button className="home-reviews-play" type="button" onClick={() => setPlaying(value => !value)} aria-label={playing ? "Pause automatic review scrolling" : "Resume automatic review scrolling"} aria-pressed={!playing}>
-              {playing ? "Pause" : "Play"}
-            </button>
-          </div>
-        </div>
-        <div
-          ref={scrollRef}
-          className="home-reviews-track"
-          role="region"
-          aria-roledescription="carousel"
-          aria-label="STAR parent reviews. Swipe horizontally or use the previous and next review buttons."
-          tabIndex={0}
-          onScroll={syncActive}
-          onMouseEnter={() => setHovered(true)}
-          onMouseLeave={() => setHovered(false)}
-          onFocus={() => setFocused(true)}
-          onBlur={() => setFocused(false)}
-          onPointerDown={() => setPlaying(false)}
-          onKeyDown={event => {
-            if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
-              event.preventDefault();
-              goTo(active + (event.key === "ArrowRight" ? 1 : -1), true);
-            }
-          }}
-        >
-          {reviews.map((review, index) => (
-            <figure key={review.name} className="home-review-card" data-review-index={index}>
-              <div className="home-review-story">
-                <p className="home-review-topic">{themes[index]}</p>
-                <span className="home-review-quotation" aria-hidden="true">“</span>
-                <blockquote>{review.quote}</blockquote>
-                <figcaption><span aria-hidden="true" className="home-review-avatar">{review.name === "Anonymous" ? "S" : review.name.split(" & ").map(name => name[0]).join("")}</span><span><strong>{review.name}</strong><small>Parent / carer experience</small></span></figcaption>
-              </div>
-              <div className="home-review-art" aria-hidden="true"><span className="home-review-orbit"/><span className="home-review-art-star">✦</span><span className="home-review-art-label">HER GAME.<br/>HER JOURNEY.<br/><em>HER STAR.</em></span><span className="home-review-art-number">{String(index + 1).padStart(2, "0")} / 09</span></div>
+          <div
+            className="home-reviews-track"
+            role="region"
+            aria-roledescription="carousel"
+            aria-label="STAR parent reviews. Swipe horizontally or use the previous and next review buttons."
+            tabIndex={0}
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+            onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)}
+            onTouchStart={event => {
+              const touch = event.touches[0];
+              touchStart.current = {x: touch.clientX, y: touch.clientY};
+              setPlaying(false);
+            }}
+            onTouchCancel={() => {touchStart.current = null;}}
+            onTouchEnd={event => {
+              const start = touchStart.current;
+              touchStart.current = null;
+              const touch = event.changedTouches[0];
+              if (!start || !touch) return;
+              const dx = touch.clientX - start.x;
+              const dy = touch.clientY - start.y;
+              if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.3) {
+                goTo(active + (dx < 0 ? 1 : -1));
+              }
+            }}
+            onKeyDown={event => {
+              if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
+                event.preventDefault();
+                goTo(active + (event.key === "ArrowRight" ? 1 : -1));
+              }
+              if (event.key === "Home" || event.key === "End") {
+                event.preventDefault();
+                goTo(event.key === "Home" ? 0 : reviews.length - 1);
+              }
+            }}
+          >
+            <figure key={review.name} className="home-review-card" aria-label={`Review ${active + 1} of ${reviews.length}`} aria-roledescription="slide">
+              <p className="home-review-topic">{themes[active]}</p>
+              <span className="home-review-quotation" aria-hidden="true">“</span>
+              <blockquote>{review.quote}</blockquote>
+              <figcaption>
+                <span aria-hidden="true" className="home-review-avatar">{review.name === "Anonymous" ? "S" : review.name.split(" & ").map(name => name[0]).join("")}</span>
+                <span><strong>{review.name}</strong><small>Parent / carer</small></span>
+                <span className="home-review-signature" aria-hidden="true">STAR</span>
+              </figcaption>
             </figure>
-          ))}
-        </div>
-        <div className="home-reviews-footer"><div className="home-reviews-pagination" aria-label="Choose a review">{reviews.map((review, index) => <button key={review.name} type="button" onClick={() => goTo(index, true)} aria-label={`Read review from ${review.name}`} aria-current={active === index ? "true" : undefined}><span/></button>)}</div><p className="home-reviews-hint">Their experiences. In their own words. <span aria-hidden="true">↔</span></p></div>
+          </div>
+          <div className="home-reviews-footer">
+            <span className="home-reviews-counter" aria-live={playing ? "off" : "polite"} aria-atomic="true" aria-label={`Review ${active + 1} of ${reviews.length}`}><strong>{String(active + 1).padStart(2, "0")}</strong><span> / {String(reviews.length).padStart(2, "0")}</span></span>
+            <span className="home-reviews-hint" aria-hidden="true">SWIPE TO EXPLORE</span>
+            <div className="home-reviews-controls" aria-label="Review carousel controls">
+              <button type="button" onClick={() => goTo(active - 1)} aria-label="Previous review">←</button>
+              <button className="home-reviews-play" type="button" onClick={() => setPlaying(value => !value)} aria-label={playing ? "Pause automatic reviews" : "Play automatic reviews"} aria-pressed={playing}>{playing ? "Ⅱ" : "▶"}</button>
+              <button type="button" onClick={() => goTo(active + 1)} aria-label="Next review">→</button>
+            </div>
+          </div>
+          <div className="home-reviews-progress" aria-hidden="true"><span style={{width: `${((active + 1) / reviews.length) * 100}%`}}/></div>
         </div>
       </div>
     </section>
