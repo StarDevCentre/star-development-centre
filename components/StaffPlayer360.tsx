@@ -26,9 +26,9 @@ type Props={
  player:StaffPlayer;client:SupabaseClient|null;canManage:boolean;ownerPreview?:boolean;goals:StaffGoal[];developmentControls:ReactNode;
  onNote?:(id:string)=>void;onDevelopment?:(id:string)=>void;onBadge?:(id:string)=>void;onPositions?:(id:string)=>void;
  onOpenSession?:(id:string)=>void;onPlayerSpace?:(id:string)=>void;onTrainingHub?:(id:string)=>void;
- onFamilyInbox?:(id:string)=>void;onShareWithFamily?:(id:string)=>void;
+ onBookPlayer?:(id:string)=>void;onFamilyInbox?:(id:string)=>void;onShareWithFamily?:(id:string)=>void;
 };
-export function StaffPlayer360({player,client,canManage,ownerPreview=false,goals,developmentControls,onNote,onDevelopment,onBadge,onPositions,onOpenSession,onPlayerSpace,onTrainingHub,onFamilyInbox,onShareWithFamily}:Props){
+export function StaffPlayer360({player,client,canManage,ownerPreview=false,goals,developmentControls,onNote,onDevelopment,onBadge,onPositions,onOpenSession,onPlayerSpace,onTrainingHub,onFamilyInbox,onShareWithFamily,onBookPlayer}:Props){
  const [tab,setTab]=useState<Tab>("overview"),[snapshot,setSnapshot]=useState<Snapshot>(empty),[loading,setLoading]=useState(true),[attempt,setAttempt]=useState(0);
  const tabs:{id:Tab;label:string}[]=[{id:"overview",label:"Overview"},{id:"development",label:"Development"},{id:"sessions",label:"Sessions"},{id:"coaching",label:"Coaching"},{id:"achievements",label:"Achievements"},...(canManage?[{id:"family" as Tab,label:"Family & sharing"}]:[])];
  useEffect(()=>{
@@ -87,6 +87,11 @@ export function StaffPlayer360({player,client,canManage,ownerPreview=false,goals
  const assessmentCategories=[...new Set(snapshot.assessments.map(a=>a.category))];
  const latestDirection=snapshot.observations.find(o=>o.next_action?.trim())?.next_action||snapshot.reviews[0]?.next_steps;
  const showError=(...keys:Dataset[])=>unreadable(...keys)?<p className="staff360-error" role="alert">This information could not be loaded with your current access or connection. Refresh to try again.</p>:null;
+ useEffect(()=>{
+  const refresh=()=>setAttempt(value=>value+1);
+  window.addEventListener("star:staff-refresh",refresh);
+  return()=>window.removeEventListener("star:staff-refresh",refresh);
+ },[]);
  const formatMetric=(value:number|string,missing:boolean)=>missing?"—":value;
  return <section className="staff360" aria-label={"Player 360 workspace for "+name(player)}>
   <header className="staff360-hero">
@@ -95,6 +100,7 @@ export function StaffPlayer360({player,client,canManage,ownerPreview=false,goals
    <button type="button" onClick={()=>setAttempt(n=>n+1)} disabled={loading} className="staff360-refresh">{loading?"Refreshing…":"Refresh profile ↻"}</button>
   </header>
   <div className="staff360-tools" aria-label="Player shortcuts">
+    {onBookPlayer&&<button type="button" className="star-operations-button" onClick={()=>onBookPlayer(player.id)}>Book session</button>}
     {ownerPreview&&<button type="button" onClick={()=>window.location.assign("/staff/player-preview?player="+encodeURIComponent(player.id))}>View as player · Read only ↗</button>}
    {onNote&&<button type="button" onClick={()=>onNote(player.id)}>Add coaching note ↗</button>}
    {onDevelopment&&<button type="button" onClick={()=>onDevelopment(player.id)}>Full development plan ↗</button>}
@@ -123,7 +129,7 @@ export function StaffPlayer360({player,client,canManage,ownerPreview=false,goals
    <div className="staff360-card"><h4>Recent IDP assessments</h4>{showError("assessments")}{!unreadable("assessments")&&(snapshot.assessments.length?<div className="staff360-records">{snapshot.assessments.slice(0,8).map(a=><article key={a.id}><span className="staff360-kicker">{a.category} · {date(a.assessed_on)} · Rating {a.rating}/5</span><p><strong>Strength:</strong> {a.strength}</p><p><strong>To develop:</strong> {a.development_area}</p><p><strong>Next:</strong> {a.action_plan}</p></article>)}</div>:<p>No IDP assessment recorded yet. Open the full IDP to complete one.</p>)}</div>
   </section>}
   {tab==="sessions"&&<section aria-label="Player sessions and attendance">
-   <div className="staff360-section-head"><div><span className="staff360-kicker">TRAINING HISTORY</span><h4>Sessions and attendance</h4><p>Sessions are linked through the player's actual training roster, not programme similarity.</p></div></div>
+   <div className="staff360-section-head"><div><span className="staff360-kicker">TRAINING HISTORY</span><h4>Sessions and attendance</h4></div>{onBookPlayer&&<button type="button" onClick={()=>onBookPlayer(player.id)}>Book session</button>}</div>
    {showError("roster","sessions","attendance")}
    {!unreadable("roster","sessions","attendance")&&<>
     <div className="staff360-metrics"><div><strong>{snapshot.sessions.length}</strong><span>Linked sessions</span></div><div><strong>{marked}</strong><span>Attendance marks</span></div><div><strong>{attended}</strong><span>Present or late</span></div><div><strong>{attendanceRate===null?"—":attendanceRate+"%"}</strong><span>Recorded attendance</span></div></div>

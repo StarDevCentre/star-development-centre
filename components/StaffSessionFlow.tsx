@@ -5,7 +5,7 @@ import type {SessionFlowCounts} from '../lib/staffSessionFlow';
 import './staff-session-flow.css';
 
 export type SessionFlowPlayer={id:string;first_name:string;last_name:string;programme:string};
-export type SessionFlowSession={id:string;title:string;starts_at:string;ends_at:string;venue:string;programme:string};
+export type SessionFlowSession={id:string;title:string;starts_at:string;ends_at:string;venue:string;programme:string;organisation_id?:string|null;completed_at?:string|null};
 type Base={client:SupabaseClient|null;session:SessionFlowSession;roster:SessionFlowPlayer[]};
 type Goal={id:string;player_id:string;goal:string};
 type Plan={id:string;title:string};
@@ -17,22 +17,26 @@ const stages=['Observe','Assess','Understand','Plan','Coach','Challenge','Apply'
 const categories=['Technical','Tactical','Physical','Psychological','Social'] as const;
 
 export function SessionPreparation({client,session,roster,userId,counts,onGoToAttendance,onGoToCoaching,onOpenPlan,onPlayerDevelopment}:Base&{
- userId:string;counts:SessionFlowCounts;onGoToAttendance:()=>void;onGoToCoaching:()=>void;onOpenPlan?:(id?:string)=>void;onPlayerDevelopment?:(id:string)=>void;
+ userId:string;counts:SessionFlowCounts;onGoToAttendance:()=>void;onGoToCoaching:()=>void;onOpenPlan?:(id?:string,session?:SessionFlowSession,player?:SessionFlowPlayer)=>void;onPlayerDevelopment?:(id:string)=>void;
 }){
  const key=roster.map(p=>p.id).sort().join(',');
  const [goals,setGoals]=useState<Goal[]>([]),[plan,setPlan]=useState<Plan|null>(null);
+ const [practice,setPractice]=useState<{id:string;practice_date:string;reflection:string;player_training_assignments:{player_id:string;title:string}[]}[]>([]);
+ const [practiceError,setPracticeError]=useState(false);
  const [loading,setLoading]=useState(true),[goalError,setGoalError]=useState(''),[planError,setPlanError]=useState('');
  useEffect(()=>{
-  let alive=true;setLoading(true);setGoals([]);setPlan(null);setGoalError('');setPlanError('');
+  let alive=true;setLoading(true);setGoals([]);setPlan(null);setGoalError('');setPlanError('');setPractice([]);setPracticeError(false);
   if(!client){setGoalError('Coaching data unavailable.');setLoading(false);return;}
   void (async()=>{
    try{
     const ids=key?key.split(','):[];
-    const [g,l]=await Promise.all([
+    const [g,l,reflections]=await Promise.all([
      ids.length?client.from('coaching_development_goals').select('id,player_id,goal').in('player_id',ids).eq('status','working_on').order('created_at',{ascending:false}).limit(100):Promise.resolve({data:[] as Goal[],error:null}),
-     client.from('staff_session_plan_links').select('plan_id').eq('created_by',userId).eq('training_session_id',session.id).maybeSingle()
+     client.from('staff_session_plan_links').select('plan_id').eq('created_by',userId).eq('training_session_id',session.id).maybeSingle(),
+     ids.length?client.from('player_training_diary').select('id,practice_date,reflection,player_training_assignments!inner(player_id,title)').in('player_training_assignments.player_id',ids).order('practice_date',{ascending:false}).limit(16):Promise.resolve({data:[],error:null}),
     ]);
     if(!alive)return;
+    if(reflections.error)setPracticeError(true);else setPractice(reflections.data||[]);
     if(g.error)setGoalError('Player priorities unavailable. Review individual development plans.');
     else setGoals((g.data||[]) as Goal[]);
     if(l.error){setPlanError('Plan link could not be checked.');return;}
@@ -55,13 +59,21 @@ export function SessionPreparation({client,session,roster,userId,counts,onGoToAt
   <div className="star-flow-prep-grid">
    <div className="star-flow-card"><span className="kicker">SESSION DETAILS</span><h5>{session.title}</h5><p>{day(session.starts_at)} · {session.programme}</p><p><strong>Location:</strong> {session.venue||'Venue not confirmed'}</p><p><strong>Duration:</strong> {Math.max(0,Math.round((Date.parse(session.ends_at)-Date.parse(session.starts_at))/60000))} minutes</p></div>
    <div className="star-flow-card"><span className="kicker">YOUR COACHING PLAN</span><h5>{plan?.title||'Session plan'}</h5>{loading?<p role="status">Checking plan…</p>:planError?<p role="alert">{planError}</p>:<p>{plan?'Your linked session plan is available.':'No personal plan is linked to this session.'}</p>}
-    {onOpenPlan&&<button className="star-flow-secondary" type="button" onClick={()=>onOpenPlan(plan?.id)}>{plan?'Open linked plan ↗':'Open Coaching Studio ↗'}</button>}
+    {onOpenPlan&&<button className="star-flow-secondary" type="button" onClick={()=>onOpenPlan(plan?.id,session,roster.length===1?roster[0]:undefined)}>{plan?'Open linked plan ↗':'Plan this session ↗'}</button>}
    </div>
   </div>
   <div className="star-flow-card star-flow-priorities"><div className="star-flow-card-heading"><div><span className="kicker">PLAYER FOCUS</span><h5>Current development goals</h5></div><span className="star-flow-muted">{roster.length} on roster</span></div>
   {!roster.length?<p role="status">No players are linked to this session. Check booked players in Attendance. Programme membership does not create a booking.</p>:loading?<p role="status">Loading player priorities…</p>:<>{goalError&&<p role="alert">{goalError}</p>}
    <div className="star-flow-priority-list">{roster.map(p=>{const active=goals.filter(g=>g.player_id===p.id).slice(0,2);return <div key={p.id} className="star-flow-priority"><div><strong>{fullName(p)}</strong><small>{p.programme}</small></div><div>{goalError?<span className="star-flow-muted">Goals unavailable</span>:active.length?<ul>{active.map(g=><li key={g.id}>{g.goal}</li>)}</ul>:<span className="star-flow-muted">No active goals recorded</span>}{onPlayerDevelopment&&<button className="star-flow-text-button" type="button" onClick={()=>onPlayerDevelopment(p.id)}>Development plan ↗</button>}</div></div>})}</div>
   </>}</div>
+  {roster.length>0&&<details className="star-flow-card">
+    <summary>Recent home practice and reflections {practice.length?('· '+practice.length):''}</summary>
+    {practiceError?<p role="alert">Practice reflections could not be loaded.</p>:practice.length?<ul className="star-flow-note-list">{practice.map(entry=>{
+      const assignment=Array.isArray(entry.player_training_assignments)?entry.player_training_assignments[0]:entry.player_training_assignments;
+      const player=roster.find(p=>p.id===assignment?.player_id);
+      return <li key={entry.id}><strong>{player?fullName(player):"Player"} · {assignment?.title}</strong><small>{entry.practice_date}</small><p>{entry.reflection}</p></li>;
+    })}</ul>:<p>No practice reflections recorded for this roster yet.</p>}
+  </details>}
   <div className="star-flow-footer-actions"><button type="button" onClick={onGoToAttendance}>Continue to attendance →</button><button type="button" className="star-flow-secondary" onClick={onGoToCoaching}>Coaching notes</button></div>
  </section>;
 }
@@ -123,8 +135,8 @@ export function SessionCoachingNotes({client,session,roster,userId,onGoToWrapUp,
  </section>;
 }
 
-export function SessionWrapUp({client,session,roster,counts,onGoToAttendance,onGoToCoaching,onReturnToCalendar,busy}:Base&{
- counts:SessionFlowCounts;onGoToAttendance:()=>void;onGoToCoaching:()=>void;onReturnToCalendar?:()=>void;busy:boolean;
+export function SessionWrapUp({client,session,roster,counts,onGoToAttendance,onGoToCoaching,onReturnToCalendar,busy,completion}:Base&{
+ counts:SessionFlowCounts;onGoToAttendance:()=>void;onGoToCoaching:()=>void;onReturnToCalendar?:()=>void;busy:boolean;completion:React.ReactNode;
 }){
  const key=roster.map(p=>p.id).sort().join(',');
  const [notesCount,setNotesCount]=useState<number|null>(null),[notesError,setNotesError]=useState(false),[notesLoading,setNotesLoading]=useState(true);
@@ -143,7 +155,7 @@ export function SessionWrapUp({client,session,roster,counts,onGoToAttendance,onG
   return()=>{alive=false;};
  },[client,session.id,key]);
  return <section className="star-workflow-overview star-flow-wrapup" aria-label="Session wrap-up">
-  <header className="star-workflow-overview-head"><div><span className="kicker">04 · WRAP-UP</span><h4>Review before leaving</h4><p>Check the saved register and internal observations, then return to the calendar.</p></div></header>
+  <header className="star-workflow-overview-head"><div><span className="kicker">04 · WRAP-UP</span><h4>Finish the session</h4><p>Save attendance now and add coaching observations here or later.</p></div></header>
   <div className="star-flow-wrapup-status" data-ready={counts.ready}><strong>{counts.ready?'Attendance checked':'Attention needed'}</strong><p>{!counts.total?'No players on the roster. Check bookings before leaving.':counts.unmarked?counts.unmarked+' of '+counts.total+' players still need an attendance mark.':'All '+counts.total+' players have an attendance status.'}</p></div>
   <div className="star-workflow-overview-metrics"><div><strong>{counts.present}</strong><span>Present</span></div><div><strong>{counts.late}</strong><span>Late</span></div><div><strong>{counts.absent+counts.excused}</strong><span>Absent / excused</span></div><div><strong>{counts.unmarked}</strong><span>Unmarked</span></div></div>
   <div className="star-flow-checks">
@@ -151,7 +163,7 @@ export function SessionWrapUp({client,session,roster,counts,onGoToAttendance,onG
    <div><span aria-hidden="true">{counts.ready?'✓':'!'}</span><div><strong>Attendance</strong><p>{counts.ready?'All players marked':'Open Attendance to save missing marks'}</p></div></div>
    <div><span aria-hidden="true">○</span><div><strong>Coaching observations (optional)</strong><p>{notesLoading?'Checking saved notes…':notesError?'Saved notes could not be checked.':(notesCount??0)+' internal notes for this session'}</p></div></div>
   </div>
-  <p className="star-flow-disclaimer">This screen reviews existing records. It does not mark organisation coaching delivered, publish family information, or change booking status.</p>
-  <div className="star-flow-footer-actions">{!counts.ready&&<button type="button" disabled={busy} onClick={onGoToAttendance}>Finish attendance →</button>}<button type="button" className="star-flow-secondary" disabled={busy} onClick={onGoToCoaching}>Review coaching notes</button>{onReturnToCalendar&&<button type="button" disabled={busy} className={counts.ready?'':'star-flow-secondary'} onClick={onReturnToCalendar}>{counts.ready?'Return to calendar ✓':'Return to calendar'}</button>}</div>
+  {completion}
+  <div className="star-flow-footer-actions">{!counts.ready&&<button type="button" disabled={busy} onClick={onGoToAttendance}>Finish attendance →</button>}<button type="button" className="star-flow-secondary" disabled={busy} onClick={onGoToCoaching}>Review coaching notes</button>{onReturnToCalendar&&<button type="button" disabled={busy} className={counts.ready?'':'star-flow-secondary'} onClick={onReturnToCalendar}>{session.completed_at?'Return to calendar ✓':'Return to calendar'}</button>}</div>
  </section>;
 }

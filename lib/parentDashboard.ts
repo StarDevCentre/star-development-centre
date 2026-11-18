@@ -1,7 +1,7 @@
 export type LinkedPlayer = {id:string;first_name:string;last_name:string;programme:string};
 export type PlayerGoal = {id:string;player_id:string;goal:string;status:string};
 export type FamilyReport = {id:string;player_id:string;review_month:string;strengths:string;development_areas:string;next_steps:string};
-export type FamilySession = {id:string;player_id:string;title:string;starts_at:string;ends_at:string;venue:string};
+export type FamilySession = {id:string;player_id:string;title:string;starts_at:string;ends_at:string;venue:string;venue_version?:string};
 export type PlayerAssessment = {id:string;player_id:string;category:string;rating:number;assessed_on:string};
 export type ParentSection = "overview"|"sessions"|"development"|"practice"|"messages"|"account"|"updates";
 export function parentSectionFromHash(hash:string):ParentSection|null {

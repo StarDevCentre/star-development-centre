@@ -7,7 +7,7 @@ import type { PlayerAchievement } from "./achievementBadges";
 import {defaultHero,type HeroAppearance} from "./heroCharacter";
 export type SpacePlayer = { id: string; first_name: string; last_name: string; programme: string };
 export type SpaceAssignment = { id: string; player_id: string; goal_id: string | null; title: string; instructions: string; target: string | null; due_date: string | null; created_at: string; week_start: string | null; practice_day: number | null; suggested_minutes: number | null; equipment: string | null; is_optional: boolean; coaching_points: string | null };
-export type SpaceDiary = { id: string; assignment_id: string; practice_date: string; minutes: number; reflection: string; created_at: string; confidence: number | null; enjoyment: number | null };
+export type SpaceDiary = { quick_check_in?:boolean; id: string; assignment_id: string; practice_date: string; minutes: number; reflection: string; created_at: string; confidence: number | null; enjoyment: number | null };
 export type SpaceFeedback = { diary_id: string; feedback: string; reviewed_at: string };
 export type SpaceGoal = { id: string; player_id: string; goal: string; status: string };
 export type SpaceSession = { id: string; player_id: string; title: string; starts_at: string; ends_at: string; venue: string; coach_focus: string | null; kit_list: string[] };
@@ -40,7 +40,7 @@ export const assignmentFields = 'id,player_id,goal_id,title,instructions,target,
 export type AvatarKey = 'train' | 'ball' | 'star' | 'captain' | 'comet' | 'shield';
 export type SpaceUnlock = { player_id: string; cosmetic: string; unlocked_at: string };
 export type GoalEvent = { id: string; player_id: string; source_id: string; source: 'personal' | 'coach'; kind: 'set' | 'achieved' | 'reopened' | 'archived' | 'updated'; goal: string; occurred_at: string };
-export const diaryFields = 'id,assignment_id,practice_date,minutes,reflection,created_at,confidence,enjoyment';
+export const diaryFields = 'id,assignment_id,practice_date,minutes,reflection,created_at,confidence,enjoyment,quick_check_in';
 export const cosmetics = [
  { key: 'avatar-captain', title: 'Captain', requirement: 'Earn your first badge', icon: 'captain' },
  { key: 'avatar-comet', title: 'Comet', requirement: 'Log practice on 3 different days', icon: 'comet' },

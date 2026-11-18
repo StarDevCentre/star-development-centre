@@ -8,7 +8,7 @@ export function useParentUpdates(userId:string,enabled:boolean){
  const refresh=useCallback(async()=>{
   const owner=enabled?userId:'';if(!owner||!db)return;const request=++sequence.current;
   setState(s=>({owner,items:s.owner===owner?s.items:[],loading:true,error:''}));
-  try{const result=await db.from('parent_notifications').select('id,player_id,category,source_kind,title,created_at,read_at').eq('user_id',owner).order('created_at',{ascending:false}).limit(100);
+  try{const result=await db.from('parent_notifications').select('id,player_id,category,source_kind,source_id,title,created_at,read_at').eq('user_id',owner).order('created_at',{ascending:false}).limit(100);
    if(result.error)throw Error();if(identity.current===owner&&request===sequence.current)setState({owner,items:result.data||[],loading:false,error:''});
   }catch{if(identity.current===owner&&request===sequence.current)setState({owner,items:[],loading:false,error:'We couldn’t load your updates. Please try again.'});}
  },[userId,enabled]);

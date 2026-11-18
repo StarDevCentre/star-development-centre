@@ -1,12 +1,25 @@
 "use client";
 import {useCallback,useEffect,useRef,useState} from "react";
 import {supabaseBrowser as db} from "../lib/supabaseBrowser";
+import {SharedFamilyInbox,type FamilyChatActions} from "./SharedFamilyInbox";
+type InboxProps={userId:string;role:"staff"|"guardian";active?:boolean;initialPlayerId?:string};
+
+export function FamilyCommunications({active=true,...props}:InboxProps & FamilyChatActions){
+ const [privateOpen,setPrivateOpen]=useState(false);
+ return <>
+  <SharedFamilyInbox {...props} active={active}/>
+  <details className="star-hub-panel" onToggle={event=>setPrivateOpen(event.currentTarget.open)}>
+   <summary>Parent-only conversations</summary>
+   {privateOpen&&<GuardianMessageHistory {...props} active={active}/>}
+  </details>
+ </>;
+}
 type Link={guardian_id:string;player_id:string};
 type Player={id:string;first_name:string;last_name:string};
 type Guardian={user_id:string;display_name:string};
 type Message={id:string;guardian_id:string;player_id:string;sender_id:string;sender_role:string;kind:string;body:string;created_at:string;read_at:string|null};
 const kinds=[["message","General message"],["review_request","Development review request"],["session_reminder","Session reminder"]];
-export function FamilyCommunications({userId,role,active=true,initialPlayerId=""}:{userId:string;role:"staff"|"guardian";active?:boolean;initialPlayerId?:string}){
+function GuardianMessageHistory({userId,role,active=true,initialPlayerId=""}:InboxProps){
  const [links,setLinks]=useState<Link[]>([]),[players,setPlayers]=useState<Player[]>([]),[guardians,setGuardians]=useState<Guardian[]>([]),[messages,setMessages]=useState<Message[]>([]);
  const [thread,setThread]=useState(""),[body,setBody]=useState(""),[kind,setKind]=useState("message"),[busy,setBusy]=useState(false),[loading,setLoading]=useState(true),[error,setError]=useState(""),[notice,setNotice]=useState("");
  const contextApplied=useRef("");
@@ -36,11 +49,11 @@ export function FamilyCommunications({userId,role,active=true,initialPlayerId=""
    setError("Message could not be sent: "+(e instanceof Error?e.message:"Check your connection and retry. Your message draft is preserved."));
   }finally{setBusy(false);}
  }
- return <section id="star-family-messages" className="star-family-comms"><h3>{role==="staff"?"Family communication centre":"Messages with STAR"}</h3><p>{role==="guardian"?"Talk to STAR about her coaching, sessions or a development review.":"Secure messages between verified guardians and authorised STAR managers. Conversations are stored in the family record. New messages appear as unread here and on your dashboard."}</p>
+ return <section id="star-family-messages" className="star-family-comms"><h3>{role==="staff"?"Private guardian inbox":"Message STAR privately as a guardian"}</h3><p>{role==="guardian"?"Talk to STAR about her coaching, sessions or a development review.":"Secure messages between verified guardians and authorised STAR managers. Conversations are stored in the family record. New messages appear as unread here and on your dashboard."}</p>
  {error&&<p role="alert" className="star-portal-error">{error}</p>}{notice&&<p role="status">{notice}</p>}
  <p role="status"><strong>{unread.length?unread.length+" unread message"+(unread.length===1?"":"s"):"No unread messages"}</strong> <button type="button" onClick={()=>void refresh()}>Check now</button></p>
  {loading?<p>Loading conversations…</p>:links.length?<><label>Choose a family conversation<select value={available.has(thread)?thread:""} onChange={e=>{setThread(e.target.value);setNotice("");setError("")}}><option value="">Select a conversation…</option>{links.map(l=>{const p=players.find(p=>p.id===l.player_id),g=guardians.find(g=>g.user_id===l.guardian_id);return <option key={l.guardian_id+":"+l.player_id} value={l.guardian_id+":"+l.player_id}>{p?p.first_name+" "+p.last_name:"Player"}{role==="staff"?" — "+(g?.display_name||"Guardian "+l.guardian_id.slice(0,8)):""}{messages.filter(m=>m.guardian_id===l.guardian_id&&m.player_id===l.player_id&&m.read_at===null&&m.sender_role!==role).length?" · NEW":""}</option>})}</select></label>
  {selected?<><div className="star-family-thread" aria-label="Conversation history">{current.length?current.map(m=><article key={m.id} className="star-family-message" data-own={m.sender_role===role}><div><strong>{m.sender_role==="staff"?"STAR staff":"Parent / guardian"}</strong><small>{new Date(m.created_at).toLocaleString("en-GB",{dateStyle:"medium",timeStyle:"short",timeZone:"Europe/London"})} · {kinds.find(k=>k[0]===m.kind)?.[1]||"Message"}</small></div><p>{m.body}</p></article>):<p>No messages yet. Start the conversation below.</p>}</div>
  <form className="star-family-message-form" onSubmit={send}><label>Message type<select value={kind} onChange={e=>setKind(e.target.value)}>{kinds.filter(k=>role==="staff"||k[0]!=="session_reminder").map(([value,label])=><option key={value} value={value}>{label}</option>)}</select></label><label>Message<textarea required minLength={1} maxLength={2000} rows={4} value={body} onChange={e=>setBody(e.target.value)} placeholder="Write a clear message for the parent or STAR team…"/></label><button type="submit" disabled={busy||!body.trim()}>{busy?"Sending…":"Save and send message"}</button></form></>:<p>Select a conversation to view messages or send a new one.</p>}</>:<p>No approved family links are available for messaging. STAR must verify and approve the guardian-player relationship first.</p>}
- <details className="parent-message-details"><summary>How messages work & privacy</summary><p>The portal checks for new messages approximately once a minute while this section is open. Email, SMS and push alerts are not enabled.</p><p className="star-hub-hint">Messages cannot be edited or deleted through this portal, supporting an auditable history. Do not use this channel for emergencies, safeguarding disclosures or sensitive medical details. Contact the designated safeguarding lead through STAR's established safeguarding process. Only verified adults should use these accounts.</p></details></section>
+ <details className="parent-message-details"><summary>How messages work & privacy</summary><p>Phone alerts depend on each guardian’s notification preferences.</p><p className="star-hub-hint">Messages cannot be edited or deleted through this portal, supporting an auditable history. Do not use this channel for emergencies, safeguarding disclosures or sensitive medical details. Contact the designated safeguarding lead through STAR's established safeguarding process. Only verified adults should use these accounts.</p></details></section>
 }
