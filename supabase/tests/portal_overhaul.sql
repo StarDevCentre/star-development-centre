@@ -141,7 +141,7 @@ begin
   values(spark_date,'STAR Sparks · ages 5–7','Sparks',(monday+time '15:45') at time zone 'Europe/London',
     (monday+time '16:45') at time zone 'Europe/London','Fixture pitch',staff);
   perform set_config('request.jwt.claim.sub',guardian::text,true);
-  details:=public.star_direct_booking('book',jsonb_build_object('player_id',spark,'service_id','sparks_5_7','session_id',spark_date,'client_id',gen_random_uuid()));
+  details:=public.star_direct_booking('book',jsonb_build_object('player_id',spark,'service_id','sparks_5_7','session_id',spark_date,'weekly_sparks',true,'client_id',gen_random_uuid()));
   assert (details->>'confirmed')::boolean,'Weekly Sparks place secured via normal booking';
   perform set_config('request.jwt.claim.sub',staff::text,true);
   insert into star_private.booking_sessions(session_id,service_id,coach_id,capacity,enabled,created_by)

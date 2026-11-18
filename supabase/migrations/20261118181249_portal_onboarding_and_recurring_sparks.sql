@@ -306,7 +306,7 @@ end $$;
 create or replace function public.star_direct_booking(p_action text,p_data jsonb default '{}')
 returns jsonb language plpgsql security invoker set search_path='' as $$
 begin
-  if p_action='book' and p_data->>'service_id' in ('sparks_5_7','sparks_8_10') then
+  if p_action='book' and p_data->>'weekly_sparks'='true' and p_data->>'service_id' in ('sparks_5_7','sparks_8_10') then
     return star_private.start_sparks_membership(p_data);
   end if;
   return star_private.direct_booking(p_action,p_data);
