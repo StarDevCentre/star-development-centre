@@ -22,6 +22,13 @@ end $$;
 reset role;
 insert into public.coaching_assignments(player_id,staff_user_id) values ('00000000-0000-4000-8000-000000008220','00000000-0000-4000-8000-000000008202');
 set local role authenticated;
+-- Attendance is recorded after the fixture's appointment starts.
+reset role;
+select set_config('request.jwt.claim.sub','00000000-0000-4000-8000-000000008201',true);
+update public.training_sessions set starts_at=now()-interval '2 hours',ends_at=now()-interval '1 hour'
+where id='00000000-0000-4000-8000-000000008210';
+set local role authenticated;
+select set_config('request.jwt.claim.sub','00000000-0000-4000-8000-000000008202',true);
 insert into public.training_attendance(session_id,player_id,status,recorded_by) values ('00000000-0000-4000-8000-000000008210','00000000-0000-4000-8000-000000008220','late','00000000-0000-4000-8000-000000008202');
 do $$ begin if not exists(select 1 from public.training_session_participants where session_id='00000000-0000-4000-8000-000000008210') then raise exception 'assigned coach cannot see roster';end if;end $$;
 select set_config('request.jwt.claim.sub','00000000-0000-4000-8000-000000008203',true);

@@ -2,15 +2,17 @@
 import {useEffect,useState} from "react";
 import {StaffOnboarding} from "./StaffOnboarding";
 import {StaffInbox} from "./StaffInbox";
-import {AdmissionsManagement} from "./AdmissionsManagement";
+import {AdmissionsManagement,type IntakeApplicationContext} from "./AdmissionsManagement";
+import type {FamilyChatActions} from "./SharedFamilyInbox";
 import "./staff-family-operations.css";
 
 type Pane="pipeline"|"messages"|"applications";
-export function StaffFamilyOperations({userId,active,initialIntakeId,selectionRequest,onOpenCalendar}:{
- userId:string;active:boolean;initialIntakeId?:string;selectionRequest?:number;onOpenCalendar:()=>void;
-}){
+export function StaffFamilyOperations({userId,active,initialIntakeId,selectionRequest,onOpenCalendar,onBook,onOpenPlayer,...chatActions}:{
+ userId:string;active:boolean;initialIntakeId?:string;selectionRequest?:number;onOpenCalendar:()=>void;onBook?:(id:string,programme:string)=>void;onOpenPlayer?:(id:string)=>void;
+} & FamilyChatActions){
  const [pane,setPane]=useState<Pane>("pipeline");
  const [playerForInbox,setPlayerForInbox]=useState("");
+ const [intake,setIntake]=useState<IntakeApplicationContext>();
  const [inboxRevision,setInboxRevision]=useState(0);
  useEffect(()=>{if(initialIntakeId&&selectionRequest)setPane("pipeline");},[initialIntakeId,selectionRequest]);
  function openInbox(playerId:string){
@@ -21,13 +23,13 @@ export function StaffFamilyOperations({userId,active,initialIntakeId,selectionRe
   <nav className="staff-family-ops-tabs" aria-label="Family operations">
    <button type="button" aria-current={pane==="pipeline"?"page":undefined} onClick={()=>setPane("pipeline")}>Assessment pipeline</button>
    <button type="button" aria-current={pane==="messages"?"page":undefined} onClick={()=>setPane("messages")}>Messages</button>
-   <button type="button" aria-current={pane==="applications"?"page":undefined} onClick={()=>setPane("applications")}>Programme applications</button>
+   <button type="button" aria-current={pane==="applications"?"page":undefined} onClick={()=>{setIntake(undefined);setPane("applications");}}>Programme applications</button>
   </nav>
   {pane==="pipeline"&&<StaffOnboarding initialIntakeId={initialIntakeId} selectionRequest={selectionRequest}
-   onOpenInbox={openInbox} onOpenAdmissions={()=>setPane("applications")} onOpenCalendar={onOpenCalendar}/>}
+   onOpenInbox={openInbox} onOpenAdmissions={intake=>{setIntake(intake);setPane("applications")}} onOpenCalendar={onOpenCalendar}/>}
   {pane==="messages"&&<div className="staff-family-ops-panel"><p className="staff-family-ops-hint">Secure family messaging requires an approved guardian-player link. The original Inbox remains available from navigation.</p>
-   <StaffInbox key={playerForInbox+":"+inboxRevision} userId={userId} initialPlayerId={playerForInbox} active={active&&pane==="messages"}/>
+   <StaffInbox {...chatActions} key={playerForInbox+":"+inboxRevision} userId={userId} initialPlayerId={playerForInbox} active={active&&pane==="messages"}/>
   </div>}
-  {pane==="applications"&&<div className="staff-family-ops-panel"><p className="staff-family-ops-hint">An assessment does not automatically enrol a player. Programme applications are reviewed separately.</p><AdmissionsManagement userId={userId}/></div>}
+  {pane==="applications"&&<div className="staff-family-ops-panel"><p className="staff-family-ops-hint">An assessment does not automatically enrol a player. Programme applications are reviewed separately.</p><AdmissionsManagement userId={userId} intake={intake} onBook={onBook} onOpenPlayer={onOpenPlayer}/></div>}
  </section>;
 }

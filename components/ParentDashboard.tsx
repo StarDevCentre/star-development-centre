@@ -43,7 +43,7 @@ function AssessmentHistory({assessments}:{assessments:PlayerAssessment[]}) {
 
 export function ParentDashboard({players,goals,reports,sessions,assessments,accountContent,practiceContent,messagesContent,sessionRequestsContent,messageBadge,updatesContent,updateBadge,updateCount=0,onRefresh,refreshing=false,guardianName="",onSignOut}:{
   players:LinkedPlayer[];goals:PlayerGoal[];reports:FamilyReport[];sessions:FamilySession[];assessments:PlayerAssessment[];
-  accountContent:ReactNode;practiceContent:ReactNode;messagesContent:(active:boolean)=>ReactNode;sessionRequestsContent:ReactNode;messageBadge:ReactNode;updatesContent?:(onOpen:(section:ParentSection,playerId:string|null)=>void)=>ReactNode;updateBadge?:ReactNode;updateCount?:number;onRefresh:()=>void;refreshing?:boolean;guardianName?:string;onSignOut?:()=>void;
+  accountContent:ReactNode;practiceContent:ReactNode;messagesContent:(active:boolean,playerId?:string)=>ReactNode;sessionRequestsContent:ReactNode;messageBadge:ReactNode;updatesContent?:(onOpen:(section:ParentSection,playerId:string|null)=>void)=>ReactNode;updateBadge?:ReactNode;updateCount?:number;onRefresh:()=>void;refreshing?:boolean;guardianName?:string;onSignOut?:()=>void;
 }) {
   const {section,visited,goTo:navigate}=useParentNavigation();
   const [playerId,setPlayerId]=useState(players[0]?.id||""),[sheet,setSheet]=useState<"more"|"players"|null>(null),[keyboardOpen,setKeyboardOpen]=useState(false);
