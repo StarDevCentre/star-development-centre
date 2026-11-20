@@ -90,3 +90,15 @@ test('the final quiz step requires every answer before submitting',()=>{
   assert.equal(submit(Array(count).fill(0)).props.disabled,false);
  }
 });
+
+test('iPhone quiz radio buttons override the global full-width input styling',()=>{
+ const css=fs.readFileSync('components/player-football-history.css','utf8');
+ const radio=css.match(/\.player-space-shell \.ps-history form label\.ps-history-answer input\[type="radio"\] \{([^}]+)\}/)?.[1];
+ assert.ok(radio,'quiz radios must have a specifically scoped Player Space override');
+ for(const rule of ['width:20px','min-width:20px','max-width:20px','flex:0 0 20px','padding:0','-webkit-appearance:radio']){
+  assert.ok(radio.includes(rule),'missing radio reset: '+rule);
+ }
+ const option=css.match(/\.player-space-shell \.ps-history form label\.ps-history-answer > span \{([^}]+)\}/)?.[1];
+ assert.ok(option?.includes('flex:1 1 auto'),'answer copy must take the remaining width');
+ assert.ok(option?.includes('white-space:normal'),'answer copy must wrap naturally');
+});
