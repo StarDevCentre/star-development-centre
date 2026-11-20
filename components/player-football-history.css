@@ -324,3 +324,19 @@
 .ps-history form input[type=radio]{flex-shrink:0}
 .ps-history-story{width:100%;box-sizing:border-box}
 .ps-history-sources a{max-width:100%;overflow-wrap:anywhere}
+
+
+/* All history quiz editions use a single, touch-friendly question per step. */
+.ps-history form .ps-history-quiz-progress{display:grid;gap:.55rem;max-width:65ch}
+.ps-history form .ps-history-question-title{margin:0;font-size:clamp(1.15rem,4vw,1.5rem);line-height:1.3;scroll-margin-top:calc(5.5rem + env(safe-area-inset-top))}
+.ps-history-quiz-progress progress{width:100%;height:.65rem;accent-color:#f0d08c}
+.ps-history form legend{max-width:100%;font-size:clamp(1.05rem,3.7vw,1.2rem);line-height:1.45;white-space:normal}
+.ps-history form label.ps-history-answer{display:flex;align-items:center;gap:.8rem;min-height:50px;padding:.75rem .8rem;margin-top:.55rem;border:1px solid #7187a5;border-radius:.7rem;background:#1b3153;color:#fff;touch-action:manipulation;line-height:1.45;overflow-wrap:anywhere}
+.ps-history form label.ps-history-answer.is-selected{border-color:#f0d08c;background:#2c4370;box-shadow:inset 0 0 0 1px #f0d08c}
+.ps-history form input[type=radio]{width:1.25rem;height:1.25rem;min-width:1.25rem;min-height:1.25rem;flex:0 0 1.25rem;margin:0;padding:0}
+.ps-history form .ps-history-answer span{flex:1;min-width:0}
+.ps-history form .ps-history-controls{padding-bottom:max(.5rem,env(safe-area-inset-bottom))}
+@media(max-width:550px){
+ .ps-history form .ps-history-controls{display:grid;grid-template-columns:minmax(0,1fr)}
+ .ps-history form .ps-history-controls button{width:100%;min-height:50px}
+}
