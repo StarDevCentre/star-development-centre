@@ -4,6 +4,7 @@ import type {SupabaseClient} from "@supabase/supabase-js";
 import type {StaffPlayer,StaffGoal} from "../lib/staffApp";
 import {staffDate} from "../lib/staffApp";
 import {playerAttendanceSummary,nextLinkedSession} from "../lib/staffPlayer360";
+import {loadPlayerSessionRecords} from "../lib/playerSessionRecords";
 import "./staff-player-360.css";
 
 type Tab="overview"|"development"|"sessions"|"coaching"|"achievements"|"family";
@@ -42,31 +43,23 @@ export function StaffPlayer360({player,client,canManage,ownerPreview=false,goals
      client.from("coaching_idp_assessments").select("id,assessed_on,category,rating,strength,development_area,action_plan").eq("player_id",id).order("assessed_on",{ascending:false}).limit(60),
      client.from("coaching_observations").select("id,session_id,stage,category,observation,next_action,recorded_at").eq("player_id",id).order("recorded_at",{ascending:false}).limit(100),
      client.from("coaching_monthly_reviews").select("id,review_month,strengths,development_areas,next_steps").eq("player_id",id).order("review_month",{ascending:false}).limit(36),
-     client.from("training_session_participants").select("session_id").eq("player_id",id).limit(250),
-     client.from("training_attendance").select("session_id,status").eq("player_id",id).limit(250),
+     loadPlayerSessionRecords(client,id).then(data=>({data,error:null})).catch((error:Error)=>({data:null,error})),
      client.from("player_achievements").select("id,title,description,awarded_on").eq("player_id",id).order("awarded_on",{ascending:false}).limit(60),
      canManage?client.from("family_monthly_reports").select("id,review_month").eq("player_id",id).order("review_month",{ascending:false}).limit(60):Promise.resolve({data:[] as PublishedReport[],error:null})
     ]);
     if(!alive)return;
-    const keys:Dataset[]=["assessments","observations","reviews","roster","attendance","achievements","reports"];
+    const keys:Dataset[]=["assessments","observations","reviews","sessions","achievements","reports"];
     queries.forEach((q,i)=>{if(q.error)failures.push(keys[i])});
-    const ids=queries[3].error?[]:[...new Set((queries[3].data||[]).map(row=>row.session_id))];
-    let sessions:LinkedSession[]=[];
-    if(ids.length){
-     try{
-      const result=await client.from("training_sessions").select("id,title,programme,starts_at,ends_at,venue").in("id",ids).is("cancelled_at",null).order("starts_at",{ascending:false}).limit(250);
-      if(result.error)failures.push("sessions");else sessions=(result.data||[]) as LinkedSession[];
-     }catch{failures.push("sessions");}
-    }else if(queries[3].error)failures.push("sessions");
+    if(queries[3].error) failures.push("roster","attendance");
     if(!alive)return;
     setSnapshot({
      assessments:queries[0].error?[]:(queries[0].data||[]) as Assessment[],
      observations:queries[1].error?[]:(queries[1].data||[]) as Observation[],
      reviews:queries[2].error?[]:(queries[2].data||[]) as Review[],
-     sessions,
-     attendance:queries[4].error?[]:(queries[4].data||[]) as Attendance[],
-     achievements:queries[5].error?[]:(queries[5].data||[]) as Achievement[],
-     reports:queries[6].error?[]:(queries[6].data||[]) as PublishedReport[],
+     sessions:queries[3].data?.sessions ?? [],
+     attendance:queries[3].data?.attendance ?? [],
+     achievements:queries[4].error?[]:(queries[4].data||[]) as Achievement[],
+     reports:queries[5].error?[]:(queries[5].data||[]) as PublishedReport[],
      errors:failures
     });
    }catch{
@@ -100,7 +93,7 @@ export function StaffPlayer360({player,client,canManage,ownerPreview=false,goals
    <button type="button" onClick={()=>setAttempt(n=>n+1)} disabled={loading} className="staff360-refresh">{loading?"Refreshing…":"Refresh profile ↻"}</button>
   </header>
   <div className="staff360-tools" aria-label="Player shortcuts">
-    {onBookPlayer&&<button type="button" className="star-operations-button" onClick={()=>onBookPlayer(player.id)}>Book session</button>}
+    {onBookPlayer&&<button type="button" className="star-operations-button" onClick={()=>onBookPlayer(player.id)}>Book session or programme</button>}
     {ownerPreview&&<button type="button" onClick={()=>window.location.assign("/staff/player-preview?player="+encodeURIComponent(player.id))}>View as player · Read only ↗</button>}
    {onNote&&<button type="button" onClick={()=>onNote(player.id)}>Add coaching note ↗</button>}
    {onDevelopment&&<button type="button" onClick={()=>onDevelopment(player.id)}>Full development plan ↗</button>}
@@ -129,7 +122,7 @@ export function StaffPlayer360({player,client,canManage,ownerPreview=false,goals
    <div className="staff360-card"><h4>Recent IDP assessments</h4>{showError("assessments")}{!unreadable("assessments")&&(snapshot.assessments.length?<div className="staff360-records">{snapshot.assessments.slice(0,8).map(a=><article key={a.id}><span className="staff360-kicker">{a.category} · {date(a.assessed_on)} · Rating {a.rating}/5</span><p><strong>Strength:</strong> {a.strength}</p><p><strong>To develop:</strong> {a.development_area}</p><p><strong>Next:</strong> {a.action_plan}</p></article>)}</div>:<p>No IDP assessment recorded yet. Open the full IDP to complete one.</p>)}</div>
   </section>}
   {tab==="sessions"&&<section aria-label="Player sessions and attendance">
-   <div className="staff360-section-head"><div><span className="staff360-kicker">TRAINING HISTORY</span><h4>Sessions and attendance</h4></div>{onBookPlayer&&<button type="button" onClick={()=>onBookPlayer(player.id)}>Book session</button>}</div>
+   <div className="staff360-section-head"><div><span className="staff360-kicker">TRAINING HISTORY</span><h4>Sessions and attendance</h4></div>{onBookPlayer&&<button type="button" onClick={()=>onBookPlayer(player.id)}>Book session or programme</button>}</div>
    {showError("roster","sessions","attendance")}
    {!unreadable("roster","sessions","attendance")&&<>
     <div className="staff360-metrics"><div><strong>{snapshot.sessions.length}</strong><span>Linked sessions</span></div><div><strong>{marked}</strong><span>Attendance marks</span></div><div><strong>{attended}</strong><span>Present or late</span></div><div><strong>{attendanceRate===null?"—":attendanceRate+"%"}</strong><span>Recorded attendance</span></div></div>

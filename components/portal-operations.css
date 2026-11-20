@@ -65,3 +65,17 @@
 }
 .staff-follow-up-owner { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: .65rem; padding: .2rem .8rem .65rem; font-size: .85rem; }
 .staff-follow-up-owner select { min-height: 40px; padding: .35rem; color: #101c38; background: #fff; border: 1px solid #b5bdca; border-radius: .4rem; }
+
+.star-booking-modes { justify-content: flex-start; margin: 1rem 0; }
+.star-booking-player { margin-bottom: .8rem; }
+.star-programme-weeks { min-width: 0; padding: .7rem; border: 1px solid #d5dce3; border-radius: .5rem; }
+.star-programme-weeks legend { font-weight: 700; padding: 0 .3rem; }
+.star-programme-weeks label { display: grid; grid-template-columns: minmax(4rem, 1fr) minmax(0, 3fr); gap: .4rem; align-items: center; margin: .4rem 0; }
+.star-programme-weeks small { grid-column: 1 / -1; }
+
+.star-member-packs { margin: .8rem 0; padding: 1rem 1.1rem; color: #101c38; background: #fffdf7; border: 1px solid #dfcca6; border-radius: .8rem; }
+.star-member-packs summary { cursor: pointer; padding: .25rem 0; font-weight: 750; }
+.star-member-packs summary span { margin-left: .55rem; font-size: .85rem; color: #674c20; }
+.star-pack-task { padding: .85rem 0; border-top: 1px solid #dfcca6; }
+.star-pack-task h3, .star-pack-task p { margin: .25rem 0 .6rem; }
+.star-family-pack { margin: .65rem 0; }

@@ -23,3 +23,5 @@ export function staffOverview(sessions:StaffSession[],recent:StaffSession[],play
 }
 
 
+
+export const staffNames:Record<string,string>={"f877ee5c-68cf-403a-b334-53f1805a2963":"Dean","39e31152-8e06-40ac-a723-284f6bde5f09":"Becky"};

@@ -34,13 +34,16 @@ test("The next session is chosen from actually linked sessions, including in pro
 });
 test("Player 360 fetches only player-scoped coaching records with existing RLS",()=>{
  const source=read("components/StaffPlayer360.tsx");
- for(const table of ["coaching_idp_assessments","coaching_observations","coaching_monthly_reviews","training_session_participants","training_attendance","player_achievements","family_monthly_reports","training_sessions"])
-  assert.ok(source.includes('from("'+table+'")'),"Missing data source "+table);
- for(const table of ["coaching_idp_assessments","coaching_observations","coaching_monthly_reviews","training_session_participants","training_attendance","player_achievements","family_monthly_reports"]){
-  const regex=new RegExp('from\\("'+table+'"\\)[\\s\\S]{0,160}\\.eq\\("player_id",id\\)');
-  assert.match(source,regex,"Unscoped player table "+table);
+ for(const table of ["coaching_idp_assessments","coaching_observations","coaching_monthly_reviews","player_achievements","family_monthly_reports"]){
+  const scoped=new RegExp('from\\("'+table+'"\\)[\\s\\S]{0,160}\\.eq\\("player_id",id\\)');
+  assert.match(source,scoped,"Unscoped player table "+table);
  }
- assert.match(source,/\.in\("id",ids\)\.is\("cancelled_at",null\)/);
+ const file=fs.readdirSync(path.join(__dirname,"../supabase/migrations")).find(name=>name.endsWith("_player_coaching_evidence.sql"));
+ const migration=read("supabase/migrations/"+file);
+ for(const component of ["components/StaffPlayer360.tsx","components/PlayerIDP.tsx"]) assert.match(read(component),/loadPlayerSessionRecords\(/);
+ assert.match(read("lib/playerSessionRecords.ts"),/rpc\("star_player_session_records", \{p_player: playerId\}/);
+ assert.match(migration,/a.session_id=r.session_id and a.player_id=r.player_id/);
+ assert.match(migration,/where r.player_id=p_player and s.cancelled_at is null and star_private.can_coach_player\(p_player\)/);
  assert.ok(!source.includes('service_role')&&!source.includes('player_intakes')&&!source.includes('guardian_player_links'));
 });
 test("Switching player identity does not reuse an older player's loaded records",()=>{
