@@ -16,6 +16,7 @@ const fullName=(p:SessionFlowPlayer)=>[p.first_name,p.last_name].filter(Boolean)
 const stages=['Observe','Assess','Understand','Plan','Coach','Challenge','Apply','Review','Adapt','Continue'] as const;
 const categories=['Technical','Tactical','Physical','Psychological','Social'] as const;
 
+type PlayerCue = {player_id:string;learning:string|null;settling_in:string|null;help_request:string|null;help_session_at:string|null;current_request:boolean|null};
 export function SessionPreparation({client,session,roster,userId,counts,onGoToAttendance,onGoToCoaching,onOpenPlan,onPlayerDevelopment}:Base&{
  userId:string;counts:SessionFlowCounts;onGoToAttendance:()=>void;onGoToCoaching:()=>void;onOpenPlan?:(id?:string,session?:SessionFlowSession,player?:SessionFlowPlayer)=>void;onPlayerDevelopment?:(id:string)=>void;
 }){
@@ -24,18 +25,22 @@ export function SessionPreparation({client,session,roster,userId,counts,onGoToAt
  const [practice,setPractice]=useState<{id:string;practice_date:string;reflection:string;player_training_assignments:{player_id:string;title:string}[]}[]>([]);
  const [practiceError,setPracticeError]=useState(false);
  const [loading,setLoading]=useState(true),[goalError,setGoalError]=useState(''),[planError,setPlanError]=useState('');
+ const [cues,setCues]=useState<PlayerCue[]>([]);
+ const [cueError,setCueError]=useState(false);
  useEffect(()=>{
-  let alive=true;setLoading(true);setGoals([]);setPlan(null);setGoalError('');setPlanError('');setPractice([]);setPracticeError(false);
+  let alive=true;setLoading(true);setGoals([]);setPlan(null);setGoalError('');setPlanError('');setPractice([]);setPracticeError(false);setCues([]);setCueError(false);
   if(!client){setGoalError('Coaching data unavailable.');setLoading(false);return;}
   void (async()=>{
    try{
     const ids=key?key.split(','):[];
-    const [g,l,reflections]=await Promise.all([
+    const [g,l,reflections,cueRows]=await Promise.all([
      ids.length?client.from('coaching_development_goals').select('id,player_id,goal').in('player_id',ids).eq('status','working_on').order('created_at',{ascending:false}).limit(100):Promise.resolve({data:[] as Goal[],error:null}),
      client.from('staff_session_plan_links').select('plan_id').eq('created_by',userId).eq('training_session_id',session.id).maybeSingle(),
      ids.length?client.from('player_training_diary').select('id,practice_date,reflection,player_training_assignments!inner(player_id,title)').in('player_training_assignments.player_id',ids).order('practice_date',{ascending:false}).limit(16):Promise.resolve({data:[],error:null}),
+     client.rpc('star_session_player_cues',{p_session:session.id}),
     ]);
     if(!alive)return;
+    if(cueRows.error)setCueError(true);else setCues(cueRows.data??[]);
     if(reflections.error)setPracticeError(true);else setPractice(reflections.data||[]);
     if(g.error)setGoalError('Player priorities unavailable. Review individual development plans.');
     else setGoals((g.data||[]) as Goal[]);
@@ -66,6 +71,16 @@ export function SessionPreparation({client,session,roster,userId,counts,onGoToAt
   {!roster.length?<p role="status">No players are linked to this session. Check booked players in Attendance. Programme membership does not create a booking.</p>:loading?<p role="status">Loading player priorities…</p>:<>{goalError&&<p role="alert">{goalError}</p>}
    <div className="star-flow-priority-list">{roster.map(p=>{const active=goals.filter(g=>g.player_id===p.id).slice(0,2);return <div key={p.id} className="star-flow-priority"><div><strong>{fullName(p)}</strong><small>{p.programme}</small></div><div>{goalError?<span className="star-flow-muted">Goals unavailable</span>:active.length?<ul>{active.map(g=><li key={g.id}>{g.goal}</li>)}</ul>:<span className="star-flow-muted">No active goals recorded</span>}{onPlayerDevelopment&&<button className="star-flow-text-button" type="button" onClick={()=>onPlayerDevelopment(p.id)}>Development plan ↗</button>}</div></div>})}</div>
   </>}</div>
+  {roster.length>0&&<section className="star-flow-card"><h5>How each player likes to learn</h5>
+    {loading?<p role="status">Loading player preferences…</p>:cueError?<p role="alert">Could not load the players’ coaching preferences.</p>:
+      roster.map(player=>{const cue=cues.find(row=>row.player_id===player.id);return <article key={player.id} className="star-flow-priority">
+        <strong>{fullName(player)}</strong><div>
+          {cue?.learning&&<p><b>Learning and feedback</b><br/>{cue.learning}</p>}
+          {cue?.settling_in&&<p><b>Settling in</b><br/>{cue.settling_in}</p>}
+          {cue?.help_request&&<p><b>{cue.current_request?"Help requested for this session":"Last request"+(cue.help_session_at?" · "+day(cue.help_session_at):"")}</b><br/>{cue.help_request}</p>}
+          {!cue?.learning&&!cue?.settling_in&&!cue?.help_request&&<span>No coaching preferences or help request shared yet.</span>}
+        </div></article>;})}
+  </section>}
   {roster.length>0&&<details className="star-flow-card">
     <summary>Recent home practice and reflections {practice.length?('· '+practice.length):''}</summary>
     {practiceError?<p role="alert">Practice reflections could not be loaded.</p>:practice.length?<ul className="star-flow-note-list">{practice.map(entry=>{

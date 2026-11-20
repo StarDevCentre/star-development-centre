@@ -1,6 +1,6 @@
 /* Generic offline screen and public icons only. Parent pages, messages,
    authentication and all family records remain network-only. */
-const CACHE='star-parent-shell-v2';
+const CACHE='star-parent-shell-v3';
 const OFFLINE='/parent-app/offline.html';
 const PUBLIC=[OFFLINE,'/parent-app/icons/icon-192.png','/parent-app/icons/icon-512.png'];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(PUBLIC)).then(()=>self.skipWaiting()));});
@@ -21,7 +21,10 @@ self.addEventListener('push',event=>{
 });
 self.addEventListener('notificationclick',event=>{
  event.notification.close();
- const target=new URL('/parent-portal#updates',self.location.origin).href;
+ const url=new URL('/parent-portal#updates',self.location.origin);
+ const match=/^star-([0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12})$/i.exec(event.notification.tag||'');
+ if(match)url.searchParams.set('update',match[1]);
+ const target=url.href;
  event.waitUntil(self.clients.matchAll({type:'window',includeUncontrolled:true}).then(async clients=>{
   for(const client of clients){const url=new URL(client.url);if(url.origin===self.location.origin&&url.pathname==='/parent-portal'){await client.navigate(target);return client.focus();}}
   return self.clients.openWindow(target);

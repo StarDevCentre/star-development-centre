@@ -1,6 +1,7 @@
 "use client";
 
 import {useEffect, useRef, useState} from "react";
+import {ProgrammeBlockBooking} from "./ProgrammeBlockBooking";
 import {supabaseBrowser as db} from "../lib/supabaseBrowser";
 import {ukDateTime, ukDateTimeInput} from "../lib/sessionOperations";
 import "./portal-operations.css";
@@ -23,6 +24,7 @@ export function StaffBookPlayer({target, onClose, onBooked}: {
   const dialog = useRef<HTMLDialogElement>(null);
   const bookingId = useRef<string>("");
   const [playerId, setPlayerId] = useState(target.playerId ?? "");
+  const [mode, setMode] = useState<"single" | "programme">("single");
   const [players, setPlayers] = useState<Player[]>([]);
   const [programme, setProgramme] = useState(target.programme && individualProgrammes.some(option => option.id === target.programme) ? target.programme : "1-to-1");
   const [day, setDay] = useState(target.date ?? ukDateTimeInput(new Date().toISOString()).slice(0, 10));
@@ -56,7 +58,7 @@ export function StaffBookPlayer({target, onClose, onBooked}: {
   useEffect(() => {
     setSlots([]);
     setSlot("");
-    if (!db || !playerId || !day) { setLoading(false); return; }
+    if (!db || mode !== "single" || !playerId || !day) { setLoading(false); return; }
     let active = true;
     setLoading(true);
     setError("");
@@ -69,7 +71,7 @@ export function StaffBookPlayer({target, onClose, onBooked}: {
       setLoading(false);
     });
     return () => { active = false; };
-  }, [playerId, day, selectedProgramme.minutes, revision]);
+  }, [playerId, day, selectedProgramme.minutes, revision, mode]);
 
   async function save(event: React.FormEvent) {
     event.preventDefault();
@@ -98,11 +100,14 @@ export function StaffBookPlayer({target, onClose, onBooked}: {
   return <dialog ref={dialog} className="star-operations-dialog" aria-labelledby="staff-book-player-title"
     onCancel={event => {event.preventDefault(); if (!busy) onClose();}}>
     <header className="star-operations-header">
-      <h2 id="staff-book-player-title">Book a player session</h2>
+      <h2 id="staff-book-player-title">Book coaching</h2>
       <button type="button" className="star-operations-secondary" disabled={busy} onClick={onClose}>Close</button>
     </header>
-    <p>One booking adds the player to the register and shares the session with her family.</p>
-    <form className="star-operations-form" onSubmit={save}>
+    <div className="star-operations-actions star-booking-modes" aria-label="Booking type">
+      <button type="button" disabled={busy} aria-pressed={mode === "single"} className={mode === "single" ? "" : "star-operations-secondary"} onClick={() => setMode("single")}>Single session</button>
+      <button type="button" disabled={busy} aria-pressed={mode === "programme"} className={mode === "programme" ? "" : "star-operations-secondary"} onClick={() => setMode("programme")}>Whole programme</button>
+    </div>
+    <div className="star-operations-form star-booking-player">
       <label>Player
         <select required value={players.some(player => player.id === playerId) ? playerId : ""} disabled={busy || Boolean(target.playerId)}
           onChange={event => setPlayerId(event.target.value)}>
@@ -110,6 +115,9 @@ export function StaffBookPlayer({target, onClose, onBooked}: {
           {players.map(player => <option key={player.id} value={player.id}>{player.first_name} {player.last_name}</option>)}
         </select>
       </label>
+    </div>
+    {playerError && <p role="alert" className="star-operations-error">{playerError}</p>}
+    {mode === "programme" ? (players.some(p => p.id === playerId) ? <ProgrammeBlockBooking key={playerId} playerId={playerId} initialDate={day} initialProgramme={target.programme} busy={busy} setBusy={setBusy} onBooked={onBooked}/> : <p>Choose a player for the programme.</p>) : <form className="star-operations-form" onSubmit={save}>
       <div className="star-operations-fields">
         <label>Coaching
           <select value={programme} disabled={busy} onChange={event => setProgramme(event.target.value)}>
@@ -131,11 +139,11 @@ export function StaffBookPlayer({target, onClose, onBooked}: {
       <label>Coaching focus to share (optional)
         <input maxLength={500} value={focus} disabled={busy} onChange={event => setFocus(event.target.value)} placeholder="e.g. first touch into space"/>
       </label>
-      {(playerError || error) && <p role="alert" className="star-operations-error">{playerError || error}</p>}
+      {error && <p role="alert" className="star-operations-error">{error}</p>}
       <div className="star-operations-actions">
         <button type="submit" disabled={busy || loading || !slot || Boolean(playerError)}>{busy ? "Booking…" : "Confirm booking"}</button>
         {error && <button type="button" className="star-operations-secondary" disabled={busy} onClick={() => setRevision(value => value + 1)}>Refresh times</button>}
       </div>
-    </form>
+    </form>}
   </dialog>;
 }

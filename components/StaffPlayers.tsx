@@ -2,12 +2,12 @@
 import {useEffect,useRef,useState} from "react";
 import type {SupabaseClient} from "@supabase/supabase-js";
 import {supabaseBrowser} from "../lib/supabaseBrowser";
-import type {StaffPlayer,StaffGoal} from "../lib/staffApp";
+import {staffNames, type StaffPlayer,type StaffGoal} from "../lib/staffApp";
 import {StaffPlayer360} from "./StaffPlayer360";
 type Assignment={player_id:string;staff_user_id:string};
 type Member={user_id:string;role:string;active:boolean};
 const programmes=["Sparks","Development","Flyers","Prestige","1-to-1","Other","Assessment"];
-const staffNames:Record<string,string>={"f877ee5c-68cf-403a-b334-53f1805a2963":"Dean","39e31152-8e06-40ac-a723-284f6bde5f09":"Becky"};
+
 const memberLabel=(m:Member)=>staffNames[m.user_id]||m.role.replaceAll("_"," ")+" · "+m.user_id.slice(0,6);
 type Props={userId:string;canManage:boolean;ownerPreview?:boolean;initialPlayerId?:string;selectionRequest?:number;onNote?:(id:string)=>void;onDevelopment?:(id:string)=>void;onBadge?:(id:string)=>void;onPositions?:(id:string)=>void;onOpenSession?:(id:string)=>void;onPlayerSpace?:(id:string)=>void;onTrainingHub?:(id:string)=>void;onFamilyInbox?:(id:string)=>void;onShareWithFamily?:(id:string)=>void;onBookPlayer?:(id:string)=>void;client?:SupabaseClient|null};
 export function StaffPlayers({userId,canManage,ownerPreview=false,initialPlayerId="",selectionRequest=0,onNote,onDevelopment,onBadge,onPositions,onOpenSession,onPlayerSpace,onTrainingHub,onFamilyInbox,onShareWithFamily,onBookPlayer,client=supabaseBrowser}:Props){
@@ -37,5 +37,3 @@ export function StaffPlayers({userId,canManage,ownerPreview=false,initialPlayerI
  {canManage&&<details className="staff-player-assignment"><summary>Assigned coaches ({assignments.filter(a=>a.player_id===player.id).length})</summary>{assignments.filter(a=>a.player_id===player.id).map(a=><div className="staff-goal-row" key={a.staff_user_id}><p>{memberLabel(members.find(m=>m.user_id===a.staff_user_id)||{user_id:a.staff_user_id,role:"Staff",active:true})}</p><button type="button" disabled={busy} onClick={()=>void remove(a)}>Remove assignment</button></div>)}<label>Assign a coach<select disabled={busy} value="" onChange={e=>void assign(e.target.value)}><option value="">Choose staff member</option>{members.filter(m=>m.active&&!assignments.some(a=>a.player_id===player.id&&a.staff_user_id===m.user_id)).map(m=><option value={m.user_id} key={m.user_id}>{memberLabel(m)}</option>)}</select></label></details>}</>}/></>:<><div className="staff-roster-filters"><label>Find a player<input type="search" maxLength={100} value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search by name"/></label><label>Programme<select value={filter} onChange={e=>setFilter(e.target.value)}><option value="">All programmes</option>{programmes.map(p=><option key={p}>{p}</option>)}</select></label></div><p className="staff-roster-results" role="status">{visible.length} {visible.length===1?"player":"players"}{search||filter?" match your filters":""}</p><div className="staff-roster-list staff-roster-cards">{visible.map(p=><button type="button" className="staff-roster-row staff-player-card" key={p.id} onClick={()=>choose(p.id)} aria-label={`Open ${p.first_name} ${p.last_name} player workspace`}><span className="staff-player-avatar" aria-hidden="true">{p.first_name.charAt(0)}{p.last_name.charAt(0)}</span><span className="staff-player-card-details"><small className="staff-player-card-label">PLAYER WORKSPACE</small><strong>{p.first_name} {p.last_name}</strong><small>{p.programme}</small><span className="staff-player-card-goals">{goals.filter(g=>g.player_id===p.id&&g.status==="working_on").length} active development goals</span></span><span className="staff-player-card-open" aria-hidden="true">Open profile →</span></button>)}{!visible.length&&<p className="staff-quiet">{players.length?"No matching players. Try another name or programme.":"No players are available to your staff account yet."}</p>}</div></>}
  <p className="staff-roster-footnote">Coaching records are private to authorised staff. Use STAR’s established confidential process for medical or safeguarding concerns.</p></section>;
 }
-
-

@@ -50,17 +50,13 @@ export function MonthlyCoachingDraft({playerId, userId, onPublished}: {
     void Promise.all([
       db.from("staff_monthly_drafts").select("strengths,development_areas,next_steps").eq("player_id", playerId).eq("review_month", reportDate).maybeSingle(),
       db.from("family_monthly_reports").select("strengths,development_areas,next_steps").eq("player_id", playerId).eq("review_month", reportDate).maybeSingle(),
-      db.from("coaching_observations").select("id,recorded_at,category,observation,next_action,training_sessions(starts_at)")
-        .eq("player_id", playerId).order("recorded_at", {ascending: false}).limit(200),
-      db.from("player_training_diary").select("id,practice_date,reflection,player_training_assignments!inner(title,player_id)")
-        .eq("player_training_assignments.player_id", playerId).order("practice_date", {ascending: false}).limit(80),
-    ]).then(([saved, published, notes, practice]) => {
+      db.rpc("star_monthly_evidence", {p_player: playerId, p_month: reportDate}),
+    ]).then(([saved, published, evidence]) => {
       if (!alive) return;
-      if (saved.error || published.error || notes.error || practice.error) setError("Some evidence or saved text could not be loaded.");
+      if (saved.error || published.error || evidence.error) setError("Some evidence or saved text could not be loaded.");
       setDraft(saved.data ?? published.data ?? empty);
-      setObservations((notes.data ?? []).filter(note =>
-        ukDateTimeInput(joined(note.training_sessions)?.starts_at ?? note.recorded_at).startsWith(month)) as Observation[]);
-      setReflections((practice.data ?? []).filter(entry => entry.practice_date.startsWith(month)) as Reflection[]);
+      setObservations(evidence.data?.observations ?? []);
+      setReflections(evidence.data?.reflections ?? []);
       setLoading(false);
     });
     return () => { alive = false; };
