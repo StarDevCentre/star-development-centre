@@ -49,6 +49,7 @@ export function PlayerFootballHistory({playerId, preview}: {playerId:string; pre
   const [busy,setBusy] = useState(false);
   const sending = useRef(false);
   const heading = useRef<HTMLHeadingElement>(null);
+  const quizHeading = useRef<HTMLHeadingElement>(null);
   const [now,setNow] = useState(() => Date.now());
 
   useEffect(() => {
@@ -89,6 +90,12 @@ export function PlayerFootballHistory({playerId, preview}: {playerId:string; pre
       heading.current?.scrollIntoView({block:"start"});
     });
   }
+  function focusQuizQuestion() {
+    requestAnimationFrame(() => {
+      quizHeading.current?.focus({preventScroll:true});
+      quizHeading.current?.scrollIntoView({block:"start"});
+    });
+  }
   function open(card:Card, nextMode:"story"|"card") {
     if ("prerequisites" in card && !preview && !progress[card.id]?.earned_at && !card.prerequisites.every(id=>progress[id]?.earned_at)) return;
     setSelected(card);setMode(nextMode);setSide("front");setChoices([]);setQuestion(0);
@@ -99,7 +106,7 @@ export function PlayerFootballHistory({playerId, preview}: {playerId:string; pre
   }
   async function submit(event:FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!selected || !supabaseBrowser || preview || sending.current || (isSparks(selected.id) && question!==selected.questions.length-1) || choices.filter(Number.isInteger).length !== selected.questions.length) return;
+    if (!selected || !supabaseBrowser || preview || sending.current || question!==selected.questions.length-1 || choices.filter(Number.isInteger).length !== selected.questions.length) return;
     sending.current=true;setBusy(true);setError("");
     try {
       const {data,error:rpcError} = await supabaseBrowser.rpc("submit_football_history_quiz",{
@@ -159,20 +166,20 @@ export function PlayerFootballHistory({playerId, preview}: {playerId:string; pre
           <button type="button" className="ps-history-back" onClick={() => {setMode("story");setResult(null);}}>Read the story in text</button>
         </> : mode==="quiz" ? <form onSubmit={submit}>
           <p>{junior?"Pick one answer. Get all five right to earn your card.":`Choose one answer for each question. Score ${questionCount} out of ${questionCount} to earn this card.`}</p>
-          {junior && <p className="ps-history-kicker">Question {question+1} of {questionCount}</p>}
-          {selected.questions.map(({prompt,options},index) => (!junior || index===question) && <fieldset key={prompt} disabled={busy}>
+          <div className="ps-history-quiz-progress"><h3 className="ps-history-question-title" ref={quizHeading} tabIndex={-1}>Question {question+1} of {questionCount}</h3><progress aria-label="Quiz questions reached" value={question+1} max={questionCount}/></div>
+          {selected.questions.map(({prompt,options},index) => index===question && <fieldset key={prompt} disabled={busy}>
             <legend>{index+1}. {prompt}</legend>
             {junior && <SparksReadAloud text={`${prompt} ${options.join(". ")}`} label="Read this question to me"/>}
-            {options.map((option,i) => <label key={option}>
+            {options.map((option,i) => <label key={option} className={`ps-history-answer${choices[index]===i?" is-selected":""}`}>
               <input type="radio" name={`history-question-${index}`} checked={choices[index]===i}
                 onChange={() => setChoices(previous => Object.assign(previous.slice(),{[index]:i}))}/>
-              {option}
+              <span>{option}</span>
             </label>)}
           </fieldset>)}
           {error && <p className="ps-error" role="alert">{error}</p>}
           <div className="ps-history-controls">
-            {junior && question>0 && <button type="button" disabled={busy} onClick={() => {setQuestion(n=>n-1);focusHeading();}}>Previous question</button>}
-            {junior && question<questionCount-1 ? <button type="button" className="ps-history-primary" disabled={!Number.isInteger(choices[question])} onClick={() => {setQuestion(n=>n+1);focusHeading();}}>Next question</button>
+            {question>0 && <button type="button" disabled={busy} onClick={() => {setQuestion(n=>n-1);focusQuizQuestion();}}>Previous question</button>}
+            {question<questionCount-1 ? <button type="button" className="ps-history-primary" disabled={!Number.isInteger(choices[question])} onClick={() => {setQuestion(n=>n+1);focusQuizQuestion();}}>Next question</button>
               : <button type="submit" disabled={busy || choices.filter(Number.isInteger).length!==questionCount}>{busy?"Checking…":"Check my answers"}</button>}
             <button type="button" disabled={busy} onClick={() => {setMode("story");setError("");focusHeading();}}>Read the story again</button>
           </div>
@@ -197,7 +204,7 @@ export function PlayerFootballHistory({playerId, preview}: {playerId:string; pre
           {active?.earned_at ? <button type="button" className="ps-history-primary" onClick={() => {setMode("card");setSide("front");}}>View my card</button>
             : preview ? <p>Sign in to your own Player Space to take the quiz and earn this card.</p>
             : remaining > 0 ? <p className="ps-history-notice">Retry in <time>{Math.floor(remaining/60)}:{String(remaining%60).padStart(2,"0")}</time>. You can explore another story while you wait.</p>
-            : <button type="button" className="ps-history-primary" disabled={load!=="ready"} onClick={() => {setMode("quiz");if (!junior || result) {setChoices([]);setQuestion(0);}setResult(null);focusHeading();}}>{junior && !result && choices.some(Number.isInteger)?"Continue quiz":`Start the ${questionCount}-question quiz`}</button>}
+            : <button type="button" className="ps-history-primary" disabled={load!=="ready"} onClick={() => {setMode("quiz");if (result) {setChoices([]);setQuestion(0);}setResult(null);focusHeading();}}>{!result && choices.some(Number.isInteger)?"Continue quiz":`Start the ${questionCount}-question quiz`}</button>}
         </>}
       </article>
     </> : <>
