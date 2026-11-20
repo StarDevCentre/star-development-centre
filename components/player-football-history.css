@@ -340,3 +340,63 @@
  .ps-history form .ps-history-controls{display:grid;grid-template-columns:minmax(0,1fr)}
  .ps-history form .ps-history-controls button{width:100%;min-height:50px}
 }
+
+
+/*
+ * Player Space's general input rule gives every input width:100%, padding,
+ * a border and a background. On iPhone this made quiz radio controls fill
+ * most of each flex row and squeezed the option copy against the right edge.
+ * Scope a full native-radio reset under the Player Space shell so it wins
+ * regardless of the stylesheet injection/order of Next.js bundles.
+ */
+.player-space-shell .ps-history form fieldset {
+  width:100%;
+  min-width:0;
+  max-width:100%;
+}
+.player-space-shell .ps-history form fieldset legend {
+  max-width:100%;
+  white-space:normal;
+  overflow-wrap:break-word;
+}
+.player-space-shell .ps-history form label.ps-history-answer {
+  display:flex;
+  flex-direction:row;
+  flex-wrap:nowrap;
+  align-items:center;
+  width:100%;
+  min-width:0;
+  max-width:100%;
+  text-align:left;
+}
+.player-space-shell .ps-history form label.ps-history-answer input[type="radio"] {
+  appearance:auto;
+  -webkit-appearance:radio;
+  display:block;
+  box-sizing:border-box;
+  inline-size:20px;
+  block-size:20px;
+  width:20px;
+  min-width:20px;
+  max-width:20px;
+  height:20px;
+  min-height:20px;
+  max-height:20px;
+  flex:0 0 20px;
+  margin:0;
+  padding:0;
+  border:0;
+  border-radius:50%;
+  background:transparent;
+  box-shadow:none;
+  accent-color:#f0d08c;
+}
+.player-space-shell .ps-history form label.ps-history-answer > span {
+  display:block;
+  flex:1 1 auto;
+  min-width:0;
+  width:auto;
+  text-align:left;
+  white-space:normal;
+  overflow-wrap:break-word;
+}
