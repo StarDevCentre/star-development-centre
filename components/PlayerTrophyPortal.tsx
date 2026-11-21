@@ -45,6 +45,7 @@ export function PlayerTrophyPortal() {
   const authRevision = useRef(0);
   const profileWrites = useRef(0);
   const identity = useRef<string|null>(null);
+  const [linkedPlayerIds,setLinkedPlayerIds] = useState<string[]>([]);
   const [actorRole,setActorRole] = useState<"player"|"guardian">("guardian");
   const [recovering,setRecovering] = useState(false);
 
@@ -77,7 +78,10 @@ export function PlayerTrophyPortal() {
         const allowed=candidateIds.length?await db.from("coaching_players").select("id,first_name,last_name,programme").in("id",candidateIds).order("first_name"):{data:[],error:null};
         if(allowed.error)throw allowed.error;
         const ids=(allowed.data||[]).map(p=>p.id);
-        if(active)setActorRole(accounts.data?.length?'player':'guardian');
+        if(active){
+          setLinkedPlayerIds((accounts.data || []).map(link => link.player_id));
+          setActorRole(accounts.data?.length?'player':'guardian');
+        }
         if(!ids.length){if(active){setData(emptySpaceData);setLoadedUserId(currentUserId);}return;}
         await Promise.all(ids.map(id=>db!.rpc('refresh_session_reminders',{target_player:id})));
         const ballProgress=await Promise.all(ids.map(async player_id=>{const r=await db!.rpc('player_ball_progress',{target_player:player_id});if(r.error||!Number.isSafeInteger(r.data))throw new Error('Could not load ball rewards');return{player_id,attended_sessions:r.data as number};}));
@@ -275,7 +279,7 @@ export function PlayerTrophyPortal() {
     setData(emptySpaceData); setUser(null); setError("");
   }
 
-  if (!recovering && ready && user && loadedUserId === user.id && !failed && data.players.length) return <PlayerSpace {...featureActions} actorRole={actorRole} syncError={error} key={user.id} userKey={user.id} data={data} onSavePractice={savePractice} onUpdateProfile={updateProfile} onSaveGoal={saveGoal} onCelebrate={celebrate} onRefresh={() => setRevision(value => value + 1)} onSignOut={signOut}/>;
+  if (!recovering && ready && user && loadedUserId === user.id && !failed && data.players.length) return <PlayerSpace {...featureActions} actorRole={actorRole} linkedPlayerIds={linkedPlayerIds} syncError={error} key={user.id} userKey={user.id} data={data} onSavePractice={savePractice} onUpdateProfile={updateProfile} onSaveGoal={saveGoal} onCelebrate={celebrate} onRefresh={() => setRevision(value => value + 1)} onSignOut={signOut}/>;
 
   return <div className="player-space-shell"><div className="ps-shell-inner"><PlayerSpaceHeader/><div className="ps-welcome-grid"><PlayerSpaceHero compact/><section className="ps-welcome-panel ps-paper">
     {!ready?<p role="status">Checking your account…</p>:!db?<><h2>Your space is taking a breather.</h2><p>Please try again soon.</p></>:<PlayerAccess key={revision+":"+(user?.id||"signed-out")} user={user} recovering={recovering} onRecovered={()=>setRecovering(false)} onRefresh={()=>setRevision(v=>v+1)} onSignOut={signOut} error={error} failed={failed} loading={!!user&&loadedUserId!==user.id}/>}
