@@ -49,7 +49,7 @@ function AwardDetails({ award, onClose }: { award: PlayerAchievement | undefined
   return <dialog ref={dialog} className="ps-award-dialog" onClose={onClose} aria-labelledby="ps-award-title"><button autoFocus className="ps-dialog-close" aria-label="Close badge details" onClick={() => { dialog.current?.close(); onClose(); }}>×</button>{award && <>{badge ? <Image src={badge.image} alt={badge.title + " badge"} width={260} height={260}/> : <SpaceIcon name="trophy"/>}<span className="ps-eyebrow">{badge?.collection || "COACH RECOGNITION"}</span><h2 id="ps-award-title">{award.title}</h2><time dateTime={award.awarded_on}>{achievementDate(award.awarded_on)}</time><div className="ps-coach-note"><strong>Your coach noticed…</strong><p>{award.description}</p></div></>}</dialog>;
 }
 
-export function PlayerSpace({ data, userKey, onSavePractice, onRefresh, onSignOut, onUpdateProfile, onSaveGoal, onCelebrate, actorRole="player", syncError="", demo = false, readOnlyPreview=false, ...featureActions }: SpaceActions & PortalFeatureActions & { actorRole?:"player"|"guardian"; syncError?:string; readOnlyPreview?:boolean; data: SpaceData; userKey: string; onSavePractice: (value: PracticeInput) => Promise<void>; onRefresh?: () => void; onSignOut?: () => Promise<void>; demo?: boolean }) {
+export function PlayerSpace({ data, userKey, onSavePractice, onRefresh, onSignOut, onUpdateProfile, onSaveGoal, onCelebrate, actorRole="player", linkedPlayerIds = [], syncError="", demo = false, readOnlyPreview=false, ...featureActions }: SpaceActions & PortalFeatureActions & { actorRole?:"player"|"guardian"; linkedPlayerIds?:string[]; syncError?:string; readOnlyPreview?:boolean; data: SpaceData; userKey: string; onSavePractice: (value: PracticeInput) => Promise<void>; onRefresh?: () => void; onSignOut?: () => Promise<void>; demo?: boolean }) {
   const [savedMoment,setSavedMoment]=useState<SavedPracticeMoment|null>(null);
   const [styleRequest,setStyleRequest]=useState(0);
   const [cardRequest,setCardRequest]=useState(0);
@@ -84,6 +84,8 @@ export function PlayerSpace({ data, userKey, onSavePractice, onRefresh, onSignOu
   const pageHeading = useRef<HTMLHeadingElement>(null);
   const player = data.players.find(value => value.id === playerId) || data.players[0];
   const id = player?.id || "";
+  const helpPreview = demo || readOnlyPreview;
+  const canMessagePrivately = !helpPreview && linkedPlayerIds.includes(id);
   const awards = data.awards.filter(value => value.player_id === id);
   const assignments = data.assignments.filter(value => value.player_id === id);
   const diary = data.diary.filter(value => assignments.some(item => item.id === value.assignment_id));
@@ -145,7 +147,7 @@ export function PlayerSpace({ data, userKey, onSavePractice, onRefresh, onSignOu
     const target=event.target as HTMLElement;
     const control=target.closest('button,input,select,textarea,label');
     if(!control)return;
-    if(control.closest('.ps-desktop-nav,.ps-mobile-dock,.ps-more-menu,.ps-feature-links,.ps-history,.ps-week-controls,.ps-customise-actions'))return;
+    if(control.closest('.ps-desktop-nav,.ps-mobile-dock,.ps-more-menu,.ps-feature-links,.ps-history,.ps-week-controls,.ps-customise-actions,.ps-help-entry'))return;
     if(control.closest('.ps-header-end')&&control.getAttribute('aria-label')?.startsWith('Open updates'))return;
     event.preventDefault();event.stopPropagation();
   }
@@ -175,7 +177,7 @@ export function PlayerSpace({ data, userKey, onSavePractice, onRefresh, onSignOu
       {tab==="sharing"&&<PlayerSharing key={id} playerId={id} awards={awards} shared={data.sharedAwards.filter(s=>s.player_id===id)} showcase={data.showcases.find(s=>s.player_id===id)} feed={data.sharingFeed[id]||[]} groups={data.sharingGroups.filter(g=>g.player_ids?.includes(id)).map(g=>g.name)} onShareAward={featureActions.onShareAward} onSaveAlias={featureActions.onSaveAlias}/>}
       {tab==="updates"&&<><PlayerNotifications key={id} notifications={notifications} read={data.notificationReads} onReadNotifications={featureActions.onReadNotifications} onOpen={navigate}/><div className="ps-phone-panel ps-paper"><PlayerPhoneAlerts key={`phone-${userKey}`} userKey={userKey} demo={demo}/></div></>}
       {tab === "trophies" && <><div className="ps-title-paper ps-paper"><span className="ps-tape">{"EFFORT LOOKS GOOD ON YOU"}</span><h1>{<>YOUR MOMENTS.<br/><em>YOUR TROPHIES.</em></>}</h1><p>Tap a badge to see what your coach noticed.</p><button className="ps-text-link" onClick={()=>navigate("sharing")}>Choose awards to share with teammates →</button></div>{trophyPreview}<PlayerLearningCollection key={`learning-${id}`} playerId={id} profile={profile} progress={data.learningProgress.filter(p=>p.player_id===id)} unlocks={unlocks} onUpdateProfile={onUpdateProfile} onUnlockHairstyle={featureActions.onUnlockHairstyle} onLearn={()=>navigate('learn')}/></>}
-      {actorRole==='player'&&!readOnlyPreview&&(tab==='home'||tab==='messages')&&<section className="ps-help-entry ps-paper" aria-label="Private help"><div><span className="ps-tape">HERE FOR YOU</span><p>Something worrying you? You can talk to STAR privately.</p></div><PlayerSafeguardingHelp key={id} playerId={demo?undefined:id} preview={demo} onExit={()=>navigate('home')} onSubmit={demo?undefined:input=>safeguarding('submit',{player_id:id,body:input.body,parent_requested:input.parentContactRequested,request_id:input.requestId})}/></section>}
+      {(tab==='home'||tab==='messages')&&<section className="ps-help-entry ps-paper" aria-label="Private help"><div><span className="ps-tape">HERE FOR YOU</span><p>Something worrying you? Get help here.</p></div><PlayerSafeguardingHelp key={id} playerId={canMessagePrivately?id:undefined} preview={helpPreview} onExit={()=>navigate('home')} onSubmit={!canMessagePrivately?undefined:input=>safeguarding('submit',{player_id:id,body:input.body,parent_requested:input.parentContactRequested,request_id:input.requestId})}/></section>}
     </div><footer className="ps-footer"><span>BELIEVE. DEVELOP. ACHIEVE.</span>{actorRole==="guardian"&&<Link href="/parent-portal">Parent area ↗</Link>}<Link href="/privacy">Privacy & support ↗</Link></footer>
     <nav className="ps-mobile-dock" aria-label="Player Space mobile">{nav.filter(item=>['home','training','journey','messages'].includes(item.id)).map(item=><button key={item.id} aria-current={tab===item.id?'page':undefined} onClick={()=>navigate(item.id)}><SpaceIcon name={item.icon}/><span>{item.mobile}</span></button>)}<button aria-expanded={more} onClick={()=>{setMore(v=>!v);setAccount(false);requestAnimationFrame(()=>document.getElementById('ps-more')?.scrollIntoView({block:'center'}));}}><SpaceIcon name="more"/><span>More</span></button></nav><AwardDetails award={awards.find(value => value.id === selectedAward)} onClose={() => setSelectedAward(null)}/>
   </div></div>;
